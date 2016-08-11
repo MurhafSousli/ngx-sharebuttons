@@ -1,0 +1,10 @@
+<div class="share">
+  <h4 class="share-title">{{shareTitle}}</h4>
+  <div class="share-buttons">
+    <button *ngFor="let share of shareButtons"
+            [class]="share.classes"
+            [innerHtml]="share.innerHtml"
+            (click)="share.click()"
+    ></button>
+  </div>
+</div>

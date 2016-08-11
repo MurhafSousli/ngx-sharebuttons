@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES6",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "declaration": true
+    },
+    "files": [
+        "ng2-sharebuttons.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "examples",
+        "assets",
+        "typings"
+    ],
+    "typings": "./ng2-wp-api.d.ts"
+}

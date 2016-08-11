@@ -1,5 +1,7 @@
 # Angular 2 Share Buttons
 
+ng2-sharebuttons 
+
 TODOs:
 
 Facebook
