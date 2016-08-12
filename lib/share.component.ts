@@ -16,25 +16,23 @@ export class ShareButtons implements OnInit {
   /** window attributes set the height and width of share window */
   windowAttr: any;
   @Input()
-  width = 500;
+  width: number = 500;
   @Input()
-  height = 300;
+  height: number = 300;
 
   /** Share buttons container title, ex: Sharing is caring */
   @Input() shareTitle: string;
 
-  /** Optional to add "Via @YourTwitter" to user tweet,
-   * this can be useful to get notified when user shares your link on twitter
-   * */
+  /** Optional to add "Via @YourTwitter" to user tweet */
   @Input() twitterAccount: string;
 
   /** Share meta tags
    *  Leave those Inputs empty if OG meta tags are already set.
    * */
-  @Input() title;
-  @Input() description;
-  @Input() image;
-  @Input() url;
+  @Input() title: string;
+  @Input() description: string;
+  @Input() image: string;
+  @Input() url: string;
 
   @Input() facebook: boolean = true;
   @Input() twitter: boolean = true;
