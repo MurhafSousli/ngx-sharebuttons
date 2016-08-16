@@ -1,7 +1,7 @@
 ![Alt text](/assets/cover.png?raw=true "Optional Title")
 # Angular 2 Share Buttons
 
-Simple, lightweight, customizable share buttons. [see it in action](http://murhafsousli.com/project)
+Simple, lightweight, customizable share buttons for your angular 2 app. [live demo]()
 
 Supported services are:
 
@@ -14,13 +14,13 @@ Reddit
 StumbleUpOn
 LinkedIn
 
-## installation
+## Installation
 
 Install it with npm
 
 `npm install ng2-sharebuttons --save`
 
-##Usage:
+## Usage:
 
 The basic usage has no inputs
 ```
@@ -44,8 +44,8 @@ By default all listed buttons will be displayed unless you disable them
 
 by default it will get them from the page head, leave them empty unless:
 
- 1 - The meta tags aren't set properly.
- 2 - if your using multiple instances of share-buttons, ex: a share button instance foreach post in a blog page
+  1. The meta tags aren't set properly.
+  2. if your using multiple instances of share-buttons, ex: a share button instance foreach post in a blog page
 
 ```
   @Input() title;
@@ -74,8 +74,28 @@ Set your twitter account to add "via @YourAccount" to visitor's tweet
 
 ##Customization:
 
-    Coming Soon
+by default share button will display fontawesome icons which requires fontawesome css to be loaded.
 
+for example the default style for facebook button:
+
+```
+<button class="facebook">
+  <i class="fa fa-facebook"></i>
+</button>
+```
+
+you can override the style for a button by overriding its inner html
+
+```
+  @Input() facebookInner = "<i class='fa fa-facebook'></i>";
+  @Input() twiiterInner = "<i class='fa fa-twitter'></i>";
+  @Input() linkedInInner = "<i class='fa fa-linkedin'></i>";
+  @Input() tumblrInner = "<i class='fa fa-tumblr'></i>";
+  @Input() googleInner = "<i class='fa fa-google-plus'></i>";
+  @Input() pinterestInner = "<i class='fa fa-pinterest-p'></i>";
+  @Input() stumbleUpOnInner = "<i class='fa fa-stumbleupon'></i>";
+  @Input() redditInner = "<i class='fa fa-reddit-alien'></i>";
+```
 
 ##TODOs:
 
