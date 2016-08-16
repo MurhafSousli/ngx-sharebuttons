@@ -1,4 +1,4 @@
-![Alt text](/assets/cover.png?raw=true "Optional Title")
+![Angular 2 Share Buttons cover](/assets/cover.png?raw=true "Optional Title")
 # Angular 2 Share Buttons
 
 Simple, lightweight, customizable share buttons for your angular 2 app. [live demo]()
