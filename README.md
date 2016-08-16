@@ -42,7 +42,7 @@ By default all listed buttons will be displayed unless you disable them
 ```
 ### Meta tags
 
-by default it will get them from the page head, leave them empty unless:
+by default the share buttons will get the meta tags from the page head, leave them empty unless:
 
   1. The meta tags aren't set properly.
   2. if your using multiple instances of share-buttons, ex: a share button instance foreach post in a blog page
@@ -84,7 +84,7 @@ for example the default style for facebook button:
 </button>
 ```
 
-you can override the style for a button by overriding its inner html
+you can override the style for any button by overriding its inner html
 
 ```
   @Input() facebookInner = "<i class='fa fa-facebook'></i>";
