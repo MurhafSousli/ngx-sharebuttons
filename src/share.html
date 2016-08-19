@@ -1,6 +1,6 @@
 <div class="share">
   <h4 class="share-title">{{shareTitle}}</h4>
-  <div class="share-buttons">
+  <div class="share-buttons" [class.share-style]="defaultStyle">
     <button *ngFor="let share of shareButtons"
             [class]="share.classes"
             [innerHtml]="share.innerHtml"
