@@ -1,18 +1,11 @@
 ![Angular 2 Share Buttons cover](/assets/cover.png?raw=true "Optional Title")
 # Angular 2 Share Buttons
 
-Simple, lightweight, customizable share buttons for your angular 2 app. [live demo]()
+Simple, lightweight, customizable share buttons for your angular 2 app. [live demo](https://murhafsousli.github.io/ng2-sharebuttons/)
 
-Supported services are:
+Supported services:
 
-Facebook
-Twitter
-Pinterest
-Google
-Tumbler
-Reddit
-StumbleUpOn
-LinkedIn
+`Facebook`, `Twitter`, `Pinterest`, `Google`, `Tumbler`, `Reddit`, `StumbleUpOn`, `LinkedIn`
 
 ## Installation
 
@@ -69,33 +62,55 @@ Set the title before share buttons wrapper
 ##Twitter account
 Set your twitter account to add "via @YourAccount" to visitor's tweet
 ```
-<share-buttons [twitterAccount]="@MurhafSousli"></share-buttons>
+<share-buttons [twitterAccount]="'MurhafSousli'"></share-buttons>
 ```
 
 ##Customization:
 
-by default share button will display fontawesome icons which requires fontawesome css to be loaded.
+Customization is very easy, the first thing you want to do is to set `[defaultStyle]=false` this will remove the default style, and then write your own css.
+include custom template for each button `[facebookInner]="facebookTemplate"`, hide specific buttons using the name of the service `[facebook]="false"`
 
-for example the default style for facebook button:
-
-```
-<button class="facebook">
-  <i class="fa fa-facebook"></i>
-</button>
-```
-
-you can override the style for any button by overriding its inner html
 
 ```
-  @Input() facebookInner = "<i class='fa fa-facebook'></i>";
-  @Input() twiiterInner = "<i class='fa fa-twitter'></i>";
-  @Input() linkedInInner = "<i class='fa fa-linkedin'></i>";
-  @Input() tumblrInner = "<i class='fa fa-tumblr'></i>";
-  @Input() googleInner = "<i class='fa fa-google-plus'></i>";
-  @Input() pinterestInner = "<i class='fa fa-pinterest-p'></i>";
-  @Input() stumbleUpOnInner = "<i class='fa fa-stumbleupon'></i>";
-  @Input() redditInner = "<i class='fa fa-reddit-alien'></i>";
+<share-buttons
+   [shareTitle]="shareTitle"
+     
+   [defaultStyle]="false"
+  
+   [facebookInner]="fbInner"
+   [twitterInner]="twitterInner"
+   [pinterestInner]="pintInner"
+   [linkedInInner]="inInner"
+   [googleInner]="googleInner"
+   [tumblrInner]="tumblrInner"
+  
+   [reddit]="false"
+   [stumbleUpOn]="false"
+></share-buttons>
 ```
+```
+import {Component} from "@angular/core";
+import {ShareButtons} from "../share/share.component";
+
+@Component({
+  selector: "customize",
+  template: require("./customize.html"),
+  directives: [ShareButtons]
+})
+
+export class Customize {
+
+  shareTitle = "Custom share icons";
+
+  fbInner = "<img src='../../assets/img/custom/facebook.svg'>";
+  twitterInner = "<img src='../../assets/img/custom/twitter.svg'>";
+  pintInner = "<img src='../../assets/img/custom/pinterest.svg'>";
+  inInner = "<img src='../../assets/img/custom/linkedin.svg'>";
+  googleInner = "<img src='../../assets/img/custom/google-plus.svg'>";
+  tumblrInner = "<img src='../../assets/img/custom/tumblr.svg'>";
+}
+```
+[Demo source](https://github.com/MurhafSousli/ng2-sharebuttons-demo/tree/master/src/app/customize)
 
 ##TODOs:
 
