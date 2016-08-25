@@ -35,7 +35,7 @@ export class ShareButtons implements OnInit {
   @Input() image;
   @Input() url;
 
-  /** Buttons Inner */
+  /** Buttons default templates */
   @Input() facebook: any = "<i class='fa fa-facebook'></i>";
   @Input() twitter: any = "<i class='fa fa-twitter'></i>";
   @Input() linkedIn: any = "<i class='fa fa-linkedin'></i>";
