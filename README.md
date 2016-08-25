@@ -1,5 +1,6 @@
+# Angular 2 Share Buttons [![npm](https://img.shields.io/npm/v/ng2-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-sharebuttons) [![Build Status](https://travis-ci.org/MurhafSousli/ng2-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ng2-sharebuttons) [![npm](https://img.shields.io/npm/dt/ng2-sharebuttons?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-sharebuttons)
+
 ![Angular 2 Share Buttons cover](/assets/cover.png?raw=true "Optional Title")
-# Angular 2 Share Buttons
 
 Simple, lightweight, customizable share buttons for your angular 2 app. [live demo](https://murhafsousli.github.io/ng2-sharebuttons/)
 
@@ -123,7 +124,7 @@ export class Customize {
 ## Issues
 
 
-If you identify any errors in this component, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ng2-wp-api/issues). I am excited to see what the community thinks of this project, and I would love your input!
+If you identify any errors in this component, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ng2-sharebuttons/issues). I am excited to see what the community thinks of this project, and I would love your input!
 
 ## Author
 
