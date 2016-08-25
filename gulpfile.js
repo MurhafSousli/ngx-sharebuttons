@@ -1,16 +1,28 @@
+/**
+ * @Author: @MurhafSousli
+ */
+
 const gulp = require('gulp');
+
+/** del to remove dist directory */
 const del = require('del');
 
-/** merge2 for parallel tasks */
+/** merge2 to execute tasks in parallel*/
 var merge = require('merge2');
 
+/** load templates and styles in ng2 components */
 var embedTemplates = require('gulp-inline-ng2-template');
 
-/** Typescript compilter */
+/** Typescript compiler */
 const typescript = require('gulp-typescript');
+
+/** Javascript Minifier */
 const uglify = require('gulp-uglify');
+
 /** TSLint checker */
 const tslint = require('gulp-tslint');
+
+/** Sourcemaps */
 const sourcemaps = require('gulp-sourcemaps');
 
 /** Sass style */
@@ -38,11 +50,17 @@ gulp.task('clean', function () {
 
 // TypeScript compile
 gulp.task('compile-ts', ['clean', 'styles'], function () {
+
+    /**
+     * Embed templates and styles in ng2 components
+     * Write sourcemaps
+     * Compile ts
+     * Minifiy compiled js
+     */
     var sourceTsFile = [
         config.allTs,
         config.allTsd
     ];
-
     var tsResult = gulp.src(sourceTsFile)
         .pipe(embedTemplates({base: './src/share'}))
         .pipe(sourcemaps.init())
@@ -70,8 +88,11 @@ gulp.task('ts-lint', function () {
 
 /** Styles Task */
 gulp.task('styles', function () {
+    /**
+     * Remove comments, autoprefixer, Minifier
+     */
     var processors = [
-        stripInlineComments,
+        stripInlineComments,    
         autoprefixer,
         cssnano
     ];
