@@ -14,7 +14,7 @@ Install it with npm
 
 `npm install ng2-sharebuttons --save`
 
-## Usage:
+## Basic usage:
 
 The default icons requires [fontawesome](http://fontawesome.io/) to be loaded into your project, This is also recommended since all the icons are fetched with a single request.
 ```
@@ -25,8 +25,8 @@ The default icons requires [fontawesome](http://fontawesome.io/) to be loaded in
 
 by default the share buttons will get the meta tags from the page head, leave them empty unless:
 
-  1. The meta tags aren't set properly.
-  2. if your using multiple instances of share-buttons, ex: a share button instance foreach post in a blog page
+* The meta tags aren't set properly.
+* If you are using multiple instances of share-buttons, ex: a share button instance foreach post in a blog page
 
 ```
   @Input() title;
