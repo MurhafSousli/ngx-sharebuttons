@@ -4,8 +4,8 @@ import {ShareButton} from './share.model';
 
 @Component({
   selector: 'share-buttons',
-  template: require('./share.html'),
-  styles: [require('./share.scss')]
+  templateUrl: './share.html',
+  styleUrls: ['./share.css']
 })
 export class ShareButtons implements OnInit {
 

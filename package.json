@@ -1,46 +1,36 @@
 {
   "name": "ng2-sharebuttons",
-  "version": "0.1.0",
-  "description": "Share buttons component for Angular2",
-  "main": "./index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/MurhafSousli/ng2-sharebuttons.git"
-  },
-  "author": "Murhaf Sousli <murhafsousli@gmail.com>",
+  "version": "1.2.8",
+  "description": "Simple, lightweight, customizable share buttons for angular 2 app",
+  "author": "Murhaf Sousli <murhafsousi@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/MurhafSousli/ng2-sharebuttons/issues"
-  },
-  "homepage": "https://github.com/MurhafSousli/ng2-sharebuttons#readme",
-  "scripts": {
-    "prepublish": "tsc"
-  },
-  "keywords": [
-    "angular2",
-    "sharebuttons",
-    "share",
-    "facebook",
-    "twitter",
-    "linkedIn",
-    "google",
-    "tumblr",
-    "stumbleUpOn",
-    "reddit",
-    "pinterest"
-  ],
-  "dependencies": {
-    "@angular/http": "2.0.0-rc.4",
-    "@angular/core": "2.0.0-rc.4",
-    "@angular/platform-browser": "2.0.0-rc.4",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "peerDependencies": {
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
-    "zone.js": "~0.6.12",
+    "@angular/core": "2.0.0-rc.4",
+    "@angular/platform-browser": "2.0.0-rc.4",
+    "@angular/platform-browser-dynamic": "^2.0.0-rc.4",
+    "angular2-template-loader": "^0.5.0",
     "rxjs": "5.0.0-beta.6",
-    "core-js": "^2.4.0"
+    "zone.js": "~0.6.12"
   },
   "devDependencies": {
-    "typescript": "^2.0.0-beta",
-    "typings": "^1.3.2"
+    "autoprefixer": "^6.4.0",
+    "cssnano": "^3.7.4",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-inline-ng2-template": "^3.0.0",
+    "gulp-postcss": "^6.1.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-tslint": "^6.1.1",
+    "gulp-typescript": "^2.13.6",
+    "gulp-uglify": "^2.0.0",
+    "merge2": "^1.0.2",
+    "postcss-scss": "^0.1.9",
+    "postcss-strip-inline-comments": "^0.1.5",
+    "tslint": "^3.15.1"
   }
 }
