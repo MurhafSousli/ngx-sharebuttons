@@ -35,25 +35,15 @@ export class ShareButtons implements OnInit {
   @Input() image;
   @Input() url;
 
-  /** Toggle Service */
-  @Input() facebook: boolean = true;
-  @Input() twitter: boolean = true;
-  @Input() linkedIn: boolean = true;
-  @Input() tumblr: boolean = true;
-  @Input() google: boolean = true;
-  @Input() pinterest: boolean = true;
-  @Input() stumbleUpOn: boolean = true;
-  @Input() reddit: boolean = true;
-
   /** Buttons Inner */
-  @Input() facebookInner: any = "<i class='fa fa-facebook'></i>";
-  @Input() twitterInner: any = "<i class='fa fa-twitter'></i>";
-  @Input() linkedInInner: any = "<i class='fa fa-linkedin'></i>";
-  @Input() tumblrInner: any = "<i class='fa fa-tumblr'></i>";
-  @Input() googleInner: any = "<i class='fa fa-google-plus'></i>";
-  @Input() pinterestInner: any = "<i class='fa fa-pinterest-p'></i>";
-  @Input() stumbleUpOnInner: any = "<i class='fa fa-stumbleupon'></i>";
-  @Input() redditInner: any = "<i class='fa fa-reddit-alien'></i>";
+  @Input() facebook: any = "<i class='fa fa-facebook'></i>";
+  @Input() twitter: any = "<i class='fa fa-twitter'></i>";
+  @Input() linkedIn: any = "<i class='fa fa-linkedin'></i>";
+  @Input() tumblr: any = "<i class='fa fa-tumblr'></i>";
+  @Input() google: any = "<i class='fa fa-google-plus'></i>";
+  @Input() pinterest: any = "<i class='fa fa-pinterest-p'></i>";
+  @Input() stumbleUpOn: any = "<i class='fa fa-stumbleupon'></i>";
+  @Input() reddit: any = "<i class='fa fa-reddit-alien'></i>";
 
   @Input() defaultStyle: boolean = true;
 
@@ -81,56 +71,56 @@ export class ShareButtons implements OnInit {
     if (this.facebook) {
       let btn = new ShareButton(this.linkFacebook(),
         'facebook',
-        this.facebookInner,
+        this.facebook,
         this.windowAttr);
       this.shareButtons.push(btn);
     }
     if (this.twitter) {
       let btn = new ShareButton(this.linkTwitter(),
         'twitter',
-        this.twitterInner,
+        this.twitter,
         this.windowAttr);
       this.shareButtons.push(btn);
     }
     if (this.google) {
       let btn = new ShareButton(this.linkGooglePlus(),
         'googleplus',
-        this.googleInner,
+        this.google,
         this.windowAttr);
       this.shareButtons.push(btn);
     }
     if (this.pinterest) {
       let btn = new ShareButton(this.linkPinterest(),
         'pinterest',
-        this.pinterestInner,
+        this.pinterest,
         this.windowAttr);
       this.shareButtons.push(btn);
     }
     if (this.linkedIn) {
       let btn = new ShareButton(this.linkLinkedin(),
         'linkedin',
-        this.linkedInInner,
+        this.linkedIn,
         this.windowAttr);
       this.shareButtons.push(btn);
     }
     if (this.stumbleUpOn) {
       let btn = new ShareButton(this.linkStumbleUpon(),
         'stumbleupon',
-        this.stumbleUpOnInner,
+        this.stumbleUpOn,
         this.windowAttr);
       this.shareButtons.push(btn);
     }
     if (this.tumblr) {
       let btn = new ShareButton(this.linkTumblr(),
         'tumblr',
-        this.tumblrInner,
+        this.tumblr,
         this.windowAttr);
       this.shareButtons.push(btn);
     }
     if (this.reddit) {
       let btn = new ShareButton(this.linkReddit(),
         'reddit',
-        this.redditInner,
+        this.reddit,
         this.windowAttr);
       this.shareButtons.push(btn);
     }

@@ -1,6 +1,6 @@
 {
   "name": "ng2-sharebuttons",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple, lightweight, customizable share buttons for angular 2 application",
   "author": "Murhaf Sousli <murhafsousi@gmail.com>",
   "license": "MIT",
@@ -16,11 +16,11 @@
     "@angular/core": "2.0.0-rc.4",
     "@angular/platform-browser": "2.0.0-rc.4",
     "@angular/platform-browser-dynamic": "^2.0.0-rc.4",
-    "angular2-template-loader": "^0.5.0",
     "rxjs": "5.0.0-beta.6",
     "zone.js": "~0.6.12"
   },
   "devDependencies": {
+    "angular2-template-loader": "^0.5.0",
     "autoprefixer": "^6.4.0",
     "cssnano": "^3.7.4",
     "del": "^2.2.2",
