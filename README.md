@@ -67,9 +67,11 @@ Set your twitter account to add "via @YourAccount" to visitor's tweet
 
 ##Customization:
 
-Customization is very easy, the first thing you want to do is to set `[defaultStyle]=false` this will remove the default style, and then write your own css.
-include custom template for each button `[facebookInner]="facebookTemplate"`, hide specific buttons using the name of the service `[facebook]="false"`
+Customization is very easy, the first thing you want to do is to set `[defaultStyle]=false` this will remove the default style (which is the basic hover effect), and then write your own css.
 
+Each share service has its own button template, to customize a button pass your custom template to the button input, e.g. give facebook a custom template `[facebook]="facebookTemplate"` 
+
+To exclude a button from the shareButtons, pass false to the button template e.g. `[facebook]="false"`
 
 ```
 <share-buttons
@@ -77,12 +79,12 @@ include custom template for each button `[facebookInner]="facebookTemplate"`, hi
      
    [defaultStyle]="false"
   
-   [facebookInner]="fbInner"
-   [twitterInner]="twitterInner"
-   [pinterestInner]="pintInner"
-   [linkedInInner]="inInner"
-   [googleInner]="googleInner"
-   [tumblrInner]="tumblrInner"
+   [facebook]="fbInner"
+   [twitter]="twitterInner"
+   [pinterest]="pintInner"
+   [linkedIn]="inInner"
+   [google]="googleInner"
+   [tumblr]="tumblrInner"
   
    [reddit]="false"
    [stumbleUpOn]="false"
