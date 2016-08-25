@@ -80,7 +80,7 @@ To exclude a button from the shareButtons, pass false to the button template e.g
 ```
 ```
 import {Component} from "@angular/core";
-import {ShareButtons} from "../share/share.component";
+import {ShareButtons} from 'ng2-sharebuttons';
 
 @Component({
   selector: "customize",
