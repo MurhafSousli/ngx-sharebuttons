@@ -58,10 +58,6 @@ gulp.task('compile-ts', ['clean', 'styles'], function () {
             .pipe(gulp.dest(config.OutputDir))
         ]);
 
-    return tsResult.js
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.OutputDir));
-
 });
 
 gulp.task('ts-lint', function () {
