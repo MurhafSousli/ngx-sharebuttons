@@ -16,24 +16,11 @@ Install it with npm
 
 ## Usage:
 
-The basic usage has no inputs
+The default icons requires [fontawesome](http://fontawesome.io/) to be loaded into your project, This is also recommended since all the icons are fetched with a single request.
 ```
 <share-buttons></share-buttons>
 ```
-### Share buttons
-By default all listed buttons will be displayed unless you disable them
-```
-@Input() facebook: boolean = true;
-@Input() twitter: boolean = true;
-@Input() linkedIn: boolean = true;
-@Input() tumblr: boolean = true;
-@Input() google: boolean = true;
-@Input() pinterest: boolean = true;
-@Input() stumbleUpOn: boolean = true;
-@Input() reddit: boolean = true;
 
-<share-buttons [tumbler]="false"></share-buttons>
-```
 ### Meta tags
 
 by default the share buttons will get the meta tags from the page head, leave them empty unless:
