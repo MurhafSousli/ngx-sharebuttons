@@ -1,6 +1,6 @@
 {
   "name": "ng2-sharebuttons",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Simple, lightweight, customizable share buttons for angular 2 application",
   "repository": {
     "type": "git",
