@@ -1,0 +1,74 @@
+<share-buttons [twitterAccount]="'MurhafSousli'"></share-buttons>
+<section>
+  <h2>Brief Summary</h2>
+  <p>
+    Simple, lightweight, customizable share buttons for your angular 2 app
+  </p>
+</section>
+
+<section>
+  <h2>Installation</h2>
+  <p>Install it with npm</p>
+  <pre><code class="language-markup">$ npm install ng2-sharebuttons --save</code></pre>
+</section>
+
+<section>
+  <h2>Basic usage</h2>
+  <p>The default icons requires <a href='http://fontawesome.io/'>fontawesome</a> to be loaded into your project, This is
+    also recommended since all the icons are fetched with a single request.</p>
+  <pre><code class="language-html">{{basicUsage}}</code></pre>
+  <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
+  <div class="output">
+    <share-buttons [shareTitle]="'Default style'" [twitterAccount]="'MurhafSousli'"></share-buttons>
+  </div>
+</section>
+
+<section>
+  <h2>Customization</h2>
+  <p>Customization is very easy, the first thing you want to do is to set <code
+    class="markup">[defaultStyle]=false</code> this will
+    remove the default style (which is the basic hover effect), and then write your own css.</p>
+
+  <p>Each share service has its own button template, to customize a button pass your custom template to the button
+    input,
+    e.g. give facebook a custom template
+    <code class="markup">[facebook]="facebookTemplate"</code>.
+  </p>
+
+  <p>To exclude a button from the shareButtons, pass <a><i>false</i></a> to the button template
+    e.g. <code class="markup">[facebook]="false"</code>
+  </p>
+
+  <pre><code class="language-html">{{customizeHtml}}</code></pre>
+  <pre><code class="language-javascript">{{customizeScript}}</code></pre>
+  <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
+  <div class="output">
+    <customize></customize>
+  </div>
+
+</section>
+
+<section>
+  <h2>Meta tags</h2>
+  <p>By default the share buttons will get the meta tags from the page head, this is useful to display link preview
+    (title, description, image) when sharing on social media. in some cases like when you want to display share buttons
+    for a list of links, then you need to set each link meta tags manually</p>
+  <pre><code class="language-html">{{metaHtml}}</code></pre>
+
+</section>
+<section>
+  <h2>Author</h2>
+  <a href="http://murhafsousli.com"><b>Murhaf Sousli</b></a>
+  <ul>
+    <li><a href="https://github.com/MurhafSousli">github/murhafsousli</a></li>
+    <li><a href="https://twitter.com/MurhafSousli">twitter/murhafsousli</a></li>
+  </ul>
+</section>
+
+<section>
+  <h2>License</h2>
+  <p><a href="https://github.com/MurhafSousli/ng2-sharebuttons/blob/master/LICENSE"><img
+    src="https://camo.githubusercontent.com/25d313ccfafb08618b31899a22af11a5b8a79aad/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f657870726573732e7376673f6d61784167653d32353932303030"
+    alt="npm" data-canonical-src="https://img.shields.io/npm/l/express.svg?maxAge=2592000" style="max-width:100%;"></a>
+  </p>
+</section>
