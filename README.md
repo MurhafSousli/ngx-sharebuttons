@@ -16,7 +16,7 @@ Install it with npm
 
 ## Basic usage:
 
-Add `ShareButtons` component in @NgModule declerations array
+Add `ShareButtons` component in `NgModule` declerations array
 ```
 import {ShareButtons} from "ng2-sharebuttons";
 @NgModule({
@@ -25,6 +25,7 @@ import {ShareButtons} from "ng2-sharebuttons";
   ],
   .
   .
+})
 ```
 in your template
 ```
