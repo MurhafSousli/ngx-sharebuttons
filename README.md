@@ -16,10 +16,21 @@ Install it with npm
 
 ## Basic usage:
 
-The default icons requires [fontawesome](http://fontawesome.io/) to be loaded into your project, This is also recommended since all the icons are fetched with a single request.
+Add `ShareButtons` component in @NgModule declerations array
+```
+import {ShareButtons} from "ng2-sharebuttons";
+@NgModule({
+  declarations: [
+    ShareButtons
+  ],
+  .
+  .
+```
+in your template
 ```
 <share-buttons></share-buttons>
 ```
+The default icons requires [fontawesome](http://fontawesome.io/) to be loaded into your project, This is also recommended since all the icons are fetched with a single request.
 
 ### Meta tags
 
@@ -84,8 +95,7 @@ import {ShareButtons} from 'ng2-sharebuttons';
 
 @Component({
   selector: "customize",
-  template: require("./customize.html"),
-  directives: [ShareButtons]
+  templateUrl: "./customize.html"
 })
 
 export class Customize {
