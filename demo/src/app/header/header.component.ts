@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'header',
-  template: require('./header.html')
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-
-export class Header {
+export class HeaderComponent implements OnInit {
 
   angularLogo = prefixRepo('../../assets/img/angular-logo.png');
   fbLogo = prefixRepo('../../assets/img/share/facebook.svg');
@@ -17,8 +17,12 @@ export class Header {
   redditLogo = prefixRepo('../../assets/img/share/reddit.svg');
   inLogo = prefixRepo('../../assets/img/share/linkedin.svg');
 
-}
+  constructor() { }
 
+  ngOnInit() {
+  }
+
+}
 var prefixRepo = (path) => {
-  return 'ng2-sharebutton-demo' + path;
+  return path;
 }

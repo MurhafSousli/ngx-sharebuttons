@@ -4,6 +4,9 @@
 
 const gulp = require('gulp');
 
+/** To log like console.log().. */
+var gutil = require('gulp-util');
+
 /** del to remove dist directory */
 const del = require('del');
 
@@ -61,8 +64,15 @@ gulp.task('compile-ts', ['clean', 'styles'], function () {
         config.allTs,
         config.allTsd
     ];
+
+    var defaults = {
+        base: '/src',  
+        target: 'es5', 
+        useRelativePaths: true
+    };
+
     var tsResult = gulp.src(sourceTsFile)
-        .pipe(embedTemplates({base: './src/share'}))
+        .pipe(embedTemplates(defaults))
         .pipe(sourcemaps.init())
         .pipe(typescript(tsProject));
 
@@ -108,3 +118,4 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['ts-lint', 'compile-ts']);
+gulp.task('default', ['compile-ts']);

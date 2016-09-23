@@ -1,0 +1,107 @@
+<div class="container">
+    <app-header></app-header>
+    <share-buttons class="share-project" [url]="'https://twitter.com'"></share-buttons>
+
+    <section>
+        <h2>Brief Summary</h2>
+        <p>
+            Simple, lightweight, customizable share buttons with counts
+        </p>
+    </section>
+
+    <section>
+        <h2>Installation</h2>
+        <p>Install it with npm</p>
+        <pre><code class="language-markup">$ npm install ng2-sharebuttons --save</code></pre>
+    </section>
+
+    <section>
+        <h2>Basic usage</h2>
+
+        <p>Import <code class="markup">ShareButtonsModule</code> in <b>NgModule</b> <code class="markup">imports</code> array
+        </p>
+        <pre><code class="language-javascript">{{importing}}</code></pre>
+
+        <p>in your template</p>
+
+        <pre><code class="language-html">{{basic}}</code></pre>
+
+        <p>The default icons requires <a href='http://fontawesome.io/'>fontawesome</a> to be loaded into your project.
+        </p>
+        <p>To display share counts on buttons, enable the input
+            <code class="markup">[count]="true"</code>
+        </p>
+        <p>To display the total count of all shares, enable the input
+            <code class="markup">[totalCount]="true"</code>
+        </p>
+        <pre><code class="language-html">{{basicUsage}}</code></pre>
+        <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
+        <div class="output">
+            <share-buttons [shareTitle]="'Share Twitter Site'" [url]="'https://twitter.com'" [count]="true"
+                           [totalCount]="true"></share-buttons>
+        </div>
+    </section>
+
+    <section>
+        <h2>Customization</h2>
+        <p>Customization is very easy, the first thing you want to do is to set <code
+                class="markup">[defaultStyle]=false</code> this will
+            remove the class for the default style, after that use the following classes to add your own css.</p>
+
+        <pre><code class="language-css">{{customizeCss}}</code></pre>
+
+        <p>Each share service has its own button template, pass your custom button template as string in its input,
+            e.g. give facebook a custom template
+            <code class="markup">[facebook]="facebookTemplate"</code>.
+        </p>
+
+        <p>To exclude a button, pass <a><i>false</i></a> to the button input.
+            e.g. <code class="markup">[facebook]="false"</code>
+        </p>
+
+        <pre><code class="language-html">{{customizeHtml}}</code></pre>
+        <pre><code class="language-javascript">{{customizeScript}}</code></pre>
+        <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
+        <div class="output">
+            <app-custom></app-custom>
+        </div>
+
+    </section>
+
+    <section>
+        <h2>Example for a list of links</h2>
+        <app-list></app-list>
+    </section>
+
+    <!--<section>-->
+    <!--<h2>Add buttons individually</h2>-->
+    <!--<p>Sometimes you just want to use a button or two, you can use the component-->
+    <!--<code class="markup">-->
+    <!--<share-button></share-button>-->
+    <!--</code> directly instead, however you will need to create a <b>ShareButton</b> class for each button instance-->
+    <!--</p>-->
+    <!--<share-button [url]=""></share-button>-->
+    <!--</section>-->
+    <section>
+        <h2>Author</h2>
+        <a href="http://murhafsousli.com"><b>Murhaf Sousli</b></a>
+        <ul>
+            <li><a href="https://github.com/MurhafSousli">github/murhafsousli</a></li>
+            <li><a href="https://twitter.com/MurhafSousli">twitter/murhafsousli</a></li>
+        </ul>
+
+    </section>
+
+    <section>
+        <h2>License</h2>
+        <p><a href="https://github.com/MurhafSousli/ng2-sharebuttons/blob/master/LICENSE"><img
+                src="https://camo.githubusercontent.com/25d313ccfafb08618b31899a22af11a5b8a79aad/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f657870726573732e7376673f6d61784167653d32353932303030"
+                alt="npm" data-canonical-src="https://img.shields.io/npm/l/express.svg?maxAge=2592000"
+                style="max-width:100%;"></a>
+        </p>
+    </section>
+
+</div>
+
+
+

@@ -1,0 +1,36 @@
+
+$btn-color: #333;
+$btn-hover-color: white;
+
+$btn-bg-color: white;
+$btn-bg-hover-color: transparent;
+
+.sb-container{
+  
+  .btn {
+    display: inline-block;
+    margin-right: 5px;
+    background-color: white;
+    border-radius: $base-border-radius;
+    padding: ($base-spacing / 3);
+
+    &:hover {
+      color: $btn-hover-color;
+    }
+  }
+
+
+  button, a:hover {
+    cursor: pointer;
+    cursor: hand;
+    outline: 0;
+    border: 0;
+  }
+}
+
+@mixin btnColor($color){
+  color: $color;
+  &:hover {
+    background: $color;
+  }
+}

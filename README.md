@@ -2,7 +2,7 @@
 
 ![Angular 2 Share Buttons cover](/assets/cover.png?raw=true "Optional Title")
 
-Simple, lightweight, customizable share buttons for your angular 2 app. [live demo](https://murhafsousli.github.io/ng2-sharebuttons/)
+Simple, lightweight, customizable share buttons with counts [live demo](https://murhafsousli.github.io/ng2-sharebuttons/)
 
 Supported services:
 
@@ -16,107 +16,90 @@ Install it with npm
 
 ## Basic usage:
 
-Add `ShareButtons` component in `NgModule` declerations array
+Import `ShareButtonsModule` in `NgModule` imports array
 ```
-import {ShareButtons} from "ng2-sharebuttons";
+import {ShareButtonsModule} from "ng2-sharebuttons";
 @NgModule({
-  declarations: [
-    ShareButtons
-  ],
-  .
-  .
+  imports[
+    ShareButtonsModule
+  ]
 })
 ```
 in your template
 ```
-<share-buttons></share-buttons>
+<share-buttons [url]="linkToShare"></share-buttons>
 ```
-The default icons requires [fontawesome](http://fontawesome.io/) to be loaded into your project, This is also recommended since all the icons are fetched with a single request.
+The default icons requires [fontawesome](http://fontawesome.io/) to be loaded into your project.
 
-### Meta tags
+To display share counts on buttons, enable the input `[count]="true"`
 
-by default the share buttons will get the meta tags from the page head, leave them empty unless:
-
-* The meta tags aren't set properly.
-* If you are using multiple instances of share-buttons, ex: a share button instance foreach post in a blog page
-
+To display the total count of all shares, enable the input `[totalCount]="true"`
 ```
-  @Input() title;
-  @Input() description;
-  @Input() image;
-  @Input() url;
-
-  <share-button [title]="post.title" [image]="post.image" [url]="post.url"></share-button>
+<share-buttons [shareTitle]="'Share Twitter Site'"
+ [url]="'https://twitter.com'"
+ [count]="true"
+ [totalCount]="true"
+ ></share-buttons>
 ```
 
-### Popup share window
-Set the popup window dimension. (default: 500x300)
-```
-<share-buttons [height]="600" [width]="400"></share-buttons>
-```
-### Share title
-Set the title before share buttons wrapper
-```
-<share-buttons [shareTitle]="Share this"></share-buttons>
-```
-##Twitter account
-Set your twitter account to add "via @YourAccount" to visitor's tweet
-```
-<share-buttons [twitterAccount]="'MurhafSousli'"></share-buttons>
-```
+## Customization:
 
-##Customization:
+Customization is very easy, the first thing you want to do is to set `[defaultStyle]=false` this will remove the class for the default style, after that use the following classes to add your own css.
+```
+.sb-container{
+    //ShareButtons Holder
+ }
+ .sb-title{
+    //Share Title
+ }
+ .sb-count{
+    //Total Share Count
+ }
+ .sb-buttons{
+    //Buttons Container
+ }
+ .sb-btn{
+    //Share Button, the container of the button template 
+ }
+ .sb-btn-count{
+    //Button Share Count
+ }
+```
+Each share service has its own button template, pass your custom button template as string in its input, e.g. give facebook a custom template `[facebook]="facebookTemplate"`.
 
-Customization is very easy, the first thing you want to do is to set `[defaultStyle]=false` this will remove the default style (which is the basic hover effect), and then write your own css.
-
-Each share service has its own button template, to customize a button pass your custom template to the button input, e.g. give facebook a custom template `[facebook]="facebookTemplate"` 
-
-To exclude a button from the shareButtons, pass false to the button template e.g. `[facebook]="false"`
-
+To exclude a button, pass false to the button input. e.g. `[facebook]="false"`
 ```
 <share-buttons
    [shareTitle]="shareTitle"
-     
    [defaultStyle]="false"
-  
+
    [facebook]="fbInner"
    [twitter]="twitterInner"
    [pinterest]="pintInner"
    [linkedIn]="inInner"
    [google]="googleInner"
    [tumblr]="tumblrInner"
-  
+
    [reddit]="false"
    [stumbleUpOn]="false"
 ></share-buttons>
 ```
 ```
-import {Component} from "@angular/core";
-import {ShareButtons} from 'ng2-sharebuttons';
-
-@Component({
-  selector: "customize",
-  templateUrl: "./customize.html"
-})
-
-export class Customize {
-
-  shareTitle = "Custom share icons";
-
-  fbInner = "<img src='../../assets/img/custom/facebook.svg'>";
-  twitterInner = "<img src='../../assets/img/custom/twitter.svg'>";
-  pintInner = "<img src='../../assets/img/custom/pinterest.svg'>";
-  inInner = "<img src='../../assets/img/custom/linkedin.svg'>";
-  googleInner = "<img src='../../assets/img/custom/google-plus.svg'>";
-  tumblrInner = "<img src='../../assets/img/custom/tumblr.svg'>";
+export class SomeComponent {
+  shareTitle = "Sharing is caring";
+  fbInner = "<img src='../assets/img/custom/facebook.svg'>";
+  twitterInner = "<img src='../assets/img/custom/twitter.svg'>";
+  pintInner = "<img src='../assets/img/custom/pinterest.svg'>";
+  inInner = "<img src='../assets/img/custom/linkedin.svg'>";
+  googleInner = "<img src='../assets/img/custom/google-plus.svg'>";
+  tumblrInner = "<img src='../assets/img/custom/tumblr.svg'>";
 }
 ```
 [Demo source](https://github.com/MurhafSousli/ng2-sharebuttons-demo/tree/master/src/app/customize)
 
-##TODOs:
+## TODOs:
 
-- Whatsapp button
-- Share counter
+- [x] Share counters
 
 <a name="issues"/>
 ## Issues

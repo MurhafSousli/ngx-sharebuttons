@@ -1,21 +1,40 @@
 import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ShareButtonsComponent} from './components/share-buttons/share-buttons.component';
+import {ShareButtonComponent} from './components/share-button/share-button.component';
+import {ShareButtonsService} from "./service/share-buttons.service";
+import {NFormatterPipe} from './helpers/n-formatter.pipe';
 
-import {ShareButtons} from './share/share.component';
-import {ShareButton} from './share/share.model';
+import {ShareHelper} from './helpers/share-buttons.helper';
+import {ShareProvider} from './helpers/share-provider.enum';
+import {ShareButton} from './helpers/share-buttons.class';
 
 @NgModule({
     declarations: [
-        ShareButtons
+        ShareButtonsComponent,
+        ShareButtonComponent,
+        NFormatterPipe
     ],
+    imports: [
+        CommonModule
+    ],
+    providers: [ShareButtonsService],
     exports: [
-        ShareButtons
+        ShareButtonsComponent,
+        ShareButtonComponent,
+        NFormatterPipe
     ]
 })
-export class ShareModule{
+export class ShareButtonsModule {
 
 }
 
 export {
-    ShareButtons,
-    ShareButton
-    }
+    ShareButtonsComponent,
+    ShareButtonComponent,
+    ShareProvider,
+    ShareHelper,
+    ShareButton,
+    NFormatterPipe,
+    ShareButtonsService
+}
