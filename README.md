@@ -95,7 +95,6 @@ export class SomeComponent {
   tumblrInner = "<img src='../assets/img/custom/tumblr.svg'>";
 }
 ```
-[Demo source](https://github.com/MurhafSousli/ng2-sharebuttons-demo/tree/master/src/app/customize)
 
 ## TODOs:
 
