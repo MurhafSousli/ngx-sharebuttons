@@ -27,7 +27,7 @@ export class AppComponent {
 
     metaHtml = "<share-button [url]=\"url\"></share-button>";
 
-    basicUsage = `<share-buttons [shareTitle]=\"'Share Twitter Site'\"
+    basicUsage = `<share-buttons [shareTitle]=\"'ShareButtons for Twitter URL'\"
  [url]=\"'https://twitter.com'\"
  [count]="true"
  [totalCount]="true"
@@ -77,6 +77,10 @@ export class AppComponent {
     //Button Share Count
  }`;
 
+    popupWindow = `constructor(sbService: ShareButtonsService) {
+    sbService.height = 600; //default: 400
+    sbService.width = 800;  //default: 500
+}`;
     ngAfterContentInit() {
         setTimeout(()=>Prism.highlightAll(), 500);
     }

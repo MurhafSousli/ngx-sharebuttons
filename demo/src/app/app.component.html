@@ -1,6 +1,6 @@
 <div class="container">
     <app-header></app-header>
-    <share-buttons class="share-project" [url]="'https://twitter.com'"></share-buttons>
+    <share-buttons class="share-project"></share-buttons>
 
     <section>
         <h2>Brief Summary</h2>
@@ -37,7 +37,7 @@
         <pre><code class="language-html">{{basicUsage}}</code></pre>
         <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
         <div class="output">
-            <share-buttons [shareTitle]="'Share Twitter Site'" [url]="'https://twitter.com'" [count]="true"
+            <share-buttons [shareTitle]="'ShareButtons for Twitter URL'" [url]="'https://twitter.com'" [count]="true"
                            [totalCount]="true"></share-buttons>
         </div>
     </section>
@@ -69,8 +69,12 @@
     </section>
 
     <section>
-        <h2>Example for a list of links</h2>
-        <app-list></app-list>
+        <h2>Setting popup share window's dimensions</h2>
+        Use <code class="markup">ShareButtonsService</code> in your component if you want to set the height and the width of the popup window (in pixels)
+
+        <pre><code class="language-javascript">{{popupWindow}}
+        </code></pre>
+        <!--<app-list></app-list>-->
     </section>
 
     <!--<section>-->

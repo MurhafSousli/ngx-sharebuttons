@@ -19,5 +19,5 @@ export class CustomComponent {
 }
 
 var prefixRepo = (path) => {
-  return path;
+  return 'ng2-sharebuttons' + path;
 };
