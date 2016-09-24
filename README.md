@@ -100,7 +100,7 @@ export class SomeComponent {
 
 - [x] Share counters
 - [x] Button order (can be done by css flexbox order)
-- [] Fix StumbleUpOn share count issue
+- [ ] Fix StumbleUpOn share count issue
 
 <a name="issues"/>
 ## Issues
@@ -113,6 +113,7 @@ If you identify any errors in this component, or have an idea for an improvement
  **Murhaf Sousli**
 
  - [github/murhafsousli](https://github.com/MurhafSousli)
+ 
  - [twitter/murhafsousli](https://twitter.com/MurhafSousli)
 
 <a name="license"/>
