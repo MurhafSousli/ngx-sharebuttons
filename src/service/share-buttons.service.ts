@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from "@angular/http";
+import {Http, Jsonp,Headers} from "@angular/http";
 import {Observable} from "rxjs";
 
 import {ShareProvider} from "../helpers/share-provider.enum";
@@ -12,7 +12,7 @@ export class ShareButtonsService {
     windowWidth: number = 500;
     windowHeight: number = 400;
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private jsonp: Jsonp) {
     }
 
     count(type, url) {
@@ -37,8 +37,8 @@ export class ShareButtonsService {
     }
 
     private fbCount(url: string) {
-        return this.fetch('http://graph.facebook.com/?id=' + url)
-            .map((data:any) => {
+        return this.fetch('https://graph.facebook.com/?id=' + url)
+            .map((data: any) => {
                 data = data.json();
                 if (data.hasOwnProperty('share') && data.share.hasOwnProperty('share_count')) {
                     return data.share.share_count;
@@ -48,8 +48,8 @@ export class ShareButtonsService {
     }
 
     private linkedInCount(url: string) {
-        return this.fetch('http://www.linkedin.com/countserv/count/share?url=' + url + '&format=json')
-            .map((data:any) => {
+        return this.fetchJsonp('https://www.linkedin.com/countserv/count/share?url=' + url)
+            .map((data: any) => {
                 data = data.json();
                 if (data.hasOwnProperty('count')) {
                     return data.count;
@@ -60,8 +60,8 @@ export class ShareButtonsService {
 
 
     private redditCount(url: string) {
-        return this.fetch('http://buttons.reddit.com/button_info.json?url=' + url)
-            .map((data:any)=> {
+        return this.fetch('https://buttons.reddit.com/button_info.json?url=' + url)
+            .map((data: any)=> {
                 data = data.json();
                 if (data.hasOwnProperty('data')) {
                     return data.data.children[0].data.score;
@@ -73,7 +73,7 @@ export class ShareButtonsService {
     private gPlusCount(url: string) {
         let body = ShareHelper.gplusCountBody(url);
         return this.http.post('https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ', body)
-            .map((data:any)=> {
+            .map((data: any)=> {
                 data = data.json();
                 if (data[0] && data[0].hasOwnProperty('result')) {
                     return data[0].result.metadata.globalCounts.count;
@@ -83,8 +83,8 @@ export class ShareButtonsService {
     }
 
     private pinCount(url: string) {
-        return this.fetch('http://api.pinterest.com/v1/urls/count.json?callback=receiveCount&url=' + url)
-            .map((data:any)=> {
+        return this.fetch('https://api.pinterest.com/v1/urls/count.json?callback=receiveCount&url=' + url)
+            .map((data: any)=> {
                 data = data.text();
                 var result = JSON.parse(data.replace(/^receiveCount\((.*)\)/, '$1'));
                 return result.count;
@@ -92,8 +92,8 @@ export class ShareButtonsService {
     }
 
     private stumbleCount(url: string) {
-        return this.fetch('http://www.stumbleupon.com/services/1.01/badge.getinfo?url=' + url)
-            .map((data:any)=> {
+        return this.fetchJsonp('https://www.stumbleupon.com/services/1.01/badge.getinfo?url=' + url)
+            .map((data: any)=> {
                 data = data.json();
                 if (data.hasOwnProperty('timestamp')) {
                     return data.timestamp;
@@ -103,8 +103,8 @@ export class ShareButtonsService {
     }
 
     private tumblrCount(url: string) {
-        return this.fetch('http://api.tumblr.com/v2/share/stats?url=' + url)
-            .map((data:any) => {
+        return this.fetchJsonp('https://api.tumblr.com/v2/share/stats?url=' + url)
+            .map((data: any) => {
                 data = data.json();
                 if (data.hasOwnProperty('response') && data.response.hasOwnProperty('note_count')) {
                     return data.response.note_count;
@@ -113,10 +113,18 @@ export class ShareButtonsService {
             });
     }
 
-    fetch(url) {
-        return this.http.get(url)
+    private fetch(url) {
+        return this.http.request(url)
             .catch((err)=> {
-                console.warn('[ShareService]: ', err);
+                console.warn('[ShareService HTTP]: ', err);
+                return Observable.empty();
+            });
+    }
+
+    private fetchJsonp(url) {
+        return this.jsonp.request(url + '&format=jsonp&callback=JSONP_CALLBACK')
+            .catch((err)=> {
+                console.warn('[ShareService JSONP]: ', err);
                 return Observable.empty();
             });
     }

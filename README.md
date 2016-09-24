@@ -99,6 +99,8 @@ export class SomeComponent {
 ## TODOs:
 
 - [x] Share counters
+- [x] Button order (can be done by css flexbox order)
+- [] Fix StumbleUpOn share count issue
 
 <a name="issues"/>
 ## Issues

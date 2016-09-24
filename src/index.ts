@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import {JsonpModule} from '@angular/http';
 import {CommonModule} from '@angular/common';
 import {ShareButtonsComponent} from './components/share-buttons/share-buttons.component';
 import {ShareButtonComponent} from './components/share-button/share-button.component';
@@ -16,7 +17,8 @@ import {ShareButton} from './helpers/share-buttons.class';
         NFormatterPipe
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        JsonpModule
     ],
     providers: [ShareButtonsService],
     exports: [

@@ -1,3 +1,4 @@
+import {Headers, RequestOptionsArgs} from "@angular/http";
 export module ShareHelper {
 
     /** Share links */

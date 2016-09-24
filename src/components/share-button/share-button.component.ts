@@ -34,7 +34,11 @@ export class ShareButtonComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-
+        /** If URL is not presented then set the current URL    */
+        if(!this.url)
+        {
+            this.url = window.location.href;
+        }
         this.renderer.setElementProperty(this.btn.nativeElement, 'innerHTML', this.button.template);
         this.renderer.setElementClass(this.btn.nativeElement, this.button.classes, true);
 
