@@ -18,7 +18,7 @@ export class AppComponent {
 
     importing = `import {ShareButtonsModule} from "ng2-sharebuttons";
 @NgModule({
-  imports[
+  imports: [
     ShareButtonsModule
   ]
 })`;

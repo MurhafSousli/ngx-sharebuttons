@@ -2,7 +2,7 @@
 
 ![Angular 2 Share Buttons cover](/assets/cover.PNG?raw=true "Optional Title")
 
-Simple, lightweight, customizable share buttons with counts [live demo](https://murhafsousli.github.io/ng2-sharebuttons/)
+Simple, lightweight, customizable share buttons with counts | [live demo](https://murhafsousli.github.io/ng2-sharebuttons/)
 
 Supported services:
 
@@ -16,11 +16,11 @@ Install it with npm
 
 ## Basic usage:
 
-Import `ShareButtonsModule` in `NgModule` imports array
+Add `ShareButtonsModule` to **NgModule** `imports` array
 ```
 import {ShareButtonsModule} from "ng2-sharebuttons";
 @NgModule({
-  imports[
+  imports: [
     ShareButtonsModule
   ]
 })
@@ -100,8 +100,8 @@ export class SomeComponent {
 
 - [x] Share counters
 - [x] Button order (can be done by css flexbox order)
-- [ ] Fix LinkedIn and Pinterest share links 
-- [ ] Fix StumbleUpOn share count issue
+- [ ] Fix LinkedIn [issue](https://github.com/MurhafSousli/ng2-sharebuttons/issues/2).
+- [ ] Fix StumbleUpOn share count issue [issue](https://github.com/MurhafSousli/ng2-sharebuttons/issues/3).
 
 <a name="issues"/>
 ## Issues
