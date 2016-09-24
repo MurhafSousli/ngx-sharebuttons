@@ -113,7 +113,6 @@ If you identify any errors in this component, or have an idea for an improvement
  **Murhaf Sousli**
 
  - [github/murhafsousli](https://github.com/MurhafSousli)
- 
  - [twitter/murhafsousli](https://twitter.com/MurhafSousli)
 
 <a name="license"/>
