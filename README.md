@@ -100,6 +100,7 @@ export class SomeComponent {
 
 - [x] Share counters
 - [x] Button order (can be done by css flexbox order)
+- [ ] Fix LinkedIn and Pinterest share links 
 - [ ] Fix StumbleUpOn share count issue
 
 <a name="issues"/>
