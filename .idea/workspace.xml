@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="703eaa5a-e38e-42ad-b31d-51ccf287355a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/app/app.component.html" afterPath="$PROJECT_DIR$/demo/src/app/app.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/app/app.component.ts" afterPath="$PROJECT_DIR$/demo/src/app/app.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/app/custom/custom.component.ts" afterPath="$PROJECT_DIR$/demo/src/app/custom/custom.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/app/header/header.component.ts" afterPath="$PROJECT_DIR$/demo/src/app/header/header.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/app/list/list.component.html" afterPath="$PROJECT_DIR$/demo/src/app/list/list.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/index.html" afterPath="$PROJECT_DIR$/demo/src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/share-button/share-button.component.ts" afterPath="$PROJECT_DIR$/src/components/share-button/share-button.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/share-buttons.helper.ts" afterPath="$PROJECT_DIR$/src/helpers/share-buttons.helper.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.ts" afterPath="$PROJECT_DIR$/src/index.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/share-buttons.service.ts" afterPath="$PROJECT_DIR$/src/service/share-buttons.service.ts" />
     </list>
     <ignored path="ng2-sharebuttons.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -386,12 +380,12 @@
       <workItem from="1474603407934" duration="197000" />
       <workItem from="1474603627046" duration="2620000" />
       <workItem from="1474618732186" duration="1060000" />
-      <workItem from="1474680831876" duration="1653000" />
+      <workItem from="1474680831876" duration="1674000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22525000" />
+    <option name="totallyTimeSpent" value="22546000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -447,6 +441,12 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
