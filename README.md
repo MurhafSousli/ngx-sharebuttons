@@ -101,7 +101,7 @@ export class SomeComponent {
 - [x] Share counters
 - [x] Button order (can be done by css flexbox order)
 - [ ] Fix LinkedIn [issue](https://github.com/MurhafSousli/ng2-sharebuttons/issues/2).
-- [ ] Fix StumbleUpOn share count issue [issue](https://github.com/MurhafSousli/ng2-sharebuttons/issues/3).
+- [ ] Fix StumbleUpOn share count [issue](https://github.com/MurhafSousli/ng2-sharebuttons/issues/3).
 
 <a name="issues"/>
 ## Issues
