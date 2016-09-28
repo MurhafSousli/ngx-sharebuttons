@@ -103,6 +103,59 @@ export class SomeComponent {
 }
 ```
 
+## Advanced usage:
+
+Sometimes you just want to add a single button, use the component `<share-button>` in this case.
+
+In this example, we will add a single twitter button, we will also add text and hashtags to the tweet.
+
+```javascript
+import {ShareButton, ShareProvider} from "ng2-sharebuttons";
+  
+export class TestComponent{
+  twitterButton;
+  hashtags = ['Hello','World'];
+  defaultText = "This is a test";
+  
+  ngOnInit() {
+    this.twitterButton = new ShareButton(
+        ShareProvider.TWITTER,              //choose the button from ShareProvider
+        "<img src='../../assets/img/custom/single-twitter.svg'> Tweet",    //set button template
+        'twitter'                           //set button classes
+      );
+  }
+}
+```
+```html
+<share-button [button]='twitterButton' [text]="defaultText" [hashtags]="hashtags"></share-button>
+```
+
+When using share buttons for a list of links, where each link has its own title and featured image, we need to set the inputs `[text]` and `[image]` for *Pinterest*, because unlike other social media, *Pinterest* won't get it automatically from the Open Graph meta tags
+
+The inputs `[text]`, `[image]` and `[hashtags]` works the same in `<share-buttons>`, however in this example we will be using them in a single button.
+
+```javascript
+import {ShareButton, ShareProvider} from "ng2-sharebuttons";
+  
+export class TestComponent{
+  pinButton;
+  defaultText = "This is a test";
+  image= "../../assets/img/pinExample.jpg";
+  
+  ngOnInit() {
+    this.pinButton = new ShareButton(
+        ShareProvider.PINTEREST,
+        "<img src='../../assets/img/custom/single-pinterest.svg'> Pin it",
+        'pinterest'
+      );
+  }
+}
+```
+
+```html
+<share-button [button]='pinButton' [text]="defaultText" [image]="image"></share-button>
+```
+
 ## Misc
 
 Use the service `ShareButtonsService` to set global variables like:
