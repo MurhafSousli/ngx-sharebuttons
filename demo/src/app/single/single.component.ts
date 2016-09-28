@@ -26,13 +26,13 @@ export class SingleComponent implements OnInit {
 
         this.twitterButton = new ShareButton(
             ShareProvider.TWITTER,
-            "<img src='" + prefixRepo("../assets/img/custom/single-twitter.svg") + "'> Tweet",
+            "<img src='" + prefixRepo("../../assets/img/custom/single-twitter.svg") + "'> Tweet",
             'twitter'
         );
 
         this.pinButton = new ShareButton(
             ShareProvider.PINTEREST,
-            "<img src='" + prefixRepo("../assets/img/custom/single-pinterest.svg") + "'> Pint it",
+            "<img src='" + prefixRepo("../../assets/img/custom/single-pinterest.svg") + "'> Pint it",
             'pinterest'
         );
     }
@@ -47,7 +47,7 @@ export class TestComponent{
   ngOnInit() {
     this.twitterButton = new ShareButton(
         ShareProvider.TWITTER,              //choose the button from ShareProvider
-        "<img src='../assets/img/custom/single-twitter.svg'> Tweet",    //set button template
+        "<img src='../../assets/img/custom/single-twitter.svg'> Tweet",    //set button template
         'twitter'                           //set button classes
       );
   }
@@ -62,7 +62,7 @@ export class TestComponent{
   ngOnInit() {
     this.pinButton = new ShareButton(
         ShareProvider.PINTEREST,
-        "<img src='../assets/img/custom/single-pinterest.svg'> Pin it",
+        "<img src='../../assets/img/custom/single-pinterest.svg'> Pin it",
         'pinterest'
       );
   }
