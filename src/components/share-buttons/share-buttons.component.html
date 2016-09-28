@@ -11,6 +11,9 @@
         <share-button class="sb-button" *ngFor="let button of buttons"
                       [button]="button"
                       [url]="url"
+                      [image]="image"
+                      [text]="text"
+                      [hashtags]="hashtags"
                       [count]="count"
                       (countOuter)="counter($event)"
         ></share-button>

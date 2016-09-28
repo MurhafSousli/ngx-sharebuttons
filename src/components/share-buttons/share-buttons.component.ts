@@ -2,7 +2,6 @@ import {Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input} fr
 
 import {ShareButton} from "../../helpers/share-buttons.class";
 import {ShareProvider} from "../../helpers/share-provider.enum";
-import {ShareHelper} from "../../helpers/share-buttons.helper";
 
 @Component({
     selector: 'share-buttons',
@@ -13,16 +12,22 @@ import {ShareHelper} from "../../helpers/share-buttons.helper";
 })
 export class ShareButtonsComponent implements OnInit{
     
-    /** Share URL */
+    /** Share link args */
     @Input() url;
+    @Input() text;
+    @Input() image;
+    @Input() hashtags;
 
     /** Sharing title */
     @Input() shareTitle: string;
+
     /** Show count on share-buttons, disabled by default */
     @Input() count: boolean = false;
+
     /** Show total counts for all buttons, disabled by default */
     @Input() totalCount: boolean = false;
 
+    /** Indicates weather default style is applied to the buttons */
     @Input() defaultStyle: boolean = true;
 
     /** Buttons default templates */
@@ -35,12 +40,12 @@ export class ShareButtonsComponent implements OnInit{
     @Input() stumbleUpOn: any = "<i class='fa fa-stumbleupon'></i>";
     @Input() reddit: any = "<i class='fa fa-reddit-alien'></i>";
 
+    /** Share buttons to be displayed   */
     private buttons:ShareButton[];
 
+    /** Total Count: the sum of all buttons share count */
     private tCount: number = 0;
 
-    constructor() {
-    }
 
     ngOnInit(){
         this.buttons = [];
@@ -48,7 +53,6 @@ export class ShareButtonsComponent implements OnInit{
             this.buttons.push(new ShareButton(
                 ShareProvider.FACEBOOK,
                 this.facebook,
-                ShareHelper.linkFacebook,
                 'facebook'
             ));
         }
@@ -56,7 +60,6 @@ export class ShareButtonsComponent implements OnInit{
             this.buttons.push(new ShareButton(
                 ShareProvider.TWITTER,
                 this.twitter,
-                ShareHelper.linkTwitter,
                 'twitter'
             ));
         }
@@ -64,7 +67,6 @@ export class ShareButtonsComponent implements OnInit{
             this.buttons.push(new ShareButton(
                 ShareProvider.GOOGLEPLUS,
                 this.google,
-                ShareHelper.linkGooglePlus,
                 'googleplus'
             ));
         }
@@ -72,7 +74,6 @@ export class ShareButtonsComponent implements OnInit{
             this.buttons.push(new ShareButton(
                 ShareProvider.PINTEREST,
                 this.pinterest,
-                ShareHelper.linkPinterest,
                 'pinterest'
             ));
         }
@@ -80,23 +81,13 @@ export class ShareButtonsComponent implements OnInit{
             this.buttons.push(new ShareButton(
                 ShareProvider.LINKEDIN,
                 this.linkedIn,
-                ShareHelper.linkLinkedin,
                 'linkedin'
-            ));
-        }
-        if (this.stumbleUpOn) {
-            this.buttons.push(new ShareButton(
-                ShareProvider.STUMBLEUPON,
-                this.stumbleUpOn,
-                ShareHelper.linkStumbleUpon,
-                'stumbleupon'
             ));
         }
         if (this.tumblr) {
             this.buttons.push(new ShareButton(
                 ShareProvider.TUMBLR,
                 this.tumblr,
-                ShareHelper.linkTumblr,
                 'tumblr'
             ));
         }
@@ -104,8 +95,14 @@ export class ShareButtonsComponent implements OnInit{
             this.buttons.push(new ShareButton(
                 ShareProvider.REDDIT,
                 this.reddit,
-                ShareHelper.linkReddit,
                 'reddit'
+            ));
+        }
+        if (this.stumbleUpOn) {
+            this.buttons.push(new ShareButton(
+                ShareProvider.STUMBLEUPON,
+                this.stumbleUpOn,
+                'stumbleupon'
             ));
         }
     }

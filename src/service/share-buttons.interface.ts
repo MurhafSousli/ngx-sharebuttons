@@ -1,3 +1,5 @@
-/**
- * Created by Murhaf on 9/27/2016.
- */
+export interface ShareButtonsInterface{
+    share(type, url);
+    count(type, url);
+    windowAttr();
+}

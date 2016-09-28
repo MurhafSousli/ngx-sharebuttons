@@ -9,13 +9,15 @@ import { CustomComponent } from './custom/custom.component';
 
 import {ShareButtonsModule} from 'ng2-sharebuttons';
 import { ListComponent } from './list/list.component';
+import { SingleComponent } from './single/single.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     CustomComponent,
-    ListComponent
+    ListComponent,
+    SingleComponent
   ],
   imports: [
     BrowserModule,

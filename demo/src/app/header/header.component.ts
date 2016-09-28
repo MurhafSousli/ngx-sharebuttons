@@ -24,5 +24,5 @@ export class HeaderComponent implements OnInit {
 
 }
 var prefixRepo = (path) => {
-  return 'ng2-sharebuttons' + path;
+  return  'ng2-sharebuttons' + path;
 };

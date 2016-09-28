@@ -1,6 +1,6 @@
 <div class="container">
     <app-header></app-header>
-    <share-buttons class="share-project"></share-buttons>
+    <share-buttons class="share-project" [text]="'Angular 2 Share Buttons'" [hashtags]="['angular2']"></share-buttons>
 
     <section>
         <h2>Brief Summary</h2>
@@ -16,9 +16,10 @@
     </section>
 
     <section>
-        <h2>Basic usage</h2>
+        <h2>Usage</h2>
 
-        <p>Add <code class="markup">ShareButtonsModule</code> to <b>NgModule</b> <code class="markup">imports</code> array
+        <p>Add <code class="markup">ShareButtonsModule</code> to <b>NgModule</b> <code class="markup">imports</code>
+            array
         </p>
         <pre><code class="language-javascript">{{importing}}</code></pre>
 
@@ -34,12 +35,17 @@
         <p>To display the total count of all shares, enable the input
             <code class="markup">[totalCount]="true"</code>
         </p>
+
+        <!--USAGE CODE-->
         <pre><code class="language-html">{{basicUsage}}</code></pre>
+
+        <!--USAGE OUTPUT-->
         <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
         <div class="output">
-            <share-buttons [shareTitle]="'ShareButtons for Twitter URL'" [url]="'https://twitter.com'" [count]="true"
+            <share-buttons [shareTitle]="' | Total Shares for Twitter URL'" [url]="'https://twitter.com'" [count]="true"
                            [totalCount]="true"></share-buttons>
         </div>
+
     </section>
 
     <section>
@@ -59,8 +65,11 @@
             e.g. <code class="markup">[facebook]="false"</code>
         </p>
 
+        <!--CUSTOMIZE CODE-->
         <pre><code class="language-html">{{customizeHtml}}</code></pre>
         <pre><code class="language-javascript">{{customizeScript}}</code></pre>
+
+        <!--CUSTOMIZE OUTPUT-->
         <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
         <div class="output">
             <app-custom></app-custom>
@@ -68,13 +77,19 @@
 
     </section>
 
-    <section>
-        <h2>Setting popup share window's dimensions</h2>
-        Use <code class="markup">ShareButtonsService</code> in your component if you want to set the height and the width of the popup window (in pixels)
+    <app-single></app-single>
 
-        <pre><code class="language-javascript">{{popupWindow}}
-        </code></pre>
-        <!--<app-list></app-list>-->
+    <section>
+        <h2>Misc</h2>
+
+        Use the service <code class="markup">ShareButtonsService</code> to set global variables like:
+        <ul>
+            <li>Site twitter account</li>
+            <li>The popup share window's dimension.</li>
+        </ul>
+
+        <pre><code class="language-javascript">{{popupWindow}}</code></pre>
+
     </section>
 
     <!--<section>-->

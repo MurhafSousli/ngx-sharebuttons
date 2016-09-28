@@ -1,7 +1,10 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {ShareButtonsService} from "ng2-sharebuttons";
 
 import 'prismjs/prism';
 declare var Prism: any;
+
+
 
 @Component({
     selector: 'app-root',
@@ -10,9 +13,6 @@ declare var Prism: any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-
-    constructor() {
-    }
 
     data: any;
 
@@ -27,7 +27,7 @@ export class AppComponent {
 
     metaHtml = "<share-button [url]=\"url\"></share-button>";
 
-    basicUsage = `<share-buttons [shareTitle]=\"'ShareButtons for Twitter URL'\"
+    basicUsage = `<share-buttons [shareTitle]=\"' | Total Shares for Twitter URL'\"
  [url]=\"'https://twitter.com'\"
  [count]="true"
  [totalCount]="true"
@@ -78,9 +78,19 @@ export class AppComponent {
  }`;
 
     popupWindow = `constructor(sbService: ShareButtonsService) {
-    sbService.height = 600; //default: 400
-    sbService.width = 800;  //default: 500
+    
+  //Add \`Via @yourTwitterAccount\` to tweet button. 
+  sbService.twitterAccount = "yourTwitterAccount";
+    
+  //Set the height and width of the popup share window.
+  sbService.height = 600; //default: 400
+  sbService.width = 800;  //default: 500
 }`;
+
+    constructor(sbService:ShareButtonsService){
+        sbService.twitterAccount = "MurhafSousli";
+    }
+
     ngAfterContentInit() {
         setTimeout(()=>Prism.highlightAll(), 500);
     }

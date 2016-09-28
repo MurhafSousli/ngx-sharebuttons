@@ -96,12 +96,27 @@ export class SomeComponent {
 }
 ```
 
-## TODOs:
+## Misc
 
-- [x] Share counters
-- [x] Button order (can be done by css flexbox order)
-- [ ] Fix LinkedIn [issue](https://github.com/MurhafSousli/ng2-sharebuttons/issues/2).
-- [ ] Fix StumbleUpOn share count [issue](https://github.com/MurhafSousli/ng2-sharebuttons/issues/3).
+Use the service `ShareButtonsService` to set global variables like:
+
+ - Site twitter account
+ - The popup share window's dimension.
+
+```javascript
+import {ShareButtonsService} from "ng2-sharebuttons";
+.
+.
+  constructor(sbService:ShareButtonsService){
+
+    //Add `Via @yourTwitterAccount` to tweet button. 
+    sbService.twitterAccount = "yourTwitterAccount";
+
+    //Set the height and width of the popup share window.
+    sbService.height = 600; //default: 400
+    sbService.width = 800;  //default: 500
+  }
+```
 
 <a name="issues"/>
 ## Issues

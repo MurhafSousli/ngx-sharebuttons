@@ -1,19 +1,116 @@
 import {Injectable} from '@angular/core';
-import {Http, Jsonp,Headers} from "@angular/http";
+import {Http, Jsonp} from "@angular/http";
 import {Observable} from "rxjs";
 
 import {ShareProvider} from "../helpers/share-provider.enum";
-import {ShareHelper} from "../helpers/share-buttons.helper";
+import {ShareButtonsInterface} from "./share-buttons.interface";
+import {ShareArgs} from "../helpers/share-buttons.class";
 
 @Injectable()
-export class ShareButtonsService {
+export class ShareButtonsService implements ShareButtonsInterface {
 
     /** Optional parameters for to set default inputs */
     windowWidth: number = 500;
     windowHeight: number = 400;
 
+    /** Site Twitter Account: Add Via @TwitterAccount to the tweet  */
+    twitterAccount: string;
+
     constructor(private http: Http, private jsonp: Jsonp) {
     }
+
+    share(type, args) {
+        switch (type) {
+            case ShareProvider.FACEBOOK:
+                return this.fbShare(args);
+            case ShareProvider.TWITTER:
+                return this.twitterShare(args);
+            case ShareProvider.LINKEDIN:
+                return this.linkedInShare(args);
+            case ShareProvider.REDDIT:
+                return this.redditShare(args);
+            case ShareProvider.TUMBLR:
+                return this.tumblrShare(args);
+            case ShareProvider.STUMBLEUPON:
+                return this.stumbleShare(args);
+            case ShareProvider.GOOGLEPLUS:
+                return this.gPlusShare(args);
+            case ShareProvider.PINTEREST:
+                return this.pinShare(args);
+            default:
+                return '';
+        }
+    }
+
+    private fbShare(args: ShareArgs) {
+        return 'https://www.facebook.com/sharer/sharer.php?u=' + args.url;
+    }
+
+    //TWITTER DOCS: https://dev.twitter.com/web/tweet-button/web-intent
+    private twitterShare(args: ShareArgs) {
+        let shareUrl = 'https://twitter.com/intent/tweet?url=' + args.url;
+        if (args.text) {
+            shareUrl += '&text=' + args.text;
+        }
+        if (this.twitterAccount) {
+            shareUrl += '&via=' + this.twitterAccount;
+        }
+        if (args.hashtags) {
+            shareUrl += '&hashtags=' + args.hashtags.toString();
+        }
+        return shareUrl;
+    }
+
+    //LINKEDIN DOCS https://developer.linkedin.com/docs/share-on-linkedin#!
+    private linkedInShare(args: ShareArgs) {
+        return 'http://www.linkedin.com/shareArticle?url=' + args.url;
+    }
+
+    //REDDIT DOCS: http://stackoverflow.com/questions/24823114/post-to-reddit-via-url
+    private redditShare(args: ShareArgs) {
+        return 'http://www.reddit.com/submit?url=' + args.url;
+    }
+
+    //TUMBLR DOCS: https://www.tumblr.com/docs/en/share_button
+    private tumblrShare(args: ShareArgs) {
+        return 'http://tumblr.com/widgets/share/tool?canonicalUrl=' + args.url;
+    }
+
+    //STUMBLE DOCS: http://stackoverflow.com/questions/10591424/how-can-i-create-a-custom-stumbleupon-button
+    private stumbleShare(args: ShareArgs) {
+        return 'http://www.stumbleupon.com/submit?url=' + args.url;
+    }
+
+    //GPLUS DOCS: https://developers.google.com/+/web/share/#sharelink
+    private gPlusShare(args: ShareArgs) {
+        return 'https://plus.google.com/share?url=' + args.url;
+    }
+
+    private pinShare(args: ShareArgs) {
+        let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=' + args.url;
+        //if text is not provided, pin button won't work.
+        if (args.text) {
+            shareUrl += '&description=' + args.text;
+        }
+        else{
+            let text = document.querySelector('meta[property="og:title"]').getAttribute('content');
+            shareUrl += '&description=' + text;
+        }
+        if (args.image) {
+            shareUrl += '&media=' + args.image;
+        }
+        else{
+            let image = document.querySelector('meta[property="og:image"]').getAttribute('content');
+            shareUrl += '&media=' + image;
+        }
+        if(args.hashtags){
+            shareUrl += '&hashtags=' +  args.hashtags;
+        }
+        return shareUrl;
+    }
+
+
+    /** Share Counts */
 
     count(type, url) {
         switch (type) {
@@ -25,12 +122,12 @@ export class ShareButtonsService {
                 return this.redditCount(url);
             case ShareProvider.TUMBLR:
                 return this.tumblrCount(url);
-            case ShareProvider.STUMBLEUPON:
-                return this.stumbleCount(url);
             case ShareProvider.GOOGLEPLUS:
                 return this.gPlusCount(url);
             case ShareProvider.PINTEREST:
                 return this.pinCount(url);
+            // case ShareProvider.STUMBLEUPON:
+            //     return this.stumbleCount(url);
             default:
                 return Observable.empty();
         }
@@ -71,7 +168,7 @@ export class ShareButtonsService {
     }
 
     private gPlusCount(url: string) {
-        let body = ShareHelper.gplusCountBody(url);
+        let body = gplusCountBody(url);
         return this.http.post('https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ', body)
             .map((data: any)=> {
                 data = data.json();
@@ -133,3 +230,16 @@ export class ShareButtonsService {
         return 'width=' + this.windowWidth + ', height=' + this.windowHeight;
     }
 }
+
+
+/** Prepare GPlus Count Post request body   */
+export const gplusCountBody = (url) => {
+    return [{
+        "method": "pos.plusones.get",
+        "id": "p",
+        "params": {"nolog": true, "id": url, "source": "widget", "userId": "@viewer", "groupId": "@self"},
+        "jsonrpc": "2.0",
+        "key": "p",
+        "apiVersion": "v1"
+    }];
+};

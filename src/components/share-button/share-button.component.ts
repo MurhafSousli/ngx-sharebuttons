@@ -9,7 +9,7 @@ import {
     ElementRef
 } from '@angular/core';
 
-import {ShareButton} from "../../helpers/share-buttons.class";
+import {ShareButton, ShareArgs} from "../../helpers/share-buttons.class";
 import {ShareButtonsService} from "../../service/share-buttons.service";
 
 @Component({
@@ -18,8 +18,12 @@ import {ShareButtonsService} from "../../service/share-buttons.service";
 })
 export class ShareButtonComponent implements AfterViewInit {
 
-    /** Share URL */
+    /** Share Args */
     @Input() url: string;
+    @Input() text: string;
+    @Input() image: string;
+    @Input() hashtags: string[];
+
     /** Button type e.g. fb, twitter, reddit...etc */
     @Input() button: ShareButton;
     /** Show count, disabled by default */
@@ -35,8 +39,7 @@ export class ShareButtonComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         /** If URL is not presented then set the current URL    */
-        if(!this.url)
-        {
+        if (!this.url) {
             this.url = window.location.href;
         }
         this.renderer.setElementProperty(this.btn.nativeElement, 'innerHTML', this.button.template);
@@ -54,7 +57,8 @@ export class ShareButtonComponent implements AfterViewInit {
 
     /** Open share window */
     share() {
-        window.open(this.button.sharer + this.url, 'newwindow', this.sbService.windowAttr());
+        let shareArgs = new ShareArgs(this.url, this.text, this.image, this.hashtags);
+        window.open(this.sbService.share(this.button.provider, shareArgs), 'newwindow', this.sbService.windowAttr());
     }
 
 }
