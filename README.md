@@ -17,7 +17,8 @@ Install it with npm
 ## Basic usage:
 
 Add `ShareButtonsModule` to **NgModule** `imports` array
-```
+
+```javascript
 import {ShareButtonsModule} from "ng2-sharebuttons";
 @NgModule({
   imports: [
@@ -25,16 +26,20 @@ import {ShareButtonsModule} from "ng2-sharebuttons";
   ]
 })
 ```
+
 in your template
-```
+
+```html
 <share-buttons [url]="linkToShare"></share-buttons>
 ```
+
 The default icons requires [fontawesome](http://fontawesome.io/) to be loaded into your project.
 
 To display share counts on buttons, enable the input `[count]="true"`
 
 To display the total count of all shares, enable the input `[totalCount]="true"`
-```
+
+```html
 <share-buttons [shareTitle]="'Share Twitter Site'"
  [url]="'https://twitter.com'"
  [count]="true"
@@ -45,7 +50,8 @@ To display the total count of all shares, enable the input `[totalCount]="true"`
 ## Customization:
 
 Customization is very easy, the first thing you want to do is to set `[defaultStyle]=false` this will remove the class for the default style, after that use the following classes to add your own css.
-```
+
+```css
 .sb-container{
     //ShareButtons Holder
  }
@@ -68,7 +74,8 @@ Customization is very easy, the first thing you want to do is to set `[defaultSt
 Each share service has its own button template, pass your custom button template as string in its input, e.g. give facebook a custom template `[facebook]="facebookTemplate"`.
 
 To exclude a button, pass false to the button input. e.g. `[facebook]="false"`
-```
+
+```html
 <share-buttons
    [shareTitle]="shareTitle"
    [defaultStyle]="false"
@@ -84,7 +91,7 @@ To exclude a button, pass false to the button input. e.g. `[facebook]="false"`
    [stumbleUpOn]="false"
 ></share-buttons>
 ```
-```
+```javascript
 export class SomeComponent {
   shareTitle = "Sharing is caring";
   fbInner = "<img src='../assets/img/custom/facebook.svg'>";
