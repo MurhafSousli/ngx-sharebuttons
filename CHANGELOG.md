@@ -1,5 +1,9 @@
 #Changelog
 
+##1.0.3
+
+* **Improve Performance :** Now ShareButtonComponent uses `ChangeDetectionStrategy.OnPush`.
+
 ##1.0.1
 
 * **New Feature:** Set global twitter account to add "Via @twitterAccount" to user tweet.  

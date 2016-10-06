@@ -1,7 +1,7 @@
 <div class="sb-container">
 
     <h3>
-        <span *ngIf="totalCount && tCount > 0" class="sb-count">
+        <span *ngIf="totalCount && tCount" class="sb-count">
         {{tCount | nFormatter: 1}}
     </span>
         <span *ngIf="shareTitle" class="sb-title">{{shareTitle}}</span>

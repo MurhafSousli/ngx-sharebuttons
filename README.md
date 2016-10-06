@@ -35,9 +35,7 @@ in your template
 
 The default icons requires [fontawesome](http://fontawesome.io/) to be loaded into your project.
 
-To display share counts on buttons, enable the input `[count]="true"`
-
-To display the total count of all shares, enable the input `[totalCount]="true"`
+To display share counts on buttons, enable the input `[count]="true"` , To display the total count of all shares, enable the input `[totalCount]="true"` , To display a title for share buttons container use `[title]="yourTitle"`
 
 ```html
 <share-buttons [shareTitle]="'Share Twitter Site'"
@@ -49,7 +47,7 @@ To display the total count of all shares, enable the input `[totalCount]="true"`
 
 ## Customization:
 
-Customization is very easy, the first thing you want to do is to set `[defaultStyle]=false` this will remove the class for the default style, after that use the following classes to add your own css.
+Customization is very easy, disable the default style with `[defaultStyle]=false` then use the following classes to add your own css.
 
 ```css
 .sb-container{
