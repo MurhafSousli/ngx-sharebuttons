@@ -7,8 +7,9 @@ body{
   padding:10px;
   color: #333333;
   font-size: 1.1em;
+  font-family: 'Muli', sans-serif;
 }
-h1,h2,h3,h4,h5,h6, .sb-button-count{
+h1,h2,h3,h4,h5,h6, button, .sb-button-count{
   font-family: 'Play', sans-serif;
 }
 h3{
@@ -130,12 +131,17 @@ ul{
     border: 0;
     outline: 0;
     cursor: pointer;
+    color: #36465d;
     img{
       transition: all ease .1s;
       &:hover{
         transform: scale(1.1);
-        box-shadow: inset 2px 2px 3px rgba(0,0,0,0.8);
       }
     }
   }
+}
+
+app-single{
+  display:block;
+  width: 100%;
 }

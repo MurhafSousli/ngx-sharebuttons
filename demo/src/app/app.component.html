@@ -27,13 +27,17 @@
 
         <pre><code class="language-html">{{basic}}</code></pre>
 
+        <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
+        <div class="output">
+            <share-buttons></share-buttons>
+        </div>
+
         <p>The default icons requires <a href='http://fontawesome.io/'>fontawesome</a> to be loaded into your project.
         </p>
         <p>To display share counts on buttons, enable the input
-            <code class="markup">[count]="true"</code>
-        </p>
-        <p>To display the total count of all shares, enable the input
-            <code class="markup">[totalCount]="true"</code>
+            <code class="markup">[count]="true"</code> , To display the total count of all shares, enable the input
+            <code class="markup">[totalCount]="true"</code> , To display a title for share buttons container use <code
+                    class="markup">[title]="yourTitle"</code>
         </p>
 
         <!--USAGE CODE-->
@@ -50,9 +54,8 @@
 
     <section>
         <h2>Customization</h2>
-        <p>Customization is very easy, the first thing you want to do is to set <code
-                class="markup">[defaultStyle]=false</code> this will
-            remove the class for the default style, after that use the following classes to add your own css.</p>
+        <p>Customization is very easy, disable the default style with <code
+                class="markup">[defaultStyle]=false</code> then use the following classes to add your own css.</p>
 
         <pre><code class="language-css">{{customizeCss}}</code></pre>
 
@@ -84,7 +87,7 @@
 
         Use the service <code class="markup">ShareButtonsService</code> to set global variables like:
         <ul>
-            <li>Site twitter account</li>
+            <li>The app's twitter account</li>
             <li>The popup share window's dimension.</li>
         </ul>
 
@@ -92,15 +95,6 @@
 
     </section>
 
-    <!--<section>-->
-    <!--<h2>Add buttons individually</h2>-->
-    <!--<p>Sometimes you just want to use a button or two, you can use the component-->
-    <!--<code class="markup">-->
-    <!--<share-button></share-button>-->
-    <!--</code> directly instead, however you will need to create a <b>ShareButton</b> class for each button instance-->
-    <!--</p>-->
-    <!--<share-button [url]=""></share-button>-->
-    <!--</section>-->
     <section>
         <h2>Author</h2>
         <a href="http://murhafsousli.com"><b>Murhaf Sousli</b></a>

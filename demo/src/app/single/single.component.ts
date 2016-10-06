@@ -14,7 +14,7 @@ export class SingleComponent implements OnInit {
     hashtags = ['Hello', 'World'];
     defaultText = "This is a test";
 
-    pinImage = prefixRepo('../../assets/img/pinExample.jpg');
+    pinImage = 'https://murhafsousli.github.io/ng2-sharebuttons/assets/img/pinExample.jpg';
 
     twitterUsage = `<share-button [button]='twitterButton' [text]="defaultText" [hashtags]="hashtags"></share-button>`;
     pinUsage = `<share-button [button]='pinButton' [text]="defaultText" [image]="image"></share-button>`;
@@ -32,7 +32,7 @@ export class SingleComponent implements OnInit {
 
         this.pinButton = new ShareButton(
             ShareProvider.PINTEREST,
-            "<img src='" + prefixRepo("../../assets/img/custom/single-pinterest.svg") + "'> Pint it",
+            "<img src='" + prefixRepo("../../assets/img/custom/single-pinterest.svg") + "'> Pin it",
             'pinterest'
         );
     }
