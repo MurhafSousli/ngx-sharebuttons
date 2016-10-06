@@ -1,6 +1,6 @@
 #Changelog
 
-##1.0.3
+##1.0.4
 
 * **Improve Performance :** Now ShareButtonComponent uses `ChangeDetectionStrategy.OnPush`.
 
