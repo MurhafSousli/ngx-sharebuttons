@@ -11,8 +11,9 @@ export class ShareButton {
 export class ShareArgs {
 
     constructor(public url: string,
-                public text?: string,
+                public title?: string,
+                public description?: string,
                 public image?: string,
-                public hashtags?: string[]) {
+                public tags?: string[]) {
     }
 }

@@ -1,3 +1,12 @@
+$twitter: #00acee;
+$facebook: #3b5998;
+$googleplus: #e93f2e;
+$stumbleupon: #f74425;
+$linkedin: #0e76a8;
+$pinterest: #C92228;
+$reddit: #FF4006;
+$tumbler: #36465D;
+
 .header {
   display: flex;
   flex-direction: column;
@@ -10,15 +19,14 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-
   margin: 80px 0;
-
   position: relative;
-  &:hover img {
+  &:hover div {
     opacity: 0.4;
   }
-  img {
+  div, img {
     transition: all ease .3s;
+    font-size: 2.5em;
     &:hover {
       opacity: 1;
     }
@@ -38,7 +46,7 @@
 .title {
   text-align: center;
   font-size: 1.5em;
-  h1{
+  h1 {
     margin: 3% 0;
   }
   .red {
@@ -47,7 +55,7 @@
   }
 }
 
-.angular-logo{
+.angular-logo {
   max-width: 200px;
   @media screen and (max-width: 320px) {
     max-width: 170px;
@@ -55,53 +63,60 @@
 }
 
 .fb-logo {
+  color: $facebook;
   left: -20px;
   bottom: 0;
   z-index: 3;
 }
 
 .twtt-logo {
-  left: -40px;
+  color: $twitter;
+  left: -30px;
   top: 10px;
   transform: rotate(-10deg) scale(2);
   z-index: 4;
 }
 
 .in-logo {
+  color: $linkedin;
   right: -20px;
   bottom: 0;
 }
+
 .pint-logo {
-  right: -45px;
-  top: 95px;
+  color: $pinterest;
+  right: -55px;
+  top: 110px;
   transform: scale(1.5);
-  z-index:2;
+  z-index: 2;
 }
 
 .stumble-logo {
-
+  color: $stumbleupon;
   bottom: -40px;
   transform: rotate(-20deg) scale(1.3);
   z-index: 5;
 }
 
 .google-logo {
+  color: $googleplus;
   left: -40px;
-  top: 120px;
+  top: 110px;
   transform: rotate(-5deg) scale(1.2);
   z-index: 5;
 }
 
 .reddit-logo {
-
+  color: $reddit;
   top: -40px;
-  z-index:5;
+  z-index: 5;
   transform: rotate(20deg) scale(1.5);
 }
 
 .tumblr-logo {
-  right: -15px;
-  top: -15px;
+  color: $tumbler;
+  right: -40px;
+  top: 10px;
   transform: rotate(20deg) scale(1.4);
   z-index: 4;
 }

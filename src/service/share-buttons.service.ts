@@ -43,37 +43,65 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
     private fbShare(args: ShareArgs) {
-        return 'https://www.facebook.com/sharer/sharer.php?u=' + args.url;
+        let shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + args.url;
+        if (args.title) {
+            shareUrl += "&title=" + args.title;
+        }
+        if (args.description) {
+            shareUrl += "&description=" + args.description;
+        }
+        if (args.image) {
+            shareUrl += "&picture=" + args.image;
+        }
+        return shareUrl;
     }
 
     //TWITTER DOCS: https://dev.twitter.com/web/tweet-button/web-intent
     private twitterShare(args: ShareArgs) {
         let shareUrl = 'https://twitter.com/intent/tweet?url=' + args.url;
-        if (args.text) {
-            shareUrl += '&text=' + args.text;
+        if (args.description) {
+            shareUrl += '&text=' + args.description;
         }
         if (this.twitterAccount) {
             shareUrl += '&via=' + this.twitterAccount;
         }
-        if (args.hashtags) {
-            shareUrl += '&hashtags=' + args.hashtags.toString();
+        if (args.tags) {
+            shareUrl += '&hashtags=' + args.tags.toString();
         }
         return shareUrl;
     }
 
     //LINKEDIN DOCS https://developer.linkedin.com/docs/share-on-linkedin#!
     private linkedInShare(args: ShareArgs) {
-        return 'http://www.linkedin.com/shareArticle?url=' + args.url;
+        let shareUrl = 'http://www.linkedin.com/shareArticle?url=' + args.url;
+        if (args.title) {
+            shareUrl += "&title=" + args.title;
+        }
+        if (args.description) {
+            shareUrl += "&summary=" + args.description;
+        }
+        return shareUrl;
     }
 
     //REDDIT DOCS: http://stackoverflow.com/questions/24823114/post-to-reddit-via-url
     private redditShare(args: ShareArgs) {
-        return 'http://www.reddit.com/submit?url=' + args.url;
+        let shareUrl = 'http://www.reddit.com/submit?url=' + args.url;
+        if (args.title) {
+            shareUrl += "&title=" + args.title;
+        }
+        return shareUrl
     }
 
     //TUMBLR DOCS: https://www.tumblr.com/docs/en/share_button
     private tumblrShare(args: ShareArgs) {
-        return 'http://tumblr.com/widgets/share/tool?canonicalUrl=' + args.url;
+        let shareUrl = 'http://tumblr.com/widgets/share/tool?canonicalUrl=' + args.url;
+        if (args.description) {
+            shareUrl += "&caption=" + args.description;
+        }
+        if (args.tags) {
+            shareUrl += "&tags=" + args.tags;
+        }
+        return shareUrl;
     }
 
     //STUMBLE DOCS: http://stackoverflow.com/questions/10591424/how-can-i-create-a-custom-stumbleupon-button
@@ -89,22 +117,19 @@ export class ShareButtonsService implements ShareButtonsInterface {
     private pinShare(args: ShareArgs) {
         let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=' + args.url;
         //if text is not provided, pin button won't work.
-        if (args.text) {
-            shareUrl += '&description=' + args.text;
+        if (args.description) {
+            shareUrl += '&description=' + args.description;
         }
-        else{
-            let text = document.querySelector('meta[property="og:title"]').getAttribute('content');
-            shareUrl += '&description=' + text;
+        else {
+            let desc = document.querySelector('meta[property="og:description"]').getAttribute('content');
+            shareUrl += '&description=' + desc;
         }
         if (args.image) {
             shareUrl += '&media=' + args.image;
         }
-        else{
+        else {
             let image = document.querySelector('meta[property="og:image"]').getAttribute('content');
             shareUrl += '&media=' + image;
-        }
-        if(args.hashtags){
-            shareUrl += '&hashtags=' +  args.hashtags;
         }
         return shareUrl;
     }
@@ -126,8 +151,6 @@ export class ShareButtonsService implements ShareButtonsInterface {
                 return this.gPlusCount(url);
             case ShareProvider.PINTEREST:
                 return this.pinCount(url);
-            // case ShareProvider.STUMBLEUPON:
-            //     return this.stumbleCount(url);
             default:
                 return Observable.empty();
         }
@@ -140,7 +163,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
                 if (data.hasOwnProperty('share') && data.share.hasOwnProperty('share_count')) {
                     return data.share.share_count;
                 }
-                return Observable.empty();
+                return 0;
             });
     }
 
@@ -148,22 +171,18 @@ export class ShareButtonsService implements ShareButtonsInterface {
         return this.fetchJsonp('https://www.linkedin.com/countserv/count/share?url=' + url)
             .map((data: any) => {
                 data = data.json();
-                if (data.hasOwnProperty('count')) {
-                    return data.count;
-                }
-                return Observable.empty();
+                return data.count | 0;
             });
     }
-
 
     private redditCount(url: string) {
         return this.fetch('https://buttons.reddit.com/button_info.json?url=' + url)
             .map((data: any)=> {
                 data = data.json();
-                if (data.hasOwnProperty('data')) {
-                    return data.data.children[0].data.score;
+                if (data.hasOwnProperty('data') && data.data.hasOwnProperty('children')) {
+                    if (data.data.children.length) return data.data.children[0].data.score;
                 }
-                return Observable.empty();
+                return 0;
             });
     }
 
@@ -175,7 +194,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
                 if (data[0] && data[0].hasOwnProperty('result')) {
                     return data[0].result.metadata.globalCounts.count;
                 }
-                return Observable.empty();
+                return 0;
             });
     }
 
@@ -184,18 +203,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
             .map((data: any)=> {
                 data = data.text();
                 var result = JSON.parse(data.replace(/^receiveCount\((.*)\)/, '$1'));
-                return result.count;
-            });
-    }
-
-    private stumbleCount(url: string) {
-        return this.fetchJsonp('https://www.stumbleupon.com/services/1.01/badge.getinfo?url=' + url)
-            .map((data: any)=> {
-                data = data.json();
-                if (data.hasOwnProperty('timestamp')) {
-                    return data.timestamp;
-                }
-                return Observable.empty();
+                return result.count | 0;
             });
     }
 
@@ -206,12 +214,12 @@ export class ShareButtonsService implements ShareButtonsInterface {
                 if (data.hasOwnProperty('response') && data.response.hasOwnProperty('note_count')) {
                     return data.response.note_count;
                 }
-                return Observable.empty();
+                return 0;
             });
     }
 
     private fetch(url) {
-        return this.http.request(url)
+        return this.http.get(url)
             .catch((err)=> {
                 console.warn('[ShareService HTTP]: ', err);
                 return Observable.empty();

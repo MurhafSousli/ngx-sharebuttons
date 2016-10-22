@@ -15,18 +15,17 @@ import {ShareButtonsService} from "../../service/share-buttons.service";
 
 @Component({
     selector: 'share-button',
-    template: `
-        <button  #btn (click)="share()"></button>
-    `,
+    template: '<button  #btn (click)="share()"></button>',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShareButtonComponent implements AfterViewInit {
 
     /** Share Args */
     @Input() url: string;
-    @Input() text: string;
+    @Input() title: string;
+    @Input() description: string;
     @Input() image: string;
-    @Input() hashtags: string[];
+    @Input() tags: string[];
 
     /** Button type e.g. fb, twitter, reddit...etc */
     @Input() button: ShareButton;
@@ -44,7 +43,15 @@ export class ShareButtonComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         /** If URL is not presented then set the current URL    */
-        if (!this.url) {
+        if (this.url) {
+            /** If URL is presented check if it is a valid URL */
+            let r = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+            if (!r.test(this.url)) {
+                console.warn('Invalid URL, switching to window.location.href');
+                this.url = window.location.href;
+            }
+        }
+        else {
             this.url = window.location.href;
         }
         this.renderer.setElementProperty(this.btn.nativeElement, 'innerHTML', this.button.template);
@@ -54,10 +61,12 @@ export class ShareButtonComponent implements AfterViewInit {
         if (this.count) {
             this.sbService.count(this.button.provider, this.url)
                 .subscribe(shareCount => {
-                    let counter = this.renderer.createElement(this.elementRef.nativeElement, 'span');
-                    this.renderer.setElementClass(counter, 'sb-button-count', true);
-                    this.renderer.setElementProperty(counter, 'textContent', this.nFormatter(shareCount, 1));
-                    this.countOuter.emit(shareCount);
+                    if(shareCount) {
+                        let counter = this.renderer.createElement(this.elementRef.nativeElement, 'span');
+                        this.renderer.setElementClass(counter, 'sb-button-count', true);
+                        this.renderer.setElementProperty(counter, 'textContent', this.nFormatter(shareCount, 1));
+                        this.countOuter.emit(shareCount);
+                    }
                 });
         }
     }
@@ -65,7 +74,7 @@ export class ShareButtonComponent implements AfterViewInit {
 
     /** Open share window */
     share() {
-        let shareArgs = new ShareArgs(this.url, this.text, this.image, this.hashtags);
+        let shareArgs = new ShareArgs(this.url, this.title, this.description, this.image, this.tags);
         window.open(this.sbService.share(this.button.provider, shareArgs), 'newwindow', this.sbService.windowAttr());
     }
 
@@ -86,6 +95,7 @@ export class ShareButtonComponent implements AfterViewInit {
         }
         return num.toFixed(digits).replace(rx, "$1");
     }
+
 
 }
 

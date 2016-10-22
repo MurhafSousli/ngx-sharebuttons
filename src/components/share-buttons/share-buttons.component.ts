@@ -13,10 +13,11 @@ import {ShareProvider} from "../../helpers/share-provider.enum";
 export class ShareButtonsComponent implements OnInit{
     
     /** Share link args */
-    @Input() url;
-    @Input() text;
-    @Input() image;
-    @Input() hashtags;
+    @Input() url: string;
+    @Input() title: string;
+    @Input() description: string;
+    @Input() image: string;
+    @Input() tags: string[];
 
     /** Sharing title */
     @Input() shareTitle: string;
