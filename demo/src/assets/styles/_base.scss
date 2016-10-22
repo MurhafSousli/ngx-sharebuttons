@@ -109,19 +109,6 @@ a{
   }
 }
 
-ul{
-  .sb-container{
-    max-width: 500px;
-    margin-top: 20px;
-    border-top: 1px solid rgba(0,0,0,0.1);
-  }
-  .sb-buttons{
-    transform: scale(0.8);
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-  }
-}
-
 .single-button{
   button {
 
@@ -144,4 +131,13 @@ ul{
 app-single{
   display:block;
   width: 100%;
+}
+
+.withCount{
+  .sb-title{
+    float: left;
+  }
+  .sb-count{
+    margin-left: 5px;
+  }
 }

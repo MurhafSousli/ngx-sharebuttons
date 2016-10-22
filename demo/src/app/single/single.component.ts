@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ShareButton, ShareProvider} from "ng2-sharebuttons";
+import {ShareButton, ShareProvider} from "../ng2-sharebuttons";
 
 @Component({
     selector: 'app-single',
@@ -11,13 +11,13 @@ export class SingleComponent implements OnInit {
     twitterButton;
     pinButton;
 
-    hashtags = ['Hello', 'World'];
-    defaultText = "This is a test";
+    tags = ['Hello', 'World'];
+    description = "This is a test";
 
     pinImage = 'https://murhafsousli.github.io/ng2-sharebuttons/assets/img/pinExample.jpg';
 
-    twitterUsage = `<share-button [button]='twitterButton' [text]="defaultText" [hashtags]="hashtags"></share-button>`;
-    pinUsage = `<share-button [button]='pinButton' [text]="defaultText" [image]="image"></share-button>`;
+    twitterUsage = `<share-button [button]='twitterButton' [description]="description" [tags]="tags"></share-button>`;
+    pinUsage = `<share-button [button]='pinButton' [description]="description" [image]="image"></share-button>`;
 
     constructor() {
     }
@@ -41,8 +41,8 @@ export class SingleComponent implements OnInit {
   
 export class TestComponent{
   twitterButton;
-  hashtags = ['Hello','World'];
-  defaultText = "This is a test";
+  tags = ['Hello','World'];
+  description = "This is a test";
   
   ngOnInit() {
     this.twitterButton = new ShareButton(
@@ -56,7 +56,7 @@ export class TestComponent{
   
 export class TestComponent{
   pinButton;
-  defaultText = "This is a test";
+  description = "This is a test";
   image= "../../assets/img/pinExample.jpg";
   
   ngOnInit() {

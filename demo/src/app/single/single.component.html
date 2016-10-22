@@ -13,19 +13,19 @@
     <!--TWITTER OUTPUT-->
     <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
     <div class="output">
-        <share-button class="single-button" [button]='twitterButton' [text]="defaultText" [hashtags]="hashtags"></share-button>
+        <share-button class="single-button" [button]='twitterButton' [description]="description" [tags]="tags"></share-button>
     </div>
 
 
     <p>When using share buttons for a list of links, where each link has its own title and featured image, we need to
         set the inputs
-        <code class="markup">[text]</code> and <code class="markup">[image]</code> for <i>Pinterest</i> , because
+        <code class="markup">[description]</code> and <code class="markup">[image]</code> for <i>Pinterest</i> , because
         unlike other social media, <i>Pinterest</i> won't get it automatically from the <a href="http://ogp.me/">Open
             Graph</a> meta tags
     </p>
 
-    <p>The inputs <code class="markup">[text]</code>, <code class="markup">[image]</code> and <code
-            class="markup">[hashtags]</code> works the same in <<code class="markup">share-buttons</code>>, however in
+    <p>The inputs <code class="markup">[description]</code>, <code class="markup">[image]</code> and <code
+            class="markup">[tags]</code> works the same in <<code class="markup">share-buttons</code>>, however in
     this example we will be using them in a single button.</p>
 
     <!--PINTEREST CODE-->
@@ -36,7 +36,7 @@
     <!--PINTEREST OUTPUT-->
     <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
     <div class="output">
-        <share-button class="single-button" [button]='pinButton' [text]="defaultText" [image]="pinImage"></share-button>
+        <share-button class="single-button" [button]='pinButton' [description]="description" [image]="pinImage" [tags]="['c#','c++']"></share-button>
     </div>
 
 </section>

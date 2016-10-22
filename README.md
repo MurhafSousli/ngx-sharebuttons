@@ -154,6 +154,52 @@ export class TestComponent{
 <share-button [button]='pinButton' [text]="defaultText" [image]="image"></share-button>
 ```
 
+## Sharebuttons inputs list
+
+   - `[url]`: If URL is not valid or not presented, it will use `window.location.href`
+
+  **Meta tags alternates:**
+
+   - `[title]` 
+   - `[description]`
+   - `[image]`
+   - `[tags]`: Adds hashtags to the tweet, also for tumblr tags
+
+  **Sharebuttons container:**
+
+   - `[shareTitle]`: Sharebuttons container title, default: false
+   - `[count]`: Enable counts on share buttons, default: false
+   - `[totalCount]`: Show total count of all buttons, default: false
+   - `[defaultStyle]`: Use default style is applied to the buttons, default: true
+
+  **Buttons inputs**
+    Pass a custom button template to replace the default, Switch off a button by passing false
+   - `[facebook]` 
+   - `[twitter]`
+   - `[linkedIn]`
+   - `[tumblr]`
+   - `[google]`
+   - `[pinterest]`
+   - `[stumbleUpOn]`
+   - `[reddit]`
+
+## Single Sharebutton (for adding buttons individually):
+
+  - `[url]`: If URL is not valid or not presented, it will use `window.location.href`
+
+  **Meta tags alternates:**
+
+  - `[title]` 
+  - `[description]`
+  - `[image]`
+  - `[tags]`: Adds hashtags to the twitter and tumblr
+
+  **Button options**
+  - `[button]`: Pass `ShareButton` object, like fb, twitter, reddit...etc
+  - `[count]`: Enable share count on the button, default: false
+  - `(countOuter)`: Output share count of the button
+      
+
 ## Misc
 
 Use the service `ShareButtonsService` to set global variables like:

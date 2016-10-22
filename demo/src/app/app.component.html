@@ -1,12 +1,10 @@
 <div class="container">
     <app-header></app-header>
-    <share-buttons class="share-project" [text]="'Angular 2 Share Buttons'" [hashtags]="['angular2']"></share-buttons>
+    <share-buttons class="share-project" [description]="desc" [tags]="['angular']"></share-buttons>
 
     <section>
         <h2>Brief Summary</h2>
-        <p>
-            Simple, lightweight, customizable share buttons with counts
-        </p>
+        <p>{{desc}}</p>
     </section>
 
     <section>
@@ -34,10 +32,9 @@
 
         <p>The default icons requires <a href='http://fontawesome.io/'>fontawesome</a> to be loaded into your project.
         </p>
-        <p>To display share counts on buttons, enable the input
-            <code class="markup">[count]="true"</code> , To display the total count of all shares, enable the input
-            <code class="markup">[totalCount]="true"</code> , To display a title for share buttons container use <code
-                    class="markup">[shareTitle]="yourTitle"</code>
+        <p>To display a title for share buttons container use <code class="markup">[shareTitle]="yourTitle"</code>, To
+            display share counts on buttons, enable the input <code class="markup">[count]="true"</code> , To display
+            the total count of all shares, enable the input <code class="markup">[totalCount]="true"</code>
         </p>
 
         <!--USAGE CODE-->
@@ -46,8 +43,8 @@
         <!--USAGE OUTPUT-->
         <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
         <div class="output">
-            <share-buttons [shareTitle]="' | Total Shares for Twitter URL'" [url]="'https://twitter.com'" [count]="true"
-                           [totalCount]="true"></share-buttons>
+            <share-buttons class="withCount" [shareTitle]="'Total Shares for Twitter URL - '" [url]="'https://twitter.com'" [count]="true"
+                   [totalCount]="true"></share-buttons>
         </div>
 
     </section>
@@ -92,6 +89,14 @@
         </ul>
 
         <pre><code class="language-javascript">{{popupWindow}}</code></pre>
+
+    </section>
+
+    <section>
+        <h2>Issues</h2>
+        <p>If you identify any errors in this package, or have an idea for an improvement, please open an <a
+                href="https://github.com/MurhafSousli/ng2-sharebuttons/issues">issue</a>. I am excited to see what the
+            community thinks of this project, and I would love your input!</p>
 
     </section>
 

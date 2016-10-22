@@ -23,7 +23,7 @@
     "animate.css": "^3.5.2",
     "core-js": "^2.4.1",
     "font-awesome": "^4.6.3",
-    "ng2-sharebuttons": "^1.0.4",
+    "ng2-sharebuttons": "^1.0.5",
     "normalize.css": "^4.2.0",
     "prismjs": "^1.5.1",
     "rxjs": "5.0.0-beta.12",

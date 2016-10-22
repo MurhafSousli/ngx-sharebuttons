@@ -1,5 +1,5 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {ShareButtonsService} from "ng2-sharebuttons";
+import {ShareButtonsService} from "./ng2-sharebuttons";
 
 import 'prismjs/prism';
 declare var Prism: any;
@@ -16,6 +16,8 @@ export class AppComponent {
 
     data: any;
 
+    desc = "Simple, lightweight, customizable share buttons with counts";
+
     importing = `import {ShareButtonsModule} from "ng2-sharebuttons";
 @NgModule({
   imports: [
@@ -27,7 +29,7 @@ export class AppComponent {
 
     metaHtml = "<share-button [url]=\"url\"></share-button>";
 
-    basicUsage = `<share-buttons [shareTitle]=\"' | Total Shares for Twitter URL'\"
+    basicUsage = `<share-buttons [shareTitle]=\"'Total Shares for Twitter URL - '\"
  [url]=\"'https://twitter.com'\"
  [count]="true"
  [totalCount]="true"

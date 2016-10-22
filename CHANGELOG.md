@@ -1,5 +1,19 @@
 #Changelog
 
+##1.0.6
+
+* **New Feature:** 
+    Now you can set `[title]`, `[description]` and `[image]` if you don't want to use the meta tags, check full list of inputs in the docs, closes #7.
+
+* **Fixes Bug:** 
+    Count: handle facebook share count error, closes #8.
+    Share: Check if the input `[url]` is valid.
+
+* **Breaking Changes:**
+    The following inputs has new names now:
+        - before: `[text]`, After: `[description]`.
+        - before: `[hashtags]`, After: `[tags]`.
+
 ##1.0.5
 
 * **Improve Performance :** Now ShareButtonComponent uses `ChangeDetectionStrategy.OnPush`.
