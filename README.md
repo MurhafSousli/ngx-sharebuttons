@@ -103,17 +103,17 @@ export class SomeComponent {
 
 ## Advanced usage:
 
-Sometimes you just want to add a single button, use the component `<share-button>` in this case.
+Sometimes you just want to add a single button, or you want to make your own complex design, use the component `<share-button>` in this case.
 
-In this example, we will add a single twitter button, we will also add text and hashtags to the tweet.
+In this example, we will add a Tweet button, we will also add text and hashtags to the tweet.
 
 ```javascript
 import {ShareButton, ShareProvider} from "ng2-sharebuttons";
   
 export class TestComponent{
   twitterButton;
-  hashtags = ['Hello','World'];
-  defaultText = "This is a test";
+  tags = ['Hello','World'];
+  description = "This is a test";
   
   ngOnInit() {
     this.twitterButton = new ShareButton(
@@ -125,19 +125,17 @@ export class TestComponent{
 }
 ```
 ```html
-<share-button [button]='twitterButton' [text]="defaultText" [hashtags]="hashtags"></share-button>
+<share-button [button]='twitterButton' [description]="description" [tags]="tags"></share-button>
 ```
 
-When using share buttons for a list of links, where each link has its own title and featured image, we need to set the inputs `[text]` and `[image]` for *Pinterest*, because unlike other social media, *Pinterest* won't get it automatically from the Open Graph meta tags
-
-The inputs `[text]`, `[image]` and `[hashtags]` works the same in `<share-buttons>`, however in this example we will be using them in a single button.
+Another example for adding Pinterest button
 
 ```javascript
 import {ShareButton, ShareProvider} from "ng2-sharebuttons";
   
 export class TestComponent{
   pinButton;
-  defaultText = "This is a test";
+  description = "This is a test";
   image= "../../assets/img/pinExample.jpg";
   
   ngOnInit() {
@@ -151,10 +149,10 @@ export class TestComponent{
 ```
 
 ```html
-<share-button [button]='pinButton' [text]="defaultText" [image]="image"></share-button>
+<share-button [button]='pinButton' [description]="description" [image]="image"></share-button>
 ```
 
-## Sharebuttons inputs list
+### Sharebuttons  `<share-buttons>` component inputs:
 
    - `[url]`: If URL is not valid or not presented, it will use `window.location.href`
 
@@ -183,7 +181,7 @@ export class TestComponent{
    - `[stumbleUpOn]`
    - `[reddit]`
 
-## Single Sharebutton (for adding buttons individually):
+### Sharebutton `<share-button>` component inputs:
 
   - `[url]`: If URL is not valid or not presented, it will use `window.location.href`
 
