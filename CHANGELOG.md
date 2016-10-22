@@ -3,10 +3,10 @@
 ##1.0.6
 
 * **New Feature:** 
-    Now you can set `[title]`, `[description]` and `[image]` if you don't want to use the meta tags, check full list of inputs in the docs, closes #7.
+    Now you can set `[title]`, `[description]` and `[image]` if you don't want to use the meta tags, check full list of inputs in the docs, closes [#7](https://github.com/MurhafSousli/ng2-sharebuttons/issues/7).
 
 * **Fixes Bug:** 
-    Count: handle facebook share count error, closes #8.
+    Count: handle facebook share count error, closes [#8](https://github.com/MurhafSousli/ng2-sharebuttons/issues/8).
     Share: Check if the input `[url]` is valid.
 
 * **Breaking Changes:**
