@@ -47,12 +47,12 @@ export class ShareButtonComponent implements AfterViewInit {
             /** If URL is presented check if it is a valid URL */
             let r = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
             if (!r.test(this.url)) {
-                console.warn('Invalid URL, switching to window.location.href');
-                this.url = window.location.href;
+                console.warn('ShareButtons: Invalid URL, switching to window.location.href');
+                this.url = typeof window != 'undefined' ? window.location.href : typeof global != 'undefined' ? (<any>global).url : '';
             }
         }
         else {
-            this.url = window.location.href;
+            this.url = typeof window != 'undefined' ? window.location.href : typeof global != 'undefined' ? (<any>global).url : '';
         }
         this.renderer.setElementProperty(this.btn.nativeElement, 'innerHTML', this.button.template);
         this.renderer.setElementClass(this.btn.nativeElement, this.button.classes, true);
