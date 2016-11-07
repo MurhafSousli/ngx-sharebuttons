@@ -2,7 +2,7 @@
 
 ![Angular 2 Share Buttons cover](/assets/cover.PNG?raw=true "Optional Title")
 
-Simple, lightweight, customizable share buttons with counts | [live demo](https://murhafsousli.github.io/ng2-sharebuttons/)
+Simple, lightweight, customizable share buttons with counts | [live demo](https://murhafsousli.github.io/ng2-sharebuttons/) | [vertical live demo](https://murhafsousli.github.io/memory/)
 
 Supported services:
 
