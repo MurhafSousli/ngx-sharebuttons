@@ -54,8 +54,13 @@ export class ShareButtonComponent implements AfterViewInit {
         else {
             this.url = typeof window != 'undefined' ? window.location.href : typeof global != 'undefined' ? (<any>global).url : '';
         }
+        
+        /** Set button template */
         this.renderer.setElementProperty(this.btn.nativeElement, 'innerHTML', this.button.template);
-        this.renderer.setElementClass(this.btn.nativeElement, this.button.classes, true);
+
+        /** Set buttons classes */
+        let classes = this.button.classes.match(/\S+/g) || [];
+        classes.map((btnClass) => this.renderer.setElementClass(this.btn.nativeElement, btnClass, true));
 
         /** Add share count if enabled */
         if (this.count) {
