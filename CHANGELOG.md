@@ -1,5 +1,15 @@
 #Changelog
 
+##1.0.7
+
+* **improvement:**
+
+    - Tiny fix: ignore `window` if undefined, fixes compiling on universal, closes [#6](https://github.com/MurhafSousli/ng2-sharebuttons/issues/6)
+
+* **Fixes Bug:** 
+
+    - Fix single share button multiple classes, closes [#9](https://github.com/MurhafSousli/ng2-sharebuttons/issues/9)
+ 
 ##1.0.6
 
 * **New Feature:** 

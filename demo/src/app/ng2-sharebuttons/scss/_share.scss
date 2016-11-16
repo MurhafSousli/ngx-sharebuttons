@@ -1,0 +1,117 @@
+$twitter: #00acee;
+$facebook: #3b5998;
+$googleplus: #e93f2e;
+$stumbleupon: #f74425;
+$linkedin: #0e76a8;
+$pinterest: #C92228;
+$reddit: #FF4006;
+$tumbler: #36465D;
+$github: #800080;
+$stackoverflow: #F48023;
+
+$count-color: #333333;
+$arrow-color: #E03237;
+
+.sb-container {
+  .sb-title {
+
+  }
+  .sb-count {
+
+  }
+  .sb-buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+
+    .sb-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1 1 auto;
+      @media screen and (min-width: $medium-screen) {
+
+      }
+    }
+
+    .sb-button-count {
+      font-size: .8em;
+      text-align: center;
+      position: relative;
+      color: $count-color;
+
+      margin-top: 10px;
+      &:before {
+
+        position: absolute;
+        top: -7px;
+        left: 50%;
+        margin-left: -4px;
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+
+        border-bottom: 5px solid $arrow-color;
+      }
+    }
+  }
+  button {
+    @extend .btn;
+
+    max-width: 80px;
+    min-width: 50px;
+    width: 100%;
+    background-color: transparent;
+    margin: 5px;
+    font-size: 1.2em;
+    &:hover {
+      transition: all ease 500ms;
+    }
+  }
+}
+
+.sb-default-style {
+
+  .facebook {
+    @include btnColor($facebook);
+  }
+
+  .twitter {
+    @include btnColor($twitter);
+  }
+
+  .googleplus {
+    @include btnColor($googleplus);
+  }
+
+  .stumbleupon {
+    @include btnColor($stumbleupon);
+  }
+
+  .linkedin {
+    @include btnColor($linkedin);
+  }
+
+  .pinterest {
+    @include btnColor($pinterest);
+  }
+
+  .reddit {
+    @include btnColor($reddit);
+  }
+
+  .tumblr {
+    @include btnColor($tumbler);
+  }
+
+  .github {
+    @include btnColor($github);
+  }
+
+  .stackoverflow {
+    @include btnColor($stackoverflow);
+  }
+}
