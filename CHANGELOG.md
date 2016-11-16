@@ -4,8 +4,8 @@
    
 * **Fixes Bug:** 
 
-    - Fixes compiling on universal, closes [#6](https://github.com/MurhafSousli/ng2-sharebuttons/issues/6)
-    - Fix single share button multiple classes, closes [#9](https://github.com/MurhafSousli/ng2-sharebuttons/issues/9)
+    - Fix compiling on universal, closes [#6](https://github.com/MurhafSousli/ng2-sharebuttons/issues/6)
+    - Fix multiple classes on a share button, closes [#9](https://github.com/MurhafSousli/ng2-sharebuttons/issues/11)
 
 * **Breaking Changes:**
 
