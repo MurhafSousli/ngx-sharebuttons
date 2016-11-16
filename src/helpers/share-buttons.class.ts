@@ -14,6 +14,6 @@ export class ShareArgs {
                 public title?: string,
                 public description?: string,
                 public image?: string,
-                public tags?: string[]) {
+                public tags?: string) {
     }
 }

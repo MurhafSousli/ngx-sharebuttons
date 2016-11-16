@@ -25,7 +25,7 @@ export class ShareButtonComponent implements AfterViewInit {
     @Input() title: string;
     @Input() description: string;
     @Input() image: string;
-    @Input() tags: string[];
+    @Input() tags: string;
 
     /** Button type e.g. fb, twitter, reddit...etc */
     @Input() button: ShareButton;
@@ -54,6 +54,7 @@ export class ShareButtonComponent implements AfterViewInit {
         else {
             this.url = typeof window != 'undefined' ? window.location.href : typeof global != 'undefined' ? (<any>global).url : '';
         }
+        
         /** Set button template */
         this.renderer.setElementProperty(this.btn.nativeElement, 'innerHTML', this.button.template);
 
@@ -65,7 +66,7 @@ export class ShareButtonComponent implements AfterViewInit {
         if (this.count) {
             this.sbService.count(this.button.provider, this.url)
                 .subscribe(shareCount => {
-                    if (shareCount) {
+                    if(shareCount) {
                         let counter = this.renderer.createElement(this.elementRef.nativeElement, 'span');
                         this.renderer.setElementClass(counter, 'sb-button-count', true);
                         this.renderer.setElementProperty(counter, 'textContent', this.nFormatter(shareCount, 1));

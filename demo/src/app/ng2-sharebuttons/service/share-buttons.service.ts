@@ -66,7 +66,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
             shareUrl += '&via=' + this.twitterAccount;
         }
         if (args.tags) {
-            shareUrl += '&hashtags=' + args.tags.toString();
+            shareUrl += '&hashtags=' + args.tags;
         }
         return shareUrl;
     }

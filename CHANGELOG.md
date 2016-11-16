@@ -1,15 +1,24 @@
 #Changelog
 
 ##1.0.7
-
-* **improvement:**
-
-    - Tiny fix: ignore `window` if undefined, fixes compiling on universal, closes [#6](https://github.com/MurhafSousli/ng2-sharebuttons/issues/6)
-
+   
 * **Fixes Bug:** 
 
+    - Fixes compiling on universal, closes [#6](https://github.com/MurhafSousli/ng2-sharebuttons/issues/6)
     - Fix single share button multiple classes, closes [#9](https://github.com/MurhafSousli/ng2-sharebuttons/issues/9)
- 
+
+* **Breaking Changes:**
+
+    - twitter tags are now seperated by comma as a string instead of string[]:
+        - before:
+        ```
+        <share-buttons [tags]="['hello','world']">
+        ```
+        - after:
+        ```
+        <share-buttons [tags]="'hello, world'">
+        ```
+
 ##1.0.6
 
 * **New Feature:** 

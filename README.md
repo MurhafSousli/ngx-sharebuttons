@@ -112,7 +112,7 @@ import {ShareButton, ShareProvider} from "ng2-sharebuttons";
   
 export class TestComponent{
   twitterButton;
-  tags = ['Hello','World'];
+  tags = 'Hello, World';
   description = "This is a test";
   
   ngOnInit() {

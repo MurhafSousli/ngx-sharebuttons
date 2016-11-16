@@ -17,7 +17,7 @@ export class ShareButtonsComponent implements OnInit{
     @Input() title: string;
     @Input() description: string;
     @Input() image: string;
-    @Input() tags: string[];
+    @Input() tags: string;
 
     /** Sharing title */
     @Input() shareTitle: string;

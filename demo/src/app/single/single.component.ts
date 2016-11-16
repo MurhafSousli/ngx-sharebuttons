@@ -11,7 +11,7 @@ export class SingleComponent implements OnInit {
     twitterButton;
     pinButton;
 
-    tags = ['Hello', 'World'];
+    tags = 'Hello, World';
     description = "This is a test";
 
     pinImage = 'https://murhafsousli.github.io/ng2-sharebuttons/assets/img/pinExample.jpg';
@@ -41,7 +41,7 @@ export class SingleComponent implements OnInit {
   
 export class TestComponent{
   twitterButton;
-  tags = ['Hello','World'];
+  tags = 'Hello, World';
   description = "This is a test";
   
   ngOnInit() {

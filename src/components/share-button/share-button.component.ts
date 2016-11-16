@@ -25,7 +25,7 @@ export class ShareButtonComponent implements AfterViewInit {
     @Input() title: string;
     @Input() description: string;
     @Input() image: string;
-    @Input() tags: string[];
+    @Input() tags: string;
 
     /** Button type e.g. fb, twitter, reddit...etc */
     @Input() button: ShareButton;
