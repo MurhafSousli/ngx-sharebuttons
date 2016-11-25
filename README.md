@@ -169,7 +169,7 @@ export class TestComponent{
    - `[count]`: Enable counts on share buttons, default: false
    - `[totalCount]`: Show total count of all buttons, default: false
    - `[defaultStyle]`: Use default style is applied to the buttons, default: true
-   - `(popUpClosed)`: Output when pop up window is closed, see usage [#12](https://github.com/MurhafSousli/ng2-sharebuttons/issues/12)
+   - `(popUpClosed)`: Output when pop up window is closed
  
 
   **Buttons inputs**
@@ -198,7 +198,7 @@ export class TestComponent{
   - `[button]`: Pass `ShareButton` object, like fb, twitter, reddit...etc
   - `[count]`: Enable share count on the button, default: false
   - `(countOuter)`: Output share count of the button
-  - `(popUpClosed)`: Output when pop up window is closed, see usage [#12](https://github.com/MurhafSousli/ng2-sharebuttons/issues/12)
+  - `(popUpClosed)`: Output when pop up window is closed
       
 
 ## Misc
