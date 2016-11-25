@@ -1,10 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Http, Jsonp} from "@angular/http";
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
+
+import "rxjs/add/operator/map";
+import "rxjs/add/observable/empty";
+import "rxjs/add/operator/catch";
 
 import {ShareProvider} from "../helpers/share-provider.enum";
 import {ShareButtonsInterface} from "./share-buttons.interface";
-import {ShareArgs} from "../helpers/share-buttons.class";
+import {ShareLinks} from "./share-links.functions";
 
 @Injectable()
 export class ShareButtonsService implements ShareButtonsInterface {
@@ -19,119 +23,28 @@ export class ShareButtonsService implements ShareButtonsInterface {
     constructor(private http: Http, private jsonp: Jsonp) {
     }
 
+
     share(type, args) {
         switch (type) {
             case ShareProvider.FACEBOOK:
-                return this.fbShare(args);
+                return ShareLinks.fbShare(args);
             case ShareProvider.TWITTER:
-                return this.twitterShare(args);
+                return ShareLinks.twitterShare(args);
             case ShareProvider.LINKEDIN:
-                return this.linkedInShare(args);
+                return ShareLinks.linkedInShare(args);
             case ShareProvider.REDDIT:
-                return this.redditShare(args);
+                return ShareLinks.redditShare(args);
             case ShareProvider.TUMBLR:
-                return this.tumblrShare(args);
+                return ShareLinks.tumblrShare(args);
             case ShareProvider.STUMBLEUPON:
-                return this.stumbleShare(args);
+                return ShareLinks.stumbleShare(args);
             case ShareProvider.GOOGLEPLUS:
-                return this.gPlusShare(args);
+                return ShareLinks.gPlusShare(args);
             case ShareProvider.PINTEREST:
-                return this.pinShare(args);
+                return ShareLinks.pinShare(args);
             default:
                 return '';
         }
-    }
-
-    private fbShare(args: ShareArgs) {
-        let shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + args.url;
-        if (args.title) {
-            shareUrl += "&title=" + args.title;
-        }
-        if (args.description) {
-            shareUrl += "&description=" + args.description;
-        }
-        if (args.image) {
-            shareUrl += "&picture=" + args.image;
-        }
-        return shareUrl;
-    }
-
-    //TWITTER DOCS: https://dev.twitter.com/web/tweet-button/web-intent
-    private twitterShare(args: ShareArgs) {
-        let shareUrl = 'https://twitter.com/intent/tweet?url=' + args.url;
-        if (args.description) {
-            shareUrl += '&text=' + args.description;
-        }
-        if (this.twitterAccount) {
-            shareUrl += '&via=' + this.twitterAccount;
-        }
-        if (args.tags) {
-            shareUrl += '&hashtags=' + args.tags;
-        }
-        return shareUrl;
-    }
-
-    //LINKEDIN DOCS https://developer.linkedin.com/docs/share-on-linkedin#!
-    private linkedInShare(args: ShareArgs) {
-        let shareUrl = 'http://www.linkedin.com/shareArticle?url=' + args.url;
-        if (args.title) {
-            shareUrl += "&title=" + args.title;
-        }
-        if (args.description) {
-            shareUrl += "&summary=" + args.description;
-        }
-        return shareUrl;
-    }
-
-    //REDDIT DOCS: http://stackoverflow.com/questions/24823114/post-to-reddit-via-url
-    private redditShare(args: ShareArgs) {
-        let shareUrl = 'http://www.reddit.com/submit?url=' + args.url;
-        if (args.title) {
-            shareUrl += "&title=" + args.title;
-        }
-        return shareUrl
-    }
-
-    //TUMBLR DOCS: https://www.tumblr.com/docs/en/share_button
-    private tumblrShare(args: ShareArgs) {
-        let shareUrl = 'http://tumblr.com/widgets/share/tool?canonicalUrl=' + args.url;
-        if (args.description) {
-            shareUrl += "&caption=" + args.description;
-        }
-        if (args.tags) {
-            shareUrl += "&tags=" + args.tags;
-        }
-        return shareUrl;
-    }
-
-    //STUMBLE DOCS: http://stackoverflow.com/questions/10591424/how-can-i-create-a-custom-stumbleupon-button
-    private stumbleShare(args: ShareArgs) {
-        return 'http://www.stumbleupon.com/submit?url=' + args.url;
-    }
-
-    //GPLUS DOCS: https://developers.google.com/+/web/share/#sharelink
-    private gPlusShare(args: ShareArgs) {
-        return 'https://plus.google.com/share?url=' + args.url;
-    }
-
-    private pinShare(args: ShareArgs) {
-        let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=' + args.url;
-        //if text is not provided, pin button won't work.
-        if (args.description) {
-            shareUrl += '&description=' + args.description;
-        }
-        else {
-            let desc = document.querySelector('meta[property="og:description"]').getAttribute('content');
-            shareUrl += '&description=' + desc;
-        }
-        if (args.image) {
-            shareUrl += '&media=' + args.image;
-        }
-        else {
-            let image = document.querySelector('meta[property="og:image"]').getAttribute('content');
-            shareUrl += '&media=' + image;
-        }
-        return shareUrl;
     }
 
 
@@ -237,6 +150,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
     windowAttr() {
         return 'width=' + this.windowWidth + ', height=' + this.windowHeight;
     }
+
 }
 
 

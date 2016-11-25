@@ -1,5 +1,16 @@
 #Changelog
 
+##1.1.0
+
+* **New Feature:**
+
+    - Add `popUpsClosed` function `<share-buttons (popUpClosed)="someCallbackFunction">`, closes [#12](https://github.com/MurhafSousli/ng2-sharebuttons/issues/12)
+
+* **Improvements:**
+
+    - Import `Observable`, `empty`, `catch`, `map` operators individually instead of importing the whole library
+    - Wrap window object in `WindowService`
+
 ##1.0.7
    
 * **Fixes Bug:** 

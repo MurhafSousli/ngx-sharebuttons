@@ -12,6 +12,8 @@ import {
 
 import {ShareButton, ShareArgs} from "../../helpers/share-buttons.class";
 import {ShareButtonsService} from "../../service/share-buttons.service";
+import {WindowService} from "../../service/window.service";
+import {ShareProvider} from "../../helpers/share-provider.enum";
 
 @Component({
     selector: 'share-button',
@@ -32,13 +34,20 @@ export class ShareButtonComponent implements AfterViewInit {
     /** Show count, disabled by default */
     @Input() count: boolean = false;
     /** Output button count to calculate total share counts */
-    @Output() countOuter = new EventEmitter();
+    @Output() countOuter = new EventEmitter<number>();
+
+    /** Output pop up closed*/
+    @Output() popUpClosed = new EventEmitter<ShareProvider>();
 
     @ViewChild('btn') btn: ElementRef;
 
+    private window: Window;
+
     constructor(private sbService: ShareButtonsService,
                 private renderer: Renderer,
-                private elementRef: ElementRef) {
+                private elementRef: ElementRef,
+                window: WindowService) {
+        this.window = window.nativeWindow;
     }
 
     ngAfterViewInit() {
@@ -48,13 +57,14 @@ export class ShareButtonComponent implements AfterViewInit {
             let r = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
             if (!r.test(this.url)) {
                 console.warn('ShareButtons: Invalid URL, switching to window.location.href');
-                this.url = typeof window != 'undefined' ? window.location.href : typeof global != 'undefined' ? (<any>global).url : '';
+                this.url = this.window ? this.window.location.href : typeof global != 'undefined' ? (<any>global).url : '';
             }
         }
         else {
-            this.url = typeof window != 'undefined' ? window.location.href : typeof global != 'undefined' ? (<any>global).url : '';
+            /** This supposed to fix window when undefined on Universal */
+            this.url = this.window ? this.window.location.href : typeof global != 'undefined' ? (<any>global).url : '';
         }
-        
+
         /** Set button template */
         this.renderer.setElementProperty(this.btn.nativeElement, 'innerHTML', this.button.template);
 
@@ -66,7 +76,7 @@ export class ShareButtonComponent implements AfterViewInit {
         if (this.count) {
             this.sbService.count(this.button.provider, this.url)
                 .subscribe(shareCount => {
-                    if(shareCount) {
+                    if (shareCount) {
                         let counter = this.renderer.createElement(this.elementRef.nativeElement, 'span');
                         this.renderer.setElementClass(counter, 'sb-button-count', true);
                         this.renderer.setElementProperty(counter, 'textContent', this.nFormatter(shareCount, 1));
@@ -80,7 +90,15 @@ export class ShareButtonComponent implements AfterViewInit {
     /** Open share window */
     share() {
         let shareArgs = new ShareArgs(this.url, this.title, this.description, this.image, this.tags);
-        window.open(this.sbService.share(this.button.provider, shareArgs), 'newwindow', this.sbService.windowAttr());
+
+        let popUp = this.window.open(this.sbService.share(this.button.provider, shareArgs), 'newwindow', this.sbService.windowAttr());
+
+        let pollTimer = this.window.setInterval(() => {
+            if (popUp.closed !== false) { // !== is required for compatibility with Opera
+                this.window.clearInterval(pollTimer);
+                this.popUpClosed.emit(this.button.provider);
+            }
+        }, 200);
     }
 
 

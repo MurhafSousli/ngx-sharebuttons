@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {ShareButtonsComponent} from './components/share-buttons/share-buttons.component';
 import {ShareButtonComponent} from './components/share-button/share-button.component';
 import {ShareButtonsService} from "./service/share-buttons.service";
+import {WindowService} from "./service/window.service";
 import {NFormatterPipe} from './helpers/n-formatter.pipe';
 
 import {ShareProvider} from './helpers/share-provider.enum';
@@ -20,7 +21,8 @@ import {ShareButton, ShareArgs} from './helpers/share-buttons.class';
         JsonpModule
     ],
     providers: [
-        ShareButtonsService
+        ShareButtonsService,
+        WindowService
     ],
     exports: [
         ShareButtonsComponent,

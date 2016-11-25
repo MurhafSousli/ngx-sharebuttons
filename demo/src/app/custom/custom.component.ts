@@ -15,8 +15,8 @@ export class CustomComponent {
   inInner = "<img src=" + prefixRepo("../../assets/img/custom/custom-linkedin.svg") + ">";
   googleInner = "<img src=" + prefixRepo("../../assets/img/custom/custom-google-plus.svg") + ">";
   tumblrInner = "<img src=" + prefixRepo("../../assets/img/custom/custom-tumblr.svg") + ">";
-
 }
+
 
 var prefixRepo = (path) => {
   return 'ng2-sharebuttons' + path;

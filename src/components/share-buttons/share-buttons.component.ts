@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input, Output} from '@angular/core';
 
 import {ShareButton} from "../../helpers/share-buttons.class";
 import {ShareProvider} from "../../helpers/share-provider.enum";
+import {EventEmitter} from "@angular/forms/src/facade/async";
 
 @Component({
     selector: 'share-buttons',
@@ -40,6 +41,8 @@ export class ShareButtonsComponent implements OnInit{
     @Input() pinterest: any = "<i class='fa fa-pinterest-p'></i>";
     @Input() stumbleUpOn: any = "<i class='fa fa-stumbleupon'></i>";
     @Input() reddit: any = "<i class='fa fa-reddit-alien'></i>";
+
+    @Output() popUpClosed = new EventEmitter<ShareProvider>();
 
     /** Share buttons to be displayed   */
     private buttons:ShareButton[];
@@ -110,6 +113,10 @@ export class ShareButtonsComponent implements OnInit{
 
     counter(count: number) {
         this.tCount += count;
+    }
+
+    popUpClose(provider){
+        this.popUpClosed.emit(provider);
     }
 
 }
