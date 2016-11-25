@@ -169,6 +169,8 @@ export class TestComponent{
    - `[count]`: Enable counts on share buttons, default: false
    - `[totalCount]`: Show total count of all buttons, default: false
    - `[defaultStyle]`: Use default style is applied to the buttons, default: true
+   - `(popUpClosed)`: Output when pop up window is closed, see usage [#12](https://github.com/MurhafSousli/ng2-sharebuttons/issues/12)
+ 
 
   **Buttons inputs**
     Pass a custom button template to replace the default, Switch off a button by passing false
