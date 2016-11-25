@@ -4,7 +4,7 @@
 
 * **New Feature:**
 
-    - Add `popUpsClosed` function `<share-buttons (popUpClosed)="someCallbackFunction">`, closes [#12](https://github.com/MurhafSousli/ng2-sharebuttons/issues/12)
+    - Add `popUpClosed` function `<share-buttons (popUpClosed)="someCallbackFunction">`, closes [#12](https://github.com/MurhafSousli/ng2-sharebuttons/issues/12)
 
 * **Improvements:**
 
