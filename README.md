@@ -196,6 +196,7 @@ export class TestComponent{
   - `[button]`: Pass `ShareButton` object, like fb, twitter, reddit...etc
   - `[count]`: Enable share count on the button, default: false
   - `(countOuter)`: Output share count of the button
+  - `(popUpClosed)`: Output when pop up window is closed, see usage [#12](https://github.com/MurhafSousli/ng2-sharebuttons/issues/12)
       
 
 ## Misc

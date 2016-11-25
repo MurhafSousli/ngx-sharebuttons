@@ -1,8 +1,14 @@
-import {Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input, Output} from '@angular/core';
-
+import {
+    Component,
+    OnInit,
+    ViewEncapsulation,
+    ChangeDetectionStrategy,
+    Input,
+    Output,
+    EventEmitter
+} from '@angular/core';
 import {ShareButton} from "../../helpers/share-buttons.class";
 import {ShareProvider} from "../../helpers/share-provider.enum";
-import {EventEmitter} from "@angular/forms/src/facade/async";
 
 @Component({
     selector: 'share-buttons',
