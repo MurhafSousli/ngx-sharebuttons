@@ -107,6 +107,8 @@ Sometimes you just want to add a single button, or you want to make your own com
 
 In this example, we will add a Tweet button, we will also add text and hashtags to the tweet.
 
+---
+
 ```javascript
 import {ShareButton, ShareProvider} from "ng2-sharebuttons";
   
@@ -152,7 +154,7 @@ export class TestComponent{
 <share-button [button]='pinButton' [description]="description" [image]="image"></share-button>
 ```
 
-### Sharebuttons  `<share-buttons>` component inputs:
+### `<share-buttons>` share buttons component:
 
    - `[url]`: If URL is not valid or not presented, it will use `window.location.href`
 
@@ -183,7 +185,7 @@ export class TestComponent{
    - `[stumbleUpOn]`
    - `[reddit]`
 
-### Sharebutton `<share-button>` component inputs:
+### `<share-button>` single share button component:
 
   - `[url]`: If URL is not valid or not presented, it will use `window.location.href`
 
