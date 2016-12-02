@@ -2,7 +2,7 @@
 
 ##1.1.1
 
-* Update dependecies and remove hard version in package.json
+* Update dependencies and remove hard version in package.json
 
 ##1.1.0
 
