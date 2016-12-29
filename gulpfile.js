@@ -36,6 +36,15 @@ const cssnano = require('cssnano');
 const scss = require('postcss-scss');
 const stripInlineComments = require('postcss-strip-inline-comments');
 
+/** External command runner */
+const exec = require('child_process').exec;
+
+/** File Access */
+const fs = require('fs');
+const file = require('gulp-file');
+
+
+const LIBRARY_NAME = 'ng2-sharebuttons';
 
 const tsProject = typescript.createProject('tsconfig.json');
 
@@ -117,5 +126,52 @@ gulp.task('watch', function() {
     gulp.watch([config.allSass, config.allHtml], ['styles']);
 });
 
-gulp.task('default', ['ts-lint', 'compile-ts']);
-gulp.task('default', ['compile-ts']);
+/** Npm Packaging Task */
+gulp.task('npm', function () {
+    var pkgJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+    var targetPkgJson = {};
+    var fieldsToCopy = ['version', 'description', 'keywords', 'author', 'repository', 'license', 'bugs', 'homepage'];
+
+    targetPkgJson['name'] = LIBRARY_NAME;
+
+    //only copy needed properties from project's package json
+    fieldsToCopy.forEach(function (field) { targetPkgJson[field] = pkgJson[field]; });
+
+    targetPkgJson['main'] = `index.js`;
+    targetPkgJson['module'] = 'index.js';
+    targetPkgJson['typings'] = 'index.d.ts';
+
+    // defines project's dependencies as 'peerDependencies' for final users
+    targetPkgJson.peerDependencies = {};
+    Object.keys(pkgJson.dependencies).forEach(function (dependency) {
+        targetPkgJson.peerDependencies[dependency] = `^${pkgJson.dependencies[dependency]}`;
+    });
+
+    // copy the needed additional files in the 'dist' folder
+    return gulp.src(['README.md', 'LICENSE', 'CHANGELOG.md'])
+        .pipe(file('package.json', JSON.stringify(targetPkgJson, null, 2)))
+        .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('compile', ['ts-lint', 'compile-ts']);
+
+/** Npm Publication Task */
+gulp.task('publish', [ 'compile', 'npm'], function (done) {
+    // run npm publish terminal command to publish the 'dist' folder only
+    exec('npm publish ./dist',
+        function (error, stdout, stderr) {
+            if (stderr) {
+                gutil.log(gutil.colors.red(stderr));
+            } else if (stdout) {
+                gutil.log(gutil.colors.green(stdout));
+            }
+            // execute callback when its done 
+            if (done) {
+                done();
+            }
+        }
+    );
+});
+
+
+gulp.task('default', ['compile']);
