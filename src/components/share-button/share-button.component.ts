@@ -10,10 +10,12 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 
-import {ShareButton, ShareArgs} from "../../helpers/share-buttons.class";
-import {ShareButtonsService} from "../../service/share-buttons.service";
-import {WindowService} from "../../service/window.service";
-import {ShareProvider} from "../../helpers/share-provider.enum";
+import { ShareButton, ShareArgs } from "../../helpers/share-buttons.class";
+import { ShareButtonsService } from "../../service/share-buttons.service";
+import { WindowService } from "../../service/window.service";
+import { ShareProvider } from "../../helpers/share-provider.enum";
+
+declare var global: any; //To make AoT compiler (ngc) happy
 
 @Component({
     selector: 'share-button',
@@ -44,9 +46,9 @@ export class ShareButtonComponent implements AfterViewInit {
     private window: Window;
 
     constructor(private sbService: ShareButtonsService,
-                private renderer: Renderer,
-                private elementRef: ElementRef,
-                window: WindowService) {
+        private renderer: Renderer,
+        private elementRef: ElementRef,
+        window: WindowService) {
         this.window = window.nativeWindow;
     }
 
@@ -104,12 +106,12 @@ export class ShareButtonComponent implements AfterViewInit {
 
     nFormatter(num, digits) {
         var si = [
-            {value: 1E18, symbol: "E"},
-            {value: 1E15, symbol: "P"},
-            {value: 1E12, symbol: "T"},
-            {value: 1E9, symbol: "G"},
-            {value: 1E6, symbol: "M"},
-            {value: 1E3, symbol: "K"}
+            { value: 1E18, symbol: "E" },
+            { value: 1E15, symbol: "P" },
+            { value: 1E12, symbol: "T" },
+            { value: 1E9, symbol: "G" },
+            { value: 1E6, symbol: "M" },
+            { value: 1E3, symbol: "K" }
         ], rx = /\.0+$|(\.[0-9]*[1-9])0+$/, i;
         for (i = 0; i < si.length; i++) {
             if (num >= si[i].value) {
