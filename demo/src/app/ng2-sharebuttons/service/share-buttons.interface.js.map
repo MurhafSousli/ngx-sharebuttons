@@ -1,0 +1,1 @@
+{"version":3,"file":"share-buttons.interface.js","sourceRoot":"","sources":["../inlined/service/share-buttons.interface.ts"],"names":[],"mappings":"","sourcesContent":["export interface ShareButtonsInterface{\n    share(type, url);\n    count(type, url);\n    windowAttr();\n}\ninterface DecoratorInvocation {\n  type: Function;\n  args?: any[];\n}\n"]}

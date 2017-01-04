@@ -13,7 +13,7 @@ import { ShareLinks } from "./share-links.functions";
 @Injectable()
 export class ShareButtonsService implements ShareButtonsInterface {
 
-    /** Optional parameters for to set default inputs */
+    /** Optional parameters */
     windowWidth: number = 500;
     windowHeight: number = 400;
 
@@ -154,7 +154,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
 }
 
 
-/** Prepare GPlus Count Post request body   */
+/** Prepare gPlus count request body   */
 export const gplusCountBody = (url) => {
     return [{
         "method": "pos.plusones.get",

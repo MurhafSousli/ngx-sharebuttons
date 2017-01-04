@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["inlined/index.ts"],"names":[],"mappings":"AAAA,cAAc,wBAAwB,CAAC","sourcesContent":["export * from './share-buttons.module';\ninterface DecoratorInvocation {\n  type: Function;\n  args?: any[];\n}\n"]}

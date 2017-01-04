@@ -59,12 +59,17 @@ export class ShareButtonComponent implements AfterViewInit {
             let r = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
             if (!r.test(this.url)) {
                 console.warn('ShareButtons: Invalid URL, switching to window.location.href');
-                this.url = this.window ? this.window.location.href : typeof global != 'undefined' ? (<any>global).url : '';
+                /** Use encodeURIComponent to get the full URL including after the hash */
+                this.url = this.window ? 
+                encodeURIComponent(this.window.location.href)
+                : typeof global != 'undefined' ? (<any>global).url : '';
             }
         }
         else {
             /** This supposed to fix window when undefined on Universal */
-            this.url = this.window ? this.window.location.href : typeof global != 'undefined' ? (<any>global).url : '';
+            this.url = this.window ? 
+            encodeURIComponent(this.window.location.href) : 
+            typeof global != 'undefined' ? (<any>global).url : '';
         }
 
         /** Set button template */

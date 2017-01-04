@@ -1,16 +1,5 @@
 #Changelog
 
-##1.1.2
-
-* **New Feature:**
-
-    - AOT Support, closes [#9](https://github.com/MurhafSousli/ng2-sharebuttons/issues/9),[#14](https://github.com/MurhafSousli/ng2-sharebuttons/issues/14),[#15](https://github.com/MurhafSousli/ng2-sharebuttons/issues/15)
-    
-* **Fixes Bug:** 
-
-    - Remove unnecessary dependencies, closes [#13](https://github.com/MurhafSousli/ng2-sharebuttons/issues/13)
-    - Fixes sharing `hashlocationstrategy` URL, closes [#16](https://github.com/MurhafSousli/ng2-sharebuttons/issues/16)
-
 ##1.1.1
 
 * Update dependencies and remove hard version in package.json
