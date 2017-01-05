@@ -7,8 +7,8 @@ import {
     Output,
     EventEmitter
 } from '@angular/core';
-import {ShareButton} from "../../helpers/share-buttons.class";
-import {ShareProvider} from "../../helpers/share-provider.enum";
+import { ShareButton } from "../../helpers/share-buttons.class";
+import { ShareProvider } from "../../helpers/share-provider.enum";
 
 @Component({
     selector: 'share-buttons',
@@ -17,8 +17,8 @@ import {ShareProvider} from "../../helpers/share-provider.enum";
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShareButtonsComponent implements OnInit{
-    
+export class ShareButtonsComponent implements OnInit {
+
     /** Share link args */
     @Input() url: string;
     @Input() title: string;
@@ -51,13 +51,13 @@ export class ShareButtonsComponent implements OnInit{
     @Output() popUpClosed = new EventEmitter<ShareProvider>();
 
     /** Share buttons to be displayed   */
-    private buttons:ShareButton[];
+    buttons: ShareButton[];
 
     /** Total Count: the sum of all buttons share count */
-    private tCount: number = 0;
+    tCount: number = 0;
 
 
-    ngOnInit(){
+    ngOnInit() {
         this.buttons = [];
         if (this.facebook) {
             this.buttons.push(new ShareButton(
@@ -121,7 +121,7 @@ export class ShareButtonsComponent implements OnInit{
         this.tCount += count;
     }
 
-    popUpClose(provider){
+    popUpClose(provider) {
         this.popUpClosed.emit(provider);
     }
 
