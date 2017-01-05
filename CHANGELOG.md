@@ -1,5 +1,10 @@
 #Changelog
 
+##1.1.4
+    
+* **Fixes Bug:** 
+    - fix aot compilation issues in [#25](https://github.com/MurhafSousli/ng2-sharebuttons/pull/25), closes [#23](https://github.com/MurhafSousli/ng2-sharebuttons/issues/23)
+
 ##1.1.3
 
 * **Fixes Bug:** 
