@@ -1,5 +1,10 @@
 #Changelog
 
+##1.1.3
+
+* **Fixes Bug:** 
+    - Publish `./dist` instead of root dir, closes [#22](https://github.com/MurhafSousli/ng2-sharebuttons/issues/22)
+
 ##1.1.2
 
 * **New Feature:**
