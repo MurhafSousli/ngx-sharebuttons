@@ -1,5 +1,8 @@
 #Changelog
 
+##1.1.5
+ - merge [#26](https://github.com/MurhafSousli/ng2-sharebuttons/pull/26)
+
 ##1.1.4
     
 * **Fixes Bug:** 
