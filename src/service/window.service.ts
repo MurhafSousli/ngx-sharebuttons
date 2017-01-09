@@ -11,5 +11,5 @@ export class WindowService {
 
 function _window() : any {
   // return the global native browser window object
-  return window || undefined;
+  return typeof window != 'undefined' ? window : undefined;
 }
