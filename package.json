@@ -29,8 +29,7 @@
   "main": "./dist",
   "typings": "./dist",
   "scripts": {
-    "start": "gulp",
-    "prepublish": "gulp"
+    "start": "gulp"
   },
   "dependencies": {
     "@angular/common": "2.0.0",

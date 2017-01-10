@@ -12,8 +12,6 @@ addons:
 language: node_js
 node_js:
   - "6"
-  - "6.3"
-  - "5.0"
 
 before_script:
   - export DISPLAY=:99.0

@@ -61,7 +61,7 @@ function startKarmaServer(isTddMode, done) {
     var config = { configFile: `${__dirname}/karma.conf.js`, singleRun: !isTddMode, autoWatch: isTddMode };
 
     if (travis) {
-        config['browsers'] = ['Chrome_Travis_CI']; // 'Chrome_Travis_CI' is defined in "customLaunchers" section of config/karma.conf.js
+        config['browsers'] = ['Chrome_travis_ci']; // 'Chrome_travis_ci' is defined in "customLaunchers" section of config/karma.conf.js
     }
 
     new karmaServer(config, done).start();
