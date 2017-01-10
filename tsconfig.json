@@ -1,18 +1,32 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false,
+    "target": "es5",
     "module": "commonjs",
-    "target": "ES5",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "moduleResolution": "node",
-    "sourceMap": true,
-    "noEmitOnError": false,
     "declaration": true,
-    "outDir": "./dist"
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": false,
+    "experimentalDecorators": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "noEmitOnError": false
   },
+  "files": [
+    "./src/index.ts"
+  ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "demo",
+    "tests",
+    "config",
+    "src/polyfills.ts",
+    "src/vendor.ts",
+    "src/**/*.spec.ts"
   ]
 }
