@@ -15,11 +15,12 @@ $tumbler: #36465D;
 
 .cover {
   @extend .animated, .jello;
+  font-size: .7em;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  margin: 80px 0;
+  margin: 40px 0;
   position: relative;
   &:hover div {
     opacity: 0.4;
@@ -50,15 +51,15 @@ $tumbler: #36465D;
     margin: 3% 0;
   }
   .red {
-    color: #E03237;
+    color: $action-color;
     text-shadow: 0 4px 5px rgba(#333, 0.3);
   }
 }
 
-.angular-logo {
-  max-width: 200px;
+.share-logo {
+  min-width: 300px;
   @media screen and (max-width: 320px) {
-    max-width: 170px;
+    min-width: 170px;
   }
 }
 
@@ -109,6 +110,7 @@ $tumbler: #36465D;
 .reddit-logo {
   color: $reddit;
   top: -40px;
+  left: calc(50% - 21px);
   z-index: 5;
   transform: rotate(20deg) scale(1.5);
 }

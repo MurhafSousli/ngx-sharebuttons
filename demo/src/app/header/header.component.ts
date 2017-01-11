@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  angularLogo = prefixRepo('../../assets/img/angular-logo.png');
+  ngShareButtonLogo = prefixRepo('../../assets/img/logo.svg');
   fbLogo = prefixRepo('../../assets/img/share/facebook.svg');
   twttLogo = prefixRepo('../../assets/img/share/twitter.svg');
   pintLogo = prefixRepo('../../assets/img/share/pinterest.svg');
