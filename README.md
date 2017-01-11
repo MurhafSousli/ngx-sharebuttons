@@ -1,7 +1,7 @@
 [![npm](https://img.shields.io/npm/v/ng2-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-sharebuttons) [![Build Status](https://travis-ci.org/MurhafSousli/ng2-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ng2-sharebuttons) [![npm](https://img.shields.io/npm/dt/ng2-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-sharebuttons)
 
 <p align="center">
-  <img height="300px" width="300px" style="text-align: center;" src="https://rawgit.com/MurhafSousli/ng2-sharebuttons/master/assets/logo.svg">
+  <img height="300px" width="300px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ng2-sharebuttons/master/assets/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
 </p>
 
