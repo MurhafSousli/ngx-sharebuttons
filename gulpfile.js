@@ -38,6 +38,9 @@ const path = require('path');
 /** To properly handle pipes on error */
 const pump = require('pump');
 
+/** To upload code coverage to coveralls */
+const coveralls = require('gulp-coveralls');
+
 const LIBRARY_NAME = 'ng2-sharebuttons';
 
 const config = {
@@ -202,11 +205,10 @@ gulp.task('publish', ['npm'], (done) => {
 // Just build the 'dist' folder (without publishing it to NPM)
 gulp.task('build', ['npm']);
 
-/** TODO: coverall task */
-// require('coveralls/bin/coveralls.js');
-
-// gulp.task('coverage',['build'], ()=>{
-
-// });
+// Upload code coverage report to coveralls.io (will be triggered by Travis CI on successful build)
+gulp.task('coveralls', () => {
+    return gulp.src(`${config.coverageDir}/coverage.lcov`)
+        .pipe(coveralls());
+});
 
 gulp.task('default', ['build']);
