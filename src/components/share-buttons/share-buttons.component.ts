@@ -7,8 +7,8 @@ import {
     Output,
     EventEmitter
 } from '@angular/core';
-import { ShareButton } from "../../helpers/share-buttons.class";
-import { ShareProvider } from "../../helpers/share-provider.enum";
+import { ShareButton } from '../../helpers/share-buttons.class';
+import { ShareProvider } from '../../helpers/share-provider.enum';
 
 @Component({
     selector: 'share-buttons',
@@ -39,14 +39,14 @@ export class ShareButtonsComponent implements OnInit {
     @Input() defaultStyle: boolean = true;
 
     /** Buttons default templates */
-    @Input() facebook: any = "<i class='fa fa-facebook'></i>";
-    @Input() twitter: any = "<i class='fa fa-twitter'></i>";
-    @Input() linkedIn: any = "<i class='fa fa-linkedin'></i>";
-    @Input() tumblr: any = "<i class='fa fa-tumblr'></i>";
-    @Input() google: any = "<i class='fa fa-google-plus'></i>";
-    @Input() pinterest: any = "<i class='fa fa-pinterest-p'></i>";
-    @Input() stumbleUpOn: any = "<i class='fa fa-stumbleupon'></i>";
-    @Input() reddit: any = "<i class='fa fa-reddit-alien'></i>";
+    @Input() facebook: any = '<i class="fa fa-facebook"></i>';
+    @Input() twitter: any = '<i class="fa fa-twitter"></i>';
+    @Input() linkedIn: any = '<i class="fa fa-linkedin"></i>';
+    @Input() tumblr: any = '<i class="fa fa-tumblr"></i>';
+    @Input() google: any = '<i class="fa fa-google-plus"></i>';
+    @Input() pinterest: any = '<i class="fa fa-pinterest-p"></i>';
+    @Input() stumbleUpOn: any = '<i class="fa fa-stumbleupon"></i>';
+    @Input() reddit: any = '<i class="fa fa-reddit-alien"></i>';
 
     @Output() popUpClosed = new EventEmitter<ShareProvider>();
 
@@ -124,5 +124,4 @@ export class ShareButtonsComponent implements OnInit {
     popUpClose(provider) {
         this.popUpClosed.emit(provider);
     }
-
 }

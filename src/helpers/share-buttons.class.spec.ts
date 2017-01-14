@@ -23,7 +23,7 @@ describe('ShareArgs', () => {
     });
 
     it('should create an instance with sensible default values', () => {
-        let args = new ShareArgs('http://www.mysite.com')
+        let args = new ShareArgs('http://www.mysite.com');
         expect(args).toBeTruthy();
         expect(args.url).toBe('http://www.mysite.com');
         expect(args.title).toBeUndefined();

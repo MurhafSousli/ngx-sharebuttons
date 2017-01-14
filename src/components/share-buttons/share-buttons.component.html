@@ -8,17 +8,8 @@
     </h3>
 
     <div class="sb-buttons" [class.sb-default-style]="defaultStyle">
-        <share-button class="sb-button" *ngFor="let button of buttons"
-                      [button]="button"
-                      [url]="url"
-                      [image]="image"
-                      [title]="title"
-                      [description]="description"
-                      [tags]="tags"
-                      [count]="count"
-                      (countOuter)="counter($event)"
-                      (popUpClosed)="popUpClose($event)"
-        ></share-button>
+        <share-button class="sb-button" *ngFor="let button of buttons" [button]="button" [url]="url" [image]="image" [title]="title"
+            [description]="description" [tags]="tags" [count]="count" (countOuter)="counter($event)" (popUpClosed)="popUpClose($event)"></share-button>
     </div>
 
 </div>

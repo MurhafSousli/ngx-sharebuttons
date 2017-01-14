@@ -1,9 +1,7 @@
-/* tslint:disable:no-unused-variable */
+/* tslint:disable:max-line-length */
 
 import { ShareArgs } from '../helpers/share-buttons.class';
-import { ShareLinks } from "./share-links.functions";
-
-
+import { ShareLinks } from './share-links.functions';
 
 
 describe('Module: ShareLinks, Angular Tests', () => {
@@ -70,6 +68,5 @@ describe('Module: ShareLinks, Angular Tests', () => {
         });
 
     });
-
 
 });
