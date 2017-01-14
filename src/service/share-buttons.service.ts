@@ -1,15 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Http, Jsonp } from "@angular/http";
-import { Observable } from "rxjs/Observable";
+import { Http, Jsonp, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
-import "rxjs/add/operator/map";
-import "rxjs/add/observable/empty";
-import "rxjs/add/operator/catch";
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/empty';
+import 'rxjs/add/operator/catch';
 
 import { ShareArgs } from '../helpers/share-buttons.class';
-import { ShareProvider } from "../helpers/share-provider.enum";
-import { ShareButtonsInterface } from "./share-buttons.interface";
-import { ShareLinks } from "./share-links.functions";
+import { ShareProvider } from '../helpers/share-provider.enum';
+import { ShareButtonsInterface } from './share-buttons.interface';
+import { ShareLinks } from './share-links.functions';
+
+
+
+/** Prepare gPlus count request body   */
+export const gplusCountBody = (url) => {
+    return [{
+        method: 'pos.plusones.get',
+        id: 'p',
+        params: {
+            nolog: true,
+            id: url,
+            source: 'widget',
+            userId: '@viewer',
+            groupId: '@self'
+        },
+        jsonrpc: '2.0',
+        key: 'p',
+        apiVersion: 'v1'
+    }];
+};
+
 
 @Injectable()
 export class ShareButtonsService implements ShareButtonsInterface {
@@ -85,7 +106,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
         return this.fetchJsonp('https://www.linkedin.com/countserv/count/share?url=' + url)
             .map((data: any) => {
                 data = data.json();
-                return data.count | 0;
+                return data.count || 0;
             });
     }
 
@@ -94,7 +115,9 @@ export class ShareButtonsService implements ShareButtonsInterface {
             .map((data: any) => {
                 data = data.json();
                 if (data.hasOwnProperty('data') && data.data.hasOwnProperty('children')) {
-                    if (data.data.children.length) return data.data.children[0].data.score;
+                    if (data.data.children.length) {
+                        return data.data.children[0].data.score;
+                    }
                 }
                 return 0;
             });
@@ -116,8 +139,8 @@ export class ShareButtonsService implements ShareButtonsInterface {
         return this.fetch('https://api.pinterest.com/v1/urls/count.json?callback=receiveCount&url=' + url)
             .map((data: any) => {
                 data = data.text();
-                var result = JSON.parse(data.replace(/^receiveCount\((.*)\)/, '$1'));
-                return result.count | 0;
+                let result = JSON.parse(data.replace(/^receiveCount\((.*)\)/, '$1'));
+                return result.count || 0;
             });
     }
 
@@ -133,7 +156,9 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
     private post(url: string, body: any) {
-        return this.http.post(url, body)
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(url, body, options)
             .catch((err) => {
                 console.warn('[ShareService HTTP]: ', err);
                 return Observable.empty();
@@ -161,16 +186,3 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
 }
-
-
-/** Prepare gPlus count request body   */
-export const gplusCountBody = (url) => {
-    return [{
-        "method": "pos.plusones.get",
-        "id": "p",
-        "params": { "nolog": true, "id": url, "source": "widget", "userId": "@viewer", "groupId": "@self" },
-        "jsonrpc": "2.0",
-        "key": "p",
-        "apiVersion": "v1"
-    }];
-};

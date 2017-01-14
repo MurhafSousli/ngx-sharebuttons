@@ -10,16 +10,16 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 
-import { ShareButton, ShareArgs } from "../../helpers/share-buttons.class";
-import { ShareButtonsService } from "../../service/share-buttons.service";
-import { WindowService } from "../../service/window.service";
-import { ShareProvider } from "../../helpers/share-provider.enum";
+import { ShareButton, ShareArgs } from '../../helpers/share-buttons.class';
+import { ShareButtonsService } from '../../service/share-buttons.service';
+import { WindowService } from '../../service/window.service';
+import { ShareProvider } from '../../helpers/share-provider.enum';
 
-declare var global: any; //To make AoT compiler (ngc) happy
+declare var global: any; // To make AoT compiler (ngc) happy
 
 @Component({
     selector: 'share-button',
-    template: '<button  #btn (click)="share()"></button>',
+    template: `<button  #btn (click)='share()'></button>`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShareButtonComponent implements AfterViewInit {
@@ -60,16 +60,15 @@ export class ShareButtonComponent implements AfterViewInit {
             if (!r.test(this.url)) {
                 console.warn('ShareButtons: Invalid URL, switching to window.location.href');
                 /** Use encodeURIComponent to get the full URL including after the hash */
-                this.url = this.window ? 
-                encodeURIComponent(this.window.location.href)
-                : typeof global != 'undefined' ? (<any>global).url : '';
+                this.url = this.window ?
+                    encodeURIComponent(this.window.location.href)
+                    : typeof global !== 'undefined' ? (<any>global).url : '';
             }
-        }
-        else {
+        } else {
             /** This supposed to fix window when undefined on Universal */
-            this.url = this.window ? 
-            encodeURIComponent(this.window.location.href) : 
-            typeof global != 'undefined' ? (<any>global).url : '';
+            this.url = this.window ?
+                encodeURIComponent(this.window.location.href) :
+                typeof global !== 'undefined' ? (<any>global).url : '';
         }
 
         /** Set button template */
@@ -110,22 +109,20 @@ export class ShareButtonComponent implements AfterViewInit {
 
 
     nFormatter(num, digits) {
-        var si = [
-            { value: 1E18, symbol: "E" },
-            { value: 1E15, symbol: "P" },
-            { value: 1E12, symbol: "T" },
-            { value: 1E9, symbol: "G" },
-            { value: 1E6, symbol: "M" },
-            { value: 1E3, symbol: "K" }
+        let si = [
+            { value: 1E18, symbol: 'E' },
+            { value: 1E15, symbol: 'P' },
+            { value: 1E12, symbol: 'T' },
+            { value: 1E9, symbol: 'G' },
+            { value: 1E6, symbol: 'M' },
+            { value: 1E3, symbol: 'K' }
         ], rx = /\.0+$|(\.[0-9]*[1-9])0+$/, i;
         for (i = 0; i < si.length; i++) {
             if (num >= si[i].value) {
-                return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
+                return (num / si[i].value).toFixed(digits).replace(rx, '$1') + si[i].symbol;
             }
         }
-        return num.toFixed(digits).replace(rx, "$1");
+        return num.toFixed(digits).replace(rx, '$1');
     }
-
-
 }
 

@@ -98,7 +98,7 @@ gulp.task('styles', (cb) => {
 });
 
 // TsLint the source files
-gulp.task('ts-lint', (cb) => {
+gulp.task('lint', (cb) => {
     pump([
         gulp.src(config.allTs),
         tslint({ formatter: "verbose" }),
@@ -107,7 +107,7 @@ gulp.task('ts-lint', (cb) => {
 });
 
 // Inline templates and styles in ng2 components
-gulp.task('inline-templates', ['clean:dist', 'styles', 'ts-lint'], (cb) => {
+gulp.task('inline-templates', ['clean:dist', 'styles', 'lint'], (cb) => {
     var defaults = {
         base: '/src',
         target: 'es5',
@@ -134,7 +134,7 @@ gulp.task('ngc', ['inline-templates'], (cb) => {
 });
 
 // Clean, Lint, Test, Sass to css, Inline templates & Styles and Compile
-gulp.task('compile-ts', ['clean:dist', 'ts-lint', 'styles', 'ngc']);
+gulp.task('compile-ts', ['clean:dist', 'lint', 'styles', 'ngc']);
 
 
 // Testing Tasks

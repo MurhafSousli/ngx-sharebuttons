@@ -1,7 +1,3 @@
-import { ShareArgs } from './share-buttons.class';
-/* tslint:disable:no-unused-variable */
-
-import { TestBed, async } from '@angular/core/testing';
 import { NFormatterPipe } from './n-formatter.pipe';
 
 describe('NFormatterPipe, Isolated Test', () => {
@@ -60,9 +56,5 @@ describe('NFormatterPipe, Isolated Test', () => {
             expect(pipe.transform(1999999000000000, 1)).toEqual('2P');
             expect(pipe.transform(1999999900000000000, 1)).toEqual('2E');
         });
-
     });
-
-
-
 });

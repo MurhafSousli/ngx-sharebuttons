@@ -1,7 +1,7 @@
-/* tslint:disable:no-unused-variable */
+/* tslint:disable:max-line-length */
 
 import { HttpModule, Http, Jsonp, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { ShareButtonsService } from './share-buttons.service';
 import { ShareProvider } from '../helpers/share-provider.enum';
 import { ShareArgs } from '../helpers/share-buttons.class';
@@ -40,14 +40,14 @@ describe('Service: ShareButtons, Angular Tests', () => {
         TestBed.configureTestingModule({
             imports: [HttpModule],
             providers: [ShareButtonsService,
-                {//mock Http Service
+                {// mock Http Service
                     provide: Http,
                     useFactory: (mockBackend, options) => {
                         return new Http(mockBackend, options);
                     },
                     deps: [MockBackend, BaseRequestOptions]
                 },
-                {//mock Jsonp Service
+                {// mock Jsonp Service
                     provide: Jsonp,
                     useFactory: (mockBackend, options) => {
                         return new Jsonp(mockBackend, options);
@@ -168,7 +168,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for FACEBOOK provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockJsonResponse(mockBackend, { share: { share_count: ShareProvider.FACEBOOK } });//use enum index here, but any number will work too
+                mockJsonResponse(mockBackend, { share: { share_count: ShareProvider.FACEBOOK } }); // using enum index as count
 
                 service.count(ShareProvider.FACEBOOK, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.FACEBOOK);
@@ -188,7 +188,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for LINKEDIN provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockJsonResponse(mockBackend, { count: ShareProvider.LINKEDIN });//use enum index here, but any number will work too
+                mockJsonResponse(mockBackend, { count: ShareProvider.LINKEDIN }); // using enum index as count
 
                 service.count(ShareProvider.LINKEDIN, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.LINKEDIN);
@@ -208,7 +208,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for REDDIT provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockJsonResponse(mockBackend, { data: { children: [{ data: { score: ShareProvider.REDDIT } }] } });//use enum index here, but any number will work too
+                mockJsonResponse(mockBackend, { data: { children: [{ data: { score: ShareProvider.REDDIT } }] } }); // using enum index as count
 
                 service.count(ShareProvider.REDDIT, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.REDDIT);
@@ -229,7 +229,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for TUMBLR provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockJsonResponse(mockBackend, { response: { note_count: ShareProvider.TUMBLR } });//use enum index here, but any number will work too
+                mockJsonResponse(mockBackend, { response: { note_count: ShareProvider.TUMBLR } }); // using enum index as count
 
                 service.count(ShareProvider.TUMBLR, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.TUMBLR);
@@ -249,7 +249,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for GOOGLEPLUS provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockJsonResponse(mockBackend, [{ result: { metadata: { globalCounts: { count: ShareProvider.GOOGLEPLUS } } } }]);//use enum index here, but any number will work too
+                mockJsonResponse(mockBackend, [{ result: { metadata: { globalCounts: { count: ShareProvider.GOOGLEPLUS } } } }]); // using enum index as count
 
                 service.count(ShareProvider.GOOGLEPLUS, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.GOOGLEPLUS);
@@ -270,7 +270,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for PINTEREST provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockTextResponse(mockBackend, `receiveCount({"count":${ShareProvider.PINTEREST}})`);//use enum index here, but any number will work too
+                mockTextResponse(mockBackend, `receiveCount({"count":${ShareProvider.PINTEREST}})`); // using enum index as count
 
                 service.count(ShareProvider.PINTEREST, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.PINTEREST);
