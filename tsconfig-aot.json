@@ -20,12 +20,15 @@
     "files": [
         "./dist/inlined/index.ts"
     ],
+    "typeRoots": [
+        "node_modules/@types"
+    ],
     "exclude": [
         "node_modules",
         "dist",
         "demo",
-        "tests",
         "config",
+        "coverage",
         "src/polyfill.ts",
         "src/vendors.ts",
         "src/**/*.spec.ts"

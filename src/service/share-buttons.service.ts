@@ -6,6 +6,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/observable/empty";
 import "rxjs/add/operator/catch";
 
+import { ShareArgs } from '../helpers/share-buttons.class';
 import { ShareProvider } from "../helpers/share-provider.enum";
 import { ShareButtonsInterface } from "./share-buttons.interface";
 import { ShareLinks } from "./share-links.functions";
@@ -24,7 +25,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
 
-    share(type, args) {
+    share(type: ShareProvider, args: ShareArgs): string {
         switch (type) {
             case ShareProvider.FACEBOOK:
                 return ShareLinks.fbShare(args);
@@ -50,7 +51,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
 
     /** Share Counts */
 
-    count(type, url): Observable<number> {
+    count(type: ShareProvider, url: string): Observable<number> {
         switch (type) {
             case ShareProvider.FACEBOOK:
                 return this.fbCount(url);
@@ -101,7 +102,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
 
     private gPlusCount(url: string): Observable<number> {
         let body = gplusCountBody(url);
-        return this.http.post('https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ', body)
+        return this.post('https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ', body)
             .map((data: any) => {
                 data = data.json();
                 if (data[0] && data[0].hasOwnProperty('result')) {
@@ -131,7 +132,15 @@ export class ShareButtonsService implements ShareButtonsInterface {
             });
     }
 
-    private fetch(url) {
+    private post(url: string, body: any) {
+        return this.http.post(url, body)
+            .catch((err) => {
+                console.warn('[ShareService HTTP]: ', err);
+                return Observable.empty();
+            });
+    }
+
+    private fetch(url: string) {
         return this.http.get(url)
             .catch((err) => {
                 console.warn('[ShareService HTTP]: ', err);
@@ -139,7 +148,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
             });
     }
 
-    private fetchJsonp(url) {
+    private fetchJsonp(url: string) {
         return this.jsonp.request(url + '&format=jsonp&callback=JSONP_CALLBACK')
             .catch((err) => {
                 console.warn('[ShareService JSONP]: ', err);

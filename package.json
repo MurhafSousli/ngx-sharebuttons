@@ -29,8 +29,8 @@
   "main": "./dist",
   "typings": "./dist",
   "scripts": {
-    "start": "gulp",
-    "coveralls": "npm run-script coverage && node bin/coveralls.js < coverage/lcov.info"
+    "start": "gulp build",
+    "test": " gulp test"
   },
   "dependencies": {
     "@angular/common": "2.0.0",
@@ -50,11 +50,11 @@
     "autoprefixer": "^6.6.1",
     "awesome-typescript-loader": "^2.2.3",
     "core-js": "2.4.1",
-    "coveralls": "^2.11.15",
     "css-loader": "^0.26.1",
     "cssnano": "^3.7.4",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-coveralls": "^0.1.4",
     "gulp-file": "^0.3.0",
     "gulp-inline-ng2-template": "^4.0.0",
     "gulp-postcss": "^6.2.0",

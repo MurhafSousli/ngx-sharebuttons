@@ -2,7 +2,7 @@
  *  ShareLinks: Provide a share links for all services
  * */
 
-import {ShareArgs} from "../helpers/share-buttons.class";
+import { ShareArgs } from "../helpers/share-buttons.class";
 export module ShareLinks {
 
 
@@ -20,7 +20,7 @@ export module ShareLinks {
         return shareUrl;
     }
 
-//TWITTER DOCS: https://dev.twitter.com/web/tweet-button/web-intent
+    //TWITTER DOCS: https://dev.twitter.com/web/tweet-button/web-intent
     export function twitterShare(args: ShareArgs) {
         let shareUrl = 'https://twitter.com/intent/tweet?url=' + args.url;
         if (args.description) {
@@ -35,7 +35,7 @@ export module ShareLinks {
         return shareUrl;
     }
 
-//LINKEDIN DOCS https://developer.linkedin.com/docs/share-on-linkedin#!
+    //LINKEDIN DOCS https://developer.linkedin.com/docs/share-on-linkedin#!
     export function linkedInShare(args: ShareArgs) {
         let shareUrl = 'http://www.linkedin.com/shareArticle?url=' + args.url;
         if (args.title) {
@@ -47,7 +47,7 @@ export module ShareLinks {
         return shareUrl;
     }
 
-//REDDIT DOCS: http://stackoverflow.com/questions/24823114/post-to-reddit-via-url
+    //REDDIT DOCS: http://stackoverflow.com/questions/24823114/post-to-reddit-via-url
     export function redditShare(args: ShareArgs) {
         let shareUrl = 'http://www.reddit.com/submit?url=' + args.url;
         if (args.title) {
@@ -56,7 +56,7 @@ export module ShareLinks {
         return shareUrl
     }
 
-//TUMBLR DOCS: https://www.tumblr.com/docs/en/share_button
+    //TUMBLR DOCS: https://www.tumblr.com/docs/en/share_button
     export function tumblrShare(args: ShareArgs) {
         let shareUrl = 'http://tumblr.com/widgets/share/tool?canonicalUrl=' + args.url;
         if (args.description) {
@@ -68,12 +68,12 @@ export module ShareLinks {
         return shareUrl;
     }
 
-//STUMBLE DOCS: http://stackoverflow.com/questions/10591424/how-can-i-create-a-custom-stumbleupon-button
+    //STUMBLE DOCS: http://stackoverflow.com/questions/10591424/how-can-i-create-a-custom-stumbleupon-button
     export function stumbleShare(args: ShareArgs) {
         return 'http://www.stumbleupon.com/submit?url=' + args.url;
     }
 
-//GPLUS DOCS: https://developers.google.com/+/web/share/#sharelink
+    //GPLUS DOCS: https://developers.google.com/+/web/share/#sharelink
     export function gPlusShare(args: ShareArgs) {
         return 'https://plus.google.com/share?url=' + args.url;
     }
@@ -84,16 +84,20 @@ export module ShareLinks {
         if (args.description) {
             shareUrl += '&description=' + args.description;
         }
-        else {
-            let desc = document.querySelector('meta[property="og:description"]').getAttribute('content');
-            shareUrl += '&description=' + desc;
+        else if (document) {
+            let descElm: Element = document.querySelector('meta[property="og:description"]');
+            if (descElm) {
+                shareUrl += '&description=' + descElm.getAttribute('content');
+            }
         }
         if (args.image) {
             shareUrl += '&media=' + args.image;
         }
-        else {
-            let image = document.querySelector('meta[property="og:image"]').getAttribute('content');
-            shareUrl += '&media=' + image;
+        else if (document) {
+            let imageElm: Element = document.querySelector('meta[property="og:image"]');
+            if (imageElm) {
+                shareUrl += '&media=' + imageElm.getAttribute('content');
+            }
         }
         return shareUrl;
     }
