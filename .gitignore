@@ -3,4 +3,5 @@ node_modules
 dist
 coverage
 npm-debug.log
+demo/src/share/app/share
 
