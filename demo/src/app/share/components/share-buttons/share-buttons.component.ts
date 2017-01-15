@@ -7,7 +7,7 @@ import {
     Output,
     EventEmitter
 } from '@angular/core';
-import { ShareButton } from '../../helpers/share-buttons.class';
+import { ShareButton } from '../../classes/share-buttons.class';
 import { ShareProvider } from '../../helpers/share-provider.enum';
 
 @Component({

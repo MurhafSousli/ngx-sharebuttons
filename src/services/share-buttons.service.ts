@@ -1,39 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Http, Jsonp, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/operator/catch';
 
-import { ShareArgs } from '../helpers/share-buttons.class';
+import { Injectable } from '@angular/core';
+import { Http, Jsonp, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import { ShareArgs } from '../classes/share-buttons.class';
 import { ShareProvider } from '../helpers/share-provider.enum';
-import { ShareButtonsInterface } from './share-buttons.interface';
-import { ShareLinks } from './share-links.functions';
-
-
-
-/** Prepare gPlus count request body   */
-export const gplusCountBody = (url) => {
-    return [{
-        method: 'pos.plusones.get',
-        id: 'p',
-        params: {
-            nolog: true,
-            id: url,
-            source: 'widget',
-            userId: '@viewer',
-            groupId: '@self'
-        },
-        jsonrpc: '2.0',
-        key: 'p',
-        apiVersion: 'v1'
-    }];
-};
-
+import { ShareLinks } from '../helpers/share-links.functions';
+import { Helper } from '../helpers/share.helper';
 
 @Injectable()
-export class ShareButtonsService implements ShareButtonsInterface {
+export class ShareButtonsService {
 
     /** Optional parameters */
     windowWidth: number = 500;
@@ -45,7 +24,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
     constructor(private http: Http, private jsonp: Jsonp) {
     }
 
-
+    /** Share URL */
     share(type: ShareProvider, args: ShareArgs): string {
         switch (type) {
             case ShareProvider.FACEBOOK:
@@ -69,9 +48,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
         }
     }
 
-
     /** Share Counts */
-
     count(type: ShareProvider, url: string): Observable<number> {
         switch (type) {
             case ShareProvider.FACEBOOK:
@@ -92,7 +69,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
     private fbCount(url: string): Observable<number> {
-        return this.fetch('https://graph.facebook.com/?id=' + url)
+        return this.get('https://graph.facebook.com/?id=' + url)
             .map((data: any) => {
                 data = data.json();
                 if (data.hasOwnProperty('share') && data.share.hasOwnProperty('share_count')) {
@@ -103,7 +80,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
     private linkedInCount(url: string): Observable<number> {
-        return this.fetchJsonp('https://www.linkedin.com/countserv/count/share?url=' + url)
+        return this.getJsonp('https://www.linkedin.com/countserv/count/share?url=' + url)
             .map((data: any) => {
                 data = data.json();
                 return data.count || 0;
@@ -111,7 +88,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
     private redditCount(url: string): Observable<number> {
-        return this.fetch('https://buttons.reddit.com/button_info.json?url=' + url)
+        return this.get('https://buttons.reddit.com/button_info.json?url=' + url)
             .map((data: any) => {
                 data = data.json();
                 if (data.hasOwnProperty('data') && data.data.hasOwnProperty('children')) {
@@ -124,7 +101,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
     private gPlusCount(url: string): Observable<number> {
-        let body = gplusCountBody(url);
+        let body = Helper.gplusCountBody(url);
         return this.post('https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ', body)
             .map((data: any) => {
                 data = data.json();
@@ -136,7 +113,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
     private pinCount(url: string): Observable<number> {
-        return this.fetch('https://api.pinterest.com/v1/urls/count.json?callback=receiveCount&url=' + url)
+        return this.get('https://api.pinterest.com/v1/urls/count.json?callback=receiveCount&url=' + url)
             .map((data: any) => {
                 data = data.text();
                 let result = JSON.parse(data.replace(/^receiveCount\((.*)\)/, '$1'));
@@ -145,7 +122,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
     private tumblrCount(url: string): Observable<number> {
-        return this.fetchJsonp('https://api.tumblr.com/v2/share/stats?url=' + url)
+        return this.getJsonp('https://api.tumblr.com/v2/share/stats?url=' + url)
             .map((data: any) => {
                 data = data.json();
                 if (data.hasOwnProperty('response') && data.response.hasOwnProperty('note_count')) {
@@ -159,30 +136,21 @@ export class ShareButtonsService implements ShareButtonsInterface {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, body, options)
-            .catch((err) => {
-                console.warn('[ShareService HTTP]: ', err);
-                return Observable.empty();
-            });
+            .catch((err) => Helper.handleError(err));
     }
 
-    private fetch(url: string) {
+    private get(url: string) {
         return this.http.get(url)
-            .catch((err) => {
-                console.warn('[ShareService HTTP]: ', err);
-                return Observable.empty();
-            });
+            .catch((err) => Helper.handleError(err));
     }
 
-    private fetchJsonp(url: string) {
-        return this.jsonp.request(url + '&format=jsonp&callback=JSONP_CALLBACK')
-            .catch((err) => {
-                console.warn('[ShareService JSONP]: ', err);
-                return Observable.empty();
-            });
+    private getJsonp(url: string) {
+        return this.jsonp.request(`${url}&format=jsonp&callback=JSONP_CALLBACK`)
+            .catch((err) => Helper.handleError(err));
     }
 
     windowAttr() {
-        return 'width=' + this.windowWidth + ', height=' + this.windowHeight;
+        return `width=${this.windowWidth}, height=${this.windowHeight}`;
     }
 
 }

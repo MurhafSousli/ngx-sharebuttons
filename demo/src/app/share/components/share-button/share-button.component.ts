@@ -9,11 +9,11 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 
-import {ShareButton, ShareArgs} from '../../helpers/share-buttons.class';
-import {ShareButtonsService} from '../../service/share-buttons.service';
-import {WindowService} from '../../service/window.service';
+import {ShareButton, ShareArgs} from '../../classes/share-buttons.class';
+import {ShareButtonsService} from '../../services/share-buttons.service';
+import {WindowService} from '../../services/window.service';
 import {ShareProvider} from '../../helpers/share-provider.enum';
-import {Helper} from "../../helpers/share.helper";
+import {Helper} from '../../helpers/share.helper';
 
 @Component({
     selector: 'share-button',
@@ -53,19 +53,16 @@ export class ShareButtonComponent implements AfterViewInit {
     ngAfterViewInit() {
         /** Validate URL */
         this.url = Helper.validateUrl(this.url, this.window);
-
-        /** Set button template */
-        this.btn = this.renderer.createElement(this.self, 'button');
-        this.renderer.setElementProperty(this.btn, 'innerHTML', this.button.template);
-        this.renderer.setElementAttribute(this.btn, 'class', this.button.classes);
-        this.renderer.setElementProperty(this.btn, 'onclick', this.share);
-
+        /** Add share button */
+        this.shareButton();
         /** Add share count if enabled */
-        if (this.count) this.getCount();
+        if (this.count) {
+            this.shareCount();
+        }
     }
 
     /** Open share window */
-    share() {
+    share = () => {
         let shareArgs = new ShareArgs(this.url, this.title, this.description, this.image, this.tags);
 
         let popUp = this.window.open(this.sbService.share(this.button.provider, shareArgs), 'newwindow', this.sbService.windowAttr());
@@ -76,9 +73,16 @@ export class ShareButtonComponent implements AfterViewInit {
                 this.popUpClosed.emit(this.button.provider);
             }
         }, 200);
+    };
+
+    shareButton() {
+        this.btn = this.renderer.createElement(this.self, 'button');
+        this.renderer.setElementProperty(this.btn, 'innerHTML', this.button.template);
+        this.renderer.setElementAttribute(this.btn, 'class', this.button.classes);
+        this.renderer.setElementProperty(this.btn, 'onclick', this.share);
     }
 
-    getCount() {
+    shareCount() {
         this.sbService.count(this.button.provider, this.url)
             .subscribe(shareCount => {
                 if (shareCount) {

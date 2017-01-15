@@ -1,6 +1,6 @@
 /* tslint:disable:max-line-length */
 
-import { ShareArgs } from '../helpers/share-buttons.class';
+import { ShareArgs } from '../classes/share-buttons.class';
 import { ShareLinks } from './share-links.functions';
 
 

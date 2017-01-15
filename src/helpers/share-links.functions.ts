@@ -2,7 +2,7 @@
  *  ShareLinks: Provide a share links for all services
  * */
 
-import { ShareArgs } from '../helpers/share-buttons.class';
+import { ShareArgs } from '../classes/share-buttons.class';
 export module ShareLinks {
 
 
