@@ -4,3 +4,4 @@ dist
 coverage
 npm-debug.log
 
+/demo/src/app/share/

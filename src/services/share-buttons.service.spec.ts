@@ -4,7 +4,7 @@ import { HttpModule, Http, Jsonp, BaseRequestOptions, Response, ResponseOptions 
 import { TestBed, inject } from '@angular/core/testing';
 import { ShareButtonsService } from './share-buttons.service';
 import { ShareProvider } from '../helpers/share-provider.enum';
-import { ShareArgs } from '../helpers/share-buttons.class';
+import { ShareArgs } from '../classes/share-buttons.class';
 
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
@@ -142,13 +142,6 @@ describe('Service: ShareButtons, Angular Tests', () => {
                 expect(service.share(ShareProvider.PINTEREST, pinArgs)).toEqual(shareUrl);
             }));
 
-
-        it('should return NO share url for EMAIL provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = '';
-                expect(service.share(ShareProvider.EMAIL, args)).toEqual(shareUrl);
-            }));
     });
 
 

@@ -1,4 +1,4 @@
-import { ShareProvider } from './share-provider.enum';
+import { ShareProvider } from '../helpers/share-provider.enum';
 
 export class ShareButton {
 
