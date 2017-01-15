@@ -26,6 +26,7 @@ const stripInlineComments = require('postcss-strip-inline-comments');
 
 /** External command runner */
 const exec = require('child_process').exec;
+const process = require('process');
 
 /**OS Access */
 const os = require('os');
@@ -70,6 +71,20 @@ function startKarmaServer(isTddMode, done) {
     new karmaServer(config, done).start();
 }
 
+function execCallback(gulpDone) {
+    return (error, stdout, stderr) => {
+        if (stderr) {
+            gutil.log(gutil.colors.red(stderr));
+        }
+        if (stdout) {
+            gutil.log(gutil.colors.green(stdout));
+        }
+        // execute callback when its done 
+        if (gulpDone) {
+            gulpDone();
+        }
+    }
+}
 // Clean Tasks
 gulp.task('clean:dist', () => {
     return del(config.outputDir);
@@ -153,7 +168,7 @@ gulp.task('test:watch', (cb) => {
     startKarmaServer(true, cb);
 });
 
-// Prepare 'dist' folder publication to NPM
+// Prepare 'dist' folder for publication to NPM
 gulp.task('npm', ['compile-ts', 'test'], (cb) => {
     var pkgJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
     var targetPkgJson = {};
@@ -187,20 +202,24 @@ gulp.task('npm', ['compile-ts', 'test'], (cb) => {
 // Publish 'dist' folder to NPM
 gulp.task('publish', ['npm'], (done) => {
     // run npm publish terminal command to publish the 'dist' folder only
-    exec(`npm publish ${config.outputDir}`,
-        (error, stdout, stderr) => {
-            if (stderr) {
-                gutil.log(gutil.colors.red(stderr));
-            } else if (stdout) {
-                gutil.log(gutil.colors.green(stdout));
-            }
-            // execute callback when its done 
-            if (done) {
-                done();
-            }
-        }
-    );
+    exec(`npm publish ${config.outputDir}`, execCallback(done));
 });
+
+// Link 'dist' folder (create a local 'ng2-sharebuttons' package that symlinks to it)
+// This way, we can have the demo project declare a dependency on 'ng2-sharebuttons' (as it should)
+// and, thanks to 'npm link ng2-sharebuttons' on demo project, be sure to always use the latest built
+// version of the library ( which is in 'dist/' folder)
+gulp.task('link', ['npm'], (done) => {
+    try {
+
+        process.chdir(`${config.outputDir}`); // move to 'dist' folder
+        exec('npm link', execCallback(done)); // run npm link from there
+    }
+    catch (err) {
+        gutil.log(gutil.colors.red(`Cannot move to folder: ${config.outputDir}, error: ${err}`));
+    }
+});
+
 
 // Just build the 'dist' folder (without publishing it to NPM)
 gulp.task('build', ['npm']);
