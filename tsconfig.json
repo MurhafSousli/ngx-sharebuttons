@@ -31,5 +31,8 @@
     "src/polyfills.ts",
     "src/vendor.ts",
     "src/**/*.spec.ts"
-  ]
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "useWebpackText": true
+  }
 }

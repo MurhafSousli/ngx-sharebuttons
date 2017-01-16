@@ -1,4 +1,4 @@
-var webpackConfig = require('./webpack.test');
+var webpack = require('./webpack.test');
 
 module.exports = function (config) {
     var _config = {
@@ -9,8 +9,9 @@ module.exports = function (config) {
         plugins: [
             require('karma-jasmine'),
             require('karma-webpack'),
+            require('karma-coverage'),
             require('karma-chrome-launcher'),
-            require('karma-remap-istanbul'),
+            require('karma-remap-coverage'),
             require('karma-sourcemap-loader'),
         ],
 
@@ -26,25 +27,36 @@ module.exports = function (config) {
         ],
 
         preprocessors: {
-            './config/karma-test-shim.js': ['webpack', 'sourcemap']
+            './config/karma-test-shim.js': config.hasCoverage ? ['coverage', 'webpack', 'sourcemap'] : ['webpack', 'sourcemap']
         },
 
-        webpack: webpackConfig,
+        webpack: webpack.getConfig(config.hasCoverage, config.autoWatch),
 
+        // Webpack please don't spam the console when running in karma!
         webpackMiddleware: {
-            stats: 'errors-only'
-        },
-
-        webpackServer: {
-            noInfo: true
-        },
-        remapIstanbulReporter: {
-            reports: {
-                html: 'coverage',
-                lcovonly: './coverage/coverage.lcov'
+            // webpack-dev-middleware configuration
+            // i.e.
+            noInfo: true,
+            // and use stats to turn off verbose output
+            stats: {
+                // options i.e. 
+                chunks: false
             }
         },
-        reporters: ['progress', 'karma-remap-istanbul'],
+
+        // save interim raw coverage report in memory 
+        coverageReporter: {
+            type: 'in-memory'
+        },
+
+        remapCoverageReporter: {
+            'text-summary': null,
+            lcovonly: './coverage/coverage.lcov',
+            html: './coverage/html'
+        },
+
+
+        reporters: config.hasCoverage ? ['progress', 'coverage', 'remap-coverage'] : ['progress'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
