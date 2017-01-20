@@ -29,8 +29,6 @@
         "demo",
         "config",
         "coverage",
-        "src/polyfill.ts",
-        "src/vendors.ts",
         "src/**/*.spec.ts"
     ],
     "angularCompilerOptions": {

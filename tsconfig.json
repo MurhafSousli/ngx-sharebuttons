@@ -28,8 +28,6 @@
     "demo",
     "coverage",
     "config",
-    "src/polyfills.ts",
-    "src/vendor.ts",
     "src/**/*.spec.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
