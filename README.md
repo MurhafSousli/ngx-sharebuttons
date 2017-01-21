@@ -16,6 +16,8 @@ Supported services:
 
 ## Installation
 
+[![Join the chat at https://gitter.im/ng2-sharebuttons/Lobby](https://badges.gitter.im/ng2-sharebuttons/Lobby.svg)](https://gitter.im/ng2-sharebuttons/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Install it with npm
 
 `npm install ng2-sharebuttons --save`
