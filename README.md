@@ -179,6 +179,7 @@ export class TestComponent{
    - `[count]`: Enable counts on share buttons, default: false
    - `[totalCount]`: Show total count of all buttons, default: false
    - `[defaultStyle]`: Use default style is applied to the buttons, default: true
+   - `[buttonClass]`: Add custom classes to all buttons
    - `(popUpClosed)`: Output when pop up window is closed
  
 
