@@ -37,7 +37,6 @@ export class ShareButtonsComponent implements OnInit {
 
     /** Indicates weather default style is applied to the buttons */
     @Input() defaultStyle: boolean = true;
-    
     /** Add default class to all buttons */
     @Input() buttonClass: string = '';
 
