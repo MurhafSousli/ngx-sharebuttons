@@ -58,7 +58,7 @@ function platformPath(path) {
     return /^win/.test(os.platform()) ? `${path}.cmd` : path;
 }
 
-function startKarmaServer(isTddMode, done) {
+function startKarmaServer(isTddMode, hasCoverage, done) {
     var karmaServer = require('karma').Server;
     var travis = process.env.TRAVIS;
 
@@ -67,6 +67,8 @@ function startKarmaServer(isTddMode, done) {
     if (travis) {
         config['browsers'] = ['Chrome_travis_ci']; // 'Chrome_travis_ci' is defined in "customLaunchers" section of config/karma.conf.js
     }
+
+    config['hasCoverage'] = hasCoverage;
 
     new karmaServer(config, done).start();
 }
@@ -155,7 +157,7 @@ gulp.task('compile-ts', ['clean:dist', 'lint', 'styles', 'ngc']);
 // Testing Tasks
 gulp.task('test', ['clean:coverage', 'compile-ts'], (cb) => {
     const ENV = process.env.NODE_ENV = process.env.ENV = 'test';
-    startKarmaServer(false, cb);
+    startKarmaServer(false, true, cb);
 });
 
 gulp.task('watch', () => {
@@ -165,7 +167,12 @@ gulp.task('watch', () => {
 
 gulp.task('test:watch', (cb) => {
     const ENV = process.env.NODE_ENV = process.env.ENV = 'test';
-    startKarmaServer(true, cb);
+    startKarmaServer(true, true, cb);
+});
+
+gulp.task('test:watch-no-cc', (cb) => {//no coverage (useful for debugging failing tests in browser)
+    const ENV = process.env.NODE_ENV = process.env.ENV = 'test';
+    startKarmaServer(true, false, cb);
 });
 
 // Prepare 'dist' folder for publication to NPM
