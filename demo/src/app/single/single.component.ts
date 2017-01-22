@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ShareButton, ShareProvider} from "ng2-sharebuttons";
+// import {ShareButton, ShareProvider} from "ng2-sharebuttons";
+import {ShareButton, ShareProvider} from "../share";
 
 @Component({
     selector: 'app-single',

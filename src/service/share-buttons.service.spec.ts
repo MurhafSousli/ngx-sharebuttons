@@ -1,38 +1,14 @@
 /* tslint:disable:max-line-length */
 
-import { HttpModule, Http, Jsonp, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
+import { EventEmitter } from '@angular/core';
+import { HttpModule, Http, Jsonp, BaseRequestOptions } from '@angular/http';
 import { TestBed, inject } from '@angular/core/testing';
+import { MockBackend } from '@angular/http/testing';
+
 import { ShareButtonsService } from './share-buttons.service';
-import { ShareProvider } from '../helpers/share-provider.enum';
-import { ShareArgs } from '../helpers/share-buttons.class';
-
-import { MockBackend, MockConnection } from '@angular/http/testing';
-
-
-function mockJsonResponse(mockBackend: MockBackend, data: any) {
-
-    mockBackend.connections.subscribe((connection: MockConnection) => {
-        connection.mockRespond(new Response(new ResponseOptions({
-            body: JSON.stringify(data)
-        })));
-    });
-}
-
-function mockTextResponse(mockBackend: MockBackend, data: any) {
-
-    mockBackend.connections.subscribe((connection: MockConnection) => {
-        connection.mockRespond(new Response(new ResponseOptions({
-            body: data
-        })));
-    });
-}
-
-function mockErrorResponse(mockBackend: MockBackend, err?: Error) {
-
-    mockBackend.connections.subscribe((connection: MockConnection) => {
-        connection.mockError(err);
-    });
-}
+import { ShareProvider, ShareArgs, Helper } from '../helpers';
+import { WindowService } from './window.service';
+import { TestHelpers } from '../test-helpers';
 
 
 describe('Service: ShareButtons, Angular Tests', () => {
@@ -40,6 +16,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         TestBed.configureTestingModule({
             imports: [HttpModule],
             providers: [ShareButtonsService,
+                { provide: WindowService, useClass: TestHelpers.MockWindowService },
                 {// mock Http Service
                     provide: Http,
                     useFactory: (mockBackend, options) => {
@@ -73,81 +50,56 @@ describe('Service: ShareButtons, Angular Tests', () => {
             }));
     });
 
+    describe('validateUrl()', () => {
+
+        it('should return given url (encoded) if valid',
+            inject([ShareButtonsService], (service: ShareButtonsService) => {
+
+                const validUrl = 'https://mysite.com#my-anchor';
+                expect(service.validateUrl(validUrl)).toEqual(validUrl);
+            }));
+
+        it('should return encoded "window.location.href" if given url is not valid',
+            inject([ShareButtonsService], (service: ShareButtonsService) => {
+
+                const validUrl = 'invalid://mysite.com';
+                expect(service.validateUrl(validUrl)).toEqual(encodeURIComponent(TestHelpers.windowUrl));
+            }));
+
+        it('should return encoded "window.location.url" if provided url is undefined',
+            inject([ShareButtonsService], (service: ShareButtonsService) => {
+
+                let undefinedUrl;
+                expect(service.validateUrl(undefinedUrl)).toEqual(encodeURIComponent(TestHelpers.windowUrl));
+            }));
+    });
+
+
+
     describe('share()', () => {
-        const args = new ShareArgs('http://www.mysite.com', 'my title', 'my description', 'https://my/image.png', 'tag1,tag2');
 
-        it('should return an share url for FACEBOOK provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
+        it('should call share() when the button is clicked and emit "popUpClosed" event',
+            inject([ShareButtonsService, WindowService], (sbService: ShareButtonsService, windowService: WindowService) => {
 
-                let shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=http://www.mysite.com&title=my title&description=my description&picture=https://my/image.png';
-                expect(service.share(ShareProvider.FACEBOOK, args)).toEqual(shareUrl);
-            }));
+                const provider = ShareProvider.LINKEDIN;
+                const args = new ShareArgs('http://www.mysite.com', 'my title', 'my description', 'https://my/image.png', 'tag1,tag2');
+                const shareUrl = Helper.shareFactory(provider, args);
 
-        it('should return an share url for TWITTER provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
+                let emittedProvider: ShareProvider;
 
-                let shareUrl = 'https://twitter.com/intent/tweet?url=http://www.mysite.com&text=my description&hashtags=tag1,tag2';
-                expect(service.share(ShareProvider.TWITTER, args)).toEqual(shareUrl);
-            }));
+                let popUpClosed = new EventEmitter<ShareProvider>();
+                popUpClosed.subscribe((p: ShareProvider) => {
+                    emittedProvider = p;
+                });
 
-        it('should return an share url for REDDIT provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
+                sbService.share(provider, args, popUpClosed);
 
-                let shareUrl = 'http://www.reddit.com/submit?url=http://www.mysite.com&title=my title';
-                expect(service.share(ShareProvider.REDDIT, args)).toEqual(shareUrl);
-            }));
+                expect(emittedProvider).toEqual(provider);
 
-        it('should return an share url for STUMBLEUPON provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = 'http://www.stumbleupon.com/submit?url=http://www.mysite.com';
-                expect(service.share(ShareProvider.STUMBLEUPON, args)).toEqual(shareUrl);
-            }));
-
-        it('should return an share url for LINKEDIN provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = 'http://www.linkedin.com/shareArticle?url=http://www.mysite.com&title=my title&summary=my description';
-                expect(service.share(ShareProvider.LINKEDIN, args)).toEqual(shareUrl);
-            }));
-
-
-        it('should return an share url for GOOGLEPLUS provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = 'https://plus.google.com/share?url=http://www.mysite.com';
-                expect(service.share(ShareProvider.GOOGLEPLUS, args)).toEqual(shareUrl);
-            }));
-
-        it('should return an share url for TUMBLR provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = 'http://tumblr.com/widgets/share/tool?canonicalUrl=http://www.mysite.com&caption=my description&tags=tag1,tag2';
-                expect(service.share(ShareProvider.TUMBLR, args)).toEqual(shareUrl);
-            }));
-
-
-        it('should return an share url for PINTEREST provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=http://www.mysite.com&description=my description&media=https://my/image.png';
-                expect(service.share(ShareProvider.PINTEREST, args)).toEqual(shareUrl);
-            }));
-
-        it('should try to deduct "image" and "description" from meta and return share url for PINTEREST provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let pinArgs = new ShareArgs('http://www.mysite.com', 'my title');
-                let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=http://www.mysite.com';
-                expect(service.share(ShareProvider.PINTEREST, pinArgs)).toEqual(shareUrl);
-            }));
-
-
-        it('should return NO share url for EMAIL provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = '';
-                expect(service.share(ShareProvider.EMAIL, args)).toEqual(shareUrl);
+                expect(windowService.nativeWindow.open.calls.count()).toBe(1);
+                expect(windowService.nativeWindow.open.calls.mostRecent().args).toEqual([shareUrl, 'newwindow', sbService.windowAttr()]);
+                expect(windowService.nativeWindow.setInterval.calls.count()).toBe(1);
+                expect(windowService.nativeWindow.clearInterval.calls.count()).toBe(1); // make sure timeout handler has been cleared
             }));
     });
 
@@ -158,7 +110,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return an empty Observable<number> for FACEBOOK provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockErrorResponse(mockBackend);
+                TestHelpers.mockErrorResponse(mockBackend);
 
                 service.count(ShareProvider.FACEBOOK, args.url).subscribe((count: number) => {
                     expect(count).toEqual(0);
@@ -168,7 +120,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for FACEBOOK provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockJsonResponse(mockBackend, { share: { share_count: ShareProvider.FACEBOOK } }); // using enum index as count
+                TestHelpers.mockJsonResponse(mockBackend, { share: { share_count: ShareProvider.FACEBOOK } }); // using enum index as count
 
                 service.count(ShareProvider.FACEBOOK, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.FACEBOOK);
@@ -178,7 +130,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return an empty Observable<number> for LINKEDIN provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockErrorResponse(mockBackend);
+                TestHelpers.mockErrorResponse(mockBackend);
 
                 service.count(ShareProvider.LINKEDIN, args.url).subscribe((count: number) => {
                     expect(count).toEqual(0);
@@ -188,7 +140,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for LINKEDIN provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockJsonResponse(mockBackend, { count: ShareProvider.LINKEDIN }); // using enum index as count
+                TestHelpers.mockJsonResponse(mockBackend, { count: ShareProvider.LINKEDIN }); // using enum index as count
 
                 service.count(ShareProvider.LINKEDIN, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.LINKEDIN);
@@ -198,7 +150,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return an empty Observable<number> for REDDIT provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockErrorResponse(mockBackend);
+                TestHelpers.mockErrorResponse(mockBackend);
 
                 service.count(ShareProvider.REDDIT, args.url).subscribe((count: number) => {
                     expect(count).toEqual(0);
@@ -208,7 +160,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for REDDIT provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockJsonResponse(mockBackend, { data: { children: [{ data: { score: ShareProvider.REDDIT } }] } }); // using enum index as count
+                TestHelpers.mockJsonResponse(mockBackend, { data: { children: [{ data: { score: ShareProvider.REDDIT } }] } }); // using enum index as count
 
                 service.count(ShareProvider.REDDIT, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.REDDIT);
@@ -219,7 +171,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return an empty Observable<number> for TUMBLR provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockErrorResponse(mockBackend);
+                TestHelpers.mockErrorResponse(mockBackend);
 
                 service.count(ShareProvider.TUMBLR, args.url).subscribe((count: number) => {
                     expect(count).toEqual(0);
@@ -229,7 +181,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for TUMBLR provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockJsonResponse(mockBackend, { response: { note_count: ShareProvider.TUMBLR } }); // using enum index as count
+                TestHelpers.mockJsonResponse(mockBackend, { response: { note_count: ShareProvider.TUMBLR } }); // using enum index as count
 
                 service.count(ShareProvider.TUMBLR, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.TUMBLR);
@@ -239,7 +191,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return an empty Observable<number> for GOOGLEPLUS provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockErrorResponse(mockBackend);
+                TestHelpers.mockErrorResponse(mockBackend);
 
                 service.count(ShareProvider.GOOGLEPLUS, args.url).subscribe((count: number) => {
                     expect(count).toEqual(0);
@@ -249,7 +201,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for GOOGLEPLUS provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockJsonResponse(mockBackend, [{ result: { metadata: { globalCounts: { count: ShareProvider.GOOGLEPLUS } } } }]); // using enum index as count
+                TestHelpers.mockJsonResponse(mockBackend, [{ result: { metadata: { globalCounts: { count: ShareProvider.GOOGLEPLUS } } } }]); // using enum index as count
 
                 service.count(ShareProvider.GOOGLEPLUS, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.GOOGLEPLUS);
@@ -260,7 +212,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return an empty Observable<number> for PINTEREST provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockErrorResponse(mockBackend);
+                TestHelpers.mockErrorResponse(mockBackend);
 
                 service.count(ShareProvider.PINTEREST, args.url).subscribe((count: number) => {
                     expect(count).toEqual(0);
@@ -270,7 +222,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         it('should return a Observable<number> for PINTEREST provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
-                mockTextResponse(mockBackend, `receiveCount({"count":${ShareProvider.PINTEREST}})`); // using enum index as count
+                TestHelpers.mockTextResponse(mockBackend, `receiveCount({"count":${ShareProvider.PINTEREST}})`); // using enum index as count
 
                 service.count(ShareProvider.PINTEREST, args.url).subscribe((count: number) => {
                     expect(count).toEqual(ShareProvider.PINTEREST);

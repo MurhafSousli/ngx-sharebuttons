@@ -4,18 +4,14 @@ import { By } from '@angular/platform-browser';
 import { Component, DebugElement, ElementRef, Renderer } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
-import { ShareButtonsModule } from './../../share-buttons.module';
-import { ShareButtonComponent } from './share-button.component';
-import { WindowService } from './../../service/window.service';
-import { ShareButtonsService } from './../../service/share-buttons.service';
-import { ShareButton, ShareArgs } from './../../helpers/share-buttons.class';
-import { ShareProvider } from './../../helpers/share-provider.enum';
 import 'rxjs/add/observable/of';
 
+import { ShareButtonsModule } from '../../share-buttons.module';
+import { ShareButtonComponent } from './share-button.component';
+import { ShareButtonsService } from '../../service/share-buttons.service';
+import { WindowService } from './../../service/window.service';
+import { ShareButton, ShareArgs, ShareProvider, Helper } from '../../helpers';
 import { TestHelpers } from '../../test-helpers';
-
-
 
 
 const createTestComponent = (html: string, detectChanges?: boolean) =>
@@ -47,6 +43,7 @@ describe('ShareButtonComponent (as a stand-alone component)', () => {
     shareButton = fixture.debugElement.children[0];
 
   });
+
 
   it('should throw error if mandatory @Input("button") is not set', () => {
     expect(fixture.detectChanges).toThrowError();
@@ -125,12 +122,13 @@ describe('ShareButtonComponent (as a stand-alone component)', () => {
 
       fixture.detectChanges(); // trigger data binding
 
-      const shareUrl = sbService.share(sBtn.provider, sArgs);
+      const shareUrl = Helper.shareFactory(sBtn.provider, sArgs);
       const shareSpy = spyOn(sbService, 'share').and.callThrough(); // spy on ShareButtonsService.share()
+
 
       shareButton.triggerEventHandler('click', null); // simulate click on button
 
-      expect(shareSpy).toHaveBeenCalledWith(sBtn.provider, sArgs);
+      expect(shareSpy).toHaveBeenCalledWith(sBtn.provider, sArgs, component.popUpClosed);
       expect(emittedProvider).toEqual(sBtn.provider);
 
       expect(windowService.nativeWindow.open.calls.count()).toBe(1);
@@ -138,6 +136,7 @@ describe('ShareButtonComponent (as a stand-alone component)', () => {
       expect(windowService.nativeWindow.setInterval.calls.count()).toBe(1);
       expect(windowService.nativeWindow.clearInterval.calls.count()).toBe(1); // make sure timeout handler has been cleared
     }));
+
 
   it('should render the share count and emit "countOuter" event if @Input("count") is true and shareCount > 0',
     inject([ShareButtonsService], (sbService: ShareButtonsService) => {

@@ -1,10 +1,9 @@
 /* tslint:disable:max-line-length */
 
-import { ShareArgs } from '../helpers/share-buttons.class';
-import { ShareLinks } from './share-links.functions';
+import { ShareArgs, ShareLinks } from '.';
 
 
-describe('Module: ShareLinks, Angular Tests', () => {
+describe('Module: ShareLinks, Isolated Tests', () => {
 
 
     describe('share()', () => {
