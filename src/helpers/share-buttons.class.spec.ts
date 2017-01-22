@@ -1,5 +1,4 @@
-import { ShareProvider } from './share-provider.enum';
-import { ShareButton, ShareArgs } from './share-buttons.class';
+import { ShareProvider, ShareButton, ShareArgs } from '.';
 
 describe('ShareButton', () => {
     it('should create an instance with given values', () => {
