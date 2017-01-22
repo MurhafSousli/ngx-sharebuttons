@@ -1,7 +1,7 @@
 import { ElementRef } from '@angular/core';
+import { Response, ResponseOptions } from '@angular/http';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-
-
+import { MockBackend, MockConnection } from '@angular/http/testing';
 export module TestHelpers {
 
     export const windowUrl = 'http://localhost/index.html'; // fake  url
@@ -18,6 +18,41 @@ export module TestHelpers {
             }
             return fixture as ComponentFixture<T>;
         };
+
+    /**
+     * Utility method to create mock JSON responses
+     */
+    export const mockJsonResponse = (mockBackend: MockBackend, data: any) => {
+
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+            connection.mockRespond(new Response(new ResponseOptions({
+                body: JSON.stringify(data)
+            })));
+        });
+    };
+
+    /**
+     * Utility method to create mock Text responses
+     */
+    export const mockTextResponse = (mockBackend: MockBackend, data: any) => {
+
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+            connection.mockRespond(new Response(new ResponseOptions({
+                body: data
+            })));
+        });
+    };
+
+    /**
+     * Utility method to create mock Error responses
+     */
+    export const mockErrorResponse = (mockBackend: MockBackend, err?: Error) => {
+
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+            connection.mockError(err);
+        });
+    };
+
 
     /**
      * Mock ElementRef for injection in tests
