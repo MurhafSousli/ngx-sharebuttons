@@ -2,9 +2,9 @@
  *  ShareLinks: Provide a share links for all services
  * */
 
-import { ShareArgs } from '../helpers/share-buttons.class';
-export module ShareLinks {
+import { ShareArgs } from './share-buttons.class';
 
+export module ShareLinks {
 
     export function fbShare(args: ShareArgs) {
         let shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${args.url}`;

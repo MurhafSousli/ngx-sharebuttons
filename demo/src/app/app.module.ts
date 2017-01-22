@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CustomComponent } from './custom/custom.component';
 
-import {ShareButtonsModule} from 'ng2-sharebuttons';
+// import {ShareButtonsModule} from 'ng2-sharebuttons';
+import {ShareButtonsModule} from './share';
 import { SingleComponent } from './single/single.component';
 
 @NgModule({

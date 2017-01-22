@@ -2,12 +2,12 @@
 
 import { HttpModule, Http, Jsonp, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 import { TestBed, inject } from '@angular/core/testing';
-import { ShareButtonsService } from './share-buttons.service';
-import { ShareProvider } from '../helpers/share-provider.enum';
-import { ShareArgs } from '../helpers/share-buttons.class';
-
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
+import { ShareButtonsService } from './share-buttons.service';
+import { ShareProvider, ShareArgs } from '../helpers';
+import { WindowService } from './window.service';
+import { TestHelpers } from '../test-helpers';
 
 function mockJsonResponse(mockBackend: MockBackend, data: any) {
 
@@ -40,6 +40,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
         TestBed.configureTestingModule({
             imports: [HttpModule],
             providers: [ShareButtonsService,
+                { provide: WindowService, useClass: TestHelpers.MockWindowService },
                 {// mock Http Service
                     provide: Http,
                     useFactory: (mockBackend, options) => {
@@ -74,82 +75,111 @@ describe('Service: ShareButtons, Angular Tests', () => {
     });
 
     describe('share()', () => {
-        const args = new ShareArgs('http://www.mysite.com', 'my title', 'my description', 'https://my/image.png', 'tag1,tag2');
+        it('should call share() when the button is clicked and emit "popUpClosed" event',
+            inject([ShareButtonsService], (sbService: ShareButtonsService) => {
 
-        it('should return an share url for FACEBOOK provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
+                // set mandatory inputs
+                component.button = sBtn;
 
-                let shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=http://www.mysite.com&title=my title&description=my description&picture=https://my/image.png';
-                expect(service.share(ShareProvider.FACEBOOK, args)).toEqual(shareUrl);
-            }));
+                // optional inputs
+                component.url = sArgs.url;
+                component.title = sArgs.title;
+                component.description = sArgs.description;
+                component.image = sArgs.image;
+                component.tags = sArgs.tags;
 
-        it('should return an share url for TWITTER provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
+                let emittedProvider: ShareProvider;
+                component.popUpClosed.subscribe((provider: ShareProvider) => {
+                    emittedProvider = provider;
+                });
 
-                let shareUrl = 'https://twitter.com/intent/tweet?url=http://www.mysite.com&text=my description&hashtags=tag1,tag2';
-                expect(service.share(ShareProvider.TWITTER, args)).toEqual(shareUrl);
-            }));
+                fixture.detectChanges(); // trigger data binding
 
-        it('should return an share url for REDDIT provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
+                const shareUrl = sbService.share(sBtn.provider, sArgs, component.popUpClosed);
+                const shareSpy = spyOn(sbService, 'share').and.callThrough(); // spy on ShareButtonsService.share()
 
-                let shareUrl = 'http://www.reddit.com/submit?url=http://www.mysite.com&title=my title';
-                expect(service.share(ShareProvider.REDDIT, args)).toEqual(shareUrl);
-            }));
+                shareButton.triggerEventHandler('click', null); // simulate click on button
 
-        it('should return an share url for STUMBLEUPON provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
+                expect(shareSpy).toHaveBeenCalledWith(sBtn.provider, sArgs);
+                expect(emittedProvider).toEqual(sBtn.provider);
 
-                let shareUrl = 'http://www.stumbleupon.com/submit?url=http://www.mysite.com';
-                expect(service.share(ShareProvider.STUMBLEUPON, args)).toEqual(shareUrl);
-            }));
-
-        it('should return an share url for LINKEDIN provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = 'http://www.linkedin.com/shareArticle?url=http://www.mysite.com&title=my title&summary=my description';
-                expect(service.share(ShareProvider.LINKEDIN, args)).toEqual(shareUrl);
-            }));
-
-
-        it('should return an share url for GOOGLEPLUS provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = 'https://plus.google.com/share?url=http://www.mysite.com';
-                expect(service.share(ShareProvider.GOOGLEPLUS, args)).toEqual(shareUrl);
-            }));
-
-        it('should return an share url for TUMBLR provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = 'http://tumblr.com/widgets/share/tool?canonicalUrl=http://www.mysite.com&caption=my description&tags=tag1,tag2';
-                expect(service.share(ShareProvider.TUMBLR, args)).toEqual(shareUrl);
-            }));
-
-
-        it('should return an share url for PINTEREST provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=http://www.mysite.com&description=my description&media=https://my/image.png';
-                expect(service.share(ShareProvider.PINTEREST, args)).toEqual(shareUrl);
-            }));
-
-        it('should try to deduct "image" and "description" from meta and return share url for PINTEREST provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let pinArgs = new ShareArgs('http://www.mysite.com', 'my title');
-                let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=http://www.mysite.com';
-                expect(service.share(ShareProvider.PINTEREST, pinArgs)).toEqual(shareUrl);
-            }));
-
-
-        it('should return NO share url for EMAIL provider',
-            inject([ShareButtonsService], (service: ShareButtonsService) => {
-
-                let shareUrl = '';
-                expect(service.share(ShareProvider.EMAIL, args)).toEqual(shareUrl);
+                expect(windowService.nativeWindow.open.calls.count()).toBe(1);
+                expect(windowService.nativeWindow.open.calls.mostRecent().args).toEqual([shareUrl, 'newwindow', sbService.windowAttr()]);
+                expect(windowService.nativeWindow.setInterval.calls.count()).toBe(1);
+                expect(windowService.nativeWindow.clearInterval.calls.count()).toBe(1); // make sure timeout handler has been cleared
             }));
     });
+
+    // describe('shareFactory()', () => {
+    //     const args = new ShareArgs('http://www.mysite.com', 'my title', 'my description', 'https://my/image.png', 'tag1,tag2');
+    //
+    //     it('should return an share url for FACEBOOK provider',
+    //         inject([ShareButtonsService], (service: ShareButtonsService) => {
+    //
+    //             let shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=http://www.mysite.com&title=my title&description=my description&picture=https://my/image.png';
+    //             expect(service.shareFactory(ShareProvider.FACEBOOK, args)).toEqual(shareUrl);
+    //         }));
+    //
+    //     it('should return an share url for TWITTER provider',
+    //         inject([ShareButtonsService], (service: ShareButtonsService) => {
+    //
+    //             let shareUrl = 'https://twitter.com/intent/tweet?url=http://www.mysite.com&text=my description&hashtags=tag1,tag2';
+    //             expect(service.shareFactory(ShareProvider.TWITTER, args)).toEqual(shareUrl);
+    //         }));
+    //
+    //     it('should return an share url for REDDIT provider',
+    //         inject([ShareButtonsService], (service: ShareButtonsService) => {
+    //
+    //             let shareUrl = 'http://www.reddit.com/submit?url=http://www.mysite.com&title=my title';
+    //             expect(service.shareFactory(ShareProvider.REDDIT, args)).toEqual(shareUrl);
+    //         }));
+    //
+    //     it('should return an share url for STUMBLEUPON provider',
+    //         inject([ShareButtonsService], (service: ShareButtonsService) => {
+    //
+    //             let shareUrl = 'http://www.stumbleupon.com/submit?url=http://www.mysite.com';
+    //             expect(service.shareFactory(ShareProvider.STUMBLEUPON, args)).toEqual(shareUrl);
+    //         }));
+    //
+    //     it('should return an share url for LINKEDIN provider',
+    //         inject([ShareButtonsService], (service: ShareButtonsService) => {
+    //
+    //             let shareUrl = 'http://www.linkedin.com/shareArticle?url=http://www.mysite.com&title=my title&summary=my description';
+    //             expect(service.shareFactory(ShareProvider.LINKEDIN, args)).toEqual(shareUrl);
+    //         }));
+    //
+    //
+    //     it('should return an share url for GOOGLEPLUS provider',
+    //         inject([ShareButtonsService], (service: ShareButtonsService) => {
+    //
+    //             let shareUrl = 'https://plus.google.com/share?url=http://www.mysite.com';
+    //             expect(service.shareFactory(ShareProvider.GOOGLEPLUS, args)).toEqual(shareUrl);
+    //         }));
+    //
+    //     it('should return an share url for TUMBLR provider',
+    //         inject([ShareButtonsService], (service: ShareButtonsService) => {
+    //
+    //             let shareUrl = 'http://tumblr.com/widgets/share/tool?canonicalUrl=http://www.mysite.com&caption=my description&tags=tag1,tag2';
+    //             expect(service.shareFactory(ShareProvider.TUMBLR, args)).toEqual(shareUrl);
+    //         }));
+    //
+    //
+    //     it('should return an share url for PINTEREST provider',
+    //         inject([ShareButtonsService], (service: ShareButtonsService) => {
+    //
+    //             let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=http://www.mysite.com&description=my description&media=https://my/image.png';
+    //             expect(service.shareFactory(ShareProvider.PINTEREST, args)).toEqual(shareUrl);
+    //         }));
+    //
+    //     it('should try to deduct "image" and "description" from meta and return share url for PINTEREST provider',
+    //         inject([ShareButtonsService], (service: ShareButtonsService) => {
+    //
+    //             let pinArgs = new ShareArgs('http://www.mysite.com', 'my title');
+    //             let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=http://www.mysite.com';
+    //             expect(service.shareFactory(ShareProvider.PINTEREST, pinArgs)).toEqual(shareUrl);
+    //         }));
+    //
+    // });
 
 
     describe('count()', () => {

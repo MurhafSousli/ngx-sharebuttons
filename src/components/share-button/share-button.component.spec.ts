@@ -5,17 +5,13 @@ import { Component, DebugElement, ElementRef, Renderer } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { ShareButtonsModule } from './../../share-buttons.module';
+import { ShareButtonsModule } from '../../share-buttons.module';
 import { ShareButtonComponent } from './share-button.component';
-import { WindowService } from './../../service/window.service';
-import { ShareButtonsService } from './../../service/share-buttons.service';
-import { ShareButton, ShareArgs } from './../../helpers/share-buttons.class';
-import { ShareProvider } from './../../helpers/share-provider.enum';
+import { ShareButtonsService } from '../../service/share-buttons.service';
+import { ShareButton, ShareArgs, ShareProvider } from '../../helpers';
 import 'rxjs/add/observable/of';
 
 import { TestHelpers } from '../../test-helpers';
-
-
 
 
 const createTestComponent = (html: string, detectChanges?: boolean) =>
@@ -35,7 +31,6 @@ describe('ShareButtonComponent (as a stand-alone component)', () => {
       imports: [HttpModule, JsonpModule],
       declarations: [ShareButtonComponent],
       providers: [ShareButtonsService, Renderer,
-        { provide: WindowService, useClass: TestHelpers.MockWindowService },
         { provide: ElementRef, useClass: TestHelpers.MockElementRef }]
     })
       .compileComponents();
@@ -105,39 +100,6 @@ describe('ShareButtonComponent (as a stand-alone component)', () => {
 
   });
 
-  it('should call share() when the button is clicked and emit "popUpClosed" event',
-    inject([WindowService, ShareButtonsService], (windowService: WindowService, sbService: ShareButtonsService) => {
-
-      // set mandatory inputs
-      component.button = sBtn;
-
-      // optional inputs
-      component.url = sArgs.url;
-      component.title = sArgs.title;
-      component.description = sArgs.description;
-      component.image = sArgs.image;
-      component.tags = sArgs.tags;
-
-      let emittedProvider: ShareProvider;
-      component.popUpClosed.subscribe((provider: ShareProvider) => {
-        emittedProvider = provider;
-      });
-
-      fixture.detectChanges(); // trigger data binding
-
-      const shareUrl = sbService.share(sBtn.provider, sArgs);
-      const shareSpy = spyOn(sbService, 'share').and.callThrough(); // spy on ShareButtonsService.share()
-
-      shareButton.triggerEventHandler('click', null); // simulate click on button
-
-      expect(shareSpy).toHaveBeenCalledWith(sBtn.provider, sArgs);
-      expect(emittedProvider).toEqual(sBtn.provider);
-
-      expect(windowService.nativeWindow.open.calls.count()).toBe(1);
-      expect(windowService.nativeWindow.open.calls.mostRecent().args).toEqual([shareUrl, 'newwindow', sbService.windowAttr()]);
-      expect(windowService.nativeWindow.setInterval.calls.count()).toBe(1);
-      expect(windowService.nativeWindow.clearInterval.calls.count()).toBe(1); // make sure timeout handler has been cleared
-    }));
 
   it('should render the share count and emit "countOuter" event if @Input("count") is true and shareCount > 0',
     inject([ShareButtonsService], (sbService: ShareButtonsService) => {

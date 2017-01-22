@@ -1,40 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Jsonp, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/operator/catch';
+import { WindowService } from './window.service';
+import { ShareArgs, ShareProvider, Helper } from '../helpers';
 
-import { ShareArgs } from '../helpers/share-buttons.class';
-import { ShareProvider } from '../helpers/share-provider.enum';
-import { ShareButtonsInterface } from './share-buttons.interface';
-import { ShareLinks } from './share-links.functions';
-
-
-
-/** Prepare gPlus count request body   */
-export const gplusCountBody = (url) => {
-    return [{
-        method: 'pos.plusones.get',
-        id: 'p',
-        params: {
-            nolog: true,
-            id: url,
-            source: 'widget',
-            userId: '@viewer',
-            groupId: '@self'
-        },
-        jsonrpc: '2.0',
-        key: 'p',
-        apiVersion: 'v1'
-    }];
-};
-
+declare const global: any; // To make AoT compiler (ngc) happy
 
 @Injectable()
-export class ShareButtonsService implements ShareButtonsInterface {
+export class ShareButtonsService {
 
+    /** Window Object */
+    window: Window;
     /** Optional parameters */
     windowWidth: number = 500;
     windowHeight: number = 400;
@@ -42,36 +19,43 @@ export class ShareButtonsService implements ShareButtonsInterface {
     /** Site Twitter Account: Add Via @TwitterAccount to the tweet  */
     twitterAccount: string;
 
-    constructor(private http: Http, private jsonp: Jsonp) {
+    constructor(window: WindowService, private http: Http, private jsonp: Jsonp) {
+        this.window = window.nativeWindow;
+    }
+
+    validateUrl(url: string) {
+        /** If URL is specified then validate it, otherwise use window URL */
+        if (url) {
+            let r = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+
+            if (r.test(url)) {
+                return url;
+            } else {
+                console.warn('[ShareButtons]: Invalid URL, fallback to Window URL');
+            }
+        }
+        /** fallback to "Window" URL, or to "Global" in universal */
+        return (this.window) ? encodeURIComponent(this.window.location.href) : (<any>global).url || '';
     }
 
 
-    share(type: ShareProvider, args: ShareArgs): string {
-        switch (type) {
-            case ShareProvider.FACEBOOK:
-                return ShareLinks.fbShare(args);
-            case ShareProvider.TWITTER:
-                return ShareLinks.twitterShare(args);
-            case ShareProvider.LINKEDIN:
-                return ShareLinks.linkedInShare(args);
-            case ShareProvider.REDDIT:
-                return ShareLinks.redditShare(args);
-            case ShareProvider.TUMBLR:
-                return ShareLinks.tumblrShare(args);
-            case ShareProvider.STUMBLEUPON:
-                return ShareLinks.stumbleShare(args);
-            case ShareProvider.GOOGLEPLUS:
-                return ShareLinks.gPlusShare(args);
-            case ShareProvider.PINTEREST:
-                return ShareLinks.pinShare(args);
-            default:
-                return '';
+    /** Open share window */
+    share(btnProvider: ShareProvider, args: ShareArgs, popUpEmitter: EventEmitter<ShareProvider>) {
+
+        let popUp = this.window.open(Helper.shareFactory(btnProvider, args), 'newwindow', this.windowAttr());
+
+        /** Emit clicked button */
+        if (this.window) {
+            let pollTimer = this.window.setInterval(() => {
+                if (popUp.closed) {
+                    this.window.clearInterval(pollTimer);
+                    popUpEmitter.emit(btnProvider);
+                }
+            }, 200);
         }
     }
 
-
     /** Share Counts */
-
     count(type: ShareProvider, url: string): Observable<number> {
         switch (type) {
             case ShareProvider.FACEBOOK:
@@ -124,7 +108,7 @@ export class ShareButtonsService implements ShareButtonsInterface {
     }
 
     private gPlusCount(url: string): Observable<number> {
-        let body = gplusCountBody(url);
+        let body = Helper.gplusCountBody(url);
         return this.post('https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ', body)
             .map((data: any) => {
                 data = data.json();
@@ -159,26 +143,17 @@ export class ShareButtonsService implements ShareButtonsInterface {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, body, options)
-            .catch((err) => {
-                console.warn('[ShareService HTTP]: ', err);
-                return Observable.empty();
-            });
+            .catch((err) => Observable.empty());
     }
 
     private fetch(url: string) {
         return this.http.get(url)
-            .catch((err) => {
-                console.warn('[ShareService HTTP]: ', err);
-                return Observable.empty();
-            });
+            .catch((err) => Observable.empty());
     }
 
     private fetchJsonp(url: string) {
         return this.jsonp.request(url + '&format=jsonp&callback=JSONP_CALLBACK')
-            .catch((err) => {
-                console.warn('[ShareService JSONP]: ', err);
-                return Observable.empty();
-            });
+            .catch((err) => Observable.empty());
     }
 
     windowAttr() {
