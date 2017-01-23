@@ -1,0 +1,2 @@
+<button (click)='share()' [innerHTML]="button.template" [ngClass]="button.classes"></button>
+<span *ngIf="count && shareCount" class="sb-button-count">{{ shareCount | nFormatter: 1 }}</span>
