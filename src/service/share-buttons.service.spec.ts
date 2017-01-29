@@ -56,7 +56,7 @@ describe('Service: ShareButtons, Angular Tests', () => {
             inject([ShareButtonsService], (service: ShareButtonsService) => {
 
                 const validUrl = 'https://mysite.com#my-anchor';
-                expect(service.validateUrl(validUrl)).toEqual(validUrl);
+                expect(service.validateUrl(validUrl)).toEqual(encodeURIComponent(validUrl));
             }));
 
         it('should return encoded "window.location.href" if given url is not valid',

@@ -16,7 +16,7 @@ describe('Module: Helper, Isolate Tests', () => {
                     id: 'p',
                     params: {
                         nolog: true,
-                        id: url,
+                        id: decodeURIComponent(url),
                         source: 'widget',
                         userId: '@viewer',
                         groupId: '@self'

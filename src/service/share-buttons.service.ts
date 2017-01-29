@@ -29,7 +29,7 @@ export class ShareButtonsService {
             let r = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 
             if (r.test(url)) {
-                return url;
+                return encodeURIComponent(url);
             } else {
                 console.warn('[ShareButtons]: Invalid URL, fallback to Window URL');
             }
