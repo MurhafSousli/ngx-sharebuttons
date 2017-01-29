@@ -166,7 +166,8 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
     const testComponent = fixture.componentInstance;
     const sbComponent = getShareButtonComponent(fixture);
     const shareButton = getShareButtonDebugElm(fixture).query(By.css('button'));
-    const shareUrl = Helper.shareFactory(sBtn.provider, sArgs);
+    const args = new ShareArgs(encodeURIComponent(sArgs.url), sArgs.title, sArgs.description, sArgs.image, sArgs.tags);
+    const shareUrl = Helper.shareFactory(sBtn.provider, args);
 
 
     let emittedProvider: ShareProvider;
@@ -179,7 +180,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
 
     shareButton.triggerEventHandler('click', null); // simulate click on button
 
-    expect(shareSpy).toHaveBeenCalledWith(sBtn.provider, sArgs, sbComponent.popUpClosed);
+    expect(shareSpy).toHaveBeenCalledWith(sBtn.provider, args, sbComponent.popUpClosed);
     expect(emittedProvider).toEqual(sBtn.provider);
 
     expect(windowService.nativeWindow.open.calls.count()).toBe(1);
@@ -220,7 +221,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
 
     fixture.detectChanges(); // trigger data binding
 
-    expect(countSpy).toHaveBeenCalledWith(sBtn.provider, sArgs.url);
+    expect(countSpy).toHaveBeenCalledWith(sBtn.provider, encodeURIComponent(sArgs.url));
     expect(emittedShareCount).toEqual(shareCount);
 
     const countSpan = getShareButtonDebugElm(fixture).query(By.css('span')).nativeElement;
@@ -260,7 +261,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
 
     fixture.detectChanges(); // trigger data binding
 
-    expect(countSpy).toHaveBeenCalledWith(sBtn.provider, sArgs.url);
+    expect(countSpy).toHaveBeenCalledWith(sBtn.provider, encodeURIComponent(sArgs.url));
     expect(emittedShareCount).toEqual(shareCount);
     expect(getShareButtonDebugElm(fixture).query(By.css('span'))).toBeNull();
   });
