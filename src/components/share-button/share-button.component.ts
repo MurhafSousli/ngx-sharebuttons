@@ -1,12 +1,11 @@
 import {
     Component,
-    AfterViewInit,
+    OnChanges,
     Input,
     Output,
+    SimpleChanges,
     EventEmitter,
-    Renderer,
-    ViewChild,
-    ElementRef,
+    ChangeDetectorRef,
     ChangeDetectionStrategy
 } from '@angular/core';
 
@@ -16,10 +15,10 @@ import { ShareButton, ShareArgs, ShareProvider } from '../../helpers';
 
 @Component({
     selector: 'share-button',
-    template: `<button  #btn (click)='share()'></button>`,
+    templateUrl: './share-button.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShareButtonComponent implements AfterViewInit {
+export class ShareButtonComponent implements OnChanges {
 
     /** Share Args */
     @Input() url: string;
@@ -38,35 +37,34 @@ export class ShareButtonComponent implements AfterViewInit {
     /** Output pop up closed*/
     @Output() popUpClosed = new EventEmitter<ShareProvider>();
 
-    @ViewChild('btn') btn: ElementRef;
+    /** Share count for this button */
+    shareCount: number;
 
     constructor(private sbService: ShareButtonsService,
-        private renderer: Renderer,
-        private elementRef: ElementRef) {
+        private changeDetectorRef: ChangeDetectorRef) {
     }
 
-    ngAfterViewInit() {
+    ngOnChanges(changes: SimpleChanges) {
         /** Validate URL */
         this.url = this.sbService.validateUrl(this.url);
 
-        /** Set button template */
-        this.renderer.setElementProperty(this.btn.nativeElement, 'innerHTML', this.button.template);
+        if (changes['url']) {
+            let currUrl = changes['url'].currentValue;
+            let prevUrl = changes['url'].previousValue;
 
-        /** Set buttons classes */
-        let classes = this.button.classes.match(/\S+/g) || [];
-        classes.map((btnClass) => this.renderer.setElementClass(this.btn.nativeElement, btnClass, true));
+            if (currUrl && currUrl !== prevUrl) {
 
-        /** Add share count if enabled */
-        if (this.count) {
-            this.sbService.count(this.button.provider, this.url)
-                .subscribe(shareCount => {
-                    if (shareCount) {
-                        let counter = this.renderer.createElement(this.elementRef.nativeElement, 'span');
-                        this.renderer.setElementClass(counter, 'sb-button-count', true);
-                        this.renderer.setElementProperty(counter, 'textContent', this.nFormatter(shareCount, 1));
-                        this.countOuter.emit(shareCount);
-                    }
-                });
+                /** Add share count if enabled */
+                if (changes['count'] && changes['count'].currentValue) {
+
+                    this.sbService.count(this.button.provider, this.url)
+                        .subscribe(sCount => {
+                            this.shareCount = sCount;
+                            this.countOuter.emit(sCount);
+                            this.changeDetectorRef.markForCheck();
+                        });
+                }
+            }
         }
     }
 
@@ -76,23 +74,4 @@ export class ShareButtonComponent implements AfterViewInit {
         let args = new ShareArgs(this.url, this.title, this.description, this.image, this.tags);
         this.sbService.share(this.button.provider, args, this.popUpClosed);
     }
-
-
-    nFormatter(num, digits) {
-        let si = [
-            { value: 1E18, symbol: 'E' },
-            { value: 1E15, symbol: 'P' },
-            { value: 1E12, symbol: 'T' },
-            { value: 1E9, symbol: 'G' },
-            { value: 1E6, symbol: 'M' },
-            { value: 1E3, symbol: 'K' }
-        ], rx = /\.0+$|(\.[0-9]*[1-9])0+$/, i;
-        for (i = 0; i < si.length; i++) {
-            if (num >= si[i].value) {
-                return (num / si[i].value).toFixed(digits).replace(rx, '$1') + si[i].symbol;
-            }
-        }
-        return num.toFixed(digits).replace(rx, '$1');
-    }
 }
-
