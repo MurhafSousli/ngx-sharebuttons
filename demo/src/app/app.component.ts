@@ -1,9 +1,10 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
-// import {ShareButtonsService} from "ng2-sharebuttons";
-import {ShareButtonsService} from "./share";
+import {ShareButtonsService} from "ng2-sharebuttons";
 
 import 'prismjs/prism';
 declare var Prism: any;
+
+
 
 @Component({
     selector: 'app-root',
