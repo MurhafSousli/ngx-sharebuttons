@@ -7,17 +7,12 @@ import { Component } from '@angular/core';
 })
 export class CustomComponent {
 
-  shareTitle = "Sharing is caring";
+  shareTitle = 'Sharing is caring';
 
-  fbInner = "<img src=" + prefixRepo("../../assets/img/custom/custom-facebook.svg") + ">";
-  twitterInner = "<img src=" + prefixRepo("../../assets/img/custom/custom-twitter.svg") + ">";
-  pintInner = "<img src=" + prefixRepo("../../assets/img/custom/custom-pinterest.svg")+ ">";
-  inInner = "<img src=" + prefixRepo("../../assets/img/custom/custom-linkedin.svg") + ">";
-  googleInner = "<img src=" + prefixRepo("../../assets/img/custom/custom-google-plus.svg") + ">";
-  tumblrInner = "<img src=" + prefixRepo("../../assets/img/custom/custom-tumblr.svg") + ">";
+  fbInner = '<img src="assets/img/custom/custom-facebook.svg">';
+  twitterInner = '<img src="assets/img/custom/custom-twitter.svg">';
+  pintInner = '<img src="assets/img/custom/custom-pinterest.svg">';
+  inInner = '<img src="assets/img/custom/custom-linkedin.svg">';
+  googleInner = '<img src="assets/img/custom/custom-google-plus.svg">';
+  tumblrInner = '<img src="assets/img/custom/custom-tumblr.svg">';
 }
-
-
-var prefixRepo = (path) => {
-  return 'ng2-sharebuttons' + path;
-};
