@@ -19,6 +19,6 @@ before_script:
   - npm install --quiet -g gulp-cli
   - npm install
 
-script: gulp test
+script: gulp test:ci
 
 after_success: gulp coveralls
