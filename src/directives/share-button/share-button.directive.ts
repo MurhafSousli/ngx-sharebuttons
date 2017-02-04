@@ -45,7 +45,7 @@ export class ShareButtonDirective implements OnChanges {
 
         this._provider = Helper.getEnumValue(value, ShareProvider);
 
-        if (!this._provider) {
+        if (typeof this._provider === 'undefined') {
             throw new Error('[shareButton] attribute must be set to one of the values (numeric or string) of ShareProvider enum');
         }
     }
