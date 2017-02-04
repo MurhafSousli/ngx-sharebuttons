@@ -212,6 +212,23 @@ export class TestComponent{
   - `(countOuter)`: Output share count of the button
   - `(popUpClosed)`: Output when pop up window is closed
       
+### `[shareButon]` directive to add Share features to any clickable element:
+
+This is the best option to add Share features to elements with other directives on it, like for e.g [Angular Material Buttons](https://material.angular.io/components/component/button).
+
+  - `[shareButon]`: Mandatory. Must be set to any valid value from ShareProvider enum, either numeric or string (case insensitive)
+
+  **Meta tags alternates:**
+
+  - `[title]` 
+  - `[description]`
+  - `[image]`
+  - `[tags]`: Adds hashtags to the twitter and tumblr
+
+  **Button options**
+  - `[count]`: Enable share count on the button, default: false
+  - `(countOuter)`: Output share count of the button
+  - `(popUpClosed)`: Output when pop up window is closed
 
 ## Misc
 

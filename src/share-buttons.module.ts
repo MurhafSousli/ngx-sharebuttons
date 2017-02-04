@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 
 import { ShareButtonsComponent } from './components/share-buttons/share-buttons.component';
 import { ShareButtonComponent } from './components/share-button/share-button.component';
+import { ShareButtonDirective } from './directives/share-button/share-button.directive';
 import { ShareButtonsService } from './service/share-buttons.service';
 import { WindowService } from './service/window.service';
 import { NFormatterPipe } from './helpers/n-formatter.pipe';
@@ -18,6 +19,7 @@ import { ShareButton, ShareArgs } from './helpers/share-buttons.class';
     declarations: [
         ShareButtonsComponent,
         ShareButtonComponent,
+        ShareButtonDirective,
         NFormatterPipe
     ],
     imports: [
@@ -31,6 +33,7 @@ import { ShareButton, ShareArgs } from './helpers/share-buttons.class';
     exports: [
         ShareButtonsComponent,
         ShareButtonComponent,
+        ShareButtonDirective,
         NFormatterPipe
     ]
 })
@@ -41,6 +44,7 @@ export class ShareButtonsModule {
 export {
     ShareButtonsComponent,
     ShareButtonComponent,
+    ShareButtonDirective,
     ShareProvider,
     ShareButton,
     NFormatterPipe,

@@ -75,7 +75,6 @@ describe('Module: Helper, Isolate Tests', () => {
             expect(Helper.shareFactory(ShareProvider.TUMBLR, args)).toEqual(shareUrl);
         });
 
-
         it('should return an share url for PINTEREST provider', () => {
 
             let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=http://www.mysite.com&description=my description&media=https://my/image.png';
@@ -87,6 +86,37 @@ describe('Module: Helper, Isolate Tests', () => {
             let pinArgs = new ShareArgs('http://www.mysite.com', 'my title');
             let shareUrl = 'https://in.pinterest.com/pin/create/button/?url=http://www.mysite.com';
             expect(Helper.shareFactory(ShareProvider.PINTEREST, pinArgs)).toEqual(shareUrl);
+        });
+
+    });
+
+    describe('getEnumValue()', () => {
+
+        it('should return undefined from invalid enum string literal', () => {
+            expect(Helper.getEnumValue('invalid', ShareProvider)).toBeUndefined();
+        });
+
+        it('should return undefined from invalid enum numeric value', () => {
+            expect(Helper.getEnumValue(-1, ShareProvider)).toBeUndefined();
+            expect(Helper.getEnumValue(999, ShareProvider)).toBeUndefined();
+        });
+
+        it('should return enum value from valid string literal (case insensitive)', () => {
+            expect(Helper.getEnumValue('linkedin', ShareProvider)).toEqual(ShareProvider.LINKEDIN);
+            expect(Helper.getEnumValue('LINKEDIN', ShareProvider)).toEqual(ShareProvider.LINKEDIN);
+            expect(Helper.getEnumValue('LinkedIn', ShareProvider)).toEqual(ShareProvider.LINKEDIN);
+        });
+
+        it('should return enum value from valid numeric value', () => {
+            expect(Helper.getEnumValue(0, ShareProvider)).toEqual(ShareProvider.FACEBOOK);
+            expect(Helper.getEnumValue(3, ShareProvider)).toEqual(ShareProvider.STUMBLEUPON);
+            expect(Helper.getEnumValue(4, ShareProvider)).toEqual(ShareProvider.LINKEDIN);
+            expect(Helper.getEnumValue(5, ShareProvider)).toEqual(ShareProvider.GOOGLEPLUS);
+        });
+
+        it('should return enum value from valid numeric value', () => {
+
+            expect(Helper.getEnumValue(0, ShareProvider)).toEqual(ShareProvider.FACEBOOK);
         });
 
     });

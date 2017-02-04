@@ -1,0 +1,21 @@
+<section>
+  <h2>Integration with Angular Material | Other Buttons</h2>
+
+  Use the directive <code class="markup">[shareButton]</code> to integrate Share Button behavior to any clickable element
+  (that may have other directives applied on it), like for example, <a href="https://material.angular.io/components/component/button">Angular Material Buttons</a>.
+
+  <pre><code class="language-html">{{materialUsage}}</code></pre>
+
+  <div>
+    <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
+    <div class="output">
+      <div>
+        <button md-button [shareButton]="'facebook'">Facebook on Flat button</button>
+        <button md-raised-button [shareButton]="'linkedin'">LinkedIn on Raised button</button>
+        <button md-fab [shareButton]="'twitter'"><md-icon>share</md-icon></button>
+        <button md-mini-fab [shareButton]="'pinterest'"><md-icon>share</md-icon></button>
+      </div>
+    </div>
+
+  </div>
+</section>

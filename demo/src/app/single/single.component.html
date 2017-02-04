@@ -1,7 +1,7 @@
 <section>
     <h2>Advanced usage</h2>
     <p>Sometimes you just want to add a single button, or you want to make your own complex design, use the component
-        <<code class="markup">share-button</code>> in this case.</p>
+        <code class="markup">share-button</code> in this case.</p>
 
     <p>In this example, we will add a Tweet button, we will also add text and hashtags to the tweet</p>
 
@@ -13,8 +13,7 @@
     <!--TWITTER OUTPUT-->
     <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
     <div class="output">
-        <share-button class="single-button" [button]='twitterButton' [description]="description"
-                      [tags]="tags"></share-button>
+        <share-button class="single-button" [button]='twitterButton' [description]="description" [tags]="tags"></share-button>
     </div>
 
 
@@ -28,7 +27,7 @@
     <!--PINTEREST OUTPUT-->
     <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
     <div class="output">
-        <share-button class="single-button" [button]='pinButton' [description]="description" [image]="pinImage"></share-button>
+        <share-button class="single-button" [button]="pinButton" [description]="description" [image]="pinImage"></share-button>
     </div>
 
 </section>

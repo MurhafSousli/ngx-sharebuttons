@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, DebugElement, ElementRef, Renderer } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';

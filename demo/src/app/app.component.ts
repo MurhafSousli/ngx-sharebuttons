@@ -1,5 +1,5 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {ShareButtonsService} from "ng2-sharebuttons";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ShareButtonsService } from "ng2-sharebuttons";
 
 import 'prismjs/prism';
 declare var Prism: any;
@@ -25,15 +25,15 @@ export class AppComponent {
   ]
 })`;
 
-    basic= '<share-buttons [url]="linkToShare"></share-buttons>';
+    basic = '<share-buttons [url]="linkToShare"></share-buttons>';
 
-    metaHtml = "<share-button [url]=\"url\"></share-button>";
+    metaHtml = '<share-button [url]=\"url\"></share-button>';
 
     basicUsage = `<share-buttons [shareTitle]=\"'Total Shares for Twitter URL - '\"
  [url]=\"'https://twitter.com'\"
  [count]="true"
- [totalCount]="true"
- ></share-buttons>`;
+ [totalCount]="true">
+ </share-buttons>`;
 
     customizeHtml = `<share-buttons
    [shareTitle]="shareTitle"
@@ -47,17 +47,17 @@ export class AppComponent {
    [tumblr]="tumblrInner"
 
    [reddit]="false"
-   [stumbleUpOn]="false"
-></share-buttons>`;
+   [stumbleUpOn]="false">
+ </share-buttons>`;
 
     customizeScript = `export class SomeComponent {
   shareTitle = "Sharing is caring";
-  fbInner = "<img src='../assets/img/custom/facebook.svg'>";
-  twitterInner = "<img src='../assets/img/custom/twitter.svg'>";
-  pintInner = "<img src='../assets/img/custom/pinterest.svg'>";
-  inInner = "<img src='../assets/img/custom/linkedin.svg'>";
-  googleInner = "<img src='../assets/img/custom/google-plus.svg'>";
-  tumblrInner = "<img src='../assets/img/custom/tumblr.svg'>";
+  fbInner = '<img src="assets/img/custom/facebook.svg">';
+  twitterInner = '<img src="assets/img/custom/twitter.svg">';
+  pintInner = '<img src="assets/img/custom/pinterest.svg">';
+  inInner = '<img src="assets/img/custom/linkedin.svg">';
+  googleInner = '<img src="assets/img/custom/google-plus.svg">';
+  tumblrInner = '<img src="assets/img/custom/tumblr.svg">';
 }`;
 
     customizeCss = ` .sb-container{
@@ -89,11 +89,12 @@ export class AppComponent {
   sbService.width = 800;  //default: 500
 }`;
 
-    constructor(sbService:ShareButtonsService){
+
+    constructor(sbService: ShareButtonsService) {
         sbService.twitterAccount = "MurhafSousli";
     }
 
     ngAfterContentInit() {
-        setTimeout(()=>Prism.highlightAll(), 500);
+        setTimeout(() => Prism.highlightAll(), 500);
     }
 }

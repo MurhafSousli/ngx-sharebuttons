@@ -5,30 +5,25 @@
     <h3>{{desc}}</h3>
 
     <div class="badges">
-        <a class="github-button" href="https://github.com/MurhafSousli/ng2-sharebuttons" data-icon="octicon-star"
-           data-count-href="/MurhafSousli/ng2-sharebuttons/stargazers"
-           data-count-api="/repos/MurhafSousli/ng2-sharebuttons#stargazers_count"
-           data-count-aria-label="# stargazers on GitHub"
-           aria-label="Star MurhafSousli/ng2-sharebuttons on GitHub">Star</a>
-        <a href="https://www.npmjs.com/package/ng2-sharebuttons">
-            <img data-canonical-src="https://www.npmjs.com/package/ng2-sharebuttons"
-                 src="https://img.shields.io/npm/v/ng2-sharebuttons.svg?maxAge=2592000?style=plastic">
-        </a>
-        <a href="https://www.npmjs.com/package/ng2-sharebuttons">
-            <img data-canonical-src="https://travis-ci.org/MurhafSousli/ng2-sharebuttons"
-                 src="https://travis-ci.org/MurhafSousli/ng2-sharebuttons.svg?branch=master">
-        </a>
-        <a href="https://www.npmjs.com/package/ng2-sharebuttons">
-            <img data-canonical-src="https://www.npmjs.com/package/ng2-sharebuttons"
-                 src="https://img.shields.io/npm/dt/ng2-sharebuttons.svg?maxAge=2592000?style=plastic">
-        </a>
-        <a href="https://coveralls.io/github/MurhafSousli/ng2-sharebuttons?branch=master">
-            <img src="https://coveralls.io/repos/github/MurhafSousli/ng2-sharebuttons/badge.svg?branch=master"/>
-        </a>
-        <a href="https://gitter.im/ng2-sharebuttons/Lobby">
-            <img src="https://badges.gitter.im/ng2-sharebuttons/Lobby.svg"/>
-        </a>
-      </div>
+        <a class="github-button" href="https://github.com/MurhafSousli/ng2-sharebuttons" data-icon="octicon-star" data-count-href="/MurhafSousli/ng2-sharebuttons/stargazers"
+            data-count-api="/repos/MurhafSousli/ng2-sharebuttons#stargazers_count" data-count-aria-label="# stargazers on GitHub"
+            aria-label="Star MurhafSousli/ng2-sharebuttons on GitHub">Star</a>
+            <a href="https://www.npmjs.com/package/ng2-sharebuttons">
+                <img data-canonical-src="https://www.npmjs.com/package/ng2-sharebuttons" src="https://img.shields.io/npm/v/ng2-sharebuttons.svg?maxAge=2592000?style=plastic">
+            </a>
+            <a href="https://www.npmjs.com/package/ng2-sharebuttons">
+                <img data-canonical-src="https://travis-ci.org/MurhafSousli/ng2-sharebuttons" src="https://travis-ci.org/MurhafSousli/ng2-sharebuttons.svg?branch=master">
+            </a>
+            <a href="https://www.npmjs.com/package/ng2-sharebuttons">
+                <img data-canonical-src="https://www.npmjs.com/package/ng2-sharebuttons" src="https://img.shields.io/npm/dt/ng2-sharebuttons.svg?maxAge=2592000?style=plastic">
+            </a>
+            <a href="https://coveralls.io/github/MurhafSousli/ng2-sharebuttons?branch=master">
+                <img src="https://coveralls.io/repos/github/MurhafSousli/ng2-sharebuttons/badge.svg?branch=master" />
+            </a>
+            <a href="https://gitter.im/ng2-sharebuttons/Lobby">
+                <img src="https://badges.gitter.im/ng2-sharebuttons/Lobby.svg" />
+            </a>
+    </div>
 
     <section>
         <h2>Installation</h2>
@@ -39,8 +34,7 @@
     <section>
         <h2>Usage</h2>
 
-        <p>Add <code class="markup">ShareButtonsModule</code> to <b>NgModule</b> <code class="markup">imports</code>
-            array
+        <p>Add <code class="markup">ShareButtonsModule</code> to <b>NgModule</b> <code class="markup">imports</code> array
         </p>
         <pre><code class="language-javascript">{{importing}}</code></pre>
 
@@ -55,9 +49,9 @@
 
         <p>The default icons requires <a href='http://fontawesome.io/'>fontawesome</a> to be loaded into your project.
         </p>
-        <p>To display a title for share buttons container use <code class="markup">[shareTitle]="yourTitle"</code>, To
-            display share counts on buttons, enable the input <code class="markup">[count]="true"</code> , To display
-            the total count of all shares, enable the input <code class="markup">[totalCount]="true"</code>
+        <p>To display a title for share buttons container use <code class="markup">[shareTitle]="yourTitle"</code>, To display
+            share counts on buttons, enable the input <code class="markup">[count]="true"</code> , To display the total count
+            of all shares, enable the input <code class="markup">[totalCount]="true"</code>
         </p>
 
         <!--USAGE CODE-->
@@ -66,27 +60,25 @@
         <!--USAGE OUTPUT-->
         <h5><i class="fa fa-chevron-right" aria-hidden="true"></i> Output:</h5>
         <div class="output">
-            <share-buttons class="withCount" [shareTitle]="'Total Shares for Twitter URL - '"
-                           [url]="'https://twitter.com'" [count]="true"
-                           [totalCount]="true"></share-buttons>
+            <share-buttons class="withCount" [shareTitle]="'Total Shares for Twitter URL - '" [url]="'https://twitter.com'" [count]="true"
+                [totalCount]="true"></share-buttons>
         </div>
 
     </section>
 
     <section>
         <h2>Customization</h2>
-        <p>Customization is very easy, disable the default style with <code
-                class="markup">[defaultStyle]=false</code> then use the following classes to add your own css.</p>
+        <p>Customization is very easy, disable the default style with <code class="markup">[defaultStyle]=false</code> then
+            use the following classes to add your own css.</p>
 
         <pre><code class="language-css">{{customizeCss}}</code></pre>
 
-        <p>Each share service has its own button template, pass your custom button template as string in its input,
-            e.g. give facebook a custom template
+        <p>Each share service has its own button template, pass your custom button template as string in its input, e.g. give
+            facebook a custom template
             <code class="markup">[facebook]="facebookTemplate"</code>.
         </p>
 
-        <p>To exclude a button, pass <a><i>false</i></a> to the button input.
-            e.g. <code class="markup">[facebook]="false"</code>
+        <p>To exclude a button, pass <a><i>false</i></a> to the button input. e.g. <code class="markup">[facebook]="false"</code>
         </p>
 
         <!--CUSTOMIZE CODE-->
@@ -103,6 +95,8 @@
 
     <app-single></app-single>
 
+    <app-integration></app-integration>
+
     <section>
         <h2>Misc</h2>
 
@@ -116,11 +110,11 @@
 
     </section>
 
+
     <section>
         <h2>Issues</h2>
-        <p>If you identify any errors in this package, or have an idea for an improvement, please open an <a
-                href="https://github.com/MurhafSousli/ng2-sharebuttons/issues">issue</a>. I am excited to see what the
-            community thinks of this project, and I would love your input!</p>
+        <p>If you identify any errors in this package, or have an idea for an improvement, please open an <a href="https://github.com/MurhafSousli/ng2-sharebuttons/issues">issue</a>.
+            I am excited to see what the community thinks of this project, and I would love your input!</p>
 
     </section>
 
@@ -136,14 +130,11 @@
 
     <section>
         <h2>License</h2>
-        <p><a href="https://github.com/MurhafSousli/ng2-sharebuttons/blob/master/LICENSE"><img
-                src="https://camo.githubusercontent.com/25d313ccfafb08618b31899a22af11a5b8a79aad/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f657870726573732e7376673f6d61784167653d32353932303030"
-                alt="npm" data-canonical-src="https://img.shields.io/npm/l/express.svg?maxAge=2592000"
-                style="max-width:100%;"></a>
+        <p>
+            <a href="https://github.com/MurhafSousli/ng2-sharebuttons/blob/master/LICENSE">
+                <img src="https://camo.githubusercontent.com/25d313ccfafb08618b31899a22af11a5b8a79aad/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f657870726573732e7376673f6d61784167653d32353932303030"
+                    alt="npm" data-canonical-src="https://img.shields.io/npm/l/express.svg?maxAge=2592000" style="max-width:100%;"></a>
         </p>
     </section>
 
 </div>
-
-
-
