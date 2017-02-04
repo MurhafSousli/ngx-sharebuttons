@@ -101,6 +101,10 @@ describe('Module: Helper, Isolate Tests', () => {
             expect(Helper.getEnumValue(999, ShareProvider)).toBeUndefined();
         });
 
+        it('should return enum value from string literal of first entry', () => {
+            expect(Helper.getEnumValue('facebook', ShareProvider)).toEqual(ShareProvider.FACEBOOK);
+        });
+
         it('should return enum value from valid string literal (case insensitive)', () => {
             expect(Helper.getEnumValue('linkedin', ShareProvider)).toEqual(ShareProvider.LINKEDIN);
             expect(Helper.getEnumValue('LINKEDIN', ShareProvider)).toEqual(ShareProvider.LINKEDIN);
