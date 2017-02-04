@@ -5,13 +5,13 @@
 const gulp = require('gulp');
 
 /** To log like console.log().. */
-let gutil = require('gulp-util');
+const gutil = require('gulp-util');
 
 /** del to remove dist directory */
 const del = require('del');
 
 /** load templates and styles in ng2 components */
-let embedTemplates = require('gulp-inline-ng2-template');
+const embedTemplates = require('gulp-inline-ng2-template');
 
 /** TSLint checker */
 const tslint = require('gulp-tslint');
@@ -49,7 +49,7 @@ const runSequence = require('run-sequence');
 const LIBRARY_NAME = 'ng2-sharebuttons';
 
 const config = {
-    allTs: 'src/**/*.ts',
+    allTs: 'src/**/!(*.spec).ts',
     allSass: 'src/**/*.scss',
     allHtml: 'src/**/*.html',
     demoDir: 'demo/',
