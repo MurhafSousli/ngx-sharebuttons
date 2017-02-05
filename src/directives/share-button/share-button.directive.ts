@@ -18,6 +18,7 @@ export class ShareButtonDirective implements OnChanges {
 
     /** Button type e.g. fb, twitter, reddit...etc */
     @Input() shareButton: string;
+
     /** Share Args */
     @Input() sbUrl: string;
     @Input() sbTitle: string;
@@ -25,6 +26,7 @@ export class ShareButtonDirective implements OnChanges {
     @Input() sbImg: string;
     @Input() sbTags: string;
     @Input() sbCount: boolean;
+
     /** Output button count to calculate total share counts */
     @Output() sbCount$ = new EventEmitter<number>();
     /** Output pop up closed*/
