@@ -8,8 +8,8 @@ import 'rxjs/add/observable/of';
 
 import { ShareButtonsModule } from '../../share-buttons.module';
 import { ShareButtonComponent } from './share-button.component';
-import { ShareButtonsService } from '../../service/share-buttons.service';
-import { WindowService } from './../../service/window.service';
+import { ShareButtonsService } from '../../services/share-buttons.service';
+import { WindowService } from './../../services/window.service';
 import { ShareButton, ShareArgs, ShareProvider, Helper, NFormatterPipe } from '../../helpers';
 import { TestHelpers } from '../../test-helpers';
 
@@ -170,8 +170,8 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
     const shareUrl = Helper.shareFactory(sBtn.provider, args);
 
 
-    let emittedProvider: ShareProvider;
-    sbComponent.popUpClosed.subscribe((provider: ShareProvider) => {
+    let emittedProvider: string;
+    sbComponent.closed$.subscribe((provider: string) => {
       emittedProvider = provider;
     });
 
@@ -180,7 +180,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
 
     shareButton.triggerEventHandler('click', null); // simulate click on button
 
-    expect(shareSpy).toHaveBeenCalledWith(sBtn.provider, args, sbComponent.popUpClosed);
+    expect(shareSpy).toHaveBeenCalledWith(sBtn.provider, args, sbComponent.closed$);
     expect(emittedProvider).toEqual(sBtn.provider);
 
     expect(windowService.nativeWindow.open.calls.count()).toBe(1);
@@ -210,13 +210,13 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
     const sbComponent = getShareButtonComponent(fixture);
 
     let emittedShareCount: number;
-    sbComponent.countOuter.subscribe((count: number) => {
+    sbComponent.count$.subscribe((count: number) => {
       emittedShareCount = count;
     });
 
     const shareCount = 1999;
     const countSpy = spyOn(sbService, 'count').and.callFake(// spy on ShareButtonsService.count()
-      (provider: ShareProvider, url: String) => Observable.of(shareCount)
+      (provider: string, url: String) => Observable.of(shareCount)
     );
 
     fixture.detectChanges(); // trigger data binding
@@ -250,13 +250,13 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
     const sbComponent = getShareButtonComponent(fixture);
 
     let emittedShareCount: number;
-    sbComponent.countOuter.subscribe((count: number) => {
+    sbComponent.count$.subscribe((count: number) => {
       emittedShareCount = count;
     });
 
     const shareCount = 0;
     const countSpy = spyOn(sbService, 'count').and.callFake(// spy on ShareButtonsService.count()
-      (provider: ShareProvider, url: String) => Observable.of(shareCount)
+      (provider: string, url: String) => Observable.of(shareCount)
     );
 
     fixture.detectChanges(); // trigger data binding
@@ -276,5 +276,5 @@ class TestComponent {
   sBtn = new ShareButton(ShareProvider.LINKEDIN, '<i class="fa fa-linkedin"></i>', 'linkedin');
 
   countCallback = jasmine.createSpy('countCallback').and.callFake((count: number) => { });
-  popUpCallback = jasmine.createSpy('popUpCallback').and.callFake((provider: ShareProvider) => { });
+  popUpCallback = jasmine.createSpy('popUpCallback').and.callFake((provider: string) => { });
 }

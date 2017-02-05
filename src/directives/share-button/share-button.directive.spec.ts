@@ -8,8 +8,8 @@ import 'rxjs/add/observable/of';
 
 import { ShareButtonsModule } from '../../share-buttons.module';
 import { ShareButtonDirective } from './share-button.directive';
-import { ShareButtonsService } from '../../service/share-buttons.service';
-import { WindowService } from './../../service/window.service';
+import { ShareButtonsService } from '../../services/share-buttons.service';
+import { WindowService } from '../../services/window.service';
 import { ShareButton, ShareArgs, ShareProvider, Helper } from '../../helpers';
 import { TestHelpers } from '../../test-helpers';
 
@@ -83,17 +83,17 @@ describe('ShareButtonDirective', () => {
         expect(sbButton).toBeTruthy();
     });
 
-    it('should call share() when the button is clicked and emit "popUpClosed" event', () => {
+    it('should call share() when the button is clicked and emit "sbclosed" event', () => {
 
         const fixture = createTestComponent(`
-         <button [shareButton] ="sBtn.provider" 
-           [url]="sArgs.url" 
-           [title]="sArgs.title" 
-           [description]="sArgs.description" 
-           [image]="sArgs.image" 
-           [tags]="sArgs.tags"
-           [count]="true"
-           (popUpClosed) = "popUpCallback($event)">
+         <button [shareButton] ="sBtn.provider"
+           [sbUrl]="sArgs.url"
+           [sbTitle]="sArgs.title"
+           [sbDesc]="sArgs.description"
+           [sbImg]="sArgs.image"
+           [sbTags]="sArgs.tags"
+           [sbCount]="true"
+           (sbClosed) = "shareClosed($event)">
          </button>
        `);
 
@@ -121,14 +121,13 @@ describe('ShareButtonDirective', () => {
     it('should render the share count and emit "countOuter" event if @Input("count") is true and shareCount > 0', () => {
 
         const fixture = createTestComponent(`
-         <button [shareButton]="sBtn.provider" 
-           [url]="sArgs.url" 
-           [title]="sArgs.title" 
-           [description]="sArgs.description" 
-           [image]="sArgs.image" 
-           [tags]="sArgs.tags"
-           [count]="true"
-           (countOuter) = "countCallback($event)">
+         <button [shareButton]="sBtn.provider"
+           [sbUrl]="sArgs.url"
+           [sbTitle]="sArgs.title"
+           [sbDesc]="sArgs.description"
+           [sbImg]="sArgs.image"
+           [sbTags]="sArgs.tags"
+           (sbCount)="countCallback($event)">
          </button>
        `);
 
@@ -137,7 +136,7 @@ describe('ShareButtonDirective', () => {
         const testComponent = fixture.componentInstance;
         const shareCount = 1999;
         const countSpy = spyOn(sbService, 'count').and.callFake(// spy on ShareButtonsService.count()
-            (provider: ShareProvider, url: String) => Observable.of(shareCount)
+            (provider: string, url: String) => Observable.of(shareCount)
         );
 
         fixture.detectChanges(); // trigger data binding
@@ -154,5 +153,5 @@ class TestComponent {
     sBtn = new ShareButton(ShareProvider.LINKEDIN, '<i class="fa fa-linkedin"></i>', 'linkedin');
 
     countCallback = jasmine.createSpy('countCallback').and.callFake((count: number) => { });
-    popUpCallback = jasmine.createSpy('popUpCallback').and.callFake((provider: ShareProvider) => { });
+    popUpCallback = jasmine.createSpy('popUpCallback').and.callFake((provider: string) => { });
 }

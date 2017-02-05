@@ -4,19 +4,16 @@ import { By } from '@angular/platform-browser';
 import { Component, DebugElement, ElementRef, Renderer } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http';
 
-
-import { ShareButtonsModule } from './../../share-buttons.module';
+import { ShareButtonsModule } from '../../share-buttons.module';
 import { ShareButtonsComponent } from './share-buttons.component';
-import { ShareButtonComponent } from './../share-button/share-button.component';
-import { NFormatterPipe } from './../../helpers/n-formatter.pipe';
-import { ShareButtonsService } from './../../service/share-buttons.service';
-import { WindowService } from './../../service/window.service';
-import { ShareButton, ShareArgs } from './../../helpers/share-buttons.class';
-import { ShareProvider } from './../../helpers/share-provider.enum';
+import { ShareButtonComponent } from '../share-button/share-button.component';
+import { NFormatterPipe } from '../../helpers/n-formatter.pipe';
+import { ShareButtonsService } from '../../services/share-buttons.service';
+import { WindowService } from '../../services/window.service';
+import { ShareButton, ShareArgs } from '../../helpers/share-buttons.class';
+import { ShareProvider } from '../../helpers/share-provider.enum';
 
 import { TestHelpers } from '../../test-helpers';
-
-
 
 const sArgs = new ShareArgs('http://www.mysite.com', 'my title', 'my description', 'https://my/image.png', 'tag1,tag2');
 
@@ -27,10 +24,11 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [HttpModule, JsonpModule],
-            declarations: [ShareButtonsComponent, ShareButtonComponent, NFormatterPipe],
+            declarations: [ShareButtonsComponent, NFormatterPipe],
             providers: [ShareButtonsService, Renderer,
                 { provide: WindowService, useClass: TestHelpers.MockWindowService },
-                { provide: ElementRef, useClass: TestHelpers.MockElementRef }]
+                { provide: ElementRef, useClass: TestHelpers.MockElementRef }
+              ]
         })
             .compileComponents();
     }));
@@ -38,7 +36,6 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ShareButtonsComponent);
         component = fixture.componentInstance;
-
     });
 
     it('should render all share buttons by default', () => {
@@ -135,7 +132,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(fbButton).toBeTruthy();
         expect(fbButton.nativeElement.className).toEqual('facebook');
         expect(fbButton.nativeElement.innerHTML).toEqual('<i class="fa fa-facebook"></i>');
-        // make sure that @Input of inner share-button have been properly bound 
+        // make sure that @Input of inner share-button have been properly bound
         const fbShareButtonComp = fbButton.context as ShareButtonComponent;
         expect(fbShareButtonComp.url).toEqual(encodeURIComponent(component.url));
         expect(fbShareButtonComp.title).toEqual(component.title);
@@ -177,7 +174,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(twButton).toBeTruthy();
         expect(twButton.nativeElement.className).toEqual('twitter');
         expect(twButton.nativeElement.innerHTML).toEqual('<i class="fa fa-twitter"></i>');
-        // make sure that @Input of inner share-button have been properly bound 
+        // make sure that @Input of inner share-button have been properly bound
         const twShareButtonComp = twButton.context as ShareButtonComponent;
         expect(twShareButtonComp.url).toEqual(encodeURIComponent(component.url));
         expect(twShareButtonComp.title).toEqual(component.title);
@@ -218,7 +215,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(rdButton).toBeTruthy();
         expect(rdButton.nativeElement.className).toEqual('reddit');
         expect(rdButton.nativeElement.innerHTML).toEqual('<i class="fa fa-reddit-alien"></i>');
-        // make sure that @Input of inner share-button have been properly bound 
+        // make sure that @Input of inner share-button have been properly bound
         const rdShareButtonComp = rdButton.context as ShareButtonComponent;
         expect(rdShareButtonComp.url).toEqual(encodeURIComponent(component.url));
         expect(rdShareButtonComp.title).toEqual(component.title);
@@ -260,7 +257,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(stButton).toBeTruthy();
         expect(stButton.nativeElement.className).toEqual('stumbleupon');
         expect(stButton.nativeElement.innerHTML).toEqual('<i class="fa fa-stumbleupon"></i>');
-        // make sure that @Input of inner share-button have been properly bound 
+        // make sure that @Input of inner share-button have been properly bound
         const stShareButtonComp = stButton.context as ShareButtonComponent;
         expect(stShareButtonComp.url).toEqual(encodeURIComponent(component.url));
         expect(stShareButtonComp.title).toEqual(component.title);
@@ -302,7 +299,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(lnButton).toBeTruthy();
         expect(lnButton.nativeElement.className).toEqual('linkedin');
         expect(lnButton.nativeElement.innerHTML).toEqual('<i class="fa fa-linkedin"></i>');
-        // make sure that @Input of inner share-button have been properly bound 
+        // make sure that @Input of inner share-button have been properly bound
         const lnShareButtonComp = lnButton.context as ShareButtonComponent;
         expect(lnShareButtonComp.url).toEqual(encodeURIComponent(component.url));
         expect(lnShareButtonComp.title).toEqual(component.title);
@@ -344,7 +341,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(gplusButton).toBeTruthy();
         expect(gplusButton.nativeElement.className).toEqual('googleplus');
         expect(gplusButton.nativeElement.innerHTML).toEqual('<i class="fa fa-google-plus"></i>');
-        // make sure that @Input of inner share-button have been properly bound 
+        // make sure that @Input of inner share-button have been properly bound
         const gplusShareButtonComp = gplusButton.context as ShareButtonComponent;
         expect(gplusShareButtonComp.url).toEqual(encodeURIComponent(component.url));
         expect(gplusShareButtonComp.title).toEqual(component.title);
@@ -386,7 +383,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(tbButton).toBeTruthy();
         expect(tbButton.nativeElement.className).toEqual('tumblr');
         expect(tbButton.nativeElement.innerHTML).toEqual('<i class="fa fa-tumblr"></i>');
-        // make sure that @Input of inner share-button have been properly bound 
+        // make sure that @Input of inner share-button have been properly bound
         const tbShareButtonComp = tbButton.context as ShareButtonComponent;
         expect(tbShareButtonComp.url).toEqual(encodeURIComponent(component.url));
         expect(tbShareButtonComp.title).toEqual(component.title);
@@ -430,7 +427,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(ptButton).toBeTruthy();
         expect(ptButton.nativeElement.className).toEqual('pinterest');
         expect(ptButton.nativeElement.innerHTML).toEqual('<i class="fa fa-pinterest-p"></i>');
-        // make sure that @Input of inner share-button have been properly bound 
+        // make sure that @Input of inner share-button have been properly bound
         const ptShareButtonComp = ptButton.context as ShareButtonComponent;
         expect(ptShareButtonComp.url).toEqual(encodeURIComponent(component.url));
         expect(ptShareButtonComp.title).toEqual(component.title);
@@ -453,5 +450,3 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
 
 
 });
-
-
