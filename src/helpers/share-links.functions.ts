@@ -100,4 +100,21 @@ export module ShareLinks {
         return shareUrl;
     }
 
+    export function whatsappShare(args: ShareArgs) {
+        let shareUrl = 'whatsapp://send?text=';
+
+        // Title will add a new line
+        if (args.title) {
+            shareUrl += `*${args.title}* %0A`;
+        }
+
+        // Description adds a pipe to separate the url
+        if (args.description) {
+            shareUrl += `${args.description} | `;
+        }
+
+        shareUrl += `${args.url}`;
+        return shareUrl;
+    }
+
 }

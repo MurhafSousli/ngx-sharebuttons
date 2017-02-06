@@ -7,7 +7,8 @@ export const ShareProvider = {
     LINKEDIN: 'linkedin',
     GOOGLEPLUS: 'google',
     TUMBLR: 'tumblr',
-    PINTEREST: 'pinterest'
+    PINTEREST: 'pinterest',
+    WHATSAPP: 'whatsapp'
 };
 
 export class ShareButton {
