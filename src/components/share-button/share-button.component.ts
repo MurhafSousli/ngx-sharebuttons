@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { ShareButton } from '../../helpers';
+import { ShareButton, ShareProvider } from '../../helpers';
 
 @Component({
     selector: 'share-button',
@@ -18,18 +18,23 @@ export class ShareButtonComponent {
     /** Button type e.g. fb, twitter, reddit...etc */
     @Input() button: ShareButton;
     /** Show count, disabled by default */
-    @Input() count: boolean = false;
+    @Input() showCount: boolean = false;
     /** Output button count to calculate total share counts */
-    @Output() count$ = new EventEmitter<number>();
+    @Output() count = new EventEmitter<number>();
     /** Output pop up closed*/
-    @Output() closed$ = new EventEmitter<string>();
+    @Output() popUpClosed = new EventEmitter<ShareProvider>();
 
     /** Share count for this button */
     shareCount: number;
 
     counter(count: number) {
         this.shareCount = count;
-        this.count$.emit(count);
+        this.count.emit(count);
+    }
+
+    /** emits closed button type: so user can tell which button has been clicked */
+    shareClosed(provider: ShareProvider) {
+        this.popUpClosed.emit(provider);
     }
 
 }

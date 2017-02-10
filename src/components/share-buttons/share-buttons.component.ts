@@ -30,7 +30,7 @@ export class ShareButtonsComponent implements OnInit, OnChanges {
     /** Sharing title */
     @Input() shareTitle: string;
     /** Show count on share-buttons, disabled by default */
-    @Input() count: boolean = false;
+    @Input() showCount: boolean = false;
     /** Show total counts for all buttons, disabled by default */
     @Input() totalCount: boolean = false;
     /** Indicates weather default style is applied to the buttons */
@@ -48,8 +48,8 @@ export class ShareButtonsComponent implements OnInit, OnChanges {
     @Input() stumbleUpOn: any = '<i class="fa fa-stumbleupon"></i>';
     @Input() reddit: any = '<i class="fa fa-reddit-alien"></i>';
 
-    @Output() count$ = new EventEmitter<number>();
-    @Output() closed$ = new EventEmitter<string>();
+    @Output() count = new EventEmitter<number>();
+    @Output() popUpClosed = new EventEmitter<ShareProvider>();
 
     /** Share buttons to be displayed   */
     buttons: ShareButton[];
@@ -131,11 +131,11 @@ export class ShareButtonsComponent implements OnInit, OnChanges {
     /** Sum all buttons count & emits total */
     counter(count: number) {
         this.tCount += count;
-        this.count$.emit(count);
+        this.count.emit(count);
     }
 
     /** emits closed button type: so user can tell which button has been clicked */
-    shareClosed(provider) {
-        this.closed$.emit(provider);
+    shareClosed(provider: ShareProvider) {
+        this.popUpClosed.emit(provider);
     }
 }

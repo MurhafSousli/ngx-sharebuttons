@@ -1,18 +1,8 @@
-
-export const ShareProvider = {
-    FACEBOOK: 'facebook',
-    TWITTER: 'twitter',
-    REDDIT: 'reddit',
-    STUMBLEUPON: 'stumble',
-    LINKEDIN: 'linkedin',
-    GOOGLEPLUS: 'google',
-    TUMBLR: 'tumblr',
-    PINTEREST: 'pinterest'
-};
+import { ShareProvider } from './share-provider.enum';
 
 export class ShareButton {
 
-    constructor(public provider: string,
+    constructor(public provider: ShareProvider,
         public template: string,
         public classes: string) {
     }
