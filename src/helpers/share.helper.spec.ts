@@ -88,6 +88,12 @@ describe('Module: Helper, Isolate Tests', () => {
             expect(Helper.shareFactory(ShareProvider.PINTEREST, pinArgs)).toEqual(shareUrl);
         });
 
+        it('should return an share url for WHATSAPP provider', () => {
+
+            let shareUrl = 'whatsapp://send?text=*my title* %0Amy description | http://www.mysite.com';
+            expect(Helper.shareFactory(ShareProvider.WHATSAPP, args)).toEqual(shareUrl);
+        });
+
     });
 
     describe('getEnumValue()', () => {
