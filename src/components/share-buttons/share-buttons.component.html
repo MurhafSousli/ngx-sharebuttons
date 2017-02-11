@@ -14,8 +14,8 @@
     [title]="title"
     [description]="description"
     [tags]="tags"
-    [count]="count"
-    (count$)="counter($event)"
-    (closed$)="shareClosed($event)"></share-button>
+    [showCount]="count"
+    (count)="counter($event)"
+    (popUpClosed)="shareClosed($event)"></share-button>
   </div>
 </div>

@@ -1,4 +1,5 @@
-import { ShareArgs, ShareProvider } from './share-buttons.class';
+import { ShareArgs } from './share-buttons.class';
+import { ShareProvider } from './share-provider.enum';
 import { ShareLinks } from './share-links.functions';
 
 export module Helper {
@@ -21,7 +22,7 @@ export module Helper {
         }];
     };
 
-    export const shareFactory = (type: string, args: ShareArgs): string => {
+    export const shareFactory = (type: ShareProvider, args: ShareArgs): string => {
         switch (type) {
             case ShareProvider.FACEBOOK:
                 return ShareLinks.fbShare(args);
@@ -60,6 +61,19 @@ export module Helper {
             }
         }
         return num.toFixed(digits).replace(rx, '$1');
+    };
+
+    export const getEnumValue = <T>(value: string | number, enumeration: T) => {
+        let result: number;
+        if (typeof value !== 'undefined') {
+            if (typeof value === 'string' && enumeration[value.toUpperCase()] >= 0) {
+                result = <number>enumeration[value.toUpperCase()];
+            } else if (typeof value === 'number' && enumeration[`${value}`]) {
+                result = <number>enumeration[enumeration[`${value}`]];
+            }
+        }
+
+        return result;
     };
 
 }

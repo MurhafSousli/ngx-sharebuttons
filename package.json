@@ -44,7 +44,7 @@
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/platform-server": "2.0.0",
     "@angular/router": "3.0.0",
-    "@types/jasmine": "^2.5.40",
+    "@types/jasmine": "2.5.41",
     "@types/node": "^6.0.58",
     "angular2-template-loader": "^0.6.0",
     "autoprefixer": "^6.6.1",
