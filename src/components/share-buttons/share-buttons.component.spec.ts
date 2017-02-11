@@ -56,7 +56,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         const sbButtons = fixture.debugElement.query(By.css('.sb-buttons'));
 
         expect(sbButtons).toBeTruthy();
-        expect(sbButtons.children.length).toEqual(8); // currently 8 share buttons
+        expect(sbButtons.children.length).toEqual(9); // currently 8 share buttons
 
         expect(sbButtons.query(By.css('.facebook'))).toBeTruthy();
         expect(sbButtons.query(By.css('.twitter'))).toBeTruthy();
@@ -66,6 +66,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(sbButtons.query(By.css('.googleplus'))).toBeTruthy();
         expect(sbButtons.query(By.css('.pinterest'))).toBeTruthy();
         expect(sbButtons.query(By.css('.tumblr'))).toBeTruthy();
+         expect(sbButtons.query(By.css('.whatsapp'))).toBeTruthy();
     });
 
     it('should render "shareTitle" when provided', () => {
@@ -452,6 +453,46 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
 
     });
 
+   it('should render WHATSAPP button using default template and classes', () => {
+
+        // optional inputs
+        component.url = sArgs.url;
+        component.title = sArgs.title;
+        component.description = sArgs.description;
+        component.image = sArgs.image;
+        component.tags = sArgs.tags;
+
+        fixture.detectChanges(); // trigger data binding
+
+        const sbButtons = fixture.debugElement.query(By.css('.sb-buttons'));
+
+        expect(sbButtons).toBeTruthy();
+
+        // whatsapp button
+        const waButton = sbButtons.query(By.css('.whatsapp'));
+        expect(waButton).toBeTruthy();
+        expect(waButton.nativeElement.className).toEqual('whatsapp');
+        expect(waButton.nativeElement.innerHTML).toEqual('<i class="fa fa-whatsapp"></i>');
+        // make sure that @Input of inner share-button have been properly bound
+        const twShareButtonComp = waButton.context as ShareButtonComponent;
+        expect(twShareButtonComp.url).toEqual(component.url);
+        expect(twShareButtonComp.title).toEqual(component.title);
+        expect(twShareButtonComp.description).toEqual(component.description);
+        expect(twShareButtonComp.image).toEqual(component.image);
+        expect(twShareButtonComp.tags).toEqual(component.tags);
+    });
+
+    it('should NOT render WHATSAPP button when @Input("whatsapp") is false', () => {
+
+        component.whatsApp = false;
+
+        fixture.detectChanges(); // trigger data binding
+
+        const waButton = fixture.debugElement.query(By.css('.whatsapp'));
+
+        expect(waButton).toBeFalsy();
+
+    });
 
 
 
@@ -498,7 +539,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
 
         fixture.detectChanges(); // trigger data binding
 
-        const nbTotalButtons = 8; // see ShareProvider enum
+        const nbTotalButtons = 9; // see ShareProvider enum
         expect(testComponent.countCallback).toHaveBeenCalledTimes(nbTotalButtons);
         //make sure that counts have been summed up
 

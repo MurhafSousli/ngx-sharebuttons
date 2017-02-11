@@ -8,6 +8,7 @@ $reddit: #FF4006;
 $tumbler: #36465D;
 $github: #800080;
 $stackoverflow: #F48023;
+$whatsapp: #128C7E;
 
 $count-color: #333333;
 $arrow-color: #E03237;
@@ -113,5 +114,9 @@ $arrow-color: #E03237;
 
   .stackoverflow {
     @include btnColor($stackoverflow);
+  }
+
+  .whatsapp {
+    @include btnColor($whatsapp);
   }
 }

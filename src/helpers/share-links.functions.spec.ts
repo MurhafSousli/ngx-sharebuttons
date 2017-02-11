@@ -66,6 +66,12 @@ describe('Module: ShareLinks, Isolated Tests', () => {
             expect(ShareLinks.pinShare(pinArgs)).toEqual(shareUrl);
         });
 
+        it('should return an share url for WHATSAPP provider', () => {
+
+            let shareUrl = 'whatsapp://send?text=*my title* %0Amy description | http://www.mysite.com';
+            expect(ShareLinks.whatsappShare(args)).toEqual(shareUrl);
+        });
+
     });
 
 });

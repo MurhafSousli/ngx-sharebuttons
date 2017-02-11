@@ -40,6 +40,8 @@ export module Helper {
                 return ShareLinks.gPlusShare(args);
             case ShareProvider.PINTEREST:
                 return ShareLinks.pinShare(args);
+            case ShareProvider.WHATSAPP:
+                return ShareLinks.whatsappShare(args);
             default:
                 return '';
         }
