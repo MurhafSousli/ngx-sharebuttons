@@ -1,5 +1,6 @@
 import { ShareProvider } from './share-provider.enum';
 
+
 export class ShareButton {
 
     constructor(public provider: ShareProvider,
