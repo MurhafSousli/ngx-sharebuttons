@@ -1,15 +1,16 @@
 /* tslint:disable:no-unused-variable */
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, EventEmitter } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 import { ShareButtonsModule } from '../../share-buttons.module';
+import { ShareButtonDirective } from './../../directives/share-button/share-button.directive';
 import { ShareButtonComponent } from './share-button.component';
-import { ShareButtonsService } from '../../service/share-buttons.service';
-import { WindowService } from './../../service/window.service';
+import { ShareButtonsService } from '../../services/share-buttons.service';
+import { WindowService } from './../../services/window.service';
 import { ShareButton, ShareArgs, ShareProvider, Helper, NFormatterPipe } from '../../helpers';
 import { TestHelpers } from '../../test-helpers';
 
@@ -35,7 +36,7 @@ describe('ShareButtonComponent (as a stand-alone component)', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule, JsonpModule],
-      declarations: [ShareButtonComponent, NFormatterPipe],
+      declarations: [ShareButtonComponent, ShareButtonDirective, NFormatterPipe],
       providers: [ShareButtonsService,
         { provide: WindowService, useClass: TestHelpers.MockWindowService }]
     })
@@ -51,7 +52,9 @@ describe('ShareButtonComponent (as a stand-alone component)', () => {
 
 
   it('should throw error if mandatory @Input("button") is not set', () => {
-    expect(fixture.detectChanges).toThrowError();
+    expect(() =>
+      fixture.detectChanges()
+    ).toThrowError();
   });
 
   it('should successfully create instance if mandatory inputs are set', () => {
@@ -81,10 +84,9 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
   });
 
   it('should throw error if mandatory @Input("button") is not set', () => {
-    const fixture = createTestComponent(`
-      <share-button></share-button>
-    `);
-    expect(fixture.detectChanges).toThrowError();
+    expect(() =>
+      createTestComponent(`<share-button></share-button>`, true)
+    ).toThrowError();
   });
 
   it('should bind to parameters provided by hosting component', () => {
@@ -95,7 +97,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
            [description]="sArgs.description" 
            [image]="sArgs.image" 
            [tags]="sArgs.tags"
-           [count]="true"
+           [showCount]="true"
            (countOuter) = "countCallback($event)"
            (popUpClosed) = "popUpCallback($event)">
          </share-button>
@@ -122,30 +124,6 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
   });
 
 
-  it('should use "window.location.href" when no url is provided', () => {
-    const fixture = createTestComponent(`
-         <share-button [button]="sBtn"> 
-         </share-button>
-       `, true /* detectChanges */);
-
-    const sbComponent = getShareButtonComponent(fixture);
-    expect(sbComponent.url).toEqual(encodeURIComponent(TestHelpers.windowUrl));
-
-  });
-
-  it('should use "window.location.href" when provided url is invalid', () => {
-
-    const fixture = createTestComponent(`
-         <share-button [button]="sBtn"> 
-          [url]="invalid://www.mysite.com"
-         </share-button>
-       `, true /* detectChanges */);
-
-    const sbComponent = getShareButtonComponent(fixture);
-    expect(sbComponent.url).toEqual(encodeURIComponent(TestHelpers.windowUrl));
-
-  });
-
   it('should call share() when the button is clicked and emit "popUpClosed" event', () => {
 
     const fixture = createTestComponent(`
@@ -169,30 +147,29 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
     const args = new ShareArgs(encodeURIComponent(sArgs.url), sArgs.title, sArgs.description, sArgs.image, sArgs.tags);
     const shareUrl = Helper.shareFactory(sBtn.provider, args);
 
-
     let emittedProvider: ShareProvider;
     sbComponent.popUpClosed.subscribe((provider: ShareProvider) => {
       emittedProvider = provider;
     });
 
-
     fixture.detectChanges(); // trigger data binding
 
     shareButton.triggerEventHandler('click', null); // simulate click on button
 
-    expect(shareSpy).toHaveBeenCalledWith(sBtn.provider, args, sbComponent.popUpClosed);
+    expect(shareSpy).toHaveBeenCalledTimes(1);
+    expect(shareSpy.calls.first().args).toContain(sBtn.provider, args);
     expect(emittedProvider).toEqual(sBtn.provider);
 
-    expect(windowService.nativeWindow.open.calls.count()).toBe(1);
-    expect(windowService.nativeWindow.open.calls.mostRecent().args).toEqual([shareUrl, 'newwindow', sbService.windowAttr()]);
-    expect(windowService.nativeWindow.setInterval.calls.count()).toBe(1);
-    expect(windowService.nativeWindow.clearInterval.calls.count()).toBe(1); // make sure timeout handler has been cleared
+    expect(windowService.nativeWindow.open).toHaveBeenCalledTimes(1);
+    expect(windowService.nativeWindow.open).toHaveBeenCalledWith(shareUrl, 'newwindow', sbService.windowAttr());
+    expect(windowService.nativeWindow.setInterval).toHaveBeenCalledTimes(1);
+    expect(windowService.nativeWindow.clearInterval).toHaveBeenCalledTimes(1); // make sure timeout handler has been cleared
 
+    expect(testComponent.popUpCallback).toHaveBeenCalledTimes(1);
     expect(testComponent.popUpCallback).toHaveBeenCalledWith(testComponent.sBtn.provider);
   });
 
-
-  it('should render the share count and emit "countOuter" event if @Input("count") is true and shareCount > 0', () => {
+  it('should render the share count and emit "countOuter" event if @Input("showCount") is true and shareCount > 0', () => {
 
     const fixture = createTestComponent(`
          <share-button [button]="sBtn" 
@@ -201,7 +178,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
            [description]="sArgs.description" 
            [image]="sArgs.image" 
            [tags]="sArgs.tags"
-           [count]="true"
+           [showCount]="true"
            (countOuter) = "countCallback($event)">
          </share-button>
        `);
@@ -210,18 +187,21 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
     const sbComponent = getShareButtonComponent(fixture);
 
     let emittedShareCount: number;
-    sbComponent.countOuter.subscribe((count: number) => {
+    sbComponent.count.subscribe((count: number) => {
       emittedShareCount = count;
     });
 
     const shareCount = 1999;
     const countSpy = spyOn(sbService, 'count').and.callFake(// spy on ShareButtonsService.count()
-      (provider: ShareProvider, url: String) => Observable.of(shareCount)
+      (provider: ShareProvider, url: String, emitter: EventEmitter<number>) => {
+        emitter.emit(shareCount);
+      }
     );
 
     fixture.detectChanges(); // trigger data binding
 
-    expect(countSpy).toHaveBeenCalledWith(sBtn.provider, encodeURIComponent(sArgs.url));
+    expect(countSpy).toHaveBeenCalledTimes(1);
+    expect(countSpy.calls.first().args).toContain(sBtn.provider, encodeURIComponent(sArgs.url));
     expect(emittedShareCount).toEqual(shareCount);
 
     const countSpan = getShareButtonDebugElm(fixture).query(By.css('span')).nativeElement;
@@ -231,7 +211,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
   });
 
 
-  it('should not render the share count, not emit "countOuter" event if @Input("count") is true but shareCount <= 0', () => {
+  it('should not render the share count, not emit "countOuter" event if @Input("showCount") is true but shareCount <= 0', () => {
 
     const fixture = createTestComponent(`
          <share-button [button]="sBtn" 
@@ -240,7 +220,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
            [description]="sArgs.description" 
            [image]="sArgs.image" 
            [tags]="sArgs.tags"
-           [count]="true"
+           [showCount]="true"
            (countOuter) = "countCallback($event)">
          </share-button>
        `);
@@ -250,19 +230,23 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
     const sbComponent = getShareButtonComponent(fixture);
 
     let emittedShareCount: number;
-    sbComponent.countOuter.subscribe((count: number) => {
+    sbComponent.count.subscribe((count: number) => {
       emittedShareCount = count;
     });
 
     const shareCount = 0;
     const countSpy = spyOn(sbService, 'count').and.callFake(// spy on ShareButtonsService.count()
-      (provider: ShareProvider, url: String) => Observable.of(shareCount)
+      (provider: ShareProvider, url: String, emitter: EventEmitter<number>) => {
+        emitter.emit(shareCount);
+      }
     );
 
     fixture.detectChanges(); // trigger data binding
 
-    expect(countSpy).toHaveBeenCalledWith(sBtn.provider, encodeURIComponent(sArgs.url));
+    expect(countSpy).toHaveBeenCalledTimes(1);
+    expect(countSpy.calls.first().args).toContain(sBtn.provider, encodeURIComponent(sArgs.url));
     expect(emittedShareCount).toEqual(shareCount);
+
     expect(getShareButtonDebugElm(fixture).query(By.css('span'))).toBeNull();
   });
 

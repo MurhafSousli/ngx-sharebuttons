@@ -105,128 +105,135 @@ describe('Service: ShareButtons, Angular Tests', () => {
 
 
     describe('count()', () => {
+        const zeroCount = new EventEmitter<number>();
+        zeroCount.subscribe((count: number) => {
+            expect(count).toEqual(0);
+        });
         const args = new ShareArgs('http://www.mysite.com', 'my title', 'my description', 'https://my/image.png', 'tag1,tag2');
 
-        it('should return an empty Observable<number> for FACEBOOK provider in case of communication error',
+        it('should emit a count of 0 for FACEBOOK provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockErrorResponse(mockBackend);
 
-                service.count(ShareProvider.FACEBOOK, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(0);
-                });
+                service.count(ShareProvider.FACEBOOK, args.url, zeroCount);
             }));
 
-        it('should return a Observable<number> for FACEBOOK provider',
+        it('should emit the appropriate for FACEBOOK provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockJsonResponse(mockBackend, { share: { share_count: ShareProvider.FACEBOOK } }); // using enum index as count
 
-                service.count(ShareProvider.FACEBOOK, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(ShareProvider.FACEBOOK);
+                const count = new EventEmitter<number>();
+                count.subscribe((c: number) => {
+                    expect(c).toEqual(ShareProvider.FACEBOOK);// using enum index as count
                 });
+                service.count(ShareProvider.FACEBOOK, args.url, count);
             }));
 
-        it('should return an empty Observable<number> for LINKEDIN provider in case of communication error',
+        it('should emit a count of 0 for LINKEDIN provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockErrorResponse(mockBackend);
 
-                service.count(ShareProvider.LINKEDIN, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(0);
-                });
+                service.count(ShareProvider.LINKEDIN, args.url, zeroCount);
             }));
 
-        it('should return a Observable<number> for LINKEDIN provider',
+        it('should emit the appropriate for LINKEDIN provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockJsonResponse(mockBackend, { count: ShareProvider.LINKEDIN }); // using enum index as count
 
-                service.count(ShareProvider.LINKEDIN, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(ShareProvider.LINKEDIN);
+                const count = new EventEmitter<number>();
+                count.subscribe((c: number) => {
+                    expect(c).toEqual(ShareProvider.LINKEDIN);// using enum index as count
                 });
+                service.count(ShareProvider.LINKEDIN, args.url, count);
             }));
 
-        it('should return an empty Observable<number> for REDDIT provider in case of communication error',
+        it('should emit a count of 0 for REDDIT provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockErrorResponse(mockBackend);
 
-                service.count(ShareProvider.REDDIT, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(0);
-                });
+                service.count(ShareProvider.REDDIT, args.url, zeroCount);
             }));
 
-        it('should return a Observable<number> for REDDIT provider',
+        it('should emit the appropriate for REDDIT provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockJsonResponse(mockBackend, { data: { children: [{ data: { score: ShareProvider.REDDIT } }] } }); // using enum index as count
 
-                service.count(ShareProvider.REDDIT, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(ShareProvider.REDDIT);
+                const count = new EventEmitter<number>();
+                count.subscribe((c: number) => {
+                    expect(c).toEqual(ShareProvider.REDDIT);// using enum index as count
                 });
+                service.count(ShareProvider.REDDIT, args.url, count);
             }));
 
 
-        it('should return an empty Observable<number> for TUMBLR provider in case of communication error',
+        it('should emit a count of 0 for TUMBLR provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockErrorResponse(mockBackend);
 
-                service.count(ShareProvider.TUMBLR, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(0);
-                });
+                service.count(ShareProvider.TUMBLR, args.url, zeroCount);
             }));
 
-        it('should return a Observable<number> for TUMBLR provider',
+        it('should emit the appropriate for TUMBLR provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockJsonResponse(mockBackend, { response: { note_count: ShareProvider.TUMBLR } }); // using enum index as count
 
-                service.count(ShareProvider.TUMBLR, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(ShareProvider.TUMBLR);
+                const count = new EventEmitter<number>();
+                count.subscribe((c: number) => {
+                    expect(c).toEqual(ShareProvider.TUMBLR);// using enum index as count
                 });
+
+                service.count(ShareProvider.TUMBLR, args.url, count);
             }));
 
-        it('should return an empty Observable<number> for GOOGLEPLUS provider in case of communication error',
+        it('should emit a count of 0 for GOOGLEPLUS provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockErrorResponse(mockBackend);
 
-                service.count(ShareProvider.GOOGLEPLUS, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(0);
-                });
+                service.count(ShareProvider.GOOGLEPLUS, args.url, zeroCount);
             }));
 
-        it('should return a Observable<number> for GOOGLEPLUS provider',
+        it('should emit the appropriate for GOOGLEPLUS provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockJsonResponse(mockBackend, [{ result: { metadata: { globalCounts: { count: ShareProvider.GOOGLEPLUS } } } }]); // using enum index as count
 
-                service.count(ShareProvider.GOOGLEPLUS, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(ShareProvider.GOOGLEPLUS);
+                const count = new EventEmitter<number>();
+                count.subscribe((c: number) => {
+                    expect(c).toEqual(ShareProvider.GOOGLEPLUS);// using enum index as count
                 });
+
+                service.count(ShareProvider.GOOGLEPLUS, args.url, count)
             }));
 
 
-        it('should return an empty Observable<number> for PINTEREST provider in case of communication error',
+        it('should emit a count of 0 for PINTEREST provider in case of communication error',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockErrorResponse(mockBackend);
 
-                service.count(ShareProvider.PINTEREST, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(0);
-                });
+                service.count(ShareProvider.PINTEREST, args.url, zeroCount);
             }));
 
-        it('should return a Observable<number> for PINTEREST provider',
+        it('should emit the appropriate for PINTEREST provider',
             inject([ShareButtonsService, MockBackend], (service: ShareButtonsService, mockBackend: MockBackend) => {
 
                 TestHelpers.mockTextResponse(mockBackend, `receiveCount({"count":${ShareProvider.PINTEREST}})`); // using enum index as count
 
-                service.count(ShareProvider.PINTEREST, args.url).subscribe((count: number) => {
-                    expect(count).toEqual(ShareProvider.PINTEREST);
+                const count = new EventEmitter<number>();
+                count.subscribe((c: number) => {
+                    expect(c).toEqual(ShareProvider.PINTEREST);// using enum index as count
                 });
+
+                service.count(ShareProvider.PINTEREST, args.url, count);
             }));
 
 

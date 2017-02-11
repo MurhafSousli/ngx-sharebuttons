@@ -1,14 +1,15 @@
 import {
     Component,
     OnInit,
+    OnChanges,
     ViewEncapsulation,
     ChangeDetectionStrategy,
     Input,
     Output,
-    EventEmitter
+    EventEmitter,
+    SimpleChanges,
 } from '@angular/core';
-import { ShareButton } from '../../helpers/share-buttons.class';
-import { ShareProvider } from '../../helpers/share-provider.enum';
+import { ShareButton, ShareProvider } from '../../helpers';
 
 @Component({
     selector: 'share-buttons',
@@ -17,7 +18,7 @@ import { ShareProvider } from '../../helpers/share-provider.enum';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShareButtonsComponent implements OnInit {
+export class ShareButtonsComponent implements OnInit, OnChanges {
 
     /** Share link args */
     @Input() url: string;
@@ -28,13 +29,10 @@ export class ShareButtonsComponent implements OnInit {
 
     /** Sharing title */
     @Input() shareTitle: string;
-
     /** Show count on share-buttons, disabled by default */
-    @Input() count: boolean = false;
-
+    @Input() showCount: boolean = false;
     /** Show total counts for all buttons, disabled by default */
     @Input() totalCount: boolean = false;
-
     /** Indicates weather default style is applied to the buttons */
     @Input() defaultStyle: boolean = true;
     /** Add default class to all buttons */
@@ -50,6 +48,7 @@ export class ShareButtonsComponent implements OnInit {
     @Input() stumbleUpOn: any = '<i class="fa fa-stumbleupon"></i>';
     @Input() reddit: any = '<i class="fa fa-reddit-alien"></i>';
 
+    @Output() count = new EventEmitter<number>();
     @Output() popUpClosed = new EventEmitter<ShareProvider>();
 
     /** Share buttons to be displayed   */
@@ -57,7 +56,6 @@ export class ShareButtonsComponent implements OnInit {
 
     /** Total Count: the sum of all buttons share count */
     tCount: number = 0;
-
 
     ngOnInit() {
         this.buttons = [];
@@ -119,11 +117,25 @@ export class ShareButtonsComponent implements OnInit {
         }
     }
 
-    counter(count: number) {
-        this.tCount += count;
+    /** Reset total count on URL changes */
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['url']) {
+            let currUrl = changes['url'].currentValue;
+            let prevUrl = changes['url'].previousValue;
+            if (currUrl && currUrl !== prevUrl) {
+                this.tCount = 0;
+            }
+        }
     }
 
-    popUpClose(provider) {
+    /** Sum all buttons count & emits total */
+    counter(count: number) {
+        this.tCount += count;
+        this.count.emit(count);
+    }
+
+    /** emits closed button type: so user can tell which button has been clicked */
+    shareClosed(provider: ShareProvider) {
         this.popUpClosed.emit(provider);
     }
 }

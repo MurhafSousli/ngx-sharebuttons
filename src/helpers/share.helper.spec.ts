@@ -92,6 +92,10 @@ describe('Module: Helper, Isolate Tests', () => {
 
     describe('getEnumValue()', () => {
 
+        it('should return undefined from undefined value', () => {
+            expect(Helper.getEnumValue(undefined, ShareProvider)).toBeUndefined();
+        });
+
         it('should return undefined from invalid enum string literal', () => {
             expect(Helper.getEnumValue('invalid', ShareProvider)).toBeUndefined();
         });
@@ -99,10 +103,6 @@ describe('Module: Helper, Isolate Tests', () => {
         it('should return undefined from invalid enum numeric value', () => {
             expect(Helper.getEnumValue(-1, ShareProvider)).toBeUndefined();
             expect(Helper.getEnumValue(999, ShareProvider)).toBeUndefined();
-        });
-
-        it('should return enum value from string literal of first entry', () => {
-            expect(Helper.getEnumValue('facebook', ShareProvider)).toEqual(ShareProvider.FACEBOOK);
         });
 
         it('should return enum value from valid string literal (case insensitive)', () => {
