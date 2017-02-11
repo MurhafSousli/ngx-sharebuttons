@@ -1,34 +1,38 @@
 /* tslint:disable:no-unused-variable */
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, DebugElement, ElementRef, Renderer } from '@angular/core';
+import { Component, DebugElement, EventEmitter } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 import { ShareButtonsModule } from '../../share-buttons.module';
 import { ShareButtonsComponent } from './share-buttons.component';
 import { ShareButtonComponent } from '../share-button/share-button.component';
+import { ShareButtonDirective } from './../../directives/share-button/share-button.directive';
 import { NFormatterPipe } from '../../helpers/n-formatter.pipe';
 import { ShareButtonsService } from '../../services/share-buttons.service';
 import { WindowService } from '../../services/window.service';
-import { ShareButton, ShareArgs } from '../../helpers/share-buttons.class';
-import { ShareProvider } from '../../helpers/share-provider.enum';
+import { ShareButton, ShareArgs, ShareProvider, Helper } from '../../helpers';
 
 import { TestHelpers } from '../../test-helpers';
 
-const sArgs = new ShareArgs('http://www.mysite.com', 'my title', 'my description', 'https://my/image.png', 'tag1,tag2');
+const createTestComponent = (html: string, detectChanges?: boolean) =>
+    TestHelpers.createGenericTestComponent(html, detectChanges, TestComponent) as ComponentFixture<TestComponent>;
+const getShareButtonsComponent = (fixture: ComponentFixture<TestComponent>): ShareButtonsComponent =>
+    fixture.debugElement.query(By.css('share-buttons')).componentInstance as ShareButtonsComponent;
+
 
 describe('ShareButtonsComponent (as a stand-alone component)', () => {
+    const sArgs = new ShareArgs('http://www.mysite.com', 'my title', 'my description', 'https://my/image.png', 'tag1,tag2');
     let component: ShareButtonsComponent;
     let fixture: ComponentFixture<ShareButtonsComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [HttpModule, JsonpModule],
-            declarations: [ShareButtonsComponent, NFormatterPipe],
-            providers: [ShareButtonsService, Renderer,
-                { provide: WindowService, useClass: TestHelpers.MockWindowService },
-                { provide: ElementRef, useClass: TestHelpers.MockElementRef }
-              ]
+            declarations: [ShareButtonsComponent, ShareButtonComponent, ShareButtonDirective, NFormatterPipe],
+            providers: [ShareButtonsService,
+                { provide: WindowService, useClass: TestHelpers.MockWindowService }
+            ]
         })
             .compileComponents();
     }));
@@ -134,7 +138,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(fbButton.nativeElement.innerHTML).toEqual('<i class="fa fa-facebook"></i>');
         // make sure that @Input of inner share-button have been properly bound
         const fbShareButtonComp = fbButton.context as ShareButtonComponent;
-        expect(fbShareButtonComp.url).toEqual(encodeURIComponent(component.url));
+        expect(fbShareButtonComp.url).toEqual(component.url);
         expect(fbShareButtonComp.title).toEqual(component.title);
         expect(fbShareButtonComp.description).toEqual(component.description);
         expect(fbShareButtonComp.image).toEqual(component.image);
@@ -176,7 +180,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(twButton.nativeElement.innerHTML).toEqual('<i class="fa fa-twitter"></i>');
         // make sure that @Input of inner share-button have been properly bound
         const twShareButtonComp = twButton.context as ShareButtonComponent;
-        expect(twShareButtonComp.url).toEqual(encodeURIComponent(component.url));
+        expect(twShareButtonComp.url).toEqual(component.url);
         expect(twShareButtonComp.title).toEqual(component.title);
         expect(twShareButtonComp.description).toEqual(component.description);
         expect(twShareButtonComp.image).toEqual(component.image);
@@ -217,7 +221,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(rdButton.nativeElement.innerHTML).toEqual('<i class="fa fa-reddit-alien"></i>');
         // make sure that @Input of inner share-button have been properly bound
         const rdShareButtonComp = rdButton.context as ShareButtonComponent;
-        expect(rdShareButtonComp.url).toEqual(encodeURIComponent(component.url));
+        expect(rdShareButtonComp.url).toEqual(component.url);
         expect(rdShareButtonComp.title).toEqual(component.title);
         expect(rdShareButtonComp.description).toEqual(component.description);
         expect(rdShareButtonComp.image).toEqual(component.image);
@@ -259,7 +263,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(stButton.nativeElement.innerHTML).toEqual('<i class="fa fa-stumbleupon"></i>');
         // make sure that @Input of inner share-button have been properly bound
         const stShareButtonComp = stButton.context as ShareButtonComponent;
-        expect(stShareButtonComp.url).toEqual(encodeURIComponent(component.url));
+        expect(stShareButtonComp.url).toEqual(component.url);
         expect(stShareButtonComp.title).toEqual(component.title);
         expect(stShareButtonComp.description).toEqual(component.description);
         expect(stShareButtonComp.image).toEqual(component.image);
@@ -301,7 +305,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(lnButton.nativeElement.innerHTML).toEqual('<i class="fa fa-linkedin"></i>');
         // make sure that @Input of inner share-button have been properly bound
         const lnShareButtonComp = lnButton.context as ShareButtonComponent;
-        expect(lnShareButtonComp.url).toEqual(encodeURIComponent(component.url));
+        expect(lnShareButtonComp.url).toEqual(component.url);
         expect(lnShareButtonComp.title).toEqual(component.title);
         expect(lnShareButtonComp.description).toEqual(component.description);
         expect(lnShareButtonComp.image).toEqual(component.image);
@@ -343,7 +347,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(gplusButton.nativeElement.innerHTML).toEqual('<i class="fa fa-google-plus"></i>');
         // make sure that @Input of inner share-button have been properly bound
         const gplusShareButtonComp = gplusButton.context as ShareButtonComponent;
-        expect(gplusShareButtonComp.url).toEqual(encodeURIComponent(component.url));
+        expect(gplusShareButtonComp.url).toEqual(component.url);
         expect(gplusShareButtonComp.title).toEqual(component.title);
         expect(gplusShareButtonComp.description).toEqual(component.description);
         expect(gplusShareButtonComp.image).toEqual(component.image);
@@ -385,7 +389,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(tbButton.nativeElement.innerHTML).toEqual('<i class="fa fa-tumblr"></i>');
         // make sure that @Input of inner share-button have been properly bound
         const tbShareButtonComp = tbButton.context as ShareButtonComponent;
-        expect(tbShareButtonComp.url).toEqual(encodeURIComponent(component.url));
+        expect(tbShareButtonComp.url).toEqual(component.url);
         expect(tbShareButtonComp.title).toEqual(component.title);
         expect(tbShareButtonComp.description).toEqual(component.description);
         expect(tbShareButtonComp.image).toEqual(component.image);
@@ -429,7 +433,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(ptButton.nativeElement.innerHTML).toEqual('<i class="fa fa-pinterest-p"></i>');
         // make sure that @Input of inner share-button have been properly bound
         const ptShareButtonComp = ptButton.context as ShareButtonComponent;
-        expect(ptShareButtonComp.url).toEqual(encodeURIComponent(component.url));
+        expect(ptShareButtonComp.url).toEqual(component.url);
         expect(ptShareButtonComp.title).toEqual(component.title);
         expect(ptShareButtonComp.description).toEqual(component.description);
         expect(ptShareButtonComp.image).toEqual(component.image);
@@ -449,4 +453,125 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
     });
 
 
+
+
 });
+
+
+describe('ShareButtonComponent (as used by hosting component)', () => {
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [ShareButtonsModule, HttpModule, JsonpModule],
+            declarations: [TestComponent],
+            providers: [
+                { provide: WindowService, useClass: TestHelpers.MockWindowService }
+            ]
+        });
+    });
+
+    it('should reset the total count when share URL changes', () => {
+
+        const fixture = createTestComponent(`
+         <share-buttons 
+           [url]="sArgs.url" 
+           [title]="sArgs.title" 
+           [description]="sArgs.description" 
+           [image]="sArgs.image" 
+           [tags]="sArgs.tags"
+           [showCount]="true"
+           (count) = "countCallback($event)">
+         </share-buttons>
+       `);
+
+        const sbService = TestBed.get(ShareButtonsService);
+        const testComponent = fixture.componentInstance;
+        const sbComponent = getShareButtonsComponent(fixture);
+
+        const shareCount = 5;//random count value
+        const countSpy = spyOn(sbService, 'count').and.callFake(// spy on ShareButtonsService.count()
+            (provider: ShareProvider, url: String, emitter: EventEmitter<number>) => {
+                // just emit random count without actually making the http requests, 
+                emitter.emit(shareCount);
+            }
+        );
+
+        fixture.detectChanges(); // trigger data binding
+
+        const nbTotalButtons = 8; // see ShareProvider enum
+        expect(testComponent.countCallback).toHaveBeenCalledTimes(nbTotalButtons);
+        //make sure that counts have been summed up
+
+        expect(sbComponent.tCount).toEqual(nbTotalButtons * shareCount);
+
+
+        //reset the 'countCallback' jasmine.Spy, to check if it has been called again after url changed 
+        testComponent.countCallback.calls.reset();
+
+        //change current url
+        testComponent.sArgs.url = 'https://twitter.com';
+        fixture.detectChanges(); // trigger data binding
+
+        //make sure that the 'countCallback' has been called again for each button
+        expect(testComponent.countCallback).toHaveBeenCalledTimes(nbTotalButtons);
+        //make sure that 'totalCount'  has NOT been 'oversummed' up
+        expect(sbComponent.tCount).toEqual(nbTotalButtons * shareCount);
+    });
+
+
+
+    it('should call "popUpClosed" with the provider referring to the button that was clicked', () => {
+
+        const fixture = createTestComponent(`
+         <share-buttons 
+           [url]="sArgs.url" 
+           [title]="sArgs.title" 
+           [description]="sArgs.description" 
+           [image]="sArgs.image" 
+           [tags]="sArgs.tags"
+           (popUpClosed) = "popUpCallback($event)">
+         </share-buttons>
+       `);
+
+        const sbService = TestBed.get(ShareButtonsService);
+        const shareSpy = spyOn(sbService, 'share').and.callThrough(); // spy on ShareButtonsService.share()
+        const windowService = TestBed.get(WindowService);
+
+        const testComponent = fixture.componentInstance;
+        const sbButtonDebugElements = fixture.debugElement.queryAll(By.css('share-button'));
+
+        fixture.detectChanges(); // trigger data binding
+
+        // simulate click on each button
+        for (let de of sbButtonDebugElements) {
+
+            const sbButtonComponent = de.context as ShareButtonComponent;
+            const button = de.query(By.css('button'));
+            const shareUrl = Helper.shareFactory(sbButtonComponent.button.provider,testComponent.sArgs);
+
+            // simulate click on the  button to share
+            button.triggerEventHandler('click', null);
+
+            expect(windowService.nativeWindow.open).toHaveBeenCalledTimes(1);
+            expect(windowService.nativeWindow.open).toHaveBeenCalledWith(shareUrl, 'newwindow', sbService.windowAttr());
+            expect(windowService.nativeWindow.setInterval).toHaveBeenCalledTimes(1);
+            expect(windowService.nativeWindow.clearInterval).toHaveBeenCalledTimes(1); // make sure timeout handler has been cleared
+
+
+            //make sure that the 'popUpCallback' has been called with button that was clicked on
+            expect(testComponent.popUpCallback).toHaveBeenCalledWith(sbButtonComponent.button.provider);
+        }
+    });
+
+
+});
+
+
+@Component({ selector: 'test-cmp', template: '' })
+class TestComponent {
+
+    sArgs = new ShareArgs('http://www.mysite.com', 'my title', 'my description', 'https://my/image.png', 'tag1,tag2');
+
+    countCallback = jasmine.createSpy('countCallback').and.callFake((count: number) => { });
+    popUpCallback = jasmine.createSpy('popUpCallback').and.callFake((provider: ShareProvider) => { });
+}
