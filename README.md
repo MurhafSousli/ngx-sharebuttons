@@ -21,6 +21,18 @@ Install it with npm
 
 `npm install ng2-sharebuttons --save`
 
+### SystemJS
+If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
+
+In your systemjs config file, `map` needs to tell the System loader where to look for `ng2-sharebuttons`:
+```js
+map: {
+  'ng2-sharebuttons': 'node_modules/ng2-sharebuttons/bundles/ng2-sharebuttons.umd.js',
+}
+```
+
+Here is a working [plunker](https://plnkr.co/edit/c9A6xzGQ8iSuKo3NMYLz), based on angular-quickstart.
+
 ## Basic usage:
 
 Add `ShareButtonsModule` to **NgModule** `imports` array

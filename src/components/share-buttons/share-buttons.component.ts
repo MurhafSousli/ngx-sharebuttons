@@ -31,8 +31,6 @@ export class ShareButtonsComponent implements OnInit, OnChanges {
     @Input() shareTitle: string;
     /** Show count on share-buttons, disabled by default */
     @Input() showCount: boolean = false;
-    /** Show total counts for all buttons, disabled by default */
-    @Input() totalCount: boolean = false;
     /** Indicates weather default style is applied to the buttons */
     @Input() defaultStyle: boolean = true;
     /** Add default class to all buttons */
@@ -139,7 +137,6 @@ export class ShareButtonsComponent implements OnInit, OnChanges {
 
     /** Sum all buttons count & emits total */
     counter(count: number) {
-        this.tCount += count;
         this.count.emit(count);
     }
 

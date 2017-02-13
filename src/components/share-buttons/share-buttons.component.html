@@ -1,11 +1,4 @@
 <div class="sb-container">
-  <h3>
-    <span *ngIf="totalCount && tCount" class="sb-count">
-      {{tCount | nFormatter: 1}}
-    </span>
-    <span *ngIf="shareTitle" class="sb-title">{{shareTitle}}</span>
-  </h3>
-
   <div class="sb-buttons" [class.sb-default-style]="defaultStyle">
     <share-button class="sb-button" *ngFor="let button of buttons"
     [button]="button"
@@ -14,7 +7,7 @@
     [title]="title"
     [description]="description"
     [tags]="tags"
-    [showCount]="count"
+    [showCount]="showCount"
     (count)="counter($event)"
     (popUpClosed)="shareClosed($event)"></share-button>
   </div>
