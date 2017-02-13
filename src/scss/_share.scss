@@ -14,12 +14,6 @@ $count-color: #333333;
 $arrow-color: #E03237;
 
 .sb-container {
-  .sb-title {
-
-  }
-  .sb-count {
-
-  }
   .sb-buttons {
     display: flex;
     justify-content: space-around;
@@ -41,10 +35,9 @@ $arrow-color: #E03237;
       text-align: center;
       position: relative;
       color: $count-color;
-
       margin-top: 10px;
-      &:before {
 
+      &:before {
         position: absolute;
         top: -7px;
         left: 50%;
@@ -54,7 +47,6 @@ $arrow-color: #E03237;
         height: 0;
         border-left: 5px solid transparent;
         border-right: 5px solid transparent;
-
         border-bottom: 5px solid $arrow-color;
       }
     }

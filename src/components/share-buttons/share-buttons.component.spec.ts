@@ -33,8 +33,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
             providers: [ShareButtonsService,
                 { provide: WindowService, useClass: TestHelpers.MockWindowService }
             ]
-        })
-            .compileComponents();
+        }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -66,55 +65,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         expect(sbButtons.query(By.css('.googleplus'))).toBeTruthy();
         expect(sbButtons.query(By.css('.pinterest'))).toBeTruthy();
         expect(sbButtons.query(By.css('.tumblr'))).toBeTruthy();
-         expect(sbButtons.query(By.css('.whatsapp'))).toBeTruthy();
-    });
-
-    it('should render "shareTitle" when provided', () => {
-
-        component.shareTitle = 'My share buttons';
-
-        fixture.detectChanges(); // trigger data binding
-
-        const sbTitle = fixture.debugElement.query(By.css('.sb-title'));
-        expect(sbTitle).toBeTruthy();
-
-        expect(sbTitle.nativeElement.innerText).toEqual(component.shareTitle);
-    });
-
-    it('should render "count" when @Input("totalCount") is true and "tCount" > 0', () => {
-
-        component.totalCount = true;
-        component.tCount = 1988;
-
-        fixture.detectChanges(); // trigger data binding
-
-        let sbCount = fixture.debugElement.query(By.css('.sb-count'));
-        expect(sbCount).toBeTruthy();
-        expect(sbCount.nativeElement.innerText).toEqual('2K'); // test NFormatterPipe as well!
-
-    });
-
-
-    it('should NOT render "count" when @Input("totalCount") is true and "tCount" = 0', () => {
-
-        component.totalCount = true;
-        component.tCount = 0;
-
-        fixture.detectChanges(); // trigger data binding
-
-        let sbCount = fixture.debugElement.query(By.css('.sb-count'));
-        expect(sbCount).toBeFalsy();
-    });
-
-    it('should NOT render "count" when @Input("totalCount") is false and "tCount" >', () => {
-
-        component.totalCount = false;
-        component.tCount = 1988;
-
-        fixture.detectChanges(); // trigger data binding
-
-        let sbCount = fixture.debugElement.query(By.css('.sb-count'));
-        expect(sbCount).toBeFalsy();
+        expect(sbButtons.query(By.css('.whatsapp'))).toBeTruthy();
     });
 
     it('should render FACEBOOK button using default template and classes', () => {
@@ -453,7 +404,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
 
     });
 
-   it('should render WHATSAPP button using default template and classes', () => {
+    it('should render WHATSAPP button using default template and classes', () => {
 
         // optional inputs
         component.url = sArgs.url;
@@ -511,55 +462,6 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
         });
     });
 
-    it('should reset the total count when share URL changes', () => {
-
-        const fixture = createTestComponent(`
-         <share-buttons 
-           [url]="sArgs.url" 
-           [title]="sArgs.title" 
-           [description]="sArgs.description" 
-           [image]="sArgs.image" 
-           [tags]="sArgs.tags"
-           [showCount]="true"
-           (count) = "countCallback($event)">
-         </share-buttons>
-       `);
-
-        const sbService = TestBed.get(ShareButtonsService);
-        const testComponent = fixture.componentInstance;
-        const sbComponent = getShareButtonsComponent(fixture);
-
-        const shareCount = 5;//random count value
-        const countSpy = spyOn(sbService, 'count').and.callFake(// spy on ShareButtonsService.count()
-            (provider: ShareProvider, url: String, emitter: EventEmitter<number>) => {
-                // just emit random count without actually making the http requests, 
-                emitter.emit(shareCount);
-            }
-        );
-
-        fixture.detectChanges(); // trigger data binding
-
-        const nbTotalButtons = 9; // see ShareProvider enum
-        expect(testComponent.countCallback).toHaveBeenCalledTimes(nbTotalButtons);
-        //make sure that counts have been summed up
-
-        expect(sbComponent.tCount).toEqual(nbTotalButtons * shareCount);
-
-
-        //reset the 'countCallback' jasmine.Spy, to check if it has been called again after url changed 
-        testComponent.countCallback.calls.reset();
-
-        //change current url
-        testComponent.sArgs.url = 'https://twitter.com';
-        fixture.detectChanges(); // trigger data binding
-
-        //make sure that the 'countCallback' has been called again for each button
-        expect(testComponent.countCallback).toHaveBeenCalledTimes(nbTotalButtons);
-        //make sure that 'totalCount'  has NOT been 'oversummed' up
-        expect(sbComponent.tCount).toEqual(nbTotalButtons * shareCount);
-    });
-
-
 
     it('should call "popUpClosed" with the provider referring to the button that was clicked', () => {
 
@@ -588,7 +490,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
 
             const sbButtonComponent = de.context as ShareButtonComponent;
             const button = de.query(By.css('button'));
-            const shareUrl = Helper.shareFactory(sbButtonComponent.button.provider,testComponent.sArgs);
+            const shareUrl = Helper.shareFactory(sbButtonComponent.button.provider, testComponent.sArgs);
 
             // simulate click on the  button to share
             button.triggerEventHandler('click', null);
