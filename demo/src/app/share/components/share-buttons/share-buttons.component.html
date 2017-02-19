@@ -1,0 +1,13 @@
+<div class="sb-buttons" [ngClass]="(defaultStyle) ? ['sb-style', 'sb-style-colors']: ''">
+  <share-button class="sb-button" *ngFor="let button of buttons"
+                [ngClass]="button.classes"
+                [button]="button"
+                [url]="url"
+                [image]="image"
+                [title]="title"
+                [description]="description"
+                [tags]="tags"
+                [showCount]="showCount"
+                (count)="counter($event)"
+                (popUpClosed)="shareClosed($event)"></share-button>
+</div>

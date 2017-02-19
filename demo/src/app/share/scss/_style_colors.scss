@@ -1,0 +1,38 @@
+.sb-style.sb-style-colors {
+
+  .facebook button {
+    @include btnBgColor($facebook);
+  }
+
+  .twitter button {
+    @include btnBgColor($twitter);
+  }
+
+  .googleplus button {
+    @include btnBgColor($googleplus);
+  }
+
+  .stumbleupon button {
+    @include btnBgColor($stumbleupon);
+  }
+
+  .linkedin button {
+    @include btnBgColor($linkedin);
+  }
+
+  .pinterest button {
+    @include btnBgColor($pinterest);
+  }
+
+  .reddit button {
+    @include btnBgColor($reddit);
+  }
+
+  .tumblr button {
+    @include btnBgColor($tumbler);
+  }
+
+  .whatsapp button {
+    @include btnBgColor($whatsapp);
+  }
+}

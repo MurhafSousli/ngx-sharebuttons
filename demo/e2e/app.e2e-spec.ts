@@ -1,10 +1,10 @@
-import { Ng2SharebuttonsPage } from './app.po';
+import { DemoPage } from './app.po';
 
-describe('ng2-sharebuttons App', function() {
-  let page: Ng2SharebuttonsPage;
+describe('demo App', function() {
+  let page: DemoPage;
 
   beforeEach(() => {
-    page = new Ng2SharebuttonsPage();
+    page = new DemoPage();
   });
 
   it('should display message saying app works', () => {

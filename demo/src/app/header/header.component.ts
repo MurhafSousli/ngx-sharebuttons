@@ -1,25 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
-  selector: 'app-header',
+  selector: 'header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
-
-  ngShareButtonLogo = 'assets/img/logo.svg';
-  fbLogo = 'assets/img/share/facebook.svg';
-  twttLogo = 'assets/img/share/twitter.svg';
-  pintLogo = 'assets/img/share/pinterest.svg';
-  stumbleLogo = 'assets/img/share/stumbleupon.svg';
-  googleLogo = 'assets/img/share/google-plus.svg';
-  tumblrLogo = 'assets/img/share/tumblr.svg';
-  redditLogo = 'assets/img/share/reddit.svg';
-  inLogo = 'assets/img/share/linkedin.svg';
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class HeaderComponent {
+  logo = 'assets/img/logo.svg';
+  description = 'Simple, lightweight, customizable share buttons with counts';
 }

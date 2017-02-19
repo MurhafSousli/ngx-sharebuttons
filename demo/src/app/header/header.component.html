@@ -1,19 +1,13 @@
-<div class="header container">
-    <div class="cover">
-        <img class="share-logo" [src]="ngShareButtonLogo"/>
-        <!--<div class="share-service fb-logo"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-        <div class="share-service twtt-logo"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-        <div class="share-service pint-logo"><i class="fa fa-pinterest-p" aria-hidden="true"></i></div>
-        <div class="share-service stumble-logo"><i class="fa fa-stumbleupon" aria-hidden="true"></i></div>
-        <div class="share-service google-logo"><i class="fa fa-google-plus" aria-hidden="true"></i></div>
-        <div class="share-service tumblr-logo"><i class="fa fa-tumblr" aria-hidden="true"></i></div>
-        <div class="share-service reddit-logo"><i class="fa fa-reddit-alien" aria-hidden="true"></i></div>
-        <div class="share-service in-logo"><i class="fa fa-linkedin" aria-hidden="true"></i></div>-->
-    </div>
-    <div class="title">
-        <h1><span class="red">Angular</span> <span>Share Buttons</span></h1>
-    </div>
+<div class="cover animated jello">
+  <img class="share-logo" [src]="logo"/>
 </div>
 
-<a href="https://github.com/MurhafSousli/ng2-sharebuttons"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+<h1><span>Angular</span> Share Buttons</h1>
 
+<share-buttons [description]="description" [tags]="'angular'"></share-buttons>
+
+<h3>{{description}}</h3>
+
+<!--<badges></badges>-->
+
+<ribbon></ribbon>

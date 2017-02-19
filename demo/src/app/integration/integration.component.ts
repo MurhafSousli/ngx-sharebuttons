@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
-  selector: 'app-integration',
+  selector: 'integration',
   templateUrl: './integration.component.html',
-  styleUrls: ['./integration.component.scss']
+  styleUrls: ['./integration.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IntegrationComponent implements OnInit {
-
-  materialUsage =
-
-  `<button md-button [shareButton]="'facebook'">Facebook on Flat button</button>
-<button md-raised-button [shareButton]="'linkedin'">LinkedIn on Raised button</button>
-<button md-fab [shareButton]="'twitter'"><md-icon>share</md-icon></button>
-<button md-mini-fab [shareButton]="'pinterest'"><md-icon>share</md-icon></button>`;
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  directiveCode = `<button [shareButton]="'pinterest'"></button>`;
+
+  directiveLayout = `<div class="material-sharebuttons">
+  <button md-button [shareButton]="'facebook'"><i class="fa fa-facebook"></i></button>
+  <button md-raised-button [shareButton]="'twitter'"><i class="fa fa-twitter"></i></button>
+  <button md-icon-button [shareButton]="'linkedin'"><i class="fa fa-linkedin"></i></button>
+  <button md-fab [shareButton]="'pinterest'"><i class="fa fa-pinterest-p"></i></button>
+</div>
+`;
 
 }

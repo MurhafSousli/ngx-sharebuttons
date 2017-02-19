@@ -1,0 +1,50 @@
+<section>
+  <h2>Usage</h2>
+
+  <p>Import <b>ShareButtonsModule</b> in your module</p>
+
+  <tabs>
+    <tab tabTitle="Code">
+      <highlight [code]="importCode"></highlight>
+    </tab>
+    <tab tabTitle="Template">
+      <highlight [code]="basicCode"></highlight>
+    </tab>
+  </tabs>
+
+  <output>
+    <share-buttons></share-buttons>
+  </output>
+
+  <p>The default icons requires <b><a href="fontawesome.io">fontawesome</a></b> to be loaded into your project
+
+  <h4>Share counters</h4>
+  <p>To display share counters, use <code highlight>[count]="true"</code></p>
+  <p>You can also sum the total number of share counters by using the output <code
+    highlight>(count)="sumCounts($event)"</code></p>
+
+  <tabs>
+    <tab tabTitle="Code">
+      <highlight [code]="countCode"></highlight>
+    </tab>
+    <tab tabTitle="Template">
+      <highlight [code]="countTemplate"></highlight>
+    </tab>
+    <tab tabTitle="Style">
+      <highlight [code]="countStyle"></highlight>
+    </tab>
+  </tabs>
+
+  <output>
+    <div class="share-container">
+      <div class="share-count">
+        <h3>{{totalShare | nFormatter}}</h3>
+        <b>SHARES</b>
+      </div>
+      <share-buttons class="withCount" [url]="'https://twitter.com'"
+                     [whatsApp]="false" [twitter]="false" [stumbleUpOn]="false"
+                     [showCount]="true" (count)="sumCounts($event)"></share-buttons>
+    </div>
+  </output>
+
+</section>

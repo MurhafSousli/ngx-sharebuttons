@@ -1,0 +1,35 @@
+.custom-buttons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 1em 0;
+
+  .sb-buttons {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    button {
+      background-color: transparent;
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        transition: all ease .35s;
+        &:hover {
+          transform: scale(0.9);
+        }
+      }
+    }
+    .facebook{
+      order: 6;
+    }
+    .twitter{
+      order: 1;
+    }
+    .whatsapp{
+      order: 2;
+    }
+  }
+}

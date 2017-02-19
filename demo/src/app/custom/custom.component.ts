@@ -1,18 +1,82 @@
-import { Component } from '@angular/core';
+import {Component, ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
 
 @Component({
-  selector: 'app-custom',
+  selector: 'custom',
   templateUrl: './custom.component.html',
-  styleUrls: ['./custom.component.scss']
+  styleUrls: ['./custom.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomComponent {
 
-  shareTitle = 'Sharing is caring';
+  fbTemp = "<img src='assets/img/facebook.svg'>";
+  twttTemp = "<img src='assets/img/twitter.svg'>";
+  pintTemp = "<img src='assets/img/pinterest.svg'>";
+  inTemp = "<img src='assets/img/linkedin.svg'>";
+  googleTemp = "<img src='assets/img/google-plus.svg'>";
+  tumblrTemp = "<img src='assets/img/tumblr.svg'>";
+  whatsTemp = "<img src='assets/img/whatsapp.svg'>";
 
-  fbInner = '<img src="assets/img/custom/custom-facebook.svg">';
-  twitterInner = '<img src="assets/img/custom/custom-twitter.svg">';
-  pintInner = '<img src="assets/img/custom/custom-pinterest.svg">';
-  inInner = '<img src="assets/img/custom/custom-linkedin.svg">';
-  googleInner = '<img src="assets/img/custom/custom-google-plus.svg">';
-  tumblrInner = '<img src="assets/img/custom/custom-tumblr.svg">';
+  cssCode = `.custom-buttons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 1em 0;
+
+  .sb-buttons {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    button {
+      background-color: transparent;
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        transition: all ease .35s;
+        &:hover {
+          transform: scale(0.9);
+        }
+      }
+    }
+
+    .facebook{
+      order: 6;
+    }
+    .twitter{
+      order: 1;
+    }
+    .whatsapp{
+      order: 2;
+    }
+  }
+}
+`;
+
+  htmlCode = `<share-buttons class="custom-buttons"
+               [defaultStyle]="false"
+
+               [facebook]="fbTemp"
+               [twitter]="twttTemp"
+               [pinterest]="pintTemp"
+               [linkedIn]="inTemp"
+               [google]="googleTemp"
+               [tumblr]="tumblrTemp"
+               [whatsApp]="whatsTemp"
+               [reddit]="false"
+               [stumbleUpOn]="false"
+></share-buttons>`;
+
+  tsCode = `export class SomeComponent {
+
+  fbTemp = "${this.fbTemp}";
+  twttTemp = "${this.twttTemp}";
+  pintTemp = "${this.pintTemp}";
+  inTemp = "${this.inTemp}";
+  googleTemp = "${this.googleTemp}";
+  tumblrTemp = "${this.tumblrTemp}";
+  whatsTemp = "${this.whatsTemp}";
+}`;
 }

@@ -1,0 +1,44 @@
+@import '../../assets/style/variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0 0 2rem;
+}
+
+h3{
+
+}
+
+span{
+  color: $action-color;
+  text-shadow: 0 4px 5px rgba(#333, 0.3);
+}
+
+img {
+  width: 300px;
+}
+
+
+.cover {
+  font-size: .7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+  position: relative;
+}
+
+.ribbon {
+  position: fixed;
+  top: 0;
+  right: 0;
+  border: 0;
+}

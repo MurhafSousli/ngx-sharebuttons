@@ -1,0 +1,32 @@
+// Breakpoints
+$x-large-screen: 1200px;
+$large-screen: 769px;
+$medium-screen: 480px;
+$small-screen: 320px;
+
+// Colors
+$twitter: #00acee;
+$facebook: #4267B2;
+$googleplus: #DB4437;
+$stumbleupon: #eb4924;
+$linkedin: #006fa6;
+$pinterest: #BD081C;
+$reddit: #FF4006;
+$tumbler: #36465D;
+$whatsapp: #25D366;
+
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+@mixin btnBgColor($color){
+
+  background: $color;
+  &:hover {
+    background: shade($color, 20%);
+  }
+}

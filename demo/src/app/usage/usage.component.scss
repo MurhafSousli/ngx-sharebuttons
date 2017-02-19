@@ -1,0 +1,24 @@
+@import "../../assets/style/variables";
+
+.share-container {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  .share-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 1rem;
+    margin-right: 1rem;
+    border-right: 2px solid $output-color;
+    h3 {
+      display: flex;
+      flex-direction: column-reverse;
+      font-size: 2.5rem;
+      margin: 0;
+    }
+    b {
+      font-size: .7rem;
+    }
+  }
+}

@@ -1,34 +1,40 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {MdButtonModule} from '@angular/material';
+import {SharedModule} from './shared/shared.module';
+import {ShareButtonsModule} from './share';
 
-import { ShareButtonsModule } from 'ng2-sharebuttons';
-import { MaterialModule } from '@angular/material';
-
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { CustomComponent } from './custom/custom.component';
-
-import { SingleComponent } from './single/single.component';
-import { IntegrationComponent } from './integration/integration.component';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
+import {InstallationComponent} from './installation/installation.component';
+import {UsageComponent} from './usage/usage.component';
+import {CustomComponent} from './custom/custom.component';
+import {IntegrationComponent} from './integration/integration.component';
+import {FooterComponent} from './footer/footer.component';
+import { NotesComponent } from './notes/notes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    InstallationComponent,
+    UsageComponent,
     CustomComponent,
-    SingleComponent,
-    IntegrationComponent
+    IntegrationComponent,
+    FooterComponent,
+    NotesComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ShareButtonsModule.forRoot(),
     HttpModule,
-    ShareButtonsModule,
-    MaterialModule.forRoot()
+    SharedModule,
+    MdButtonModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
