@@ -86,10 +86,12 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         // facebook button
         const fbButton = sbButtons.query(By.css('.facebook'));
         expect(fbButton).toBeTruthy();
-        expect(fbButton.nativeElement.className).toEqual('facebook');
-        expect(fbButton.nativeElement.innerHTML).toEqual('<i class="fa fa-facebook"></i>');
+        expect(fbButton.nativeElement.className).toEqual('sb-button facebook');
+
+        const fbTemplate = fbButton.query(By.css('.sb-template'));
+        expect(fbTemplate.nativeElement.innerHTML).toEqual('<i class="fa fa-facebook"></i>');
         // make sure that @Input of inner share-button have been properly bound
-        const fbShareButtonComp = fbButton.context as ShareButtonComponent;
+        const fbShareButtonComp = fbButton.componentInstance as ShareButtonComponent;
         expect(fbShareButtonComp.url).toEqual(component.url);
         expect(fbShareButtonComp.title).toEqual(component.title);
         expect(fbShareButtonComp.description).toEqual(component.description);
@@ -128,10 +130,12 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         // twitter button
         const twButton = sbButtons.query(By.css('.twitter'));
         expect(twButton).toBeTruthy();
-        expect(twButton.nativeElement.className).toEqual('twitter');
-        expect(twButton.nativeElement.innerHTML).toEqual('<i class="fa fa-twitter"></i>');
+        expect(twButton.nativeElement.className).toEqual('sb-button twitter');
+        
+        const twTemplate = twButton.query(By.css('.sb-template'));
+        expect(twTemplate.nativeElement.innerHTML).toEqual('<i class="fa fa-twitter"></i>');
         // make sure that @Input of inner share-button have been properly bound
-        const twShareButtonComp = twButton.context as ShareButtonComponent;
+        const twShareButtonComp = twButton.componentInstance as ShareButtonComponent;
         expect(twShareButtonComp.url).toEqual(component.url);
         expect(twShareButtonComp.title).toEqual(component.title);
         expect(twShareButtonComp.description).toEqual(component.description);
@@ -169,10 +173,12 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         // reddit button
         const rdButton = sbButtons.query(By.css('.reddit'));
         expect(rdButton).toBeTruthy();
-        expect(rdButton.nativeElement.className).toEqual('reddit');
-        expect(rdButton.nativeElement.innerHTML).toEqual('<i class="fa fa-reddit-alien"></i>');
+        expect(rdButton.nativeElement.className).toEqual('sb-button reddit');
+
+        const rdTemplate = rdButton.query(By.css('.sb-template'));
+        expect(rdTemplate.nativeElement.innerHTML).toEqual('<i class="fa fa-reddit-alien"></i>');
         // make sure that @Input of inner share-button have been properly bound
-        const rdShareButtonComp = rdButton.context as ShareButtonComponent;
+        const rdShareButtonComp = rdButton.componentInstance as ShareButtonComponent;
         expect(rdShareButtonComp.url).toEqual(component.url);
         expect(rdShareButtonComp.title).toEqual(component.title);
         expect(rdShareButtonComp.description).toEqual(component.description);
@@ -211,10 +217,12 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         // stumbleupon button
         const stButton = sbButtons.query(By.css('.stumbleupon'));
         expect(stButton).toBeTruthy();
-        expect(stButton.nativeElement.className).toEqual('stumbleupon');
-        expect(stButton.nativeElement.innerHTML).toEqual('<i class="fa fa-stumbleupon"></i>');
+        expect(stButton.nativeElement.className).toEqual('sb-button stumbleupon');
+
+        const stTemplate = stButton.query(By.css('.sb-template'));
+        expect(stTemplate.nativeElement.innerHTML).toEqual('<i class="fa fa-stumbleupon"></i>');
         // make sure that @Input of inner share-button have been properly bound
-        const stShareButtonComp = stButton.context as ShareButtonComponent;
+        const stShareButtonComp = stButton.componentInstance as ShareButtonComponent;
         expect(stShareButtonComp.url).toEqual(component.url);
         expect(stShareButtonComp.title).toEqual(component.title);
         expect(stShareButtonComp.description).toEqual(component.description);
@@ -253,10 +261,12 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         // linkedin button
         const lnButton = sbButtons.query(By.css('.linkedin'));
         expect(lnButton).toBeTruthy();
-        expect(lnButton.nativeElement.className).toEqual('linkedin');
-        expect(lnButton.nativeElement.innerHTML).toEqual('<i class="fa fa-linkedin"></i>');
+        expect(lnButton.nativeElement.className).toEqual('sb-button linkedin');
+
+        const lnTemplate = lnButton.query(By.css('.sb-template'));
+        expect(lnTemplate.nativeElement.innerHTML).toEqual('<i class="fa fa-linkedin"></i>');
         // make sure that @Input of inner share-button have been properly bound
-        const lnShareButtonComp = lnButton.context as ShareButtonComponent;
+        const lnShareButtonComp = lnButton.componentInstance as ShareButtonComponent;
         expect(lnShareButtonComp.url).toEqual(component.url);
         expect(lnShareButtonComp.title).toEqual(component.title);
         expect(lnShareButtonComp.description).toEqual(component.description);
@@ -295,10 +305,12 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         // googleplus button
         const gplusButton = sbButtons.query(By.css('.googleplus'));
         expect(gplusButton).toBeTruthy();
-        expect(gplusButton.nativeElement.className).toEqual('googleplus');
-        expect(gplusButton.nativeElement.innerHTML).toEqual('<i class="fa fa-google-plus"></i>');
+        expect(gplusButton.nativeElement.className).toEqual('sb-button googleplus');
+
+        const gplusTemplate = gplusButton.query(By.css('.sb-template'));
+        expect(gplusTemplate.nativeElement.innerHTML).toEqual('<i class="fa fa-google-plus"></i>');
         // make sure that @Input of inner share-button have been properly bound
-        const gplusShareButtonComp = gplusButton.context as ShareButtonComponent;
+        const gplusShareButtonComp = gplusButton.componentInstance as ShareButtonComponent;
         expect(gplusShareButtonComp.url).toEqual(component.url);
         expect(gplusShareButtonComp.title).toEqual(component.title);
         expect(gplusShareButtonComp.description).toEqual(component.description);
@@ -337,10 +349,12 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         // tumblr button
         const tbButton = sbButtons.query(By.css('.tumblr'));
         expect(tbButton).toBeTruthy();
-        expect(tbButton.nativeElement.className).toEqual('tumblr');
-        expect(tbButton.nativeElement.innerHTML).toEqual('<i class="fa fa-tumblr"></i>');
+        expect(tbButton.nativeElement.className).toEqual('sb-button tumblr');
+
+        const tbTemplate = tbButton.query(By.css('.sb-template'));
+        expect(tbTemplate.nativeElement.innerHTML).toEqual('<i class="fa fa-tumblr"></i>');
         // make sure that @Input of inner share-button have been properly bound
-        const tbShareButtonComp = tbButton.context as ShareButtonComponent;
+        const tbShareButtonComp = tbButton.componentInstance as ShareButtonComponent;
         expect(tbShareButtonComp.url).toEqual(component.url);
         expect(tbShareButtonComp.title).toEqual(component.title);
         expect(tbShareButtonComp.description).toEqual(component.description);
@@ -381,10 +395,12 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         // pinterest button
         const ptButton = sbButtons.query(By.css('.pinterest'));
         expect(ptButton).toBeTruthy();
-        expect(ptButton.nativeElement.className).toEqual('pinterest');
-        expect(ptButton.nativeElement.innerHTML).toEqual('<i class="fa fa-pinterest-p"></i>');
+        expect(ptButton.nativeElement.className).toEqual('sb-button pinterest');
+
+        const ptTemplate = ptButton.query(By.css('.sb-template'));
+        expect(ptTemplate.nativeElement.innerHTML).toEqual('<i class="fa fa-pinterest-p"></i>');
         // make sure that @Input of inner share-button have been properly bound
-        const ptShareButtonComp = ptButton.context as ShareButtonComponent;
+        const ptShareButtonComp = ptButton.componentInstance as ShareButtonComponent;
         expect(ptShareButtonComp.url).toEqual(component.url);
         expect(ptShareButtonComp.title).toEqual(component.title);
         expect(ptShareButtonComp.description).toEqual(component.description);
@@ -422,15 +438,17 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         // whatsapp button
         const waButton = sbButtons.query(By.css('.whatsapp'));
         expect(waButton).toBeTruthy();
-        expect(waButton.nativeElement.className).toEqual('whatsapp');
-        expect(waButton.nativeElement.innerHTML).toEqual('<i class="fa fa-whatsapp"></i>');
+        expect(waButton.nativeElement.className).toEqual('sb-button whatsapp');
+
+        const waTemplate = waButton.query(By.css('.sb-template'));
+        expect(waTemplate.nativeElement.innerHTML).toEqual('<i class="fa fa-whatsapp"></i>');
         // make sure that @Input of inner share-button have been properly bound
-        const twShareButtonComp = waButton.context as ShareButtonComponent;
-        expect(twShareButtonComp.url).toEqual(component.url);
-        expect(twShareButtonComp.title).toEqual(component.title);
-        expect(twShareButtonComp.description).toEqual(component.description);
-        expect(twShareButtonComp.image).toEqual(component.image);
-        expect(twShareButtonComp.tags).toEqual(component.tags);
+        const waShareButtonComp = waButton.componentInstance as ShareButtonComponent;
+        expect(waShareButtonComp.url).toEqual(component.url);
+        expect(waShareButtonComp.title).toEqual(component.title);
+        expect(waShareButtonComp.description).toEqual(component.description);
+        expect(waShareButtonComp.image).toEqual(component.image);
+        expect(waShareButtonComp.tags).toEqual(component.tags);
     });
 
     it('should NOT render WHATSAPP button when @Input("whatsapp") is false', () => {
@@ -454,7 +472,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ShareButtonsModule, HttpModule, JsonpModule],
+            imports: [ShareButtonsModule.forRoot(), HttpModule, JsonpModule],
             declarations: [TestComponent],
             providers: [
                 { provide: WindowService, useClass: TestHelpers.MockWindowService }
@@ -488,7 +506,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
         // simulate click on each button
         for (let de of sbButtonDebugElements) {
 
-            const sbButtonComponent = de.context as ShareButtonComponent;
+            const sbButtonComponent = de.componentInstance as ShareButtonComponent;
             const button = de.query(By.css('button'));
             const shareUrl = Helper.shareFactory(sbButtonComponent.button.provider, testComponent.sArgs);
 
