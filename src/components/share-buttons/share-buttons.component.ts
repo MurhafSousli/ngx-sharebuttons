@@ -27,8 +27,6 @@ export class ShareButtonsComponent implements OnInit, OnChanges {
     @Input() image: string;
     @Input() tags: string;
 
-    /** Sharing title */
-    @Input() shareTitle: string;
     /** Show count on share-buttons, disabled by default */
     @Input() showCount: boolean = false;
     /** Indicates weather default style is applied to the buttons */
