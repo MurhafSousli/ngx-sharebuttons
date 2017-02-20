@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ShareButtonsModule} from 'ng2-sharebuttons';
 
 import {BadgesComponent} from './badges/badges.component';
 import {OutputComponent} from './output/output.component';
@@ -24,8 +23,7 @@ import {HighlightDirective} from './highlight/directive/highlight.directive';
     HighlightDirective
   ],
   imports: [
-    CommonModule,
-    ShareButtonsModule,
+    CommonModule
   ],
   exports: [
     BadgesComponent,

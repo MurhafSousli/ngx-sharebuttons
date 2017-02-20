@@ -26,8 +26,8 @@ export module ShareLinks {
         if (args.description) {
             shareUrl += `&text=${args.description}`;
         }
-        if (this.twitterAccount) {
-            shareUrl += `&via=${this.twitterAccount}`;
+        if (args.via) {
+            shareUrl += `&via=${args.via}`;
         }
         if (args.tags) {
             shareUrl += `&hashtags=${args.tags}`;
