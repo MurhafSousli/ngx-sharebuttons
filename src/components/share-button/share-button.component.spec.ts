@@ -75,7 +75,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ShareButtonsModule, HttpModule, JsonpModule],
+      imports: [ShareButtonsModule.forRoot(), HttpModule, JsonpModule],
       declarations: [TestComponent],
       providers: [
         { provide: WindowService, useClass: TestHelpers.MockWindowService }
@@ -111,10 +111,13 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
 
     const lnButton = sbButton.query(By.css('button'));
     expect(lnButton).toBeTruthy();
-    expect(lnButton.nativeElement.className).toEqual(component.sBtn.classes);
-    expect(lnButton.nativeElement.innerHTML).toEqual(component.sBtn.template);
+    expect(lnButton.nativeElement.className).toEqual('sb-show-count');
 
-    const countSpan = sbButton.query(By.css('.share-button-count'));
+
+    const lnTemplate = sbButton.query(By.css('.sb-template'));
+    expect(lnTemplate.nativeElement.innerHTML).toEqual(component.sBtn.template);
+
+    const countSpan = sbButton.query(By.css('.sb-count'));
     if (sbComponent.shareCount) {
       expect(countSpan).toBeTruthy(); // 'count' is true, 'shareCount' = 0
     } else {
@@ -205,7 +208,7 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
     expect(emittedShareCount).toEqual(shareCount);
 
     const countSpan = getShareButtonDebugElm(fixture).query(By.css('span')).nativeElement;
-    expect(countSpan.className).toEqual('sb-button-count');
+    expect(countSpan.className).toEqual('sb-count');
     expect(countSpan.textContent).toEqual('2K'); // count formatted with NFormatterPipe
 
   });

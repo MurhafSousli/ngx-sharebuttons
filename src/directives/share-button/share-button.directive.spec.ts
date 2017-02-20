@@ -23,7 +23,7 @@ describe('ShareButtonDirective', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ShareButtonsModule, HttpModule, JsonpModule],
+            imports: [ShareButtonsModule.forRoot(), HttpModule, JsonpModule],
             declarations: [TestComponent],
             providers: [
                 { provide: WindowService, useClass: TestHelpers.MockWindowService }

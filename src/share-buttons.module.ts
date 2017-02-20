@@ -36,7 +36,7 @@ export class ShareButtonsModule {
         ShareButtonsService,
         WindowService
       ]
-    }
+    };
   }
 }
 
