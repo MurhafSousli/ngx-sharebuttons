@@ -1,114 +1,112 @@
-$twitter: #00acee;
-$facebook: #3b5998;
-$googleplus: #e93f2e;
-$stumbleupon: #f74425;
-$linkedin: #0e76a8;
-$pinterest: #C92228;
-$reddit: #FF4006;
-$tumbler: #36465D;
-$github: #800080;
-$stackoverflow: #F48023;
-$whatsapp: #128C7E;
+@import 'variables';
+@import 'style_colors';
 
-$count-color: #333333;
-$arrow-color: #E03237;
-
-.sb-container {
-  .sb-buttons {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin: 20px 0;
-
-    .sb-button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1 1 auto;
-      @media screen and (min-width: $medium-screen) {
-
-      }
-    }
-
-    .sb-button-count {
-      font-size: .8em;
-      text-align: center;
-      position: relative;
-      color: $count-color;
-      margin-top: 10px;
-
-      &:before {
-        position: absolute;
-        top: -7px;
-        left: 50%;
-        margin-left: -4px;
-        content: '';
-        width: 0;
-        height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-bottom: 5px solid $arrow-color;
-      }
-    }
-  }
-  button {
-    @extend .btn;
-
-    max-width: 80px;
-    min-width: 50px;
-    width: 100%;
-    background-color: transparent;
-    margin: 5px;
-    font-size: 1.2em;
-    &:hover {
-      transition: all ease 500ms;
-    }
-  }
+:root {
+  font-size: 16px;
 }
 
-.sb-default-style {
+.sb-buttons {
 
-  .facebook {
-    @include btnColor($facebook);
+}
+
+share-buttons {
+  width: 100%;
+}
+
+.sb-style {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 1em 0;
+
+  .sb-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
   }
 
-  .twitter {
-    @include btnColor($twitter);
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 4em;
+    min-width: 3em;
+    width: 100%;
+    background-color: transparent;
+    margin: .5em;
+    border-radius: .2em;
+    padding: .5em .9em;
+    font-size: 1em;
+    color: white;
+    &:hover {
+      transition: all ease 300ms;
+    }
   }
 
-  .googleplus {
-    @include btnColor($googleplus);
+  .sb-show-count {
+    justify-content: space-around;
+    max-width: 5em;
   }
 
-  .stumbleupon {
-    @include btnColor($stumbleupon);
+  .sb-template {
+
   }
 
-  .linkedin {
-    @include btnColor($linkedin);
+  .sb-count {
+    margin-left: .8em;
+    font-size: .75em;
+    font-family: Tahoma;
+    text-align: center;
+    position: relative;
+    color: white;
+    font-weight: bold;
   }
 
-  .pinterest {
-    @include btnColor($pinterest);
-  }
+}
 
-  .reddit {
-    @include btnColor($reddit);
-  }
+.sb-style-neat {
 
-  .tumblr {
-    @include btnColor($tumbler);
-  }
+}
 
-  .github {
-    @include btnColor($github);
-  }
+button, a:hover {
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+}
 
-  .stackoverflow {
-    @include btnColor($stackoverflow);
-  }
+.facebook {
+  order: 1;
+}
 
-  .whatsapp {
-    @include btnColor($whatsapp);
-  }
+.twitter {
+  order: 2;
+}
+
+.googleplus {
+  order: 3;
+}
+
+.pinterest {
+  order: 5;
+}
+
+.linkedin {
+  order: 4;
+}
+
+.tumblr {
+  order: 8;
+}
+
+.reddit {
+  order: 7;
+}
+
+.stumbleupon {
+  order: 9;
+}
+
+.whatsapp {
+  order: 6;
 }

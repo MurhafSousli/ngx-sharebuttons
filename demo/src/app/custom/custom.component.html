@@ -1,13 +1,44 @@
-<share-buttons class="custom-buttons" [shareTitle]="shareTitle"
-               [defaultStyle]="false"
+<section>
+  <h2>Customization</h2>
+  <p>Customization is very easy, disable the default style with <code highlight>[defaultStyle]="false"</code>
+    use the classes shown in the style tab below to override them with your css.</p>
 
-               [facebook]="fbInner"
-               [twitter]="twitterInner"
-               [pinterest]="pintInner"
-               [linkedIn]="inInner"
-               [google]="googleInner"
-               [tumblr]="tumblrInner"
+  <p>To change buttons orders, use the css rule <code highlight>order</code></p>
 
-               [reddit]="false"
-               [stumbleUpOn]="false"
-></share-buttons>
+  <p>To add a custom button template, create it with as string variable then pass it to the desired input, e.g. give
+    facebook a custom template
+    <code highlight>[facebook]="facebookTemp"</code>.
+  </p>
+
+  <p>To exclude a button, pass <a><pre style="display: inline">false</pre></a> to the button input. e.g. <code highlight>[reddit]="false"</code>
+  </p>
+
+  <tabs>
+    <tab tabTitle="Code">
+      <highlight [code]="tsCode"></highlight>
+    </tab>
+    <tab tabTitle="Template">
+      <highlight [code]="htmlCode"></highlight>
+    </tab>
+    <tab tabTitle="Style">
+      <highlight [code]="cssCode"></highlight>
+    </tab>
+  </tabs>
+
+  <output>
+    <share-buttons class="custom-buttons"
+                   [defaultStyle]="false"
+
+                   [facebook]="fbTemp"
+                   [twitter]="twttTemp"
+                   [pinterest]="pintTemp"
+                   [linkedIn]="inTemp"
+                   [google]="googleTemp"
+                   [tumblr]="tumblrTemp"
+                   [whatsApp]="whatsTemp"
+                   [reddit]="false"
+                   [stumbleUpOn]="false"
+    ></share-buttons>
+  </output>
+
+</section>

@@ -44,6 +44,11 @@ export class ShareButtonsService {
     /** Open share window */
     share(type: ShareProvider, args: ShareArgs, popUpClosed: EventEmitter<ShareProvider>) {
 
+        /** include twitterAccount in args for twitter button */
+        if (this.twitterAccount) {
+            args = Object.assign({}, args, { via: this.twitterAccount });
+        }
+
         let popUp = this.window.open(Helper.shareFactory(type, args), 'newwindow', this.windowAttr());
 
         /** Emit clicked button */
@@ -80,7 +85,6 @@ export class ShareButtonsService {
                 this.pinCount(url, count);
                 break;
             default:
-                ;
         }
     }
 

@@ -1,14 +1,15 @@
-<button [innerHtml]="button.template" 
-  [ngClass]="button.classes" 
-  [shareButton]="button.provider" 
-  [sbUrl]="url" 
-  [sbImage]="image"
-  [sbTitle]="title" 
-  [sbDescription]="description" 
-  [sbTags]="tags" 
-  [sbShowCount]="showCount" 
-  (sbCount)="counter($event)" 
-  (sbPopUpClosed)="shareClosed($event)">
-</button>
+<button [shareButton]="button.provider"
+        [sbUrl]="url"
+        [sbImage]="image"
+        [sbTitle]="title"
+        [sbDescription]="description"
+        [sbTags]="tags"
+        [sbShowCount]="showCount"
+        (sbCount)="counter($event)"
+        (sbPopUpClosed)="shareClosed($event)"
+        [class.sb-show-count]="showCount"
+  >
 
-<span *ngIf="showCount && shareCount" class="sb-button-count">{{ shareCount | nFormatter: 1 }}</span>
+  <div class="sb-template" [innerHtml]="button.template"></div>
+  <span *ngIf="showCount && shareCount" class="sb-count">{{ shareCount | nFormatter: 1 }}</span>
+</button>

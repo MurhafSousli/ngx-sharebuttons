@@ -11,37 +11,41 @@ import { NFormatterPipe } from './helpers/n-formatter.pipe';
 import { ShareButton, ShareArgs, ShareProvider } from './helpers';
 
 @NgModule({
-    declarations: [
-        ShareButtonsComponent,
-        ShareButtonComponent,
-        ShareButtonDirective,
-        NFormatterPipe
-    ],
-    imports: [
-        CommonModule,
-        JsonpModule
-    ],
-    providers: [
-        ShareButtonsService,
-        WindowService
-    ],
-    exports: [
-        ShareButtonsComponent,
-        ShareButtonComponent,
-        ShareButtonDirective,
-        NFormatterPipe
-    ]
+  declarations: [
+    ShareButtonsComponent,
+    ShareButtonComponent,
+    ShareButtonDirective,
+    NFormatterPipe
+  ],
+  imports: [
+    CommonModule,
+    JsonpModule
+  ],
+  exports: [
+    ShareButtonsComponent,
+    ShareButtonComponent,
+    ShareButtonDirective,
+    NFormatterPipe
+  ]
 })
 export class ShareButtonsModule {
-
+  static forRoot() {
+    return {
+      ngModule: ShareButtonsModule,
+      providers: [
+        ShareButtonsService,
+        WindowService
+      ]
+    };
+  }
 }
 
 export {
-    ShareButtonsComponent,
-    ShareButtonDirective,
-    ShareButton,
-    NFormatterPipe,
-    ShareButtonsService,
-    ShareArgs,
-    ShareProvider
+  ShareButtonsComponent,
+  ShareButtonDirective,
+  ShareButton,
+  NFormatterPipe,
+  ShareButtonsService,
+  ShareArgs,
+  ShareProvider
 }

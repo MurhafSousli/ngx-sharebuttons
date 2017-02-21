@@ -1,6 +1,6 @@
-import { browser, element, by } from 'protractor/globals';
+import { browser, element, by } from 'protractor';
 
-export class Ng2SharebuttonsPage {
+export class DemoPage {
   navigateTo() {
     return browser.get('/');
   }

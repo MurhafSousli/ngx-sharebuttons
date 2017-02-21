@@ -4,25 +4,29 @@ $large-screen: 769px;
 $medium-screen: 480px;
 $small-screen: 320px;
 
-// Font Sizes
-$base-font-size: 1em;
-$small-font-size: .8em;
-
-// Line height
-$base-line-height: 1.3;
-$heading-line-height: 1.2;
-
-// Other Sizes
-$base-border-width: 0;
-$base-border-radius: 4px;
-$base-spacing: $base-line-height * 1em;
-$small-spacing: $base-spacing / 2;
-
-// Overlay colors
-$overlay-color: white;
-$overlay-bg-color: rgba(black, 0.5);
+// Colors
+$twitter: #00acee;
+$facebook: #4267B2;
+$googleplus: #DB4437;
+$stumbleupon: #eb4924;
+$linkedin: #006fa6;
+$pinterest: #BD081C;
+$reddit: #FF4006;
+$tumbler: #36465D;
+$whatsapp: #25D366;
 
 
-// Animations
-$base-duration: 500ms;
-$base-timing: ease;
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+@mixin btnBgColor($color){
+
+  background: $color;
+  &:hover {
+    background: shade($color, 20%);
+  }
+}
