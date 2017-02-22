@@ -1,6 +1,7 @@
 import {Directive, ElementRef, AfterViewInit, Renderer} from '@angular/core';
-import 'highlight.js/lib';
-declare const hljs: any;
+
+import 'prismjs/prism';
+declare const Prism: any;
 
 @Directive({
   selector: '[highlight]'
@@ -12,7 +13,9 @@ export class HighlightDirective implements AfterViewInit{
 
   ngAfterViewInit() {
     this.renderer.setElementStyle(this.el.nativeElement, 'display', 'inline');
-    hljs.highlightBlock(this.el.nativeElement);
+    this.renderer.setElementStyle(this.el.nativeElement, 'padding', '5px');
+    Prism.highlightElement(this.el.nativeElement, true);
+
   }
 
 }

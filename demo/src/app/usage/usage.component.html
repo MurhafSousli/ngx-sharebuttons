@@ -5,10 +5,10 @@
 
   <tabs>
     <tab tabTitle="Code">
-      <highlight [code]="importCode"></highlight>
+      <highlight [lang]="'ts'" [code]="importCode"></highlight>
     </tab>
     <tab tabTitle="Template">
-      <highlight [code]="basicCode"></highlight>
+      <highlight  [lang]="'html'" [code]="basicCode"></highlight>
     </tab>
   </tabs>
 
@@ -19,19 +19,19 @@
   <p>The default icons requires <b><a href="fontawesome.io">fontawesome</a></b> to be loaded into your project
 
   <h4>Share counters</h4>
-  <p>To display share counters, use <code highlight>[count]="true"</code></p>
+  <p>To display share counters, use <code highlight>[showCount]="true"</code></p>
   <p>You can also sum the total number of share counters by using the output <code
     highlight>(count)="sumCounts($event)"</code></p>
 
   <tabs>
     <tab tabTitle="Code">
-      <highlight [code]="countCode"></highlight>
+      <highlight [lang]="'ts'" [code]="countCode"></highlight>
     </tab>
     <tab tabTitle="Template">
-      <highlight [code]="countTemplate"></highlight>
+      <highlight [lang]="'html'" [code]="countTemplate"></highlight>
     </tab>
     <tab tabTitle="Style">
-      <highlight [code]="countStyle"></highlight>
+      <highlight [lang]="'scss'" [code]="countStyle"></highlight>
     </tab>
   </tabs>
 

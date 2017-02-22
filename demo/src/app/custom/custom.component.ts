@@ -22,13 +22,11 @@ export class CustomComponent {
   justify-content: space-around;
   flex-wrap: wrap;
   margin: 1em 0;
-
   .sb-buttons {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-around;
-
     button {
       background-color: transparent;
       img {
@@ -41,7 +39,6 @@ export class CustomComponent {
         }
       }
     }
-
     .facebook{
       order: 6;
     }
@@ -52,12 +49,11 @@ export class CustomComponent {
       order: 2;
     }
   }
-}
+ }
 `;
 
   htmlCode = `<share-buttons class="custom-buttons"
                [defaultStyle]="false"
-
                [facebook]="fbTemp"
                [twitter]="twttTemp"
                [pinterest]="pintTemp"
@@ -67,10 +63,9 @@ export class CustomComponent {
                [whatsApp]="whatsTemp"
                [reddit]="false"
                [stumbleUpOn]="false"
-></share-buttons>`;
+ ></share-buttons>`;
 
   tsCode = `export class SomeComponent {
-
   fbTemp = "${this.fbTemp}";
   twttTemp = "${this.twttTemp}";
   pintTemp = "${this.pintTemp}";
@@ -78,5 +73,5 @@ export class CustomComponent {
   googleTemp = "${this.googleTemp}";
   tumblrTemp = "${this.tumblrTemp}";
   whatsTemp = "${this.whatsTemp}";
-}`;
+ }`;
 }

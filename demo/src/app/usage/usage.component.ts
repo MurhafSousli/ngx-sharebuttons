@@ -15,11 +15,11 @@ export class UsageComponent {
   }
 
   importCode = `import {ShareButtonsModule} from 'ng2-sharebuttons';
-@NgModule({
-  imports: [
-    ShareButtonsModule.forRoot()
-  ]
-})`;
+ @NgModule({
+   imports: [
+     ShareButtonsModule.forRoot()
+   ]
+ })`;
 
   basicCode = '<share-buttons></share-buttons>';
 
@@ -34,19 +34,16 @@ export class UsageComponent {
 </div>`;
 
   countCode = `export class SomeComponent {
-  
    totalShare: number = 0;
-
    sumCounts(count){
      this.totalShare += count;
    }
-}`;
+ }`;
 
   countStyle= `.share-container {
   display: flex;
   align-items: center;
   margin: 1rem 0;
-  
   .share-count {
     display: flex;
     flex-direction: column;
@@ -64,6 +61,6 @@ export class UsageComponent {
       font-size: .7rem;
     }
   }
-}`;
+ }`;
 
 }

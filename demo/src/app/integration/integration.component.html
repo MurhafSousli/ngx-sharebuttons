@@ -2,14 +2,8 @@
   <h2>Integration</h2>
   <p>Convert any button to a share button using the share directive <code highlight>[shareButton]="buttonName"</code>
   <p></p>
-  <tabs>
-    <tab tabTitle="Code">
-      <highlight [code]="directiveCode"></highlight>
-    </tab>
-    <tab tabTitle="Template">
-      <highlight [code]="directiveLayout"></highlight>
-    </tab>
-  </tabs>
+
+  <highlight [lang]="'html'" [code]="directiveLayout"></highlight>
 
   <output>
     <div class="material-sharebuttons">

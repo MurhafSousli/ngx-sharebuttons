@@ -10,58 +10,58 @@ export class NotesComponent {
 
   globalsCode = `constructor(sbService:ShareButtonsService){
 
-  //Add Via @yourTwitterAccount to tweet button.
-  sbService.twitterAccount = "yourTwitterAccount";
+   //Add Via @yourTwitterAccount to tweet button.
+   sbService.twitterAccount = "yourTwitterAccount";
 
-  //Set the height and width of the popup share window.
-  sbService.height = 600; //default: 400
-  sbService.width = 800;  //default: 500
-}`;
+   //Set the height and width of the popup share window.
+   sbService.height = 600; //default: 400
+   sbService.width = 800;  //default: 500
+ }`;
 
   componentShareButtons = `[facebook]: string | boolean
-[twitter]: string | boolean
-[linkedIn]: string | boolean
-[tumblr]: string | boolean
-[google]: string | boolean
-[pinterest]: string | boolean
-[stumbleUpOn]: string | boolean
-[reddit]: string | boolean
-[whatsApp]: string | boolean
+ [twitter]: string | boolean
+ [linkedIn]: string | boolean
+ [tumblr]: string | boolean
+ [google]: string | boolean
+ [pinterest]: string | boolean
+ [stumbleUpOn]: string | boolean
+ [reddit]: string | boolean
+ [whatsApp]: string | boolean
 `;
 
   componentShareLinks = `[url]: string
-[title]: string
-[description]: string
-[image]: string
-[tags]: string[]
+ [title]: string
+ [description]: string
+ [image]: string
+ [tags]: string[]
 `;
   componentContainer = `/** Show count on share-buttons, disabled by default */
-[showCount]: string
-/** Indicates weather default style is applied to the buttons */
-[defaultStyle]: string
-/** Add default class to all buttons */
-[buttonClass]: string
+ [showCount]: string
+ /** Indicates weather default style is applied to the buttons */
+ [defaultStyle]: string
+ /** Add default class to all buttons */
+ [buttonClass]: string
 
-/** get button count, useful calculate total share counts */
-(count)
-/** get the share button name that had been used for sharing */
-(popUpClosed)
+ /** get button count, useful calculate total share counts */
+ (count)
+ /** get the share button name that had been used for sharing */
+ (popUpClosed)
 `;
 
   directiveShareButtons = `/** Share button name (choose your button e.g. "twitter")*/
-[shareButton]: string`;
+ [shareButton]: string`;
 
   directiveShareLinks = `/** Share link args */
-[sbUrl]: string
-[sbTitle]: string
-[sbDescription]: string
-[sbImage]: string
-[sbTags]: string[]
-[sbShowCount]: boolean`;
+ [sbUrl]: string
+ [sbTitle]: string
+ [sbDescription]: string
+ [sbImage]: string
+ [sbTags]: string[]
+ [sbShowCount]: boolean`;
 
   directiveOptions = `/** get button count, useful calculate total share counts */
-(sbCount)
-/** get the share button name that had been used for sharing */
-(sbPopUpClosed)`;
+ (sbCount)
+ /** get the share button name that had been used for sharing */
+ (sbPopUpClosed)`;
 
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
   selector: 'integration',
@@ -6,21 +6,14 @@ import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
   styleUrls: ['./integration.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class IntegrationComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  directiveCode = `<button [shareButton]="'pinterest'"></button>`;
+export class IntegrationComponent {
 
   directiveLayout = `<div class="material-sharebuttons">
   <button md-button [shareButton]="'facebook'"><i class="fa fa-facebook"></i></button>
   <button md-raised-button [shareButton]="'twitter'"><i class="fa fa-twitter"></i></button>
   <button md-icon-button [shareButton]="'linkedin'"><i class="fa fa-linkedin"></i></button>
   <button md-fab [shareButton]="'pinterest'"><i class="fa fa-pinterest-p"></i></button>
-</div>
+ </div>
 `;
 
 }

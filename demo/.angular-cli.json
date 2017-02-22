@@ -21,7 +21,7 @@
       "styles": [
         "styles.scss"
       ],
-      "scripts": ["../node_modules/highlight.js/lib/highlight.js"],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -3,10 +3,15 @@
 @import '~normalize.css';
 @import '~animate.css';
 @import '~font-awesome/css/font-awesome.min.css';
-@import '~highlight.js/styles/atelier-heath-dark';
-@import 'assets/style/variables';
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
-//@import 'assets/style/material-theme';
+@import 'assets/style/variables';
+@import '~prismjs/themes/prism';
+
+//@import 'assets/style/prism-atom-dark.css';
+//@import 'assets/style/prism-base16-light.css';
+//@import 'assets/style/prism-xonokai.css';
+//@import 'assets/style/prism-duotone-sea.css';
+//@import 'assets/style/prism-duotone-space.css';
 
 body {
   font-family: sans-serif;
@@ -22,6 +27,12 @@ code[highlight]{
 }
 highlight, code[highlight]{
   border-radius: .2rem;
+  //background-color: #1D1F21;
+  //background-color: #F5F7FF;
+  //background-color: #2A2A2A;
+  //background-color: #1D262F;
+  //background-color: #24242E;
+  background-color:#F5F2F0;
 }
 
 tabs highlight{
