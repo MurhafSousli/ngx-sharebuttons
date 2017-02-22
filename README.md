@@ -7,6 +7,7 @@
 <p align="center">
   <img height="300px" width="300px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ng2-sharebuttons/master/assets/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
+  <img width="700px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ng2-sharebuttons/master/assets/buttons.png">
 </p>
 
 Simple, lightweight, customizable share buttons with counts | [live demo](https://murhafsousli.github.io/ng2-sharebuttons/) | [vertical demo](https://murhafsousli.github.io/memory/) | [popup demo](https://murhafsousli.github.io/8puzzle/#/)
