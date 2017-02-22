@@ -13,7 +13,7 @@ Simple, lightweight, customizable share buttons with counts | [live demo](https:
 
 Supported services:
 
-`Facebook`, `Twitter`, `Pinterest`, `Google`, `Tumbler`, `Reddit`, `StumbleUpOn`, `LinkedIn`
+`Facebook`, `Twitter`, `Pinterest`, `Whatsapp`, `Google`, `Tumbler`, `Reddit`, `StumbleUpOn`, `LinkedIn`
 
 ## Installation
 
@@ -35,13 +35,13 @@ Here is a working [plunker](https://plnkr.co/edit/c9A6xzGQ8iSuKo3NMYLz), based o
 
 ## Basic usage:
 
-Add `ShareButtonsModule` to **NgModule** `imports` array
+Import **ShareButtonsModule** in your module
 
-```javascript
+```ts
 import {ShareButtonsModule} from "ng2-sharebuttons";
 @NgModule({
   imports: [
-    ShareButtonsModule
+    ShareButtonsModule.forRoot()
   ]
 })
 ```
@@ -54,55 +54,78 @@ in your template
 
 The default icons requires [fontawesome](http://fontawesome.io/) to be loaded into your project.
 
-To display share counts on buttons, enable the input `[count]="true"` , To display the total count of all shares, enable the input `[totalCount]="true"` , To display a title for share buttons container use `[title]="yourTitle"`
+To display share counts on buttons, enable the input `[count]="true"`
+
+You can also sum the total number of share counters by using the output `(count)="sumCounts($event)"`
 
 ```html
 <share-buttons [shareTitle]="'Share Twitter Site'"
  [url]="'https://twitter.com'"
- [count]="true"
- [totalCount]="true"
+ [showCount]="true"
+ (count)="sumCounts($event)"
  ></share-buttons>
+```
+```ts
+export class SomeComponent {
+  
+   totalShare: number = 0;
+
+   sumCounts(count){
+     this.totalShare += count;
+   }
+ }
 ```
 
 ## Customization:
 
-Customization is very easy, disable the default style with `[defaultStyle]=false` then use the following classes to add your own css.
+Customization is very easy, disable the default style with `[defaultStyle]="false"` and override the following classes with your css. 
 
-```css
-.sb-container{
-    //ShareButtons Holder
- }
- .sb-title{
-    //Share Title
- }
- .sb-count{
-    //Total Share Count
- }
- .sb-buttons{
-    //Buttons Container
- }
- .sb-btn{
-    //Share Button, the container of the button template 
- }
- .sb-btn-count{
-    //Button Share Count
+```scss
+share-buttons{
+    //ShareButtons Element
+    .sb-buttons {
+      //ShareButtons Container
+      share-button{
+        //ShareButton Element
+        button{
+          .sb-template{
+            //ShareButton Template
+          }
+          .sb-count{
+            //ShareButton Count
+          }
+        }
+      }
+    }
  }
 ```
-Each share service has its own button template, pass your custom button template as string in its input, e.g. give facebook a custom template `[facebook]="facebookTemplate"`.
+To change buttons orders, use the css rule `order`
+```scss
+.facebook{
+  order: 6;
+}
+.twitter{
+  order: 1;
+}
+.whatsapp{
+  order: 2;
+}
+```
+To add a custom button template, create it with as string variable then pass it to the desired input, e.g. give facebook a custom template `[facebook]="facebookTemp"`.
 
-To exclude a button, pass false to the button input. e.g. `[facebook]="false"`
+To exclude a button, pass false to the button input. e.g. `[reddit]="false"`
 
 ```html
 <share-buttons
    [shareTitle]="shareTitle"
    [defaultStyle]="false"
 
-   [facebook]="fbInner"
-   [twitter]="twitterInner"
-   [pinterest]="pintInner"
-   [linkedIn]="inInner"
-   [google]="googleInner"
-   [tumblr]="tumblrInner"
+   [facebook]="fbTemp"
+   [twitter]="twitterTemp"
+   [pinterest]="pintTemp"
+   [linkedIn]="inTemp"
+   [google]="googleTemp"
+   [tumblr]="tumblrTemp"
 
    [reddit]="false"
    [stumbleUpOn]="false"
@@ -110,67 +133,26 @@ To exclude a button, pass false to the button input. e.g. `[facebook]="false"`
 ```
 ```javascript
 export class SomeComponent {
-  shareTitle = "Sharing is caring";
-  fbInner = "<img src='../assets/img/custom/facebook.svg'>";
-  twitterInner = "<img src='../assets/img/custom/twitter.svg'>";
-  pintInner = "<img src='../assets/img/custom/pinterest.svg'>";
-  inInner = "<img src='../assets/img/custom/linkedin.svg'>";
-  googleInner = "<img src='../assets/img/custom/google-plus.svg'>";
-  tumblrInner = "<img src='../assets/img/custom/tumblr.svg'>";
+  fbTemp = "<img src='../assets/img/custom/facebook.svg'>";
+  twitterTemp = "<img src='../assets/img/custom/twitter.svg'>";
+  pintTemp = "<img src='../assets/img/custom/pinterest.svg'>";
+  inTemp = "<img src='../assets/img/custom/linkedin.svg'>";
+  googleTemp = "<img src='../assets/img/custom/google-plus.svg'>";
+  tumblrTemp = "<img src='../assets/img/custom/tumblr.svg'>";
 }
 ```
 
-## Advanced usage:
+## Integration:
 
-Sometimes you just want to add a single button, or you want to make your own complex design, use the component `<share-button>` in this case.
-
-In this example, we will add a Tweet button, we will also add text and hashtags to the tweet.
-
-
-```javascript
-import {ShareButton, ShareProvider} from "ng2-sharebuttons";
-  
-export class TestComponent{
-  twitterButton;
-  tags = 'Hello, World';
-  description = "This is a test";
-  
-  ngOnInit() {
-    this.twitterButton = new ShareButton(
-        ShareProvider.TWITTER,              //choose the button from ShareProvider
-        "<img src='../../assets/img/custom/single-twitter.svg'> Tweet",    //set button template
-        'twitter'                           //set button classes
-      );
-  }
-}
-```
+Convert any button to a share button using the share directive `[shareButton]="buttonName"`
 ```html
-<share-button [button]='twitterButton' [description]="description" [tags]="tags"></share-button>
-```
-
-Another example for adding Pinterest button
-
-```javascript
-import {ShareButton, ShareProvider} from "ng2-sharebuttons";
-  
-export class TestComponent{
-  pinButton;
-  description = "This is a test";
-  image= "../../assets/img/pinExample.jpg";
-  
-  ngOnInit() {
-    this.pinButton = new ShareButton(
-        ShareProvider.PINTEREST,
-        "<img src='../../assets/img/custom/single-pinterest.svg'> Pin it",
-        'pinterest'
-      );
-  }
-}
-```
-
-```html
-<share-button [button]='pinButton' [description]="description" [image]="image"></share-button>
-```
+<div class="material-sharebuttons">
+  <button md-button [shareButton]="'facebook'"><i class="fa fa-facebook"></i></button>
+  <button md-raised-button [shareButton]="'twitter'"><i class="fa fa-twitter"></i></button>
+  <button md-icon-button [shareButton]="'linkedin'"><i class="fa fa-linkedin"></i></button>
+  <button md-fab [shareButton]="'pinterest'"><i class="fa fa-pinterest-p"></i></button>
+ </div>
+ ```
 
 
 ---
@@ -179,24 +161,15 @@ export class TestComponent{
 
    - `[url]`: If URL is not valid or not presented, it will use `window.location.href`
 
-  **Meta tags alternates:**
+  **Share links (by default it uses meta tags from head):**
 
    - `[title]` 
    - `[description]`
    - `[image]`
    - `[tags]`: Adds hashtags to the tweet, also for tumblr tags
 
-  **Sharebuttons container:**
-
-   - `[shareTitle]`: Sharebuttons container title, default: false
-   - `[count]`: Enable counts on share buttons, default: false
-   - `[totalCount]`: Show total count of all buttons, default: false
-   - `[defaultStyle]`: Use default style is applied to the buttons, default: true
-   - `[buttonClass]`: Add custom classes to all buttons
-   - `(popUpClosed)`: Output when pop up window is closed
- 
-
-  **Buttons inputs**
+   
+  **Buttons templates:**
     Pass a custom button template to replace the default, Switch off a button by passing false
    - `[facebook]` 
    - `[twitter]`
@@ -207,22 +180,35 @@ export class TestComponent{
    - `[stumbleUpOn]`
    - `[reddit]`
 
-### `<share-button>` single share button component:
+  **Options:**
 
-  - `[url]`: If URL is not valid or not presented, it will use `window.location.href`
+   - `[showCount]`: Enable counts on share buttons, default: false
+   - `[defaultStyle]`: Use default style is applied to the buttons, default: true
+   - `[buttonClass]`: Add custom classes to all buttons
+   - `(count)`: Output all buttons' counts
+   - `(popUpClosed)`: Output when pop up window is closed
+ 
+
+
+### `[shareButton]` share directive for single button:
+
+  - `[sbUrl]`: If URL is not valid or not presented, it will use `window.location.href`
 
   **Meta tags alternates:**
 
-  - `[title]` 
-  - `[description]`
-  - `[image]`
-  - `[tags]`: Adds hashtags to the twitter and tumblr
+  - `[sbTitle]` 
+  - `[sbDescription]`
+  - `[sbImage]`
+  - `[sbTags]`: Adds hashtags to the twitter and tumblr
+
+  **Button template:**
+  
+  - `[shareButton]`: Pass sharebutton name as string e.g. `facebook`
 
   **Button options**
-  - `[button]`: Pass `ShareButton` object, like fb, twitter, reddit...etc
-  - `[count]`: Enable share count on the button, default: false
-  - `(countOuter)`: Output share count of the button
-  - `(popUpClosed)`: Output when pop up window is closed
+  - `[sbShowCount]`: Enable share count on the button, default: false
+  - `(sbCount)`: Output share count of the button
+  - `(sbPopUpClosed)`: Output when pop up window is closed
       
 ### `[shareButon]` directive to add Share features to any clickable element:
 

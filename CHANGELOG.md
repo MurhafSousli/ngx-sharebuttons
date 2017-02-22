@@ -1,7 +1,20 @@
 #Changelog
 
+##2.0.1
+
+ - (feat) Whatsapp button
+ - (feat) Sharebutton Directive
+ - (refactor) New button style for Sharebuttons Component
+ - (fix) update count when URL changes
+ - (fix) update all inputs on changes 
+ - (feat) support systemJS
+
+* **Breaking Changes** :
+    - Sharebutton component is for internal use only, use Sharebutton directive instead.
+    - `[shareTitle]`, `[totalCount]`, deprecated.
+
 ##1.1.5
- - merge [#26](https://github.com/MurhafSousli/ng2-sharebuttons/pull/26)
+    - merge [#26](https://github.com/MurhafSousli/ng2-sharebuttons/pull/26)
 
 ##1.1.4
     
