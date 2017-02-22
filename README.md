@@ -59,7 +59,6 @@ To display share counts on buttons, enable the input `[count]="true"`
 You can also sum the total number of share counters by using the output `(count)="sumCounts($event)"`
 
 ```html
-<share-buttons [shareTitle]="'Share Twitter Site'"
  [url]="'https://twitter.com'"
  [showCount]="true"
  (count)="sumCounts($event)"
