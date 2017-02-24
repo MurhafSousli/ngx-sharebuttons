@@ -22,6 +22,16 @@ Install it with npm
 
 `npm install ng2-sharebuttons --save`
 
+> **Note**: Make sure you are using a version of `@angular` in the following ranges: 
+> * `>=2.0.0  and <2.4.6` or 
+> * `>=2.4.8 and <4.0.0-beta.6` or
+> * `>=4.0.0-beta.8`
+>
+> In fact, a bug(#13219) in `@angular/http`(JSONP) was introduced in [`2.4.6`](https://github.com/angular/angular/commit/1eece50)(resp. [`4.0.0-beta.6`](https://github.com/angular/angular/commit/9e5617e)) and fixed in [`2.4.8`](https://github.com/angular/angular/commit/9ceb5d1)(resp. [`4.0.0-beta.8`](https://github.com/angular/angular/commit/4676df5)).
+> It affects JSONP and the count of number of shares for some buttons (linkedin and tumblr).
+>
+> See angular's [CHANGELOG](https://github.com/angular/angular/blob/master/CHANGELOG.md) for details.
+
 ### SystemJS
 If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
 
