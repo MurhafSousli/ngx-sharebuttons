@@ -1,4 +1,4 @@
-import { ShareProvider, ShareButton, ShareArgs } from '.';
+import { ShareProvider, ShareButton, ShareArgs } from './index';
 
 describe('ShareButton', () => {
     it('should create an instance with given values', () => {

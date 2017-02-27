@@ -1,6 +1,6 @@
 /* tslint:disable:max-line-length */
 
-import { ShareArgs, ShareLinks } from '.';
+import { ShareArgs, ShareLinks } from './index';
 
 
 describe('Module: ShareLinks, Isolated Tests', () => {

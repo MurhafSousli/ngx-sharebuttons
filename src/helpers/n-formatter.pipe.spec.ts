@@ -1,4 +1,4 @@
-import { NFormatterPipe } from '.';
+import { NFormatterPipe } from './index';
 
 describe('NFormatterPipe, Isolated Test', () => {
 
