@@ -5,7 +5,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/empty';
 
 import { WindowService } from './window.service';
-import { ShareArgs, ShareProvider, Helper } from '../helpers';
+import { ShareArgs, ShareProvider, Helper } from '../helpers/index';
 
 declare const global: any; // To make AoT compiler (ngc) happy
 

@@ -11,7 +11,7 @@ import { ShareButtonDirective } from './../../directives/share-button/share-butt
 import { ShareButtonComponent } from './share-button.component';
 import { ShareButtonsService } from '../../services/share-buttons.service';
 import { WindowService } from './../../services/window.service';
-import { ShareButton, ShareArgs, ShareProvider, Helper, NFormatterPipe } from '../../helpers';
+import { ShareButton, ShareArgs, ShareProvider, Helper, NFormatterPipe } from '../../helpers/index';
 import { TestHelpers } from '../../test-helpers';
 
 
@@ -91,11 +91,11 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
 
   it('should bind to parameters provided by hosting component', () => {
     const fixture = createTestComponent(`
-         <share-button [button]="sBtn" 
-           [url]="sArgs.url" 
-           [title]="sArgs.title" 
-           [description]="sArgs.description" 
-           [image]="sArgs.image" 
+         <share-button [button]="sBtn"
+           [url]="sArgs.url"
+           [title]="sArgs.title"
+           [description]="sArgs.description"
+           [image]="sArgs.image"
            [tags]="sArgs.tags"
            [showCount]="true"
            (countOuter) = "countCallback($event)"
@@ -130,11 +130,11 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
   it('should call share() when the button is clicked and emit "popUpClosed" event', () => {
 
     const fixture = createTestComponent(`
-         <share-button [button]="sBtn" 
-           [url]="sArgs.url" 
-           [title]="sArgs.title" 
-           [description]="sArgs.description" 
-           [image]="sArgs.image" 
+         <share-button [button]="sBtn"
+           [url]="sArgs.url"
+           [title]="sArgs.title"
+           [description]="sArgs.description"
+           [image]="sArgs.image"
            [tags]="sArgs.tags"
            (popUpClosed) = "popUpCallback($event)">
          </share-button>
@@ -175,11 +175,11 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
   it('should render the share count and emit "countOuter" event if @Input("showCount") is true and shareCount > 0', () => {
 
     const fixture = createTestComponent(`
-         <share-button [button]="sBtn" 
-           [url]="sArgs.url" 
-           [title]="sArgs.title" 
-           [description]="sArgs.description" 
-           [image]="sArgs.image" 
+         <share-button [button]="sBtn"
+           [url]="sArgs.url"
+           [title]="sArgs.title"
+           [description]="sArgs.description"
+           [image]="sArgs.image"
            [tags]="sArgs.tags"
            [showCount]="true"
            (countOuter) = "countCallback($event)">
@@ -217,11 +217,11 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
   it('should not render the share count, not emit "countOuter" event if @Input("showCount") is true but shareCount <= 0', () => {
 
     const fixture = createTestComponent(`
-         <share-button [button]="sBtn" 
-           [url]="sArgs.url" 
-           [title]="sArgs.title" 
-           [description]="sArgs.description" 
-           [image]="sArgs.image" 
+         <share-button [button]="sBtn"
+           [url]="sArgs.url"
+           [title]="sArgs.title"
+           [description]="sArgs.description"
+           [image]="sArgs.image"
            [tags]="sArgs.tags"
            [showCount]="true"
            (countOuter) = "countCallback($event)">

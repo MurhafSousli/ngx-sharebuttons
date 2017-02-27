@@ -8,7 +8,7 @@ import { ShareButtonDirective } from './directives/share-button/share-button.dir
 import { ShareButtonsService } from './services/share-buttons.service';
 import { WindowService } from './services/window.service';
 import { NFormatterPipe } from './helpers/n-formatter.pipe';
-import { ShareButton, ShareArgs, ShareProvider } from './helpers';
+import { ShareButton, ShareArgs, ShareProvider } from './helpers/index';
 
 @NgModule({
   declarations: [

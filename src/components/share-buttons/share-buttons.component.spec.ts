@@ -11,7 +11,7 @@ import { ShareButtonDirective } from './../../directives/share-button/share-butt
 import { NFormatterPipe } from '../../helpers/n-formatter.pipe';
 import { ShareButtonsService } from '../../services/share-buttons.service';
 import { WindowService } from '../../services/window.service';
-import { ShareButton, ShareArgs, ShareProvider, Helper } from '../../helpers';
+import { ShareButton, ShareArgs, ShareProvider, Helper } from '../../helpers/index';
 
 import { TestHelpers } from '../../test-helpers';
 
@@ -131,7 +131,7 @@ describe('ShareButtonsComponent (as a stand-alone component)', () => {
         const twButton = sbButtons.query(By.css('.twitter'));
         expect(twButton).toBeTruthy();
         expect(twButton.nativeElement.className).toEqual('sb-button twitter');
-        
+
         const twTemplate = twButton.query(By.css('.sb-template'));
         expect(twTemplate.nativeElement.innerHTML).toEqual('<i class="fa fa-twitter"></i>');
         // make sure that @Input of inner share-button have been properly bound
@@ -484,11 +484,11 @@ describe('ShareButtonComponent (as used by hosting component)', () => {
     it('should call "popUpClosed" with the provider referring to the button that was clicked', () => {
 
         const fixture = createTestComponent(`
-         <share-buttons 
-           [url]="sArgs.url" 
-           [title]="sArgs.title" 
-           [description]="sArgs.description" 
-           [image]="sArgs.image" 
+         <share-buttons
+           [url]="sArgs.url"
+           [title]="sArgs.title"
+           [description]="sArgs.description"
+           [image]="sArgs.image"
            [tags]="sArgs.tags"
            (popUpClosed) = "popUpCallback($event)">
          </share-buttons>
