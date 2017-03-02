@@ -6,7 +6,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 
 import { ShareButtonsService } from './share-buttons.service';
-import { ShareProvider, ShareArgs, Helper } from '../helpers';
+import { ShareProvider, ShareArgs, Helper } from '../helpers/index';
 import { WindowService } from './window.service';
 import { TestHelpers } from '../test-helpers';
 

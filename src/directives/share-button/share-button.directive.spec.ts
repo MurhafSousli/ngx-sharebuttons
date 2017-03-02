@@ -3,14 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, EventEmitter } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
 
 import { ShareButtonsModule } from '../../share-buttons.module';
 import { ShareButtonDirective } from './share-button.directive';
 import { ShareButtonsService } from '../../services/share-buttons.service';
 import { WindowService } from '../../services/window.service';
-import { ShareButton, ShareArgs, ShareProvider, Helper } from '../../helpers';
+import { ShareButton, ShareArgs, ShareProvider, Helper } from '../../helpers/index';
 import { TestHelpers } from '../../test-helpers';
 
 const createTestComponent = (html: string, detectChanges?: boolean) =>
@@ -30,7 +28,7 @@ describe('ShareButtonDirective', () => {
             ]
         });
     });
-    
+
     it('should throw error if mandatory @Input("shareButton") is not set', () => {
         expect(() =>
             createTestComponent(`<button shareButton></button>`, true)
