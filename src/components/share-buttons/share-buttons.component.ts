@@ -9,7 +9,7 @@ import {
     EventEmitter,
     SimpleChanges,
 } from '@angular/core';
-import { ShareButton, ShareProvider } from '../../helpers';
+import { ShareButton, ShareProvider } from '../../helpers/index';
 
 @Component({
     selector: 'share-buttons',
