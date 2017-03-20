@@ -7,7 +7,14 @@ import { ShareArgs } from './share-buttons.class';
 export module ShareLinks {
 
     export function fbShare(args: ShareArgs) {
-        let shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${args.url}`;
+        let shareUrl;
+        if (args.mobile) {
+            shareUrl = 'fb://';
+        } else {
+            shareUrl = 'https://www.facebook.com/sharer/sharer.php';
+        }
+        shareUrl += `?u=${args.url}`;
+
         if (args.title) {
             shareUrl += `&title=${args.title}`;
         }
@@ -22,9 +29,16 @@ export module ShareLinks {
 
     // TWITTER DOCS: https://dev.twitter.com/web/tweet-button/web-intent
     export function twitterShare(args: ShareArgs) {
-        let shareUrl = `https://twitter.com/intent/tweet?url=${args.url}`;
-        if (args.description) {
-            shareUrl += `&text=${args.description}`;
+        let shareUrl;
+        if (args.mobile) {
+            shareUrl = 'twitter://';
+        } else {
+            shareUrl = 'https://twitter.com/intent/tweet';
+        }
+        shareUrl += `?url=${args.url}`;
+
+        if (args.title) {
+            shareUrl += `&text=${args.title}`;
         }
         if (args.via) {
             shareUrl += `&via=${args.via}`;
@@ -37,7 +51,14 @@ export module ShareLinks {
 
     // LINKEDIN DOCS https://developer.linkedin.com/docs/share-on-linkedin#!
     export function linkedInShare(args: ShareArgs) {
-        let shareUrl = `http://www.linkedin.com/shareArticle?url=${args.url}`;
+        let shareUrl;
+        if (args.mobile) {
+            shareUrl = 'linkedin://';
+        } else {
+            shareUrl = 'http://www.linkedin.com/shareArticle';
+        }
+        shareUrl += `?url=${args.url}`;
+
         if (args.title) {
             shareUrl += `&title=${args.title}`;
         }
@@ -49,7 +70,14 @@ export module ShareLinks {
 
     // REDDIT DOCS: http://stackoverflow.com/questions/24823114/post-to-reddit-via-url
     export function redditShare(args: ShareArgs) {
-        let shareUrl = `http://www.reddit.com/submit?url=${args.url}`;
+        let shareUrl;
+        if (args.mobile) {
+            shareUrl = 'reddit://';
+        } else {
+            shareUrl = 'http://www.reddit.com/submit';
+        }
+        shareUrl += `?url=${args.url}`;
+
         if (args.title) {
             shareUrl += `&title=${args.title}`;
         }
@@ -58,7 +86,14 @@ export module ShareLinks {
 
     // TUMBLR DOCS: https://www.tumblr.com/docs/en/share_button
     export function tumblrShare(args: ShareArgs) {
-        let shareUrl = `http://tumblr.com/widgets/share/tool?canonicalUrl=${args.url}`;
+        let shareUrl;
+        if (args.mobile) {
+            shareUrl = 'tumblr://';
+        } else {
+            shareUrl = 'http://tumblr.com/widgets/share/tool';
+        }
+        shareUrl += `?canonicalUrl=${args.url}`;
+
         if (args.description) {
             shareUrl += `&caption=${args.description}`;
         }
@@ -70,7 +105,14 @@ export module ShareLinks {
 
     // STUMBLE DOCS: http://stackoverflow.com/questions/10591424/how-can-i-create-a-custom-stumbleupon-button
     export function stumbleShare(args: ShareArgs) {
-        return `http://www.stumbleupon.com/submit?url=${args.url}`;
+        let shareUrl;
+        if (args.mobile) {
+            shareUrl = 'stumbleupon://';
+        } else {
+            shareUrl = 'http://www.stumbleupon.com/submit';
+        }
+        shareUrl += `?url=${args.url}`;
+        return shareUrl;
     }
 
     // GPLUS DOCS: https://developers.google.com/+/web/share/#sharelink
@@ -101,11 +143,11 @@ export module ShareLinks {
     }
 
     export function whatsappShare(args: ShareArgs) {
-        let shareUrl = 'whatsapp://send?text=';
+        let shareUrl = `${(args.mobile) ? 'whatsapp://' : 'https://web.whatsapp.com/'}send?text=`;
 
         // Title will add a new line
         if (args.title) {
-            shareUrl += `*${args.title}* %0A`;
+            shareUrl += `${args.title} %0A`;
         }
 
         // Description adds a pipe to separate the url

@@ -5,7 +5,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/empty';
 
 import { WindowService } from './window.service';
-import { ShareArgs, ShareProvider, Helper } from '../helpers/index';
+import { ShareArgs, ShareProvider, Helper } from '../helpers';
 
 declare const global: any; // To make AoT compiler (ngc) happy
 
@@ -47,6 +47,11 @@ export class ShareButtonsService {
         /** include twitterAccount in args for twitter button */
         if (this.twitterAccount) {
             args = Object.assign({}, args, { via: this.twitterAccount });
+        }
+
+        /** check for mobile browser (this won't detect tablets browser) */
+        if (this.window.innerWidth <= 480) {
+            args = Object.assign({}, args, { mobile: true });
         }
 
         let popUp = this.window.open(Helper.shareFactory(type, args), 'newwindow', this.windowAttr());

@@ -16,6 +16,7 @@ export class ShareArgs {
         public description?: string,
         public image?: string,
         public tags?: string,
-        public via?: string) {
+        public via?: string,
+        public mobile?: boolean) {
     }
 }
