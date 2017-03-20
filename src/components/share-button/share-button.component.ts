@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { ShareButton, ShareProvider } from '../../helpers/index';
+import { ShareButton, ShareProvider } from '../../helpers';
 
 @Component({
     selector: 'share-button',

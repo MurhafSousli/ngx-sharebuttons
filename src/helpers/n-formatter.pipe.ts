@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Helper } from './index';
+import { Helper } from '.';
 
 @Pipe({
     name: 'nFormatter'

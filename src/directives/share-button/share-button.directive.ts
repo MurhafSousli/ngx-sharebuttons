@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { ShareButtonsService } from '../../services/share-buttons.service';
-import { ShareArgs, ShareProvider, Helper } from '../../helpers/index';
+import { ShareArgs, ShareProvider, Helper } from '../../helpers';
 
 @Directive({
     selector: '[shareButton]'

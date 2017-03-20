@@ -1,6 +1,6 @@
 /* tslint:disable:max-line-length */
 
-import { ShareProvider, ShareArgs, Helper } from './index';
+import { ShareProvider, ShareArgs, Helper } from '.';
 
 
 
