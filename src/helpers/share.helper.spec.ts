@@ -1,6 +1,6 @@
 /* tslint:disable:max-line-length */
 
-import { ShareProvider, ShareArgs, Helper } from './index';
+import { ShareProvider, ShareArgs, Helper } from '.';
 
 
 
@@ -40,7 +40,7 @@ describe('Module: Helper, Isolate Tests', () => {
 
         it('should return an share url for TWITTER provider', () => {
 
-            let shareUrl = 'https://twitter.com/intent/tweet?url=http://www.mysite.com&text=my description&hashtags=tag1,tag2';
+            let shareUrl = 'https://twitter.com/intent/tweet?url=http://www.mysite.com&text=my title&hashtags=tag1,tag2';
             expect(Helper.shareFactory(ShareProvider.TWITTER, args)).toEqual(shareUrl);
         });
 
@@ -90,7 +90,7 @@ describe('Module: Helper, Isolate Tests', () => {
 
         it('should return an share url for WHATSAPP provider', () => {
 
-            let shareUrl = 'whatsapp://send?text=*my title* %0Amy description | http://www.mysite.com';
+            let shareUrl = 'https://web.whatsapp.com/send?text=my title %0Amy description | http://www.mysite.com';
             expect(Helper.shareFactory(ShareProvider.WHATSAPP, args)).toEqual(shareUrl);
         });
 

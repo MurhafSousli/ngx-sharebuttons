@@ -42,6 +42,7 @@ export class ShareButtonsModule {
 
 export {
   ShareButtonsComponent,
+  ShareButtonComponent,
   ShareButtonDirective,
   ShareButton,
   NFormatterPipe,
