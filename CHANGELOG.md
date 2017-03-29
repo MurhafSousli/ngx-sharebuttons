@@ -1,6 +1,12 @@
-#Changelog
+# Changelog
 
-##2.0.1
+## 2.1.0
+
+ - (feat) Sharebutton will open the corresponding app on mobile [#79](https://github.com/MurhafSousli/ng2-sharebuttons/issues/79)
+ - (fix) Whatsapp button will open web.whatsapp on Desktop closes [#67](https://github.com/MurhafSousli/ng2-sharebuttons/issues/67)
+ - (fix) replaces `:root` with `:host` in style fixes [#81](https://github.com/MurhafSousli/ng2-sharebuttons/issues/81)
+
+## 2.0.1
 
  - (feat) Whatsapp button
  - (feat) Sharebutton Directive
@@ -13,20 +19,20 @@
     - Sharebutton component is for internal use only, use Sharebutton directive instead.
     - `[shareTitle]`, `[totalCount]`, deprecated.
 
-##1.1.5
+## 1.1.5
     - merge [#26](https://github.com/MurhafSousli/ng2-sharebuttons/pull/26)
 
-##1.1.4
+## 1.1.4
     
 * **Fixes Bug:** 
     - fix aot compilation issues in [#25](https://github.com/MurhafSousli/ng2-sharebuttons/pull/25), closes [#23](https://github.com/MurhafSousli/ng2-sharebuttons/issues/23)
 
-##1.1.3
+## 1.1.3
 
 * **Fixes Bug:** 
     - Publish `./dist` instead of root dir, closes [#22](https://github.com/MurhafSousli/ng2-sharebuttons/issues/22)
 
-##1.1.2
+## 1.1.2
 
 * **New Feature:**
 
@@ -37,11 +43,11 @@
     - Remove unnecessary dependencies, closes [#13](https://github.com/MurhafSousli/ng2-sharebuttons/issues/13)
     - Fixes sharing `hashlocationstrategy` URL, closes [#16](https://github.com/MurhafSousli/ng2-sharebuttons/issues/16)
 
-##1.1.1
+## 1.1.1
 
 * Update dependencies and remove hard version in package.json
 
-##1.1.0
+## 1.1.0
 
 * **New Feature:**
 
@@ -52,7 +58,7 @@
     - Import `Observable`, `empty`, `catch`, `map` operators individually instead of importing the whole library
     - Wrap window object in `WindowService`
 
-##1.0.7
+## 1.0.7
    
 * **Fixes Bug:** 
 
@@ -71,7 +77,7 @@
         <share-buttons [tags]="'hello, world'">
         ```
 
-##1.0.6
+## 1.0.6
 
 * **New Feature:** 
 
@@ -88,11 +94,11 @@
         - before: `[text]`, After: `[description]`.
         - before: `[hashtags]`, After: `[tags]`.
 
-##1.0.5
+## 1.0.5
 
 * **Improve Performance :** Now ShareButtonComponent uses `ChangeDetectionStrategy.OnPush`.
 
-##1.0.1
+## 1.0.1
 
 * **New Feature:** Set global twitter account to add "Via @twitterAccount" to user tweet.  
 * **New Feature:** New optional inputs `[text]`, `[image]` and `[hastags]` for twitter and pinterest.
@@ -101,6 +107,6 @@
 
 *** 
 
-##1.0.0
+## 1.0.0
 
 Stable release
