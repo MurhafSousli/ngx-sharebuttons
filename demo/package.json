@@ -1,44 +1,42 @@
 {
-  "name": "sharebuttons-demo",
+  "name": "demo",
   "version": "0.0.0",
   "license": "MIT",
-  "angular-cli": {},
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "npm link ng2-sharebuttons"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^2.4.8",
-    "@angular/compiler": "^2.4.8",
-    "@angular/core": "^2.4.8",
-    "@angular/forms": "^2.4.8",
-    "@angular/http": "^2.4.8",
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
     "@angular/material": "^2.0.0-beta.2",
-    "@angular/platform-browser": "^2.4.8",
-    "@angular/platform-browser-dynamic": "^2.4.8",
-    "@angular/router": "^3.4.8",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/router": "^4.0.0",
     "animate.css": "^3.5.2",
-    "bourbon": "^4.3.2",
+    "bourbon": "^4.3.3",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "ng2-sharebuttons": "^2.0.1",
-    "normalize.css": "^5.0.0",
-    "prism": "^4.1.1",
+    "normalize.css": "^6.0.0",
     "prismjs": "^1.6.0",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.7.6"
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0-beta.32.3",
-    "@angular/compiler-cli": "^2.4.8",
+    "@angular/cli": "1.0.0",
+    "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
-    "codelyzer": "~2.0.0-beta.4",
+    "codelyzer": "~2.0.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
@@ -49,7 +47,7 @@
     "karma-coverage-istanbul-reporter": "^0.2.0",
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
-    "tslint": "~4.4.2",
-    "typescript": "~2.0.0"
+    "tslint": "~4.5.0",
+    "typescript": "~2.2.0"
   }
 }
