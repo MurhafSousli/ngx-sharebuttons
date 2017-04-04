@@ -5,36 +5,28 @@
   font-size: 16px;
 }
 
-.sb-buttons {
-
-}
-
 share-buttons {
   width: 100%;
 }
 
 .sb-style {
-  display: flex;
-  justify-content: space-around;
+  display: inline-flex;
+  margin: 1em auto;
   flex-wrap: wrap;
-  margin: 1em 0;
 
   .sb-button {
+    min-width: 60px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    flex: 1;
   }
 
   button {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    max-width: 4em;
-    min-width: 3em;
-    width: 100%;
+
     background-color: transparent;
-    margin: .5em;
     border-radius: .2em;
     padding: .5em .9em;
     font-size: 1em;
@@ -50,7 +42,7 @@ share-buttons {
   }
 
   .sb-template {
-
+    margin: 0 auto;
   }
 
   .sb-count {
