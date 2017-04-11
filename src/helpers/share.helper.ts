@@ -2,6 +2,7 @@ import { ShareArgs } from './share-buttons.class';
 import { ShareProvider } from './share-provider.enum';
 import { ShareLinks } from './share-links.functions';
 
+/** Here is a collection of helper functions that can be used statically */
 export module Helper {
 
     /** Prepare gPlus count request body   */
@@ -22,6 +23,7 @@ export module Helper {
         }];
     };
 
+    /** Create share links */
     export const shareFactory = (type: ShareProvider, args: ShareArgs): string => {
         switch (type) {
             case ShareProvider.FACEBOOK:
@@ -47,6 +49,7 @@ export module Helper {
         }
     };
 
+    /** Change share counts to a readable number e.g 35.6k */
     export const nFormatter = (num: number, digits: number) => {
 
         let si = [
