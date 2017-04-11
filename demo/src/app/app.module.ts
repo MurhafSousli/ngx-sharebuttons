@@ -6,6 +6,8 @@ import {MdButtonModule} from '@angular/material';
 import {SharedModule} from './shared/shared.module';
 import {ShareButtonsModule} from 'ng2-sharebuttons';
 
+// import {ShareButtonsModule} from './sharebuttons';
+
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {InstallationComponent} from './installation/installation.component';

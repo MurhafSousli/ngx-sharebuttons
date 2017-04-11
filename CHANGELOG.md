@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.2
+
+ - (fix) sharing on mobile browser [#97]
+ - (enhacement) refactor default style
+
 ## 2.1.0
 
  - (feat) Sharebutton will open the corresponding app on mobile [#79](https://github.com/MurhafSousli/ng2-sharebuttons/issues/79)

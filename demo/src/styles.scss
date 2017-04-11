@@ -16,22 +16,17 @@
 body {
   font-family: sans-serif;
   color: $font-color;
-  line-height: 2rem;
+  line-height: 2em;
 }
 
-h1, h2, h3, h4, h5, b, li {
+h1, h2, h3, h4, h5, b, li, button {
   font-family: 'Play', sans-serif;
 }
 code[highlight]{
-  font-size: .8rem;
+  font-size: .8em;
 }
 highlight, code[highlight]{
-  border-radius: .2rem;
-  //background-color: #1D1F21;
-  //background-color: #F5F7FF;
-  //background-color: #2A2A2A;
-  //background-color: #1D262F;
-  //background-color: #24242E;
+  border-radius: .2em;
   background-color:#F5F2F0;
 }
 
@@ -95,4 +90,7 @@ header{
       }
     }
   }
+}
+.container{
+  overflow: hidden;
 }

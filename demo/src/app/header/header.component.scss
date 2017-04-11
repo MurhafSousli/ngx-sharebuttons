@@ -9,12 +9,18 @@
 }
 
 h1 {
-  font-size: 3rem;
-  margin: 0 0 2rem;
+  font-size: 3em;
+
+ @media only screen and (max-device-width : 480px) {
+  font-size: 2em;
+ }
 }
 
 h3{
-
+  
+ @media only screen and (max-device-width : 480px) {
+  font-size: 1em;
+ }
 }
 
 span{
@@ -32,7 +38,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 3rem 0;
+  margin: 3em 0;
   position: relative;
 }
 
