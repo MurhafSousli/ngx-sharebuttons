@@ -4,6 +4,8 @@
 }
 pre{
   margin: 0;
+  overflow-x: auto;
+  max-height: 300px;
 }
 code{
   padding: .8rem .6rem;

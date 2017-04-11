@@ -19,15 +19,15 @@ export class CustomComponent {
 
   cssCode = `.custom-buttons {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
   margin: 1em 0;
+
   .sb-buttons {
     flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    flex-wrap: wrap;
+
     button {
+      min-width: 60px;
       background-color: transparent;
       img {
         width: 60px;
@@ -49,7 +49,7 @@ export class CustomComponent {
       order: 2;
     }
   }
- }
+}
 `;
 
   htmlCode = `<share-buttons class="custom-buttons"

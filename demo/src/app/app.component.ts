@@ -1,6 +1,8 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {ShareButtonsService} from 'ng2-sharebuttons';
 
+// import {ShareButtonsService} from './sharebuttons';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
