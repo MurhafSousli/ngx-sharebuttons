@@ -14,7 +14,7 @@ import { ShareButton, ShareProvider } from '../../helpers/index';
 @Component({
     selector: 'share-buttons',
     templateUrl: './share-buttons.component.html',
-    styleUrls: ['./share-buttons.component.css'],
+    styleUrls: ['./share-buttons.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
