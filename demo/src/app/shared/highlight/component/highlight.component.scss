@@ -2,12 +2,15 @@
   display: block;
   overflow: hidden;
 }
+*{
+  box-sizing: border-box;
+}
 pre{
+  padding: 10px;
   margin: 0;
-  overflow-x: auto;
+  overflow: auto;
   max-height: 300px;
 }
 code{
-  padding: .8rem .6rem;
-  line-height: 1.3rem;
+  line-height: 1.3em;
 }

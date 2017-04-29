@@ -3,7 +3,7 @@
 @import '~normalize.css';
 @import '~animate.css';
 @import '~font-awesome/css/font-awesome.min.css';
-@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'assets/style/variables';
 @import '~prismjs/themes/prism';
 
@@ -44,7 +44,7 @@ a {
 }
 
 section {
-  margin-top: 30px;
+  margin: 4em 0;
   display: block;
   width: 100%;
 }

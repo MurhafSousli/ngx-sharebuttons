@@ -16,7 +16,7 @@ declare const Prism: any;
 
 @Component({
   selector: 'highlight',
-  template: `<pre><code [innerHtml]="codeString"></code></pre>`,
+  template: `<pre><code [innerHtml]="codeString | sanitizeHtml"></code></pre>`,
   styleUrls: ['highlight.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
