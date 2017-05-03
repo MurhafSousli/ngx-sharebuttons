@@ -14,8 +14,6 @@ ___
 [![Join the chat at https://gitter.im/ng2-sharebuttons/Lobby](https://badges.gitter.im/ng2-sharebuttons/Lobby.svg)](https://gitter.im/ng2-sharebuttons/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm](https://img.shields.io/npm/dt/ng2-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-sharebuttons)
 
-...
-
 **Documentation has moved to the [Wiki](https://github.com/MurhafSousli/ng2-sharebuttons/wiki) page**
 
 ## Issues
