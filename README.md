@@ -1,9 +1,3 @@
-[![npm](https://img.shields.io/npm/v/ng2-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-sharebuttons) 
-[![Build Status](https://travis-ci.org/MurhafSousli/ng2-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ng2-sharebuttons) 
-[![Coverage Status](https://coveralls.io/repos/github/MurhafSousli/ng2-sharebuttons/badge.svg?branch=master)](https://coveralls.io/github/MurhafSousli/ng2-sharebuttons?branch=master)
-[![Join the chat at https://gitter.im/ng2-sharebuttons/Lobby](https://badges.gitter.im/ng2-sharebuttons/Lobby.svg)](https://gitter.im/ng2-sharebuttons/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![npm](https://img.shields.io/npm/dt/ng2-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-sharebuttons)
-
 <p align="center">
   <img height="300px" width="300px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ng2-sharebuttons/master/assets/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
@@ -12,7 +6,17 @@
 
 Simple, lightweight, customizable share buttons with counts | [live demo](https://murhafsousli.github.io/ng2-sharebuttons/) | [vertical demo](https://murhafsousli.github.io/memory/) | [popup demo](https://murhafsousli.github.io/8puzzle/#/) | [plunker](https://plnkr.co/edit/c9A6xzGQ8iSuKo3NMYLz)
 
-**Documenation has moved to the [Wiki](https://github.com/MurhafSousli/ng2-sharebuttons/wiki) page**
+___
+
+[![npm](https://img.shields.io/npm/v/ng2-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-sharebuttons) 
+[![Build Status](https://travis-ci.org/MurhafSousli/ng2-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ng2-sharebuttons) 
+[![Coverage Status](https://coveralls.io/repos/github/MurhafSousli/ng2-sharebuttons/badge.svg?branch=master)](https://coveralls.io/github/MurhafSousli/ng2-sharebuttons?branch=master)
+[![Join the chat at https://gitter.im/ng2-sharebuttons/Lobby](https://badges.gitter.im/ng2-sharebuttons/Lobby.svg)](https://gitter.im/ng2-sharebuttons/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![npm](https://img.shields.io/npm/dt/ng2-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-sharebuttons)
+
+...
+
+**Documentation has moved to the [Wiki](https://github.com/MurhafSousli/ng2-sharebuttons/wiki) page**
 
 ## Issues
 
