@@ -57,7 +57,7 @@ export class ShareButtonsService {
         let popUp = this.window.open(Helper.shareFactory(type, args), 'newwindow', this.windowAttr());
 
         /** Emit clicked button */
-        if (this.window) {
+        if (this.window && popUp) {
             let pollTimer = this.window.setInterval(() => {
                 if (popUp.closed) {
                     this.window.clearInterval(pollTimer);
