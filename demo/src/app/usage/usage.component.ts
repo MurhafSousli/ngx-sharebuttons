@@ -14,12 +14,12 @@ export class UsageComponent {
     this.totalShare += count;
   }
 
-  importCode = `import {ShareButtonsModule} from 'ng2-sharebuttons';
- @NgModule({
-   imports: [
-     ShareButtonsModule.forRoot()
-   ]
- })`;
+  importCode = `import {ShareButtonsModule} from 'ngx-sharebuttons';
+@NgModule({
+ imports: [
+   ShareButtonsModule.forRoot()
+ ]
+})`;
 
   basicCode = '<share-buttons></share-buttons>';
 
@@ -34,11 +34,11 @@ export class UsageComponent {
 </div>`;
 
   countCode = `export class SomeComponent {
-   totalShare: number = 0;
-   sumCounts(count){
-     this.totalShare += count;
-   }
- }`;
+  totalShare: number = 0;
+  sumCounts(count){
+    this.totalShare += count;
+  }
+}`;
 
   countStyle= `.share-container {
   display: flex;

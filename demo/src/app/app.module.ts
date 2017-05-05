@@ -16,6 +16,7 @@ import {CustomComponent} from './custom/custom.component';
 import {IntegrationComponent} from './integration/integration.component';
 import {FooterComponent} from './footer/footer.component';
 import { NotesComponent } from './notes/notes.component';
+import { SingleComponent } from './single/single.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NotesComponent } from './notes/notes.component';
     IntegrationComponent,
     FooterComponent,
     NotesComponent,
+    SingleComponent,
   ],
   imports: [
     BrowserModule,

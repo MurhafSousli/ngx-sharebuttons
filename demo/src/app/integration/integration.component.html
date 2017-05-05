@@ -13,4 +13,23 @@
       <button md-fab [shareButton]="'pinterest'"><i class="fa fa-pinterest-p"></i></button>
     </div>
   </output>
+
+  <p>Another example, add pin button to an image</p>
+
+  <tabs>
+    <tab tabTitle="Template">
+      <highlight lang="html" [code]="pinHtml"></highlight>
+    </tab>
+    <tab tabTitle="Style">
+      <highlight lang="scss" [code]="pinCss"></highlight>
+    </tab>
+  </tabs>
+
+  <output>
+    <div class="photo">
+      <div class="pin-button" shareButton="pinterest" [sbImage]="imageSrc"><i
+        class="fa fa-pinterest-p"></i></div>
+      <img [src]="imageSrc">
+    </div>
+  </output>
 </section>

@@ -17,7 +17,7 @@ h1 {
 }
 
 h3{
-  
+  margin: 1em 0;
  @media only screen and (max-device-width : 480px) {
   font-size: 1em;
  }
@@ -47,4 +47,8 @@ img {
   top: 0;
   right: 0;
   border: 0;
+}
+
+share-buttons{
+  margin: 0 auto 1.5em;
 }

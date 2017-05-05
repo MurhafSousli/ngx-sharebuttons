@@ -7,5 +7,5 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InstallationComponent{
-  installCode = '$ npm install ng2-sharebuttons --save';
+  installCode = '$ npm install ngx-sharebuttons --save';
 }

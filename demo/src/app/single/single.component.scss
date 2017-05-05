@@ -1,0 +1,18 @@
+.single-button {
+  button {
+    font-size: 18px;
+    width: 80px;
+    background-color: transparent;
+    padding: 0.4em 1em;
+    margin: 1em;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    transition: all linear 200ms;
+    &:active {
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    }
+  }
+  .facebook button {
+    color: #35528E;
+  }
+}

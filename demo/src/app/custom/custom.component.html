@@ -1,16 +1,15 @@
 <section>
-  <h2>Customization</h2>
-  <p>Customization is very easy, disable the default style with <code highlight>[defaultStyle]="false"</code>
-    use the classes shown in the style tab below to override them with your css.</p>
+  <h2>Customization & Style</h2>
+  <p><b>Styling share buttons: </b>disable the default style with <code highlight>[defaultStyle]="false"</code>
+    then use the classes shown in the style tab below to override them with your custom css.</p>
 
-  <p>To change buttons orders, use the css rule <code highlight>order</code></p>
+  <p><b>Change buttons order: </b>use the css rule <code highlight>order</code></p>
 
-  <p>To add a custom button template, create it with as string variable then pass it to the desired input, e.g. give
-    facebook a custom template
+  <p><b>Custom button template: </b>use the input of the social network you want, e.g. give facebook a custom template
     <code highlight>[facebook]="facebookTemp"</code>.
   </p>
 
-  <p>To exclude a button, pass <a><pre style="display: inline">false</pre></a> to the button input. e.g. <code highlight>[reddit]="false"</code>
+  <p><b>Disable a button: </b>pass <a><pre style="display: inline">false</pre></a> to the social network input. e.g. <code highlight>[reddit]="false"</code>
   </p>
 
   <tabs>
@@ -28,7 +27,7 @@
   <output>
     <share-buttons class="custom-buttons"
                    [defaultStyle]="false"
-                  
+
                    [url]="'https://twitter.com'"
                    [facebook]="fbTemp"
                    [twitter]="twttTemp"

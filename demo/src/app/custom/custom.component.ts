@@ -17,7 +17,8 @@ export class CustomComponent {
   tumblrTemp = "<img src='assets/img/tumblr.svg'>";
   whatsTemp = "<img src='assets/img/whatsapp.svg'>";
 
-  cssCode = `.custom-buttons {
+  cssCode = `// Add your css in the global style, not in the component stylesheet
+.custom-buttons {
   display: flex;
   margin: 1em 0;
 
@@ -49,21 +50,20 @@ export class CustomComponent {
       order: 2;
     }
   }
-}
-`;
+}`;
 
   htmlCode = `<share-buttons class="custom-buttons"
-               [defaultStyle]="false"
-               [facebook]="fbTemp"
-               [twitter]="twttTemp"
-               [pinterest]="pintTemp"
-               [linkedIn]="inTemp"
-               [google]="googleTemp"
-               [tumblr]="tumblrTemp"
-               [whatsApp]="whatsTemp"
-               [reddit]="false"
-               [stumbleUpOn]="false"
- ></share-buttons>`;
+       [defaultStyle]="false"
+       [facebook]="fbTemp"
+       [twitter]="twttTemp"
+       [pinterest]="pintTemp"
+       [linkedIn]="inTemp"
+       [google]="googleTemp"
+       [tumblr]="tumblrTemp"
+       [whatsApp]="whatsTemp"
+       [reddit]="false"
+       [stumbleUpOn]="false"
+></share-buttons>`;
 
   tsCode = `export class SomeComponent {
   fbTemp = "${this.fbTemp}";
@@ -73,5 +73,5 @@ export class CustomComponent {
   googleTemp = "${this.googleTemp}";
   tumblrTemp = "${this.tumblrTemp}";
   whatsTemp = "${this.whatsTemp}";
- }`;
+}`;
 }
