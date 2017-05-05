@@ -15,7 +15,9 @@ export class IntegrationComponent {
   <button md-fab shareButton="pinterest"><i class="fa fa-pinterest-p"></i></button>
 </div>
 `;
+
   imageSrc = 'https://raw.githubusercontent.com/MurhafSousli/ngx-sharebuttons/master/demo/src/assets/img/pinExample.jpg';
+
   pinHtml = `<div class="photo">
   <div class="pin-button" shareButton="pinterest" [sbImage]="imageSrc">
     <i class="fa fa-pinterest-p"></i>

@@ -15,6 +15,7 @@ export class UsageComponent {
   }
 
   importCode = `import {ShareButtonsModule} from 'ngx-sharebuttons';
+
 @NgModule({
  imports: [
    ShareButtonsModule.forRoot()

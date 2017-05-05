@@ -2,8 +2,8 @@
   <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
   <p align="center"><img src="https://camo.githubusercontent.com/27616547b01ca8d5695bb33ebe5c889e9fe681cb/68747470733a2f2f63646e2e7261776769742e636f6d2f4d7572686166536f75736c692f6e67322d7368617265627574746f6e732f6d61737465722f6173736574732f627574746f6e732e706e67" data-canonical-src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg" style="max-width:100%;"></a>
-  </p>
-
+</p>
+  
 Simple, lightweight, customizable share buttons with counts | [live demo](https://murhafsousli.github.io/ngx-sharebuttons/) | [vertical demo](https://murhafsousli.github.io/memory/) | [popup demo](https://murhafsousli.github.io/8puzzle/#/) | [plunker](https://plnkr.co/edit/c9A6xzGQ8iSuKo3NMYLz)
 ___
 
