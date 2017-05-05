@@ -1,17 +1,17 @@
 {
-  "name": "ng2-sharebuttons",
-  "version": "2.1.2",
-  "description": "Simple, lightweight, customizable share buttons for angular 2 application",
+  "name": "ngx-sharebuttons",
+  "version": "3.0.0",
+  "description": "Simple, lightweight, customizable share buttons for Angular",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:MurhafSousli/ng2-sharebuttons.git"
+    "url": "git+ssh://git@github.com:MurhafSousli/ngx-sharebuttons.git"
   },
-  "homepage": "https://github.com/MurhafSousli/ng2-sharebuttons#readme",
+  "homepage": "https://github.com/MurhafSousli/ngx-sharebuttons#readme",
   "bugs": {
-    "url": "https://github.com/MurhafSousli/ng2-sharebuttons/issues"
+    "url": "https://github.com/MurhafSousli/ngx-sharebuttons/issues"
   },
   "keywords": [
-    "angular2",
+    "angular",
     "sharebuttons",
     "share",
     "buttons",
@@ -33,24 +33,24 @@
     "test": " gulp test"
   },
   "dependencies": {
-    "@angular/common": "2.0.0",
-    "@angular/core": "2.0.0",
-    "@angular/http": "2.0.0",
-    "rxjs": "5.0.0-beta.12"
+    "@angular/common": "4.0.0",
+    "@angular/core": "4.0.0",
+    "@angular/http": "4.0.0"
   },
   "devDependencies": {
-    "@angular/compiler": "2.0.0",
-    "@angular/compiler-cli": "0.6.2",
-    "@angular/platform-browser": "2.0.0",
-    "@angular/platform-browser-dynamic": "2.0.0",
-    "@angular/platform-server": "2.0.0",
-    "@angular/router": "3.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@angular/platform-browser": "4.0.0",
+    "@angular/platform-browser-dynamic": "4.0.0",
+    "@angular/platform-server": "4.0.0",
+    "@angular/router": "4.0.0",
+    "rxjs": "5.1.0",
     "@types/jasmine": "2.5.41",
     "@types/node": "^6.0.58",
     "angular2-template-loader": "^0.6.0",
     "autoprefixer": "^6.6.1",
     "awesome-typescript-loader": "^3.0.0-beta.18",
-    "codelyzer": "1.0.0-beta.0",
+    "codelyzer": "~3.0.1",
     "core-js": "2.4.1",
     "css-loader": "^0.26.1",
     "cssnano": "^3.7.4",
@@ -60,7 +60,8 @@
     "gulp-coveralls": "^0.1.4",
     "gulp-file": "^0.3.0",
     "gulp-inline-ng2-template": "^4.0.0",
-    "gulp-tslint": "^6.1.1",
+    "gulp-tslint": "^7.1.0",
+    "tslint": "^4.5.1",
     "gulp-util": "^3.0.7",
     "html-loader": "^0.4.4",
     "istanbul-instrumenter-loader": "1.2.0",
@@ -81,17 +82,15 @@
     "pump": "^1.0.2",
     "raw-loader": "0.5.1",
     "rollup-plugin-node-resolve": "^2.0.0",
-    "rollup-plugin-uglify": "^1.0.1",
+    "rollup-plugin-uglify": "^1.0.2",
     "run-sequence": "^1.2.2",
-    "rxjs": "5.0.0-beta.12",
     "sass-loader": "^6.0.3",
     "source-map-loader": "^0.1.5",
     "to-string-loader": "^1.1.5",
-    "tslint": "^3.15.1",
-    "typescript": "2.0.2",
+    "typescript": "2.3.2",
     "webpack": "~2.4.1",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-dev-server": "~2.4.2",
-    "zone.js": "0.6.21"
+    "zone.js": "^0.8.4"
   }
 }

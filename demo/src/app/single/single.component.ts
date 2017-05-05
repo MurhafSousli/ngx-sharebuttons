@@ -12,7 +12,7 @@ export class SingleComponent implements OnInit {
 
   fbButton;
   cmpName = '<share-button></share-button>';
-  tsCode = `import { ShareButton, ShareProvider } from 'ng2-sharebuttons';
+  tsCode = `import { ShareButton, ShareProvider } from 'ngx-sharebuttons';
 
 export class SomeComponent {
   fbButton;

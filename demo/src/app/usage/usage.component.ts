@@ -14,7 +14,8 @@ export class UsageComponent {
     this.totalShare += count;
   }
 
-  importCode = `import {ShareButtonsModule} from 'ng2-sharebuttons';
+  importCode = `import {ShareButtonsModule} from 'ngx-sharebuttons';
+
 @NgModule({
  imports: [
    ShareButtonsModule.forRoot()
