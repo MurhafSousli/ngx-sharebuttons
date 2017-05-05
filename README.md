@@ -7,7 +7,7 @@
 Simple, lightweight, customizable share buttons with counts | [live demo](https://murhafsousli.github.io/ngx-sharebuttons/) | [vertical demo](https://murhafsousli.github.io/memory/) | [popup demo](https://murhafsousli.github.io/8puzzle/#/) | [plunker](https://plnkr.co/edit/c9A6xzGQ8iSuKo3NMYLz)
 ___
 
-[![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/) [![npm](https://img.shields.io/npm/v/ngx-disqus.svg)]
+[![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
 [![npm](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons) 
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons) 
 [![Coverage Status](https://coveralls.io/repos/github/MurhafSousli/ngx-sharebuttons/badge.svg?branch=master)](https://coveralls.io/github/MurhafSousli/ngx-sharebuttons?branch=master)
