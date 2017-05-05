@@ -91,6 +91,6 @@
     "webpack": "~2.4.1",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-dev-server": "~2.4.2",
-    "zone.js": "^0.8.4
+    "zone.js": "^0.8.4"
   }
 }
