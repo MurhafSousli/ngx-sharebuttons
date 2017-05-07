@@ -14,7 +14,7 @@ ___
 [![Join the chat at https://gitter.im/ngx-sharebuttons/Lobby](https://badges.gitter.im/ngx-sharebuttons/Lobby.svg)](https://gitter.im/ngx-sharebuttons/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-**Documenation has moved to the [Wiki](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page**
+**Documentation has moved to the [Wiki](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page**
 
 ## Issues
 
