@@ -1,0 +1,73 @@
+// Colors variables
+$sb-primary: #2ee59d !default;
+$sb-accent: #fff !default;
+$sb-facebook: #4267B2 !default;
+$sb-twitter: #00acee !default;
+$sb-google: #db4437 !default;
+$sb-stumble: #eb4924 !default;
+$sb-linkedin: #006fa6 !default;
+$sb-pinterest: #bd081c !default;
+$sb-reddit: #ff4006 !default;
+$sb-tumblr: #36465d !default;
+$sb-whatsapp: #25d366 !default;
+$sb-telegram: #0088cc !default;
+$sb-email: #FF961C !default;
+$sb-vk: #4C75A3 !default;
+$sb-more: #614696 !default;
+$sb-copy: #607D8B !default;
+$sb-print: #32a1a3 !default;
+$sb-gray: #a5a5a5 !default;
+
+
+// sb-button
+$sb-min-width: 4.125em !default;
+$sb-height: 2.5em !default;
+$sb-background-color: transparent !default;
+
+// font sizes
+$sb-font-size: inherit !default;
+$sb-icon-size: 1.2em !default;
+$sb-count-size: 0.9em !default;
+
+// margin
+$share-button-margin: 0.3125em !default;
+
+// padding
+$sb-padding: 0 !default;
+$sb-text-padding: 0 1em !default;
+$sb-count-padding: 0 1em !default;
+$sb-template-padding: 0 1em !default;
+
+$sb-count-min-width: 5.333em !default;
+
+$sb-border: none !default;
+$sb-border-radius: 1px !default;
+
+$sb-template-line-height: 2.571em;
+
+// Share menu variables
+$sb-overlay-bg: rgba(0, 0, 0, 0.4) !default;
+$sb-menu-bg: #fff !default;
+$sb-menu-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !default;
+$sb-menu-max-width: 360px !default;
+$sb-menu-width: 90% !default;
+$sb-menu-border-radius: 4px !default;
+$sb-menu-padding: 1em !default;
+
+$sb-buttons: (
+  facebook: $sb-facebook,
+  twitter: $sb-twitter,
+  google: $sb-google,
+  stumble: $sb-stumble,
+  linkedin: $sb-linkedin,
+  pinterest: $sb-pinterest,
+  reddit: $sb-reddit,
+  tumblr: $sb-tumblr,
+  whatsapp: $sb-whatsapp,
+  telegram: $sb-telegram,
+  email: $sb-email,
+  vk: $sb-vk,
+  more: $sb-more,
+  copy: $sb-copy,
+  print: $sb-print
+) !default;
