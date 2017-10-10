@@ -1,3 +1,11 @@
+@import '~@angular/material/theming';
+
 $action-color: #e73727;
 $output-color:  #778DA9;
 $font-color: #2E4057;
+$box-shadow: 0 3px 10px rgba(black, 0.1);//0 6px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+$code-bg: #fff;
+$footer: mat-color(mat-palette($mat-blue, 700));
+$footer-accent: mat-color(mat-palette($mat-blue, 800));
+$footer-bg: linear-gradient(to right, $footer-accent, $footer, $footer-accent);
+$menu-shadow:  0 0 6px rgba(0,0,0,0.23);//3px 0 8px rgba(0, 0, 0, 0.3);

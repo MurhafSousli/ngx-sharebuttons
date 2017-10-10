@@ -1,0 +1,42 @@
+[
+  {
+    "name": "include",
+    "description": "Include certain buttons. Button's order will be as you type it. default: ['facebook', 'twitter', 'linkedin', 'pinterest', 'google', 'stumble', 'reddit', 'whatsapp', 'tumblr', 'telegram']"
+  },
+  {
+    "name": "exclude",
+    "description": "Exclude certain buttons. if defined, these buttons will be excluded, default: [ ]"
+  },
+  {
+    "name": "theme",
+    "description": "Button's theme name, default: null"
+  },
+  {
+    "name": "dialogWidth",
+    "description": "Share dialog width, default: 500"
+  },
+  {
+    "name": "dialogHeight",
+    "description": "Share dialog height, default: 400"
+  },
+  {
+    "name": "title",
+    "description": "Override title meta tag, default: null"
+  },
+  {
+    "name": "description",
+    "description": "Override description meta tag, default: null"
+  },
+  {
+    "name": "image",
+    "description": "Override image meta tag, default: null"
+  },
+  {
+    "name": "tags",
+    "description": "Set the tags for Tumblr and Twitter, default: null"
+  },
+  {
+    "name": "twitterAccount",
+    "description": "Add via @accountName at the end of the tweets, default: null"
+  }
+]

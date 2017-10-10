@@ -1,0 +1,100 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+$primary: mat-palette($mat-blue);
+$accent: mat-palette($mat-red);
+$warn: mat-palette($mat-blue, 700);
+$theme: mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
+
+// MATERIAL TABLE
+
+md-table, md-card {
+  box-shadow: $box-shadow !important;
+}
+
+.mat-cell, md-card, .mat-chip:not(.mat-basic-chip) {
+  color: $font-color !important;
+}
+
+.mat-header-cell {
+  color: rgba($font-color, 0.54);
+}
+
+.mat-header-row, .mat-row {
+  height: auto !important;
+  md-cell {
+    padding: 0.8em 0;
+  }
+}
+
+// MATERIAL CHIPS
+
+.mat-chip-list-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center !important;
+}
+
+.mat-primary .mat-chip-selected {
+  background-color: lightgreen !important;
+}
+
+// MATERIAL CARD
+
+md-card {
+  overflow: initial;
+  margin-top: 3em;
+}
+
+md-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+  .mat-card-header-text {
+    margin: 0;
+  }
+}
+
+md-card-content {
+  flex: 1;
+  position: relative;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: initial;
+}
+
+// MATERIAL LIST
+
+.mat-list, .mat-nav-list {
+  padding-top: 1em !important;
+}
+
+.mat-list-item-content {
+  padding: 0 0 0 48px !important;
+  height: 52px !important;
+}
+
+.mat-sidenav, .mat-sidenav-container {
+  background: unset;
+}
+
+.mat-sidenav-container {
+  color: $font-color
+}
+
+$footer-bg: mat-color($primary);
+
+// MATERIAL DIALOG
+.code-dialog .mat-dialog-container {
+  background-color: mat-color($warn);
+  border-radius: 0.8em;
+}
+
+
+.mat-slide-toggle .mat-slide-toggle-content {
+  font-size: 0.9em;
+  font-weight: bold;
+}

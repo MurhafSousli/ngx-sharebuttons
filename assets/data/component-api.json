@@ -1,0 +1,68 @@
+[
+  {
+    "name": "theme",
+    "description": "Set button's theme, default: null",
+    "type": "input"
+  },
+  {
+    "name": "button",
+    "description": "Button name, e.g. 'facebook', 'twitter' ...etc. default: null",
+    "type": "input"
+  },
+  {
+    "name": "url",
+    "description": "Link to share, default: current URL",
+    "type": "input"
+  },
+  {
+    "name": "title",
+    "description": "Override title meta tag for LinkedIn and Reddit, default: null",
+    "type": "input"
+  },
+  {
+    "name": "description",
+    "description": "Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest, default: null",
+    "type": "input"
+  },
+  {
+    "name": "image",
+    "description": "Override image meta tag for Pinterest only, default: null",
+    "type": "input"
+  },
+  {
+    "name": "tags",
+    "description": "Set the tags for Tumblr and Twitter, default: null",
+    "type": "input"
+  },
+  {
+    "name": "showIcon",
+    "description": "Show buttons' icons, default: true",
+    "type": "input"
+  },
+  {
+    "name": "showName",
+    "description": "Show buttons' names, default: false",
+    "type": "input"
+  },
+  {
+    "name": "showCount",
+    "description": "Show share counts on buttons, default: false",
+    "type": "input"
+  },
+  {
+    "name": "opened",
+    "description": "Event emits when share dialog has opened",
+    "type": "output"
+  },
+  {
+    "name": "closed",
+    "description": "Event emits when share dialog has closed",
+    "type": "output"
+  },
+  {
+    "name": "count",
+    "description": "Event emits share count of the share URL",
+    "type": "output"
+  }
+]
+
