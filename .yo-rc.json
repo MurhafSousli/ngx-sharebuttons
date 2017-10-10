@@ -1,0 +1,29 @@
+{
+  "generator-ngx-library": {
+    "version": "4.3.0",
+    "authorName": "Murhaf Sousli",
+    "authorEmail": "murhafsousli@gmail.com",
+    "githubUsername": "MurhafSousli",
+    "githubRepoName": "ngx-sharebuttons",
+    "projectName": "ngx-sharebuttons",
+    "projectVersion": "4.0.0",
+    "projectDescription": "Angular library built with ❤ using ngx-library yeoman generator.",
+    "projectKeywords": [
+      "ng",
+      "angular",
+      "library"
+    ],
+    "ngPrefix": "my-lib",
+    "ngVersion": "4.0.0",
+    "ngModules": [
+      "core",
+      "common"
+    ],
+    "useGreenkeeper": false,
+    "useCompodoc": false,
+    "enforceNgGitCommitMsg": false,
+    "exclusions": [
+      "demo/proxy.conf.json"
+    ]
+  }
+}

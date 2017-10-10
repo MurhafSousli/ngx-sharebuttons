@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.0.0@beta
+
+Version 4 has been rewritten from scratch
+
+ - Major improvements: The list is long, just check the [demo](https://murhafsousli.github.io/ngx-sharebuttons/)
+ - Provide 3 different modules, import only what you use
+ - Use `HttpClient` for fetching share counts instead of `Http`, (requires Angular +4.3)
+ - Add new buttons for Telegram, Email, Print, Copy link
+ - Improve documentations
+ - License is now **GPL-3.0**
+
+ ***
+
+ Version 3 is no longer supported
+
 ## 3.0.0
 
  - Rename npm package to `ngx-sharebuttons`.

@@ -1,185 +1,214 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Jsonp, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/empty';
+import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ShareButtonsMeta, ShareButtonsOptions } from '../models/share-buttons.models';
+import {
+  FacebookButton,
+  TwitterButton,
+  GoogleButton,
+  PinterestButton,
+  TumblrButton,
+  EmailButton,
+  PrintButton,
+  LinkedinButton,
+  VKontakteButton,
+  StumbleButton,
+  RedditButton,
+  WhatsappButton,
+  TelegramButton,
+  CopyButton,
+  Buttons
+} from '../classes';
 
-import { WindowService } from './window.service';
-import { ShareArgs, ShareProvider, Helper } from '../helpers/index';
-
-declare const global: any; // To make AoT compiler (ngc) happy
+/** Options tokens */
+const OPTIONS = new InjectionToken<ShareButtonsOptions>('OPTIONS');
+const BUTTONS_META = new InjectionToken<ShareButtonsMeta>('BUTTONS_META');
 
 @Injectable()
 export class ShareButtonsService {
 
-    /** Window Object */
-    window: Window;
-    /** Optional parameters */
-    windowWidth: number = 500;
-    windowHeight: number = 400;
+  /** Global Options */
+  allButtons = [
+    'facebook',
+    'twitter',
+    'linkedin',
+    'pinterest',
+    'google',
+    'stumble',
+    'reddit',
+    'whatsapp',
+    'tumblr',
+    'vk',
+    'telegram',
+    'email',
+    'copy',
+    'print'
+  ];
 
-    /** Site Twitter Account: Add Via @TwitterAccount to the tweet  */
-    twitterAccount: string;
+  /** Default options */
+  options: ShareButtonsOptions = {
+    theme: 'default',
+    dialogWidth: 500,
+    dialogHeight: 400,
+    include: this.allButtons,
+    exclude: [],
+    size: 0,
+    title: null,
+    image: null,
+    description: null,
+    tags: null,
+    twitterAccount: null
+  };
 
-    constructor(window: WindowService, private http: Http, private jsonp: Jsonp) {
-        this.window = window.nativeWindow;
+  /** Buttons' Config */
+  meta: ShareButtonsMeta = Buttons;
+
+  constructor(private http: HttpClient,
+    @Optional() @Inject(OPTIONS) options: ShareButtonsOptions,
+    @Optional() @Inject(BUTTONS_META) meta: ShareButtonsMeta) {
+
+    this.options = { ...this.options, ...options };
+    this.meta = mergeDeep(this.meta, meta);
+  }
+
+
+  get twitterAccount() {
+    return this.options.twitterAccount;
+  }
+
+  get dialogSize() {
+    return `width=${this.options.dialogWidth}, height=${this.options.dialogHeight}`;
+  }
+
+  /** Get all wanted buttons */
+  get buttons() {
+    if (!this.options.exclude.length) {
+      return this.options.include;
     }
+    return this.options.include.filter((btn) => this.options.exclude.indexOf(btn) < 0);
+  }
 
-    validateUrl(url: string) {
-        /** If URL is specified then validate it, otherwise use window URL */
-        if (url) {
-            let r = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+  get theme() {
+    return this.options.theme;
+  }
 
-            if (r.test(url)) {
-                return encodeURIComponent(url);
-            } else {
-                console.warn('[ShareButtons]: Invalid URL, fallback to Window URL');
-            }
+  /** Global meta tags */
+
+  get title() {
+    return this.options.title;
+  }
+
+  get description() {
+    return this.options.description;
+  }
+
+  get image() {
+    return this.options.image;
+  }
+
+  get tags() {
+    return this.options.tags;
+  }
+
+  get size() {
+    return this.options.size;
+  }
+
+  createShareButton(buttonName: string) {
+
+    switch (buttonName.toLowerCase()) {
+      case this.meta.facebook.type:
+        return new FacebookButton(this.meta.facebook, this.http);
+      case this.meta.twitter.type:
+        return new TwitterButton(this.meta.twitter);
+      case this.meta.google.type:
+        return new GoogleButton(this.meta.google, this.http);
+      case this.meta.pinterest.type:
+        return new PinterestButton(this.meta.pinterest, this.http);
+      case this.meta.linkedin.type:
+        return new LinkedinButton(this.meta.linkedin, this.http);
+      case this.meta.reddit.type:
+        return new RedditButton(this.meta.reddit, this.http);
+      case this.meta.tumblr.type:
+        return new TumblrButton(this.meta.tumblr, this.http);
+      case this.meta.stumble.type:
+        return new StumbleButton(this.meta.stumble);
+      case this.meta.whatsapp.type:
+        return new WhatsappButton(this.meta.whatsapp);
+      case this.meta.vk.type:
+        return new VKontakteButton(this.meta.vk);
+      case this.meta.telegram.type:
+        return new TelegramButton(this.meta.telegram);
+      case this.meta.email.type:
+        return new EmailButton(this.meta.email);
+      case this.meta.copy.type:
+        return new CopyButton(this.meta.copy);
+      case this.meta.print.type:
+        return new PrintButton(this.meta.print);
+      default:
+        return null;
+    }
+  }
+
+  /**
+   * Determine the mobile operating system.
+   * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+   *
+   * @returns {String}
+   */
+  getMobileOS() {
+    // const userAgent = navigator.userAgent || navigator.vendor || (window || global).opera;
+
+    // Windows Phone must come first because its UA also contains "Android"
+    // if (/windows phone/i.test(userAgent)) {
+    //   return 'WindowsPhone';
+    // }
+
+    // if (/android/i.test(userAgent)) {
+    //   return 'Android';
+    // }
+
+    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+    // if (/iPad|iPhone|iPod/.test(userAgent) && !(window || global).MSStream) {
+    //   return 'iOS';
+    // }
+
+    return undefined;
+  }
+
+}
+
+/**
+ * Simple object check.
+ * @param item
+ * @returns {boolean}
+ */
+function isObject(item) {
+  return (item && typeof item === 'object' && !Array.isArray(item));
+}
+
+/**
+ * Deep merge two objects.
+ * @param target
+ * @param ...sources
+ */
+function mergeDeep(target, ...sources) {
+  if (!sources.length) {
+    return target;
+  }
+  const source = sources.shift();
+
+  if (isObject(target) && isObject(source)) {
+    for (const key in source) {
+      if (isObject(source[key])) {
+        if (!target[key]) {
+          Object.assign(target, { [key]: {} });
         }
-        /** fallback to "Window" URL, or to "Global" in universal */
-        return (this.window) ? encodeURIComponent(this.window.location.href) : (<any>global).url || '';
+        mergeDeep(target[key], source[key]);
+      } else {
+        Object.assign(target, { [key]: source[key] });
+      }
     }
+  }
 
-
-    /** Open share window */
-    share(type: ShareProvider, args: ShareArgs, popUpClosed: EventEmitter<ShareProvider>) {
-
-        /** include twitterAccount in args for twitter button */
-        if (this.twitterAccount) {
-            args = Object.assign({}, args, { via: this.twitterAccount });
-        }
-
-        /** check for mobile browser (this won't detect tablets browser) */
-        if (this.window.innerWidth <= 480) {
-            args = Object.assign({}, args, { mobile: true });
-        }
-
-        let popUp = this.window.open(Helper.shareFactory(type, args), 'newwindow', this.windowAttr());
-
-        /** Emit clicked button */
-        if (this.window && popUp) {
-            let pollTimer = this.window.setInterval(() => {
-                if (popUp.closed) {
-                    this.window.clearInterval(pollTimer);
-                    popUpClosed.emit(type);
-                }
-            }, 200);
-        }
-    }
-
-    /** Share Counts */
-    count(type: ShareProvider, url: string, count: EventEmitter<number>) {
-
-        switch (type) {
-            case ShareProvider.FACEBOOK:
-                this.fbCount(url, count);
-                break;
-            case ShareProvider.LINKEDIN:
-                this.linkedInCount(url, count);
-                break;
-            case ShareProvider.REDDIT:
-                this.redditCount(url, count);
-                break;
-            case ShareProvider.TUMBLR:
-                this.tumblrCount(url, count);
-                break;
-            case ShareProvider.GOOGLEPLUS:
-                this.gPlusCount(url, count);
-                break;
-            case ShareProvider.PINTEREST:
-                this.pinCount(url, count);
-                break;
-            default:
-        }
-    }
-
-    private fbCount(url: string, count: EventEmitter<number>) {
-        this.fetch(`https://graph.facebook.com/?id=${url}`)
-            .subscribe((data: any) => {
-                data = data.json();
-                if (data.hasOwnProperty('share') && data.share.hasOwnProperty('share_count')) {
-                    count.emit(data.share.share_count);
-                    return;
-                }
-                count.emit(0);
-            });
-    }
-
-    private linkedInCount(url: string, count: EventEmitter<number>) {
-        this.fetchJsonp(`https://www.linkedin.com/countserv/count/share?url=${url}`)
-            .subscribe((data: any) => {
-                data = data.json();
-                count.emit(data.count || 0);
-            });
-    }
-
-    private redditCount(url: string, count: EventEmitter<number>) {
-        this.fetch(`https://buttons.reddit.com/button_info.json?url=${url}`)
-            .subscribe((data: any) => {
-                data = data.json();
-                if (data.hasOwnProperty('data') && data.data.hasOwnProperty('children')) {
-                    if (data.data.children.length) {
-                        count.emit(data.data.children[0].data.score);
-                        return;
-                    }
-                }
-                count.emit(0);
-            });
-    }
-
-    private gPlusCount(url: string, count: EventEmitter<number>) {
-        let body = Helper.gplusCountBody(url);
-        this.post('https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ', body)
-            .subscribe((data: any) => {
-                data = data.json();
-                if (data[0] && data[0].hasOwnProperty('result')) {
-                    count.emit(data[0].result.metadata.globalCounts.count);
-                    return;
-                }
-                count.emit(0);
-            });
-    }
-
-    private pinCount(url: string, count: EventEmitter<number>) {
-        this.fetch(`https://api.pinterest.com/v1/urls/count.json?callback=receiveCount&url=${url}`)
-            .subscribe((data: any) => {
-                data = data.text();
-                let result = JSON.parse(data.replace(/^receiveCount\((.*)\)/, '$1'));
-                count.emit(result.count || 0);
-            });
-    }
-
-    private tumblrCount(url: string, count: EventEmitter<number>) {
-        this.fetchJsonp(`https://api.tumblr.com/v2/share/stats?url=${url}`)
-            .subscribe((data: any) => {
-                data = data.json();
-                if (data.hasOwnProperty('response') && data.response.hasOwnProperty('note_count')) {
-                    count.emit(data.response.note_count);
-                    return;
-                }
-                count.emit(0);
-            });
-    }
-
-    private post(url: string, body: any) {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(url, body, options)
-            .catch((err) => Observable.empty());
-    }
-
-    private fetch(url: string) {
-        return this.http.get(url)
-            .catch((err) => Observable.empty());
-    }
-
-    private fetchJsonp(url: string) {
-        return this.jsonp.request(`${url}&format=jsonp&callback=JSONP_CALLBACK`)
-            .catch((err) => Observable.empty());
-    }
-
-    windowAttr() {
-        return 'width=' + this.windowWidth + ', height=' + this.windowHeight;
-    }
-
+  return mergeDeep(target, ...sources);
 }

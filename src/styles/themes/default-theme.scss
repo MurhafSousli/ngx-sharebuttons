@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.sb-default .sb-wrapper {
+
+  @each $button, $color in $sb-buttons {
+    &.sb-#{$button} {
+      --color: $color;
+      --hover-color: lighten($color, 8%);
+    }
+  }
+
+  color: white;
+  background-color: var(--color);
+  border-radius: 4px;
+  transition: background-color ease 200ms;
+
+  &:hover {
+    background-color: var(--hover-color);
+  }
+
+  &.sb-show-icon.sb-show-text {
+    .sb-text {
+      padding-right: 1em;
+      padding-left: 0;
+    }
+  }
+
+  &.sb-show-icon.sb-show-count {
+    .sb-count {
+      padding-right: 1em;
+      padding-left: 0;
+    }
+  }
+
+  &.sb-show-icon.sb-show-template {
+    .sb-template {
+      padding-right: 1em;
+      padding-left: 0;
+    }
+  }
+}

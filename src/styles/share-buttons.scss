@@ -1,0 +1,10 @@
+@import "share-button";
+
+.sb-group, .sb-button {
+  display: inline-flex;
+  align-items: center;
+}
+
+.sb-group {
+  flex-wrap: wrap;
+}
