@@ -15,8 +15,8 @@ export class CopyButton implements IShareButton {
   }
 
   link(url: string, args?: ShareButtonArgs) {
-
-    return this.prop.type;
+    this.copyURLToClipboard(url, args.directive);
+    return null;
   }
 
   count() {
@@ -25,7 +25,7 @@ export class CopyButton implements IShareButton {
   }
 
   /** copy URL to clipboard */
-  copyURLToClipboard(directive: ShareButtonDirective, url: string) {
+  copyURLToClipboard(url: string, directive: ShareButtonDirective) {
 
     const temp = {text: directive.shareButton.prop.text, icon: directive.shareButton.prop.icon};
     Observable.of({}).take(1).do(() => {
@@ -57,7 +57,8 @@ export class CopyButton implements IShareButton {
 
         textArea.select();
 
-        directive.doc.execCommand('copy');
+        document.execCommand('copy');
+
         directive.renderer.removeChild(directive.el, textArea);
 
         directive.shareButton.prop.text = this.prop.successText;

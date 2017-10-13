@@ -1,10 +1,10 @@
 <p align="center">
   <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
-  <p align="center"><img src="https://camo.githubusercontent.com/27616547b01ca8d5695bb33ebe5c889e9fe681cb/68747470733a2f2f63646e2e7261776769742e636f6d2f4d7572686166536f75736c692f6e67322d7368617265627574746f6e732f6d61737465722f6173736574732f627574746f6e732e706e67" data-canonical-src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg" style="max-width:100%;"></a>
+  <p align="center"><img src="https://image.ibb.co/k7y8rG/Capture.png" alt="Capture" border="0"></p>
 </p>
   
-Simple yet massively customizable share buttons | [live demo](https://murhafsousli.github.io/ngx-sharebuttons/)
+#### Share buttons components for Angular 4.3+ | [Docs/live demo](https://murhafsousli.github.io/ngx-sharebuttons/)
 
 [![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
 [![npm](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons) 
@@ -14,9 +14,9 @@ Simple yet massively customizable share buttons | [live demo](https://murhafsous
 
 
 
-### Version 3 is no longer maintained, please consider upgrading to version 4
+**Version 3 is no longer maintained, please consider upgrading to version 4**
 
-I am keeping the documentation for version 3 in the [Wiki](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page temporarily!
+The documentation for version 3 is kept in the [Wiki](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page temporarily!
 
 ## Issues
 
@@ -28,7 +28,7 @@ Show your love by hitting the star button.
  
 ## Premium Themes
 
-You can purchase the premium themes on [Patreon](). 
+You can purchase the premium themes on [Patreon](https://www.patreon.com/murhaf/posts?tag=share-buttons). 
 
 ## Development
 
@@ -40,8 +40,8 @@ You can purchase the premium themes on [Patreon]().
  
 *It would be great to have [plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)/stackblitz example for the PR*
 
-This plugin uses [generator-ngx-library](https://github.com/tinesoft/generator-ngx-library#development) by @tinesoft (Thanks!)
-You may want to check it out for more details.
+This library was generated with [generator-ngx-library](https://github.com/tinesoft/generator-ngx-library#development) by @tinesoft (Thanks!)
+You may want to check it out for development info
 
 ## License
 

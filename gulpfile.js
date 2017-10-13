@@ -77,7 +77,7 @@ const config = {
   buildDir: 'tmp/',
   outputDir: 'dist/',
   coverageDir: 'coverage/',
-  themesDir: 'src/themes/default/*.scss'
+  themesDir: 'src/styles/**/*'
 };
 
 const rootFolder = path.join(__dirname);
@@ -308,6 +308,14 @@ gulp.task('npm-package', (cb) => {
     targetPkgJson.peerDependencies[dependency] = `^${pkgJson.dependencies[dependency]}`;
   });
 
+  // copy styles in the 'dist' folder
+  pump(
+    [
+      gulp.src([config.themesDir]),
+      gulp.dest(`${config.outputDir}/styles`)
+    ]
+  );
+
   // copy the needed additional files in the 'dist' folder
   pump(
     [
@@ -331,6 +339,7 @@ gulp.task('rollup-bundle', (cb) => {
         // Angular dependencies
         '@angular/core': 'ng.core',
         '@angular/common': 'ng.common',
+        '@angular/common/http': 'ng.http',
 
         // Rxjs dependencies
         'rxjs/Subject': 'Rx',
@@ -639,56 +648,3 @@ gulp.task('default', ['build']);
 
 // Load additional tasks
 gulpHub(['./config/gulp-tasks/*.js']);
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Themes Task
-/////////////////////////////////////////////////////////////////////////////
-
-// gulp.task('themes', () => {
-
-//   var result = sass.renderSync({
-//     file: '/path/to/file.scss',
-//     data: 'body{background:blue; a{color:black;}}',
-//     outputStyle: 'compressed',
-//     outFile: '/to/my/output.css',
-//     sourceMap: true, // or an absolute or relative (to outFile) path
-//     importer: function(url, prev, done) {
-//       // url is the path in import as is, which LibSass encountered.
-//       // prev is the previously resolved path.
-//       // done is an optional callback, either consume it or return value synchronously.
-//       // this.options contains this options hash
-//       someAsyncFunction(url, prev, function(result){
-//         done({
-//           file: result.path, // only one of them is required, see section Special Behaviours.
-//           contents: result.data
-//         });
-//       });
-//       // OR
-//       var result = someSyncFunction(url, prev);
-//       return {file: result.path, contents: result.data};
-//     }
-//   }));
-
-//   const processors = [
-//     stripInlineComments,
-//     autoprefixer,
-//     cssnano
-//   ];
-
-//   const test = (stylePath) => {
-//     if (/\.(scss|sass)$/.test(ext[0])) {
-//       let sassObj = sass.renderSync({ file: stylePath });
-//       if (sassObj && sassObj['css']) {
-//         let css = sassObj.css.toString('utf8');
-//   }
-
-
-
-//   return gulp.src(config.themesDir)
-//   .pipe(sass())
-//   .pipe(cssnano({
-//       autoprefixer: {browsers: supported, add: true}
-//   }))
-//   .pipe(gulp.dest(`${config.outputDir}/themes/css`));
-// });

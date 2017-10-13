@@ -56,6 +56,7 @@ export class ShareButtonsService {
     image: null,
     description: null,
     tags: null,
+    gaTracking: false,
     twitterAccount: null
   };
 
@@ -107,6 +108,10 @@ export class ShareButtonsService {
 
   get tags() {
     return this.options.tags;
+  }
+
+  get gaTracking() {
+    return this.options.gaTracking;
   }
 
   get size() {

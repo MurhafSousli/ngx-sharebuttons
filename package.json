@@ -1,7 +1,7 @@
 {
   "name": "ngx-sharebuttons",
-  "description": "Simple yet massively customizable share buttons for Angular",
-  "version": "4.0.0",
+  "description": "Share buttons components for Angular 4.3+",
+  "version": "4.0.1",
   "filename": "./src/ngx-sharebuttons.js",
   "homepage": "http://github.com/MurhafSousli/ngx-sharebuttons",
   "author": {

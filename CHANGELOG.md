@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.1
+
+ - fix wrong rollup config for **HttpClientModule**
+ - add default styles in the dist package
+ - fix(Universal support) Add **UniversalSupportService** to be used internally
+ - refactor(ShareButtonDirective)
+ - add `gaTracking` option to global options
+ - update online docs
+
 ## 4.0.0@beta
 
 Version 4 has been rewritten from scratch
