@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs/Observable';
+import { ShareButtonDirective } from '../directives/share-button.directive';
 
 export interface ShareButtonsOptions {
   theme?: string;
@@ -12,6 +13,7 @@ export interface ShareButtonsOptions {
   twitterAccount?: string;
   dialogWidth?: number;
   dialogHeight?: number;
+  gaTracking?: boolean;
 }
 
 export interface ShareButtonsMeta {
@@ -61,4 +63,5 @@ export interface ShareButtonArgs {
   tags?: string;
   email?: string;
   mobile?: string;
+  directive?: ShareButtonDirective;
 }
