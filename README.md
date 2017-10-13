@@ -38,7 +38,7 @@ You can purchase the premium themes on [Patreon](https://www.patreon.com/murhaf/
  - Build the package `gulp build`
  - Submit your PR
  
-*It would be great to have [plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)/stackblitz example for the PR*
+*It would be great to have [plunker](https://plnkr.co/edit/z92k6PAi1PiwpNGifN8Q?p=preview)/[stackblitz](https://stackblitz.com/edit/angular-rqwn1j) example for the PR*
 
 This library was generated with [generator-ngx-library](https://github.com/tinesoft/generator-ngx-library#development) by @tinesoft (Thanks!)
 You may want to check it out for development info
