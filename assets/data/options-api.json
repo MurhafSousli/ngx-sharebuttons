@@ -33,7 +33,12 @@
   },
   {
     "name": "tags",
-    "description": "Set the tags for Tumblr and Twitter, default: null"
+    "description": "Override tags for Tumblr and Twitter, default: null"
+  },
+  {
+    "name": "gaTracking",
+    "description": "Sharing stats automatically roll into your Google Analytics, default: false",
+    "type": "input"
   },
   {
     "name": "twitterAccount",
