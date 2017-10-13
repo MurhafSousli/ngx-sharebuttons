@@ -15,6 +15,11 @@
     "type": "input"
   },
   {
+    "name": "show",
+    "description": "Number of buttons to show, if defined 'more' button will appear",
+    "type": "input"
+  },
+  {
     "name": "size",
     "description": "Button size, accepts positive and negative numbers e.g. -4, 2.5, 1...etc. default: 0",
     "type": "input"
