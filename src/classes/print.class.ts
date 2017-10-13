@@ -11,7 +11,8 @@ export class PrintButton implements IShareButton {
 
   link(url: string, args?: ShareButtonArgs) {
 
-    return this.prop.type;
+    args.directive.window.print();
+    return null;
   }
 
   count() {

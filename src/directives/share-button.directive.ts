@@ -6,21 +6,22 @@ import {
   EventEmitter,
   ElementRef,
   Renderer2,
-  ChangeDetectorRef,
-  Inject
+  ChangeDetectorRef
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { ShareButtonsService } from '../services/share-buttons.service';
 import { IShareButton } from '../models/share-buttons.models';
-import { CopyButton } from '../classes/copy.class';
+import { UniversalSupportService } from '../services/universal-support.service';
 
-/** Track with google analytics */
+/** Google analytics ref */
 declare const ga: Function;
 
 @Directive({
   selector: '[shareButton]'
 })
 export class ShareButtonDirective {
+
+  /** Window ref that supports Universal */
+  window: Window;
 
   /** Element ref */
   el: HTMLElement;
@@ -32,31 +33,29 @@ export class ShareButtonDirective {
   url: string;
 
   /** Share meta tags */
-  @Input() sbTitle: string;
-  @Input() sbDescription: string;
-  @Input() sbImage: string;
-  @Input() sbTags: string;
+  @Input() sbTitle = this.share.title;
+  @Input() sbDescription = this.share.description;
+  @Input() sbImage = this.share.image;
+  @Input() sbTags = this.share.tags;
 
   /** Set button class, e.g. 'sb-facebook' */
   buttonClass: string;
 
-  /** Create a new button of type <buttonName> */
+  /** Set share button e.g facebook, twitter...etc  */
   @Input('shareButton')
   set createButton(buttonName: string) {
 
+    /** Create a new button of type <buttonName> */
     const button = this.share.createShareButton(buttonName);
 
     if (button) {
       this.shareButton = button;
 
-      /** Remove old button class in case user changed button */
+      /** Remove old button class in case user changed the button */
       this.renderer.removeClass(this.el, 'sb-' + this.buttonClass);
 
       /** Add new button class e.g.: sb-facebook, sb-twitter ...etc */
       this.renderer.addClass(this.el, 'sb-' + button.prop.type);
-
-      /** Keep ref of current class */
-      this.buttonClass = button.prop.type;
 
       /** Get link's shared count */
       this.getCount();
@@ -77,7 +76,7 @@ export class ShareButtonDirective {
   }
 
   /** Google analytics tracking*/
-  @Input() gaTracking = true;
+  @Input() gaTracking = this.share.gaTracking;
 
   /** Share count event */
   @Output() sbCount = new EventEmitter<number>();
@@ -92,22 +91,28 @@ export class ShareButtonDirective {
               public renderer: Renderer2,
               public cd: ChangeDetectorRef,
               el: ElementRef,
-              @Inject(DOCUMENT) public doc: Document) {
+              universal: UniversalSupportService) {
     this.el = el.nativeElement;
+    this.window = universal.nativeWindow;
   }
 
   /** Open share dialog */
   @HostListener('click')
   onClick() {
+    /** Set user did not set the url using [sbUrl], use window URL */
+    if (!this.url) {
+      this.url = encodeURIComponent(this.window.location.href);
+    }
 
-    /** Get the proper link for sharing */
-    const shareUrl = this.shareButton.link(this.url || encodeURIComponent(this.doc.URL), {
-      title: this.sbTitle || this.share.title,
-      description: this.sbDescription || this.share.description,
-      image: this.sbImage || this.share.image,
-      tags: this.sbTags || this.share.tags,
+    /** Get sharing link */
+    const shareUrl = this.shareButton.link(this.url, {
+      title: this.sbTitle,
+      description: this.sbDescription,
+      image: this.sbImage,
+      tags: this.sbTags,
       mobile: this.share.getMobileOS(),
-      via: this.share.twitterAccount
+      via: this.share.twitterAccount,
+      directive: this
     });
 
     /** GA tracking */
@@ -116,26 +121,19 @@ export class ShareButtonDirective {
     }
 
     let popUp;
-    switch (shareUrl) {
-      case this.share.meta.copy.type:
-        (<CopyButton>this.shareButton).copyURLToClipboard(this, this.url);
-        break;
-      case this.share.meta.print.type:
-        popUp = this.doc.execCommand('print');
-        break;
-      default:
-        /** Open share dialog */
-        popUp = this.doc.open(shareUrl, 'newwindow', this.share.dialogSize);
-
-        /** Emit opened dialog type */
-        this.sbOpened.emit(this.shareButton.prop.type);
+    if (shareUrl) {
+      /** Open share dialog */
+      popUp = this.window.open(shareUrl, 'newwindow', this.share.dialogSize);
     }
+
+    /** Emit opened dialog type */
+    this.sbOpened.emit(this.shareButton.prop.type);
 
     /** If dialog closed event has subscribers, emit closed dialog type */
     if (this.sbClosed.observers.length && popUp) {
-      const pollTimer = window.setInterval(() => {
+      const pollTimer = this.window.setInterval(() => {
         if (popUp.closed) {
-          window.clearInterval(pollTimer);
+          this.window.clearInterval(pollTimer);
           this.sbClosed.emit(this.shareButton.prop.type);
         }
       }, 200);
@@ -147,7 +145,7 @@ export class ShareButtonDirective {
     /** Only if share count has observers & the button has support for share count */
     if (this.url && this.sbCount.observers.length && this.shareButton.prop.supportCount) {
 
-      /** Emits share count to sbCount Output */
+      /** Emit share count to (sbCount) Output */
       this.shareButton.count(this.url).subscribe((count: number) => this.sbCount.emit(count));
     }
   }
@@ -164,7 +162,7 @@ export class ShareButtonDirective {
       console.warn(`[ShareButtons]: The share URL "${url}" is invalid!`);
     }
     /** fallback to current page URL */
-    return encodeURIComponent(this.doc.URL);
+    return encodeURIComponent(this.window.location.href);
   }
 
 }

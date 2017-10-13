@@ -6,6 +6,7 @@ import { ShareButtonsService } from '../services/share-buttons.service';
 import { ShareButtonDirective } from '../directives/share-button.directive';
 import { NFormatterPipe } from '../pipes/n-formatter.pipe';
 import { ShareButtonsMeta, ShareButtonsOptions } from '../models/share-buttons.models';
+import { UniversalSupportService } from '../services/universal-support.service';
 
 /** Options tokens */
 const OPTIONS = new InjectionToken<ShareButtonsOptions>('OPTIONS');
@@ -29,7 +30,8 @@ export function ShareButtonsFactory(httpClient: HttpClient, options: ShareButton
     CommonModule,
     ShareButtonDirective,
     NFormatterPipe
-  ]
+  ],
+  providers: [ UniversalSupportService ]
 })
 export class ShareDirectiveModule {
   static forRoot(options?: ShareButtonsOptions, buttonsMeta?: ShareButtonsMeta) {
