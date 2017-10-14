@@ -112,7 +112,7 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   }
 
   /** Buttons theme */
-  theme = this.share.theme;
+  theme;
 
   @Input('theme')
   set setTheme(theme: string) {
