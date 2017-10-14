@@ -57,6 +57,9 @@ export class ShareButtonDirective {
       /** Add new button class e.g.: sb-facebook, sb-twitter ...etc */
       this.renderer.addClass(this.el, 'sb-' + button.prop.type);
 
+      /** Keep a copy of current class */
+      this.buttonClass = button.prop.type;
+
       /** Get link's shared count */
       this.getCount();
     } else {
@@ -88,10 +91,10 @@ export class ShareButtonDirective {
   @Output() sbClosed = new EventEmitter<string>();
 
   constructor(private share: ShareButtonsService,
-              public renderer: Renderer2,
-              public cd: ChangeDetectorRef,
-              el: ElementRef,
-              universal: UniversalSupportService) {
+    public renderer: Renderer2,
+    public cd: ChangeDetectorRef,
+    el: ElementRef,
+    universal: UniversalSupportService) {
     this.el = el.nativeElement;
     this.window = universal.nativeWindow;
   }

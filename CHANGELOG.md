@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.2
+
+ - fix(switching button type) remove old button class
+
 ## 4.0.1
 
  - fix wrong rollup config for **HttpClientModule**
