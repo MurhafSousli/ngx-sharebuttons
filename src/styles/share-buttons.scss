@@ -1,5 +1,14 @@
 @import "variables";
 
+.sb-group, .sb-button {
+  display: inline-flex;
+  align-items: center;
+}
+
+.sb-group {
+  flex-wrap: wrap;
+}
+
 .sb-button {
   margin: $share-button-margin;
 }
