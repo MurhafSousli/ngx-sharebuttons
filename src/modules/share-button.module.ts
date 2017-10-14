@@ -5,10 +5,7 @@ import { ShareDirectiveModule } from './share-directive.module';
 import { ShareButtonsService } from '../services/share-buttons.service';
 import { ShareButtonComponent } from '../components/share-button/share-button.component';
 import { ShareButtonsMeta, ShareButtonsOptions } from '../models/share-buttons.models';
-
-/** Options tokens */
-const OPTIONS = new InjectionToken<ShareButtonsOptions>('OPTIONS');
-const BUTTONS_META = new InjectionToken<ShareButtonsMeta>('BUTTONS_META');
+import { OPTIONS, BUTTONS_META } from './tokens';
 
 export function ShareButtonsFactory(httpClient: HttpClient, options: ShareButtonsOptions, buttonsMeta: ShareButtonsMeta) {
   return new ShareButtonsService(httpClient, options, buttonsMeta);
