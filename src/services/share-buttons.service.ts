@@ -1,4 +1,4 @@
-import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ShareButtonsMeta, ShareButtonsOptions } from '../models/share-buttons.models';
 import {
@@ -18,10 +18,7 @@ import {
   CopyButton,
   Buttons
 } from '../classes';
-
-/** Options tokens */
-const OPTIONS = new InjectionToken<ShareButtonsOptions>('OPTIONS');
-const BUTTONS_META = new InjectionToken<ShareButtonsMeta>('BUTTONS_META');
+import { BUTTONS_META, OPTIONS } from '../modules/tokens';
 
 @Injectable()
 export class ShareButtonsService {
@@ -64,10 +61,11 @@ export class ShareButtonsService {
   meta: ShareButtonsMeta = Buttons;
 
   constructor(private http: HttpClient,
-    @Optional() @Inject(OPTIONS) options: ShareButtonsOptions,
-    @Optional() @Inject(BUTTONS_META) meta: ShareButtonsMeta) {
+    @Inject(OPTIONS) options: ShareButtonsOptions,
+    @Inject(BUTTONS_META) meta: ShareButtonsMeta) {
 
-    this.options = { ...this.options, ...options };
+    /** Override global options with user's preference */
+    this.options = mergeDeep(this.options, options);
     this.meta = mergeDeep(this.meta, meta);
   }
 

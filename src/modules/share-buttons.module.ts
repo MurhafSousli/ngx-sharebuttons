@@ -6,10 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { ShareButtonsService } from '../services/share-buttons.service';
 import { ShareButtonsComponent } from '../components/share-buttons/share-buttons.component';
 import { ShareButtonsMeta, ShareButtonsOptions } from '../models/share-buttons.models';
-
-/** Options tokens */
-const OPTIONS = new InjectionToken<ShareButtonsOptions>('OPTIONS');
-const BUTTONS_META = new InjectionToken<ShareButtonsMeta>('BUTTONS_META');
+import { OPTIONS, BUTTONS_META } from './tokens';
 
 export function ShareButtonsFactory(httpClient: HttpClient, options: ShareButtonsOptions, buttonsMeta: ShareButtonsMeta) {
   return new ShareButtonsService(httpClient, options, buttonsMeta);

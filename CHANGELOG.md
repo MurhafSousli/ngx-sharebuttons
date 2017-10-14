@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.4
+
+ - fix(using global options in AOT)
+ - Add *scss* and *css* styles into dist package
+
 ## 4.0.2
 
  - fix(switching button type) remove old button class
