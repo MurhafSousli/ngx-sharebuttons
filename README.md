@@ -1,7 +1,7 @@
 <p align="center">
   <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
-  <p align="center"><img src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/buttons.png" alt="Capture" border="0"></p>
+  <p align="center"><img src="https://image.ibb.co/eY16JG/buttons.png" alt="Capture" border="0"></p>
 </p>
 
 [![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
@@ -10,9 +10,8 @@
 [![Join the chat at https://gitter.im/ngx-sharebuttons/Lobby](https://badges.gitter.im/ngx-sharebuttons/Lobby.svg)](https://gitter.im/ngx-sharebuttons/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](/LICENSE)
 
-For version 4, the documentations is hosted [here](https://murhafsousli.github.io/ngx-sharebuttons/) page
-
-For version 3, the documentations is in the [Wiki](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page
+ - [Documentations for version 4.x](https://murhafsousli.github.io/ngx-sharebuttons/)
+ - [Documentations for version 3.x](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
 
 ## Installation
 
@@ -29,10 +28,13 @@ import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 @NgModule({
   imports: [
+    HttpClientModule, // (Required) for share counts
+    HttpClientJsonpModule, // (Optional) For linkedIn & Tumblr counts
     ShareButtonsModule.forRoot()
   ]
 })
 ```
+See usage documentation [here](https://murhafsousli.github.io/ngx-sharebuttons/#/getting-started)
     
  4. Import the core styles and the theme from the global style `src/styles.scss`
  
