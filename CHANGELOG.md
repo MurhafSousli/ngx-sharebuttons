@@ -1,5 +1,28 @@
 # Changelog
 
+## 4.1.0
+
+ - feat(New themes) Include more themes with the package.
+ - refactor(ShareButtonsComponent) remove text from more & less buttons.
+
+**Breaking Change**:
+
+ - fix(prevent overwritting interceptors) closes [#174](https://github.com/MurhafSousli/ngx-sharebuttons/pull/174).
+
+Now `HttpClientModule` and `HttpClientModule` should imported manually 
+
+```ts
+import { ShareButtonsModule } from 'ngx-sharebuttons';
+
+@NgModule({
+  imports: [
+    HttpClientModule,
+    HttpClientJsonpModule,
+    ShareButtonsModule.forRoot()
+  ]
+})
+```
+
 ## 4.0.4
 
  - fix(using global options in AOT)

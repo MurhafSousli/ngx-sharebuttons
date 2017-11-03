@@ -1,10 +1,8 @@
 <p align="center">
   <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
-  <p align="center"><img src="https://image.ibb.co/k7y8rG/Capture.png" alt="Capture" border="0"></p>
+  <p align="center"><img src="https://image.ibb.co/eY16JG/buttons.png" alt="Capture" border="0"></p>
 </p>
-  
-#### Share buttons components for Angular 4.3+ | [Docs/live demo](https://murhafsousli.github.io/ngx-sharebuttons/)
 
 [![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
 [![npm](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons) 
@@ -12,11 +10,46 @@
 [![Join the chat at https://gitter.im/ngx-sharebuttons/Lobby](https://badges.gitter.im/ngx-sharebuttons/Lobby.svg)](https://gitter.im/ngx-sharebuttons/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](/LICENSE)
 
+ - [Documentations for version 4.x](https://murhafsousli.github.io/ngx-sharebuttons/)
+ - [Documentations for version 3.x](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+ 
+ [plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)/[stackblitz](https://stackblitz.com/edit/ngx-sharebuttons)
 
+## Installation
 
-**Version 3 is no longer maintained, please consider upgrading to version 4**
+ 1. Install the library `npm install ngx-sharebuttons --save`
+ 2. Install font-awesome icons `npm install font-awesome --save` or use a [FontAwesome CDN](https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css)
+ 3. Choose the module: 
+ 
+    - **ShareButtonsModule** for `<share-buttons></share-buttons>`
+    - **ShareButtonModule** for `<share-button [button]="buttonName"></share-button>`
+    - **ShareDirectiveModule** for `<button [shareButton]="buttonName"></button>`
 
-The documentation for version 3 is kept in the [Wiki](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page temporarily!
+```ts
+import { ShareButtonsModule } from 'ngx-sharebuttons';
+
+@NgModule({
+  imports: [
+    HttpClientModule, // (Required) for share counts
+    HttpClientJsonpModule, // (Optional) For linkedIn & Tumblr counts
+    ShareButtonsModule.forRoot()
+  ]
+})
+```
+See usage documentation [here](https://murhafsousli.github.io/ngx-sharebuttons/#/getting-started)
+    
+ 4. Import the core styles and the theme from the global style `src/styles.scss`
+ 
+```css
+/** Import core style */
+@import "~ngx-sharebuttons/styles/share-buttons";
+
+/** Import a theme */
+@import "~ngx-sharebuttons/styles/themes/circles/circles-theme";
+```
+
+Check all themes [here](https://murhafsousli.github.io/ngx-sharebuttons/#/themes)
+    
 
 ## Issues
 
@@ -24,11 +57,7 @@ If you identify any errors in this component, or have an idea for an improvement
 
 ## Support
 
-Show your love by hitting the star button.
- 
-## Premium Themes
-
-You can purchase the premium themes on [Patreon](https://www.patreon.com/murhaf/posts?tag=share-buttons). 
+[![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
 ## Development
 
@@ -37,10 +66,8 @@ You can purchase the premium themes on [Patreon](https://www.patreon.com/murhaf/
  - Make your changes
  - Build the package `gulp build`
  - Submit your PR
- 
-*It would be great to have [plunker](https://plnkr.co/edit/z92k6PAi1PiwpNGifN8Q?p=preview)/[stackblitz](https://stackblitz.com/edit/angular-rqwn1j) example for the PR*
 
-This library was generated with [generator-ngx-library](https://github.com/tinesoft/generator-ngx-library#development) by @tinesoft (Thanks!)
+This library was generated with [generator-ngx-library](https://github.com/tinesoft/generator-ngx-library#development) by @tinesoft
 You may want to check it out for development info
 
 ## License

@@ -23,7 +23,7 @@ import { BUTTONS_META, OPTIONS } from '../modules/tokens';
 @Injectable()
 export class ShareButtonsService {
 
-  /** Global Options */
+  /** All buttons */
   allButtons = [
     'facebook',
     'twitter',
@@ -57,7 +57,7 @@ export class ShareButtonsService {
     twitterAccount: null
   };
 
-  /** Buttons' Config */
+  /** Button's meta data such as icon,color and text of each button */
   meta: ShareButtonsMeta = Buttons;
 
   constructor(private http: HttpClient,
