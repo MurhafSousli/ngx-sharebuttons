@@ -12,6 +12,8 @@
 
  - [Documentations for version 4.x](https://murhafsousli.github.io/ngx-sharebuttons/)
  - [Documentations for version 3.x](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+ 
+ [plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)/[stackblitz](https://stackblitz.com/edit/ngx-sharebuttons)
 
 ## Installation
 
@@ -64,8 +66,6 @@ If you identify any errors in this component, or have an idea for an improvement
  - Make your changes
  - Build the package `gulp build`
  - Submit your PR
- 
-*It would be great to have [plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)/[stackblitz](https://stackblitz.com/edit/ngx-sharebuttons) example for the PR*
 
 This library was generated with [generator-ngx-library](https://github.com/tinesoft/generator-ngx-library#development) by @tinesoft
 You may want to check it out for development info
