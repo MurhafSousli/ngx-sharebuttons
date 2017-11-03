@@ -1,0 +1,79 @@
+@import "../../variables";
+
+.sb-special-light .sb-wrapper {
+
+  $sb-icon-bg: $sb-accent;
+  $sb-border-radius: 4px;
+
+  @each $button, $color in $sb-buttons {
+    &.sb-#{$button} {
+      --color: $color;
+      --active-color: lighten($color, 10%);
+    }
+  }
+
+  background-color: var(--color);
+  border-radius: $sb-border-radius;
+  color: $sb-accent;
+  transition: padding-right linear 150ms;
+
+  &:active {
+    border-left: 0;
+    padding-right: -0.2em;
+    .sb-icon {
+      margin-right: -0.2em;
+      border-radius: $sb-border-radius;
+    }
+  }
+
+  &:hover {
+    .sb-icon {
+      color: var(--active-color);
+    }
+  }
+
+  .sb-icon {
+    min-width: 2em;
+    border-top-left-radius: $sb-border-radius;
+    border-bottom-left-radius: $sb-border-radius;
+    background-color: $sb-icon-bg;
+    color: var(--color);
+    margin-right: 0.2em;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    transition: margin-right linear 150ms, border-radius linear 150ms, color ease 150ms;
+    .fa {
+      z-index: 5;
+    }
+  }
+
+  .sb-text {
+    transition: margin-left linear 70ms;
+  }
+
+  &.sb-show-text, &.sb-show-count {
+    .sb-icon {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:after {
+        background-color: $sb-icon-bg;
+        content: "\00a0";
+        display: block;
+        height: 10px;
+        width: 10px;
+        position: absolute;
+        transform: rotate(45deg);
+        box-shadow: 1px -1px 1px 0 rgba(0, 0, 0, .3);
+        right: -4px;
+      }
+    }
+  }
+
+  &.sb-show-text.sb-show-count {
+    .sb-count {
+      padding-left: 0;
+    }
+  }
+
+}

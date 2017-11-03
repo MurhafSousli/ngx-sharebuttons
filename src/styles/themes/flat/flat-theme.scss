@@ -1,0 +1,69 @@
+@import "../../variables";
+
+.sb-flat .sb-wrapper {
+  $button-bg: #ccc;
+  $button-bg-light: #eee;
+  $hover-bg: #ddd;
+  $hover-bg-light: #fafafa;
+  $button-color: #333;
+  $border-color: #777;
+
+  @each $button, $color in $sb-buttons {
+    &.sb-#{$button} {
+      --bg-color: $color;
+      --bg-color-light: lighten($color, 12%);
+      --hover-bg: lighten($color, 10%);
+      --hover-bg-light: lighten($color, 15%);
+      --border-color: darken($color, 10%);
+      --text-shadow: 0 1px 0 rgba($color, .8);
+    }
+  }
+  padding: 0;
+
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: $sb-accent;
+
+  text-shadow: var(--text-shadow);
+  border-radius: .2em;
+
+  &:hover {
+    background-color: var(--hover-bg);
+  }
+
+  &:focus {
+    outline: 0;
+    background-color: var(--hover-bg-light);
+  }
+
+  &:active {
+    background-color: var(--bg-color);
+    position: relative;
+    top: 1px;
+  }
+
+  .sb-icon {
+    pointer-events: none;
+  }
+
+  .sb-text {
+    background: var(--bg-color);
+    background: rgba(0, 0, 0, .1);
+    box-shadow: var(--icon-shadow);
+  }
+
+  &.sb-show-icon.sb-show-text,
+  &.sb-show-icon.sb-show-template,
+  &.sb-show-icon.sb-show-count {
+    .sb-icon {
+      border-right: 1px solid var(--border-color);
+    }
+  }
+
+  &.sb-show-text.sb-show-count {
+    .sb-text {
+      border-right: 1px solid var(--border-color);
+    }
+  }
+
+}

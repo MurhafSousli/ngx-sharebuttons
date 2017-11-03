@@ -48,9 +48,11 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
     this.buttons = this.includeButtons.filter((btn) => this.excludeButtons.indexOf(btn) < 0);
   }
 
-  /** Number of buttons to show */
+  /** Number of shown buttons */
   shownButtons = this.includeButtons.length;
+  /** Number of included buttons */
   totalButtons;
+  /** Disable more/less buttons */
   showAll = false;
 
   @Input('show')

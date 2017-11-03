@@ -1,0 +1,61 @@
+@import "../../variables";
+
+.sb-classic .sb-wrapper {
+
+  $sb-icon-size: 1.1em;
+
+  $button-bg: #ccc;
+  $button-bg-light: lighten($button-bg, 12%);
+  $hover-bg: lighten($button-bg, 10%);
+  $hover-bg-light: lighten($button-bg, 15%);
+  $button-color: #333;
+  $border-color: darken($button-bg, 15%);
+
+  $text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+  $box-shadow: 0 0 1px 1px rgba(255, 255, 255, .8) inset, 0 1px 0 rgba(0, 0, 0, .3);
+  $icon-shadow: 1px 0 0 rgba(darken($button-bg, 35%), .5), 2px 0 0 rgba(255, 255, 255, .5);
+
+  background-color: $button-bg;
+  background-image: linear-gradient(to bottom, $button-bg-light, $button-bg);
+
+  border: 1px solid $border-color;
+  color: $button-color;
+  text-shadow: $text-shadow;
+  box-shadow: $box-shadow;
+  border-radius: .2em;
+
+  &:hover {
+    background-color: $hover-bg;
+    background-image: linear-gradient(to bottom, $hover-bg-light, $hover-bg);
+  }
+
+  &:active {
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, .3) inset;
+    position: relative;
+    top: 1px;
+  }
+
+  &:focus {
+    outline: 0;
+    background: $hover-bg-light;
+  }
+
+  .sb-icon {
+    pointer-events: none;
+    font-size: $sb-icon-size;
+  }
+
+  .sb-text {
+    box-shadow: $icon-shadow;
+  }
+
+  &.sb-show-text, &.sb-show-template, &.sb-show-count {
+    .sb-icon {
+      background: $button-bg;
+      background: rgba(0, 0, 0, .1);
+      text-shadow: $text-shadow;
+      box-shadow: $icon-shadow;
+    }
+  }
+
+}

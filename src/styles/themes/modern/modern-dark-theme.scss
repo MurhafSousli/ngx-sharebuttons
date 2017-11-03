@@ -1,0 +1,49 @@
+@import "../../variables";
+
+.sb-modern-dark .sb-wrapper {
+
+  $sb-border-radius: 3px;
+
+  @each $button, $color in $sb-buttons {
+    &.sb-#{$button} {
+      --bg-color: $color;
+      --bg-shadow: rgba($color, 0.5);
+    }
+  }
+
+  color: $sb-accent;
+  background-color: var(--bg-color);
+  box-shadow: 0 5px 15px rgba($sb-gray, 0.5);
+  transition: box-shadow ease-in 100ms, transform ease-in 100ms;
+  border-radius: $sb-border-radius;
+
+  &:hover {
+    transform: translate3d(0, -2px, 0);
+    box-shadow: 0 8px 20px var(--bg-shadow);
+  }
+  &:active {
+    transform: translate3d(0, -1px, 0);
+    box-shadow: 0 5px 14px var(--bg-shadow);
+  }
+  &.sb-show-text, &.sb-show-template, &.sb-show-count {
+    padding: 0;
+    .sb-icon {
+      box-shadow: 1px 0 -1px rgba(0, 0, 0, 0.3);
+    }
+  }
+  &.sb-show-text.sb-show-count {
+    .sb-count {
+      background: none;
+    }
+  }
+
+  &.sb-show-template.sb-show-count {
+    .sb-template {
+      background: none;
+    }
+  }
+
+  .sb-text, .sb-count, .sb-template {
+    background: rgba(0, 0, 0, .1);
+  }
+}
