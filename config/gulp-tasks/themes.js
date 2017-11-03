@@ -22,55 +22,63 @@ const config = {
 const compileThemes = () => {
   return through.obj((file, encoding, callback) => {
     if (file.isNull()) {
-    return cb(null, file);
-  }
-  if (file.isStream()) {
-    return cb(new gulpUtil.PluginError('compileThemes', 'Streaming not supported'));
-  }
-  if (path.basename(file.path).startsWith('_')) {
-    return cb();
-  }
-  if (!file.contents.length) {
-    file.path = gulpUtil.replaceExtension(file.path, '.css');
-    return cb(null, file);
-  }
-
-  /**
-   * Remove comments, autoprefixer, Minifier
-   */
-  let processors = [
-    stripInlineComments,
-    autoprefixer,
-    cssnano
-  ];
-  if (/\.(scss|sass)$/.test(path.extname(file.path))) {
-    let sassObj = sass.renderSync({ file: file.path });
-    if (sassObj && sassObj['css']) {
-      let css = sassObj.css.toString('utf8');
-      postcss(processors).process(css).then(function (result) {
-        result.warnings().forEach(function (warn) {
-          gulpUtil.warn(warn.toString());
-        });
-        file.contents = new Buffer(result.css);
-        file.path = gulpUtil.replaceExtension(file.path, '.css');
-        callback(null, file);
-      });
+      return cb(null, file);
     }
-  }
+    if (file.isStream()) {
+      return cb(new gulpUtil.PluginError('compileThemes', 'Streaming not supported'));
+    }
+    if (path.basename(file.path).startsWith('_')) {
+      return cb();
+    }
+    if (!file.contents.length) {
+      file.path = gulpUtil.replaceExtension(file.path, '.css');
+      return cb(null, file);
+    }
 
-});
+    /**
+     * Remove comments, autoprefixer, Minifier
+     */
+    let processors = [
+      stripInlineComments,
+      autoprefixer,
+      cssnano
+    ];
+    if (/\.(scss|sass)$/.test(path.extname(file.path))) {
+      let sassObj = sass.renderSync({ file: file.path });
+      if (sassObj && sassObj['css']) {
+
+        let css = sassObj.css.toString('utf8');
+        postcss(processors).process(css).then(function (result) {
+          result.warnings().forEach(function (warn) {
+            gulpUtil.warn(warn.toString());
+          });
+          file.contents = new Buffer(result.css);
+          file.path = gulpUtil.replaceExtension(file.path, '.css');
+          callback(null, file);
+        });
+      }
+    }
+
+  });
 };
 
-gulp.task('themes', (cb) => {
+gulp.task('styles', (cb) => {
+  pump(
+    [
+      gulp.src(config.stylesDir),
+      compileThemes(),
+      gulp.dest(config.stylesOutputDir)
+    ],
+    cb);
+});
 
+
+gulp.task('themes', (cb) => {
   pump(
     [
       gulp.src(config.themesDir),
       compileThemes(),
-      gulp.dest(config.themesOutputDir),
-      gulp.src(config.stylesDir),
-      compileThemes(),
-      gulp.dest(config.stylesOutputDir)
+      gulp.dest(config.themesOutputDir)
     ],
     cb);
 });

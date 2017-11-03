@@ -65,9 +65,9 @@ If you identify any errors in this component, or have an idea for an improvement
  - Build the package `gulp build`
  - Submit your PR
  
-*It would be great to have [plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)/stackblitz example for the PR*
+*It would be great to have [plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)/[stackblitz](https://stackblitz.com/edit/ngx-sharebuttons) example for the PR*
 
-This library was generated with [generator-ngx-library](https://github.com/tinesoft/generator-ngx-library#development) by @tinesoft (Thanks!)
+This library was generated with [generator-ngx-library](https://github.com/tinesoft/generator-ngx-library#development) by @tinesoft
 You may want to check it out for development info
 
 ## License
