@@ -7,7 +7,6 @@
 [![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
 [![npm](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons) 
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons) 
-[![Join the chat at https://gitter.im/ngx-sharebuttons/Lobby](https://badges.gitter.im/ngx-sharebuttons/Lobby.svg)](https://gitter.im/ngx-sharebuttons/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](/LICENSE)
 
  - [Documentations for version 4.x](https://murhafsousli.github.io/ngx-sharebuttons/)
