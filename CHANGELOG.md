@@ -2,7 +2,7 @@
 
 ## 4.1.2
 
- - refactor(GoogleButton) remove count code for Google+ after the their removal of the counts
+ - refactor(GoogleButton) the share count for Google+ is no longer available
 
 ## 4.1.1
 
