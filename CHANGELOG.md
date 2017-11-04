@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.2
+
+ - refactor(GoogleButton) remove count code for Google+ after the their removal of the counts
+
+## 4.1.1
+
+ - fix(Themes) fix themes tasks, Include compiled css files in the package
+
 ## 4.1.0
 
  - feat(New themes) Include more themes with the package.
