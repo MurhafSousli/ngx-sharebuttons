@@ -30,7 +30,7 @@ export const Buttons = {
     text: 'Twitter',
     icon: 'fa fa-twitter',
     color: '#00acee',
-    supportCount: true,
+    supportCount: false,
     shareUrl: 'https://twitter.com/intent/tweet?url=',
     androidUrl: 'com.twitter.package',
     iosUrl: 'twitter://tweet?url='
@@ -40,11 +40,10 @@ export const Buttons = {
     text: 'Google+',
     icon: 'fa fa-google-plus',
     color: '#DB4437',
-    supportCount: true,
+    supportCount: false,
     shareUrl: 'https://plus.google.com/share?url=',
     androidUrl: '',
     iosUrl: '',
-    countUrl: 'https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ'
   },
   linkedin: {
     type: 'linkedin',
@@ -143,7 +142,7 @@ export const Buttons = {
     text: 'WhatsApp',
     icon: 'fa fa-whatsapp',
     color: '#25D366',
-    supportCount: true,
+    supportCount: false,
     shareUrl: 'https://web.whatsapp.com/send?text=',
     androidUrl: 'com.whatsapp.package',
     iosUrl: 'whatsapp://?text='
