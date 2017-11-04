@@ -9,11 +9,11 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 // MATERIAL TABLE
 
-md-table, md-card {
+mat-table, mat-card {
   box-shadow: $box-shadow !important;
 }
 
-.mat-cell, md-card, .mat-chip:not(.mat-basic-chip) {
+.mat-cell, mat-card, .mat-chip:not(.mat-basic-chip) {
   color: $font-color !important;
 }
 
@@ -22,8 +22,8 @@ md-table, md-card {
 }
 
 .mat-header-row, .mat-row {
-  height: auto !important;
-  md-cell {
+  min-height: 34px !important;
+  mat-cell {
     padding: 0.8em 0;
   }
 }
@@ -43,12 +43,12 @@ md-table, md-card {
 
 // MATERIAL CARD
 
-md-card {
+mat-card {
   overflow: initial;
   margin-top: 3em;
 }
 
-md-card-header {
+mat-card-header {
   display: flex;
   align-items: center;
   margin-bottom: 1em;
@@ -57,7 +57,7 @@ md-card-header {
   }
 }
 
-md-card-content {
+mat-card-content {
   flex: 1;
   position: relative;
   margin-bottom: 0;
