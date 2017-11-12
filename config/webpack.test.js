@@ -92,11 +92,11 @@ const getConfig = (hasCoverage, isTddMode) => {
             }),
             // Fixes linker warnings (see https://github.com/angular/angular/issues/11580)
             new ContextReplacementPlugin(
-              // The (\\|\/) piece accounts for path separators in *nix and Windows
-              /angular(\\|\/)core(\\|\/)@angular/,
-              helpers.root('src'), // location of your src
-              {} // a map of your routes
-            ),
+                // fixes WARNING Critical dependency: the request of a dependency is an expression
+                /(.+)?angular(\\|\/)core(.+)?/,
+                helpers.root('src'), // location of your src
+                {} // a map of your routes
+              ),
         ].concat(extraPlugins),
 
         performance: {

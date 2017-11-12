@@ -4,11 +4,34 @@
 
   @each $button, $color in $sb-buttons {
     &.sb-#{$button} {
-      --color: $color;
+      color: $color;
+      &:hover {
+        border-color: $color;
+        box-shadow: inset -2em 0 0 0 $color, inset 2em 0 0 0 $color;
+      }
+      &.sb-show-icon.sb-show-text {
+        &:hover {
+          box-shadow: inset -4.1em 0 0 0 $color, inset 4.1em 0 0 0 $color;
+        }
+      }
+      &.sb-show-icon.sb-show-count {
+        &:hover {
+          box-shadow: inset -3em 0 0 0 $color, inset 3em 0 0 0 $color;
+        }
+      }
+      &.sb-show-icon.sb-show-text.sb-show-count {
+        &:hover {
+          box-shadow: inset -5em 0 0 0 $color, inset 5em 0 0 0 $color;
+        }
+      }
+      &.sb-show-template {
+        &:hover {
+          box-shadow: inset -5.3em 0 0 0 $color, inset 5.3em 0 0 0 $color;
+        }
+      }
     }
   }
 
-  color: var(--color);
   transition: 0.25s;
   background: none;
   border: 2px solid;
@@ -17,15 +40,10 @@
   height: 2.5em;
 
   &:hover {
-    border-color: var(--color);
-    box-shadow: inset -2em 0 0 0 var(--color), inset 2em 0 0 0 var(--color);
     color: $sb-accent;
   }
 
   &.sb-show-icon.sb-show-text {
-    &:hover {
-      box-shadow: inset -4.1em 0 0 0 var(--color), inset 4.1em 0 0 0 var(--color);
-    }
     .sb-text {
       padding-right: 1em;
       padding-left: 0;
@@ -33,24 +51,9 @@
   }
 
   &.sb-show-icon.sb-show-count {
-    &:hover {
-      box-shadow: inset -3em 0 0 0 var(--color), inset 3em 0 0 0 var(--color);
-    }
     .sb-count {
       padding-right: 1em;
       padding-left: 0;
-    }
-  }
-
-  &.sb-show-icon.sb-show-text.sb-show-count {
-    &:hover {
-      box-shadow: inset -5em 0 0 0 var(--color), inset 5em 0 0 0 var(--color);
-    }
-  }
-
-  &.sb-show-template {
-    &:hover {
-      box-shadow: inset -5.3em 0 0 0 var(--color), inset 5.3em 0 0 0 var(--color);
     }
   }
 

@@ -155,8 +155,6 @@ export class ShareButtonsService {
   /**
    * Determine the mobile operating system.
    * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
-   *
-   * @returns {String}
    */
   getMobileOS() {
     // const userAgent = navigator.userAgent || navigator.vendor || (window || global).opera;
@@ -182,8 +180,6 @@ export class ShareButtonsService {
 
 /**
  * Simple object check.
- * @param item
- * @returns {boolean}
  */
 function isObject(item) {
   return (item && typeof item === 'object' && !Array.isArray(item));
@@ -191,8 +187,6 @@ function isObject(item) {
 
 /**
  * Deep merge two objects.
- * @param target
- * @param ...sources
  */
 function mergeDeep(target, ...sources) {
   if (!sources.length) {

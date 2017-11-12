@@ -7,12 +7,16 @@
 
   @each $button, $color in $sb-buttons {
     &.sb-#{$button} {
-      --color: $color;
-      --shadow-color: rgba($color, 0.5);
+      color: $color;
+      &:hover {
+        box-shadow: 0 8px 20px rgba($color, 0.5);
+      }
+      &:active {
+        box-shadow: 0 0 4px 2px rgba($color, 0.5);
+      }
     }
   }
 
-  color: var(--color);
   background-color: $sb-accent;
   box-shadow: 0 5px 15px rgba($sb-gray, 0.5);
   transition: box-shadow ease 100ms, transform ease 100ms;
@@ -20,11 +24,9 @@
 
   &:hover {
     transform: translate3d(0, -2px, 0);
-    box-shadow: 0 8px 20px var(--shadow-color);
   }
   &:active {
     transform: translate3d(0, -1px, 0);
-    box-shadow: 0 0 4px 2px var(--shadow-color);
   }
 
   &.sb-show-text, &.sb-show-template, &.sb-show-count {

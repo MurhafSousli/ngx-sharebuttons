@@ -27,7 +27,10 @@ const gulpCoveralls = require('gulp-coveralls');
 const runSequence = require('run-sequence');
 
 /** To compile & bundle the library with Angular & Rollup */
-const ngc = require('@angular/compiler-cli/src/main').main;
+const ngc = (args) => new Promise((resolve, reject) => {// Promisify version of the ngc compiler
+  let exitCode = require('@angular/compiler-cli/src/main').main(args);
+  resolve(exitCode);
+});
 const rollup = require('rollup');
 const rollupUglify = require('rollup-plugin-uglify');
 const rollupSourcemaps = require('rollup-plugin-sourcemaps');
@@ -58,12 +61,15 @@ const argv = yargs
   .option('version', {
     alias: 'v',
     describe: 'Enter Version to bump to',
-    choices: ['patch', 'minor', 'major']
+    choices: ['patch', 'minor', 'major'],
+    type: "string"
   })
   .option('ghToken', {
     alias: 'gh',
-    describe: 'Enter Github Token for releasing'
+    describe: 'Enter Github Token for releasing',
+    type: "string"
   })
+  .version(false) // disable default --version from yargs( since v9.0.0)
   .argv;
 
 const config = {
@@ -71,11 +77,12 @@ const config = {
   unscopedLibraryName: 'ngx-sharebuttons',
   allSrc: 'src/**/*',
   allTs: 'src/**/!(*.spec).ts',
-  allSass: 'src/**/*.(scss|sass)',
+  allSass: 'src/**/*.+(scss|sass)',
   allHtml: 'src/**/*.html',
   demoDir: 'demo/',
   buildDir: 'tmp/',
   outputDir: 'dist/',
+  outputDemoDir: 'demo/dist/browser/',
   coverageDir: 'coverage/',
   themesDir: 'src/styles/**/*'
 };
@@ -235,12 +242,12 @@ gulp.task('pre-compile', (cb) => {
 gulp.task('ng-compile', () => {
   return Promise.resolve()
     // Compile to ES5.
-    .then(() => ngc({ project: `${buildFolder}/tsconfig.lib.es5.json` })
+    .then(() => ngc(['--project', `${buildFolder}/tsconfig.lib.es5.json`])
       .then(exitCode => exitCode === 0 ? Promise.resolve() : Promise.reject())
       .then(() => gulpUtil.log('ES5 compilation succeeded.'))
     )
     // Compile to ES2015.
-    .then(() => ngc({ project: `${buildFolder}/tsconfig.lib.json` })
+    .then(() => ngc(['--project', `${buildFolder}/tsconfig.lib.json`])
       .then(exitCode => exitCode === 0 ? Promise.resolve() : Promise.reject())
       .then(() => gulpUtil.log('ES2015 compilation succeeded.'))
     )
@@ -333,10 +340,10 @@ gulp.task('rollup-bundle', (cb) => {
     // Bundle lib.
     .then(() => {
       // Base configuration.
-      const es5Entry = path.join(es5OutputFolder, `${config.unscopedLibraryName}.js`);
-      const es2015Entry = path.join(es2015OutputFolder, `${config.unscopedLibraryName}.js`);
+      const es5Input = path.join(es5OutputFolder, `${config.unscopedLibraryName}.js`);
+      const es2015Input = path.join(es2015OutputFolder, `${config.unscopedLibraryName}.js`);
       const globals = {
-        // Angular dependencies
+        // Angular dependencies 
         '@angular/core': 'ng.core',
         '@angular/common': 'ng.common',
         '@angular/common/http': 'ng.http',
@@ -360,10 +367,11 @@ gulp.task('rollup-bundle', (cb) => {
         // ATTENTION:
         // Add any other dependency or peer dependency of your library here
         // This is required for UMD bundle users.
+
       };
       const rollupBaseConfig = {
-        moduleName: _.camelCase(config.libraryName),
-        sourceMap: true,
+        name: _.camelCase(config.libraryName),
+        sourcemap: true,
         globals: globals,
         external: Object.keys(globals),
         plugins: [
@@ -377,30 +385,30 @@ gulp.task('rollup-bundle', (cb) => {
 
       // UMD bundle.
       const umdConfig = Object.assign({}, rollupBaseConfig, {
-        entry: es5Entry,
-        dest: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.js`),
+        input: es5Input,
+        file: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.js`),
         format: 'umd',
       });
 
       // Minified UMD bundle.
       const minifiedUmdConfig = Object.assign({}, rollupBaseConfig, {
-        entry: es5Entry,
-        dest: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.min.js`),
+        input: es5Input,
+        file: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.min.js`),
         format: 'umd',
         plugins: rollupBaseConfig.plugins.concat([rollupUglify({})])
       });
 
       // ESM+ES5 flat module bundle.
       const fesm5config = Object.assign({}, rollupBaseConfig, {
-        entry: es5Entry,
-        dest: path.join(distFolder, `${config.libraryName}.es5.js`),
+        input: es5Input,
+        file: path.join(distFolder, `${config.libraryName}.es5.js`),
         format: 'es'
       });
 
       // ESM+ES2015 flat module bundle.
       const fesm2015config = Object.assign({}, rollupBaseConfig, {
-        entry: es2015Entry,
-        dest: path.join(distFolder, `${config.libraryName}.js`),
+        input: es2015Input,
+        file: path.join(distFolder, `${config.libraryName}.js`),
         format: 'es'
       });
 
@@ -449,7 +457,7 @@ gulp.task('test:demo', () => {
 });
 
 gulp.task('serve:demo', () => {
-  return execDemoCmd('serve --preserve-symlinks', { cwd: `${config.demoDir}` });
+  return execDemoCmd('serve --preserve-symlinks --aot', { cwd: `${config.demoDir}` });
 });
 
 gulp.task('build:demo', () => {
@@ -460,7 +468,7 @@ gulp.task('serve:demo-ssr', ['build:demo'], () => {
   return execDemoCmd(`build --preserve-symlinks --prod --aot --build-optimizer --app ssr --output-hashing=none`, { cwd: `${config.demoDir}` })
     .then(exitCode => {
       if (exitCode === 0) {
-        execCmd('webpack', '--config webpack.server.config.js', { cwd: `${config.demoDir}` }, `/${config.demoDir}`)
+        execCmd('webpack', '--config webpack.server.config.js --progress --colors', { cwd: `${config.demoDir}` }, `/${config.demoDir}`)
           .then(exitCode => exitCode === 0 ? execExternalCmd('node', 'dist/server.js', { cwd: `${config.demoDir}` }, `/${config.demoDir}`) : Promise.reject(1));
       } else {
         Promise.reject(1);
@@ -473,7 +481,7 @@ gulp.task('build:demo-ssr', ['build:demo'], () => {
   return execDemoCmd(`build --preserve-symlinks --prod --aot --build-optimizer --app ssr --output-hashing=none`, { cwd: `${config.demoDir}` })
     .then(exitCode => {
       if (exitCode === 0) {
-        execCmd('webpack', '--config webpack.server.config.js', { cwd: `${config.demoDir}` }, `/${config.demoDir}`)
+        execCmd('webpack', '--config webpack.server.config.js --progress --colors', { cwd: `${config.demoDir}` }, `/${config.demoDir}`)
           .then(exitCode => exitCode === 0 ? execExternalCmd('node', 'dist/prerender.js', { cwd: `${config.demoDir}` }, `/${config.demoDir}`) : Promise.reject(1));
       } else {
         Promise.reject(1);
@@ -483,7 +491,7 @@ gulp.task('build:demo-ssr', ['build:demo'], () => {
 });
 
 gulp.task('push:demo', () => {
-  return execCmd('ngh', `--dir ${config.demoDir}/dist --message="chore(demo): :rocket: deploy new version"`);
+  return execCmd('ngh', `--dir ${config.outputDemoDir} --message="chore(demo): :rocket: deploy new version"`);
 });
 
 gulp.task('deploy:demo', (cb) => {

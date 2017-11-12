@@ -4,11 +4,15 @@
 
   @each $button, $color in $sb-buttons {
     &.sb-#{$button} {
-      --color: $color;
+      color: $color;
+
+      &:hover {
+        border-color: $color;
+        box-shadow: 0 0.5em 0.5em -0.4em $color;
+      }
     }
   }
 
-  color: var(--color);
   transition: 0.25s;
   background: none;
   border: 2px solid;
@@ -17,8 +21,6 @@
   height: 2.5em;
 
   &:hover {
-    border-color: var(--color);
-    box-shadow: 0 0.5em 0.5em -0.4em var(--color);
     transform: translateY(-0.25em);
   }
 

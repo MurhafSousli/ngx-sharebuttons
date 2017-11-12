@@ -2,20 +2,17 @@
 
 .sb-default .sb-wrapper {
 
-  @each $button, $color in $sb-buttons {
-    &.sb-#{$button} {
-      --color: $color;
-      --hover-color: lighten($color, 8%);
-    }
-  }
-
   color: white;
-  background-color: var(--color);
   border-radius: 4px;
   transition: background-color ease 200ms;
 
-  &:hover {
-    background-color: var(--hover-color);
+  @each $button, $color in $sb-buttons {
+    &.sb-#{$button} {
+      background-color: $color;
+      &:hover {
+        background-color: lighten($color, 8%);
+      }
+    }
   }
 
   &.sb-show-icon.sb-show-text {
