@@ -4,11 +4,14 @@
 
   @each $button, $color in $sb-buttons {
     &.sb-#{$button} {
-      --color: $color;
+      color: $color;
+      &:hover {
+        border-color: $color;
+        box-shadow: inset 0 -3.25em 0 0 $color;
+      }
     }
   }
 
-  color: var(--color);
   transition: 0.25s;
   background: none;
   border: 2px solid;
@@ -18,8 +21,6 @@
 
   &:hover {
     color: $sb-accent;
-    border-color: var(--color);
-    box-shadow: inset 0 -3.25em 0 0 var(--color);
   }
 
   &.sb-show-icon.sb-show-text {

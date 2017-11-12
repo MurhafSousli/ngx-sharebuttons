@@ -7,12 +7,19 @@
 
   @each $button, $color in $sb-buttons {
     &.sb-#{$button} {
-      --color: $color;
-      --active-color: lighten($color, 10%);
+      background-color: $color;
+
+      &:hover {
+        .sb-icon {
+          color: lighten($color, 10%);
+        }
+      }
+      .sb-icon {
+        color: $color;
+      }
     }
   }
 
-  background-color: var(--color);
   border-radius: $sb-border-radius;
   color: $sb-accent;
   transition: padding-right linear 150ms;
@@ -26,18 +33,11 @@
     }
   }
 
-  &:hover {
-    .sb-icon {
-      color: var(--active-color);
-    }
-  }
-
   .sb-icon {
     min-width: 2em;
     border-top-left-radius: $sb-border-radius;
     border-bottom-left-radius: $sb-border-radius;
     background-color: $sb-icon-bg;
-    color: var(--color);
     margin-right: 0.2em;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     transition: margin-right linear 150ms, border-radius linear 150ms, color ease 150ms;

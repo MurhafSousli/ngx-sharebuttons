@@ -43,6 +43,7 @@
   .sb-icon {
     pointer-events: none;
     font-size: $sb-icon-size;
+    min-width: 2em;
   }
 
   .sb-text {

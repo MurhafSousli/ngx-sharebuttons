@@ -18,7 +18,12 @@
 
   @each $button, $color in $sb-buttons {
     &.sb-#{$button} {
-      --color: $color;
+      color: $color;
+
+      .sb-icon {
+        color: $color;
+        min-width: 2em;
+      }
     }
   }
 
@@ -29,7 +34,6 @@
   text-shadow: $text-shadow;
   box-shadow: $box-shadow;
   border-radius: .2em;
-  color: var(--color);
 
   &:hover {
     background-color: $hover-bg;
@@ -48,7 +52,6 @@
   }
 
   .sb-icon {
-    color: var(--color);
     pointer-events: none;
     font-size: $sb-icon-size;
   }
