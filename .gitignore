@@ -1,8 +1,5 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# private folders
-/src/styles/menu/
-/src/styles/themes/premium-themes/
 /demo/
 
 # compiled output
