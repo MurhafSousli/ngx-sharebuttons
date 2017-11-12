@@ -71,7 +71,7 @@ You may want to check it out for development info
 
 ## License
 
- - [GNU GPL-3.0](/LICENSE)
+ - [MIT](/LICENSE)
 
 ## Author
 
