@@ -1,10 +1,9 @@
 @import "../../variables";
 
 .sb-modern-dark .sb-wrapper {
-
   $sb-border-radius: 3px;
-
-  @each $button, $color in $sb-buttons {
+  @each $button,
+  $color in $sb-buttons {
     &.sb-#{$button} {
       background-color: $color;
       &:hover {
@@ -15,19 +14,20 @@
       }
     }
   }
-
   color: $sb-accent;
   box-shadow: 0 5px 15px rgba($sb-gray, 0.5);
-  transition: box-shadow ease-in 100ms, transform ease-in 100ms;
+  transition: box-shadow ease-in 100ms,
+  transform ease-in 100ms;
   border-radius: $sb-border-radius;
-
   &:hover {
     transform: translate3d(0, -2px, 0);
   }
   &:active {
     transform: translate3d(0, -1px, 0);
   }
-  &.sb-show-text, &.sb-show-template, &.sb-show-count {
+  &.sb-show-text,
+  &.sb-show-template,
+  &.sb-show-count {
     padding: 0;
     .sb-icon {
       box-shadow: 1px 0 -1px rgba(0, 0, 0, 0.3);
@@ -38,14 +38,14 @@
       background: none;
     }
   }
-
   &.sb-show-template.sb-show-count {
     .sb-template {
       background: none;
     }
   }
-
-  .sb-text, .sb-count, .sb-template {
+  .sb-text,
+  .sb-count,
+  .sb-template {
     background: rgba(0, 0, 0, .1);
   }
 }

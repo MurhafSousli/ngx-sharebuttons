@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.4
+
+ - refactor(buttons style): improve icon styles
+
 ## 4.1.3
 
  - refactor(themes): fix themes issues and styles warnings, closes [#182](https://github.com/MurhafSousli/ngx-sharebuttons/issues/182).

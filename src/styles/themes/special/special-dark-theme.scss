@@ -1,26 +1,22 @@
 @import "../../variables";
 
 .sb-special-dark .sb-wrapper {
-
   $sb-icon-bg: #333;
   $sb-border-radius: 4px;
-
-  @each $button, $color in $sb-buttons {
+  @each $button,
+  $color in $sb-buttons {
     &.sb-#{$button} {
       background-color: $color;
-
       &:hover {
         .sb-icon {
           color: lighten($color, 15%);
         }
       }
-
       .sb-icon {
         color: lighten($color, 5%);
       }
     }
   }
-
   border-radius: $sb-border-radius;
   color: $sb-accent;
   transition: padding-right linear 150ms;
@@ -32,7 +28,6 @@
       border-radius: $sb-border-radius;
     }
   }
-
   .sb-icon {
     min-width: 2em;
     border-top-left-radius: $sb-border-radius;
@@ -46,11 +41,10 @@
       z-index: 5;
     }
   }
-
-  &.sb-show-text, &.sb-show-count {
+  &.sb-show-text,
+  &.sb-show-count {
     .sb-icon {
       position: relative;
-
       &:after {
         background-color: $sb-icon-bg;
         content: "\00a0";
@@ -64,11 +58,9 @@
       }
     }
   }
-
   &.sb-show-text.sb-show-count {
     .sb-count {
       padding-left: 0;
     }
   }
-
 }

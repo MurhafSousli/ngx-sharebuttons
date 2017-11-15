@@ -7,13 +7,12 @@
   $hover-bg-light: #fafafa;
   $button-color: #333;
   $border-color: #777;
-
-  @each $button, $color in $sb-buttons {
+  @each $button,
+  $color in $sb-buttons {
     &.sb-#{$button} {
       background-color: $color;
       border: 1px solid darken($color, 10%);
       text-shadow: 0 1px 0 rgba($color, .8);
-
       &:hover {
         background-color: lighten($color, 10%);
       }
@@ -23,7 +22,6 @@
       &:active {
         background-color: $color;
       }
-
       &.sb-show-icon.sb-show-text,
       &.sb-show-icon.sb-show-template,
       &.sb-show-icon.sb-show-count {
@@ -31,7 +29,6 @@
           border-right: 1px solid darken($color, 10%);
         }
       }
-
       &.sb-show-text.sb-show-count {
         .sb-text {
           border-right: 1px solid darken($color, 10%);
@@ -42,22 +39,17 @@
   padding: 0;
   color: $sb-accent;
   border-radius: .2em;
-
   &:focus {
     outline: 0;
   }
-
   &:active {
     position: relative;
     top: 1px;
   }
-
   .sb-icon {
     pointer-events: none;
   }
-
   .sb-text {
     background: rgba(0, 0, 0, .1);
   }
-
 }

@@ -1,11 +1,10 @@
 @import "../../variables";
 
 .sb-modern-light .sb-wrapper {
-
   $sb-border-radius: 3px;
   $separate-shadow: 1px 0 1px -1px rgba(0, 0, 0, 0.3);
-
-  @each $button, $color in $sb-buttons {
+  @each $button,
+  $color in $sb-buttons {
     &.sb-#{$button} {
       color: $color;
       &:hover {
@@ -16,20 +15,23 @@
       }
     }
   }
-
   background-color: $sb-accent;
   box-shadow: 0 5px 15px rgba($sb-gray, 0.5);
-  transition: box-shadow ease 100ms, transform ease 100ms;
+  transition: box-shadow ease 100ms,
+  transform ease 100ms;
   border-radius: $sb-border-radius;
-
   &:hover {
     transform: translate3d(0, -2px, 0);
   }
   &:active {
     transform: translate3d(0, -1px, 0);
   }
-
-  &.sb-show-text, &.sb-show-template, &.sb-show-count {
+  .sb-icon {
+    min-width: 2em;
+  }
+  &.sb-show-text,
+  &.sb-show-template,
+  &.sb-show-count {
     padding: 0;
     .sb-icon {
       box-shadow: $separate-shadow;
@@ -38,13 +40,11 @@
   &.sb-show-template.sb-show-icon {
     padding: 0;
   }
-
   &.sb-show-text.sb-show-count {
     .sb-text {
       box-shadow: $separate-shadow;
     }
   }
-
   &.sb-show-template.sb-show-count {
     .sb-template {
       box-shadow: $separate-shadow;
