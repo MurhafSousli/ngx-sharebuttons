@@ -113,11 +113,11 @@
   },
   {
     "name": "$sb-text-padding",
-    "description": "0 1em"
+    "description": "0 0.7em"
   },
   {
     "name": "$sb-count-padding",
-    "description": "0 1em"
+    "description": "0 0.7em"
   },
   {
     "name": "$sb-template-padding",
