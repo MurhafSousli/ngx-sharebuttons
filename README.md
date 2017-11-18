@@ -58,6 +58,10 @@ If you identify any errors in this component, or have an idea for an improvement
 
 [![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/HsX4XGSxuvtM9QSZL6RQ5SW2/MurhafSousli/ngx-sharebuttons'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/HsX4XGSxuvtM9QSZL6RQ5SW2/MurhafSousli/ngx-sharebuttons.svg' />
+</a>
+
 ## Development
 
  - Fork and clone the repo
