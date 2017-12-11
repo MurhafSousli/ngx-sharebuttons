@@ -1,19 +1,28 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "inlineSources": true,
-    "declaration": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "target": "es5",
+    "declaration": true,
+    "moduleResolution": "node",
+    "removeComments": true,
+    "sourceMap": true,
     "noImplicitAny": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "skipLibCheck": true,
-    "stripInternal": true,
-    "lib": [
-      "es2015",
-      "dom"
-    ]
-  }
+    "baseUrl": "build",
+    "lib": ["dom", "es2017"],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "@ngx-share/*": ["./*"]
+    }
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useWebpackText": true
+  },
+  "include": [
+    "build/**/*.ts",
+    "src/**/*.ts"
+  ],
+  "compileOnSave": false
 }
