@@ -9,7 +9,7 @@
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons) 
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
  
-[plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)/[stackblitz](https://stackblitz.com/edit/ngx-sharebuttons)
+[stackblitz](https://stackblitz.com/edit/ngx-sharebuttons)
 
 ## Share buttons component
 

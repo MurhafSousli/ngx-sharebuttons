@@ -45,9 +45,11 @@ export class ShareButtons {
       windowHeight: 500
     };
 
-    /** Override global options with user's preference */
-    this.options = mergeDeep(this.options, config.options);
-    this.prop = mergeDeep(this.prop, config.prop);
+    if (config) {
+      /** Override global options with user's preference */
+      this.options = mergeDeep(this.options, config.options);
+      this.prop = mergeDeep(this.prop, config.prop);
+    }
 
     /** Get user browser info */
     this.os = getOS();

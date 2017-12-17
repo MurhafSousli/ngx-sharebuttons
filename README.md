@@ -26,9 +26,9 @@
 - [More plugins](#more)
 
 
-For Angular 2 & 4, use [version 3](https://github.com/MurhafSousli/ngx-sharebuttons/wiki).
+For Angular 2 & 4, use **ngx-sharebuttons** [version 3](https://github.com/MurhafSousli/ngx-sharebuttons/wiki).
 
-For **ngx-sharebuttons** v4 README moved to [here](/README_V4.md).
+For **ngx-sharebuttons** v4, the README has moved to [here](/README_V4.md).
 
 <a name="packages"/>
 
@@ -91,12 +91,12 @@ export class MyComponent {
 Now you can set them
 
 ```html
-// Set color and icon
+<!--Set color and icon-->
 <button shareButton="twitter" [style.backgroundColor]="share.meta.twitter.color">
   <i [class]="share.meta.twitter.icon"></i>
 </button>
 
-// Material example
+<!--Material example-->
 <button md-icon-button shareButton="telegram" [style.color]="share.meta.telegram.color">
   <i [class]="share.meta.telegram.icon"></i>
 </button>

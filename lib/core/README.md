@@ -60,14 +60,13 @@ export class MyComponent {
 
 Now you can set them
 
-
 ```html
-// Set color and icon
+<!--Set color and icon-->
 <button shareButton="twitter" [style.backgroundColor]="share.meta.twitter.color">
   <i [class]="share.meta.twitter.icon"></i>
 </button>
 
-// Material example
+<!--Material example-->
 <button md-icon-button shareButton="telegram" [style.color]="share.meta.telegram.color">
   <i [class]="share.meta.telegram.icon"></i>
 </button>

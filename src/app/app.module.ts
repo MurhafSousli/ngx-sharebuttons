@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-// import { ShareButtonsModule } from '@ngx-share/buttons';
-import { ShareButtonsModule } from '../../lib/buttons';
+import { ShareButtonsModule } from '@ngx-share/buttons';
+import { ShareButtonModule } from '@ngx-share/button';
+// import { ShareButtonsModule } from '../../lib/buttons';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ShareButtonsModule } from '../../lib/buttons';
   imports: [
     BrowserModule,
     HttpClientModule,
+    // ShareButtonModule.forRoot()
     ShareButtonsModule.forRoot()
   ],
   providers: [],

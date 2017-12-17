@@ -24,7 +24,7 @@ export function ShareButtonsFactory(config: ShareButtonsConfig) {
 export class ShareButtonsModule {
   static forRoot(config?: ShareButtonsConfig) {
     return {
-      ngModule: ShareButtonModule,
+      ngModule: ShareButtonsModule,
       providers: [
         {provide: CONFIG, useValue: config},
         {
