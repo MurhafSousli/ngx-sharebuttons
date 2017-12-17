@@ -44,7 +44,7 @@ In your template
 <button shareButton="pinterest">Pin</button>
 ```
 
-To use the default icons or colors inject the share buttons service in your component
+To use the default icons or colors, use **ShareButtons** service so you can access buttons properties
 
 ```ts
 import { ShareButtons } from '@ngx-share/core';
@@ -62,13 +62,13 @@ Now you can set them
 
 ```html
 <!--Set color and icon-->
-<button shareButton="twitter" [style.backgroundColor]="share.meta.twitter.color">
-  <i [class]="share.meta.twitter.icon"></i>
+<button shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color">
+  <i [class]="share.prop.twitter.icon"></i>
 </button>
 
 <!--Material example-->
-<button md-icon-button shareButton="telegram" [style.color]="share.meta.telegram.color">
-  <i [class]="share.meta.telegram.icon"></i>
+<button md-icon-button shareButton="telegram" [style.color]="share.prop.telegram.color">
+  <i [class]="share.prop.telegram.icon"></i>
 </button>
 ```
 
