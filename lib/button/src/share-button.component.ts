@@ -25,8 +25,11 @@ export class ShareButtonComponent implements OnDestroy {
   /** Share count value */
   shareCount: number;
 
-  /** Button name e.g. fb, twitter, reddit...etc */
+  /** Button name */
   button: string;
+
+  /** Get and display share count */
+  showCount = false;
 
   @Input('button')
   set createButton(button: string) {
@@ -51,14 +54,14 @@ export class ShareButtonComponent implements OnDestroy {
   /** Show button icon */
   @Input() showIcon = true;
 
-  /** Show button name */
-  @Input() showName = false;
+  /** Show button text */
+  @Input() showText = false;
+
+  /** Button custom text */
+  @Input() text: string;
 
   /** Button size */
   @Input() size = this.share.size;
-
-  /** Get and display share count */
-  showCount = false;
 
   @Input('showCount')
   set setShowCount(show: boolean) {
@@ -66,17 +69,16 @@ export class ShareButtonComponent implements OnDestroy {
     /** Subscribe to count event */
 
     /** Check if sbCount already has observers, don't subscribe again */
-    if (!this.shareDirective.sbCount.observers.length) {
+    if (!this.ref.sbCount.observers.length) {
 
       /** Subscribe to the directive count's event only if 'show' is true or 'sbCount' has observers */
       if (show || this.count.observers.length) {
-        this.shareDirective.sbCount.subscribe(count => {
+        this.ref.sbCount.subscribe(count => {
           this.shareCount = count;
           this.count.emit(count);
           this.cd.markForCheck();
         });
       }
-
     }
 
   }
@@ -100,7 +102,7 @@ export class ShareButtonComponent implements OnDestroy {
   @Output() closed = new EventEmitter<string>();
 
   /** Share directive ref */
-  @ViewChild(ShareButtonDirective) shareDirective: ShareButtonDirective;
+  @ViewChild(ShareButtonDirective) ref: ShareButtonDirective;
 
   /** <ng-content> wrapper, used to add class e.g. sb-default, sb-text, sb-count */
   @ViewChild('template') template;
@@ -109,7 +111,7 @@ export class ShareButtonComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.shareDirective.sbCount.complete();
+    this.ref.sbCount.complete();
   }
 
 }

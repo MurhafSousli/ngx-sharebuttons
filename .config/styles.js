@@ -15,7 +15,7 @@ const processors = [
   cssnano
 ];
 
-const srcDir = 'lib/styles/';
+const srcDir = 'lib/button/styles/';
 const distButtonDir = 'build/button/styles/';
 
 function writeStyleFile(file) {
@@ -49,7 +49,7 @@ function start(startPath, filter, callback) {
     var filename = path.join(startPath, files[i]);
     var stat = fs.lstatSync(filename);
     if (stat.isDirectory()) {
-      fromDir(filename, filter, callback); //recurse
+      start(filename, filter, callback); //recurse
     }
     else if (filter.test(filename)) callback(filename);
   }

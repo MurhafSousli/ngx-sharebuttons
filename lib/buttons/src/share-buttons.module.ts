@@ -1,13 +1,12 @@
 import { NgModule, InjectionToken } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-import { ShareButtons, ShareButtonsMeta, ShareButtonsOptions, OPTIONS, BUTTONS_META } from '@ngx-share/core';
+import { ShareButtons, ShareButtonsConfig, CONFIG } from '@ngx-share/core';
 import { ShareButtonModule } from '@ngx-share/button';
 
 import { ShareButtonsComponent } from './share-buttons.component';
 
-export function ShareButtonsFactory(httpClient: HttpClient, options: ShareButtonsOptions, buttonsMeta: ShareButtonsMeta) {
-  return new ShareButtons(httpClient, options, buttonsMeta);
+export function ShareButtonsFactory(config: ShareButtonsConfig) {
+  return new ShareButtons(config);
 }
 
 @NgModule({
@@ -23,19 +22,17 @@ export function ShareButtonsFactory(httpClient: HttpClient, options: ShareButton
   ]
 })
 export class ShareButtonsModule {
-  static forRoot(options?: ShareButtonsOptions, buttonsMeta?: ShareButtonsMeta) {
+  static forRoot(config?: ShareButtonsConfig) {
     return {
-      ngModule: ShareButtonsModule,
+      ngModule: ShareButtonModule,
       providers: [
-        {provide: OPTIONS, useValue: options},
-        {provide: BUTTONS_META, useValue: buttonsMeta},
+        {provide: CONFIG, useValue: config},
         {
           provide: ShareButtons,
           useFactory: ShareButtonsFactory,
-          deps: [HttpClient, OPTIONS, BUTTONS_META]
+          deps: [CONFIG]
         }
       ]
     };
   }
 }
-

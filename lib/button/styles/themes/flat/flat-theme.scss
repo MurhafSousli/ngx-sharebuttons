@@ -1,0 +1,56 @@
+@import "../../variables";
+
+.sb-flat .sb-wrapper {
+  $button-bg: #ccc;
+  $button-bg-light: #eee;
+  $hover-bg: #ddd;
+  $hover-bg-light: #fafafa;
+  $button-color: #333;
+  $border-color: #777;
+  @each $button,
+  $color in $sb-buttons {
+    &.sb-#{$button} {
+      background-color: $color;
+      border: 1px solid darken($color, 10%);
+      text-shadow: 0 1px 0 rgba($color, .8);
+      &:hover {
+        background-color: lighten($color, 10%);
+      }
+      &:focus {
+        background-color: lighten($color, 15%);
+      }
+      &:active {
+        background-color: $color;
+      }
+      &.sb-show-icon.sb-show-text,
+      &.sb-show-icon.sb-show-count {
+        .sb-icon {
+          border-right: 1px solid darken($color, 10%);
+        }
+      }
+      &.sb-show-text.sb-show-count {
+        .sb-text {
+          border-right: 1px solid darken($color, 10%);
+        }
+      }
+    }
+  }
+  background-color: $sb-primary;
+  border: 1px solid darken($sb-primary, 10%);
+  padding: 0;
+  color: $sb-accent;
+  border-radius: .2em;
+  &:focus {
+    outline: 0;
+  }
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+  .sb-icon {
+    pointer-events: none;
+  }
+  .sb-text {
+    background: rgba(0, 0, 0, .1);
+  }
+}

@@ -5,97 +5,71 @@
 </p>
 
 [![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
-[![npm](https://img.shields.io/npm/v/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-share/core) 
+[![npm](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons) 
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons) 
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-[plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)/[stackblitz](https://stackblitz.com/edit/ngx-sharebuttons)
+ - [Documentations for version 3.x](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+ 
 
-## Table of contents
+## Installation
 
-- [Live demo](https://murhafsousli.github.io/ngx-sharebuttons/)
-- [Packages](#packages)
-- [Share button directive](#share-button-directive)
-- [Single share button component](#share-button-component)
-- [Share buttons component](#share-buttons-component)
-- [Global options](#global-options)
-- [Styling guide](#styling-guide)
-- [FAQ](https://murhafsousli.github.io/ngx-sharebuttons/#/faq)
-- [Issues](#issues)
-- [License](/LICENSE)
-- [Support](#support)
-- [Author](#author)
-- [More plugins](#more)
-
-___
-
-- [For Angular 2 and 4, use this version 3 and this documentations](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
-- [For Share Buttons version 4.x README](/README_V4.md)
-
-<a name="packages"/>
-
-## Packages
-
-I divided the plugin into 3 modules to make it possible to include only the module you use.
-
-- [@ngx-share/core](lib/core) - Share button directive to convert any element to a share button.
-- [@ngx-share/button](lib/button) - Share button component to add buttons individually.
-- [@ngx-share/buttons](lib/buttons) - Share buttons component to add a collection of share buttons.
-
-<a name="directive"/>
-
-## Share button directive
-
-Convert any element to a share button using `[shareButton]` directive.
-
-Install with npm
-
-```bash
-$ npm install --save @ngx-share/core
-```
-
-Import `ShareModule` in your module
+ 1. Install the library `npm install ngx-sharebuttons --save`
+ 2. Install font-awesome icons `npm install font-awesome --save` or use a [FontAwesome CDN](https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css)
+ 3. Choose the module: 
+ 
+    - **ShareButtonsModule** for `<share-buttons></share-buttons>`
+    - **ShareButtonModule** for `<share-button [button]="buttonName"></share-button>`
+    - **ShareDirectiveModule** for `<button [shareButton]="buttonName"></button>`
 
 ```ts
-import { ShareModule } from '@ngx-share/core';
+import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 @NgModule({
   imports: [
-    HttpClientModule,
-    ShareModule.forRoot()
+    HttpClientModule, // (Required) for share counts
+    HttpClientJsonpModule, // (Optional) For linkedIn & Tumblr counts
+    ShareButtonsModule.forRoot()
   ]
 })
 ```
+    
+ 4. Import the core styles and the theme from the global style `src/styles.scss`
+ 
+```css
+/** Import Fontawesome icons */
+@import '~font-awesome/css/font-awesome.min.css';
 
-In your template
+/** Import core style */
+@import "~ngx-sharebuttons/styles/share-buttons";
 
-```html
-<button shareButton="facebook">Share</button>
-<button shareButton="twitter">Tweet</button>
-<button shareButton="pinterest">Pin</button>
+/** Import a theme */
+@import "~ngx-sharebuttons/styles/themes/circles/circles-theme";
 ```
 
-To use the default icons or colors inject the share buttons service in your component
+## Share button directive
 
-```ts
-constructor(public share: ShareButtons) { }
-```
-
-Now you can set them
+Convert any element to a share button using the directive `[shareButton]`
 
 ```html
-// Set color and icon
-<button shareButton="twitter" [style.backgroundColor]="share.meta.twitter.color">
+<button shareButton="facebook"><i class="fa fa-facebook"></i></button>
+<button md-raised-button shareButton="twitter"><i class="fa fa-twitter"></i></button>
+<button md-icon-button shareButton="linkedin"><i class="fa fa-linkedin"></i></button>
+<button md-fab shareButton="pinterest"><i class="fa fa-pinterest-p"></i></button>
+```
+
+Get text and icon from ShareButtons Service
+
+```html
+<button md-fab shareButton="twitter" [style.backgroundColor]="share.meta.twitter.color">
   <i [class]="share.meta.twitter.icon"></i>
 </button>
-
-// Material example
-<button md-icon-button shareButton="telegram" [style.color]="share.meta.telegram.color">
-  <i [class]="share.meta.telegram.icon"></i>
+<button md-fab shareButton="linkedin" [style.color]="share.meta.linkedin.color">
+  <i [class]="share.meta.linkedin.icon"></i>
 </button>
 ```
 
-Check [ShareButton Directive Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-directive)
+### API
 
 | Name            | Description                                                    | value         |
 | --------------- | -------------------------------------------------------------- | ------------- |
@@ -109,54 +83,19 @@ Check [ShareButton Directive Demo](https://murhafsousli.github.io/ngx-sharebutto
 | (sbClosed)      | Stream that emits when share dialog has closed.                | button name   |
 | (sbCount)       | Stream that emits share count of the share URL.                | share count   |
 
-<a name="share-button-component"/>
 
 ## Share button component
 
-Use `<share-button>` component to add buttons individually.
-
-Share button component is built on top of `ShareModule` so you need to install both `@ngx-share/core` and `@ngx-share/button`.
-
-To use the default icons, install `font-awesome` package.
-
-```bash
-$ npm install --save @ngx-share/core @ngx-share/button font-awesome
-```
-
-Import `ShareButtonModule` in your module
-
-```ts
-import { ShareButtonModule } from '@ngx-share/button';
-
-@NgModule({
-  imports: [
-    HttpClientModule,
-    ShareButtonModule.forRoot()
-  ]
-})
-```
-
-Import core styles and theme from the global style `src/styles.scss`
-
-```css
-@import '~font-awesome/css/font-awesome.min.css';
-@import "~@ngx-share/button/styles/share-buttons";
-@import "~@ngx-share/button/styles/themes/default/default-theme";
-```
-
-_Check all themes [here](https://murhafsousli.github.io/ngx-sharebuttons/#/themes)_
-
-Now you can use the component in your template
+Add a single share button
 
 ```html
 <share-button button="facebook"></share-button>
-<share-button button="twitter"></share-button>
-
-// Use custom text
-<share-button button="pinterest" text="Pin" showText="true"></share-button>
+<share-button button="twitter" showName="true">Tweet!</share-button>
+<share-button button="facebook" showName="true" showCount="true"><b>Share on Facebook</b></share-button>
+<share-button button="pinterest" showName="true"></share-button>
 ```
 
-Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-component)
+### API
 
 | Name           | Description                                                    | value         |
 | -------------- | -------------------------------------------------------------- | ------------- |
@@ -169,56 +108,23 @@ Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebutto
 | [image]        | Override image meta tag for Pinterest only.                    | null          |
 | [tags]         | Override tags for Tumblr and Twitter.                          | null          |
 | [showIcon]     | Show button icon.                                              | true          |
-| [showText]     | Show button text.                                              | false         |
+| [showName]     | Show button text.                                              | false         |
 | [showCount]    | Show share count.                                              | false         |
 | (opened)       | Emits when share window has opened.                            | button's name |
 | (closed)       | Emits when share dialog has closed.                            | button's name |
 | (count)        | Emits share count of the share URL.                            | share count   |
 
-<a name="share-buttons-component"/>
 
 ## Share buttons component
 
-Use `<share-buttons>` component to a collection of share buttons.
-
-Share buttons component is built on top of `ShareModule` and `ShareButtonModule` so you need to install both `@ngx-share/core`, `@ngx-share/button` and  `@ngx-share/buttons`.
-
-To use the default icons, install `font-awesome` package.
-
-```bash
-$ npm install --save @ngx-share/core @ngx-share/button @ngx-share/buttons font-awesome
-```
-
-Import `ShareButtonModule` in your module
-
-```ts
-import { ShareButtonModule } from '@ngx-share/button';
-
-@NgModule({
-  imports: [
-    HttpClientModule,
-    ShareButtonModule.forRoot()
-  ]
-})
-```
-
-Import core styles and theme from the global style `src/styles.scss`
-
-```css
-@import '~font-awesome/css/font-awesome.min.css';
-@import "~@ngx-share/button/styles/share-buttons";
-@import "~@ngx-share/button/styles/themes/default/default-theme";
-```
-
-_Check [all themes](https://murhafsousli.github.io/ngx-sharebuttons/#/themes)_
-
-Now you can use the component in your template
+Add a collection of share buttons
 
 ```html
 <share-buttons></share-buttons>
 ```
+    
+### API
 
-Check [ShareButtons Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-buttons-component)
 
 | Name           | Description                                                    | value         |
 | -------------- | -------------------------------------------------------------- | ------------- |
@@ -233,21 +139,19 @@ Check [ShareButtons Component Demo](https://murhafsousli.github.io/ngx-sharebutt
 | [image]        | Override image meta tag for Pinterest only.                    | null          |
 | [tags]         | Override tags for Tumblr and Twitter.                          | null          |
 | [showIcon]     | Show button icon.                                              | true          |
-| [showText]     | Show button text.                                              | false         |
+| [showName]     | Show button text.                                              | false         |
 | [showCount]    | Show share count.                                              | false         |
 | (opened)       | Stream that emits when share window has opened.                | button's name |
 | (closed)       | Stream that emits when share dialog has closed.                | button's name |
 | (count)        | Stream that emits share count of the share URL.                | share count   |
 
-<a name="global-options"/>
 
 ## Global options
 
-If you want set custom global options, pass your config in the library is imported
+To use custom options globally, pass your options in `forRoot(option)` where the module is imported.
 
 ```ts
-import { ShareButtonsOptions } from '@ngx-share/core';
-import { ShareButtonsModule } from '@ngx-share/buttons';
+import { ShareButtonsModule, ShareButtonsOptions } from 'ngx-sharebuttons';
 
 const options: ShareButtonsOptions = {
   include: ['facebook', 'twitter', 'google'],
@@ -259,7 +163,6 @@ const options: ShareButtonsOptions = {
 
 @NgModule({
   imports: [
-    // the module you choice 'ShareModule', 'ShareButtonModule' or 'ShareButtonsModule'
     ShareButtonsModule.forRoot(options)
   ]
 })
@@ -271,6 +174,8 @@ const options: ShareButtonsOptions = {
 | exclude        | Exclude certain buttons.                                       | null          |
 | size           | Buttons default size.                                          | 0             |
 | theme          | Button theme name.                                             | null          |
+| dialogWidth    | Share popup window width.                                      | 500           |
+| dialogHeight   | Share popup window height.                                     | 400           |
 | title          | Override title meta tag (if button supports it)                | null          |
 | description    | Override description meta tag (if button supports it)          | null          |
 | image          | Override image meta tag. (if button supports it)               | null          |
@@ -283,7 +188,7 @@ const options: ShareButtonsOptions = {
 You can change the buttons meta data such as button icon and text
 
 ```ts
-import { ShareButtonsModule } from '@ngx-share/buttons';
+import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 const buttonsConfig = {
   facebook: {
@@ -311,7 +216,7 @@ const buttonsConfig = {
 This is useful to customize the style for `<share-button>` and `<share-buttons>` components
 
 ```scss
-@import '~@ngx-share/button/styles/variables';
+@import '~ngx-sharebuttons/styles/variables';
 
 // change buttons colors
 
@@ -337,14 +242,14 @@ $sb-buttons: (
 
 $sb-border-radius: 10px;
 
-@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-sharebuttons/styles/share-buttons';
 ```
 
 [See all available variables](https://murhafsousli.github.io/ngx-sharebuttons/#/override-sass-variables)
 
-### To create your own theme
+### Custom theme
 
-Use the following classes
+To create a custom theme, use the following classes:
 
 ```scss
 .sb-custom-theme {
@@ -372,38 +277,43 @@ Use the following classes
 }
 ```
 
-[Read more about Styling guide](https://murhafsousli.github.io/ngx-sharebuttons/#/styling-guide)
-
-<a name="issues"/>
-
 ## Issues
 
 If you identify any errors in this component, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-sharebuttons/issues). I am excited to see what the community thinks of this project, and I would love your input!
-
-<a name="support"/>
 
 ## Support
 
 [![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
-<a name="author"/>
+## Development
+
+ - Fork and clone the repo
+ - Install npm dependencies `npm install`
+ - Make your changes
+ - Build the package `gulp build`
+ - Submit your PR
+
+This library was generated with [generator-ngx-library](https://github.com/tinesoft/generator-ngx-library#development) by @tinesoft
+You may want to check it out for development info
+
+## License
+
+ - [MIT](/LICENSE)
 
 ## Author
 
  **Murhaf Sousli**
 
-- [github/murhafsousli](https://github.com/MurhafSousli)
-- [twitter/murhafsousli](https://twitter.com/MurhafSousli)
-
-<a name="more"/>
-
+ - [github/murhafsousli](https://github.com/MurhafSousli)
+ - [twitter/murhafsousli](https://twitter.com/MurhafSousli)
+ 
 ## More plugins from the author
 
-- [ng-gallery](https://github.com/MurhafSousli/ng-gallery)
-- [ngx-progressbar](https://github.com/MurhafSousli/ngx-progressbar)
-- [ngx-bar-rating](https://github.com/MurhafSousli/ngx-bar-rating)
-- [ngx-disqus](https://github.com/MurhafSousli/ngx-disqus)
-- [ngx-wordpress](https://github.com/MurhafSousli/ngx-wordpress)
-- [ngx-highlightjs](https://github.com/MurhafSousli/ngx-highlightjs)
-- [ngx-scrollbar](https://github.com/MurhafSousli/ngx-scrollbar)
-- [ng-teximate](https://github.com/MurhafSousli/ng-teximate)
+ - [ng-gallery](https://github.com/MurhafSousli/ng-gallery)
+ - [ngx-progressbar](https://github.com/MurhafSousli/ngx-progressbar)
+ - [ngx-bar-rating](https://github.com/MurhafSousli/ngx-bar-rating)
+ - [ngx-disqus](https://github.com/MurhafSousli/ngx-disqus)
+ - [ngx-wordpress](https://github.com/MurhafSousli/ngx-wordpress)
+ - [ngx-highlightjs](https://github.com/MurhafSousli/ngx-highlightjs)
+ - [ng-teximate](https://github.com/MurhafSousli/ng-teximate)
+

@@ -34,6 +34,18 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   /** Buttons to exclude */
   excludeButtons: string[] = [];
 
+  /** Number of shown buttons */
+  shownButtons = this.includeButtons.length;
+
+  /** Number of included buttons */
+  totalButtons;
+
+  /** Disable more/less buttons */
+  showAll = false;
+
+  /** Get and display share count */
+  showCount = false;
+
   @Input() theme = this.share.theme;
 
   @Input('include')
@@ -47,13 +59,6 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
     this.excludeButtons = excludeButtons;
     this.buttons = this.includeButtons.filter((btn) => this.excludeButtons.indexOf(btn) < 0);
   }
-
-  /** Number of shown buttons */
-  shownButtons = this.includeButtons.length;
-  /** Number of included buttons */
-  totalButtons;
-  /** Disable more/less buttons */
-  showAll = false;
 
   @Input('show')
   set setShownButtons(shownCount: number) {
@@ -81,13 +86,10 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   @Input() showIcon = true;
 
   /** Show button name */
-  @Input() showName = false;
+  @Input() showText = false;
 
   /** Button size */
   @Input() size: number;
-
-  /** Get and display share count */
-  showCount = false;
 
   @Input('showCount')
   set setShowCount(show: boolean) {
@@ -101,7 +103,7 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
         if (!shareComponent.count.observers.length) {
 
           /** Subscribe to the component count event (only if [showCount]=true) */
-          if (show || this.count.observers.length) {
+          if (this.showCount || this.count.observers.length) {
             shareComponent.count.subscribe(count => {
               this.shareCount = count;
               this.count.emit(count);
@@ -130,7 +132,7 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    /**  if use didn't select the buttons use all */
+    /**  if user didn't select the buttons use all */
     if (!this.excludeButtons.length) {
       this.buttons = this.includeButtons.filter((btn) => this.excludeButtons.indexOf(btn) < 0);
     }
