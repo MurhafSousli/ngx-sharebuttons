@@ -1,0 +1,11 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "lib": {
+    "entryFile": "./src/index.ts",
+    "externals": {
+      "@ngx-share/core": "@ngx-share/core",
+      "@ngx-share/button": "@ngx-share/button"
+    }
+  },
+  "dest": "../../build/buttons"
+}

@@ -1,0 +1,40 @@
+<button class="sb-wrapper"
+        [shareButton]="button"
+        [sbUrl]="url"
+        [sbImage]="image"
+        [sbTitle]="title"
+        [sbDescription]="description"
+        [sbTags]="tags"
+        (sbOpened)="opened.emit($event)"
+        (sbClosed)="closed.emit($event)"
+        [class.sb-show-icon]="showIcon"
+        [class.sb-show-text]="showText"
+        [class.sb-show-count]="showCount && shareCount"
+        [style.fontSize.px]="(1 + size/20) * 14">
+
+  <div class="sb-inner">
+
+    <!-- HIDE BUTTON'S ICON AND TEXT IF CUSTOM TEMPLATE IS USED -->
+
+    <div class="sb-content">
+
+      <!-- BUTTON ICON -->
+      <div *ngIf="showIcon" class="sb-icon">
+        <i [class]="ref.prop.icon" aria-hidden="true"></i>
+      </div>
+
+      <!-- BUTTON TEXT -->
+      <div *ngIf="showText" class="sb-text">
+        {{ text || ref.prop.text }}
+      </div>
+
+    </div>
+
+    <!-- BUTTON COUNT -->
+    <div *ngIf="showCount && shareCount" class="sb-count">
+      <span>{{ shareCount | nFormatter }}</span>
+    </div>
+
+  </div>
+</button>
+

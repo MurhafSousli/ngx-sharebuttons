@@ -1,10 +1,11 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-/demo/
-
 # compiled output
+/demo
+/build
 /dist
 /tmp
+/out-tsc
 
 # dependencies
 /node_modules
@@ -31,11 +32,8 @@
 /coverage
 /libpeerconnection.log
 npm-debug.log
-yarn-error.log
 testem.log
 /typings
-/config/gulp-tasks/README.md
-package-lock.json
 
 # e2e
 /e2e/*.js
