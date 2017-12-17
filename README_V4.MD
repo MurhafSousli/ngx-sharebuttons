@@ -9,8 +9,25 @@
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons) 
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
- - [Documentations for version 3.x](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
- 
+
+
+## Table of contents
+
+- [Plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)
+- [Installation](#installation)
+- [Share button directive](#share-button-directive)
+- [Single share button component](#share-button-component)
+- [Share buttons component](#share-buttons-component)
+- [Global options](#global-options)
+- [Styling guide](#styling-guide)
+- [Issues](#issues)
+- [License](/LICENSE)
+- [Support](#support)
+- [Author](#author)
+- [More plugins](#more) 
+- [Documentations for version 3.x](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+
+<a name="installation"/>
 
 ## Installation
 
@@ -27,14 +44,14 @@ import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 @NgModule({
   imports: [
-    HttpClientModule, // (Required) for share counts
+    HttpClientModule,      // (Required) for share counts
     HttpClientJsonpModule, // (Optional) For linkedIn & Tumblr counts
     ShareButtonsModule.forRoot()
   ]
 })
 ```
     
- 4. Import the core styles and the theme from the global style `src/styles.scss`
+ 4. If you want to use the components, import the core styles and the theme from the global style `src/styles.scss`
  
 ```css
 /** Import Fontawesome icons */
@@ -46,6 +63,8 @@ import { ShareButtonsModule } from 'ngx-sharebuttons';
 /** Import a theme */
 @import "~ngx-sharebuttons/styles/themes/circles/circles-theme";
 ```
+
+<a name="share-button-directive"/>
 
 ## Share button directive
 
@@ -79,6 +98,8 @@ export class MyComponent {
 }
 ```
 
+Now you can set them
+
 ```html
 <button md-fab shareButton="twitter" [style.backgroundColor]="share.meta.twitter.color">
   <i [class]="share.meta.twitter.icon"></i>
@@ -90,7 +111,7 @@ export class MyComponent {
 
 ### API
 
-| Name            | value         | Description                                                     |
+| Name            | Value         | Description                                                     |
 | --------------- | ------------- | --------------------------------------------------------------- |
 | [shareButton]   | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
 | [sbUrl]         | current URL   | Sharing link.                                                   |
@@ -103,6 +124,9 @@ export class MyComponent {
 | (sbCount)       | share count   | Stream that emits share count of the share URL.                 |
 
 ___
+
+
+<a name="share-button-component"/>
 
 ## Share button component
 
@@ -117,7 +141,7 @@ Add a single share button
 
 ### API
 
-| Name           | value         | Description                                                     |
+| Name           | Value         | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
 | [button]       | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
 | [theme]        | null          | Set button theme.                                               |
@@ -136,6 +160,8 @@ Add a single share button
 
 ___
 
+<a name="share-buttons-component"/>
+
 ## Share buttons component
 
 Add a collection of share buttons
@@ -146,11 +172,10 @@ Add a collection of share buttons
     
 ### API
 
-
-| Name           | value         | Description                                                     |
+| Name           | Value         | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
 | [include]      | [all buttons] | Include certain buttons. Button's order will be as you type it. |
-| [exclude]      | null          | Exclude certain buttons.                                        |
+| [exclude]      | [ ]           | Exclude certain buttons.                                        |
 | [show]         | null          | Number of buttons to show, if defined 'more' button will appear.|
 | [theme]        | null          | Set button theme.                                               |
 | [size]         | 0             | Button size, e.g. -4, 2.5, 1...etc.                             |
@@ -167,6 +192,8 @@ Add a collection of share buttons
 | (count)        | share count   | Stream that emits share count of the share URL.                 |
 
 ___
+
+<a name="global-options"/>
 
 ## Global options
 
@@ -193,7 +220,7 @@ const options: ShareButtonsOptions = {
 | Option         | Value         | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
 | include        | [all buttons] | Include certain buttons. Button's order will be as you type it. |
-| exclude        | null          | Exclude certain buttons.                                        |
+| exclude        | [ ]           | Exclude certain buttons.                                        |
 | size           | 0             | Buttons default size.                                           |
 | theme          | null          | Button theme name.                                              |
 | dialogWidth    | 500           | Share popup window width.                                       |
@@ -264,7 +291,7 @@ $sb-buttons: (
 
 $sb-border-radius: 10px;
 
-@import '~@ngx-sharebuttons/styles/share-buttons';
+@import '~ngx-sharebuttons/styles/share-buttons';
 ```
 
 [See all available variables](https://murhafsousli.github.io/ngx-sharebuttons/#/override-sass-variables)
@@ -299,28 +326,23 @@ To create a custom theme, use the following classes:
 }
 ```
 
+<a name="issues"/>
+
 ## Issues
 
 If you identify any errors in this component, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-sharebuttons/issues). I am excited to see what the community thinks of this project, and I would love your input!
+
+<a name="support"/>
 
 ## Support
 
 [![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
-## Development
-
- - Fork and clone the repo
- - Install npm dependencies `npm install`
- - Make your changes
- - Build the package `gulp build`
- - Submit your PR
-
-This library was generated with [generator-ngx-library](https://github.com/tinesoft/generator-ngx-library#development) by @tinesoft
-You may want to check it out for development info
-
 ## License
 
  - [MIT](/LICENSE)
+
+<a name="author"/>
 
 ## Author
 
@@ -328,7 +350,9 @@ You may want to check it out for development info
 
  - [github/murhafsousli](https://github.com/MurhafSousli)
  - [twitter/murhafsousli](https://twitter.com/MurhafSousli)
- 
+
+<a name="more"/>
+
 ## More plugins from the author
 
  - [ng-gallery](https://github.com/MurhafSousli/ng-gallery)
