@@ -75,7 +75,7 @@ Now you can set them
 
 Check [ShareButton Directive Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-directive)
 
-| Name            | Value         | Description                                                     |
+| Name            | Default value | Description                                                     |
 | --------------- | ------------- | --------------------------------------------------------------- |
 | [shareButton]   | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
 | [sbUrl]         | current URL   | Sharing link.                                                   |

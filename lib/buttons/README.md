@@ -55,7 +55,7 @@ Now you can use the component in your template
 
 Check [ShareButtons Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-buttons-component)
 
-| Name           | Value         | Description                                                     |
+| Name           | Default value | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
 | [include]      | [all buttons] | Include certain buttons. Button's order will be as you type it. |
 | [exclude]      | [ ]           | Exclude certain buttons.                                        |

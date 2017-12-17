@@ -59,7 +59,7 @@ Now you can use the component in your template
 
 Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-component)
 
-| Name           | Value         | Description                                                     |
+| Name           | Default value | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
 | [button]       | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
 | [theme]        | null          | Set button theme.                                               |

@@ -25,10 +25,10 @@
 - [Author](#author)
 - [More plugins](#more)
 
-___
 
-- [For Angular 2 and 4, use version 3](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
-- [README fpr version 4.x is moved to here](/README_V4.md)
+For Angular 2 & 4, use [version 3](https://github.com/MurhafSousli/ngx-sharebuttons/wiki).
+
+For **ngx-sharebuttons** v4 README moved to [here](/README_V4.md).
 
 <a name="packages"/>
 
@@ -104,7 +104,7 @@ Now you can set them
 
 Check [ShareButton Directive Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-directive)
 
-| Name            | Value         | Description                                                     |
+| Name            | Default value | Description                                                     |
 | --------------- | ------------- | --------------------------------------------------------------- |
 | [shareButton]   | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
 | [sbUrl]         | current URL   | Sharing link.                                                   |
@@ -166,7 +166,7 @@ Now you can use the component in your template
 
 Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-component)
 
-| Name           | Value         | Description                                                     |
+| Name           | Default value | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
 | [button]       | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
 | [theme]        | null          | Set button theme.                                               |
@@ -229,7 +229,7 @@ Now you can use the component in your template
 
 Check [ShareButtons Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-buttons-component)
 
-| Name           | Value         | Description                                                     |
+| Name           | Default value | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
 | [include]      | [all buttons] | Include certain buttons. Button's order will be as you type it. |
 | [exclude]      | [ ]           | Exclude certain buttons.                                        |
@@ -274,7 +274,7 @@ const options: ShareButtonsOptions = {
 })
 ```
 
-| Option         | Value         | Description                                                     |
+| Option         | Default value | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
 | include        | [all buttons] | Include certain buttons. Button's order will be as you type it. |
 | exclude        | [ ]           | Exclude certain buttons.                                        |
