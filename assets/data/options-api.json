@@ -1,23 +1,15 @@
 [
   {
     "name": "include",
-    "description": "Include certain buttons. Button's order will be as you type it. default: ['facebook', 'twitter', 'linkedin', 'pinterest', 'google', 'stumble', 'reddit', 'whatsapp', 'tumblr', 'telegram']"
+    "description": "Include certain buttons. Buttons order will be as you type it, default: [all buttons]"
   },
   {
     "name": "exclude",
-    "description": "Exclude certain buttons. if defined, these buttons will be excluded, default: [ ]"
+    "description": "Exclude certain buttons, default: [ ]"
   },
   {
     "name": "theme",
-    "description": "Button's theme name, default: null"
-  },
-  {
-    "name": "dialogWidth",
-    "description": "Share dialog width, default: 500"
-  },
-  {
-    "name": "dialogHeight",
-    "description": "Share dialog height, default: 400"
+    "description": "Set buttons theme name, default: null"
   },
   {
     "name": "title",
@@ -37,7 +29,7 @@
   },
   {
     "name": "gaTracking",
-    "description": "Sharing stats automatically roll into your Google Analytics, default: false",
+    "description": "Roll sharing stats automatically into your Google Analytics, default: false",
     "type": "input"
   },
   {

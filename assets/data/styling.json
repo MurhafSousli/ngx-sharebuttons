@@ -20,10 +20,6 @@
     "description": "Indicates that the buttons has count"
   },
   {
-    "name": "sb-show-template",
-    "description": "Indicates that the buttons has a custom template"
-  },
-  {
     "name": "sb-wrapper",
     "description": "Button wrapper class, holds 'sb-inner' wrapper"
   },
@@ -46,9 +42,5 @@
   {
     "name": "sb-count",
     "description": "Button count element"
-  },
-  {
-    "name": "sb-template",
-    "description": "Button template element"
   }
 ]

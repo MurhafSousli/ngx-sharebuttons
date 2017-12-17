@@ -3,7 +3,7 @@
 @include mat-core();
 $primary: mat-palette($mat-blue);
 $accent: mat-palette($mat-red);
-$warn: mat-palette($mat-blue, 700);
+$warn: mat-palette($mat-blue);
 $theme: mat-light-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
 
@@ -89,14 +89,15 @@ mat-card-content {
   color: $font-color
 }
 
-$footer-bg: mat-color($primary);
-
 // MATERIAL DIALOG
 .code-dialog .mat-dialog-container {
-  background-color: mat-color($warn);
-  border-radius: 0.8em;
+  border-radius: 0.3em;
+  background-color: mat-color(mat-palette($mat-blue));
+  padding: 5px;
+  pre {
+    border: 0;
+  }
 }
-
 
 .mat-slide-toggle .mat-slide-toggle-content {
   font-size: 0.9em;

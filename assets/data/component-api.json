@@ -1,12 +1,17 @@
 [
   {
     "name": "theme",
-    "description": "Set button's theme, default: null",
+    "description": "Set button theme, default: null",
     "type": "input"
   },
   {
     "name": "button",
-    "description": "Button name, e.g. 'facebook', 'twitter' ...etc. default: null",
+    "description": "Button type, e.g. 'facebook', 'twitter' ...etc. default: null",
+    "type": "input"
+  },
+  {
+    "name": "text",
+    "description": "Button custom text, default: null",
     "type": "input"
   },
   {
@@ -16,7 +21,7 @@
   },
   {
     "name": "url",
-    "description": "Link to share, default: current URL",
+    "description": "Sharing link, default: current URL",
     "type": "input"
   },
   {
@@ -41,32 +46,32 @@
   },
   {
     "name": "showIcon",
-    "description": "Show buttons' icons, default: true",
+    "description": "Show buttons icon, default: true",
     "type": "input"
   },
   {
-    "name": "showName",
-    "description": "Show buttons' names, default: false",
+    "name": "showText",
+    "description": "Show button text, default: false",
     "type": "input"
   },
   {
     "name": "showCount",
-    "description": "Show share counts on buttons, default: false",
+    "description": "Show share counts, default: false",
     "type": "input"
   },
   {
     "name": "opened",
-    "description": "Event emits when share dialog has opened",
+    "description": "Stream that emits when share window has opened",
     "type": "output"
   },
   {
     "name": "closed",
-    "description": "Event emits when share dialog has closed",
+    "description": "Stream that emits when share window has closed",
     "type": "output"
   },
   {
     "name": "count",
-    "description": "Event emits share count of the share URL",
+    "description": "Stream that emits when share count is available",
     "type": "output"
   }
 ]

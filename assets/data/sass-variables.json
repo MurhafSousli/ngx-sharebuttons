@@ -96,12 +96,20 @@
     "description": "5.333em"
   },
   {
+    "name": "$sb-font-size",
+    "description": "inherit"
+  },
+  {
     "name": "$sb-icon-size",
     "description": "1.2em"
   },
   {
     "name": "$sb-text-size",
     "description": "15px"
+  },
+  {
+    "name": "$sb-count-size",
+    "description": "0.9em"
   },
   {
     "name": "$sb-border",
@@ -120,27 +128,15 @@
     "description": "0 0.7em"
   },
   {
-    "name": "$sb-template-padding",
-    "description": "0 1em"
-  },
-  {
     "name": "$sb-border-radius",
     "description": "1px"
   },
   {
-    "name": "$sb-template-size",
-    "description": "15px"
-  },
-  {
-    "name": "$sb-count-size",
-    "description": "0.9em"
-  },
-  {
-    "name": "$share-button-margin",
+    "name": "$sb-margin",
     "description": "0.3125em"
   },
   {
-    "name": "$sb-template-line-height",
+    "name": "$sb-line-height",
     "description": "2.571em"
   },
   {

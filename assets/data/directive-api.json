@@ -6,7 +6,7 @@
   },
   {
     "name": "sbUrl",
-    "description": "Link to share",
+    "description": "Sharing link, default: current URL",
     "type": "input"
   },
   {
@@ -30,23 +30,18 @@
     "type": "input"
   },
   {
-    "name": "gaTracking",
-    "description": "Sharing stats automatically roll into your Google Analytics, default: false",
-    "type": "input"
-  },
-  {
     "name": "sbOpened",
-    "description": "Event emits when share dialog has opened",
+    "description": "Stream that emits when share dialog has opened",
     "type": "output"
   },
   {
     "name": "sbClosed",
-    "description": "Event emits when share dialog has closed",
+    "description": "Stream that emits when share dialog has closed",
     "type": "output"
   },
   {
     "name": "sbCount",
-    "description": "Event emits share count of the share URL",
+    "description": "Stream that emits share count of the share URL",
     "type": "output"
   }
 ]

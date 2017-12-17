@@ -1,12 +1,12 @@
 [
   {
     "name": "theme",
-    "description": "Set button's theme, default: null",
+    "description": "Set button theme, default: null",
     "type": "input"
   },
   {
     "name": "include",
-    "description": "Include certain buttons. Button's order will be as you type it. default: ['facebook', 'twitter', 'linkedin', 'pinterest', 'google', 'stumble', 'reddit', 'whatsapp', 'tumblr', 'telegram']",
+    "description": "Include certain buttons. Buttons order will be as you type it. default: [all buttons]",
     "type": "input"
   },
   {
@@ -21,12 +21,12 @@
   },
   {
     "name": "size",
-    "description": "Button size, accepts positive and negative numbers e.g. -4, 2.5, 1...etc. default: 0",
+    "description": "Buttons size, accepts positive and negative numbers e.g. -4, 2.5, 1...etc. default: 0",
     "type": "input"
   },
   {
     "name": "url",
-    "description": "Link to share, default: current URL",
+    "description": "Sharing link, default: current URL",
     "type": "input"
   },
   {
@@ -51,32 +51,32 @@
   },
   {
     "name": "showIcon",
-    "description": "Show buttons' icons, default: true",
+    "description": "Show buttons icons, default: true",
     "type": "input"
   },
   {
-    "name": "showName",
-    "description": "Show buttons' names, default: false",
+    "name": "showText",
+    "description": "Show buttons text, default: false",
     "type": "input"
   },
   {
     "name": "showCount",
-    "description": "Show share counts on buttons, default: false",
+    "description": "Show share counts, default: false",
     "type": "input"
   },
   {
     "name": "opened",
-    "description": "Event emits when share dialog has opened",
+    "description": "Stream that emits when share window has opened",
     "type": "output"
   },
   {
     "name": "closed",
-    "description": "Event emits when share dialog has closed",
+    "description": "Stream that emits when share window has closed",
     "type": "output"
   },
   {
     "name": "count",
-    "description": "Event emits share count of the share URL",
+    "description": "Stream that emits when share count is available",
     "type": "output"
   }
 ]
