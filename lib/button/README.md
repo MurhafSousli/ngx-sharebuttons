@@ -18,7 +18,7 @@ Use `<share-button>` component to add buttons individually.
 Share button component is built on top of `ShareModule` so you need to install both `@ngx-share/core` and `@ngx-share/button`.
 
 To use the default icons, install `font-awesome` package.
-  
+
 ```bash
 $ npm install --save @ngx-share/core @ngx-share/button font-awesome
 ```
@@ -30,6 +30,8 @@ import { ShareButtonModule } from '@ngx-share/button';
 
 @NgModule({
   imports: [
+    HttpClientModule,      // (Required) for share counts
+    HttpClientJsonpModule, // (Optional) For linkedIn & Tumblr counts
     ShareButtonModule.forRoot()
   ]
 })
@@ -38,12 +40,11 @@ import { ShareButtonModule } from '@ngx-share/button';
 Import core styles and theme from the global style `src/styles.scss`
 
 ```css
-/** Import core style */
-@import "~ngx-sharebuttons/styles/share-buttons";
-
-/** Import a theme */
-@import "~ngx-sharebuttons/styles/themes/default/default-theme";
+@import '~font-awesome/css/font-awesome.min.css';
+@import "~@ngx-share/button/styles/share-buttons";
+@import "~@ngx-share/button/styles/themes/default/default-theme";
 ```
+
 _Check all themes [here](https://murhafsousli.github.io/ngx-sharebuttons/#/themes)_
 
 Now you can use the component in your template
@@ -51,33 +52,29 @@ Now you can use the component in your template
 ```html
 <share-button button="facebook"></share-button>
 <share-button button="twitter"></share-button>
-<share-button button="pinterest"></share-button>
 
 // Use custom text
-<share-button button="google">share!</share-button>
-
-// Use custom template
-<share-button button="linkedin"><img src="linkedin-icon.png"/><span>share</span></share-button>
+<share-button button="pinterest" text="Pin" showText="true"></share-button>
 ```
 
 Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-component)
 
-| Name           | Description                                                    | value         |
-| -------------- | -------------------------------------------------------------- | ------------- |
-| [button]       | Button name, e.g. 'facebook', 'twitter' ...etc.                | null          |
-| [theme]        | Set button's theme.                                            | null          |
-| [size]         | Button size, e.g. -4, 2.5, 1...etc.                            | 0             |
-| [url]          | Link to share.                                                 | current URL   |
-| [title]        | Override title meta tag for LinkedIn and Reddit.               | null          |
-| [description]  | Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest | null          |
-| [image]        | Override image meta tag for Pinterest only.                    | null          |
-| [tags]         | Override tags for Tumblr and Twitter.                          | null          |
-| [showIcon]     | Show button icon.                                              | true          |
-| [showName]     | Show button name.                                              | false         |
-| [showCount]    | Show share count.                                              | false         |
-| (opened)       | Emits when share window has opened.                            | button's name |
-| (closed)       | Emits when share dialog has closed.                            | button's name |
-| (count)        | Emits share count of the share URL.                            | share count   |
+| Name           | Value         | Description                                                     |
+| -------------- | ------------- | --------------------------------------------------------------- |
+| [button]       | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
+| [theme]        | null          | Set button theme.                                               |
+| [size]         | 0             | Button size, e.g. -4, 2.5, 1...etc.                             |
+| [url]          | current URL   | Sharing link.                                                   |
+| [title]        | null          | Override title meta tag for LinkedIn and Reddit.                |
+| [description]  | null          | Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest |
+| [image]        | null          | Override image meta tag for Pinterest only.                     |
+| [tags]         | null          | Override tags for Tumblr and Twitter.                           |
+| [showIcon]     | true          | Show button icon.                                               |
+| [showText]     | false         | Show button text.                                               |
+| [showCount]    | false         | Show share count.                                               |
+| (opened)       | button name   | Stream that emits when share window has opened.                 |
+| (closed)       | button name   | Stream that emits when share dialog has closed.                 |
+| (count)        | share count   | Stream that emits share count of the share URL.                 |
 
 
 ## Issues

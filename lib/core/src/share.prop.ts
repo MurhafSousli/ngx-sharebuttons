@@ -10,8 +10,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#3b5998',
     share: {
       desktop: 'https://www.facebook.com/sharer/sharer.php?u=',
-      android: 'com.facebook.katana',
-      ios: 'fb://',
+      android: 'https://www.facebook.com/sharer/sharer.php?u=',
+      ios: 'https://www.facebook.com/sharer/sharer.php?u=',
       operators: [noneOperator]
     },
     count: {
@@ -29,8 +29,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#00acee',
     share: {
       desktop: 'https://twitter.com/intent/tweet?url=',
-      android: 'com.twitter.package',
-      ios: 'twitter://tweet?url=',
+      android: 'https://twitter.com/intent/tweet?url=',
+      ios: 'https://twitter.com/intent/tweet?url=',
       operators: [
         metaTagsOperator
       ],
@@ -48,8 +48,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#DB4437',
     share: {
       desktop: 'https://plus.google.com/share?url=',
-      android: '',
-      ios: '',
+      android: 'https://plus.google.com/share?url=',
+      ios: 'https://plus.google.com/share?url=',
       operators: [noneOperator],
     }
   },
@@ -60,8 +60,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#006fa6',
     share: {
       desktop: 'http://www.linkedin.com/shareArticle?url=',
-      android: 'com.linkedin.android',
-      ios: 'linkedin://',
+      android: 'http://www.linkedin.com/shareArticle?url=',
+      ios: 'http://www.linkedin.com/shareArticle?url=',
       operators: [metaTagsOperator],
       metaTags: {
         title: 'title',
@@ -83,8 +83,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#BD091D',
     share: {
       desktop: 'https://in.pinterest.com/pin/create/button/?url=',
-      android: '',
-      ios: '',
+      android: 'https://in.pinterest.com/pin/create/button/?url=',
+      ios: 'https://in.pinterest.com/pin/create/button/?url=',
       operators: [
         metaTagsOperator,
         pinterestOperator
@@ -111,8 +111,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#FF4006',
     share: {
       desktop: 'http://www.reddit.com/submit?url=',
-      android: '',
-      ios: '',
+      android: 'http://www.reddit.com/submit?url=',
+      ios: 'http://www.reddit.com/submit?url=',
       operators: [
         metaTagsOperator
       ],
@@ -135,8 +135,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#36465D',
     share: {
       desktop: 'http://tumblr.com/widgets/share/tool?canonicalUrl=',
-      android: '',
-      ios: '',
+      android: 'http://tumblr.com/widgets/share/tool?canonicalUrl=',
+      ios: 'http://tumblr.com/widgets/share/tool?canonicalUrl=',
       operators: [
         metaTagsOperator
       ],
@@ -160,8 +160,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#25D366',
     share: {
       desktop: 'https://web.whatsapp.com/send?',
-      android: 'com.whatsapp.package',
-      ios: 'whatsapp://?text=',
+      android: 'https://web.whatsapp.com/send?',
+      ios: 'https://web.whatsapp.com/send?',
       operators: [metaTagsOperator],
       metaTags: {
         description: 'text'
@@ -175,8 +175,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#0088cc',
     share: {
       desktop: 'https://t.me/share/url?url=',
-      android: '',
-      ios: '',
+      android: 'https://t.me/share/url?url=',
+      ios: 'https://t.me/share/url?url=',
       operators: [metaTagsOperator],
       metaTags: {
         description: 'text'
@@ -190,8 +190,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#4C75A3',
     share: {
       desktop: 'http://vk.com/share.php?url=',
-      android: '',
-      ios: '',
+      android: 'http://vk.com/share.php?url=',
+      ios: 'http://vk.com/share.php?url=',
       operators: [noneOperator]
     }
   },
@@ -202,8 +202,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#eb4924',
     share: {
       desktop: 'http://www.stumbleupon.com/submit?url=',
-      android: '',
-      ios: '',
+      android: 'http://www.stumbleupon.com/submit?url=',
+      ios: 'http://www.stumbleupon.com/submit?url=',
       operators: [noneOperator],
     }
   },
@@ -214,20 +214,13 @@ export const shareButtonsProp: IShareButtons = {
     color: '#32A1A3',
     share: {
       desktop: 'mailto:?',
+      android: 'mailto:?',
+      ios: 'mailto:?',
       operators: [metaTagsOperator],
       metaTags: {
         title: 'subject',
         description: 'body'
       }
-    }
-  },
-  print: {
-    type: 'print',
-    text: 'Print',
-    icon: 'fa fa-print',
-    color: 'brown',
-    share: {
-      operators: [printOperator]
     }
   },
   copy: {
@@ -241,6 +234,15 @@ export const shareButtonsProp: IShareButtons = {
     color: '#607D8B',
     share: {
       operators: copyOperators
+    }
+  },
+  print: {
+    type: 'print',
+    text: 'Print',
+    icon: 'fa fa-print',
+    color: 'brown',
+    share: {
+      operators: [printOperator]
     }
   }
 };

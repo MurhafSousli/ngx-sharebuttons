@@ -5,7 +5,7 @@
 ### Features:
 
 - Ability to include only the module you use.
-- Ability to create a new share button on the fly.
+- Ability to create a new share button on the fly, closes [#187](https://github.com/MurhafSousli/ngx-sharebuttons/issues/187).
 
 ### Improvements:
 

@@ -9,11 +9,9 @@
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons) 
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-[stackblitz](https://stackblitz.com/edit/ngx-sharebuttons)
-
 ## Table of contents
 
-- [Live demo](https://murhafsousli.github.io/ngx-sharebuttons/)
+- [Live demo](https://murhafsousli.github.io/ngx-sharebuttons/) | [stackblitz](https://stackblitz.com/edit/ngx-sharebuttons)
 - [Packages](#packages)
 - [Share button directive](#share-button-directive)
 - [Single share button component](#share-button-component)
@@ -29,8 +27,8 @@
 
 ___
 
-- [For Angular 2 and 4, use this version 3 and this documentations](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
-- [For Share Buttons version 4.x README](/README_V4.md)
+- [For Angular 2 and 4, use version 3](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+- [README fpr version 4.x is moved to here](/README_V4.md)
 
 <a name="packages"/>
 

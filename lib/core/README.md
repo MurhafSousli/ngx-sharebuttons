@@ -9,7 +9,7 @@
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons) 
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
  
-[plunker](https://plnkr.co/edit/C2Ke4Fhk2wBZZzm0JCao?p=preview)/[stackblitz](https://stackblitz.com/edit/ngx-sharebuttons)
+[stackblitz](https://stackblitz.com/edit/ngx-sharebuttons)
 
 
 ## Share button directive
@@ -29,6 +29,8 @@ import { ShareModule } from '@ngx-share/core';
 
 @NgModule({
   imports: [
+    HttpClientModule,      // (Required) for share counts
+    HttpClientJsonpModule, // (Optional) For linkedIn & Tumblr counts
     ShareModule.forRoot()
   ]
 })
@@ -45,7 +47,15 @@ In your template
 To use the default icons or colors inject the share buttons service in your component
 
 ```ts
-constructor(public share: ShareButtons) { }
+import { ShareButtons } from '@ngx-share/core';
+
+@Component({
+  // ...
+})
+export class MyComponent {
+  constructor(public share: ShareButtons) {
+  }
+}
 ```
 
 Now you can set them
@@ -65,18 +75,17 @@ Now you can set them
 
 Check [ShareButton Directive Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-directive)
 
-
-| Name            | Description                                                    | value         |
-| --------------- | -------------------------------------------------------------- | ------------- |
-| [shareButton]   | Button name, e.g. 'facebook', 'twitter' ...etc.                | null          |
-| [sbUrl]         | Link to share.                                                 | current URL   |
-| [sbTitle]       | Override title meta tag for LinkedIn and Reddit.               | null          |
-| [sbDescription] | Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest | null          |
-| [sbImage]       | Override image meta tag for Pinterest only.                    | null          |
-| [sbTags]        | Override tags for Tumblr and Twitter.                          | null          |
-| (sbOpened)      | Emits when share window has opened.                            | button's name |
-| (sbClosed)      | Emits when share dialog has closed.                            | button's name |
-| (sbCount)       | Emits share count of the share URL.                            | share count   |
+| Name            | Value         | Description                                                     |
+| --------------- | ------------- | --------------------------------------------------------------- |
+| [shareButton]   | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
+| [sbUrl]         | current URL   | Sharing link.                                                   |
+| [sbTitle]       | null          | Override title meta tag for LinkedIn and Reddit.                |
+| [sbDescription] | null          | Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest |
+| [sbImage]       | null          | Override image meta tag for Pinterest only.                     |
+| [sbTags]        | null          | Override tags for Tumblr and Twitter.                           |
+| (sbOpened)      | button name   | Stream that emits when share window has opened.                 |
+| (sbClosed)      | button name   | Stream that emits when share dialog has closed.                 |
+| (sbCount)       | share count   | Stream that emits share count of the share URL.                 |
 
 ## Issues
 
