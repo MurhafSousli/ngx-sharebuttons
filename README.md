@@ -28,7 +28,7 @@
 
 For Angular 2 & 4, use **ngx-sharebuttons** [version 3](https://github.com/MurhafSousli/ngx-sharebuttons/wiki).
 
-For **ngx-sharebuttons** v4, the README has moved to [here](/README_V4).
+For **ngx-sharebuttons** v4, the README has moved to [here](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/README_V4.MD).
 
 <a name="packages"/>
 
