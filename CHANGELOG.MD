@@ -2,6 +2,11 @@
 
 ## 5.0.0
 
+- Refactor and clean up ShareButton and ShareButtons components
+- Fix count output emitted in ShareButtons
+
+## 5.0.0-beta.3
+
 ### Features:
 
 - Ability to include only the module you use.
