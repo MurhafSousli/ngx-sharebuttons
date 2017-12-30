@@ -4,9 +4,7 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  OnDestroy,
   ViewChild,
-  ChangeDetectorRef,
   HostBinding
 } from '@angular/core';
 
@@ -17,7 +15,7 @@ import { ShareButtons, ShareButtonDirective } from '@ngx-share/core';
   templateUrl: './share-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShareButtonComponent implements OnDestroy {
+export class ShareButtonComponent {
 
   /** Share URL */
   url: string;
@@ -27,9 +25,6 @@ export class ShareButtonComponent implements OnDestroy {
 
   /** Button name */
   button: string;
-
-  /** Get and display share count */
-  showCount = false;
 
   @Input('button')
   set createButton(button: string) {
@@ -57,40 +52,20 @@ export class ShareButtonComponent implements OnDestroy {
   /** Show button text */
   @Input() showText = false;
 
+  /** Button share count */
+  @Input() showCount = false;
+
   /** Button custom text */
   @Input() text: string;
 
   /** Button size */
   @Input() size = this.share.size;
 
-  @Input('showCount')
-  set setShowCount(show: boolean) {
-    this.showCount = show;
-    /** Subscribe to count event */
-
-    /** Check if sbCount already has observers, don't subscribe again */
-    if (!this.ref.sbCount.observers.length) {
-
-      /** Subscribe to the directive count's event only if 'show' is true or 'sbCount' has observers */
-      if (show || this.count.observers.length) {
-        this.ref.sbCount.subscribe(count => {
-          this.shareCount = count;
-          this.count.emit(count);
-          this.cd.markForCheck();
-        });
-      }
-    }
-
-  }
-
   /** Button theme */
   @Input('theme')
   set setTheme(theme: string) {
     this.buttonClass = 'sb-button sb-' + theme;
   }
-
-  /** Set theme as button class */
-  @HostBinding('class') buttonClass = 'sb-button sb-' + this.share.theme;
 
   /** Share count event */
   @Output() count = new EventEmitter<number>();
@@ -101,17 +76,18 @@ export class ShareButtonComponent implements OnDestroy {
   /** Share dialog closed event */
   @Output() closed = new EventEmitter<string>();
 
-  /** Share directive ref */
+  /** Set theme as button class */
+  @HostBinding('class') buttonClass = 'sb-button sb-' + this.share.theme;
+
+  /** Share directive reference to display button icon and text */
   @ViewChild(ShareButtonDirective) ref: ShareButtonDirective;
 
-  /** <ng-content> wrapper, used to add class e.g. sb-default, sb-text, sb-count */
-  @ViewChild('template') template;
-
-  constructor(private cd: ChangeDetectorRef, private share: ShareButtons) {
+  constructor(private share: ShareButtons) {
   }
 
-  ngOnDestroy() {
-    this.ref.sbCount.complete();
+  onCount(count) {
+    this.shareCount = count;
+    this.count.emit(count);
   }
 
 }

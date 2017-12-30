@@ -7,6 +7,7 @@
         [sbTags]="tags"
         (sbOpened)="opened.emit($event)"
         (sbClosed)="closed.emit($event)"
+        (sbCount)="onCount($event)"
         [class.sb-show-icon]="showIcon"
         [class.sb-show-text]="showText"
         [class.sb-show-count]="showCount && shareCount"
@@ -37,4 +38,3 @@
 
   </div>
 </button>
-
