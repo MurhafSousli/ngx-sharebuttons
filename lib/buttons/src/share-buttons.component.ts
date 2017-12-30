@@ -4,26 +4,16 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  OnDestroy,
-  ChangeDetectorRef,
-  ViewChildren,
   OnInit
 } from '@angular/core';
 import { ShareButtons } from '@ngx-share/core';
-import { ShareButtonComponent } from '@ngx-share/button';
 
 @Component({
   selector: 'share-buttons',
   templateUrl: './share-buttons.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShareButtonsComponent implements OnInit, OnDestroy {
-
-  /** Share URL */
-  url: string;
-
-  /** Share count value */
-  shareCount: number;
+export class ShareButtonsComponent implements OnInit {
 
   /** Share Buttons array */
   buttons: string[] = [];
@@ -42,9 +32,6 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
 
   /** Disable more/less buttons */
   showAll = false;
-
-  /** Get and display share count */
-  showCount = false;
 
   @Input() theme = this.share.theme;
 
@@ -69,12 +56,7 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   }
 
   /** Set share URL */
-  @Input('url')
-  set setUrl(newUrl: string) {
-    /** Reset share count on url changes */
-    this.shareCount = 0;
-    this.url = newUrl;
-  }
+  @Input() url: string;
 
   /** Share meta tags */
   @Input() title: string;
@@ -82,38 +64,17 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   @Input() image: string;
   @Input() tags: string;
 
-  /** Show button icon */
+  /** Show buttons icon */
   @Input() showIcon = true;
 
-  /** Show button name */
+  /** Show buttons name */
   @Input() showText = false;
 
-  /** Button size */
-  @Input() size: number;
+  /** Show buttons share count */
+  @Input() showCount = false;
 
-  @Input('showCount')
-  set setShowCount(show: boolean) {
-    this.showCount = show;
-
-    if (this.shareComponents) {
-      /** Subscribe to count event */
-      this.shareComponents.forEach((shareComponent: ShareButtonComponent) => {
-
-        /** Check if sbCount already has observers, don't subscribe again */
-        if (!shareComponent.count.observers.length) {
-
-          /** Subscribe to the component count event (only if [showCount]=true) */
-          if (this.showCount || this.count.observers.length) {
-            shareComponent.count.subscribe(count => {
-              this.shareCount = count;
-              this.count.emit(count);
-              this.cd.markForCheck();
-            });
-          }
-        }
-      });
-    }
-  }
+  /** Buttons size */
+  @Input() size = 0;
 
   /** Share count event */
   @Output() count = new EventEmitter<number>();
@@ -124,11 +85,7 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   /** Share dialog closed event */
   @Output() closed = new EventEmitter<string>();
 
-  /** Share components ref */
-  @ViewChildren(ShareButtonComponent) shareComponents: ShareButtonComponent[];
-
-  constructor(private cd: ChangeDetectorRef, public share: ShareButtons) {
-
+  constructor(public share: ShareButtons) {
   }
 
   ngOnInit() {
@@ -136,12 +93,6 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
     if (!this.excludeButtons.length) {
       this.buttons = this.includeButtons.filter((btn) => this.excludeButtons.indexOf(btn) < 0);
     }
-  }
-
-  ngOnDestroy() {
-    this.shareComponents.map((shareComponent: ShareButtonComponent) => {
-      shareComponent.count.unsubscribe();
-    });
   }
 
   more() {

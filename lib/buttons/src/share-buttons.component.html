@@ -2,7 +2,7 @@
 
   <share-button *ngFor="let button of buttons | slice: 0:shownButtons" [button]="button" [theme]="theme" [url]="url" [title]="title"
     [description]="description" [image]="image" [tags]="tags" [showCount]="showCount" [showIcon]="showIcon" [showText]="showText"
-    [size]="size" (opened)="opened.emit($event)" (closed)="closed.emit($event)"></share-button>
+    [size]="size" (opened)="opened.emit($event)" (closed)="closed.emit($event)" (count)="count.emit($event)"></share-button>
 
   <div class="sb-button sb-{{theme}}">
 
