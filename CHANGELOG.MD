@@ -2,8 +2,8 @@
 
 ## 5.0.0
 
-- Refactor and clean up ShareButton and ShareButtons components
-- Fix count output emitted in ShareButtons
+- Refactor and clean up **ShareButton** and **ShareButtons** components.
+- Fix count output in **ShareButtons** Component.
 
 ## 5.0.0-beta.3
 
