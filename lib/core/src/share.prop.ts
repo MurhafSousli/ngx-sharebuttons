@@ -1,4 +1,4 @@
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs/operators/map';
 import { noneOperator, metaTagsOperator, printOperator, pinterestOperator, copyOperators } from './share.operators';
 import { IShareButtons } from './share.models';
 

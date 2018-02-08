@@ -1,4 +1,5 @@
-import { map, delay } from 'rxjs/operators';
+import { map } from 'rxjs/operators/map';
+import { delay } from 'rxjs/operators/delay';
 import { ShareButtonRef } from './share.models';
 import { Observable } from 'rxjs/Observable';
 
