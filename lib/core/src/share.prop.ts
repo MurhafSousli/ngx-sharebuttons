@@ -160,8 +160,8 @@ export const shareButtonsProp: IShareButtons = {
     color: '#25D366',
     share: {
       desktop: 'https://web.whatsapp.com/send?',
-      android: 'https://web.whatsapp.com/send?',
-      ios: 'https://web.whatsapp.com/send?',
+      android: 'whatsapp://send?',
+      ios: 'whatsapp://send?',
       operators: [metaTagsOperator],
       metaTags: {
         description: 'text'
