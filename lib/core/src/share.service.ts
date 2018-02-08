@@ -5,6 +5,7 @@ import { shareButtonsProp } from './share.prop';
 
 declare const global: any;
 declare const window: any;
+declare const navigator: any;
 
 @Injectable()
 export class ShareButtons {
@@ -113,7 +114,7 @@ export class ShareButtons {
  * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
  */
 function getOS() {
-  const userAgent = navigator.userAgent || navigator.vendor || (window || global).opera;
+  const userAgent = (navigator || global).userAgent || (navigator || global).vendor || (window || global).opera;
 
   if (/android/i.test(userAgent)) {
     return 'android';
