@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.0.1
+
+- fix: whatsapp sharing fails on mobile, closes [#208](https://github.com/MurhafSousli/ngx-sharebuttons/issues/208).
+- fix: Encode special characters in meta tags, closes [#213](https://github.com/MurhafSousli/ngx-sharebuttons/issues/213).
+- refactor: import rxjs operators separately.
+- chore: Exports share buttons prop and operators.
+
 ## 5.0.0
 
 - Refactor and clean up **ShareButton** and **ShareButtons** components.
