@@ -29,7 +29,7 @@ export const metaTagsOperator = map((ref: ShareButtonRef) => {
   if (metaTags) {
     Object.keys(metaTags).map((key) => {
       if (metaTagsValues[key]) {
-        link += `&${metaTags[key]}=${metaTagsValues[key]}`;
+        link += `&${metaTags[key]}=${encodeURIComponent(metaTagsValues[key])}`;
       }
     });
   }
