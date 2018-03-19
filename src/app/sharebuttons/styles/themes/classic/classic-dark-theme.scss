@@ -1,0 +1,75 @@
+@import "../../variables";
+
+.sb-classic-dark .sb-wrapper {
+  $sb-icon-size: 1.1em;
+  $button-bg: #ccc;
+  $button-bg-light: #eee;
+  $hover-bg: #ddd;
+  $hover-bg-light: #fafafa;
+  $button-color: #333;
+  $border-color: #777;
+  @each $button,
+  $color in $sb-buttons {
+    &.sb-#{$button} {
+      background-color: $color;
+      background-image: linear-gradient(to bottom, lighten($color, 15%), $color);
+      border: 1px solid darken($color, 10%);
+      text-shadow: 0 1px 0 rgba($color, .8);
+      box-shadow: 0 0 1px 1px rgba(lighten($color, 30%), .8) inset, 0 1px 0 rgba(darken($color, 20%), .3);
+      &:hover {
+        background-color: lighten($color, 10%);
+        background-image: linear-gradient(to bottom, lighten($color, 10%), lighten($color, 20%));
+      }
+      &:focus {
+        background-color: lighten($color, 15%);
+      }
+      .sb-icon {
+        text-shadow: 0 1px 0 rgba($color, .8);
+        min-width: 2em;
+      }
+      .sb-text {
+        background-color: rgba(0, 0, 0, .1);
+      }
+      &.sb-show-icon.sb-show-text,
+      &.sb-show-icon.sb-show-count {
+        .sb-icon {
+          box-shadow: 1px 0 0 rgba(darken($color, 20%), .5), 2px 0 0 rgba(lighten($color, 20%), .5);
+        }
+      }
+      &.sb-show-text.sb-show-count {
+        .sb-text {
+          box-shadow: 1px 0 0 rgba(lighten($color, 20%), .5), 2px 0 0 rgba(darken($color, 20%), .5);
+        }
+      }
+    }
+  }
+
+  background-color: $sb-primary;
+  background-image: linear-gradient(to bottom, lighten($sb-primary, 15%), $sb-primary);
+  border: 1px solid darken($sb-primary, 10%);
+  text-shadow: 0 1px 0 rgba($sb-primary, .8);
+  box-shadow: 0 0 1px 1px rgba(lighten($sb-primary, 30%), .8) inset, 0 1px 0 rgba(darken($sb-primary, 20%), .3);
+
+  color: $sb-accent;
+  border-radius: .2em;
+  &:active {
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, .3) inset;
+    position: relative;
+    top: 1px;
+  }
+  &:hover {
+    background-color: lighten($sb-primary, 10%);
+    background-image: linear-gradient(to bottom, lighten($sb-primary, 10%), lighten($sb-primary, 20%));
+  }
+  &:focus {
+    background-color: lighten($sb-primary, 15%);
+    outline: 0;
+  }
+  .sb-icon {
+    pointer-events: none;
+    font-size: $sb-icon-size;
+  }
+  .sb-text {
+    background: rgba(0, 0, 0, .1);
+  }
+}
