@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators/map';
-import { noneOperator, metaTagsOperator, printOperator, pinterestOperator, copyOperators } from './share.operators';
+import { noneOperator, metaTagsOperator, printOperator, pinterestOperator, copyOperators, emailOperator } from './share.operators';
 import { IShareButtons } from './share.models';
 
 export const shareButtonsProp: IShareButtons = {
@@ -209,7 +209,7 @@ export const shareButtonsProp: IShareButtons = {
       desktop: 'mailto:?',
       android: 'mailto:?',
       ios: 'mailto:?',
-      operators: [metaTagsOperator],
+      operators: [emailOperator, metaTagsOperator],
       metaTags: {
         title: 'subject',
         description: 'body'

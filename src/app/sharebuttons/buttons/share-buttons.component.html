@@ -1,0 +1,52 @@
+<div class="sb-group sb-{{theme}}">
+
+  <share-button *ngFor="let button of buttons | slice: 0:shownButtons"
+                [button]="button"
+                [theme]="theme"
+                [url]="url"
+                [title]="title"
+                [description]="description"
+                [image]="image"
+                [tags]="tags"
+                [showCount]="showCount"
+                [showIcon]="showIcon"
+                [showText]="showText"
+                [size]="size"
+                (opened)="opened.emit($event)"
+                (closed)="closed.emit($event)"
+                (count)="count.emit($event)"></share-button>
+
+  <div class="sb-button sb-{{theme}}">
+
+    <!-- SHOW LESS BUTTON -->
+
+    <button *ngIf="showAll && shownButtons === buttons.length"
+            [style.fontSize.px]="(1 + size/20) * 14"
+            class="sb-wrapper sb-more sb-show-icon" (click)="less()">
+
+      <div class="sb-inner">
+        <div class="sb-content">
+          <div class="sb-icon">
+            <i class="fa fa-minus" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </button>
+
+    <!-- SHOW MORE BUTTON -->
+
+    <button *ngIf="!showAll && shownButtons < buttons.length"
+            [style.fontSize.px]="(1 + size/20) * 14"
+            class="sb-wrapper sb-more sb-show-icon" (click)="more()">
+
+      <div class="sb-inner">
+        <div class="sb-content">
+          <div class="sb-icon">
+            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </button>
+
+  </div>
+</div>

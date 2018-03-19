@@ -1,11 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { ShareButtonsModule } from '@ngx-share/buttons';
-import { ShareButtonModule } from '@ngx-share/button';
-// import { ShareButtonsModule } from '../../lib/buttons';
+import { ShareButtonsModule } from './sharebuttons/buttons';
 
 
 @NgModule({
@@ -13,9 +11,9 @@ import { ShareButtonModule } from '@ngx-share/button';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'my-app'}),
     HttpClientModule,
-    // ShareButtonModule.forRoot()
+    HttpClientJsonpModule,
     ShareButtonsModule.forRoot()
   ],
   providers: [],
