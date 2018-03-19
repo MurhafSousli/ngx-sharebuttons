@@ -2,6 +2,7 @@ import { map } from 'rxjs/operators/map';
 import { delay } from 'rxjs/operators/delay';
 import { ShareButtonRef } from './share.models';
 import { Observable } from 'rxjs/Observable';
+import { mergeDeep } from './utils';
 
 /**
  * None operator - just return the sharer URL
@@ -127,3 +128,14 @@ export const copyOperators = [
     ref.cd.markForCheck();
   })
 ];
+
+export const emailOperator = map((ref: ShareButtonRef) => {
+  const desc = ref.metaTags.description;
+  const url = decodeURIComponent(ref.url);
+  const newRef: ShareButtonRef = {
+    metaTags: {
+      description: desc ? `${desc} - ${url}` : url
+    }
+  };
+  return mergeDeep(ref, newRef);
+});
