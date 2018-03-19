@@ -67,13 +67,6 @@ export const shareButtonsProp: IShareButtons = {
         title: 'title',
         description: 'summary'
       },
-    },
-    count: {
-      request: 'jsonp',
-      url: 'https://www.linkedin.com/countserv/count/share?url=',
-      operators: [
-        map((res: any) => +res.count)
-      ]
     }
   },
   pinterest: {
