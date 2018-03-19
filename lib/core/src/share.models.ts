@@ -79,7 +79,7 @@ export interface IShareButton {
  */
 export interface ShareButtonRef {
   prop?: IShareButton;
-  renderer: Renderer2;
+  renderer?: Renderer2;
   window?: Window;
   cd?: ChangeDetectorRef;
   el?: HTMLElement;
