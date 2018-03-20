@@ -34,6 +34,7 @@
     "@angular/platform-browser-dynamic": "5.2.9",
     "@angular/platform-server": "^5.2.9",
     "@angular/router": "5.2.9",
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.4",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"

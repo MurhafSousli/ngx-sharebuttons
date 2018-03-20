@@ -6,7 +6,7 @@ export const shareButtonsProp: IShareButtons = {
   facebook: {
     type: 'facebook',
     text: 'Facebook',
-    icon: 'fa fa-facebook',
+    icon: 'fab fa-facebook-f',
     color: '#3b5998',
     share: {
       desktop: 'https://www.facebook.com/sharer/sharer.php?u=',
@@ -25,7 +25,7 @@ export const shareButtonsProp: IShareButtons = {
   twitter: {
     type: 'twitter',
     text: 'Twitter',
-    icon: 'fa fa-twitter',
+    icon: 'fab fa-twitter',
     color: '#00acee',
     share: {
       desktop: 'https://twitter.com/intent/tweet?url=',
@@ -44,7 +44,7 @@ export const shareButtonsProp: IShareButtons = {
   google: {
     type: 'google',
     text: 'Google+',
-    icon: 'fa fa-google-plus',
+    icon: 'fab fa-google-plus-g',
     color: '#DB4437',
     share: {
       desktop: 'https://plus.google.com/share?url=',
@@ -56,7 +56,7 @@ export const shareButtonsProp: IShareButtons = {
   linkedin: {
     type: 'linkedin',
     text: 'LinkedIn',
-    icon: 'fa fa-linkedin',
+    icon: 'fab fa-linkedin-in',
     color: '#006fa6',
     share: {
       desktop: 'http://www.linkedin.com/shareArticle?url=',
@@ -72,7 +72,7 @@ export const shareButtonsProp: IShareButtons = {
   pinterest: {
     type: 'pinterest',
     text: 'Pinterest',
-    icon: 'fa fa-pinterest-p',
+    icon: 'fab fa-pinterest-p',
     color: '#BD091D',
     share: {
       desktop: 'https://in.pinterest.com/pin/create/button/?url=',
@@ -100,7 +100,7 @@ export const shareButtonsProp: IShareButtons = {
   reddit: {
     type: 'reddit',
     text: 'Reddit',
-    icon: 'fa fa-reddit-alien',
+    icon: 'fab fa-reddit-alien',
     color: '#FF4006',
     share: {
       desktop: 'http://www.reddit.com/submit?url=',
@@ -124,7 +124,7 @@ export const shareButtonsProp: IShareButtons = {
   tumblr: {
     type: 'tumblr',
     text: 'Tumblr',
-    icon: 'fa fa-tumblr',
+    icon: 'fab fa-tumblr',
     color: '#36465D',
     share: {
       desktop: 'http://tumblr.com/widgets/share/tool?canonicalUrl=',
@@ -149,7 +149,7 @@ export const shareButtonsProp: IShareButtons = {
   whatsapp: {
     type: 'whatsapp',
     text: 'WhatsApp',
-    icon: 'fa fa-whatsapp',
+    icon: 'fab fa-whatsapp',
     color: '#25D366',
     share: {
       desktop: 'https://web.whatsapp.com/send?',
@@ -164,7 +164,7 @@ export const shareButtonsProp: IShareButtons = {
   telegram: {
     type: 'telegram',
     text: 'Telegram',
-    icon: 'fa fa-send',
+    icon: 'fab fa-telegram-plane',
     color: '#0088cc',
     share: {
       desktop: 'https://t.me/share/url?url=',
@@ -179,7 +179,7 @@ export const shareButtonsProp: IShareButtons = {
   vk: {
     type: 'vk',
     text: 'VKontakte',
-    icon: 'fa fa-vk',
+    icon: 'fab fa-vk',
     color: '#4C75A3',
     share: {
       desktop: 'http://vk.com/share.php?url=',
@@ -191,7 +191,7 @@ export const shareButtonsProp: IShareButtons = {
   stumble: {
     type: 'stumble',
     text: 'Stumble',
-    icon: 'fa fa-stumbleupon',
+    icon: 'fab fa-stumbleupon',
     color: '#eb4924',
     share: {
       desktop: 'http://www.stumbleupon.com/submit?url=',
@@ -203,7 +203,7 @@ export const shareButtonsProp: IShareButtons = {
   email: {
     type: 'email',
     text: 'Email',
-    icon: 'fa fa-envelope',
+    icon: 'fas fa-envelope',
     color: '#32A1A3',
     share: {
       desktop: 'mailto:?',
@@ -223,7 +223,7 @@ export const shareButtonsProp: IShareButtons = {
     successIcon: 'fa fa-check',
     failText: 'Error',
     failIcon: 'fa fa-exclamation',
-    icon: 'fa fa-link',
+    icon: 'fas fa-link',
     color: '#607D8B',
     share: {
       operators: copyOperators
@@ -232,7 +232,7 @@ export const shareButtonsProp: IShareButtons = {
   print: {
     type: 'print',
     text: 'Print',
-    icon: 'fa fa-print',
+    icon: 'fas fa-print',
     color: 'brown',
     share: {
       operators: [printOperator]

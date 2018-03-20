@@ -167,6 +167,10 @@
   dependencies:
     tslib "^1.7.1"
 
+"@fortawesome/fontawesome-free-webfonts@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free-webfonts/-/fontawesome-free-webfonts-1.0.4.tgz#bac5d89755bf3bc2d2b4deee47d92febf641bb1f"
+
 "@ngtools/json-schema@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@ngtools/json-schema/-/json-schema-1.2.0.tgz#06e5ecd29e9a37d260a447dd873ea2becd228c4f"
