@@ -1,6 +1,6 @@
 {
   "name": "@ngx-sharebuttons/demo",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -59,7 +59,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "mkdirp": "^0.5.1",
-    "ng-packagr": "^2.0.0-rc.12",
+    "ng-packagr": "^2.2.0",
     "node-sass": "^4.7.2",
     "postcss": "^6.0.17",
     "postcss-strip-inline-comments": "^0.1.5",
