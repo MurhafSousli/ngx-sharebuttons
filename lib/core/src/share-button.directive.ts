@@ -6,8 +6,11 @@ import {
   EventEmitter,
   ElementRef,
   Renderer2,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  PLATFORM_ID,
+  Inject
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
 import { catchError } from 'rxjs/operators/catchError';
@@ -22,7 +25,6 @@ import { IShareButton, ShareButtonRef } from './share.models';
 
 /** Google analytics ref */
 declare const ga: Function;
-declare const global: any;
 declare const window: any;
 
 @Directive({
@@ -31,7 +33,10 @@ declare const window: any;
 export class ShareButtonDirective {
 
   /** A ref for window object that works on SSR */
-  window: Window;
+  window: any;
+
+  /** A ref for navigator object that works on SSR */
+  navigator: Navigator;
 
   /** Button properties */
   prop: IShareButton;
@@ -100,8 +105,12 @@ export class ShareButtonDirective {
               private http: HttpClient,
               public renderer: Renderer2,
               public cd: ChangeDetectorRef,
-              private el: ElementRef) {
-    this.window = window || global;
+              private el: ElementRef,
+              @Inject(PLATFORM_ID) private platform: Object) {
+    if (isPlatformBrowser(this.platform)) {
+      this.window = window;
+      this.navigator = navigator;
+    }
   }
 
   /**
@@ -124,7 +133,7 @@ export class ShareButtonDirective {
       window: this.window,
       prop: this.prop,
       el: this.el.nativeElement,
-      os: this.shareService.os,
+      os: this.getOS(),
       metaTags: {
         title: this.sbTitle,
         description: this.sbDescription,
@@ -220,6 +229,24 @@ export class ShareButtonDirective {
     }
     /** fallback to page current URL */
     return encodeURIComponent(this.window.location.href);
+  }
+
+  /**
+   * Detect operating system.
+   * returns 'ios', 'android', or 'desktop'.
+   */
+  private getOS() {
+      const userAgent = this.navigator.userAgent || this.navigator.vendor || this.window.opera;
+
+      if (/android/i.test(userAgent)) {
+        return 'android';
+      }
+
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if (/iPad|iPhone|iPod/.test(userAgent) && !this.window.MSStream) {
+        return 'ios';
+      }
+    return 'desktop';
   }
 
 }
