@@ -2,11 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { IShareButton, IShareButtons, ShareButtonsConfig, ShareButtonsOptions } from './share.models';
 import { CONFIG } from './share.tokens';
 import { shareButtonsProp } from './share.prop';
-import { getOS, mergeDeep } from './utils';
-
-declare const global: any;
-declare const window: any;
-declare const navigator: any;
+import { mergeDeep } from './utils';
 
 @Injectable()
 export class ShareButtons {
@@ -19,9 +15,6 @@ export class ShareButtons {
 
   /** Default properties */
   prop: IShareButtons;
-
-  /** User OS */
-  os: string;
 
   constructor(@Inject(CONFIG) config: ShareButtonsConfig) {
 
@@ -52,9 +45,6 @@ export class ShareButtons {
       this.options = mergeDeep(this.options, config.options);
       this.prop = mergeDeep(this.prop, config.prop);
     }
-
-    /** Get user browser info */
-    this.os = getOS();
   }
 
   get twitterAccount() {
@@ -107,5 +97,4 @@ export class ShareButtons {
     this.prop = {...shareButtonsProp, ...{[name]: data}};
     this.allButtons = Object.keys(this.prop);
   }
-
 }

@@ -1,9 +1,8 @@
 import { NgModule, InjectionToken } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ShareButtons } from './share.service';
 import { ShareButtonDirective } from './share-button.directive';
-import { NFormatterPipe } from './n-formatter.pipe';
+import { ShareCountPipe } from './share-count.pipe';
 import { ShareButtonsConfig } from './share.models';
 import { CONFIG } from './share.tokens';
 
@@ -11,19 +10,14 @@ export function ShareButtonsFactory(config: ShareButtonsConfig) {
   return new ShareButtons(config);
 }
 
-/** TODO: remove CommonModule */
 @NgModule({
   declarations: [
     ShareButtonDirective,
-    NFormatterPipe
-  ],
-  imports: [
-    CommonModule
+    ShareCountPipe
   ],
   exports: [
-    CommonModule,
     ShareButtonDirective,
-    NFormatterPipe
+    ShareCountPipe
   ]
 })
 export class ShareModule {
@@ -41,4 +35,3 @@ export class ShareModule {
     };
   }
 }
-

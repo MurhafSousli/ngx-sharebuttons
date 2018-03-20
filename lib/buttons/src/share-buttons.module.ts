@@ -1,4 +1,5 @@
 import { NgModule, InjectionToken } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { ShareButtons, ShareButtonsConfig, CONFIG } from '@ngx-share/core';
 import { ShareButtonModule } from '@ngx-share/button';
@@ -14,7 +15,8 @@ export function ShareButtonsFactory(config: ShareButtonsConfig) {
     ShareButtonsComponent
   ],
   imports: [
-    ShareButtonModule
+    ShareButtonModule,
+    CommonModule
   ],
   exports: [
     ShareButtonModule,

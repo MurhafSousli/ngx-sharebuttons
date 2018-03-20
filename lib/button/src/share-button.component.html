@@ -15,8 +15,6 @@
 
   <div class="sb-inner">
 
-    <!-- HIDE BUTTON'S ICON AND TEXT IF CUSTOM TEMPLATE IS USED -->
-
     <div class="sb-content">
 
       <!-- BUTTON ICON -->
@@ -33,7 +31,7 @@
 
     <!-- BUTTON COUNT -->
     <div *ngIf="showCount && shareCount" class="sb-count">
-      <span>{{ shareCount | nFormatter }}</span>
+      <span>{{ shareCount | shareCount }}</span>
     </div>
 
   </div>

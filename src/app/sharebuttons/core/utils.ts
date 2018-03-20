@@ -59,6 +59,7 @@ export function copyToClipboard(text: string, ios: boolean) {
       const selection = window.getSelection();
       selection.removeAllRanges();
       selection.addRange(range);
+      textArea.readOnly = true;
       textArea.setSelectionRange(0, 999999);
     } else {
       textArea.select();

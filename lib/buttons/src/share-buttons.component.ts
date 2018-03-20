@@ -11,7 +11,8 @@ import { ShareButtons } from '@ngx-share/core';
 @Component({
   selector: 'share-buttons',
   templateUrl: './share-buttons.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  preserveWhitespaces: false
 })
 export class ShareButtonsComponent implements OnInit {
 

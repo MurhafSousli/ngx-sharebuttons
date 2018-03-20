@@ -97,6 +97,4 @@ export class ShareButtons {
     this.prop = {...shareButtonsProp, ...{[name]: data}};
     this.allButtons = Object.keys(this.prop);
   }
-
 }
-

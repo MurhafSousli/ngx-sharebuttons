@@ -1,8 +1,8 @@
+import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { delay } from 'rxjs/operators/delay';
 import { ShareButtonRef } from './share.models';
-import { Observable } from 'rxjs/Observable';
-import { mergeDeep } from './utils';
+import { copyToClipboard, mergeDeep } from './utils';
 
 /**
  * None operator - just return the sharer URL
@@ -14,19 +14,19 @@ export const noneOperator = map((ref: ShareButtonRef) => ref.prop.share[ref.os] 
  */
 export const metaTagsOperator = map((ref: ShareButtonRef) => {
 
-  /** Social network supported meta tags */
+  // object contains supported meta tags
   const metaTags = ref.prop.share.metaTags;
 
-  /** User meta tags values */
+  // object contains meta tags values */
   const metaTagsValues = ref.metaTags;
 
-  /** Social network sharer URL */
+  // Social network sharer URL */
   const SharerURL = ref.prop.share[ref.os];
 
-  /** User share link */
+  // User share link
   let link = ref.url;
 
-  /** Loop over meta tags */
+  // Set each meta tag with user value
   if (metaTags) {
     Object.keys(metaTags).map((key) => {
       if (metaTagsValues[key]) {
@@ -74,55 +74,31 @@ export const pinterestOperator = map((url: string) => {
 export const copyOperators = [
   map((ref: ShareButtonRef) => {
 
-    /** Disable button click */
+    // Disable the button
     ref.renderer.setStyle(ref.el, 'pointer-events', 'none');
 
     ref.temp = {text: ref.prop.text, icon: ref.prop.icon};
     const link = decodeURIComponent(ref.url);
 
-    /** Create a hidden textarea element */
-    const textArea = ref.renderer.createElement('textarea');
-    textArea.style.position = 'fixed';
-    textArea.style.top = 0;
-    textArea.style.left = 0;
-    textArea.style.width = '2em';
-    textArea.style.height = '2em';
-    textArea.style.padding = 0;
-    textArea.style.border = 'none';
-    textArea.style.outline = 'none';
-    textArea.style.boxShadow = 'none';
-    textArea.style.background = 'transparent';
-    textArea.value = link;
-
-    ref.renderer.appendChild(ref.el, textArea);
-
-    /** highlight and copy the text */
-    textArea.select();
-    document.execCommand('copy');
-
-    ref.renderer.removeChild(ref.el, textArea);
-
-    /** Set success text and icon on button */
-    ref.prop.text = ref.prop.successText;
-    ref.prop.icon = ref.prop.successIcon;
-    ref.cd.markForCheck();
-
+    copyToClipboard(link, ref.os === 'ios')
+      .then(() => {
+        ref.prop.text = ref.prop.successText;
+        ref.prop.icon = ref.prop.successIcon;
+      })
+      .catch(() => {
+        ref.prop.text = ref.prop.failText;
+        ref.prop.icon = ref.prop.failIcon;
+      })
+      .then(() => ref.cd.markForCheck());
     return ref;
-  }, (ref: ShareButtonRef) => {
-
-    /** Set error text and icon on button */
-    ref.prop.text = ref.prop.failText;
-    ref.prop.icon = ref.prop.failIcon;
-    ref.cd.markForCheck();
-    console.warn('[ShareButtons]: Print button could not copy URL to clipboard');
   }),
   delay(2000),
   map((ref: ShareButtonRef) => {
 
-    /** Enable button click */
+    // Enable the button
     ref.renderer.setStyle(ref.el, 'pointer-events', 'auto');
 
-    /** Set the default text and icon back */
+    // Reset copy button text and icon */
     ref.prop.text = ref.temp.text;
     ref.prop.icon = ref.temp.icon;
     ref.cd.markForCheck();
@@ -130,11 +106,11 @@ export const copyOperators = [
 ];
 
 export const emailOperator = map((ref: ShareButtonRef) => {
-  const desc = ref.metaTags.description;
+  const description = ref.metaTags.description;
   const url = decodeURIComponent(ref.url);
   const newRef: ShareButtonRef = {
     metaTags: {
-      description: desc ? `${desc} - ${url}` : url
+      description: description ? `${description}\r\n\r\n${url}` : url
     }
   };
   return mergeDeep(ref, newRef);

@@ -13,7 +13,8 @@ import { ShareButtons, ShareButtonDirective } from '@ngx-share/core';
 @Component({
   selector: 'share-button',
   templateUrl: './share-button.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  preserveWhitespaces: false
 })
 export class ShareButtonComponent {
 
