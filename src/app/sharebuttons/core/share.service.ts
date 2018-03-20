@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import { IShareButton, IShareButtons, ShareButtonsConfig, ShareButtonsOptions } from './share.models';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { IShareButton, IShareButtons, ShareButtonsConfig } from './share.models';
 import { CONFIG } from './share.tokens';
 import { shareButtonsProp } from './share.prop';
 import { mergeDeep } from './utils';
@@ -7,27 +8,11 @@ import { mergeDeep } from './utils';
 @Injectable()
 export class ShareButtons {
 
-  /** List of share buttons */
-  allButtons: string[];
-
-  /** Default options */
-  options: ShareButtonsOptions;
-
-  /** Default properties */
-  prop: IShareButtons;
-
-  constructor(@Inject(CONFIG) config: ShareButtonsConfig) {
-
-    /** Set buttons properties */
-    this.prop = shareButtonsProp;
-
-    /** Set buttons list */
-    this.allButtons = Object.keys(this.prop);
-
-    /** Set default options */
-    this.options = {
+  config = {
+    prop: shareButtonsProp,
+    options: {
       theme: 'default',
-      include: this.allButtons,
+      include: Object.keys(shareButtonsProp),
       exclude: [],
       size: 0,
       title: null,
@@ -38,63 +23,61 @@ export class ShareButtons {
       twitterAccount: null,
       windowWidth: 800,
       windowHeight: 500
-    };
+    }
+  };
+  config$ = new BehaviorSubject(this.config);
 
+  constructor(@Inject(CONFIG) config: ShareButtonsConfig) {
     if (config) {
-      /** Override global options with user's preference */
-      this.options = mergeDeep(this.options, config.options);
-      this.prop = mergeDeep(this.prop, config.prop);
+      this.setConfig(config);
     }
   }
 
   get twitterAccount() {
-    return this.options.twitterAccount;
-  }
-
-  /**
-   * Get wanted buttons
-   */
-  get buttons() {
-    if (!this.options.exclude.length) {
-      return this.options.include;
-    }
-    return this.options.include.filter((btn) => this.options.exclude.indexOf(btn) < 0);
+    return this.config.options.twitterAccount;
   }
 
   get theme() {
-    return this.options.theme;
+    return this.config.options.theme;
   }
 
   get windowSize() {
-    return `width=${this.options.windowWidth}, height=${this.options.windowHeight}`;
+    return `width=${this.config.options.windowWidth}, height=${this.config.options.windowHeight}`;
   }
 
   get title() {
-    return this.options.title;
+    return this.config.options.title;
   }
 
   get description() {
-    return this.options.description;
+    return this.config.options.description;
   }
 
   get image() {
-    return this.options.image;
+    return this.config.options.image;
   }
 
   get tags() {
-    return this.options.tags;
+    return this.config.options.tags;
   }
 
   get gaTracking() {
-    return this.options.gaTracking;
+    return this.config.options.gaTracking;
   }
 
   get size() {
-    return this.options.size;
+    return this.config.options.size;
+  }
+
+  setConfig(config: ShareButtonsConfig) {
+    this.config = mergeDeep(this.config, config);
+    this.config$.next(this.config);
   }
 
   registerButton(name: string, data: IShareButton) {
-    this.prop = {...shareButtonsProp, ...{[name]: data}};
-    this.allButtons = Object.keys(this.prop);
+    const config = {
+      prop: {...shareButtonsProp, ...{[name]: data}}
+    };
+    this.setConfig(config);
   }
 }
