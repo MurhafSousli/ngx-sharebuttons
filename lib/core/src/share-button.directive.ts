@@ -58,7 +58,7 @@ export class ShareButtonDirective {
   set setButton(buttonName: string) {
 
     /** Create a new button of type <buttonName> */
-    const button = {...this.shareService.prop[buttonName]};
+    const button = {...this.shareService.config.prop[buttonName]};
 
     if (button) {
 

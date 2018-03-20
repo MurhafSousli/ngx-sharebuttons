@@ -5,7 +5,7 @@ import { ChangeDetectorRef, Renderer2 } from '@angular/core';
  */
 export interface ShareButtonsConfig {
   options?: ShareButtonsOptions;
-  prop?: IShareButtons;
+  prop?: IShareButtons | any;
 }
 
 /**
