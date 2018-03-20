@@ -4,9 +4,20 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import { ShareButtons } from '../core';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { map } from 'rxjs/operators/map';
+
+export interface ButtonsState {
+  userButtons?: string[];
+  selectedButtons?: string[];
+  expanded?: boolean;
+}
 
 @Component({
   selector: 'share-buttons',
@@ -14,47 +25,22 @@ import { ShareButtons } from '../core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   preserveWhitespaces: false
 })
-export class ShareButtonsComponent implements OnInit {
+export class ShareButtonsComponent implements OnInit, OnDestroy {
 
-  /** Share Buttons array */
-  buttons: string[] = [];
-
-  /** Buttons to include */
-  includeButtons: string[] = this.share.buttons;
-
-  /** Buttons to exclude */
-  excludeButtons: string[] = [];
-
-  /** Number of shown buttons */
-  shownButtons = this.includeButtons.length;
-
-  /** Number of included buttons */
-  totalButtons;
-
-  /** Disable more/less buttons */
-  showAll = false;
+  configSub$: Subscription;
+  state$: Observable<ButtonsState>;
+  stateWorker$ = new BehaviorSubject<ButtonsState>({
+    userButtons: [],
+    selectedButtons: [],
+    expanded: true
+  });
 
   @Input() theme = this.share.theme;
 
-  @Input('include')
-  set include(includeButtons: string[]) {
-    this.includeButtons = includeButtons;
-    this.buttons = this.includeButtons.filter((btn) => this.excludeButtons.indexOf(btn) < 0);
-  }
+  @Input() include: string[] = [];
+  @Input() exclude: string[] = [];
 
-  @Input('exclude')
-  set exclude(excludeButtons: string[]) {
-    this.excludeButtons = excludeButtons;
-    this.buttons = this.includeButtons.filter((btn) => this.excludeButtons.indexOf(btn) < 0);
-  }
-
-  @Input('show')
-  set setShownButtons(shownCount: number) {
-    this.shownButtons = shownCount;
-    this.totalButtons = this.buttons.length;
-    /** Set showAll to true if shown buttons count = selected buttons count */
-    this.showAll = this.shownButtons === this.totalButtons + 1;
-  }
+  @Input() show = this.include.length;
 
   /** Set share URL */
   @Input() url: string;
@@ -90,21 +76,40 @@ export class ShareButtonsComponent implements OnInit {
   }
 
   ngOnInit() {
-    /**  if user didn't select the buttons use all */
-    if (!this.excludeButtons.length) {
-      this.buttons = this.includeButtons.filter((btn) => this.excludeButtons.indexOf(btn) < 0);
+    this.state$ = this.stateWorker$.pipe(
+      map((state: ButtonsState) => {
+        // Use component include buttons, otherwise fallback to global include buttons
+        const includedButtons = this.include.length ? this.include : state.userButtons;
+        const userButtons = includedButtons.filter((btn) => this.exclude.indexOf(btn) < 0);
+        const selectedButtons = userButtons.slice(0, state.expanded ? userButtons.length : this.show);
+        return {
+          userButtons,
+          selectedButtons,
+          expanded: state.expanded
+        };
+      })
+    );
+
+    this.configSub$ = this.share.config$.subscribe((config) => {
+      // Use global include buttons, otherwise fallback all buttons
+      const includedButtons = config.options.include.length ? config.options.include : Object.keys(config.prop);
+      const userButtons = includedButtons.filter((btn) => this.exclude.indexOf(btn) < 0);
+      this.stateWorker$.next({
+        userButtons,
+        expanded: false
+      });
+    });
+  }
+
+  toggle(expanded: boolean) {
+    const state = this.stateWorker$.getValue();
+    this.stateWorker$.next({...state, expanded});
+  }
+
+  ngOnDestroy() {
+    if (this.configSub$) {
+      this.configSub$.unsubscribe();
     }
-  }
-
-  more() {
-    this.totalButtons = this.shownButtons;
-    this.shownButtons = this.buttons.length;
-    this.showAll = true;
-  }
-
-  less() {
-    this.shownButtons = this.totalButtons;
-    this.showAll = false;
   }
 
 }

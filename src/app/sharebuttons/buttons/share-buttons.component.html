@@ -1,6 +1,6 @@
-<div class="sb-group sb-{{theme}}">
+<div *ngIf="state$ | async; let state" class="sb-group sb-{{theme}}">
 
-  <share-button *ngFor="let button of buttons | slice: 0:shownButtons"
+  <share-button *ngFor="let button of state.selectedButtons"
                 [button]="button"
                 [theme]="theme"
                 [url]="url"
@@ -20,9 +20,9 @@
 
     <!-- SHOW LESS BUTTON -->
 
-    <button *ngIf="showAll && shownButtons === buttons.length"
+    <button *ngIf="state.expanded && show < state.userButtons.length"
             [style.fontSize.px]="(1 + size/20) * 14"
-            class="sb-wrapper sb-more sb-show-icon" (click)="less()">
+            class="sb-wrapper sb-more sb-show-icon" (click)="toggle(false)">
 
       <div class="sb-inner">
         <div class="sb-content">
@@ -35,9 +35,9 @@
 
     <!-- SHOW MORE BUTTON -->
 
-    <button *ngIf="!showAll && shownButtons < buttons.length"
+    <button *ngIf="!state.expanded && show < state.userButtons.length"
             [style.fontSize.px]="(1 + size/20) * 14"
-            class="sb-wrapper sb-more sb-show-icon" (click)="more()">
+            class="sb-wrapper sb-more sb-show-icon" (click)="toggle(true)">
 
       <div class="sb-inner">
         <div class="sb-content">
