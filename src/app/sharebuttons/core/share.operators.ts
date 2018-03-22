@@ -7,7 +7,7 @@ import { copyToClipboard, mergeDeep } from './utils';
 /**
  * None operator - just return the sharer URL
  */
-export const noneOperator = map((ref: ShareButtonRef) => ref.prop.share[ref.os] + ref.url);
+export const noneOperator = map((ref: ShareButtonRef) => (ref.prop.share[ref.os]) ? ref.prop.share[ref.os] + ref.url : null);
 
 /**
  * Meta tags operator - Serialize meta tags in the sharer URL

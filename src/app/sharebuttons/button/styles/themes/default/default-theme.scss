@@ -6,8 +6,10 @@
   transition: background-color ease 200ms;
   @each $button,
   $color in $sb-buttons {
+    --#{$button}-color: $color;
     &.sb-#{$button} {
       background-color: $color;
+      background-color: var(--#{$button}-color);
       &:hover {
         background-color: lighten($color, 8%);
       }

@@ -58,24 +58,26 @@ export class ShareButtonDirective {
   set setButton(buttonName: string) {
 
     /** Create a new button of type <buttonName> */
-    const button = {...this.shareService.config.prop[buttonName]};
+    const button = {...this.shareService.prop[buttonName]};
 
     if (button) {
 
-      /** Set share button */
+      // Set share button
       this.prop = button;
 
-      /** Remove previous button class */
-      this.renderer.removeClass(this.el.nativeElement, 'sb-' + this.buttonClass);
+      // Remove previous button class
+      this.renderer.removeClass(this.el.nativeElement, `sb-${this.buttonClass}`);
 
-      /** Add new button class */
-      this.renderer.addClass(this.el.nativeElement, 'sb-' + button.type);
+      // Add new button class
+      this.renderer.addClass(this.el.nativeElement, `sb-${button.type}`);
 
-      /** Keep a copy of the class for future replacement */
+      // Set button css color variable
+      this.el.nativeElement.style.setProperty(`--${this.prop.type}-color`, this.prop.color);
+
+      // Keep a copy of the class for future replacement
       this.buttonClass = button.type;
 
-      /** Get link's shared count */
-      this.emitCount();
+      this.getShareCount();
     } else {
       throw new Error(`[ShareButtons]: The share button '${buttonName}' does not exist!`);
     }
@@ -88,7 +90,7 @@ export class ShareButtonDirective {
     /** Check if new URL is equal the current URL */
     if (newUrl !== this.url) {
       this.url = this.getValidURL(newUrl);
-      this.emitCount();
+      this.getShareCount();
     }
   }
 
@@ -123,9 +125,6 @@ export class ShareButtonDirective {
       this.url = encodeURIComponent(this.window.location.href);
     }
 
-    /** Emit opened share button type */
-    this.sbOpened.emit(this.prop.type);
-
     const ref: ShareButtonRef = {
       url: this.url,
       cd: this.cd,
@@ -151,42 +150,39 @@ export class ShareButtonDirective {
     ).subscribe();
   }
 
-  /**
-   * Emit share count
-   */
-  emitCount() {
-    /** Only if share count has observers & the button has support for share count */
+  getShareCount() {
+    // if count output has observers, emit the share count */
     if (this.url && this.sbCount.observers.length && this.prop.count) {
-
-      /** Emit share count to (sbCount) Output */
       this.count(this.url).subscribe((count: number) => this.sbCount.emit(count));
     }
   }
 
   /**
-   * Open sharing window
+   * Open sharing dialog
    * @param url - Share URL
    */
   share(url: string) {
-    let popUp;
     if (url) {
 
-      /** GA tracking */
+      // GA Tracking
       if (this.shareService.gaTracking && typeof ga !== 'undefined') {
         ga('send', 'social', this.prop.type, 'click', this.url);
       }
 
-      popUp = this.window.open(url, 'newwindow', this.shareService.windowSize);
-    }
+      // Emit when share dialog is opened
+      this.sbOpened.emit(this.prop.type);
 
-    /** If dialog closed event has subscribers, emit closed dialog type */
-    if (this.sbClosed.observers.length && popUp) {
-      const pollTimer = this.window.setInterval(() => {
-        if (popUp.closed) {
-          this.window.clearInterval(pollTimer);
-          this.sbClosed.emit(this.prop.type);
-        }
-      }, 200);
+      const popUp = this.window.open(url, 'newwindow', this.shareService.windowSize);
+
+      // Emit when share dialog is closed
+      if (popUp) {
+        const pollTimer = this.window.setInterval(() => {
+          if (popUp.closed) {
+            this.window.clearInterval(pollTimer);
+            this.sbClosed.emit(this.prop.type);
+          }
+        }, 200);
+      }
     }
   }
 
@@ -227,7 +223,7 @@ export class ShareButtonDirective {
       }
       console.warn(`[ShareButtons]: Sharing link '${url}' is invalid!`);
     }
-    /** fallback to page current URL */
+    // fallback to page current URL
     return encodeURIComponent(this.window.location.href);
   }
 
