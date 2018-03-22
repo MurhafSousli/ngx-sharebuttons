@@ -7,16 +7,19 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import { ShareButtons } from '@ngx-share/core';
+import { ShareButtons, ShareButtonsConfig } from '@ngx-share/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { map } from 'rxjs/operators/map';
 
 export interface ButtonsState {
+  includedButtons?: string[];
+  excludedButtons?: string[];
   userButtons?: string[];
   selectedButtons?: string[];
   expanded?: boolean;
+  shownCount?: number;
 }
 
 @Component({
@@ -30,17 +33,27 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   configSub$: Subscription;
   state$: Observable<ButtonsState>;
   stateWorker$ = new BehaviorSubject<ButtonsState>({
+    includedButtons: [],
+    excludedButtons: [],
     userButtons: [],
     selectedButtons: [],
-    expanded: true
+    expanded: true,
+    shownCount: 0
   });
 
   @Input() theme = this.share.theme;
 
-  @Input() include: string[] = [];
-  @Input() exclude: string[] = [];
+  @Input('include') set includedButtons(includedButtons: string[]) {
+    this.updateState({includedButtons});
+  }
 
-  @Input() show = this.include.length;
+  @Input('exclude') set excludedButtons(excludedButtons: string[]) {
+    this.updateState({excludedButtons});
+  }
+
+  @Input('show') set shownButtons(shownCount: number) {
+    this.updateState({shownCount});
+  }
 
   /** Set share URL */
   @Input() url: string;
@@ -79,31 +92,32 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
     this.state$ = this.stateWorker$.pipe(
       map((state: ButtonsState) => {
         // Use component include buttons, otherwise fallback to global include buttons
-        const includedButtons = this.include.length ? this.include : state.userButtons;
-        const userButtons = includedButtons.filter((btn) => this.exclude.indexOf(btn) < 0);
-        const selectedButtons = userButtons.slice(0, state.expanded ? userButtons.length : this.show);
+        const includedButtons = state.includedButtons.length ? state.includedButtons : state.userButtons;
+        const userButtons = includedButtons.filter((btn) => state.excludedButtons.indexOf(btn) < 0);
+        const selectedButtons = userButtons.slice(0, state.expanded ? userButtons.length : state.shownCount);
         return {
           userButtons,
           selectedButtons,
-          expanded: state.expanded
+          expanded: state.expanded,
+          shownCount: state.shownCount
         };
       })
     );
 
-    this.configSub$ = this.share.config$.subscribe((config) => {
+    this.configSub$ = this.share.config$.subscribe((config: ShareButtonsConfig) => {
+      console.log(config);
       // Use global include buttons, otherwise fallback all buttons
       const includedButtons = config.options.include.length ? config.options.include : Object.keys(config.prop);
-      const userButtons = includedButtons.filter((btn) => this.exclude.indexOf(btn) < 0);
-      this.stateWorker$.next({
+      const userButtons = includedButtons.filter((btn) => config.options.exclude.indexOf(btn) < 0);
+      this.updateState({
         userButtons,
         expanded: false
       });
     });
   }
 
-  toggle(expanded: boolean) {
-    const state = this.stateWorker$.getValue();
-    this.stateWorker$.next({...state, expanded});
+  updateState(state: ButtonsState) {
+    this.stateWorker$.next({...this.stateWorker$.getValue(), ...state});
   }
 
   ngOnDestroy() {

@@ -20,9 +20,9 @@
 
     <!-- SHOW LESS BUTTON -->
 
-    <button *ngIf="state.expanded && show < state.userButtons.length"
+    <button *ngIf="state.expanded && state.shownCount < state.userButtons.length"
             [style.fontSize.px]="(1 + size/20) * 14"
-            class="sb-wrapper sb-more sb-show-icon" (click)="toggle(false)">
+            class="sb-wrapper sb-more sb-show-icon" (click)="updateState({expanded: false})">
 
       <div class="sb-inner">
         <div class="sb-content">
@@ -35,9 +35,9 @@
 
     <!-- SHOW MORE BUTTON -->
 
-    <button *ngIf="!state.expanded && show < state.userButtons.length"
+    <button *ngIf="!state.expanded && state.shownCount < state.userButtons.length"
             [style.fontSize.px]="(1 + size/20) * 14"
-            class="sb-wrapper sb-more sb-show-icon" (click)="toggle(true)">
+            class="sb-wrapper sb-more sb-show-icon" (click)="updateState({expanded: true})">
 
       <div class="sb-inner">
         <div class="sb-content">
