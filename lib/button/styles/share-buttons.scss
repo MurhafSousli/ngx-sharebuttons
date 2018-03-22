@@ -66,6 +66,9 @@
     font-size: $sb-count-size;
     padding: $sb-count-padding;
   }
+  .sb-text, .sb-count {
+    font-weight: bold;
+  }
 }
 
 /** WITH BUTTON TEXT */

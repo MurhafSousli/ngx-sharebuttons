@@ -6,8 +6,10 @@
 
   @each $button,
   $color in $sb-buttons {
+    --#{$button}-color: $color;
     &.sb-#{$button} {
       background-color: $color;
+      background-color: var(--#{$button}-color);
     }
   }
 
@@ -50,5 +52,4 @@
       border-top-right-radius: $sb-border-radius;
     }
   }
-
 }
