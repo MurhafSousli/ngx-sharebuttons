@@ -1,0 +1,51 @@
+<ng-scrollbar [autoHide]="true">
+  <header>
+    <h1>Global Options</h1>
+  </header>
+
+  <div class="page-content container">
+
+    <section>
+      <section-title>Setting custom options</section-title>
+      <p>To use custom options that applies on all share buttons components across your app, pass your config in the root module where the library is imported.</p>
+      <p>
+        <b>Example</b>
+      </p>
+      <pre><code highlight [code]="code.options"></code></pre>
+    </section>
+
+    <section fxShow fxHide.lt-md="true">
+      <h3>Available options:</h3>
+      <mat-table [dataSource]="dataSource">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef fxFlex="130px"> Name</mat-header-cell>
+          <mat-cell *matCellDef="let row" fxFlex="130px">
+            <b>{{row.name}}</b>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </section>
+
+    <section>
+      <section-title>Setting custom properties</section-title>
+      <p>You can change each button icon and text using the global options, for example:</p>
+      <pre>
+    <code highlight [code]="code.metaButtons"></code>
+  </pre>
+    </section>
+
+  </div>
+
+  <footer></footer>
+</ng-scrollbar>

@@ -1,0 +1,71 @@
+@import '../../../assets/style/variables';
+
+h5 {
+  text-align: center;
+}
+
+b {
+  margin-right: 10px;
+}
+
+::ng-deep {
+  home {
+    h2, li {
+      color: white;
+    }
+  }
+}
+
+ul {
+  padding: 0;
+  li {
+    list-style-type: none;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 5px;
+    }
+  }
+}
+
+.page-content {
+  color: white;
+}
+
+.sb-options {
+  flex-wrap: wrap;
+}
+
+.sb-option {
+  flex: 1;
+  width: 248px;
+  height: 176px;
+  padding: 1em;
+  border-radius: 0.4em !important;
+  box-shadow: $box-shadow;
+  transition: all ease 200ms;
+  color: $font-color;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    box-shadow: 0 15px 20px rgba($action-color, 0.4);
+    transform: translateY(-7px);
+  }
+
+  img, span {
+    max-width: 100%;
+    font-size: 3em;
+    height: 82.5px;
+  }
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+

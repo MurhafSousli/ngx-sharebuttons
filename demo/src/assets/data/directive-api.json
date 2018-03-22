@@ -1,0 +1,47 @@
+[
+  {
+    "name": "shareButton",
+    "description": "The share button you want to use",
+    "type": "input"
+  },
+  {
+    "name": "sbUrl",
+    "description": "Sharing link, default: current URL",
+    "type": "input"
+  },
+  {
+    "name": "sbTitle",
+    "description": "Override title meta tag for LinkedIn and Reddit, default: null",
+    "type": "input"
+  },
+  {
+    "name": "sbDescription",
+    "description": "Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest, default: null",
+    "type": "input"
+  },
+  {
+    "name": "sbImage",
+    "description": "Override image meta tag for Pinterest only, default: null",
+    "type": "input"
+  },
+  {
+    "name": "sbTags",
+    "description": "Override tags for Tumblr and Twitter, default: null",
+    "type": "input"
+  },
+  {
+    "name": "sbOpened",
+    "description": "Stream that emits when share dialog has opened",
+    "type": "output"
+  },
+  {
+    "name": "sbClosed",
+    "description": "Stream that emits when share dialog has closed",
+    "type": "output"
+  },
+  {
+    "name": "sbCount",
+    "description": "Stream that emits share count of the share URL",
+    "type": "output"
+  }
+]

@@ -1,0 +1,76 @@
+@import '../../../assets/style/variables';
+
+:host {
+  display: block;
+  width: 100%;
+  perspective: 1000px;
+}
+
+.switcher-header {
+  display: flex;
+  align-items: center;
+}
+
+h3 {
+  flex: 1;
+}
+
+.toggle {
+  color: $font-color;
+  i {
+    font-size: 20px;
+    line-height: 20px;
+    margin: 0 7px;
+  }
+}
+
+.flipper {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  width: 100%;
+  transition: 0.6s;
+  position: relative;
+  height: 250px;
+}
+
+.front,
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  z-index: 1;
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  z-index: 2;
+  transform: rotateY(180deg);
+}
+
+pre {
+  margin: 0;
+  width: 100%;
+  code {
+    margin: 0;
+  }
+}
+
+::ng-deep {
+  code-switcher {
+    .mat-slide-toggle-bar {
+      background-color: rgba(0, 0, 0, 0.38) !important;
+    }
+    .mat-slide-toggle-thumb {
+      background-color: #fafafa !important;
+    }
+  }
+}

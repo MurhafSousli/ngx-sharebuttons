@@ -1,0 +1,102 @@
+<ng-scrollbar [autoHide]="true">
+  <header>
+    <h1>Share Buttons Component</h1>
+  </header>
+
+
+  <div class="page-content container">
+
+    <section>
+      <section-title>Overview</section-title>
+      <p><code class="hljs" [textContent]="'<share-buttons>'"></code> is a component to add a collection of share buttons.</p>
+    </section>
+
+    <section>
+      <section-title>Installation</section-title>
+      <p>Install the following packages</p>
+
+      <p>NPM</p>
+      <pre><code class="hljs">$ npm install --save @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts</code></pre>
+
+      <p>YARN</p>
+      <pre><code class="hljs">$ yarn add @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts</code></pre>
+    </section>
+
+    <section>
+      <section-title>Import the styles</section-title>
+
+      <p>Import share buttons core styles, theme and FontAwesome in your global style
+        <b>"app/src/style.scss"</b>
+      </p>
+
+      <pre><code highlight>
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
+@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/default/default-theme';
+    </code></pre>
+
+      <p>To extend buttons styles, see
+        <a routerLink="/styling-guide">styling guide</a> section.</p>
+    </section>
+
+    <section>
+      <section-title>Import the module</section-title>
+
+      <pre><code highlight [code]="code.import"></code></pre>
+
+      <code-switcher [code]="code.example" class="center">
+        <share-buttons show="11"></share-buttons>
+      </code-switcher>
+    </section>
+
+    <section fxShow fxHide.lt-md="true">
+      <section-title>Lab</section-title>
+
+      <mat-card>
+        <mat-card-content>
+          <lab component="share-buttons"></lab>
+        </mat-card-content>
+      </mat-card>
+    </section>
+
+    <section fxShow fxHide.lt-md="true">
+      <section-title>API</section-title>
+
+      <mat-table [dataSource]="dataSource">
+
+        <!-- Type Column -->
+        <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef fxFlex="100px"> Type</mat-header-cell>
+          <mat-cell *matCellDef="let row" fxFlex="100px">
+            <mat-chip-list>
+              <mat-chip class="property" [class.property-input]="row.type==='input'"> {{ row.type }}</mat-chip>
+            </mat-chip-list>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef fxFlex="100px"> Name</mat-header-cell>
+          <mat-cell *matCellDef="let row" fxFlex="100px">
+            <b>{{row.name}}</b>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+    </section>
+
+  </div>
+
+  <footer></footer>
+</ng-scrollbar>
