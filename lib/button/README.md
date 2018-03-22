@@ -20,7 +20,7 @@ Share button component is built on top of `ShareModule` so you need to install b
 To use the default icons, install `font-awesome` package.
 
 ```bash
-$ npm install --save @ngx-share/core @ngx-share/button font-awesome
+$ npm install --save @ngx-share/core @ngx-share/button @fortawesome/fontawesome-free-webfonts
 ```
 
 Import `ShareButtonModule` in your module
@@ -31,7 +31,7 @@ import { ShareButtonModule } from '@ngx-share/button';
 @NgModule({
   imports: [
     HttpClientModule,      // (Required) for share counts
-    HttpClientJsonpModule, // (Optional) For linkedIn & Tumblr counts
+    HttpClientJsonpModule, // (Optional) For Tumblr counts
     ShareButtonModule.forRoot()
   ]
 })
@@ -40,7 +40,9 @@ import { ShareButtonModule } from '@ngx-share/button';
 Import core styles and theme from the global style `src/styles.scss`
 
 ```css
-@import '~font-awesome/css/font-awesome.min.css';
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 @import "~@ngx-share/button/styles/share-buttons";
 @import "~@ngx-share/button/styles/themes/default/default-theme";
 ```
@@ -100,7 +102,7 @@ If you identify any errors in this component, or have an idea for an improvement
  
 ## More plugins from the author
 
- - [ng-gallery](https://github.com/MurhafSousli/ng-gallery)
+ - [ngx-gallery](https://github.com/MurhafSousli/ngx-gallery)
  - [ngx-progressbar](https://github.com/MurhafSousli/ngx-progressbar)
  - [ngx-bar-rating](https://github.com/MurhafSousli/ngx-bar-rating)
  - [ngx-disqus](https://github.com/MurhafSousli/ngx-disqus)

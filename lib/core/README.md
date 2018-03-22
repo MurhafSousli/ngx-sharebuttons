@@ -19,7 +19,7 @@ Convert any element to a share button using `[shareButton]` directive.
 Install with npm
   
 ```bash
-$ npm install --save @ngx-share/core
+$ npm install --save @ngx-share/core 
 ```
 
 Import `ShareModule` in your module
@@ -30,10 +30,18 @@ import { ShareModule } from '@ngx-share/core';
 @NgModule({
   imports: [
     HttpClientModule,      // (Required) for share counts
-    HttpClientJsonpModule, // (Optional) For linkedIn & Tumblr counts
+    HttpClientJsonpModule, // (Optional) For Tumblr counts
     ShareModule.forRoot()
   ]
 })
+```
+
+Import FontAwesome if you want to use the icons
+
+```scss
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 ```
 
 In your template
@@ -109,7 +117,7 @@ If you identify any errors in this component, or have an idea for an improvement
  
 ## More plugins from the author
 
- - [ng-gallery](https://github.com/MurhafSousli/ng-gallery)
+ - [ngx-gallery](https://github.com/MurhafSousli/ngx-gallery)
  - [ngx-progressbar](https://github.com/MurhafSousli/ngx-progressbar)
  - [ngx-bar-rating](https://github.com/MurhafSousli/ngx-bar-rating)
  - [ngx-disqus](https://github.com/MurhafSousli/ngx-disqus)
