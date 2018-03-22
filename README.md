@@ -49,7 +49,7 @@ Convert any element to a share button using `[shareButton]` directive.
 Install with npm
 
 ```bash
-$ npm install --save @ngx-share/core
+$ npm install --save @ngx-share/core @fortawesome/fontawesome-free-webfonts
 ```
 
 Import `ShareModule` in your module
@@ -64,6 +64,14 @@ import { ShareModule } from '@ngx-share/core';
     ShareModule.forRoot()
   ]
 })
+```
+
+Import FontAwesome if you want to use the icons
+
+```scss
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 ```
 
 In your template
@@ -127,7 +135,7 @@ Share button component is built on top of `ShareModule` so you need to install b
 To use the default icons, install `font-awesome` package.
 
 ```bash
-$ npm install --save @ngx-share/core @ngx-share/button font-awesome
+$ npm install --save @ngx-share/core @ngx-share/button @fortawesome/fontawesome-free-webfonts
 ```
 
 Import `ShareButtonModule` in your module
@@ -147,9 +155,11 @@ import { ShareButtonModule } from '@ngx-share/button';
 Import core styles and theme from the global style `src/styles.scss`
 
 ```css
-@import '~font-awesome/css/font-awesome.min.css';
-@import "~@ngx-share/button/styles/share-buttons";
-@import "~@ngx-share/button/styles/themes/default/default-theme";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
+@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/default/default-theme';
 ```
 
 _Check all themes [here](https://murhafsousli.github.io/ngx-sharebuttons/#/themes)_
@@ -194,7 +204,7 @@ Share buttons component is built on top of `ShareModule` and `ShareButtonModule`
 To use the default icons, install `font-awesome` package.
 
 ```bash
-$ npm install --save @ngx-share/core @ngx-share/button @ngx-share/buttons font-awesome
+$ npm install --save @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts
 ```
 
 Import `ShareButtonModule` in your module
@@ -214,9 +224,11 @@ import { ShareButtonModule } from '@ngx-share/button';
 Import core styles and theme from the global style `src/styles.scss`
 
 ```css
-@import '~font-awesome/css/font-awesome.min.css';
-@import "~@ngx-share/button/styles/share-buttons";
-@import "~@ngx-share/button/styles/themes/default/default-theme";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
+@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/default/default-theme';
 ```
 
 _Check [all themes](https://murhafsousli.github.io/ngx-sharebuttons/#/themes)_
@@ -258,7 +270,7 @@ If you want set custom global options, pass your config in the library is import
 import { ShareButtonsOptions } from '@ngx-share/core';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 
-const options: ShareButtonsOptions = {
+const customOptions: ShareButtonsOptions = {
   include: ['facebook', 'twitter', 'google'],
   exclude: ['tumblr', 'stumble', 'vk'],
   theme: 'modern-light',
@@ -269,7 +281,7 @@ const options: ShareButtonsOptions = {
 @NgModule({
   imports: [
     // the module you choice 'ShareModule', 'ShareButtonModule' or 'ShareButtonsModule'
-    ShareButtonsModule.forRoot(options)
+    ShareButtonsModule.forRoot({ options: customOptions })
   ]
 })
 ```
@@ -296,7 +308,7 @@ You can change the buttons meta data such as button icon and text
 ```ts
 import { ShareButtonsModule } from '@ngx-share/buttons';
 
-const buttonsConfig = {
+const customProp = {
   facebook: {
     icon: 'fab fa-facebook-official',
     text: 'Share on Facebook'
@@ -310,7 +322,7 @@ const buttonsConfig = {
 
 @NgModule({
   imports: [
-    ShareButtonsModule.forRoot(options, buttonsConfig)
+    ShareButtonsModule.forRoot({ prop: customProp })
   ]
 })
 ```
@@ -319,51 +331,17 @@ const buttonsConfig = {
 
 ## Styling guide
 
-This is useful to customize the style for `<share-button>` and `<share-buttons>` components
+There are several classes that help you to create your custom styles
 
 ```scss
-@import '~@ngx-share/button/styles/variables';
-
-// change buttons colors
-
-$sb-buttons: (
-  facebook: #488aff,
-  twitter: #32db64,
-  google: #f53d3d,
-  stumble: #f4f4f4,
-  linkedin: $sb-linkedin,
-  pinterest: $sb-pinterest,
-  reddit: $sb-reddit,
-  tumblr: $sb-tumblr,
-  whatsapp: $sb-whatsapp,
-  telegram: $sb-telegram,
-  email: $sb-email,
-  vk: $sb-vk,
-  more: $sb-more,
-  copy: $sb-copy,
-  print: $sb-print
-);
-
-// change other variables
-
-$sb-border-radius: 10px;
-
-@import '~@ngx-share/button/styles/share-buttons';
-```
-
-[See all available variables](https://murhafsousli.github.io/ngx-sharebuttons/#/override-sass-variables)
-
-### To create your own theme
-
-Use the following classes
-
-```scss
-.sb-custom-theme {
-
+.sb-moon-theme {
+  /** You can get button color by using the css variable --{buttonName}-color */
   &.sb-group {
     /** ... share buttons container */
   }
   .sb-wrapper { /** ... share button wrapper */
+    background-color: var(--facebook-color);
+
     .sb-inner { /** ... inner wrapper */
       .sb-content { /** ... content wrapper */
         .sb-icon { /** ... icon wrapper */ }
@@ -380,6 +358,11 @@ Use the following classes
     }
   }
 }
+```
+
+Then set theme input like:
+```
+<share-buttons theme="moon"></share-buttons>
 ```
 
 [Read more about Styling guide](https://murhafsousli.github.io/ngx-sharebuttons/#/styling-guide)
