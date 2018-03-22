@@ -1,0 +1,29 @@
+@import "../../../assets/style/variables";
+
+:host {
+  position: fixed;
+  position: sticky;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.theme-switcher {
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 400px;
+  max-width: 95%;
+  border-radius: 4px 4px 0 0;
+}
+
+.current-theme {
+  flex: 1;
+  text-align: center;
+  color: $action-color;
+}

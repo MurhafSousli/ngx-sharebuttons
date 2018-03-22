@@ -1,0 +1,14 @@
+<div class="theme-switcher">
+
+  <button mat-icon-button color="primary" [disabled]="currIndex < 1" (click)="prev()">
+    <mat-icon class="md-24" aria-label="prev">navigate_before</mat-icon>
+  </button>
+
+  <span class="current-theme">
+    {{ themes[currIndex] | uppercase }}
+  </span>
+
+  <button mat-icon-button color="primary" [disabled]="currIndex >= themes.length - 1" (click)="next()">
+    <mat-icon class="md-24" aria-label="next">navigate_next</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,13 @@
+<pre>
+  <code *ngIf="!copied; else copiedMessage" highlight [code]="code"></code>
+  <ng-template #copiedMessage>
+    <div class="hljs copy-message">
+      <mat-icon>done</mat-icon><span>Copied!</span>
+    </div>
+  </ng-template>
+</pre>
+
+<button *ngIf="!copied" mat-icon-button color="accent"
+        matTooltip="Copy code" matTooltipPosition="before" (click)="copyTextToClipboard(code)">
+  <mat-icon class="md-24" aria-label="Copy code">content_paste</mat-icon>
+</button>

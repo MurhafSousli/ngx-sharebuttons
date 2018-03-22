@@ -1,0 +1,21 @@
+<div class="switcher-header">
+  <h3> {{ title }} </h3>
+  <div class="toggle" fxLayout fxLayoutAlign="space-between center">
+    <i class="fas fa-eye" [style.color]="!flip ? '#2196F3' : '#2E4057'"></i>
+    <mat-slide-toggle [(ngModel)]="flip" color="accent">
+      <i class="fas fa-code" [style.color]="flip ? '#2196F3' : '#2E4057'"></i>
+    </mat-slide-toggle>
+  </div>
+</div>
+<div [@flip]="flip ? 'back': 'front'" class="flipper">
+  <div class="demo front" [class.active]="!flip">
+    <ng-content></ng-content>
+  </div>
+  <div class="code back" [class.active]="flip">
+    <ng-scrollbar [trackX]="true">
+      <pre>
+        <code highlight [code]="code"></code>
+      </pre>
+    </ng-scrollbar>
+  </div>
+</div>

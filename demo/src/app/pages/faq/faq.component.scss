@@ -1,0 +1,21 @@
+@import '../../../assets/style/variables';
+
+figure {
+  max-width: 400px;
+  margin: 0.5em;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  box-shadow: $box-shadow;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+figcaption {
+  margin-top: 1em;
+  text-align: center;
+  font-family: 'Play', sans-serif;
+  opacity: 0.5;
+}
