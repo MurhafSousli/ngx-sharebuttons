@@ -1,5 +1,28 @@
 # Changelog
 
+## 5.1.0
+
+- feat(ShareButtons): Adds Messenger button (Mobile only), closes [#233](https://github.com/MurhafSousli/ngx-sharebuttons/issues/233).
+- feat(ShareButtons): Adds Xing button, closes [#232](https://github.com/MurhafSousli/ngx-sharebuttons/issues/232).
+- feat(ShareButtons): Use FontAwesome 5 icons by default, closes[#219](https://github.com/MurhafSousli/ngx-sharebuttons/issues/219).
+- fix(operators): Copy button is not working in ios devices, closes [#223](https://github.com/MurhafSousli/ngx-sharebuttons/issues/223).
+- fix(operators): Copy button tap is causing keypad to open on ios devices.
+- fix(ShareButtonsService): Allow adding custom share buttons, closes[#222](https://github.com/MurhafSousli/ngx-sharebuttons/issues/222).
+- refactor(ShareDirective): Make sure buttons has the sharer link before opening share dialog.
+- enhancements(ShareButton, ShareButtons): Remove white spaces from components templates.
+- enhancements(ShareButton, ShareButtons): Button color can be customized from prop, no need to override css variables manually.
+- enhancements(ShareButton, ShareButtons): Improve themes styles.
+
+### Breaking changes:
+
+- refactor(ShareButtonService): rename the function `registerButton()` to `addButton()`.
+- Flat and Classic themes are removed.
+
+### Notes:
+
+- Fb Messenger is only made for Mobile web and will not work on Desktop.
+- LinkedIn has deprecated the share counts from their API.
+
 ## 5.0.1
 
 - fix: whatsapp sharing fails on mobile, closes [#208](https://github.com/MurhafSousli/ngx-sharebuttons/issues/208).
@@ -38,7 +61,7 @@
   - Share directive `@ngx-share/core`
   - Single share button `@ngx-share/button`, depends on the `@ngx-share/core`
   - Share buttons `@ngx-share/buttons`, depends on the `@ngx-share/core` and `@ngx-share/button`
-  
+
 - Global options and button properties are now passed as one object
   - Before `ShareButtonsModule.forRoot(options, prop)`
   - After: `ShareButtonsModule.forRoot({ options, prop })`
@@ -79,7 +102,7 @@
 
 - fix(prevent overwritting interceptors) closes [#174](https://github.com/MurhafSousli/ngx-sharebuttons/pull/174).
 
-Now `HttpClientModule` and `HttpClientModule` should imported manually 
+Now `HttpClientModule` and `HttpClientModule` should imported manually
 
 ```ts
 import { ShareButtonsModule } from 'ngx-sharebuttons';
@@ -149,7 +172,7 @@ Version 4 has been rewritten from scratch
 - (feat) Sharebutton Directive
 - (refactor) New button style for Sharebuttons Component
 - (fix) update count when URL changes
-- (fix) update all inputs on changes 
+- (fix) update all inputs on changes
 - (feat) support systemJS
 
 * **Breaking Changes** :
@@ -160,13 +183,13 @@ Version 4 has been rewritten from scratch
     - merge [#26](https://github.com/MurhafSousli/ngx-sharebuttons/pull/26)
 
 ## 1.1.4
-    
-* **Fixes Bug:** 
+
+* **Fixes Bug:**
     - fix aot compilation issues in [#25](https://github.com/MurhafSousli/ngx-sharebuttons/pull/25), closes [#23](https://github.com/MurhafSousli/ngx-sharebuttons/issues/23)
 
 ## 1.1.3
 
-* **Fixes Bug:** 
+* **Fixes Bug:**
     - Publish `./dist` instead of root dir, closes [#22](https://github.com/MurhafSousli/ngx-sharebuttons/issues/22)
 
 ## 1.1.2
@@ -174,8 +197,8 @@ Version 4 has been rewritten from scratch
 * **New Feature:**
 
     - AOT Support, closes [#9](https://github.com/MurhafSousli/ngx-sharebuttons/issues/9),[#14](https://github.com/MurhafSousli/ngx-sharebuttons/issues/14),[#15](https://github.com/MurhafSousli/ngx-sharebuttons/issues/15)
-    
-* **Fixes Bug:** 
+
+* **Fixes Bug:**
 
     - Remove unnecessary dependencies, closes [#13](https://github.com/MurhafSousli/ngx-sharebuttons/issues/13)
     - Fixes sharing `hashlocationstrategy` URL, closes [#16](https://github.com/MurhafSousli/ngx-sharebuttons/issues/16)
@@ -196,8 +219,8 @@ Version 4 has been rewritten from scratch
     - Wrap window object in `WindowService`
 
 ## 1.0.7
-   
-* **Fixes Bug:** 
+
+* **Fixes Bug:**
 
     - Fix compiling on universal, closes [#6](https://github.com/MurhafSousli/ngx-sharebuttons/issues/6)
     - Fix multiple classes on a share button, closes [#11](https://github.com/MurhafSousli/ngx-sharebuttons/issues/11)
@@ -216,11 +239,11 @@ Version 4 has been rewritten from scratch
 
 ## 1.0.6
 
-* **New Feature:** 
+* **New Feature:**
 
     - Now you can set `[title]`, `[description]` and `[image]` if you don't want to use the meta tags, check full list of inputs in the docs, closes [#7](https://github.com/MurhafSousli/ngx-sharebuttons/issues/7).
 
-* **Fixes Bug:** 
+* **Fixes Bug:**
 
     - Count: handle facebook share count error, closes [#8](https://github.com/MurhafSousli/ngx-sharebuttons/issues/8).
     - Share: Check if the input `[url]` is valid.
@@ -237,12 +260,12 @@ Version 4 has been rewritten from scratch
 
 ## 1.0.1
 
-* **New Feature:** Set global twitter account to add "Via @twitterAccount" to user tweet.  
+* **New Feature:** Set global twitter account to add "Via @twitterAccount" to user tweet.
 * **New Feature:** New optional inputs `[text]`, `[image]` and `[hastags]` for twitter and pinterest.
 
-* **Fixes Bug:** Pinterest share link. 
+* **Fixes Bug:** Pinterest share link.
 
-*** 
+***
 
 ## 1.0.0
 
@@ -266,7 +289,7 @@ Stable release
 
  - fix(prevent overwritting interceptors) closes [#174](https://github.com/MurhafSousli/ngx-sharebuttons/pull/174).
 
-Now `HttpClientModule` and `HttpClientModule` should imported manually 
+Now `HttpClientModule` and `HttpClientModule` should imported manually
 
 ```ts
 import { ShareButtonsModule } from 'ngx-sharebuttons';
@@ -336,7 +359,7 @@ Version 4 has been rewritten from scratch
  - (feat) Sharebutton Directive
  - (refactor) New button style for Sharebuttons Component
  - (fix) update count when URL changes
- - (fix) update all inputs on changes 
+ - (fix) update all inputs on changes
  - (feat) support systemJS
 
 * **Breaking Changes** :
@@ -347,13 +370,13 @@ Version 4 has been rewritten from scratch
     - merge [#26](https://github.com/MurhafSousli/ngx-sharebuttons/pull/26)
 
 ## 1.1.4
-    
-* **Fixes Bug:** 
+
+* **Fixes Bug:**
     - fix aot compilation issues in [#25](https://github.com/MurhafSousli/ngx-sharebuttons/pull/25), closes [#23](https://github.com/MurhafSousli/ngx-sharebuttons/issues/23)
 
 ## 1.1.3
 
-* **Fixes Bug:** 
+* **Fixes Bug:**
     - Publish `./dist` instead of root dir, closes [#22](https://github.com/MurhafSousli/ngx-sharebuttons/issues/22)
 
 ## 1.1.2
@@ -361,8 +384,8 @@ Version 4 has been rewritten from scratch
 * **New Feature:**
 
     - AOT Support, closes [#9](https://github.com/MurhafSousli/ngx-sharebuttons/issues/9),[#14](https://github.com/MurhafSousli/ngx-sharebuttons/issues/14),[#15](https://github.com/MurhafSousli/ngx-sharebuttons/issues/15)
-    
-* **Fixes Bug:** 
+
+* **Fixes Bug:**
 
     - Remove unnecessary dependencies, closes [#13](https://github.com/MurhafSousli/ngx-sharebuttons/issues/13)
     - Fixes sharing `hashlocationstrategy` URL, closes [#16](https://github.com/MurhafSousli/ngx-sharebuttons/issues/16)
@@ -383,8 +406,8 @@ Version 4 has been rewritten from scratch
     - Wrap window object in `WindowService`
 
 ## 1.0.7
-   
-* **Fixes Bug:** 
+
+* **Fixes Bug:**
 
     - Fix compiling on universal, closes [#6](https://github.com/MurhafSousli/ngx-sharebuttons/issues/6)
     - Fix multiple classes on a share button, closes [#11](https://github.com/MurhafSousli/ngx-sharebuttons/issues/11)
@@ -403,11 +426,11 @@ Version 4 has been rewritten from scratch
 
 ## 1.0.6
 
-* **New Feature:** 
+* **New Feature:**
 
     - Now you can set `[title]`, `[description]` and `[image]` if you don't want to use the meta tags, check full list of inputs in the docs, closes [#7](https://github.com/MurhafSousli/ngx-sharebuttons/issues/7).
 
-* **Fixes Bug:** 
+* **Fixes Bug:**
 
     - Count: handle facebook share count error, closes [#8](https://github.com/MurhafSousli/ngx-sharebuttons/issues/8).
     - Share: Check if the input `[url]` is valid.
@@ -424,12 +447,12 @@ Version 4 has been rewritten from scratch
 
 ## 1.0.1
 
-* **New Feature:** Set global twitter account to add "Via @twitterAccount" to user tweet.  
+* **New Feature:** Set global twitter account to add "Via @twitterAccount" to user tweet.
 * **New Feature:** New optional inputs `[text]`, `[image]` and `[hastags]` for twitter and pinterest.
 
-* **Fixes Bug:** Pinterest share link. 
+* **Fixes Bug:** Pinterest share link.
 
-*** 
+***
 
 ## 1.0.0
 
