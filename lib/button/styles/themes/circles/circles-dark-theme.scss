@@ -6,27 +6,15 @@
 
   @each $button,
   $color in $sb-buttons {
+    --#{$button}-color: $color;
     &.sb-#{$button} {
       .sb-icon {
         background-color: $color;
-        background: radial-gradient(ellipse farthest-corner at center, $color 30%, darken($color, 5%) 100%);
+        background-color: var(--#{$button}-color);
       }
       .sb-text {
         color: $color;
-      }
-      .sb-icon {
-        box-shadow: 0 3px 1px -2px rgba($color, .25), 0 2px 2px 0 rgba($color, .19), 0 1px 5px 0 rgba($color, .17);
-      }
-
-      &:hover {
-        .sb-icon {
-          box-shadow: 0 4px 2px -2px rgba($color, .32), 0 3px 3px 0 rgba($color, .214), 0 2px 6px 0 rgba($color, .212);
-        }
-      }
-      &:active {
-        .sb-icon {
-          box-shadow: 0 5px 5px -3px rgba($color, .32), 0 8px 10px 1px rgba($color, .214), 0 3px 14px 2px rgba($color, .212);
-        }
+        color: var(--#{$button}-color);
       }
     }
   }
@@ -35,26 +23,19 @@
   min-width: unset;
   height: unset;
 
-  &:hover {
-    .sb-icon {
-      box-shadow: 0 4px 2px -2px rgba($sb-primary, .32), 0 3px 3px 0 rgba($sb-primary, .214), 0 2px 6px 0 rgba($sb-primary, .212);
-    }
-  }
   &:active {
     .sb-icon {
-      box-shadow: 0 5px 5px -3px rgba($sb-primary, .32), 0 8px 10px 1px rgba($sb-primary, .214), 0 3px 14px 2px rgba($sb-primary, .212);
+      box-shadow: 0 7px 8px -4px rgba(0, 0, 0, .2), 0 12px 17px 2px rgba(0, 0, 0, .14), 0 5px 22px 4px rgba(0, 0, 0, .12);
     }
   }
 
   .sb-icon {
     background-color: $sb-primary;
-    background: radial-gradient(ellipse farthest-corner at center, $sb-primary 30%, darken($sb-primary, 5%) 100%);
-
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
     font-size: 1.4em;
     width: 2.5em;
     height: 2.5em;
     border-radius: 50%;
-    text-shadow: $sb-text-shadow;
   }
   .sb-text {
     font-size: $sb-text-size;
@@ -63,7 +44,6 @@
     width: 100%;
     height: 1.8em;
     line-height: 1.8em;
-    text-shadow: $sb-text-shadow;
     padding: 0;
   }
   .sb-text,
@@ -79,14 +59,15 @@
     margin-bottom: 3em;
   }
   .sb-count {
+    font-weight: normal;
     top: 100%;
-    width: 100%;
     height: 1.8em;
     color: darken($sb-gray, 20%);
     position: absolute;
     background: $sb-accent;
     border-radius: .4em;
     margin-top: 1em;
+    padding-top: 0.2em;
     box-shadow: 0 0 1px rgba(0, 0, 0, .3);
     display: flex;
     align-items: center;

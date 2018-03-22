@@ -11,10 +11,12 @@ $sb-pinterest: #bd081c !default;
 $sb-reddit: #ff4006 !default;
 $sb-tumblr: #36465d !default;
 $sb-whatsapp: #25d366 !default;
+$sb-messenger: #0080FF !default;
 $sb-telegram: #0088cc !default;
+$sb-xing: #006567 !default;
 $sb-email: #FF961C !default;
 $sb-vk: #4C75A3 !default;
-$sb-more: #614696 !default;
+$sb-more: #FF6651 !default;
 $sb-copy: #607D8B !default;
 $sb-print: #32a1a3 !default;
 $sb-gray: #a5a5a5 !default;
@@ -38,4 +40,22 @@ $sb-line-height: 2.571em;
 
 /** share buttons colors */
 
-$sb-buttons: (facebook: $sb-facebook, twitter: $sb-twitter, google: $sb-google, stumble: $sb-stumble, linkedin: $sb-linkedin, pinterest: $sb-pinterest, reddit: $sb-reddit, tumblr: $sb-tumblr, whatsapp: $sb-whatsapp, telegram: $sb-telegram, email: $sb-email, vk: $sb-vk, more: $sb-more, copy: $sb-copy, print: $sb-print) !default;
+$sb-buttons: (
+  facebook: $sb-facebook,
+  twitter: $sb-twitter,
+  google: $sb-google,
+  stumble: $sb-stumble,
+  linkedin: $sb-linkedin,
+  pinterest: $sb-pinterest,
+  reddit: $sb-reddit,
+  tumblr: $sb-tumblr,
+  whatsapp: $sb-whatsapp,
+  messenger: $sb-messenger,
+  telegram: $sb-telegram,
+  xing: $sb-xing,
+  email: $sb-email,
+  vk: $sb-vk,
+  more: $sb-more,
+  copy: $sb-copy,
+  print: $sb-print
+) !default;
