@@ -7,7 +7,7 @@ export const shareButtonsProp: IShareButtons = {
     type: 'facebook',
     text: 'Facebook',
     icon: 'fab fa-facebook-f',
-    color: '#3b5998',
+    color: '#4267B2',
     share: {
       desktop: 'https://www.facebook.com/sharer/sharer.php?u=',
       android: 'https://www.facebook.com/sharer/sharer.php?u=',
@@ -161,6 +161,17 @@ export const shareButtonsProp: IShareButtons = {
       }
     }
   },
+  messenger: {
+    type: 'messenger',
+    text: 'Messenger',
+    icon: 'fab fa-facebook-messenger',
+    color: '#0080FF',
+    share: {
+      android: 'fb-messenger://share/?link=',
+      ios: 'fb-messenger://share/?link=',
+      operators: [noneOperator]
+    }
+  },
   telegram: {
     type: 'telegram',
     text: 'Telegram',
@@ -197,14 +208,26 @@ export const shareButtonsProp: IShareButtons = {
       desktop: 'http://www.stumbleupon.com/submit?url=',
       android: 'http://www.stumbleupon.com/submit?url=',
       ios: 'http://www.stumbleupon.com/submit?url=',
-      operators: [noneOperator],
+      operators: [noneOperator]
+    }
+  },
+  xing: {
+    type: 'xing',
+    text: 'Xing',
+    icon: 'fab fa-xing',
+    color: '#006567',
+    share: {
+      desktop: 'https://www.xing.com/app/user?op=share&url=',
+      android: 'https://www.xing.com/app/user?op=share&url=',
+      ios: 'https://www.xing.com/app/user?op=share&url=',
+      operators: [noneOperator]
     }
   },
   email: {
     type: 'email',
     text: 'Email',
     icon: 'fas fa-envelope',
-    color: '#32A1A3',
+    color: '#FF961C',
     share: {
       desktop: 'mailto:?',
       android: 'mailto:?',
@@ -233,7 +256,7 @@ export const shareButtonsProp: IShareButtons = {
     type: 'print',
     text: 'Print',
     icon: 'fas fa-print',
-    color: 'brown',
+    color: '#32a1a3',
     share: {
       operators: [printOperator]
     }

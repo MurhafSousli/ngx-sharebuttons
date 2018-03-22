@@ -40,7 +40,9 @@ export interface IShareButtons {
   reddit?: IShareButton;
   vk?: IShareButton;
   telegram?: IShareButton;
+  messenger?: IShareButton;
   whatsapp?: IShareButton;
+  xing?: IShareButton;
   email?: IShareButton;
   print?: IShareButton;
   copy?: IShareButton;

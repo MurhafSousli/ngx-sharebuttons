@@ -12,7 +12,7 @@ export class ShareButtons {
     prop: shareButtonsProp,
     options: {
       theme: 'default',
-      include: Object.keys(shareButtonsProp),
+      include: [],
       exclude: [],
       size: 0,
       title: null,
@@ -31,6 +31,10 @@ export class ShareButtons {
     if (config) {
       this.setConfig(config);
     }
+  }
+
+  get prop() {
+    return this.config.prop;
   }
 
   get twitterAccount() {
@@ -74,7 +78,7 @@ export class ShareButtons {
     this.config$.next(this.config);
   }
 
-  registerButton(name: string, data: IShareButton) {
+  addButton(name: string, data: IShareButton) {
     const config = {
       prop: {...shareButtonsProp, ...{[name]: data}}
     };

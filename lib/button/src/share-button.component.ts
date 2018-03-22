@@ -33,12 +33,11 @@ export class ShareButtonComponent {
     this.button = button;
   }
 
-  /** on set share URL */
+  /** Share URL */
   @Input('url')
-  set setUrl(newUrl: string) {
-    /** Reset share count when url changes */
+  set setUrl(url: string) {
     this.shareCount = 0;
-    this.url = newUrl;
+    this.url = url;
   }
 
   /** Share meta tags */
@@ -63,10 +62,7 @@ export class ShareButtonComponent {
   @Input() size = this.share.size;
 
   /** Button theme */
-  @Input('theme')
-  set setTheme(theme: string) {
-    this.buttonClass = 'sb-button sb-' + theme;
-  }
+  @Input() theme: string = this.share.theme;
 
   /** Share count event */
   @Output() count = new EventEmitter<number>();
@@ -78,9 +74,11 @@ export class ShareButtonComponent {
   @Output() closed = new EventEmitter<string>();
 
   /** Set theme as button class */
-  @HostBinding('class') buttonClass = 'sb-button sb-' + this.share.theme;
+  @HostBinding('class') get buttonClass() {
+    return `sb-button sb-${this.theme}`;
+  }
 
-  /** Share directive reference to display button icon and text */
+  /** Get button prop from ShareDirective */
   @ViewChild(ShareButtonDirective) ref: ShareButtonDirective;
 
   constructor(private share: ShareButtons) {
