@@ -3,24 +3,25 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IShareButton, IShareButtons, ShareButtonsConfig } from './share.models';
 import { CONFIG } from './share.tokens';
 import { shareButtonsProp } from './share.prop';
-import { mergeDeep } from './utils';
+import { getMetaTagContent, mergeDeep } from './utils';
 
 @Injectable()
 export class ShareButtons {
 
-  config = {
+  config: ShareButtonsConfig = {
     prop: shareButtonsProp,
     options: {
       theme: 'default',
       include: [],
       exclude: [],
       size: 0,
-      title: null,
-      image: null,
-      description: null,
-      tags: null,
+      url: getMetaTagContent('og:url'),
+      title: getMetaTagContent('og:title'),
+      description: getMetaTagContent('og:description'),
+      image: getMetaTagContent('og:image'),
+      tags: undefined,
       gaTracking: false,
-      twitterAccount: null,
+      twitterAccount: undefined,
       windowWidth: 800,
       windowHeight: 500
     }
@@ -47,6 +48,10 @@ export class ShareButtons {
 
   get windowSize() {
     return `width=${this.config.options.windowWidth}, height=${this.config.options.windowHeight}`;
+  }
+
+  get url() {
+    return this.config.options.url;
   }
 
   get title() {

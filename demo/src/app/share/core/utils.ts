@@ -69,3 +69,37 @@ export function copyToClipboard(text: string, ios: boolean) {
     resolve();
   });
 }
+
+/** Get meta tag content */
+export function getMetaTagContent(key: string) {
+  const metaTag: Element = document.querySelector(`meta[property="${key}"]`);
+  return metaTag ? metaTag.getAttribute('content') : undefined;
+}
+
+/** Detect operating system 'ios', 'android', or 'desktop' */
+export function getOS(window: any, navigator: Navigator) {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  if (/android/i.test(userAgent)) {
+    return 'android';
+  }
+
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    return 'ios';
+  }
+  return 'desktop';
+}
+
+
+/** Returns a valid URL or falls back to current URL */
+export function getValidUrl(url: string, fallbackUrl: string) {
+
+  if (url) {
+    const r = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+    if (r.test(url)) {
+      return url;
+    }
+    console.warn(`[ShareButtons]: Sharing link '${url}' is invalid!`);
+  }
+  return fallbackUrl;
+}
