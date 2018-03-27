@@ -1,5 +1,25 @@
 # Changelog
 
+## 5.2.0
+
+- refactor(ShareButtonsService): Initialize meta tags from document head 'og' meta tags.
+- refactor(ShareButtonsService): Add `url` as a meta tag property to the global config.
+- refactor(ShareDirective): Initialize meta tags inputs from the global config.
+- refactor(Props): Add url as meta tag property.
+- refactor(Operators): Removes Pinterest operator since description and image meta tags are being set from the service.
+- refactor(Operators): Removes None operator since url became part of the meta tags.
+- refactor(Operators): Changes `EmailOperator` to `urlInMessageOperator`
+- refactor(Utils): Move `getOS()` and `getValidUrl` to utils file and remove encodeUriComponent.
+- refactor(Utils): Do not encode the url in `getValidUrl` function since the url becomes a meta tag.
+- fix(WhatsApp): Adds share URL to message body, closes [#239](https://github.com/MurhafSousli/ngx-sharebuttons/issues/239)
+
+
+### Note:
+
+Now the meta tags are initialized from document head meta tags (og:title, og:description, og:image, og:url) if they exist, This means that if you use SSR you don't need to set them manually.
+
+### No breaking changes
+
 ## 5.1.0
 
 - feat(ShareButtons): Adds Messenger button (Mobile only), closes [#233](https://github.com/MurhafSousli/ngx-sharebuttons/issues/233).
