@@ -5,36 +5,30 @@ import { ShareButtonRef } from './share.models';
 import { copyToClipboard, mergeDeep } from './utils';
 
 /**
- * None operator - just return the sharer URL
- */
-export const noneOperator = map((ref: ShareButtonRef) => (ref.prop.share[ref.os]) ? ref.prop.share[ref.os] + ref.url : null);
-
-/**
- * Meta tags operator - Serialize meta tags in the sharer URL
+ * Meta tags operator - Serialize meta tags into the sharer URL
  */
 export const metaTagsOperator = map((ref: ShareButtonRef) => {
 
-  // object contains supported meta tags
-  const metaTags = ref.prop.share.metaTags;
-
-  // object contains meta tags values */
-  const metaTagsValues = ref.metaTags;
-
   // Social network sharer URL */
   const SharerURL = ref.prop.share[ref.os];
+  if (SharerURL) {
 
-  // User share link
-  let link = ref.url;
+    // object contains supported meta tags
+    const metaTags = ref.prop.share.metaTags;
 
-  // Set each meta tag with user value
-  if (metaTags) {
-    Object.keys(metaTags).map((key) => {
-      if (metaTagsValues[key]) {
-        link += `&${metaTags[key]}=${encodeURIComponent(metaTagsValues[key])}`;
-      }
-    });
+    // object contains meta tags values */
+    const metaTagsValues = ref.metaTags;
+
+    let link = '';
+    // Set each meta tag with user value
+    if (metaTags) {
+      link = Object.entries(metaTags).map(([key, metaTag]) =>
+        metaTagsValues[key] ? `${metaTag}=${encodeURIComponent(metaTagsValues[key])}` : ''
+      ).join('&');
+    }
+    return SharerURL + link;
   }
-  return SharerURL + link;
+  return;
 });
 
 /**
@@ -43,33 +37,7 @@ export const metaTagsOperator = map((ref: ShareButtonRef) => {
 export const printOperator = map((ref: ShareButtonRef) => ref.window.print());
 
 /**
- * Pinterest operator - Since Pinterest requires the description and image meta tags,
- * this function checks if the meta tags are presented, if not it falls back to page meta tags
- * This should placed after the metaTagsOperator
- */
-export const pinterestOperator = map((url: string) => {
-  if (!url.includes('&description')) {
-    /** If user didn't add description, get it from the OG meta tag */
-    const ogDescription: Element = document.querySelector(`meta[property="og:description"]`);
-    if (ogDescription) {
-      url += '&description=' + ogDescription.getAttribute('content');
-    } else {
-      console.warn(`[ShareButtons]: You didn't set the description text for Pinterest button`);
-    }
-  }
-  if (!url.includes('&media')) {
-    const ogImage: Element = document.querySelector(`meta[property="og:image"]`);
-    if (ogImage) {
-      url += '&media=' + ogImage.getAttribute('content');
-    } else {
-      console.warn(`[ShareButtons]: You didn't set the image URL for Pinterest button`);
-    }
-  }
-  return url;
-});
-
-/**
- * Copy button operator - to copy link to clipboard
+ * Copy link to clipboard, used for copy button
  */
 export const copyOperators = [
   map((ref: ShareButtonRef) => {
@@ -78,7 +46,7 @@ export const copyOperators = [
     ref.renderer.setStyle(ref.el, 'pointer-events', 'none');
 
     ref.temp = {text: ref.prop.text, icon: ref.prop.icon};
-    const link = decodeURIComponent(ref.url);
+    const link = decodeURIComponent(ref.metaTags.url);
 
     copyToClipboard(link, ref.os === 'ios')
       .then(() => {
@@ -105,12 +73,15 @@ export const copyOperators = [
   })
 ];
 
-export const emailOperator = map((ref: ShareButtonRef) => {
+/**
+ * Add the share URL to message body, used for WhatsApp and Email buttons
+ */
+export const urlInMessageOperator = map((ref: ShareButtonRef) => {
   const description = ref.metaTags.description;
-  const url = decodeURIComponent(ref.url);
+  const url = ref.metaTags.url;
   const newRef: ShareButtonRef = {
     metaTags: {
-      description: description ? `${description}\r\n\r\n${url}` : url
+      description: description ? `${description}\r\n${url}` : url
     }
   };
   return mergeDeep(ref, newRef);
