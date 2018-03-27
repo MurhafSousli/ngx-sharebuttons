@@ -10,18 +10,25 @@
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
  
 [stackblitz](https://stackblitz.com/edit/ngx-sharebuttons)
-
 ## Share button component
 
-Use `<share-button>` component to add buttons individually.
+Use `<share-button>` component to add share buttons individually.
 
-Share button component is built on top of `ShareModule` so you need to install both `@ngx-share/core` and `@ngx-share/button`.
+### Installation
 
-To use the default icons, install `font-awesome` package.
+**NPM**
 
 ```bash
 $ npm install --save @ngx-share/core @ngx-share/button @fortawesome/fontawesome-free-webfonts
 ```
+
+**YARN**
+
+```bash
+$ yarn add @ngx-share/core @ngx-share/button @fortawesome/fontawesome-free-webfonts
+```
+
+### Usage
 
 Import `ShareButtonModule` in your module
 
@@ -43,8 +50,8 @@ Import core styles and theme from the global style `src/styles.scss`
 @import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
 @import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
 @import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
-@import "~@ngx-share/button/styles/share-buttons";
-@import "~@ngx-share/button/styles/themes/default/default-theme";
+@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/default/default-theme';
 ```
 
 _Check all themes [here](https://murhafsousli.github.io/ngx-sharebuttons/#/themes)_
@@ -54,12 +61,11 @@ Now you can use the component in your template
 ```html
 <share-button button="facebook"></share-button>
 <share-button button="twitter"></share-button>
-
-<!--Use custom text-->
-<share-button button="pinterest" text="Pin" showText="true"></share-button>
 ```
 
-Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-component)
+Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-component).
+
+### Available Inputs / Outputs
 
 | Name           | Default value | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
@@ -67,14 +73,14 @@ Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebutto
 | [theme]        | null          | Set button theme.                                               |
 | [size]         | 0             | Button size, e.g. -4, 2.5, 1...etc.                             |
 | [url]          | current URL   | Sharing link.                                                   |
-| [title]        | null          | Override title meta tag for LinkedIn and Reddit.                |
-| [description]  | null          | Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest |
+| [title]        | null          | Override title meta tag for LinkedIn, Reddit and Email.         |
+| [description]  | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
 | [image]        | null          | Override image meta tag for Pinterest only.                     |
 | [tags]         | null          | Override tags for Tumblr and Twitter.                           |
 | [showIcon]     | true          | Show button icon.                                               |
 | [showText]     | false         | Show button text.                                               |
 | [showCount]    | false         | Show share count.                                               |
-| (opened)       | button name   | Stream that emits when share window has opened.                 |
+| (opened)       | button name   | Stream that emits when share dialog has opened.                 |
 | (closed)       | button name   | Stream that emits when share dialog has closed.                 |
 | (count)        | share count   | Stream that emits share count of the share URL.                 |
 

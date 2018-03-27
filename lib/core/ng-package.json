@@ -1,7 +1,8 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "lib": {
-    "entryFile": "./src/index.ts"
+    "entryFile": "./src/index.ts",
+    "languageLevel": ["dom", "es2017"]
   },
   "dest": "../../build/core"
 }

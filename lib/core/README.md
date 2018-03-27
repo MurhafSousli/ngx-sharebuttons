@@ -16,11 +16,21 @@
 
 Convert any element to a share button using `[shareButton]` directive.
 
-Install with npm
-  
+### Installation
+
+**NPM**
+
 ```bash
-$ npm install --save @ngx-share/core 
+$ npm install --save @ngx-share/core @fortawesome/fontawesome-free-webfonts
 ```
+
+**YARN**
+
+```bash
+$ yarn add @ngx-share/core @fortawesome/fontawesome-free-webfonts
+```
+
+### Usage
 
 Import `ShareModule` in your module
 
@@ -30,7 +40,7 @@ import { ShareModule } from '@ngx-share/core';
 @NgModule({
   imports: [
     HttpClientModule,      // (Required) for share counts
-    HttpClientJsonpModule, // (Optional) For Tumblr counts
+    HttpClientJsonpModule, // (Optional) for Tumblr counts
     ShareModule.forRoot()
   ]
 })
@@ -44,7 +54,7 @@ Import FontAwesome if you want to use the icons
 @import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 ```
 
-In your template
+The most basic usage to create a share button is `shareButton={{buttonName}}` on a button
 
 ```html
 <button shareButton="facebook">Share</button>
@@ -52,7 +62,9 @@ In your template
 <button shareButton="pinterest">Pin</button>
 ```
 
-To use the default icons or colors, use **ShareButtons** service so you can access buttons properties
+To use the default icons and colors, Inject **ShareButtons** service in your component then access the properties from the template
+
+Component:
 
 ```ts
 import { ShareButtons } from '@ngx-share/core';
@@ -66,7 +78,7 @@ export class MyComponent {
 }
 ```
 
-Now you can set them
+Template:
 
 ```html
 <!--Set color and icon-->
@@ -80,14 +92,16 @@ Now you can set them
 </button>
 ```
 
-Check [ShareButton Directive Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-directive)
+Check [ShareButton Directive Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-directive).
+
+### Available Inputs / Outputs
 
 | Name            | Default value | Description                                                     |
 | --------------- | ------------- | --------------------------------------------------------------- |
 | [shareButton]   | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
 | [sbUrl]         | current URL   | Sharing link.                                                   |
-| [sbTitle]       | null          | Override title meta tag for LinkedIn and Reddit.                |
-| [sbDescription] | null          | Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest |
+| [sbTitle]       | null          | Override title meta tag for LinkedIn, Reddit and Email.         |
+| [sbDescription] | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
 | [sbImage]       | null          | Override image meta tag for Pinterest only.                     |
 | [sbTags]        | null          | Override tags for Tumblr and Twitter.                           |
 | (sbOpened)      | button name   | Stream that emits when share window has opened.                 |
