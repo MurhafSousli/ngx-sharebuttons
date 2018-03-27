@@ -13,15 +13,23 @@
 
 ## Share buttons component
 
-Use `<share-buttons>` component to a collection of share buttons.
+Use `<share-buttons>` to add a collection of share buttons.
 
-Share buttons component is built on top of `ShareModule` and `ShareButtonModule` so you need to install both `@ngx-share/core`, `@ngx-share/button` and  `@ngx-share/buttons`.
+### Installation
 
-To use the default icons, install `font-awesome` package.
+**NPM**
 
 ```bash
 $ npm install --save @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts
 ```
+
+**YARN**
+
+```bash
+$ yarn add @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts
+```
+
+### Usage
 
 Import `ShareButtonModule` in your module
 
@@ -31,20 +39,20 @@ import { ShareButtonModule } from '@ngx-share/button';
 @NgModule({
   imports: [
     HttpClientModule,      // (Required) for share counts
-    HttpClientJsonpModule, // (Optional) For Tumblr counts
+    HttpClientJsonpModule, // (Optional) for Tumblr counts
     ShareButtonModule.forRoot()
   ]
 })
 ```
 
-Import core styles and theme from the global style `src/styles.scss`
+Import icons, core styles and theme from the global style `src/styles.scss`
 
 ```css
 @import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
 @import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
 @import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
-@import "~@ngx-share/button/styles/share-buttons";
-@import "~@ngx-share/button/styles/themes/default/default-theme";
+@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/default/default-theme';
 ```
 
 _Check [all themes](https://murhafsousli.github.io/ngx-sharebuttons/#/themes)_
@@ -57,25 +65,26 @@ Now you can use the component in your template
 
 Check [ShareButtons Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-buttons-component)
 
+### Available Inputs / Outputs
+
 | Name           | Default value | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
-| [include]      | [all buttons] | Include certain buttons. Button's order will be as you type it. |
+| [include]      | [ ]           | Include certain buttons. Button's order will be as you type it. |
 | [exclude]      | [ ]           | Exclude certain buttons.                                        |
 | [show]         | null          | Number of buttons to show, if defined 'more' button will appear.|
 | [theme]        | null          | Set button theme.                                               |
 | [size]         | 0             | Button size, e.g. -4, 2.5, 1...etc.                             |
 | [url]          | current URL   | Sharing link.                                                   |
-| [title]        | null          | Override title meta tag for LinkedIn and Reddit.                |
-| [description]  | null          | Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest |
+| [title]        | null          | Override title meta tag for LinkedIn, Reddit and Email.         |
+| [description]  | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
 | [image]        | null          | Override image meta tag for Pinterest only.                     |
 | [tags]         | null          | Override tags for Tumblr and Twitter.                           |
 | [showIcon]     | true          | Show button icon.                                               |
 | [showText]     | false         | Show button text.                                               |
 | [showCount]    | false         | Show share count.                                               |
-| (opened)       | button name   | Stream that emits when share window has opened.                 |
+| (opened)       | button name   | Stream that emits when share dialog has opened.                 |
 | (closed)       | button name   | Stream that emits when share dialog has closed.                 |
-| (count)        | share count   | Stream that emits share count of the share URL.                 |
-
+| (count)        | share count   | Stream that emits the share count of the URL.                   |
 
 ## Issues
 
