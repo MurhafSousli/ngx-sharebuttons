@@ -16,6 +16,7 @@ export interface ShareButtonsOptions {
   include?: string[];
   exclude?: string[];
   size?: number;
+  url?: string;
   title?: string;
   description?: string;
   image?: string;
@@ -77,7 +78,7 @@ export interface IShareButton {
 
 /**
  * Share button directive ref interface
- * It has all the needed objects for the share operators
+ * This ref to be used in the share operators
  */
 export interface ShareButtonRef {
   prop?: IShareButton;
@@ -87,8 +88,8 @@ export interface ShareButtonRef {
   el?: HTMLElement;
   os?: string;
   temp?: any;
-  url?: string;
   metaTags: {
+    url?: string;
     title?: string;
     description?: string;
     image?: string;

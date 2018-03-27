@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators/map';
-import { noneOperator, metaTagsOperator, printOperator, pinterestOperator, copyOperators, emailOperator } from './share.operators';
+import { metaTagsOperator, printOperator, copyOperators, urlInMessageOperator } from './share.operators';
 import { IShareButtons } from './share.models';
 
 export const shareButtonsProp: IShareButtons = {
@@ -9,10 +9,15 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-facebook-f',
     color: '#4267B2',
     share: {
-      desktop: 'https://www.facebook.com/sharer/sharer.php?u=',
-      android: 'https://www.facebook.com/sharer/sharer.php?u=',
-      ios: 'https://www.facebook.com/sharer/sharer.php?u=',
-      operators: [noneOperator]
+      desktop: 'https://www.facebook.com/sharer/sharer.php?',
+      android: 'https://www.facebook.com/sharer/sharer.php?',
+      ios: 'https://www.facebook.com/sharer/sharer.php?',
+      metaTags: {
+        url: 'u'
+      },
+      operators: [
+        metaTagsOperator
+      ]
     },
     count: {
       request: 'http',
@@ -28,13 +33,14 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-twitter',
     color: '#00acee',
     share: {
-      desktop: 'https://twitter.com/intent/tweet?url=',
-      android: 'https://twitter.com/intent/tweet?url=',
-      ios: 'https://twitter.com/intent/tweet?url=',
+      desktop: 'https://twitter.com/intent/tweet?',
+      android: 'https://twitter.com/intent/tweet?',
+      ios: 'https://twitter.com/intent/tweet?',
       operators: [
         metaTagsOperator
       ],
       metaTags: {
+        url: 'url',
         description: 'text',
         tags: 'hashtags',
         via: 'via'
@@ -47,10 +53,15 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-google-plus-g',
     color: '#DB4437',
     share: {
-      desktop: 'https://plus.google.com/share?url=',
-      android: 'https://plus.google.com/share?url=',
-      ios: 'https://plus.google.com/share?url=',
-      operators: [noneOperator],
+      desktop: 'https://plus.google.com/share?',
+      android: 'https://plus.google.com/share?',
+      ios: 'https://plus.google.com/share?',
+      metaTags: {
+        url: 'url',
+      },
+      operators: [
+        metaTagsOperator
+      ]
     }
   },
   linkedin: {
@@ -59,11 +70,14 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-linkedin-in',
     color: '#006fa6',
     share: {
-      desktop: 'http://www.linkedin.com/shareArticle?url=',
-      android: 'http://www.linkedin.com/shareArticle?url=',
-      ios: 'http://www.linkedin.com/shareArticle?url=',
-      operators: [metaTagsOperator],
+      desktop: 'http://www.linkedin.com/shareArticle?',
+      android: 'http://www.linkedin.com/shareArticle?',
+      ios: 'http://www.linkedin.com/shareArticle?',
+      operators: [
+        metaTagsOperator
+      ],
       metaTags: {
+        url: 'url',
         title: 'title',
         description: 'summary'
       },
@@ -75,14 +89,14 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-pinterest-p',
     color: '#BD091D',
     share: {
-      desktop: 'https://in.pinterest.com/pin/create/button/?url=',
-      android: 'https://in.pinterest.com/pin/create/button/?url=',
-      ios: 'https://in.pinterest.com/pin/create/button/?url=',
+      desktop: 'https://in.pinterest.com/pin/create/button/?',
+      android: 'https://in.pinterest.com/pin/create/button/?',
+      ios: 'https://in.pinterest.com/pin/create/button/?',
       operators: [
-        metaTagsOperator,
-        pinterestOperator
+        metaTagsOperator
       ],
       metaTags: {
+        url: 'url',
         description: 'description',
         image: 'media'
       }
@@ -103,13 +117,14 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-reddit-alien',
     color: '#FF4006',
     share: {
-      desktop: 'http://www.reddit.com/submit?url=',
-      android: 'http://www.reddit.com/submit?url=',
-      ios: 'http://www.reddit.com/submit?url=',
+      desktop: 'http://www.reddit.com/submit?',
+      android: 'http://www.reddit.com/submit?',
+      ios: 'http://www.reddit.com/submit?',
       operators: [
         metaTagsOperator
       ],
       metaTags: {
+        url: 'url',
         title: 'title'
       },
     },
@@ -127,13 +142,14 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-tumblr',
     color: '#36465D',
     share: {
-      desktop: 'http://tumblr.com/widgets/share/tool?canonicalUrl=',
-      android: 'http://tumblr.com/widgets/share/tool?canonicalUrl=',
-      ios: 'http://tumblr.com/widgets/share/tool?canonicalUrl=',
+      desktop: 'http://tumblr.com/widgets/share/tool?',
+      android: 'http://tumblr.com/widgets/share/tool?',
+      ios: 'http://tumblr.com/widgets/share/tool?',
       operators: [
         metaTagsOperator
       ],
       metaTags: {
+        url: 'canonicalUrl',
         description: 'caption',
         tags: 'tags'
       }
@@ -155,7 +171,10 @@ export const shareButtonsProp: IShareButtons = {
       desktop: 'https://web.whatsapp.com/send?',
       android: 'whatsapp://send?',
       ios: 'whatsapp://send?',
-      operators: [metaTagsOperator],
+      operators: [
+        urlInMessageOperator,
+        metaTagsOperator
+      ],
       metaTags: {
         description: 'text'
       }
@@ -167,9 +186,14 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-facebook-messenger',
     color: '#0080FF',
     share: {
-      android: 'fb-messenger://share/?link=',
-      ios: 'fb-messenger://share/?link=',
-      operators: [noneOperator]
+      android: 'fb-messenger://share/?',
+      ios: 'fb-messenger://share/?',
+      metaTags: {
+        url: 'link'
+      },
+      operators: [
+        metaTagsOperator
+      ]
     }
   },
   telegram: {
@@ -178,11 +202,14 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-telegram-plane',
     color: '#0088cc',
     share: {
-      desktop: 'https://t.me/share/url?url=',
-      android: 'https://t.me/share/url?url=',
-      ios: 'https://t.me/share/url?url=',
-      operators: [metaTagsOperator],
+      desktop: 'https://t.me/share/url?',
+      android: 'https://t.me/share/url?',
+      ios: 'https://t.me/share/url?',
+      operators: [
+        metaTagsOperator
+      ],
       metaTags: {
+        url: 'url',
         description: 'text'
       }
     }
@@ -193,10 +220,15 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-vk',
     color: '#4C75A3',
     share: {
-      desktop: 'http://vk.com/share.php?url=',
-      android: 'http://vk.com/share.php?url=',
-      ios: 'http://vk.com/share.php?url=',
-      operators: [noneOperator]
+      desktop: 'http://vk.com/share.php?',
+      android: 'http://vk.com/share.php?',
+      ios: 'http://vk.com/share.php?',
+      metaTags: {
+        url: 'url'
+      },
+      operators: [
+        metaTagsOperator
+      ]
     }
   },
   stumble: {
@@ -205,10 +237,15 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-stumbleupon',
     color: '#eb4924',
     share: {
-      desktop: 'http://www.stumbleupon.com/submit?url=',
-      android: 'http://www.stumbleupon.com/submit?url=',
-      ios: 'http://www.stumbleupon.com/submit?url=',
-      operators: [noneOperator]
+      desktop: 'http://www.stumbleupon.com/submit?',
+      android: 'http://www.stumbleupon.com/submit?',
+      ios: 'http://www.stumbleupon.com/submit?',
+      metaTags: {
+        url: 'url'
+      },
+      operators: [
+        metaTagsOperator
+      ]
     }
   },
   xing: {
@@ -217,10 +254,15 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fab fa-xing',
     color: '#006567',
     share: {
-      desktop: 'https://www.xing.com/app/user?op=share&url=',
-      android: 'https://www.xing.com/app/user?op=share&url=',
-      ios: 'https://www.xing.com/app/user?op=share&url=',
-      operators: [noneOperator]
+      desktop: 'https://www.xing.com/app/user?op=share&',
+      android: 'https://www.xing.com/app/user?op=share&',
+      ios: 'https://www.xing.com/app/user?op=share&',
+      metaTags: {
+        url: 'url'
+      },
+      operators: [
+        metaTagsOperator
+      ]
     }
   },
   email: {
@@ -232,7 +274,10 @@ export const shareButtonsProp: IShareButtons = {
       desktop: 'mailto:?',
       android: 'mailto:?',
       ios: 'mailto:?',
-      operators: [emailOperator, metaTagsOperator],
+      operators: [
+        urlInMessageOperator,
+        metaTagsOperator
+      ],
       metaTags: {
         title: 'subject',
         description: 'body'
@@ -258,7 +303,9 @@ export const shareButtonsProp: IShareButtons = {
     icon: 'fas fa-print',
     color: '#32a1a3',
     share: {
-      operators: [printOperator]
+      operators: [
+        printOperator
+      ]
     }
   }
 };

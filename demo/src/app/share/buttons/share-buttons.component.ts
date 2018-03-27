@@ -105,7 +105,6 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
     );
 
     this.configSub$ = this.share.config$.subscribe((config: ShareButtonsConfig) => {
-      console.log(config);
       // Use global include buttons, otherwise fallback all buttons
       const includedButtons = config.options.include.length ? config.options.include : Object.keys(config.prop);
       const userButtons = includedButtons.filter((btn) => config.options.exclude.indexOf(btn) < 0);
