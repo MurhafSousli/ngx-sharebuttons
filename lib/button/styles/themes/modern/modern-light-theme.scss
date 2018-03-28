@@ -6,13 +6,12 @@
 
   @each $button,
   $color in $sb-buttons {
-    --#{$button}-color: $color;
     &.sb-#{$button} {
       color: $color;
-      color: var(--#{$button}-color);
     }
   }
 
+  color: var(--button-color) !important;
   background-color: $sb-accent;
   transition: box-shadow ease-in 150ms, transform ease-in 150ms;
   border-radius: $sb-border-radius;

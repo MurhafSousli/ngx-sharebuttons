@@ -6,12 +6,10 @@
 
   @each $button,
   $color in $sb-buttons {
-    --#{$button}-color: $color;
     &.sb-#{$button} {
       .sb-icon,
       .sb-text {
         color: $color;
-        color: var(--#{$button}-color);
       }
     }
   }
@@ -25,7 +23,9 @@
       box-shadow: 0 7px 8px -4px rgba(0, 0, 0, .2), 0 12px 17px 2px rgba(0, 0, 0, .14), 0 5px 22px 4px rgba(0, 0, 0, .12);
     }
   }
-
+  .sb-icon, .sb-text {
+    color: var(--button-color) !important;
+  }
   .sb-icon {
     box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
     font-size: 1.4em;

@@ -186,7 +186,7 @@ export class ShareButtonDirective implements OnChanges {
       this.renderer.addClass(this.el.nativeElement, `sb-${button.type}`);
 
       // Set button css color variable
-      this.el.nativeElement.style.setProperty(`--${this.prop.type}-color`, this.prop.color);
+      this.el.nativeElement.style.setProperty('--button-color', this.prop.color);
 
       // Keep a copy of the class for future replacement
       this.buttonClass = button.type;
