@@ -319,7 +319,7 @@ export const shareButtonsProp: IShareButtons = {
     type: 'print',
     text: 'Print',
     icon: 'fas fa-print',
-    color: '#32a1a3',
+    color: '#765AA2',
     share: {
       operators: [
         printOperator
