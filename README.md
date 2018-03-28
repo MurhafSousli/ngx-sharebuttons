@@ -13,8 +13,8 @@
 
 This is the documentation for ngx-sharebuttons version 5.x (Angular >= 5)
 
-For ngx-sharebuttons version 4.x (Angular >= 5), See this [documentation](/README_V4.md)
-For ngx-sharebuttons version 3.x (Angular 2 & 4), See this [documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+- For ngx-sharebuttons version 4.x (Angular >= 5), See this [documentation](/README_V4.md)
+- For ngx-sharebuttons version 3.x (Angular 2 & 4), See this [documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
 
 ## Table of contents
 
@@ -33,6 +33,10 @@ For ngx-sharebuttons version 3.x (Angular 2 & 4), See this [documentation](https
 - [More plugins](#more)
 
 <a name="packages"/>
+
+## Available buttons
+
+`Facebook`, `Twitter`, `Google+`, `LinkedIn`, `Pinterest`, `WhatsApp`, `Messenger`, `Reddit`, `Tumblr`, `Telegram`, `Email`, `SMS`, `VK`, `StumbleUpOn`, `Xing`, `Copy link` and `Print`
 
 ## Packages
 
@@ -339,10 +343,10 @@ If the og meta tags are presented in the document head then it will be used as t
 
 ```html
 <head>
-  <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
-  <meta property="og:title" content="A Twitter for My Sister" />
-  <meta property="og:description" content="In the early days, Twitter grew so quickly that it was almost impossible to add new features because engineers spent their time trying to keep the rocket ship from stalling." />
-  <meta property="og:image" content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg" />
+  <meta property="og:title" content="The Rock" />
+  <meta property="og:description" content="Directed by Michael Bay.  With Sean Connery, Nicolas Cage, Ed Harris, John Spencer. A mild-mannered chemist and an ex-con must lead the counterstrike when a rogue group of military men, led by a renegade general, threaten a nerve gas attack from Alcatraz against San Francisco."/>
+  <meta property="og:url" content="http://www.imdb.com/title/tt0117500/" />
+  <meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" />
 </head>
 ```
 
