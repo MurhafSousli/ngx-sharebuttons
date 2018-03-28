@@ -265,6 +265,24 @@ export const shareButtonsProp: IShareButtons = {
       ]
     }
   },
+  sms: {
+    type: 'sms',
+    text: 'SMS',
+    icon: 'fas fa-comment-alt',
+    color: '#20c16c',
+    share: {
+      desktop: 'sms:?',
+      android: 'sms:?',
+      ios: 'sms:?',
+      metaTags: {
+        description: 'body'
+      },
+      operators: [
+        urlInMessageOperator,
+        metaTagsOperator
+      ]
+    }
+  },
   email: {
     type: 'email',
     text: 'Email',

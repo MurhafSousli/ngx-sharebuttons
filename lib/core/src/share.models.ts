@@ -44,6 +44,7 @@ export interface IShareButtons {
   messenger?: IShareButton;
   whatsapp?: IShareButton;
   xing?: IShareButton;
+  sms?: IShareButton;
   email?: IShareButton;
   print?: IShareButton;
   copy?: IShareButton;
