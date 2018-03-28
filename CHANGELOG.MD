@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.3.0
+
+- feat(Prop): Add SMS button.
+- refactor(ShareButtonsComponent): Make expand button in a component.
+- fix(ShareButton): Setting custom button color with css variable.
+
 ## 5.2.0
 
 - refactor(ShareButtonsService): Initialize meta tags from document head 'og' meta tags.
