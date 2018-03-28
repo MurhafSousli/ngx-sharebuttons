@@ -18,35 +18,10 @@
 
   <div class="sb-button sb-{{theme}}">
 
-    <!-- SHOW LESS BUTTON -->
-
-    <button *ngIf="state.expanded && state.shownCount < state.userButtons.length"
-            [style.fontSize.px]="(1 + size/20) * 14"
-            class="sb-wrapper sb-more sb-show-icon" (click)="updateState({expanded: false})">
-
-      <div class="sb-inner">
-        <div class="sb-content">
-          <div class="sb-icon">
-            <i class="fas fa-minus" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-    </button>
-
-    <!-- SHOW MORE BUTTON -->
-
-    <button *ngIf="!state.expanded && state.shownCount < state.userButtons.length"
-            [style.fontSize.px]="(1 + size/20) * 14"
-            class="sb-wrapper sb-more sb-show-icon" (click)="updateState({expanded: true})">
-
-      <div class="sb-inner">
-        <div class="sb-content">
-          <div class="sb-icon">
-            <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-    </button>
+    <expand-button [expanded]="state.expanded"
+                   [size]="(1 + size/20) * 14"
+                   (toggle)="updateState({expanded: $event})">
+    </expand-button>
 
   </div>
 </div>
