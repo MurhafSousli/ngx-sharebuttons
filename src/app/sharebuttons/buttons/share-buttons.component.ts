@@ -55,14 +55,15 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
     this.updateState({shownCount});
   }
 
-  /** Set share URL */
-  @Input() url: string;
-
   /** Share meta tags */
+  @Input() url: string;
   @Input() title: string;
   @Input() description: string;
   @Input() image: string;
   @Input() tags: string;
+
+  /** Set meta tags from document head, useful when SEO is supported */
+  @Input() autoSetMeta: boolean;
 
   /** Show buttons icon */
   @Input() showIcon = true;
@@ -104,8 +105,9 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
       })
     );
 
+    /** Subscribe to share buttons config changes, This updates the component whenever a new button is added */
     this.configSub$ = this.share.config$.subscribe((config: ShareButtonsConfig) => {
-      // Use global include buttons, otherwise fallback all buttons
+      // Use global include buttons, otherwise fallback to all buttons
       const includedButtons = config.options.include.length ? config.options.include : Object.keys(config.prop);
       const userButtons = includedButtons.filter((btn) => config.options.exclude.indexOf(btn) < 0);
       this.updateState({
@@ -126,3 +128,19 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   }
 
 }
+
+/**
+ * Explanation of the above code:
+ * ------------------------------
+ Include buttons: includes only wanted buttons and excludes the rest
+ Exclude buttons: excludes only the unwanted buttons
+ User buttons = Include buttons - exclude buttons
+ Selected Buttons = User buttons [shown number]
+
+ =====================================================================================
+
+ Why do we use both include and exclude inputs?
+
+ Because it is easier for users who want to disable one button to use [exclude] input instead of writing an array of all included buttons
+ And it is easier for users who want to enable only one button to use [include] input instead of writing an array of all excluded buttons
+ */

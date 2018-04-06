@@ -12,14 +12,13 @@
 
   @each $button,
   $color in $sb-buttons {
-    --#{$button}-color: $color;
     &.sb-#{$button} {
       background-color: $color;
-      background-color: var(--#{$button}-color);
     }
   }
 
   background-color: $sb-primary;
+  background-color: var(--button-color) !important;
   text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
   box-shadow: 0 0 1px 2px rgba(255, 255, 255, .2) inset, 0 1px 0 rgba(0, 0, 0, .3);
   border: 1px solid rgba(0, 0, 0, .2);
