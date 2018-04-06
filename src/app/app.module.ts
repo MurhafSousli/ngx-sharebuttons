@@ -4,6 +4,7 @@ import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ShareButtonsModule } from './sharebuttons/buttons';
+import { ShareModule } from './sharebuttons/core';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ShareButtonsModule } from './sharebuttons/buttons';
     BrowserModule.withServerTransition({appId: 'my-app'}),
     HttpClientModule,
     HttpClientJsonpModule,
+    // ShareModule.forRoot(),
     ShareButtonsModule.forRoot()
   ],
   providers: [],

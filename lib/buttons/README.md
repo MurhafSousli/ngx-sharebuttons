@@ -20,13 +20,15 @@ Use `<share-buttons>` to add a collection of share buttons.
 **NPM**
 
 ```bash
-$ npm install --save @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts
+$ npm install --save @ngx-share/core @ngx-share/button
+$ npm install --save @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 **YARN**
 
 ```bash
-$ yarn add @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts
+$ yarn add @ngx-share/core @ngx-share/button 
+$ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 ### Usage
@@ -39,52 +41,50 @@ import { ShareButtonModule } from '@ngx-share/button';
 @NgModule({
   imports: [
     HttpClientModule,      // (Required) for share counts
-    HttpClientJsonpModule, // (Optional) for Tumblr counts
+    HttpClientJsonpModule, // (Optional) For Tumblr counts
     ShareButtonModule.forRoot()
   ]
 })
 ```
 
-Import icons, core styles and theme from the global style `src/styles.scss`
+Import core styles and theme from the global style `src/styles.scss`
 
 ```css
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 @import '~@ngx-share/button/styles/share-buttons';
 @import '~@ngx-share/button/styles/themes/default/default-theme';
 ```
 
-_Check [all themes](https://murhafsousli.github.io/ngx-sharebuttons/#/themes)_
+_Check all themes [here](https://murhafsousli.github.io/ngx-sharebuttons/#/themes)_
 
 Now you can use the component in your template
 
 ```html
-<share-buttons></share-buttons>
+<share-button button="facebook"></share-button>
+<share-button button="twitter"></share-button>
 ```
 
-Check [ShareButtons Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-buttons-component)
+Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebuttons/#/share-button-component).
 
 ### Available Inputs / Outputs
 
 | Name           | Default value | Description                                                     |
 | -------------- | ------------- | --------------------------------------------------------------- |
-| [include]      | [ ]           | Include certain buttons. Button's order will be as you type it. |
-| [exclude]      | [ ]           | Exclude certain buttons.                                        |
-| [show]         | null          | Number of buttons to show, if defined 'more' button will appear.|
+| [button]       | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
 | [theme]        | null          | Set button theme.                                               |
+| [text]         | null          | Custom button text.                                             |
 | [size]         | 0             | Button size, e.g. -4, 2.5, 1...etc.                             |
 | [url]          | current URL   | Sharing link.                                                   |
 | [title]        | null          | Override title meta tag for LinkedIn, Reddit and Email.         |
 | [description]  | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
 | [image]        | null          | Override image meta tag for Pinterest only.                     |
 | [tags]         | null          | Override tags for Tumblr and Twitter.                           |
+| [autoSetMeta]  | true          | Initializes meta tags inputs from the SEO meta tags.            |
 | [showIcon]     | true          | Show button icon.                                               |
 | [showText]     | false         | Show button text.                                               |
 | [showCount]    | false         | Show share count.                                               |
 | (opened)       | button name   | Stream that emits when share dialog has opened.                 |
 | (closed)       | button name   | Stream that emits when share dialog has closed.                 |
-| (count)        | share count   | Stream that emits the share count of the URL.                   |
+| (count)        | share count   | Stream that emits share count of the share URL.                 |
 
 ## Issues
 

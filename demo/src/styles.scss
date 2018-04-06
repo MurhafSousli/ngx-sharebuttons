@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Play:400,700|Roboto:400,500,500i,700');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import '~normalize.css';
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 @import 'assets/style/variables';
 @import 'assets/style/material';
 @import 'app/share/button/styles/share-buttons';
@@ -75,7 +72,7 @@ pre {
   word-wrap: normal;
   overflow-x: auto;
   overflow-y: hidden;
-  border-left: 5px solid $footer-bg;
+  //border-left: 5px solid $footer-bg;
   margin: 2em 0;
   border-radius: .2em;
   box-shadow: $box-shadow;
@@ -246,4 +243,10 @@ code-switcher {
 
 .mat-input-underline.mat-form-field-underline {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.mat-chip {
+  //font-size: 11px;
+  font-family: 'Play', sans-serif;
+  text-transform: lowercase !important;
 }

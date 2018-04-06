@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'section-title',
@@ -6,6 +7,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     <div fxLayout fxLayoutAlign="start center">
       <h2>
         <i class="fas fa-caret-right" aria-hidden="true"></i>
+        <fa-icon [icon]="iconCaretRight" size="lg"></fa-icon>
         <ng-content></ng-content>
       </h2>
     </div>
@@ -27,7 +29,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       background-color: rgba(0, 0, 0, 0.8);
       margin-top: 15px;
     }
-    i {
+    fa-icon {
       color: #F44336;
       margin-right: 10px;
     }
@@ -37,4 +39,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class SectionTitleComponent {
 
+  iconCaretRight = faCaretRight;
 }

@@ -11,12 +11,11 @@
 
   @each $button,
   $color in $sb-buttons {
-    --#{$button}-color: $color;
     &.sb-#{$button} {
        color: $color;
-       color: var(--#{$button}-color);
     }
   }
+  color: var(--button-color) !important;
   background-color: $button-bg;
   background-image: linear-gradient(to bottom, $button-bg-light, $button-bg);
   border: 1px solid $border-color;

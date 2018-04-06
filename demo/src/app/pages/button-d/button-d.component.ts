@@ -31,45 +31,41 @@ export class MyComponent {
   constructor(public share: ShareButtons) {
   }
 }`,
-    example1: `<button mat-button shareButton="facebook"><i class="fa fa-facebook"></i></button>
-<button mat-raised-button shareButton="twitter"><i class="fa fa-twitter"></i></button>
-<button mat-icon-button shareButton="linkedin"><i class="fa fa-linkedin"></i></button>
-<button mat-fab shareButton="pinterest"><i class="fa fa-pinterest-p"></i></button>`,
-    example2: `<button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color">
-  <i [class]="share.prop.facebook.icon"></i>
+    example1: `<button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color">
+  <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
 </button>
 <button mat-fab shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color">
-  <i [class]="share.prop.twitter.icon"></i>
+  <fa-icon [icon]="share.prop.twitter.icon" size="lg"></fa-icon>
 </button>
 <button mat-fab shareButton="linkedin" [style.backgroundColor]="share.prop.linkedin.color">
-  <i [class]="share.prop.linkedin.icon"></i>
+  <fa-icon [icon]="share.prop.linkedin.icon" size="lg"></fa-icon>
 </button>
 <button mat-fab shareButton="whatsapp" [style.backgroundColor]="share.prop.whatsapp.color">
-  <i [class]="share.prop.whatsapp.icon"></i>
+  <fa-icon [icon]="share.prop.whatsapp.icon" size="lg"></fa-icon>
 </button>
 <button mat-fab shareButton="telegram" [style.backgroundColor]="share.prop.telegram.color">
-  <i [class]="share.prop.telegram.icon"></i>
+  <fa-icon [icon]="share.prop.telegram.icon" size="lg"></fa-icon>
 </button>
 <button mat-fab shareButton="pinterest" [style.backgroundColor]="share.prop.pinterest.color">
-  <i [class]="share.prop.pinterest.icon"></i>
+  <fa-icon [icon]="share.prop.pinterest.icon" size="lg"></fa-icon>
 </button>`,
-    example3: `<button mat-icon-button shareButton="facebook" [style.color]="share.prop.facebook.color">
-  <i [class]="share.prop.facebook.icon"></i>
+    example2: `<button mat-icon-button shareButton="facebook" #fbBtn [style.color]="share.prop.facebook.color">
+  <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
 </button>
-<button mat-icon-button shareButton="twitter" [style.color]="share.prop.twitter.color">
-  <i [class]="share.prop.twitter.icon"></i>
+<button mat-icon-button shareButton="twitter" #twtBtn [style.color]="share.prop.twitter.color">
+  <fa-icon [icon]="share.prop.twitter.icon" size="lg"></fa-icon>
 </button>
-<button mat-icon-button shareButton="linkedin" [style.color]="share.prop.linkedin.color">
-  <i [class]="share.prop.linkedin.icon"></i>
+<button mat-icon-button shareButton="linkedin" #inBtn [style.color]="share.prop.linkedin.color">
+  <fa-icon [icon]="share.prop.linkedin.icon" size="lg"></fa-icon>
 </button>
-<button mat-icon-button shareButton="whatsapp" [style.color]="share.prop.whatsapp.color">
-  <i [class]="share.prop.whatsapp.icon"></i>
+<button mat-icon-button shareButton="whatsapp" #wtsBtn [style.color]="share.prop.whatsapp.color">
+  <fa-icon [icon]="share.prop.whatsapp.icon" size="lg"></fa-icon>
 </button>
-<button mat-icon-button shareButton="telegram" [style.color]="share.prop.telegram.color">
-  <i [class]="share.prop.telegram.icon"></i>
+<button mat-icon-button shareButton="telegram" #teleBtn [style.color]="share.prop.telegram.color">
+  <fa-icon [icon]="share.prop.telegram.icon" size="lg"></fa-icon>
 </button>
-<button mat-icon-button shareButton="pinterest" [style.color]="share.prop.pinterest.color">
-  <i [class]="share.prop.pinterest.icon"></i>
+<button mat-icon-button shareButton="pinterest" #pinBtn [style.color]="share.prop.pinterest.color">
+  <fa-icon [icon]="share.prop.pinterest.icon" size="lg"></fa-icon>
 </button>`
   };
 

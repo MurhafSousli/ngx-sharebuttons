@@ -3,21 +3,18 @@
 .sb-default .sb-wrapper {
   color: white;
   border-radius: 4px;
-  transition: background-color ease 200ms;
+  overflow: hidden;
   @each $button,
   $color in $sb-buttons {
-    --#{$button}-color: $color;
     &.sb-#{$button} {
       background-color: $color;
-      background-color: var(--#{$button}-color);
-      &:hover {
-        background-color: lighten($color, 8%);
-      }
     }
   }
-  background-color: $sb-primary;
+  background-color: var(--button-color) !important;
+  transition: filter ease 200ms;
   &.sb-show-icon.sb-show-text {
     .sb-text {
+      filter: none;
       padding-right: 1em;
       padding-left: 0;
     }

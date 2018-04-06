@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ShareModule, ShareButtons, ShareButtonsConfig, CONFIG } from '../core';
 
 import { ShareButtonComponent } from './share-button.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export function ShareButtonsFactory(config: ShareButtonsConfig) {
   return new ShareButtons(config);
@@ -14,10 +15,12 @@ export function ShareButtonsFactory(config: ShareButtonsConfig) {
   ],
   imports: [
     ShareModule,
+    FontAwesomeModule,
     CommonModule
   ],
   exports: [
     ShareModule,
+    FontAwesomeModule,
     ShareButtonComponent
   ]
 })

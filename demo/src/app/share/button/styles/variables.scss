@@ -18,7 +18,8 @@ $sb-email: #FF961C !default;
 $sb-vk: #4C75A3 !default;
 $sb-more: #FF6651 !default;
 $sb-copy: #607D8B !default;
-$sb-print: #32a1a3 !default;
+$sb-print: #765AA2 !default;
+$sb-sms: #20c16c !default;
 $sb-gray: #a5a5a5 !default;
 
 /** share button variables */
@@ -53,6 +54,7 @@ $sb-buttons: (
   messenger: $sb-messenger,
   telegram: $sb-telegram,
   xing: $sb-xing,
+  sms: $sb-sms,
   email: $sb-email,
   vk: $sb-vk,
   more: $sb-more,

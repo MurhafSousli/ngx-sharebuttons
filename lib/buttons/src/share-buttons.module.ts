@@ -5,6 +5,7 @@ import { ShareButtons, ShareButtonsConfig, CONFIG } from '@ngx-share/core';
 import { ShareButtonModule } from '@ngx-share/button';
 
 import { ShareButtonsComponent } from './share-buttons.component';
+import { ExpandButtonComponent } from './expand-button.component';
 
 export function ShareButtonsFactory(config: ShareButtonsConfig) {
   return new ShareButtons(config);
@@ -12,7 +13,8 @@ export function ShareButtonsFactory(config: ShareButtonsConfig) {
 
 @NgModule({
   declarations: [
-    ShareButtonsComponent
+    ShareButtonsComponent,
+    ExpandButtonComponent
   ],
   imports: [
     ShareButtonModule,

@@ -4,7 +4,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   selector: 'nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  preserveWhitespaces: false
 })
 export class NavMenuComponent {
 

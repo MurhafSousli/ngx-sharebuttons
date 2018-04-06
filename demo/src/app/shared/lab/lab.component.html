@@ -32,7 +32,8 @@
       </ng-template>
 
 
-      <mat-slider matTooltip="Button size" [thumb-label]="true" [min]="-4" [max]="4" [step]="1" [(ngModel)]="config.size">
+      <mat-slider matTooltip="Button size" [thumb-label]="true" [min]="-4" [max]="4" [step]="1"
+                  [(ngModel)]="config.size">
       </mat-slider>
 
       <div class="toggle-group horizontal">
@@ -53,7 +54,8 @@
 
         <ng-template [ngSwitchCase]="'share-button'">
 
-          <share-button [theme]="config.theme"
+          <share-button *ngIf="ready"
+                        [theme]="config.theme"
                         [button]="config.button"
                         [url]="config.url"
                         [size]="config.size"
@@ -61,6 +63,7 @@
                         [showText]="config.showText"
                         [showCount]="config.showCount"
                         [tags]="config.tags"
+                        [autoSetMeta]="config.autoSetMeta"
                         [title]="config.title"
                         [description]="config.description"
                         [image]="config.image"
@@ -73,7 +76,8 @@
 
         <ng-template [ngSwitchCase]="'share-buttons'">
 
-          <share-buttons [theme]="config.theme"
+          <share-buttons *ngIf="ready"
+                         [theme]="config.theme"
                          [include]="config.include"
                          [exclude]="config.exclude"
                          [show]="config.show"
@@ -83,6 +87,7 @@
                          [showText]="config.showText"
                          [size]="config.size"
                          [tags]="config.tags"
+                         [autoSetMeta]="config.autoSetMeta"
                          [title]="config.title"
                          [description]="config.description"
                          [image]="config.image"
@@ -139,7 +144,13 @@
       </div>
 
       <div class="lab-section">
-        <h4>Meta tags options</h4>
+        <!--<h4>Meta tags options</h4>-->
+        <div>
+          <mat-slide-toggle class="auto-set-toggle" color="accent" [(ngModel)]="config.autoSetMeta">
+            Auto set meta tags
+          </mat-slide-toggle>
+        </div>
+
 
         <mat-form-field color="accent" matTooltip="For LinkedIn and Reddit only" matTooltipPosition="before">
           <input matInput [(ngModel)]="config.title" placeholder="Title"

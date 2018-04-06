@@ -1,4 +1,5 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'footer',
@@ -7,5 +8,6 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
-
+  iconGithub = faGithub;
+  iconTwitter = faTwitter;
 }

@@ -29,13 +29,14 @@ const options: ShareButtonsOptions = {
 })`,
     metaButtons: `import { ShareButtonsModule } from '@ngx-share/buttons';
 import { IShareButtons } from '@ngx-share/core';
+import { faFacebookSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 
 const customProp: IShareButtons = {
   facebook: {
-    icon: 'fab fa-facebook-official'
+    icon: faFacebookSquare
   },
   twitter: {
-    icon: 'fab fa-twitter-square',
+    icon: faTwitterSquare,
     text: 'Tweet'
   },
   // and so on...

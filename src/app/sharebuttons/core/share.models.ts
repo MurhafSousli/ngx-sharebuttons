@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Renderer2 } from '@angular/core';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 /**
  * Share buttons global config
@@ -22,6 +23,7 @@ export interface ShareButtonsOptions {
   image?: string;
   tags?: string;
   twitterAccount?: string;
+  autoSetMeta?: boolean;
   gaTracking?: boolean;
   windowWidth?: number;
   windowHeight?: number;
@@ -44,6 +46,7 @@ export interface IShareButtons {
   messenger?: IShareButton;
   whatsapp?: IShareButton;
   xing?: IShareButton;
+  sms?: IShareButton;
   email?: IShareButton;
   print?: IShareButton;
   copy?: IShareButton;
@@ -54,13 +57,13 @@ export interface IShareButtons {
  */
 export interface IShareButton {
   text?: string;
-  icon?: string;
+  icon?: IconProp;
   type?: string;
   color?: string;
   successText?: string;
-  successIcon?: string;
+  successIcon?: IconProp;
   failText?: string;
-  failIcon?: string;
+  failIcon?: IconProp;
   share?: {
     desktop?: string;
     android?: string;
@@ -83,7 +86,6 @@ export interface IShareButton {
 export interface ShareButtonRef {
   prop?: IShareButton;
   renderer?: Renderer2;
-  window?: Window;
   cd?: ChangeDetectorRef;
   el?: HTMLElement;
   os?: string;

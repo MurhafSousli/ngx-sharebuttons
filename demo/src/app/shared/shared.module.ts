@@ -20,6 +20,7 @@ import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.componen
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SectionTitleComponent } from './section-title/section-title.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SectionTitleComponent } from './section-title/section-title.component';
     AsyncLocalStorageModule,
     ScrollbarModule,
     HighlightModule,
-    ShareButtonsModule
+    ShareButtonsModule,
+    FontAwesomeModule
   ],
   exports: [
     CommonModule,
@@ -61,7 +63,8 @@ import { SectionTitleComponent } from './section-title/section-title.component';
     ThemeSwitcherComponent,
     FooterComponent,
     HeaderComponent,
-    SectionTitleComponent
+    SectionTitleComponent,
+    FontAwesomeModule
   ],
   entryComponents: [
     CodeDialogComponent

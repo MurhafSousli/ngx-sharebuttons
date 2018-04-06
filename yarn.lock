@@ -167,9 +167,29 @@
   dependencies:
     tslib "^1.7.1"
 
-"@fortawesome/fontawesome-free-webfonts@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free-webfonts/-/fontawesome-free-webfonts-1.0.4.tgz#bac5d89755bf3bc2d2b4deee47d92febf641bb1f"
+"@fortawesome/angular-fontawesome@^0.1.0-8":
+  version "0.1.0-8"
+  resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.1.0-8.tgz#c2bcb0155781fa91282e146b3bdb7877231ea7f6"
+
+"@fortawesome/fontawesome-common-types@^0.2.0-2", "@fortawesome/fontawesome-common-types@^0.2.0-5":
+  version "0.2.0-5"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.0-5.tgz#95a4ad12c0d85c6e50334d9dc0301d71fbd466e3"
+
+"@fortawesome/fontawesome-svg-core@^1.2.0-10":
+  version "1.2.0-10"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.0-10.tgz#f5f4f8cc0d7e2db7cafbe45db3605c5bb3a58c24"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.0-5"
+
+"@fortawesome/free-brands-svg-icons@^5.1.0-4":
+  version "5.1.0-4"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.1.0-4.tgz#d9ffa4f3f34c62d33af4cac9d3d1151d9d62fcff"
+
+"@fortawesome/free-solid-svg-icons@^5.1.0-4":
+  version "5.1.0-4"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.1.0-4.tgz#de8010668a64250a871fb3c46c93a5e046438152"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.0-2"
 
 "@ngtools/json-schema@1.2.0":
   version "1.2.0"
@@ -2642,6 +2662,12 @@ fs-extra@^5.0.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
+fs-minipass@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/fs-minipass/-/fs-minipass-1.2.5.tgz#06c277218454ec288df77ada54a03b8702aacb9d"
+  dependencies:
+    minipass "^2.2.1"
+
 fs-write-stream-atomic@^1.0.8:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/fs-write-stream-atomic/-/fs-write-stream-atomic-1.0.10.tgz#b47df53493ef911df75731e70a9ded0189db40c9"
@@ -4334,6 +4360,19 @@ minimist@~0.0.1:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
 
+minipass@^2.2.1, minipass@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.2.4.tgz#03c824d84551ec38a8d1bb5bc350a5a30a354a40"
+  dependencies:
+    safe-buffer "^5.1.1"
+    yallist "^3.0.0"
+
+minizlib@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/minizlib/-/minizlib-1.1.0.tgz#11e13658ce46bc3a70a267aac58359d1e0c29ceb"
+  dependencies:
+    minipass "^2.2.1"
+
 mississippi@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/mississippi/-/mississippi-1.3.0.tgz#d201583eb12327e3c5c1642a404a9cacf94e34f5"
@@ -4462,9 +4501,9 @@ neo-async@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.0.tgz#76b1c823130cca26acfbaccc8fbaf0a2fa33b18f"
 
-ng-packagr@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-2.2.0.tgz#a66b7d822c40e8aa0dee34e06cca05151c522a3b"
+ng-packagr@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-2.4.1.tgz#27ab5ad933725a489c5eda7e5656ce5a945c39c2"
   dependencies:
     "@ngtools/json-schema" "^1.1.0"
     autoprefixer "^7.1.1"
@@ -4492,6 +4531,7 @@ ng-packagr@^2.2.0:
     sorcery "^0.10.0"
     strip-bom "^3.0.0"
     stylus "^0.54.5"
+    tar "^4.4.1"
     uglify-js "^3.0.7"
     update-notifier "^2.3.0"
 
@@ -6705,6 +6745,18 @@ tar@^2.0.0, tar@^2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
+tar@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.1.tgz#b25d5a8470c976fd7a9a8a350f42c59e9fa81749"
+  dependencies:
+    chownr "^1.0.1"
+    fs-minipass "^1.2.5"
+    minipass "^2.2.4"
+    minizlib "^1.1.0"
+    mkdirp "^0.5.0"
+    safe-buffer "^5.1.1"
+    yallist "^3.0.2"
+
 term-size@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/term-size/-/term-size-1.2.0.tgz#458b83887f288fc56d6fffbfad262e26638efa69"
@@ -7503,6 +7555,10 @@ y18n@^4.0.0:
 yallist@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
+
+yallist@^3.0.0, yallist@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
 
 yargs-parser@^4.2.0:
   version "4.2.1"

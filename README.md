@@ -13,8 +13,8 @@
 
 This is the documentation for ngx-sharebuttons version 5.x (Angular >= 5)
 
-For ngx-sharebuttons version 4.x (Angular >= 5), See this [documentation](/README_V4.md)
-For ngx-sharebuttons version 3.x (Angular 2 & 4), See this [documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+- For ngx-sharebuttons version 4.x (Angular >= 5), See this [documentation](/README_V4.md)
+- For ngx-sharebuttons version 3.x (Angular 2 & 4), See this [documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
 
 ## Table of contents
 
@@ -25,6 +25,7 @@ For ngx-sharebuttons version 3.x (Angular 2 & 4), See this [documentation](https
 - [Share buttons component](#share-buttons-component)
 - [Global options](#global-options)
 - [Styling guide](#styling-guide)
+- [Sharing on native apps](#native-apps)
 - [FAQ](https://murhafsousli.github.io/ngx-sharebuttons/#/faq)
 - [Issues](#issues)
 - [License](/LICENSE)
@@ -33,6 +34,10 @@ For ngx-sharebuttons version 3.x (Angular 2 & 4), See this [documentation](https
 - [More plugins](#more)
 
 <a name="packages"/>
+
+## Available buttons
+
+`Facebook`, `Twitter`, `Google+`, `LinkedIn`, `Pinterest`, `WhatsApp`, `Messenger`, `Reddit`, `Tumblr`, `Telegram`, `Email`, `SMS`, `VK`, `StumbleUpOn`, `Xing`, `Copy link` and `Print`
 
 ## Packages
 
@@ -53,13 +58,15 @@ Convert any element to a share button using `[shareButton]` directive.
 **NPM**
 
 ```bash
-$ npm install --save @ngx-share/core @fortawesome/fontawesome-free-webfonts
+$ npm install --save @ngx-share/core
+$ npm install --save @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 **YARN**
 
 ```bash
-$ yarn add @ngx-share/core @fortawesome/fontawesome-free-webfonts
+$ yarn add @ngx-share/core
+$ yarn add @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 ### Usage
@@ -76,14 +83,6 @@ import { ShareModule } from '@ngx-share/core';
     ShareModule.forRoot()
   ]
 })
-```
-
-Import FontAwesome if you want to use the icons
-
-```scss
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 ```
 
 The most basic usage to create a share button is `shareButton={{buttonName}}` on a button
@@ -131,14 +130,16 @@ Check [ShareButton Directive Demo](https://murhafsousli.github.io/ngx-sharebutto
 | Name            | Default value | Description                                                     |
 | --------------- | ------------- | --------------------------------------------------------------- |
 | [shareButton]   | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
-| [sbUrl]         | current URL   | Sharing link.                                                   |
-| [sbTitle]       | null          | Override title meta tag for LinkedIn, Reddit and Email.         |
-| [sbDescription] | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
-| [sbImage]       | null          | Override image meta tag for Pinterest only.                     |
-| [sbTags]        | null          | Override tags for Tumblr and Twitter.                           |
-| (sbOpened)      | button name   | Stream that emits when share window has opened.                 |
-| (sbClosed)      | button name   | Stream that emits when share dialog has closed.                 |
-| (sbCount)       | share count   | Stream that emits share count of the share URL.                 |
+| [url]           | current URL   | Sharing link.                                                   |
+| [title]         | null          | Override title meta tag for LinkedIn, Reddit and Email.         |
+| [description]   | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
+| [image]         | null          | Override image meta tag for Pinterest only.                     |
+| [tags]          | null          | Override tags for Tumblr and Twitter.                           |
+| [autoSetMeta]   | true          | Auto set meta tags inputs from the SEO meta tags.               |
+| [getCount]      | false         | Gets and emits share counts.                                    |
+| (opened)        | button name   | Stream that emits when share window has opened.                 |
+| (closed)        | button name   | Stream that emits when share dialog has closed.                 |
+| (count)         | share count   | Stream that emits share count of the share URL.                 |
 
 <a name="share-button-component"/>
 
@@ -151,13 +152,15 @@ Use `<share-button>` component to add share buttons individually.
 **NPM**
 
 ```bash
-$ npm install --save @ngx-share/core @ngx-share/button @fortawesome/fontawesome-free-webfonts
+$ npm install --save @ngx-share/core @ngx-share/button
+$ npm install --save @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 **YARN**
 
 ```bash
-$ yarn add @ngx-share/core @ngx-share/button @fortawesome/fontawesome-free-webfonts
+$ yarn add @ngx-share/core @ngx-share/button 
+$ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 ### Usage
@@ -179,9 +182,6 @@ import { ShareButtonModule } from '@ngx-share/button';
 Import core styles and theme from the global style `src/styles.scss`
 
 ```css
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 @import '~@ngx-share/button/styles/share-buttons';
 @import '~@ngx-share/button/styles/themes/default/default-theme';
 ```
@@ -203,12 +203,14 @@ Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebutto
 | -------------- | ------------- | --------------------------------------------------------------- |
 | [button]       | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
 | [theme]        | null          | Set button theme.                                               |
+| [text]         | null          | Custom button text.                                             |
 | [size]         | 0             | Button size, e.g. -4, 2.5, 1...etc.                             |
 | [url]          | current URL   | Sharing link.                                                   |
 | [title]        | null          | Override title meta tag for LinkedIn, Reddit and Email.         |
 | [description]  | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
 | [image]        | null          | Override image meta tag for Pinterest only.                     |
 | [tags]         | null          | Override tags for Tumblr and Twitter.                           |
+| [autoSetMeta]  | true          | Initializes meta tags inputs from the SEO meta tags.            |
 | [showIcon]     | true          | Show button icon.                                               |
 | [showText]     | false         | Show button text.                                               |
 | [showCount]    | false         | Show share count.                                               |
@@ -227,13 +229,15 @@ Use `<share-buttons>` to add a collection of share buttons.
 **NPM**
 
 ```bash
-$ npm install --save @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts
+$ npm install --save @ngx-share/core @ngx-share/button @ngx-share/buttons 
+$ npm install --save @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 **YARN**
 
 ```bash
-$ yarn add @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts
+$ yarn add @ngx-share/core @ngx-share/button @ngx-share/buttons 
+$ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 ### Usage
@@ -255,9 +259,6 @@ import { ShareButtonModule } from '@ngx-share/button';
 Import icons, core styles and theme from the global style `src/styles.scss`
 
 ```css
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 @import '~@ngx-share/button/styles/share-buttons';
 @import '~@ngx-share/button/styles/themes/default/default-theme';
 ```
@@ -286,6 +287,7 @@ Check [ShareButtons Component Demo](https://murhafsousli.github.io/ngx-sharebutt
 | [description]  | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
 | [image]        | null          | Override image meta tag for Pinterest only.                     |
 | [tags]         | null          | Override tags for Tumblr and Twitter.                           |
+| [autoSetMeta]  | true          | Initializes meta tags inputs from the SEO meta tags.            |
 | [showIcon]     | true          | Show button icon.                                               |
 | [showText]     | false         | Show button text.                                               |
 | [showCount]    | false         | Show share count.                                               |
@@ -332,19 +334,22 @@ const customOptions: ShareButtonsOptions = {
 | description    | null          | Override description meta tag.                                  |
 | image          | null          | Override image meta tag.                                        |
 | tags           | null          | Override tags meta tag for Tumblr and Twitter.                  |
+| autoSetMeta    | true          | Initializes meta tags inputs from the SEO meta tags.            |
 | gaTracking     | false         | Roll sharing stats automatically into your Google Analytics.    |
 | twitterAccount | null          | Add via @accountName at the end of the tweets.                  |
 
-If the og meta tags are presented in the document head then it will be used as the default value for the meta tags, such as: 
+When `autoSetMeta` is **true**, the meta tags inputs `url`, `title`, `description` and `image` will be initialized from the SEO meta tags.
 
 ```html
 <head>
-  <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
-  <meta property="og:title" content="A Twitter for My Sister" />
-  <meta property="og:description" content="In the early days, Twitter grew so quickly that it was almost impossible to add new features because engineers spent their time trying to keep the rocket ship from stalling." />
-  <meta property="og:image" content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg" />
+  <meta property="og:title" content="The Rock" />
+  <meta property="og:description" content="Directed by Michael Bay.  With Sean Connery, Nicolas Cage, Ed Harris, John Spencer."/>
+  <meta property="og:url" content="http://www.imdb.com/title/tt0117500/" />
+  <meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" />
 </head>
 ```
+
+ > Set `autoSetMeta` to **false**, if the share buttons url does not point to the current url, e.g. displaying a list of articles each one with share buttons.
 
 ## Button Configuration
 
@@ -352,14 +357,15 @@ You can change the buttons meta data such as button icon and text
 
 ```ts
 import { ShareButtonsModule } from '@ngx-share/buttons';
+import { faFacebookSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 
 const customProp = {
   facebook: {
     icon: 'fab fa-facebook-official',
-    text: 'Share on Facebook'
+    text: faFacebookSquare
   },
   twitter: {
-    icon: 'fab fa-twitter-square',
+    icon: faTwitterSquare,
     text: 'Tweet'
   },
   // and so on...
@@ -379,13 +385,12 @@ const customProp = {
 There are several classes that help you to create your custom styles
 
 ```scss
-.sb-colorful-theme {
-  /** You can get button color by using the css variable --{buttonName}-color */
+.sb-moon-theme {
   &.sb-group {
     /** ... share buttons container */
   }
   .sb-wrapper { /** ... share button wrapper */
-    background-color: var(--facebook-color);
+    background-color: var(--button-color);
 
     .sb-inner { /** ... inner wrapper */
       .sb-content { /** ... content wrapper */
@@ -405,13 +410,44 @@ There are several classes that help you to create your custom styles
 }
 ```
 
-Then the theme will become `colorful`
+If you use `.sb-moon-theme` then the theme name will become `moon`:
 
 ```html
 <share-buttons theme="colorful"></share-buttons>
 ```
 
 [Styling guide](https://murhafsousli.github.io/ngx-sharebuttons/#/styling-guide)
+
+<a name="#native-apps"/>
+
+## Sharing on native apps
+
+❌ No Support: Means it is tested but the share dialog opens in the mobile browser
+
+| Button            | 💻 Desktop        | 📱 iPhone          | 📱 Android          |
+| ----------------- | ----------------- | ------------------ | ------------------ |
+| Facebook          | ✔️ Support     | ❌ No Support      | ❌ No Support       |
+| Twitter           | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Pinterest         | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Google            | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| LinkedIn          | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Whatsapp          | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Telegram          | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Messenger         | ❌ No Support     | ✔️ Support      | ✔️ Support       |
+| VK                | ✔️ Support     | ❔ Not tested      | ❔ Not tested       |
+| Reddit            | ✔️ Support     | ❌ No Support      | ❔ Not tested       |
+| Tumblr            | ✔️ Support     | ❌ No Support      | ❔ Not tested       |
+| StumbleUpOn       | ✔️ Support     | ❌ No Support      | ❔ Not tested       | 
+| Xing              | ✔️ Support     | ❔ Not tested      | ❔ Not tested       |
+| SMS               | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Copy              | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Print             | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Email             | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+
+**Notes:**
+
+Facebook: Does not support sharing on native apps.
+Tumbler: Opens in native app but then the app opens the browser again!
 
 <a name="issues"/>
 
@@ -436,7 +472,7 @@ If you identify any errors in this component, or have an idea for an improvement
 
 <a name="more"/>
 
-## More plugins from the author
+## More plugins by the author
 
 - [ngx-gallery](https://github.com/MurhafSousli/ngx-gallery)
 - [ngx-progressbar](https://github.com/MurhafSousli/ngx-progressbar)

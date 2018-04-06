@@ -1,16 +1,13 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
-
-enum KEY_CODE {
-  RIGHT_ARROW = 39,
-  LEFT_ARROW = 37
-}
+import { LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'theme-switcher',
   templateUrl: './theme-switcher.component.html',
   styleUrls: ['./theme-switcher.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  preserveWhitespaces: false
 })
 export class ThemeSwitcherComponent implements OnInit {
 
@@ -35,11 +32,11 @@ export class ThemeSwitcherComponent implements OnInit {
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
 
-    if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
+    if (event.keyCode === RIGHT_ARROW) {
       this.next();
     }
 
-    if (event.keyCode === KEY_CODE.LEFT_ARROW) {
+    if (event.keyCode === LEFT_ARROW) {
       this.prev();
     }
   }

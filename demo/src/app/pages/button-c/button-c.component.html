@@ -14,24 +14,27 @@
       <section-title>Installation</section-title>
       <p>Install the following packages</p>
 
-      <p>NPM</p>
-      <pre><code class="hljs">$ npm install --save @ngx-share/core @ngx-share/button @fortawesome/fontawesome-free-webfonts</code></pre>
+      <h4>NPM</h4>
+      <pre>
+        <code class="hljs">$ npm install --save @ngx-share/core @ngx-share/button
+$ npm install --save @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons</code>
+      </pre>
 
-      <p>YARN</p>
-      <pre><code class="hljs">$ yarn add @ngx-share/core @ngx-share/button @fortawesome/fontawesome-free-webfonts</code></pre>
+      <h4>YARN</h4>
+      <pre>
+        <code class="hljs">$ yarn add @ngx-share/core @ngx-share/button
+$ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons</code>
+      </pre>
     </section>
 
     <section>
       <section-title>Import the styles</section-title>
 
-      <p>Import share buttons core styles, theme and FontAwesome in your global style
+      <p>Import share buttons core styles and theme in your global style
         <b>"app/src/style.scss"</b>
       </p>
 
       <pre><code highlight>
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 @import '~@ngx-share/button/styles/share-buttons';
 @import '~@ngx-share/button/styles/themes/default/default-theme';
     </code></pre>
@@ -48,10 +51,20 @@
       <p>Now you can add share buttons individually.</p>
 
       <code-switcher [code]="code.examples" class="center">
-        <share-button button="twitter" text="Tweet" showText="true"></share-button>
-        <share-button button="facebook" text="Share" showText="true"></share-button>
-        <share-button button="pinterest"></share-button>
+        <share-button button="facebook" theme="classic-dark" text="Share" showText="true"></share-button>
+        <share-button button="twitter" theme="classic-dark" text="Tweet" showText="true"></share-button>
+        <share-button button="pinterest" theme="classic-dark" text="Pin" showText="true"></share-button>
       </code-switcher>
+
+      <p>The default icons can be changed directly by importing custom icons from FontAwesome package.</p>
+
+      <code-switcher [code]="code.customIcons" class="center">
+        <share-button button="facebook" theme="circles-dark" size="3" [icon]="fbIcon"></share-button>
+        <share-button button="twitter" theme="circles-dark" size="3" [icon]="tweetIcon"></share-button>
+        <share-button button="pinterest" theme="circles-dark" size="3" [icon]="pinIcon"></share-button>
+      </code-switcher>
+
+      <pre><code highlight [code]="code.importIcons"></code></pre>
 
       <p>To use custom configuration, See
         <a routerLink="/global-options">global options</a> section.</p>

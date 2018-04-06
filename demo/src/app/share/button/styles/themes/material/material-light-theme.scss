@@ -3,12 +3,11 @@
 .sb-material-light .sb-wrapper {
   @each $button,
   $color in $sb-buttons {
-    --#{$button}-color: $color;
     &.sb-#{$button} {
       color: $color;
-      color: var(--#{$button}-color);
     }
   }
+  color: var(--button-color) !important;
   font-family: 'Roboto', sans-serif;
   background-color: $sb-accent;
   border-radius: 2px;

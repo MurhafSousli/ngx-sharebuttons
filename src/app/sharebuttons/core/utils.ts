@@ -71,20 +71,20 @@ export function copyToClipboard(text: string, ios: boolean) {
 }
 
 /** Get meta tag content */
-export function getMetaTagContent(key: string) {
+export function getMetaContent(key: string) {
   const metaTag: Element = document.querySelector(`meta[property="${key}"]`);
   return metaTag ? metaTag.getAttribute('content') : undefined;
 }
 
 /** Detect operating system 'ios', 'android', or 'desktop' */
-export function getOS(window: any, navigator: Navigator) {
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+export function getOS() {
+  const userAgent = navigator.userAgent || navigator.vendor || (<any>window).opera;
 
   if (/android/i.test(userAgent)) {
     return 'android';
   }
 
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+  if (/iPad|iPhone|iPod/.test(userAgent) && !(<any>window).MSStream) {
     return 'ios';
   }
   return 'desktop';

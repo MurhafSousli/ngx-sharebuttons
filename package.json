@@ -1,6 +1,6 @@
 {
   "name": "@ngx-sharebuttons/demo",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -19,6 +19,7 @@
     "publish-all": "node .config/publish.js",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:ssr": "node dist/server.js",
+    "build-and-serve:ssr": "npm run build:ssr && npm run serve:ssr",
     "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
@@ -34,7 +35,10 @@
     "@angular/platform-browser-dynamic": "5.2.9",
     "@angular/platform-server": "^5.2.9",
     "@angular/router": "5.2.9",
-    "@fortawesome/fontawesome-free-webfonts": "^1.0.4",
+    "@fortawesome/angular-fontawesome": "^0.1.0-8",
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-10",
+    "@fortawesome/free-brands-svg-icons": "^5.1.0-4",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-4",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",
@@ -61,7 +65,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "mkdirp": "^0.5.1",
-    "ng-packagr": "^2.2.0",
+    "ng-packagr": "^2.4.1",
     "node-sass": "^4.7.2",
     "postcss": "^6.0.17",
     "postcss-strip-inline-comments": "^0.1.5",

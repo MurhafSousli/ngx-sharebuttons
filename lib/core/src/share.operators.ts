@@ -7,34 +7,38 @@ import { copyToClipboard, mergeDeep } from './utils';
 /**
  * Meta tags operator - Serialize meta tags into the sharer URL
  */
-export const metaTagsOperator = map((ref: ShareButtonRef) => {
+export const metaTagsOperators = [
+  map((ref: ShareButtonRef) => {
 
-  // Social network sharer URL */
-  const SharerURL = ref.prop.share[ref.os];
-  if (SharerURL) {
+    // Social network sharer URL */
+    const SharerURL = ref.prop.share[ref.os];
+    if (SharerURL) {
 
-    // object contains supported meta tags
-    const metaTags = ref.prop.share.metaTags;
+      // object contains supported meta tags
+      const metaTags = ref.prop.share.metaTags;
 
-    // object contains meta tags values */
-    const metaTagsValues = ref.metaTags;
+      // object contains meta tags values */
+      const metaTagsValues = ref.metaTags;
 
-    let link = '';
-    // Set each meta tag with user value
-    if (metaTags) {
-      link = Object.entries(metaTags).map(([key, metaTag]) =>
-        metaTagsValues[key] ? `${metaTag}=${encodeURIComponent(metaTagsValues[key])}` : ''
-      ).join('&');
+      let link = '';
+      // Set each meta tag with user value
+      if (metaTags) {
+        link = Object.entries(metaTags).map(([key, metaTag]) =>
+          metaTagsValues[key] ? `${metaTag}=${encodeURIComponent(metaTagsValues[key])}` : ''
+        ).join('&');
+      }
+      return SharerURL + link;
     }
-    return SharerURL + link;
-  }
-  return;
-});
+    return;
+  })
+];
 
 /**
  * Print button operator
  */
-export const printOperator = map((ref: ShareButtonRef) => ref.window.print());
+export const printOperators = [
+  map(() => window.print())
+];
 
 /**
  * Copy link to clipboard, used for copy button
@@ -76,13 +80,32 @@ export const copyOperators = [
 /**
  * Add the share URL to message body, used for WhatsApp and Email buttons
  */
-export const urlInMessageOperator = map((ref: ShareButtonRef) => {
-  const description = ref.metaTags.description;
-  const url = ref.metaTags.url;
-  const newRef: ShareButtonRef = {
-    metaTags: {
-      description: description ? `${description}\r\n${url}` : url
-    }
-  };
-  return mergeDeep(ref, newRef);
-});
+export const urlInMessageOperators = [
+  map((ref: ShareButtonRef) => {
+    const description = ref.metaTags.description;
+    const url = ref.metaTags.url;
+    const newRef: ShareButtonRef = {
+      metaTags: {
+        description: description ? `${description}\r\n${url}` : url
+      }
+    };
+    return mergeDeep(ref, newRef);
+  })
+];
+
+export const FacebookCountOperators = [
+  map((res: any) => +res.share.share_count)
+];
+
+export const PinterestCountOperators = [
+  map((text: string) => JSON.parse(text.replace(/^receiveCount\((.*)\)/, '$1'))),
+  map((res: any) => +res.count)
+];
+
+export const TumblrCountOperators = [
+  map((res: any) => +res.response.note_count)
+];
+
+export const RedditCountOperators = [
+  map((res: any) => +res.data.children[0].data.score)
+];
