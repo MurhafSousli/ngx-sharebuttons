@@ -25,6 +25,7 @@ This is the documentation for ngx-sharebuttons version 5.x (Angular >= 5)
 - [Share buttons component](#share-buttons-component)
 - [Global options](#global-options)
 - [Styling guide](#styling-guide)
+- [Sharing on native apps](#native-apps)
 - [FAQ](https://murhafsousli.github.io/ngx-sharebuttons/#/faq)
 - [Issues](#issues)
 - [License](/LICENSE)
@@ -209,7 +210,7 @@ Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebutto
 | [description]  | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
 | [image]        | null          | Override image meta tag for Pinterest only.                     |
 | [tags]         | null          | Override tags for Tumblr and Twitter.                           |
-| [autoSetMeta]  | false         | Initializes meta tags inputs from the SEO meta tags.            |
+| [autoSetMeta]  | true          | Initializes meta tags inputs from the SEO meta tags.            |
 | [showIcon]     | true          | Show button icon.                                               |
 | [showText]     | false         | Show button text.                                               |
 | [showCount]    | false         | Show share count.                                               |
@@ -286,7 +287,7 @@ Check [ShareButtons Component Demo](https://murhafsousli.github.io/ngx-sharebutt
 | [description]  | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
 | [image]        | null          | Override image meta tag for Pinterest only.                     |
 | [tags]         | null          | Override tags for Tumblr and Twitter.                           |
-| [autoSetMeta]  | false         | Initializes meta tags inputs from the SEO meta tags.            |
+| [autoSetMeta]  | true          | Initializes meta tags inputs from the SEO meta tags.            |
 | [showIcon]     | true          | Show button icon.                                               |
 | [showText]     | false         | Show button text.                                               |
 | [showCount]    | false         | Show share count.                                               |
@@ -333,13 +334,11 @@ const customOptions: ShareButtonsOptions = {
 | description    | null          | Override description meta tag.                                  |
 | image          | null          | Override image meta tag.                                        |
 | tags           | null          | Override tags meta tag for Tumblr and Twitter.                  |
-| autoSetMeta    | false         | Initializes meta tags inputs from the SEO meta tags.            |
+| autoSetMeta    | true          | Initializes meta tags inputs from the SEO meta tags.            |
 | gaTracking     | false         | Roll sharing stats automatically into your Google Analytics.    |
 | twitterAccount | null          | Add via @accountName at the end of the tweets.                  |
 
 When `autoSetMeta` is **true**, the meta tags inputs `url`, `title`, `description` and `image` will be initialized from the SEO meta tags.
-
- > Set `autoSetMeta` to **false**, if the share buttons url does not point to the current url, e.g. displaying a list of articles each one with share buttons.
 
 ```html
 <head>
@@ -349,6 +348,8 @@ When `autoSetMeta` is **true**, the meta tags inputs `url`, `title`, `descriptio
   <meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" />
 </head>
 ```
+
+ > Set `autoSetMeta` to **false**, if the share buttons url does not point to the current url, e.g. displaying a list of articles each one with share buttons.
 
 ## Button Configuration
 
@@ -384,13 +385,12 @@ const customProp = {
 There are several classes that help you to create your custom styles
 
 ```scss
-.sb-colorful-theme {
-  /** You can get button color by using the css variable --{buttonName}-color */
+.sb-moon-theme {
   &.sb-group {
     /** ... share buttons container */
   }
   .sb-wrapper { /** ... share button wrapper */
-    background-color: var(--facebook-color);
+    background-color: var(--button-color);
 
     .sb-inner { /** ... inner wrapper */
       .sb-content { /** ... content wrapper */
@@ -410,7 +410,7 @@ There are several classes that help you to create your custom styles
 }
 ```
 
-Then the theme name will become `colorful`
+If you use `.sb-moon-theme` then the theme name will become `moon`:
 
 ```html
 <share-buttons theme="colorful"></share-buttons>
@@ -418,30 +418,31 @@ Then the theme name will become `colorful`
 
 [Styling guide](https://murhafsousli.github.io/ngx-sharebuttons/#/styling-guide)
 
-<a name="native-support"/>
+<a name="#native-apps"/>
 
 ## Sharing on native apps
 
 ❌ No Support: Means it is tested but the share dialog opens in the mobile browser
 
-| Button            | 💻 Desktop     | 📱 iPhone       | 📱 Android      |
-| ----------------- | -------------- | -------------  | --------------- |
-| Facebook          | ✔ Support     | ❌ No Support   | ❌ No Support   |
-| Twitter           | ✔ Support     | ✔ Support      | ✔ Support       |
-| Pinterest         | ✔ Support     | ✔ Support      | ✔ Support       |
-| Google            | ✔ Support     | ✔ Support      | ✔ Support       |
-| LinkedIn          | ✔ Support     | ✔ Support      | ✔ Support       |
-| Whatsapp          | ✔ Support     | ✔ Support      | ✔ Support       |
-| Telegram          | ✔ Support     | ✔ Support      | ✔ Support       |
-| Messenger         | ❌ No Support  | ✔ Support      | ✔ Support       |
-| VK                | ✔ Support     | ❔ Not tested   | ❔ Not tested   |
-| Reddit            | ✔ Support     | ❌ No Support   | ❔ Not tested   |
-| Tumblr            | ✔ Support     | ❌ No Support   | ❔ Not tested   |
-| StumbleUpOn       | ✔ Support     | ❌ No Support   | ❔ Not tested   | 
-| Xing              | ✔ Support     | ❔ Not tested   | ❔ Not tested   |
-| Copy              | ✔ Support     | ✔ Support      | ✔ Support       |
-| Print             | ✔ Support     | ✔ Support      | ✔ Support       |
-| Email             | ✔ Support     | ✔ Support      | ✔ Support       |
+| Button            | 💻 Desktop        | 📱 iPhone          | 📱 Android          |
+| ----------------- | ----------------- | ------------------ | ------------------ |
+| Facebook          | ✔️ Support     | ❌ No Support      | ❌ No Support       |
+| Twitter           | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Pinterest         | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Google            | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| LinkedIn          | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Whatsapp          | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Telegram          | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Messenger         | ❌ No Support     | ✔️ Support      | ✔️ Support       |
+| VK                | ✔️ Support     | ❔ Not tested      | ❔ Not tested       |
+| Reddit            | ✔️ Support     | ❌ No Support      | ❔ Not tested       |
+| Tumblr            | ✔️ Support     | ❌ No Support      | ❔ Not tested       |
+| StumbleUpOn       | ✔️ Support     | ❌ No Support      | ❔ Not tested       | 
+| Xing              | ✔️ Support     | ❔ Not tested      | ❔ Not tested       |
+| SMS               | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Copy              | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Print             | ✔️ Support     | ✔️ Support      | ✔️ Support       |
+| Email             | ✔️ Support     | ✔️ Support      | ✔️ Support       |
 
 **Notes:**
 
