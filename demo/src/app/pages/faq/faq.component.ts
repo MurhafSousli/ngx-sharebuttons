@@ -42,7 +42,6 @@ options: ShareButtonsOptions = {
 <meta property="og:description" content="Offering tour packages for individuals or groups.">
 <meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
 <meta property="og:url" content="http://euro-travel-example.com/index.html">`
-    , buttonText: '<share-button button="pinterest" text="Pin" showText="true"></share-button>'
   };
 
   constructor(private titleService: Title) {

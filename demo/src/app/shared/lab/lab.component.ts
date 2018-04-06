@@ -13,7 +13,13 @@ import { ShareButtons } from '../../share/core';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { of } from 'rxjs/observable/of';
-import { debounceTime, delay, distinctUntilChanged, filter, switchMap, take, tap } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators/debounceTime';
+import { delay } from 'rxjs/operators/delay';
+import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
+import { filter } from 'rxjs/operators/filter';
+import { switchMap } from 'rxjs/operators/switchMap';
+import { take } from 'rxjs/operators/take';
+import { tap } from 'rxjs/operators/tap';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 
 import { CodeDialogComponent } from '../code-dialog/code-dialog.component';
@@ -28,14 +34,16 @@ import { CodeDialogComponent } from '../code-dialog/code-dialog.component';
 export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestroy {
 
   config = {
+    updateDate: '30032018',
     url: 'https://twitter.com/',
-    title: '',
-    description: '',
-    tags: '',
-    image: '',
+    title: undefined,
+    description: undefined,
+    tags: undefined,
+    image: undefined,
     showIcon: true,
     showText: false,
     showCount: false,
+    autoSetMeta: false,
     /** Selected single button */
     button: 'facebook',
     /** Selected buttons */
@@ -59,6 +67,9 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
     size: 0
   };
   prevConfig = {...this.config};
+
+  /** Check if config is loaded from localstorage */
+  ready = false;
 
   urlControl = new FormControl();
   urlSub: Subscription;
@@ -171,6 +182,10 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
       code += `\n [tags]="'${this.config.tags}'"`;
     }
 
+    if (!this.config.autoSetMeta) {
+      code += `\n [autoSetMeta]="${this.config.autoSetMeta}"`;
+    }
+
     code += `\n></${this.component}>`;
 
 
@@ -192,7 +207,10 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
     this.urlSub = this.urlControl.valueChanges.pipe(
       debounceTime(400),
       distinctUntilChanged(),
-      tap((text: string) => this.config.url = text)
+      tap((text: string) => {
+        this.config = {...this.config, url: text};
+        this.cd.markForCheck();
+      })
     ).subscribe();
 
     this.saveSub.pipe(
@@ -203,16 +221,16 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
       })
     ).subscribe();
 
-    this.localStorage.getItem('labConfig').subscribe(config => {
-      /** Check if save config themes arrays are identical */
-      if (config && JSON.stringify(config.themes) === JSON.stringify(this.config.themes)) {
-
-        this.config = config;
-        this.prevConfig = {...config};
-        this.cd.markForCheck();
-      }
+    this.localStorage.getItem('labConfig').pipe(
+      filter((config: any) => !!config),
+      tap((config: any) => {
+        this.config = {...this.config, ...config};
+        this.prevConfig = {...this.config};
+      })
+    ).subscribe(() => {
+      this.ready = true;
+      this.cd.markForCheck();
     });
-
   }
 
   ngAfterContentChecked() {

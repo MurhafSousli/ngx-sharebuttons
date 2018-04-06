@@ -17,29 +17,25 @@ import { HttpClient } from '@angular/common/http';
 
 import { catchError } from 'rxjs/operators/catchError';
 import { take } from 'rxjs/operators/take';
+import { map } from 'rxjs/operators/map';
+import { switchMap } from 'rxjs/operators/switchMap';
 import { tap } from 'rxjs/operators/tap';
+import { filter } from 'rxjs/operators/filter';
 import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
 
 import { ShareButtons } from './share.service';
 import { IShareButton, ShareButtonRef } from './share.models';
-import { getOS, getValidUrl } from './utils';
+import { getMetaContent, getOS, getValidUrl } from './utils';
 
 /** Google analytics ref */
 declare const ga: Function;
-declare const window: any;
 
 @Directive({
   selector: '[shareButton]'
 })
 export class ShareButtonDirective implements OnChanges {
-
-  /** A ref for window object that works on SSR */
-  window: Window;
-
-  /** A ref for navigator object that works on SSR */
-  navigator: Navigator;
 
   /** Button properties */
   prop: IShareButton;
@@ -50,21 +46,27 @@ export class ShareButtonDirective implements OnChanges {
   /** Share button type */
   @Input() shareButton: string;
 
+  /** Auto get share count */
+  @Input() getCount = false;
+
+  /** Set meta tags from document head, useful when SEO is supported */
+  @Input() autoSetMeta: boolean = this.shareService.autoSetMeta;
+
   /** Meta tags inputs - initialized from the global options */
-  @Input() sbUrl: string;
-  @Input() sbTitle: string;
-  @Input() sbDescription: string;
-  @Input() sbImage: string;
-  @Input() sbTags: string;
+  @Input() url: string = this.shareService.url;
+  @Input() title: string = this.shareService.title;
+  @Input() description: string = this.shareService.description;
+  @Input() image: string = this.shareService.image;
+  @Input() tags: string = this.shareService.tags;
 
   /** Stream that emits when share count is fetched */
-  @Output() sbCount = new EventEmitter<number>();
+  @Output() count = new EventEmitter<number>();
 
   /** Stream that emits when share dialog is opened */
-  @Output() sbOpened = new EventEmitter<string>();
+  @Output() opened = new EventEmitter<string>();
 
   /** Stream that emits when share dialog is closed */
-  @Output() sbClosed = new EventEmitter<string>();
+  @Output() closed = new EventEmitter<string>();
 
   constructor(private shareService: ShareButtons,
               private http: HttpClient,
@@ -72,50 +74,65 @@ export class ShareButtonDirective implements OnChanges {
               public cd: ChangeDetectorRef,
               private el: ElementRef,
               @Inject(PLATFORM_ID) private platform: Object) {
-    if (isPlatformBrowser(this.platform)) {
-      this.window = window;
-      this.navigator = navigator;
-    }
   }
 
   /** Share link on element click */
   @HostListener('click')
   onClick() {
-
-    const ref: ShareButtonRef = {
-      cd: this.cd,
-      renderer: this.renderer,
-      window: this.window,
-      prop: this.prop,
-      el: this.el.nativeElement,
-      os: getOS(this.window, this.navigator),
-      metaTags: {
-        url: this.sbUrl,
-        title: this.sbTitle || this.shareService.title,
-        description: this.sbDescription || this.shareService.description,
-        image: this.sbImage || this.shareService.image,
-        tags: this.sbTags,
+    if (isPlatformBrowser(this.platform)) {
+      const metaTags = this.autoSetMeta ? {
+        url: this.url,
+        title: this.title || getMetaContent('og:title'),
+        description: this.description || getMetaContent('og:description'),
+        image: this.image || getMetaContent('og:image'),
+        via: this.shareService.twitterAccount || getMetaContent('twitter:site'),
+        tags: this.tags,
+      } : {
+        url: this.url,
+        title: this.title,
+        description: this.description,
+        image: this.image,
+        tags: this.tags,
         via: this.shareService.twitterAccount,
-      }
-    };
+      };
 
-    // Share the link
-    of(ref).pipe(
-      ...this.prop.share.operators,
-      tap((sharerURL: string) => this.share(sharerURL)),
-      take(1)
-    ).subscribe();
+      const ref: ShareButtonRef = {
+        cd: this.cd,
+        renderer: this.renderer,
+        prop: this.prop,
+        el: this.el.nativeElement,
+        os: getOS(),
+        metaTags
+      };
+
+      // Share the link
+      of(ref).pipe(
+        ...this.prop.share.operators,
+        tap((sharerURL: string) => this.share(sharerURL)),
+        take(1)
+      ).subscribe();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (isPlatformBrowser(this.platform)) {
 
-    if (changes['shareButton'].firstChange || changes['shareButton'].previousValue !== this.shareButton) {
-      this.createShareButton(this.shareButton);
-    }
+      if (changes['shareButton'] && (changes['shareButton'].firstChange || changes['shareButton'].previousValue !== this.shareButton)) {
+        this.createShareButton(this.shareButton);
+      }
 
-    if (changes['sbUrl'] && (changes['sbUrl'].firstChange || changes['url'].previousValue !== this.sbUrl)) {
-      this.sbUrl = getValidUrl(this.sbUrl || this.shareService.url, this.window.location.href);
-      this.getShareCount(this.sbUrl);
+      if (!this.url || (changes['url'] && changes['url'].previousValue !== this.url)) {
+        of(null).pipe(
+          map(() => {
+            this.url = getValidUrl(this.autoSetMeta ? this.url || getMetaContent('og:url') : this.url, window.location.href);
+            return this.url;
+          }),
+          filter(() => this.prop.count && this.getCount),
+          switchMap((url: string) => this.shareCount(url)),
+          tap((shareCount: number) => this.count.emit(shareCount)),
+          take(1)
+        ).subscribe();
+      }
     }
   }
 
@@ -128,20 +145,20 @@ export class ShareButtonDirective implements OnChanges {
 
       // GA Tracking
       if (this.shareService.gaTracking && typeof ga !== 'undefined') {
-        ga('send', 'social', this.prop.type, 'click', this.sbUrl);
+        ga('send', 'social', this.prop.type, 'click', this.url);
       }
 
       // Emit when share dialog is opened
-      this.sbOpened.emit(this.prop.type);
+      this.opened.emit(this.prop.type);
 
-      const popUp = this.window.open(url, 'newwindow', this.shareService.windowSize);
+      const popUp = window.open(url, 'newwindow', this.shareService.windowSize);
 
       // Emit when share dialog is closed
       if (popUp) {
-        const pollTimer = this.window.setInterval(() => {
+        const pollTimer = window.setInterval(() => {
           if (popUp.closed) {
-            this.window.clearInterval(pollTimer);
-            this.sbClosed.emit(this.prop.type);
+            window.clearInterval(pollTimer);
+            this.closed.emit(this.prop.type);
           }
         }, 200);
       }
@@ -153,7 +170,7 @@ export class ShareButtonDirective implements OnChanges {
    * @param url - Share URL
    * @returns Share count
    */
-  count(url: string): Observable<any> {
+  shareCount(url: string): Observable<any> {
 
     if (this.prop.count.request === 'jsonp') {
 
@@ -172,10 +189,10 @@ export class ShareButtonDirective implements OnChanges {
 
 
   private createShareButton(buttonsName: string) {
+
     const button = {...this.shareService.prop[buttonsName]};
 
     if (button) {
-
       // Set share button properties
       this.prop = button;
 
@@ -186,21 +203,12 @@ export class ShareButtonDirective implements OnChanges {
       this.renderer.addClass(this.el.nativeElement, `sb-${button.type}`);
 
       // Set button css color variable
-      this.el.nativeElement.style.setProperty(`--${this.prop.type}-color`, this.prop.color);
+      this.el.nativeElement.style.setProperty('--button-color', this.prop.color);
 
       // Keep a copy of the class for future replacement
       this.buttonClass = button.type;
-
-      this.getShareCount(this.sbUrl);
     } else {
       throw new Error(`[ShareButtons]: The share button '${buttonsName}' does not exist!`);
-    }
-  }
-
-  private getShareCount(url: string) {
-    // if url is valid and button supports share count
-    if (url && this.prop.count && this.sbCount.observers.length) {
-      this.count(url).subscribe((count: number) => this.sbCount.emit(count));
     }
   }
 

@@ -15,24 +15,27 @@
       <section-title>Installation</section-title>
       <p>Install the following packages</p>
 
-      <p>NPM</p>
-      <pre><code class="hljs">$ npm install --save @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts</code></pre>
+      <h4>NPM</h4>
+      <pre>
+        <code class="hljs">$ npm install --save @ngx-share/core @ngx-share/button @ngx-share/buttons
+$ npm install --save @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons</code>
+      </pre>
 
-      <p>YARN</p>
-      <pre><code class="hljs">$ yarn add @ngx-share/core @ngx-share/button @ngx-share/buttons @fortawesome/fontawesome-free-webfonts</code></pre>
+      <h4>YARN</h4>
+      <pre>
+        <code class="hljs">$ yarn add @ngx-share/core @ngx-share/button @ngx-share/buttons
+$ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons</code>
+      </pre>
     </section>
 
     <section>
       <section-title>Import the styles</section-title>
 
-      <p>Import share buttons core styles, theme and FontAwesome in your global style
+      <p>Import share buttons core styles and theme in your global style
         <b>"app/src/style.scss"</b>
       </p>
 
       <pre><code highlight>
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 @import '~@ngx-share/button/styles/share-buttons';
 @import '~@ngx-share/button/styles/themes/default/default-theme';
     </code></pre>

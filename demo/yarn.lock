@@ -171,9 +171,39 @@
   dependencies:
     tslib "^1.7.1"
 
+"@fortawesome/angular-fontawesome@^0.1.0-8":
+  version "0.1.0-8"
+  resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.1.0-8.tgz#c2bcb0155781fa91282e146b3bdb7877231ea7f6"
+
+"@fortawesome/fontawesome-common-types@^0.2.0-2", "@fortawesome/fontawesome-common-types@^0.2.0-5":
+  version "0.2.0-5"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.0-5.tgz#95a4ad12c0d85c6e50334d9dc0301d71fbd466e3"
+
 "@fortawesome/fontawesome-free-webfonts@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free-webfonts/-/fontawesome-free-webfonts-1.0.4.tgz#bac5d89755bf3bc2d2b4deee47d92febf641bb1f"
+
+"@fortawesome/fontawesome-svg-core@^1.2.0-10":
+  version "1.2.0-10"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.0-10.tgz#f5f4f8cc0d7e2db7cafbe45db3605c5bb3a58c24"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.0-5"
+
+"@fortawesome/free-brands-svg-icons@^5.1.0-4":
+  version "5.1.0-4"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.1.0-4.tgz#d9ffa4f3f34c62d33af4cac9d3d1151d9d62fcff"
+
+"@fortawesome/free-regular-svg-icons@^5.1.0-4":
+  version "5.1.0-4"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-5.1.0-4.tgz#41bcee0345d8690f6ec04a3efc65cb9a94305a70"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.0-2"
+
+"@fortawesome/free-solid-svg-icons@^5.1.0-4":
+  version "5.1.0-4"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.1.0-4.tgz#de8010668a64250a871fb3c46c93a5e046438152"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.0-2"
 
 "@ngtools/json-schema@1.2.0":
   version "1.2.0"

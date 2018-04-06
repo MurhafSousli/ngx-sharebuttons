@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiData } from './docs.class';
+import { shareReplay } from 'rxjs/operators/shareReplay';
 
 @Injectable()
 export class DocsService {
@@ -27,7 +28,9 @@ export class DocsService {
   }
 
   private fetch(filename: string) {
-    return this.http.get<ApiData>(this.baseUrl + filename);
+    return this.http.get<ApiData>(this.baseUrl + filename).pipe(
+      shareReplay(1)
+    );
   }
 
 }

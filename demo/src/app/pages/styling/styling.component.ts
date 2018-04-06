@@ -11,12 +11,11 @@ export class StylingComponent implements OnInit {
 
   componentCode = `<share-buttons theme="moon"></share-buttons>`;
   stylingCode = `.sb-moon-theme {
-  /** You can get button color by using the css variable --{buttonName}-color */
   &.sb-group {
     /** ... share buttons container */
   }
   .sb-wrapper { /** ... share button wrapper */
-    background-color: var(--facebook-color);
+    background-color: var(--button-color);
 
     .sb-inner { /** ... inner wrapper */
       .sb-content { /** ... content wrapper */

@@ -64,6 +64,7 @@ mat-form-field {
 
 .horizontal {
   display: flex;
+  justify-content: flex-end;
 }
 
 .vertical {
@@ -78,4 +79,8 @@ mat-form-field {
 
 .code-button {
   font-size: 1.5em;
+}
+
+.auto-set-toggle {
+  margin: 0;
 }

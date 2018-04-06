@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { faWrench } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'home',
@@ -10,7 +11,7 @@ import { Title } from '@angular/platform-browser';
 export class HomeComponent implements OnInit {
 
   features = [
-    '15 share buttons to boost traffic',
+    '17 share buttons to boost traffic',
     'High quality buttons',
     'Lightweight',
     'Official Share Counts',
@@ -19,6 +20,8 @@ export class HomeComponent implements OnInit {
     'Google Analytics Integrated',
     'Universal Support'
   ];
+
+  directiveIcon = faWrench;
 
   constructor(private titleService: Title) {
   }

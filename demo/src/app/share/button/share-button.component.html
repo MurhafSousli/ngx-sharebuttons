@@ -1,13 +1,15 @@
 <button class="sb-wrapper"
         [shareButton]="button"
-        [sbUrl]="url"
-        [sbImage]="image"
-        [sbTitle]="title"
-        [sbDescription]="description"
-        [sbTags]="tags"
-        (sbOpened)="opened.emit($event)"
-        (sbClosed)="closed.emit($event)"
-        (sbCount)="onCount($event)"
+        [url]="url"
+        [image]="image"
+        [title]="title"
+        [description]="description"
+        [tags]="tags"
+        [autoSetMeta]="autoSetMeta"
+        [getCount]="showCount"
+        (opened)="opened.emit($event)"
+        (closed)="closed.emit($event)"
+        (count)="onCount($event)"
         [class.sb-show-icon]="showIcon"
         [class.sb-show-text]="showText"
         [class.sb-show-count]="showCount && shareCount"
@@ -18,12 +20,12 @@
     <div class="sb-content">
 
       <!-- BUTTON ICON -->
-      <div *ngIf="showIcon" class="sb-icon">
-        <i [class]="ref.prop.icon" aria-hidden="true"></i>
+      <div *ngIf="showIcon && ref.prop" class="sb-icon">
+        <fa-icon [icon]="icon || ref.prop.icon"></fa-icon>
       </div>
 
       <!-- BUTTON TEXT -->
-      <div *ngIf="showText" class="sb-text">
+      <div *ngIf="showText && ref.prop" class="sb-text">
         {{ text || ref.prop.text }}
       </div>
 
