@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 
 import { ShareButtons, ShareButtonDirective } from '@ngx-share/core';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'share-button',
@@ -46,6 +47,9 @@ export class ShareButtonComponent {
   @Input() image: string;
   @Input() tags: string;
 
+  /** Set meta tags from document head, useful when SEO is supported */
+  @Input() autoSetMeta: boolean;
+
   /** Show button icon */
   @Input() showIcon = true;
 
@@ -58,19 +62,22 @@ export class ShareButtonComponent {
   /** Button custom text */
   @Input() text: string;
 
+  /** Button custom icon */
+  @Input() icon: IconProp;
+
   /** Button size */
-  @Input() size = this.share.size;
+  @Input() size: number = this.share.size;
 
   /** Button theme */
   @Input() theme: string = this.share.theme;
 
-  /** Share count event */
+  /** Stream that emits when share count is fetched */
   @Output() count = new EventEmitter<number>();
 
-  /** Share dialog opened event */
+  /** Stream that emits when share dialog is opened */
   @Output() opened = new EventEmitter<string>();
 
-  /** Share dialog closed event */
+  /** Stream that emits when share dialog is closed */
   @Output() closed = new EventEmitter<string>();
 
   /** Set theme as button class */
