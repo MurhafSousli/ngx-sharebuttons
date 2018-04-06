@@ -418,6 +418,36 @@ Then the theme name will become `colorful`
 
 [Styling guide](https://murhafsousli.github.io/ngx-sharebuttons/#/styling-guide)
 
+<a name="native-support"/>
+
+## Sharing on native apps
+
+❌ No Support: Means it is tested but the share dialog opens in the mobile browser
+
+| Button            | 💻 Desktop     | 📱 iPhone       | 📱 Android      |
+| ----------------- | -------------- | -------------  | --------------- |
+| Facebook          | ✔ Support     | ❌ No Support   | ❌ No Support   |
+| Twitter           | ✔ Support     | ✔ Support      | ✔ Support       |
+| Pinterest         | ✔ Support     | ✔ Support      | ✔ Support       |
+| Google            | ✔ Support     | ✔ Support      | ✔ Support       |
+| LinkedIn          | ✔ Support     | ✔ Support      | ✔ Support       |
+| Whatsapp          | ✔ Support     | ✔ Support      | ✔ Support       |
+| Telegram          | ✔ Support     | ✔ Support      | ✔ Support       |
+| Messenger         | ❌ No Support  | ✔ Support      | ✔ Support       |
+| VK                | ✔ Support     | ❔ Not tested   | ❔ Not tested   |
+| Reddit            | ✔ Support     | ❌ No Support   | ❔ Not tested   |
+| Tumblr            | ✔ Support     | ❌ No Support   | ❔ Not tested   |
+| StumbleUpOn       | ✔ Support     | ❌ No Support   | ❔ Not tested   | 
+| Xing              | ✔ Support     | ❔ Not tested   | ❔ Not tested   |
+| Copy              | ✔ Support     | ✔ Support      | ✔ Support       |
+| Print             | ✔ Support     | ✔ Support      | ✔ Support       |
+| Email             | ✔ Support     | ✔ Support      | ✔ Support       |
+
+**Notes:**
+
+Facebook: Does not support sharing on native apps.
+Tumbler: Opens in native app but then the app opens the browser again!
+
 <a name="issues"/>
 
 ## Issues
