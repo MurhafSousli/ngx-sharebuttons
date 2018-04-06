@@ -21,13 +21,15 @@ Convert any element to a share button using `[shareButton]` directive.
 **NPM**
 
 ```bash
-$ npm install --save @ngx-share/core @fortawesome/fontawesome-free-webfonts
+$ npm install --save @ngx-share/core
+$ npm install --save @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 **YARN**
 
 ```bash
-$ yarn add @ngx-share/core @fortawesome/fontawesome-free-webfonts
+$ yarn add @ngx-share/core
+$ yarn add @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 ### Usage
@@ -44,14 +46,6 @@ import { ShareModule } from '@ngx-share/core';
     ShareModule.forRoot()
   ]
 })
-```
-
-Import FontAwesome if you want to use the icons
-
-```scss
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
-@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
 ```
 
 The most basic usage to create a share button is `shareButton={{buttonName}}` on a button
@@ -99,14 +93,16 @@ Check [ShareButton Directive Demo](https://murhafsousli.github.io/ngx-sharebutto
 | Name            | Default value | Description                                                     |
 | --------------- | ------------- | --------------------------------------------------------------- |
 | [shareButton]   | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
-| [sbUrl]         | current URL   | Sharing link.                                                   |
-| [sbTitle]       | null          | Override title meta tag for LinkedIn, Reddit and Email.         |
-| [sbDescription] | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
-| [sbImage]       | null          | Override image meta tag for Pinterest only.                     |
-| [sbTags]        | null          | Override tags for Tumblr and Twitter.                           |
-| (sbOpened)      | button name   | Stream that emits when share window has opened.                 |
-| (sbClosed)      | button name   | Stream that emits when share dialog has closed.                 |
-| (sbCount)       | share count   | Stream that emits share count of the share URL.                 |
+| [url]           | current URL   | Sharing link.                                                   |
+| [title]         | null          | Override title meta tag for LinkedIn, Reddit and Email.         |
+| [description]   | null          | Override description meta tag for LinkedIn, WhatsApp, Messenger, Telegram, Pinterest and Email|
+| [image]         | null          | Override image meta tag for Pinterest only.                     |
+| [tags]          | null          | Override tags for Tumblr and Twitter.                           |
+| [autoSetMeta]   | true          | Auto set meta tags inputs from the SEO meta tags.               |
+| [getCount]      | false         | Gets and emits share counts.                                    |
+| (opened)        | button name   | Stream that emits when share window has opened.                 |
+| (closed)        | button name   | Stream that emits when share dialog has closed.                 |
+| (count)         | share count   | Stream that emits share count of the share URL.                 |
 
 ## Issues
 
