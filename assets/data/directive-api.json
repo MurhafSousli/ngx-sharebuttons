@@ -5,42 +5,47 @@
     "type": "input"
   },
   {
-    "name": "sbUrl",
+    "name": "url",
     "description": "Sharing link, default: current URL",
     "type": "input"
   },
   {
-    "name": "sbTitle",
+    "name": "title",
     "description": "Override title meta tag for LinkedIn and Reddit, default: null",
     "type": "input"
   },
   {
-    "name": "sbDescription",
+    "name": "description",
     "description": "Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest, default: null",
     "type": "input"
   },
   {
-    "name": "sbImage",
+    "name": "image",
     "description": "Override image meta tag for Pinterest only, default: null",
     "type": "input"
   },
   {
-    "name": "sbTags",
+    "name": "tags",
     "description": "Override tags for Tumblr and Twitter, default: null",
     "type": "input"
   },
   {
-    "name": "sbOpened",
+    "name": "getCount",
+    "description": "Gets and emits share count, default: false",
+    "type": "input"
+  },
+  {
+    "name": "opened",
     "description": "Stream that emits when share dialog has opened",
     "type": "output"
   },
   {
-    "name": "sbClosed",
+    "name": "closed",
     "description": "Stream that emits when share dialog has closed",
     "type": "output"
   },
   {
-    "name": "sbCount",
+    "name": "count",
     "description": "Stream that emits share count of the share URL",
     "type": "output"
   }

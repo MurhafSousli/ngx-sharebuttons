@@ -1,3 +1,7 @@
+@fortawesome/angular-fontawesome@0.1.0-8
+MIT
+MIT
+
 @angular/material@5.2.4
 MIT
 The MIT License

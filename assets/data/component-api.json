@@ -15,6 +15,11 @@
     "type": "input"
   },
   {
+    "name": "icon",
+    "description": "Button custom icon, default: null",
+    "type": "input"
+  },
+  {
     "name": "size",
     "description": "Button size, accepts positive and negative numbers e.g. -4, 2.5, 1...etc. default: 0",
     "type": "input"
@@ -57,6 +62,11 @@
   {
     "name": "showCount",
     "description": "Show share counts, default: false",
+    "type": "input"
+  },
+  {
+    "name": "autoSetMeta",
+    "description": "Initializes meta tag inputs from SEO meta tags, default: true",
     "type": "input"
   },
   {
