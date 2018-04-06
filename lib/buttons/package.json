@@ -37,11 +37,13 @@
   "bugs": {
     "url": "http://github.com/murhafsousli/ngx-sharebuttons/issues"
   },
-  "dependencies": {
-    "@ngx-share/core": "VERSION",
-    "@ngx-share/button": "VERSION"
-  },
   "peerDependencies": {
-    "@angular/common": "^5.0.0"
+    "@angular/common": "^5.0.0",
+    "@ngx-share/core": "VERSION",
+    "@ngx-share/button": "VERSION",
+    "@fortawesome/free-brands-svg-icons": "^5.1.0-4",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-10",
+    "@fortawesome/angular-fontawesome": "^0.1.0-8"
   }
 }
