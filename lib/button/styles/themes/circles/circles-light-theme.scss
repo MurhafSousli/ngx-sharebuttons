@@ -32,6 +32,8 @@
     width: 2.5em;
     height: 2.5em;
     border-radius: 50%;
+    transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    background: radial-gradient(ellipse farthest-corner at center, white 30%, darken(white, 5%) 100%);
   }
   .sb-text {
     font-size: $sb-text-size;
@@ -40,11 +42,6 @@
     height: 1.8em;
     line-height: 1.8em;
     padding: 0;
-  }
-  .sb-icon {
-    box-shadow: 0 3px 1px -2px rgba($sb-gray, .25), 0 2px 2px 0 rgba($sb-gray, .19), 0 1px 5px 0 rgba($sb-gray, .17);
-    transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
-    background: radial-gradient(ellipse farthest-corner at center, white 30%, darken(white, 5%) 100%);
   }
   .sb-content,
   .sb-inner {

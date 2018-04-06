@@ -16,12 +16,9 @@
   transition: box-shadow ease-in 150ms, transform ease-in 150ms;
   border-radius: $sb-border-radius;
 
-  box-shadow: 0 0.03em 1em rgba($sb-gray, 0.5);
-  &:hover {
-    box-shadow: 0 0.3em 1em rgba($sb-gray, 0.8);
-  }
+  box-shadow: 0 0.1em 0.5em rgba($sb-gray, 0.6);
   &:active {
-    box-shadow: 0 0.03em 0.875em rgba($sb-gray, 0.8);
+    box-shadow: 0 0.4em 1em rgba($sb-gray, 0.9);
   }
 
   .sb-icon {
