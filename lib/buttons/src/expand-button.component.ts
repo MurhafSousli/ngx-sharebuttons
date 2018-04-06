@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { faEllipsisH, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'expand-button',
@@ -10,7 +11,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
       <div class="sb-inner">
         <div class="sb-content">
           <div class="sb-icon">
-            <i class="fas {{icon[expanded]}}" aria-hidden="true"></i>
+            <fa-icon [icon]="icon[expanded]"></fa-icon>
           </div>
         </div>
       </div>
@@ -21,11 +22,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 })
 export class ExpandButtonComponent {
 
-  icon = {
-    true: 'fa-minus',
-    false: 'fa-ellipsis-h'
+  icon: any = {
+    true: faMinus,
+    false: faEllipsisH
   };
-  @Input() expanded: boolean;
+  @Input() expanded: string;
   @Input() size: number;
   @Output() toggle = new EventEmitter();
 }
