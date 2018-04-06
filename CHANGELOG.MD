@@ -2,9 +2,89 @@
 
 ## 5.3.0
 
+- refactor(ShareButtonsComponent): Wrap expand button in its own component.
+- fix(ShareButtonDirective): Set custom button color with css variable.
+- fix(Universal:ShareButtonDirective): Check for browser platform before creating a share button, closes [#251](https://github.com/MurhafSousli/ngx-sharebuttons/issues/251).
+- fix(Universal:ShareButtonComponent): Check if button.ref is defined in component template, closes [#251](https://github.com/MurhafSousli/ngx-sharebuttons/issues/251).
+- fix(ShareButtonComponent): Share counts are requested even when showCount is false, fixes [253](https://github.com/MurhafSousli/ngx-sharebuttons/issues/253).
+- enhancement(Themes): Improve styles.
+- enhancement(Share Icons): Icons are now rendered as SVG elements.
+
+### Features:
+
 - feat(Prop): Add SMS button.
-- refactor(ShareButtonsComponent): Make expand button in a component.
-- fix(ShareButton): Setting custom button color with css variable.
+- feat(ShareButtonComponent): Add `[icon]` input.
+- feat(Share Icons): Add only the share buttons icons from FontAwesome instead of all icons, closes [#252](https://github.com/MurhafSousli/ngx-sharebuttons/issues/252).
+- feat(ShareButtonDirective): Add `[autoSetMeta]` input to all components and global config.
+
+When `autoSetMeta` is **true**, the meta tags inputs `url`, `title`, `description` and `image` will be initialized from the SEO meta tags.
+
+ > set `autoSetMeta` to **false**, if the share buttons url does not point to the current url, e.g. displaying a list of articles each one with share buttons.
+
+### Breaking changes
+
+- refactor(ShareButtonsModule): [angular-fontawesome](https://github.com/FortAwesome/angular-fontawesome) has become a peer dependency.
+- refactor(Props): Button icon is type of `IconProp` which is imported from the @fortawesome icons package.
+
+**Before:**
+
+style.scss
+
+```cs
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
+@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/default/default-theme';
+```
+
+Override share button icon
+
+```ts
+ShareButtonsModule.forRoot({
+  prop: {
+    facebook: {
+      icon: 'fa fab-facebook-f'
+    }
+  }
+}
+```
+
+**After:**
+
+style.scss
+
+```css
+@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/default/default-theme';
+```
+
+Override share button icon
+
+```ts
+import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
+
+ShareButtonsModule.forRoot({
+  prop: {
+    facebook: {
+      icon: faFacebookF
+    }
+  }
+}
+```
+
+- refactor(ShareButtonDirective): Remove the prefix `sb` from the share directive inputs, closes [#250](https://github.com/MurhafSousli/ngx-sharebuttons/issues/250).
+
+```
+[sbUrl] => [url]
+[sbTitle] => [title]
+[sbDescription] => [description]
+[sbImage] => [image]
+[sbTags] => [tags]
+(sbCount) => (count)
+(sbOpened) => (opened)
+(sbClosed) => (closed)
+```
 
 ## 5.2.0
 
