@@ -6,7 +6,7 @@
 - fix(ShareButtonDirective): Set custom button color with css variable.
 - fix(Universal:ShareButtonDirective): Check for browser platform before creating a share button, closes [#251](https://github.com/MurhafSousli/ngx-sharebuttons/issues/251).
 - fix(Universal:ShareButtonComponent): Check if button.ref is defined in component template, closes [#251](https://github.com/MurhafSousli/ngx-sharebuttons/issues/251).
-- fix(ShareButtonComponent): Share counts are requested even when showCount is false, fixes [253](https://github.com/MurhafSousli/ngx-sharebuttons/issues/253).
+- fix(ShareButtonComponent): Share counts are requested even when showCount is false, fixes [#253](https://github.com/MurhafSousli/ngx-sharebuttons/issues/253).
 - enhancement(Themes): Improve styles.
 - enhancement(Share Icons): Icons are now rendered as SVG elements.
 
