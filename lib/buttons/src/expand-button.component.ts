@@ -4,7 +4,7 @@ import { faEllipsisH, faMinus } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'expand-button',
   template: `
-    <button class="sb-wrapper sb-more sb-show-icon"
+    <button class="sb-wrapper sb-expand sb-show-icon"
             [style.fontSize.px]="size"
             (click)="toggle.emit(!expanded)">
 
