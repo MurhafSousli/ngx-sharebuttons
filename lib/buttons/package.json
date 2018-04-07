@@ -41,8 +41,8 @@
     "@angular/common": "^5.0.0",
     "@ngx-share/core": "VERSION",
     "@ngx-share/button": "VERSION",
-    "@fortawesome/free-brands-svg-icons": "^5.1.0-4",
-    "@fortawesome/free-solid-svg-icons": "^5.1.0-4",
+    "@fortawesome/free-brands-svg-icons": "^5.1.0-7",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-7",
     "@fortawesome/fontawesome-svg-core": "^1.2.0-10",
     "@fortawesome/angular-fontawesome": "^0.1.0-8"
   }

@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "@angular/common": "^5.0.0",
-    "@fortawesome/free-brands-svg-icons": "^5.1.0-4",
-    "@fortawesome/free-solid-svg-icons": "^5.1.0-4"
+    "@fortawesome/free-brands-svg-icons": "^5.1.0-7",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-7"
   }
 }
