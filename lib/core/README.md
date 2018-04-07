@@ -77,12 +77,12 @@ Template:
 ```html
 <!--Set color and icon-->
 <button shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color">
-  <i [class]="share.prop.twitter.icon"></i>
+  <fa-icon [icon]="share.prop.twitter.icon" size="lg"></fa-icon>
 </button>
 
 <!--Material example-->
 <button md-icon-button shareButton="telegram" [style.color]="share.prop.telegram.color">
-  <i [class]="share.prop.telegram.icon"></i>
+  <fa-icon [icon]="share.prop.telegram.icon" size="lg"></fa-icon>
 </button>
 ```
 
