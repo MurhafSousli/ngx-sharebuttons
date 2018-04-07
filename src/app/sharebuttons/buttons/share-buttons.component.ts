@@ -38,7 +38,7 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
     userButtons: [],
     selectedButtons: [],
     expanded: true,
-    shownCount: 0
+    shownCount: Object.keys(this.share.config.prop).length
   });
 
   @Input() theme = this.share.theme;
