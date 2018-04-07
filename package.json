@@ -1,6 +1,6 @@
 {
   "name": "@ngx-sharebuttons/demo",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -12,7 +12,7 @@
     "start-demo": "cd demo && ng serve --aot",
     "sass": "node .config/styles.js",
     "set-version": "node .config/build.js",
-    "build-all": "npm run build-core && npm run build-button && npm run build-buttons && npm run sass",
+    "build-all": "npm run build-core && npm run build-button && npm run build-buttons && npm run sass && npm run set-version",
     "build-core": "ng-packagr -p lib/core/ng-package.json",
     "build-button": "ng-packagr -p lib/button/ng-package.json",
     "build-buttons": "ng-packagr -p lib/buttons/ng-package.json",
@@ -21,7 +21,9 @@
     "serve:ssr": "node dist/server.js",
     "build-and-serve:ssr": "npm run build:ssr && npm run serve:ssr",
     "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
-    "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
+    "link-core": "npm run set-version && npm link build/core && npm link @ngx-share/core",
+    "link-button": "npm run set-version && npm link build/button && npm link @ngx-share/button"
   },
   "private": true,
   "dependencies": {
@@ -37,8 +39,8 @@
     "@angular/router": "5.2.9",
     "@fortawesome/angular-fontawesome": "^0.1.0-8",
     "@fortawesome/fontawesome-svg-core": "^1.2.0-10",
-    "@fortawesome/free-brands-svg-icons": "^5.1.0-4",
-    "@fortawesome/free-solid-svg-icons": "^5.1.0-4",
+    "@fortawesome/free-brands-svg-icons": "5.1.0-7",
+    "@fortawesome/free-solid-svg-icons": "5.1.0-7",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",

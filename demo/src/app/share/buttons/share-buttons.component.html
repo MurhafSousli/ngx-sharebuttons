@@ -19,7 +19,8 @@
 
   <div class="sb-button sb-{{theme}}">
 
-    <expand-button [expanded]="state.expanded"
+    <expand-button *ngIf="state.shownCount < state.userButtons.length"
+                   [expanded]="state.expanded"
                    [size]="(1 + size/20) * 14"
                    (toggle)="updateState({expanded: $event})">
     </expand-button>

@@ -222,7 +222,6 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
     ).subscribe();
 
     this.localStorage.getItem('labConfig').pipe(
-      filter((config: any) => !!config),
       tap((config: any) => {
         this.config = {...this.config, ...config};
         this.prevConfig = {...this.config};

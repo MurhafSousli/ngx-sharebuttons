@@ -204,6 +204,7 @@ Check [ShareButton Component Demo](https://murhafsousli.github.io/ngx-sharebutto
 | [button]       | null          | Button name, e.g. 'facebook', 'twitter' ...etc.                 |
 | [theme]        | null          | Set button theme.                                               |
 | [text]         | null          | Custom button text.                                             |
+| [icon]         | null          | Custom button icon.                                             |
 | [size]         | 0             | Button size, e.g. -4, 2.5, 1...etc.                             |
 | [url]          | current URL   | Sharing link.                                                   |
 | [title]        | null          | Override title meta tag for LinkedIn, Reddit and Email.         |
