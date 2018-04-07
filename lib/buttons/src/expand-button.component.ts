@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { faEllipsisH, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -29,4 +29,8 @@ export class ExpandButtonComponent {
   @Input() expanded: string;
   @Input() size: number;
   @Output() toggle = new EventEmitter();
+
+  constructor(el: ElementRef) {
+    el.nativeElement.style.setProperty('--button-color', '#FF6651');
+  }
 }
