@@ -1,6 +1,14 @@
 # Changelog
 
-## 5.3.0
+## 5.3.1
+
+- fix(ShareButtonsComponent): Hide expand button, closes [#255](https://github.com/MurhafSousli/ngx-sharebuttons/issues/255) in [#256](https://github.com/MurhafSousli/ngx-sharebuttons/pull/256).
+- fix(Build Error in 5.3.0): Set css variable on expand button through the component instead of the style, closes [#254](https://github.com/MurhafSousli/ngx-sharebuttons/issues/254) in [#527](https://github.com/MurhafSousli/ngx-sharebuttons/pull/257).
+- clean up styles
+- refactor css variable: change $sb-more variable name to $sb-expand
+- update FontAwesome peerDependencies
+
+## 5.3.0 (has a build issue)
 
 - refactor(ShareButtonsComponent): Wrap expand button in its own component.
 - fix(ShareButtonDirective): Set custom button color with css variable.
@@ -86,7 +94,7 @@ ShareButtonsModule.forRoot({
 (sbClosed) => (closed)
 ```
 
-## 5.2.0
+## 5.2.0 (has universal issue)
 
 - refactor(ShareButtonsService): Initialize meta tags from document head 'og' meta tags.
 - refactor(ShareButtonsService): Add `url` as a meta tag property to the global config.
