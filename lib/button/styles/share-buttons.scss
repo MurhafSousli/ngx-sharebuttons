@@ -85,24 +85,6 @@
   min-width: $sb-count-min-width;
 }
 
-/** Hardcoded Fixes */
-
-/** enlarge whatsapp icon */
-
-.sb-whatsapp .fa.fa-whatsapp {
-  font-size: 1.1em;
-}
-
-/** centralize telegram icon*/
-
-.sb-telegram .fa.fa-send {
-  margin-left: -2px;
-}
-
-.sb-more {
-  --button-color: $sb-more !important;
-  .fa.fa-ellipsis-h,
-  .fa.fa-minus {
-    margin-top: 2px;
-  }
+.sb-expand {
+  --button-color: $sb-expand !important;
 }
