@@ -88,3 +88,8 @@
 .sb-expand {
   --button-color: $sb-expand !important;
 }
+
+/** fix expand button position when size is small */
+expand-button {
+  display: inherit;
+}
