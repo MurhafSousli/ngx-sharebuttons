@@ -84,3 +84,8 @@
 .sb-show-count {
   min-width: $sb-count-min-width;
 }
+
+/** fix expand button position when size is small */
+expand-button {
+  display: inherit;
+}
