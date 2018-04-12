@@ -13,6 +13,10 @@ import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 export class ButtonDComponent implements OnInit {
 
   code = {
+    npm: `$ npm i -S @ngx-share/core
+  $ npm i -S @fortawesome/{free-solid-svg-icons,free-brands-svg-icons}`,
+    yarn: `$ yarn add @ngx-share/core
+  $ yarn add @fortawesome/{free-solid-svg-icons,free-brands-svg-icons}`,
     import: `import { ShareModule } from '@ngx-share/core';
 
 @NgModule({

@@ -14,6 +14,10 @@ export class ButtonsCComponent implements OnInit {
   code = {
     name: '<share-buttons>',
     example: '<share-buttons show="11"></share-buttons>',
+    npm: `$ npm i -S @ngx-share/{core,button,buttons}
+$ npm i -S @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg-icons,free-brands-svg-icons}`,
+    yarn: `$ yarn add @ngx-share/{core,button,buttons}
+$ yarn add @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg-icons,free-brands-svg-icons}`,
     import: `import { ShareButtonsModule } from '@ngx-share/buttons';
 
 @NgModule({
