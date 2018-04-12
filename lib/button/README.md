@@ -19,15 +19,15 @@ Use `<share-button>` component to add share buttons individually.
 **NPM**
 
 ```bash
-$ npm install --save @ngx-share/core @ngx-share/button
-$ npm install --save @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
+$ npm i -S @ngx-share/{core,button}
+$ npm i -S @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg-icons,free-brands-svg-icons}
 ```
 
 **YARN**
 
 ```bash
-$ yarn add @ngx-share/core @ngx-share/button 
-$ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
+$ yarn add @ngx-share/{core,button}
+$ yarn add @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg-icons,free-brands-svg-icons}
 ```
 
 ### Usage

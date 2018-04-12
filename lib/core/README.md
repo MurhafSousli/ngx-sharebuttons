@@ -22,14 +22,14 @@ Convert any element to a share button using `[shareButton]` directive.
 
 ```bash
 $ npm install --save @ngx-share/core
-$ npm install --save @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
+$ npm install --save @fortawesome/{free-solid-svg-icons,free-brands-svg-icons}
 ```
 
 **YARN**
 
 ```bash
 $ yarn add @ngx-share/core
-$ yarn add @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
+$ yarn add @fortawesome/{free-solid-svg-icons,free-brands-svg-icons}
 ```
 
 ### Usage
