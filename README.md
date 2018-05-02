@@ -252,7 +252,7 @@ import { ShareButtonModule } from '@ngx-share/button';
   imports: [
     HttpClientModule,      // (Required) for share counts
     HttpClientJsonpModule, // (Optional) for Tumblr counts
-    ShareButtonModule.forRoot()
+    ShareButtonsModule.forRoot()
   ]
 })
 ```
