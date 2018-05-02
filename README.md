@@ -246,7 +246,7 @@ $ yarn add @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg
 Import `ShareButtonModule` in your module
 
 ```ts
-import { ShareButtonModule } from '@ngx-share/button';
+import { ShareButtonsModule } from '@ngx-share/buttons';
 
 @NgModule({
   imports: [
