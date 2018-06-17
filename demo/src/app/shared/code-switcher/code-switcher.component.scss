@@ -1,9 +1,27 @@
 @import '../../../assets/style/variables';
 
+::ng-deep {
+  code-switcher {
+    .mat-slide-toggle-bar {
+      background-color: rgba(0, 0, 0, 0.38) !important;
+    }
+    .mat-slide-toggle-thumb {
+      background-color: #fafafa !important;
+    }
+  }
+}
+
 :host {
   display: block;
   width: 100%;
   perspective: 800px;
+}
+
+hl-code {
+  //position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .switcher-header {
@@ -59,16 +77,5 @@ pre {
   width: 100%;
   code {
     margin: 0;
-  }
-}
-
-::ng-deep {
-  code-switcher {
-    .mat-slide-toggle-bar {
-      background-color: rgba(0, 0, 0, 0.38) !important;
-    }
-    .mat-slide-toggle-thumb {
-      background-color: #fafafa !important;
-    }
   }
 }

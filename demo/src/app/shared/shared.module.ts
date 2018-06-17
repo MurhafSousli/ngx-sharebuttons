@@ -4,11 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HighlightModule } from 'ngx-highlightjs';
-import { MaterialModule } from '../material.module';
-import { AsyncLocalStorageModule } from 'angular-async-local-storage';
-
-import { ShareButtonsModule } from '../share/buttons';
 import { ScrollbarModule } from 'ngx-scrollbar';
+import { ShareButtonsModule } from '@ngx-share/buttons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MaterialModule } from './material.module';
 
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { LabComponent } from './lab/lab.component';
@@ -20,7 +19,8 @@ import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.componen
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SectionTitleComponent } from './section-title/section-title.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HlCodeComponent } from './hl-code/hl-code.component';
+import { NoteComponent } from './note/note.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ThemeSwitcherComponent,
     FooterComponent,
     HeaderComponent,
-    SectionTitleComponent
+    SectionTitleComponent,
+    HlCodeComponent,
+    NoteComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    AsyncLocalStorageModule,
     ScrollbarModule,
     HighlightModule,
     ShareButtonsModule,
@@ -56,6 +57,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MaterialModule,
     FlexLayoutModule,
     ScrollbarModule,
+    FontAwesomeModule,
     NavMenuComponent,
     BadgesComponent,
     LabComponent,
@@ -64,7 +66,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     HeaderComponent,
     SectionTitleComponent,
-    FontAwesomeModule
+    HlCodeComponent,
+    NoteComponent
   ],
   entryComponents: [
     CodeDialogComponent

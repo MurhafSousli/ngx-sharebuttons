@@ -1,7 +1,7 @@
 [
   {
     "name": "include",
-    "description": "Include certain buttons. Buttons order will be as you type it, default: [all buttons]"
+    "description": "Include certain buttons. Buttons order will be as you type it, default: [ALL_BUTTONS]"
   },
   {
     "name": "exclude",
@@ -35,5 +35,31 @@
   {
     "name": "twitterAccount",
     "description": "Add via @accountName at the end of the tweets, default: null"
+  },
+  {
+    "name": "windowWidth",
+    "description": "Share popup window width, default: 800"
+  },
+  {
+    "name": "windowHeight",
+    "description": "Share popup window height, default: 500"
+  },
+  {
+    "name": "autoSetMeta",
+    "description": "Initializes meta tags inputs from the SEO meta tags, default: true",
+    "type": "input"
+  },
+  {
+    "name": "size",
+    "description": "Buttons default size, default: 0",
+    "type": "input"
+  },
+  {
+    "name": "moreButtonIcon",
+    "description": "More button icon in ShareButtonsComponent, default: 'ellipsis-h'"
+  },
+  {
+    "name": "lessButtonIcon",
+    "description": "Less button icon in ShareButtonsComponent, default: 'minus'"
   }
 ]

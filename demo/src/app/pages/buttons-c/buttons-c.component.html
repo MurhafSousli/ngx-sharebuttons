@@ -1,4 +1,4 @@
-<ng-scrollbar [autoHide]="true">
+<ng-scrollbar [autoHide]="true" thumbClass="page-scrollbar-thumb">
   <header>
     <h1>Share Buttons Component</h1>
   </header>
@@ -16,10 +16,10 @@
       <p>Install the following packages</p>
 
       <h4>NPM</h4>
-      <pre><code class="hljs">{{code.npm}}</code></pre>
+      <hl-code [code]="code.npm"></hl-code>
 
       <h4>YARN</h4>
-      <pre><code class="hljs">{{code.yarn}}</code></pre>
+      <hl-code [code]="code.yarn"></hl-code>
     </section>
 
     <section>
@@ -29,10 +29,7 @@
         <b>"app/src/style.scss"</b>
       </p>
 
-      <pre><code highlight>
-@import '~@ngx-share/button/styles/share-buttons';
-@import '~@ngx-share/button/styles/themes/default/default-theme';
-    </code></pre>
+      <hl-code [code]="code.styles"></hl-code>
 
       <p>To extend buttons styles, see
         <a routerLink="/styling-guide">styling guide</a> section.</p>
@@ -41,7 +38,7 @@
     <section>
       <section-title>Import the module</section-title>
 
-      <pre><code highlight [code]="code.import"></code></pre>
+      <hl-code [code]="code.import"></hl-code>
 
       <code-switcher [code]="code.example" class="center">
         <share-buttons show="11"></share-buttons>

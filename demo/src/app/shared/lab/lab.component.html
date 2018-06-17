@@ -9,7 +9,8 @@
     <div class="inputs-line horizontal">
 
       <ng-template [ngIf]="component !== 'share-button'">
-        <mat-form-field color="accent">
+        <mat-form-field color="primary" appearance="outline">
+          <mat-label>Include</mat-label>
           <mat-select placeholder="Include" [(ngModel)]="config.include" multiple>
             <mat-option *ngFor="let button of config.allButtons" [value]="button">
               {{ button }}
@@ -17,7 +18,8 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field color="accent">
+        <mat-form-field color="primary" appearance="outline">
+          <mat-label>Exclude</mat-label>
           <mat-select placeholder="Exclude" [(ngModel)]="config.exclude" multiple>
             <mat-option *ngFor="let button of config.allButtons" [value]="button">
               {{ button }}
@@ -25,23 +27,23 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-slider matTooltip="Number of buttons to display" [thumb-label]="true" [max]="getMax()" [step]="1"
+        <mat-slider matTooltip="Number of buttons to display" [thumbLabel]="true" [max]="getMax()" [step]="1"
                     [(ngModel)]="config.show">
         </mat-slider>
 
       </ng-template>
 
 
-      <mat-slider matTooltip="Button size" [thumb-label]="true" [min]="-4" [max]="4" [step]="1"
+      <mat-slider matTooltip="Button size" [thumbLabel]="true" [min]="-4" [max]="4" [step]="1"
                   [(ngModel)]="config.size">
       </mat-slider>
 
       <div class="toggle-group horizontal">
-        <mat-slide-toggle color="accent" [(ngModel)]="config.showIcon" [disabled]="!config.showText">Icon
+        <mat-slide-toggle color="primary" [(ngModel)]="config.showIcon" [disabled]="!config.showText">Icon
         </mat-slide-toggle>
-        <mat-slide-toggle color="accent" [(ngModel)]="config.showText" [disabled]="!config.showIcon">Text
+        <mat-slide-toggle color="primary" [(ngModel)]="config.showText" [disabled]="!config.showIcon">Text
         </mat-slide-toggle>
-        <mat-slide-toggle color="accent" [(ngModel)]="config.showCount">Count</mat-slide-toggle>
+        <mat-slide-toggle color="primary" [(ngModel)]="config.showCount">Count</mat-slide-toggle>
       </div>
     </div>
   </div>
@@ -105,7 +107,7 @@
           <mat-chip color="danger" [class.changed]="closedChanged | async"> Closed
             <span *ngIf="closed">: {{ closed | json }}</span>
           </mat-chip>
-          <mat-chip color="accent" [class.changed]="openedChanged | async"> Opened
+          <mat-chip color="primary" [class.changed]="openedChanged | async"> Opened
             <span *ngIf="opened">: {{ opened | json }}</span>
           </mat-chip>
           <mat-chip color="primary" [class.changed]="countChanged | async"> Count
@@ -120,7 +122,8 @@
     <div class="vertical">
 
       <div class="lab-section" *ngIf="component === 'share-button'">
-        <mat-form-field color="accent">
+        <mat-form-field color="primary" appearance="outline">
+          <mat-label>Button</mat-label>
           <mat-select placeholder="Button" [(ngModel)]="config.button">
             <mat-option *ngFor="let button of config.allButtons" [value]="button">
               {{ button }}
@@ -130,7 +133,8 @@
       </div>
 
       <div class="lab-section">
-        <mat-form-field color="accent">
+        <mat-form-field color="primary" appearance="outline">
+          <mat-label>Theme</mat-label>
           <mat-select placeholder="Theme" [(ngModel)]="config.theme">
             <mat-option *ngFor="let themeName of config.themes" [value]="themeName">
               {{ themeName }}
@@ -138,39 +142,38 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field color="accent" matTooltip="If empty! It uses the current page URL" matTooltipPosition="before">
-          <input matInput [formControl]="urlControl" [value]="config.url" placeholder="URL">
+        <mat-form-field color="primary"  appearance="outline">
+          <mat-label>URL</mat-label>
+          <input matInput [(ngModel)]="config.url" [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
+          <mat-hint>If empty! It uses the current page URL</mat-hint>
         </mat-form-field>
       </div>
 
       <div class="lab-section">
-        <!--<h4>Meta tags options</h4>-->
         <div>
-          <mat-slide-toggle class="auto-set-toggle" color="accent" [(ngModel)]="config.autoSetMeta">
+          <mat-slide-toggle class="auto-set-toggle" color="primary" [(ngModel)]="config.autoSetMeta">
             Auto set meta tags
           </mat-slide-toggle>
         </div>
 
-
-        <mat-form-field color="accent" matTooltip="For LinkedIn and Reddit only" matTooltipPosition="before">
-          <input matInput [(ngModel)]="config.title" placeholder="Title"
-                 [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
+        <mat-form-field color="primary"  appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput [(ngModel)]="config.title" [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
         </mat-form-field>
 
-        <mat-form-field color="accent" matTooltip="Twitter, LinkedIn, WhatsApp, Telegram and Pinterest"
-                        matTooltipPosition="before">
-          <input matInput [(ngModel)]="config.description" placeholder="Description"
-                 [disabled]="component === 'share-button' && !['twitter', 'linkedin','whatsapp', 'telegram', 'pinterest'].includes(config.button)">
+        <mat-form-field color="primary"  appearance="outline">
+          <mat-label>Description</mat-label>
+          <input matInput [(ngModel)]="config.description" [disabled]="component === 'share-button' && !['twitter', 'linkedin','whatsapp', 'telegram', 'pinterest'].includes(config.button)">
         </mat-form-field>
 
-        <mat-form-field color="accent" matTooltip="For Pinterest only" matTooltipPosition="before">
-          <input matInput [(ngModel)]="config.image" placeholder="Image"
-                 [disabled]="component === 'share-button' && config.button !== 'pinterest'">
+        <mat-form-field color="primary"  appearance="outline">
+          <mat-label>Image</mat-label>
+          <input matInput [(ngModel)]="config.image" [disabled]="component === 'share-button' && config.button !== 'pinterest'">
         </mat-form-field>
 
-        <mat-form-field color="accent" matTooltip="For Twitter and Tumblr only" matTooltipPosition="before">
-          <input matInput [(ngModel)]="config.tags" placeholder="Tags"
-                 [disabled]="component === 'share-button' && !['twitter', 'tumblr'].includes(config.button)">
+        <mat-form-field color="primary"  appearance="outline">
+          <mat-label>Tags</mat-label>
+          <input matInput [(ngModel)]="config.tags" [disabled]="component === 'share-button' && !['twitter', 'tumblr'].includes(config.button)">
         </mat-form-field>
       </div>
     </div>

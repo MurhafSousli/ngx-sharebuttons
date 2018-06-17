@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { shareReplay } from 'rxjs/operators';
 import { ApiData } from './docs.class';
-import { shareReplay } from 'rxjs/operators/shareReplay';
 
 @Injectable()
 export class DocsService {

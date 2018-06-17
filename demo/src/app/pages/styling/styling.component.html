@@ -1,4 +1,4 @@
-<ng-scrollbar [autoHide]="true">
+<ng-scrollbar [autoHide]="true" thumbClass="page-scrollbar-thumb">
   <header>
     <h1>Styling Guide</h1>
   </header>
@@ -9,14 +9,12 @@
       <section-title>Create custom theme</section-title>
       <p>There are several classes to help you adjust your custom styles</p>
 
-      <pre>
-        <code highlight [code]="stylingCode"></code>
-      </pre>
+      <hl-code [code]="stylingCode" [height]="400"></hl-code>
 
-      <p>If you use <b>.sb-colorful-theme</b> then the theme name will become <b>colorful</b>:</p>
-      <pre>
-        <code highlight [code]="componentCode"></code>
-      </pre>
+      <p>If you use <b>.moon-theme</b> then the theme name will become <b>moon</b>:</p>
+
+      <hl-code [code]="componentCode"></hl-code>
+
     </section>
 
   </div>

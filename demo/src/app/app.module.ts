@@ -6,7 +6,8 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { HighlightModule } from 'ngx-highlightjs';
-import { ShareButtonsModule } from './share/buttons';
+import { ShareButtonsModule } from '@ngx-share/buttons';
+
 import { SharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

@@ -1,4 +1,4 @@
-<ng-scrollbar [autoHide]="true">
+<ng-scrollbar [autoHide]="true" thumbClass="page-scrollbar-thumb">
   <header>
     <h1>Share Button Directive</h1>
   </header>
@@ -13,22 +13,23 @@
     <section>
       <section-title>Installation</section-title>
       <p>Install the following packages</p>
-      
+
       <h4>NPM</h4>
-      <pre><code class="hljs">{{code.npm}}</code></pre>
+      <hl-code [code]="code.npm"></hl-code>
 
       <h4>YARN</h4>
-      <pre><code class="hljs">{{code.yarn}}</code></pre>
+      <hl-code [code]="code.yarn"></hl-code>
     </section>
 
     <section>
       <section-title>Import the module</section-title>
 
-      <pre><code highlight [code]="code.import"></code></pre>
+      <hl-code [code]="code.import"></hl-code>
 
-      <p>The most basic share button needs only the name of the social network. e.g: <code class="hljs">shareButton="twitter"</code></p>
+      <p>The most basic share button needs only the name of the social network. e.g: <code class="hljs">shareButton="twitter"</code>
+      </p>
 
-      <code-switcher [code]="code.example1">
+      <code-switcher [code]="code.example1" [fill]="true">
         <div class="example example2">
           <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color">
             <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
@@ -51,7 +52,7 @@
         </div>
       </code-switcher>
 
-      <code-switcher [code]="code.example2">
+      <code-switcher [code]="code.example2" [fill]="true">
         <div class="example example3">
           <button mat-icon-button shareButton="facebook" #fbBtn [style.color]="share.prop.facebook.color">
             <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
@@ -78,9 +79,14 @@
       <p>You can get the official colors and icons by injecting
         <b>ShareButtons</b> service in your component</p>
 
-      <pre><code highlight [code]="code.service"></code></pre>
+      <hl-code [code]="code.service"></hl-code>
 
     </section>
+
+    <note>
+      By default, the core package does not load any icon from FontAwesome, if you wish to use them, you should
+        import them manually. Follow the <a routerLink="/icons">Icons Guide</a>.
+    </note>
 
     <section fxShow fxHide.lt-md="true">
       <section-title>API</section-title>

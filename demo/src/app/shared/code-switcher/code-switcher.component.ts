@@ -30,4 +30,5 @@ export class CodeSwitcherComponent {
 
   @Input() title = 'Example';
   @Input() code: string;
+  @Input() fill: boolean;
 }

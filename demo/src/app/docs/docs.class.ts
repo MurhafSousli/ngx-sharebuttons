@@ -1,6 +1,5 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
 import { DataSource } from '@angular/cdk/collections';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 export interface ApiData {
   name?: string;

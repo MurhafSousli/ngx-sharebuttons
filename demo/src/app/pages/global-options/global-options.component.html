@@ -1,4 +1,4 @@
-<ng-scrollbar [autoHide]="true">
+<ng-scrollbar [autoHide]="true" thumbClass="page-scrollbar-thumb">
   <header>
     <h1>Global Options</h1>
   </header>
@@ -8,10 +8,8 @@
     <section>
       <section-title>Setting custom options</section-title>
       <p>To use custom options that applies on all share buttons components across your app, pass your config in the root module where the library is imported.</p>
-      <p>
-        <b>Example</b>
-      </p>
-      <pre><code highlight [code]="code.options"></code></pre>
+      <p><b>Example</b></p>
+      <hl-code [code]="code" [height]="400"></hl-code>
     </section>
 
     <section fxShow fxHide.lt-md="true">
@@ -35,14 +33,6 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-    </section>
-
-    <section>
-      <section-title>Setting custom properties</section-title>
-      <p>You can change each button icon and text using the global options, for example:</p>
-      <pre>
-    <code highlight [code]="code.metaButtons"></code>
-  </pre>
     </section>
 
   </div>

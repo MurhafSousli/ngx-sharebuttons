@@ -12,10 +12,6 @@
     <ng-content></ng-content>
   </div>
   <div class="code back" [class.active]="toggle">
-    <ng-scrollbar [trackX]="true">
-      <pre>
-        <code highlight [code]="code"></code>
-      </pre>
-    </ng-scrollbar>
+      <hl-code [code]="code" [style.position]="fill ? 'absolute' : 'relative'"></hl-code>
   </div>
 </div>

@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { faPinterest, faTwitterSquare, faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
+import { faPinterest } from '@fortawesome/free-brands-svg-icons/faPinterest';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 import { DocsService } from '../../docs/docs.service';
 
@@ -14,33 +16,34 @@ export class ButtonCComponent implements OnInit {
 
   code = {
     name: '<share-button>',
-    npm: `$ npm i -S @ngx-share/{core,button}
-    $ npm i -S @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg-icons,free-brands-svg-icons}`,
-    yarn: `$ yarn add @ngx-share/{core,button}
-    $ yarn add @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg-icons,free-brands-svg-icons}`,
-        
+    npm: `npm i -S @ngx-share/core @ngx-share/button
+npm i -S @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons`,
+    yarn: `yarn add @ngx-share/core @ngx-share/button
+yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons`,
+    styles: `@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/default/default-theme';`,
     examples: `<share-button button="facebook" text="Share" [showText]="true"></share-button>
 <share-button button="twitter" text="Tweet" [showText]="true"></share-button>
 <share-button button="pinterest" [icon]="pinIcon"></share-button>`,
-    customIcons: `<share-button button="facebook" theme="circles-dark" [icon]="fbIcon"></share-button>
-<share-button button="twitter" theme="circles-dark" [icon]="tweetIcon"></share-button>
-<share-button button="pinterest" theme="circles-dark" [icon]="pinIcon"></share-button>`,
-    importIcons: `import { faFacebookSquare, faTwitterSquare, faPinterest } from '@fortawesome/free-brands-svg-icons';
+    customIcons: `<share-button button="facebook" theme="circles-dark" [icon]="['fab', 'facebook-square']"></share-button>
+<share-button button="twitter" theme="circles-dark" [icon]="['fab', 'twitter-square']"></share-button>
+<share-button button="pinterest" theme="circles-dark" [icon]="['fab', 'pinterest-p']"></share-button>`,
+    imoprtIcons: `import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
+import { faPinterest } from '@fortawesome/free-brands-svg-icons/faPinterest';
 
-@Component({
-  selector: 'my-component',
-})
-export class MyComponent {
+export class ButtonCComponent {
   fbIcon = faFacebookSquare;
-  tweetIcon = faTwitterSquare;
   pinIcon = faPinterest;
-}`,
+  tweetIcon = faTwitterSquare;
+}
+`,
     import: `import { ShareButtonModule } from '@ngx-share/button';
 
 @NgModule({
   imports: [
-    HttpClientModule,       // for share counts
-    HttpClientJsonpModule,  // for linkedin and tumblr share counts
+    HttpClientModule,       // (Required) For share counts
+    HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
     ShareButtonModule.forRoot()
   ]
 })`

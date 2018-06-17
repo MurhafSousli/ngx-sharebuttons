@@ -1,4 +1,4 @@
-<ng-scrollbar [autoHide]="true">
+<ng-scrollbar [autoHide]="true" thumbClass="page-scrollbar-thumb">
   <header>
     <h1>Share Button Component</h1>
   </header>
@@ -15,10 +15,10 @@
       <p>Install the following packages</p>
 
       <h4>NPM</h4>
-      <pre><code class="hljs">{{code.npm}}</code></pre>
+      <hl-code [code]="code.npm"></hl-code>
 
       <h4>YARN</h4>
-      <pre><code class="hljs">{{code.yarn}}</code></pre>
+      <hl-code [code]="code.yarn"></hl-code>
     </section>
 
     <section>
@@ -28,19 +28,15 @@
         <b>"app/src/style.scss"</b>
       </p>
 
-      <pre><code highlight>
-@import '~@ngx-share/button/styles/share-buttons';
-@import '~@ngx-share/button/styles/themes/default/default-theme';
-    </code></pre>
+      <hl-code [code]="code.styles"></hl-code>
 
-      <p>To extend buttons styles, see
-        <a routerLink="/styling-guide">styling guide</a> section.</p>
+      <p>To extend buttons styles, see <a routerLink="/styling-guide">styling guide</a> section.</p>
     </section>
 
     <section>
       <section-title>Import the module</section-title>
 
-      <pre><code highlight [code]="code.import"></code></pre>
+      <hl-code [code]="code.import"></hl-code>
 
       <p>Now you can add share buttons individually.</p>
 
@@ -50,18 +46,21 @@
         <share-button button="pinterest" theme="classic-dark" text="Pin" showText="true"></share-button>
       </code-switcher>
 
-      <p>The default icons can be changed directly by importing custom icons from FontAwesome package.</p>
-
       <code-switcher [code]="code.customIcons" class="center">
         <share-button button="facebook" theme="circles-dark" size="3" [icon]="fbIcon"></share-button>
         <share-button button="twitter" theme="circles-dark" size="3" [icon]="tweetIcon"></share-button>
         <share-button button="pinterest" theme="circles-dark" size="3" [icon]="pinIcon"></share-button>
       </code-switcher>
 
-      <pre><code highlight [code]="code.importIcons"></code></pre>
+      <hl-code [code]="code.imoprtIcons"></hl-code>
 
-      <p>To use custom configuration, See
-        <a routerLink="/global-options">global options</a> section.</p>
+    </section>
+
+    <section>
+      <note>
+        Alternatively, you can set the default icons using <b>ShareButtonOptions</b>, see <a routerLink="/icons">Icons
+        Guide</a>.
+      </note>
     </section>
 
     <section fxShow fxHide.lt-md="true">

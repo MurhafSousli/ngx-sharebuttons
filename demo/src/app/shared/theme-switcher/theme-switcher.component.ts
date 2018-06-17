@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'theme-switcher',
@@ -26,7 +26,7 @@ export class ThemeSwitcherComponent implements OnInit {
   currIndex = 0;
   @Output() themeChange = new EventEmitter<string>();
 
-  constructor(protected localStorage: AsyncLocalStorage) {
+  constructor(protected localStorage: LocalStorage) {
   }
 
   @HostListener('window:keyup', ['$event'])

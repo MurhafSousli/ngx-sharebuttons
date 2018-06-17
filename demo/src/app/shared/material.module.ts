@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+
+import {ObserversModule} from '@angular/cdk/observers';
 import {
   MatButtonModule,
   MatIconModule,
@@ -34,7 +36,8 @@ const MATERIAL_MODULES = [
   MatCheckboxModule,
   MatDialogModule,
   MatSliderModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  ObserversModule
 ];
 
 @NgModule({

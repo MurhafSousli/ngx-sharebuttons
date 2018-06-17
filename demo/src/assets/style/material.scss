@@ -3,7 +3,7 @@
 @include mat-core();
 $primary: mat-palette($mat-blue);
 $accent: mat-palette($mat-red);
-$warn: mat-palette($mat-blue);
+$warn: mat-palette($mat-purple, 300);
 $theme: mat-light-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
 
@@ -35,6 +35,11 @@ mat-table, mat-card {
   height: 100%;
   display: flex;
   align-items: center !important;
+}
+
+.mat-chip {
+  font-family: 'Play', sans-serif;
+  text-transform: lowercase !important;
 }
 
 .mat-primary .mat-chip-selected {
@@ -91,15 +96,17 @@ mat-card-content {
 
 // MATERIAL DIALOG
 .code-dialog .mat-dialog-container {
-  border-radius: 0.3em;
-  background-color: mat-color(mat-palette($mat-blue));
-  padding: 5px;
-  pre {
-    border: 0;
-  }
+  border-radius: 0.6em;
+  padding: .6em;
+  background-color: mat-color(mat-palette($mat-purple, 300));
 }
 
 .mat-slide-toggle .mat-slide-toggle-content {
   font-size: 0.9em;
   font-weight: bold;
+}
+
+.copy-tooltip {
+  color: mat-color(mat-palette($mat-red));
+  background-color: rgba(0,0,0,0.5);
 }

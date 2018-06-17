@@ -1,4 +1,4 @@
-<ng-scrollbar [autoHide]="true">
+<ng-scrollbar [autoHide]="true" thumbClass="page-scrollbar-thumb">
   <header>
     <h1>Frequently Asked Questions</h1>
   </header>
@@ -7,9 +7,7 @@
 
     <section>
       <section-title>How to import share buttons module in a lazy module?</section-title>
-      <pre>
-        <code highlight [code]="code.lazyImport"></code>
-      </pre>
+      <hl-code [code]="code.lazyImport"></hl-code>
     </section>
 
     <section>
@@ -26,13 +24,11 @@
 
       <div fxLayout fxLayoutAlign="space-between center" fxLayout.lt-sm="column">
         <figure>
-          <img
-            src="https://res.cloudinary.com/css-tricks/image/fetch/q_auto,f_auto/https://cdn.css-tricks.com/wp-content/uploads/2016/06/facebook-card.jpg">
+          <img src="https://res.cloudinary.com/css-tricks/image/fetch/q_auto,f_auto/https://cdn.css-tricks.com/wp-content/uploads/2016/06/facebook-card.jpg">
           <figcaption>Facebook card</figcaption>
         </figure>
         <figure>
-          <img
-            src="https://res.cloudinary.com/css-tricks/image/fetch/q_auto,f_auto/https://cdn.css-tricks.com/wp-content/uploads/2016/06/twitter-card.jpg">
+          <img src="https://res.cloudinary.com/css-tricks/image/fetch/q_auto,f_auto/https://cdn.css-tricks.com/wp-content/uploads/2016/06/twitter-card.jpg">
           <figcaption>Twitter card</figcaption>
         </figure>
       </div>
@@ -40,7 +36,7 @@
       <p>There are many other meta tags available that can be used to specify different
         types of content. But, in general, the following will suffice</p>
 
-      <pre><code highlight [code]="code.metaTags"></code></pre>
+      <hl-code [code]="code.metaTags"></hl-code>
 
       <p>Check this cool <a href="https://megatags.co/#generate-tags">online meta tags generator</a></p>
 
@@ -64,15 +60,16 @@
     </section>
 
     <section>
-      <section-title>How to change share buttons order in <code class="hljs" [textContent]="'<share-buttons>'"></code> component?
+      <section-title>How to change share buttons order in <code class="hljs" [textContent]="'<share-buttons>'"></code>
+        component?
       </section-title>
       <p>You can change the order by including the share buttons in order you want, for example:</p>
 
-      <pre><code highlight [code]="code.includeOrder"></code></pre>
+      <hl-code [code]="code.includeOrder"></hl-code>
 
       Or directly using the <b>include</b> input in ShareButtons components
 
-      <pre><code highlight [code]="code.buttonsOrder"></code></pre>
+      <hl-code [code]="code.buttonsOrder"></hl-code>
     </section>
 
   </div>

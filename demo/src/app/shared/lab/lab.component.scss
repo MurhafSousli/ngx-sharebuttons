@@ -1,3 +1,20 @@
+::ng-deep {
+  .code-button.mat-mini-fab {
+    .mat-button-wrapper {
+      padding: 0;
+    }
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0.7em 0;
+    border-top: 0;
+  }
+  mat-form-field {
+    margin-top: 0.5em;
+  }
+
+}
+
 :host {
   position: relative;
   display: block;
@@ -68,7 +85,7 @@ mat-form-field {
 }
 
 .vertical {
-  width: 200px;
+  width: 220px;
   display: flex;
   flex-direction: column;
 }
@@ -79,6 +96,9 @@ mat-form-field {
 
 .code-button {
   font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .auto-set-toggle {

@@ -11,32 +11,24 @@ import { DocsService } from '../../docs/docs.service';
 })
 export class GlobalOptionsComponent implements OnInit {
 
-  code = {
-    options: `import { ShareButtonsModule } from '@ngx-share/buttons';
-import { ShareButtonsOptions } from '@ngx-share/core';
+  code = `import { ShareButtonsModule } from '@ngx-share/buttons';
+import { ShareButtonsOptions, IShareButtons } from '@ngx-share/core';
 
-const options: ShareButtonsOptions = {
+const customOptions: ShareButtonsOptions = {
   include: ['facebook', 'twitter', 'google'],
+  exclude: [],
   theme: 'modern-light',
   gaTracking: true,
+  autoSetMeta: true,
   twitterAccount: 'username'
 }
 
-@NgModule({
-  imports: [
-    ShareButtonsModule.forRoot({ options: options })
-  ]
-})`,
-    metaButtons: `import { ShareButtonsModule } from '@ngx-share/buttons';
-import { IShareButtons } from '@ngx-share/core';
-import { faFacebookSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
-
-const customProp: IShareButtons = {
+const customProps: IShareButtons = {
   facebook: {
-    icon: faFacebookSquare
+    icon: ['fab', 'facebook-square']
   },
   twitter: {
-    icon: faTwitterSquare,
+    icon: ['fab', 'twitter-square'],
     text: 'Tweet'
   },
   // and so on...
@@ -44,11 +36,9 @@ const customProp: IShareButtons = {
 
 @NgModule({
   imports: [
-    HttpClientModule,
-    ShareButtonsModule.forRoot({ prop: customProp })
+    ShareButtonsModule.forRoot({ options: customOptions, prop: customProps })
   ]
-})`
-  };
+})`;
 
 
   displayedColumns = ['name', 'description'];

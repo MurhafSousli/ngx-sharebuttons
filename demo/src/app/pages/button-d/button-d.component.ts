@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ShareButtons } from '../../share/core';
+import { ShareButtons } from '@ngx-share/core';
 import { DocsService } from '../../docs/docs.service';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 
@@ -13,16 +13,14 @@ import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 export class ButtonDComponent implements OnInit {
 
   code = {
-    npm: `$ npm i -S @ngx-share/core
-  $ npm i -S @fortawesome/{free-solid-svg-icons,free-brands-svg-icons}`,
-    yarn: `$ yarn add @ngx-share/core
-  $ yarn add @fortawesome/{free-solid-svg-icons,free-brands-svg-icons}`,
+    npm: `npm i -S @ngx-share/core`,
+    yarn: `yarn add @ngx-share/core`,
     import: `import { ShareModule } from '@ngx-share/core';
 
 @NgModule({
   imports: [
-    HttpClientModule,       // for share counts
-    HttpClientJsonpModule,  // for tumblr share counts
+    HttpClientModule,       // (Required) For share counts
+    HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
     ShareModule.forRoot()
   ]
 })`,

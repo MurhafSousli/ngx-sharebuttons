@@ -1,0 +1,31 @@
+section {
+  margin: 2em 0;
+}
+
+.note {
+  box-shadow: 0 0 1px -1px rgba(0, 0, 0, 0.9);
+  position: relative;
+  background-color: wheat;
+  padding: 1em 2em;
+
+  &:before, &:after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #777;
+    box-shadow: 0 15px 10px rgba(#777, 0.8);
+    transform: rotate(-2deg);
+  }
+
+  &:after {
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+  }
+
+}

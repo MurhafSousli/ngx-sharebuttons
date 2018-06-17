@@ -1,26 +1,10 @@
-import {
-  Component,
-  Input,
-  AfterViewInit,
-  AfterContentChecked,
-  OnDestroy,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef
-} from '@angular/core';
+import { Component, Input, AfterViewInit, AfterContentChecked, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { ShareButtons } from '../../share/core';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
-import { of } from 'rxjs/observable/of';
-import { debounceTime } from 'rxjs/operators/debounceTime';
-import { delay } from 'rxjs/operators/delay';
-import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
-import { filter } from 'rxjs/operators/filter';
-import { switchMap } from 'rxjs/operators/switchMap';
-import { take } from 'rxjs/operators/take';
-import { tap } from 'rxjs/operators/tap';
-import { AsyncLocalStorage } from 'angular-async-local-storage';
+import { ShareButtons } from '@ngx-share/core';
+import { Subject, Subscription, of } from 'rxjs';
+import { tap, take, switchMap, debounceTime, delay, distinctUntilChanged, filter } from 'rxjs/operators';
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 import { CodeDialogComponent } from '../code-dialog/code-dialog.component';
 
@@ -85,10 +69,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
   /** Lab for a single share buttons or for share buttons container */
   @Input() component;
 
-  constructor(private share: ShareButtons,
-              private dialog: MatDialog,
-              protected localStorage: AsyncLocalStorage,
-              private cd: ChangeDetectorRef) {
+  constructor(private share: ShareButtons, private dialog: MatDialog, private cd: ChangeDetectorRef, protected localStorage: LocalStorage) {
   }
 
   onCountChanged(e) {
@@ -190,8 +171,8 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
 
 
     this.dialog.open(CodeDialogComponent, {
-      height: '340px',
       width: '600px',
+      height: '300px',
       autoFocus: false,
       panelClass: 'code-dialog',
       data: code
