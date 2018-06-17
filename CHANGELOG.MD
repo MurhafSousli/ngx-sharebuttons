@@ -49,7 +49,7 @@ library.add(...icons);
 })
 ```
 
-**NOTE:** User should use deep links to import the icons to fix the package size, see **@robbaman** comment in [@angular-fontawesome/34](https://github.com/FortAwesome/angular-fontawesome/issues/34#issuecomment-388919807).
+**NOTE:** Use the deep link to import the icon to keep the package size to the minimum, see **@robbaman** comment in [@angular-fontawesome/34](https://github.com/FortAwesome/angular-fontawesome/issues/34#issuecomment-388919807).
 
 ## 5.3.1
 
