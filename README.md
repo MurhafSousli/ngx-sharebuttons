@@ -22,9 +22,9 @@
 
 The plugin is divided into 3 modules to make it possible to include only the stuff you use.
 
-- [@ngx-share/core](lib/core) - Share button directive to convert any element to a share button.
-- [@ngx-share/button](lib/button) - Share button component to add buttons individually.
-- [@ngx-share/buttons](lib/buttons) - Share buttons component to add a collection of share buttons.
+- **@ngx-share/core** - Share button directive to convert any element to a share button.
+- **@ngx-share/button** - Share button component to add buttons individually.
+- **@ngx-share/buttons** - Share buttons component to add a collection of share buttons.
 
 ## Issues
 
