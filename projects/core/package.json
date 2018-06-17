@@ -38,8 +38,7 @@
     "url": "http://github.com/murhafsousli/ngx-sharebuttons/issues"
   },
   "peerDependencies": {
-    "@angular/common": "^5.0.0",
-    "@fortawesome/free-brands-svg-icons": "^5.1.0-7",
-    "@fortawesome/free-solid-svg-icons": "^5.1.0-7"
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0"
   }
 }
