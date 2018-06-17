@@ -1,0 +1,57 @@
+{
+  "name": "@ngx-share/core",
+  "description": "Share buttons components for Angular and Ionic.",
+  "version": "6.0.0-beta.0",
+  "private": false,
+  "homepage": "http://github.com/MurhafSousli/ngx-sharebuttons",
+  "author": {
+    "name": "Murhaf Sousli",
+    "url": "http://github.com/MurhafSousli"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/murhafsousli/ngx-sharebuttons.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "share-links",
+    "share-buttons",
+    "sharebuttons",
+    "share",
+    "buttons",
+    "facebook",
+    "twitter",
+    "pinterest",
+    "tumblr",
+    "stumbleupon",
+    "googleplus",
+    "linkedin",
+    "reddit",
+    "telegram",
+    "vk",
+    "copy",
+    "print",
+    "email"
+  ],
+  "bugs": {
+    "url": "http://github.com/murhafsousli/ngx-sharebuttons/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0"
+  },
+  "main": "bundles/ngx-share-core.umd.js",
+  "module": "fesm5/ngx-share-core.js",
+  "es2015": "fesm2015/ngx-share-core.js",
+  "esm5": "esm5/ngx-share-core.js",
+  "esm2015": "esm2015/ngx-share-core.js",
+  "fesm5": "fesm5/ngx-share-core.js",
+  "fesm2015": "fesm2015/ngx-share-core.js",
+  "typings": "ngx-share-core.d.ts",
+  "metadata": "ngx-share-core.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

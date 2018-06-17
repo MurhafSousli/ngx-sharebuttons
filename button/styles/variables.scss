@@ -1,0 +1,63 @@
+/** Colors variables */
+
+$sb-primary: #2E4057 !default;
+$sb-accent: #fff !default;
+$sb-facebook: #4267B2 !default;
+$sb-twitter: #00acee !default;
+$sb-google: #db4437 !default;
+$sb-stumble: #eb4924 !default;
+$sb-linkedin: #006fa6 !default;
+$sb-pinterest: #bd081c !default;
+$sb-reddit: #ff4006 !default;
+$sb-tumblr: #36465d !default;
+$sb-whatsapp: #25d366 !default;
+$sb-messenger: #0080FF !default;
+$sb-telegram: #0088cc !default;
+$sb-xing: #006567 !default;
+$sb-email: #FF961C !default;
+$sb-vk: #4C75A3 !default;
+$sb-copy: #607D8B !default;
+$sb-print: #765AA2 !default;
+$sb-sms: #20c16c !default;
+$sb-gray: #a5a5a5 !default;
+$sb-expand: #FF6651 !default;
+
+/** share button variables */
+
+$sb-min-width: 4.125em !default;
+$sb-height: 2.5em !default;
+$sb-background-color: transparent !default;
+$sb-font-size: inherit !default;
+$sb-icon-size: 1.2em !default;
+$sb-count-size: 0.9em !default;
+$sb-margin: 0.3125em !default;
+$sb-padding: 0 !default;
+$sb-text-padding: 0 0.7em !default;
+$sb-count-padding: 0 0.7em !default;
+$sb-count-min-width: 5.333em !default;
+$sb-border: none !default;
+$sb-border-radius: 1px !default;
+$sb-line-height: 2.571em;
+
+/** share buttons colors */
+
+$sb-buttons: (
+  facebook: $sb-facebook,
+  twitter: $sb-twitter,
+  google: $sb-google,
+  stumble: $sb-stumble,
+  linkedin: $sb-linkedin,
+  pinterest: $sb-pinterest,
+  reddit: $sb-reddit,
+  tumblr: $sb-tumblr,
+  whatsapp: $sb-whatsapp,
+  messenger: $sb-messenger,
+  telegram: $sb-telegram,
+  xing: $sb-xing,
+  sms: $sb-sms,
+  email: $sb-email,
+  vk: $sb-vk,
+  copy: $sb-copy,
+  print: $sb-print,
+  expand: $sb-expand
+) !default;

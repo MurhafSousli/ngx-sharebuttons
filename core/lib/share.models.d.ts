@@ -1,0 +1,99 @@
+import { ChangeDetectorRef, Renderer2 } from '@angular/core';
+import { OperatorFunction } from 'rxjs';
+/**
+ * Share buttons global config
+ */
+export interface ShareButtonsConfig {
+    options?: ShareButtonsOptions;
+    prop?: IShareButtons | any;
+}
+/**
+ * Share buttons global options
+ */
+export interface ShareButtonsOptions {
+    theme?: string;
+    include?: string[];
+    exclude?: string[];
+    size?: number;
+    url?: string;
+    title?: string;
+    description?: string;
+    image?: string;
+    tags?: string;
+    twitterAccount?: string;
+    autoSetMeta?: boolean;
+    gaTracking?: boolean;
+    windowWidth?: number;
+    windowHeight?: number;
+    moreButtonIcon?: string | string[];
+    lessButtonIcon?: string | string[];
+}
+/**
+ * Share buttons collection
+ */
+export interface IShareButtons {
+    facebook?: IShareButton;
+    twitter?: IShareButton;
+    linkedin?: IShareButton;
+    google?: IShareButton;
+    tumblr?: IShareButton;
+    stumble?: IShareButton;
+    pinterest?: IShareButton;
+    reddit?: IShareButton;
+    vk?: IShareButton;
+    telegram?: IShareButton;
+    messenger?: IShareButton;
+    whatsapp?: IShareButton;
+    xing?: IShareButton;
+    sms?: IShareButton;
+    email?: IShareButton;
+    print?: IShareButton;
+    copy?: IShareButton;
+}
+/**
+ * Share button properties
+ */
+export interface IShareButton {
+    text?: string;
+    icon?: string | string[];
+    type?: string;
+    color?: string;
+    ariaLabel?: string;
+    successText?: string;
+    successIcon?: string | string[];
+    failText?: string;
+    failIcon?: string | string[];
+    share?: {
+        desktop?: string;
+        android?: string;
+        ios?: string;
+        operators?: OperatorFunction<any, any>[];
+        metaTags?: any;
+    };
+    count?: {
+        request?: string;
+        url?: string;
+        args?: any;
+        operators?: OperatorFunction<any, any>[];
+    };
+}
+/**
+ * Share button directive ref interface
+ * This ref to be used in the share operators
+ */
+export interface ShareButtonRef {
+    prop?: IShareButton;
+    renderer?: Renderer2;
+    cd?: ChangeDetectorRef;
+    el?: HTMLElement;
+    os?: string;
+    temp?: any;
+    metaTags: {
+        url?: string;
+        title?: string;
+        description?: string;
+        image?: string;
+        tags?: string;
+        via?: string;
+    };
+}
