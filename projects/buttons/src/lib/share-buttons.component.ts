@@ -1,17 +1,7 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ChangeDetectionStrategy,
-  OnInit,
-  OnDestroy
-} from '@angular/core';
+import { Component, Input, Output, OnInit, OnDestroy, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ShareButtons, ShareButtonsConfig } from '@ngx-share/core';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { map } from 'rxjs/operators/map';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface ButtonsState {
   includedButtons?: string[];
@@ -20,6 +10,8 @@ export interface ButtonsState {
   selectedButtons?: string[];
   expanded?: boolean;
   shownCount?: number;
+  moreIcon?: any;
+  lessIcon?: any;
 }
 
 @Component({
@@ -30,18 +22,19 @@ export interface ButtonsState {
 })
 export class ShareButtonsComponent implements OnInit, OnDestroy {
 
-  configSub$: Subscription;
   state$: Observable<ButtonsState>;
-  stateWorker$ = new BehaviorSubject<ButtonsState>({
+  private _stateWorker$ = new BehaviorSubject<ButtonsState>({
     includedButtons: [],
     excludedButtons: [],
     userButtons: [],
     selectedButtons: [],
     expanded: true,
-    shownCount: Object.keys(this.share.config.prop).length
+    shownCount: Object.keys(this._share.config.prop).length
   });
 
-  @Input() theme = this.share.theme;
+  private _configSub$: Subscription;
+
+  @Input() theme = this._share.theme;
 
   @Input('include') set includedButtons(includedButtons: string[]) {
     this.updateState({includedButtons});
@@ -86,11 +79,11 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   /** Share dialog closed event */
   @Output() closed = new EventEmitter<string>();
 
-  constructor(public share: ShareButtons) {
+  constructor(private _share: ShareButtons) {
   }
 
   ngOnInit() {
-    this.state$ = this.stateWorker$.pipe(
+    this.state$ = this._stateWorker$.pipe(
       map((state: ButtonsState) => {
         // Use component include buttons, otherwise fallback to global include buttons
         const includedButtons = state.includedButtons.length ? state.includedButtons : state.userButtons;
@@ -100,31 +93,36 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
           userButtons,
           selectedButtons,
           expanded: state.expanded,
-          shownCount: state.shownCount
+          shownCount: state.shownCount,
+          moreIcon: state.moreIcon,
+          lessIcon: state.lessIcon
         };
       })
     );
 
     /** Subscribe to share buttons config changes, This updates the component whenever a new button is added */
-    this.configSub$ = this.share.config$.subscribe((config: ShareButtonsConfig) => {
+    this._configSub$ = this._share.config$.subscribe((config: ShareButtonsConfig) => {
       // Use global include buttons, otherwise fallback to all buttons
       const includedButtons = config.options.include.length ? config.options.include : Object.keys(config.prop);
       const userButtons = includedButtons.filter((btn) => config.options.exclude.indexOf(btn) < 0);
       this.updateState({
         userButtons,
-        expanded: false
+        expanded: false,
+        moreIcon: config.options.moreButtonIcon,
+        lessIcon: config.options.lessButtonIcon
       });
     });
   }
 
-  updateState(state: ButtonsState) {
-    this.stateWorker$.next({...this.stateWorker$.getValue(), ...state});
+  ngOnDestroy() {
+    if (this._configSub$) {
+      this._configSub$.unsubscribe();
+    }
+    this._stateWorker$.complete();
   }
 
-  ngOnDestroy() {
-    if (this.configSub$) {
-      this.configSub$.unsubscribe();
-    }
+  updateState(state: ButtonsState) {
+    this._stateWorker$.next({...this._stateWorker$.getValue(), ...state});
   }
 
 }
