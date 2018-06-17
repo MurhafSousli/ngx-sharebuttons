@@ -3,27 +3,20 @@ import {
   Input,
   Output,
   HostListener,
+  Inject,
+  OnChanges,
+  SimpleChanges,
   EventEmitter,
   ElementRef,
   Renderer2,
   ChangeDetectorRef,
-  PLATFORM_ID,
-  Inject,
-  OnChanges,
-  SimpleChanges
+  PLATFORM_ID
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
-import { catchError } from 'rxjs/operators/catchError';
-import { take } from 'rxjs/operators/take';
-import { map } from 'rxjs/operators/map';
-import { switchMap } from 'rxjs/operators/switchMap';
-import { tap } from 'rxjs/operators/tap';
-import { filter } from 'rxjs/operators/filter';
-import { Observable } from 'rxjs/Observable';
-import { empty } from 'rxjs/observable/empty';
-import { of } from 'rxjs/observable/of';
+import { Observable, of, EMPTY } from 'rxjs';
+import { tap, filter, switchMap, map, take, catchError } from 'rxjs/operators';
 
 import { ShareButtons } from './share.service';
 import { IShareButton, ShareButtonRef } from './share.models';
@@ -37,11 +30,11 @@ declare const ga: Function;
 })
 export class ShareButtonDirective implements OnChanges {
 
+  /** A ref to button class - used to remove previous class when the button type is changed */
+  private _buttonClass: string;
+
   /** Button properties */
   prop: IShareButton;
-
-  /** A ref to button class - used to remove previous class when the button type is changed */
-  buttonClass: string;
 
   /** Share button type */
   @Input() shareButton: string;
@@ -108,7 +101,7 @@ export class ShareButtonDirective implements OnChanges {
       // Share the link
       of(ref).pipe(
         ...this.prop.share.operators,
-        tap((sharerURL: string) => this.share(sharerURL)),
+        tap((sharerURL: any) => this.share(sharerURL)),
         take(1)
       ).subscribe();
     }
@@ -176,13 +169,13 @@ export class ShareButtonDirective implements OnChanges {
 
       return this.http.jsonp<any>(this.prop.count.url + url, 'callback').pipe(
         ...this.prop.count.operators,
-        catchError(() => empty()),
+        catchError(() => EMPTY),
       );
     } else {
 
       return this.http.get<any>(this.prop.count.url + url, this.prop.count.args).pipe(
         ...this.prop.count.operators,
-        catchError(() => empty())
+        catchError(() => EMPTY)
       );
     }
   }
@@ -197,7 +190,7 @@ export class ShareButtonDirective implements OnChanges {
       this.prop = button;
 
       // Remove previous button class
-      this.renderer.removeClass(this.el.nativeElement, `sb-${this.buttonClass}`);
+      this.renderer.removeClass(this.el.nativeElement, `sb-${this._buttonClass}`);
 
       // Add new button class
       this.renderer.addClass(this.el.nativeElement, `sb-${button.type}`);
@@ -206,7 +199,10 @@ export class ShareButtonDirective implements OnChanges {
       this.el.nativeElement.style.setProperty('--button-color', this.prop.color);
 
       // Keep a copy of the class for future replacement
-      this.buttonClass = button.type;
+      this._buttonClass = button.type;
+
+      // Set aria-label attribute
+      this.renderer.setAttribute(this.el.nativeElement, 'aria-label', button.ariaLabel || button.text);
     } else {
       throw new Error(`[ShareButtons]: The share button '${buttonsName}' does not exist!`);
     }
