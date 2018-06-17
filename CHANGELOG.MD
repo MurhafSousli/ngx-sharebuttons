@@ -1,5 +1,63 @@
 # Changelog
 
+## 6.0.0-beta.0
+
+- Angular 6 support, closes [#274](https://github.com/MurhafSousli/ngx-sharebuttons/issues/274).
+- fix(core): Use icon alias name in the share props instead of the icon object itself, closes [#280](https://github.com/MurhafSousli/ngx-sharebuttons/issues/280).
+- feat(ShareButtonDirective): Add `aria-label` attribute to share buttons, closes [#277](https://github.com/MurhafSousli/ngx-sharebuttons/issues/277).
+- feat(ShareButtonsComponent): Enable custom icons for the expand button, remove the hard-coded icons, closes [#289](https://github.com/MurhafSousli/ngx-sharebuttons/issues/289).
+- refactor(ShareButtonsComponent): Call `stateWorker$.complete()` on component destroy.
+- refactor(ShareButtonsComponent): Use `private` on variables and functions when they should be.
+- Add `CONTRIBUTION.md` for plugin development.
+- refactor(core): Remove all FontAwesome peer packages dependencies from `"@ngx-share/core`.
+- refactor(button): Use only `@fortawesome/angular-fontawesome` as a peer dependency for `"@ngx-share/button`.
+- refactor(buttons): Use only `@fortawesome/angular-fontawesome` as a peer dependency for `"@ngx-share/buttons`.
+- refactor(util): Use Observable instead of Promise for `copyToClipboard()`.
+
+
+### Breaking changes:
+
+- The plugin now uses Angular-FontAwesome [library method](https://github.com/FortAwesome/angular-fontawesome#using-the-icon-library) instead of the "Explicit reference" method to import the icons.
+
+**Before**:
+ 
+The plugin used to load the default icons weather you override them or used some of them.
+
+**After**:
+
+The plugin does not load FontAwesome icons out of the box. The user will choose which icons to load manually
+
+*PROS:*
+
+The user will choose which icons to load from FontAwesome.
+
+*CONS:*
+
+An extra step is now required
+
+Example:
+```ts
+import { ShareButtonsModule } from '@ngx-share/buttons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faFacebook } from '@fortawesome/free-brand-svg-icons/faFacebook';
+import { faTwitter } from '@fortawesome/free-brand-svg-icons/faTwitter';
+import { faLinkedinIn } from '@fortawesome/free-brand-svg-icons/faLinkedinIn';
+
+const faIcons = [faFacebook, faTwitter, faLinkedinIn];
+
+// Add the icons you want to use
+library.add(...faIcons);
+
+@NgModule({
+  imports: [
+    HttpClientModule,
+    ShareButtonsModule.forRoot()
+  ]
+})
+```
+
+**NOTE:** User should use deep links to import the icons to fix the package size, see **@robbaman** comment in [@angular-fontawesome/34](https://github.com/FortAwesome/angular-fontawesome/issues/34#issuecomment-388919807).
+
 ## 5.3.1
 
 - fix(ShareButtonsComponent): Hide expand button, closes [#255](https://github.com/MurhafSousli/ngx-sharebuttons/issues/255) in [#256](https://github.com/MurhafSousli/ngx-sharebuttons/pull/256).

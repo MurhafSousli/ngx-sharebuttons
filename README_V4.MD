@@ -362,4 +362,3 @@ If you identify any errors in this component, or have an idea for an improvement
  - [ngx-wordpress](https://github.com/MurhafSousli/ngx-wordpress)
  - [ngx-highlightjs](https://github.com/MurhafSousli/ngx-highlightjs)
  - [ng-teximate](https://github.com/MurhafSousli/ng-teximate)
-
