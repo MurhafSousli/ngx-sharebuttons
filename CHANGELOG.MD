@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.0.0-beta.0
+## 6.0.0
 
 - Angular 6 support, closes [#274](https://github.com/MurhafSousli/ngx-sharebuttons/issues/274).
 - fix(core): Use icon alias name in the share props instead of the icon object itself, closes [#280](https://github.com/MurhafSousli/ngx-sharebuttons/issues/280).
