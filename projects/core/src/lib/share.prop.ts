@@ -9,29 +9,12 @@ import {
   RedditCountOperators
 } from './share.operators';
 import { IShareButtons } from './share.models';
-import {
-  faFacebookF,
-  faTwitter,
-  faLinkedinIn,
-  faGooglePlusG,
-  faPinterestP,
-  faRedditAlien,
-  faTumblr,
-  faWhatsapp,
-  faFacebookMessenger,
-  faTelegramPlane,
-  faVk,
-  faStumbleupon,
-  faXing
-} from '@fortawesome/free-brands-svg-icons';
-
-import { faCommentAlt, faEnvelope, faCheck, faPrint, faExclamation, faLink } from '@fortawesome/free-solid-svg-icons';
 
 export const shareButtonsProp: IShareButtons = {
   facebook: {
     type: 'facebook',
     text: 'Facebook',
-    icon: faFacebookF,
+    icon: ['fab', 'facebook-f'],
     color: '#4267B2',
     share: {
       desktop: 'https://www.facebook.com/sharer/sharer.php?',
@@ -51,7 +34,7 @@ export const shareButtonsProp: IShareButtons = {
   twitter: {
     type: 'twitter',
     text: 'Twitter',
-    icon: faTwitter,
+    icon: ['fab', 'twitter'],
     color: '#00acee',
     share: {
       desktop: 'https://twitter.com/intent/tweet?',
@@ -69,7 +52,7 @@ export const shareButtonsProp: IShareButtons = {
   google: {
     type: 'google',
     text: 'Google+',
-    icon: faGooglePlusG,
+    icon: ['fab', 'google-plus-g'],
     color: '#DB4437',
     share: {
       desktop: 'https://plus.google.com/share?',
@@ -84,7 +67,7 @@ export const shareButtonsProp: IShareButtons = {
   linkedin: {
     type: 'linkedin',
     text: 'LinkedIn',
-    icon: faLinkedinIn,
+    icon: ['fab', 'linkedin-in'],
     color: '#006fa6',
     share: {
       desktop: 'http://www.linkedin.com/shareArticle?',
@@ -101,7 +84,7 @@ export const shareButtonsProp: IShareButtons = {
   pinterest: {
     type: 'pinterest',
     text: 'Pinterest',
-    icon: faPinterestP,
+    icon: ['fab', 'pinterest-p'],
     color: '#BD091D',
     share: {
       desktop: 'https://in.pinterest.com/pin/create/button/?',
@@ -124,7 +107,7 @@ export const shareButtonsProp: IShareButtons = {
   reddit: {
     type: 'reddit',
     text: 'Reddit',
-    icon: faRedditAlien,
+    icon: ['fab', 'reddit-alien'],
     color: '#FF4006',
     share: {
       desktop: 'http://www.reddit.com/submit?',
@@ -145,7 +128,7 @@ export const shareButtonsProp: IShareButtons = {
   tumblr: {
     type: 'tumblr',
     text: 'Tumblr',
-    icon: faTumblr,
+    icon: ['fab', 'tumblr'],
     color: '#36465D',
     share: {
       desktop: 'http://tumblr.com/widgets/share/tool?',
@@ -167,7 +150,7 @@ export const shareButtonsProp: IShareButtons = {
   whatsapp: {
     type: 'whatsapp',
     text: 'WhatsApp',
-    icon: faWhatsapp,
+    icon: ['fab', 'whatsapp'],
     color: '#25D366',
     share: {
       desktop: 'https://web.whatsapp.com/send?',
@@ -185,7 +168,7 @@ export const shareButtonsProp: IShareButtons = {
   messenger: {
     type: 'messenger',
     text: 'Messenger',
-    icon: faFacebookMessenger,
+    icon: ['fab', 'facebook-messenger'],
     color: '#0080FF',
     share: {
       android: 'fb-messenger://share/?',
@@ -199,7 +182,7 @@ export const shareButtonsProp: IShareButtons = {
   telegram: {
     type: 'telegram',
     text: 'Telegram',
-    icon: faTelegramPlane,
+    icon: ['fab', 'telegram-plane'],
     color: '#0088cc',
     share: {
       desktop: 'https://t.me/share/url?',
@@ -215,7 +198,7 @@ export const shareButtonsProp: IShareButtons = {
   vk: {
     type: 'vk',
     text: 'VKontakte',
-    icon: faVk,
+    icon: ['fab', 'vk'],
     color: '#4C75A3',
     share: {
       desktop: 'http://vk.com/share.php?',
@@ -230,7 +213,7 @@ export const shareButtonsProp: IShareButtons = {
   stumble: {
     type: 'stumble',
     text: 'Stumble',
-    icon: faStumbleupon,
+    icon: ['fab', 'stumbleupon'],
     color: '#eb4924',
     share: {
       desktop: 'http://www.stumbleupon.com/submit?',
@@ -245,7 +228,7 @@ export const shareButtonsProp: IShareButtons = {
   xing: {
     type: 'xing',
     text: 'Xing',
-    icon: faXing,
+    icon: ['fab', 'xing'],
     color: '#006567',
     share: {
       desktop: 'https://www.xing.com/app/user?op=share&',
@@ -260,7 +243,7 @@ export const shareButtonsProp: IShareButtons = {
   sms: {
     type: 'sms',
     text: 'SMS',
-    icon: faCommentAlt,
+    icon: 'comment-alt',
     color: '#20c16c',
     share: {
       desktop: 'sms:?',
@@ -278,7 +261,7 @@ export const shareButtonsProp: IShareButtons = {
   email: {
     type: 'email',
     text: 'Email',
-    icon: faEnvelope,
+    icon:  'envelope',
     color: '#FF961C',
     share: {
       desktop: 'mailto:?',
@@ -298,10 +281,10 @@ export const shareButtonsProp: IShareButtons = {
     type: 'copy',
     text: 'Copy link',
     successText: 'Copied',
-    successIcon: faCheck,
+    successIcon: 'check',
     failText: 'Error',
-    failIcon: faExclamation,
-    icon: faLink,
+    failIcon: 'exclamation',
+    icon: 'link',
     color: '#607D8B',
     share: {
       operators: copyOperators
@@ -310,7 +293,7 @@ export const shareButtonsProp: IShareButtons = {
   print: {
     type: 'print',
     text: 'Print',
-    icon: faPrint,
+    icon: 'print',
     color: '#765AA2',
     share: {
       operators: printOperators
