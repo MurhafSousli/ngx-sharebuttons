@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.0.0-beta.0
+## 6.0.0
 
 - Angular 6 support, closes [#274](https://github.com/MurhafSousli/ngx-sharebuttons/issues/274).
 - fix(core): Use icon alias name in the share props instead of the icon object itself, closes [#280](https://github.com/MurhafSousli/ngx-sharebuttons/issues/280).
@@ -21,32 +21,25 @@
 
 **Before**:
  
-The plugin used to load the default icons weather you override them or used some of them.
+The plugin used to load the default icons from FontAwesome.
 
 **After**:
 
-The plugin does not load FontAwesome icons out of the box. The user will choose which icons to load manually
-
-*PROS:*
-
-The user will choose which icons to load from FontAwesome.
-
-*CONS:*
-
-An extra step is now required
+The plugin does not load FontAwesome icons out of the box. The user will have to import them manually
 
 Example:
 ```ts
 import { ShareButtonsModule } from '@ngx-share/buttons';
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faFacebook } from '@fortawesome/free-brand-svg-icons/faFacebook';
 import { faTwitter } from '@fortawesome/free-brand-svg-icons/faTwitter';
 import { faLinkedinIn } from '@fortawesome/free-brand-svg-icons/faLinkedinIn';
 
-const faIcons = [faFacebook, faTwitter, faLinkedinIn];
+const icons = [faFacebook, faTwitter, faLinkedinIn];
 
 // Add the icons you want to use
-library.add(...faIcons);
+library.add(...icons);
 
 @NgModule({
   imports: [
@@ -56,7 +49,7 @@ library.add(...faIcons);
 })
 ```
 
-**NOTE:** User should use deep links to import the icons to fix the package size, see **@robbaman** comment in [@angular-fontawesome/34](https://github.com/FortAwesome/angular-fontawesome/issues/34#issuecomment-388919807).
+**NOTE:** Use the deep link to import the icon to keep the package size to the minimum, see **@robbaman** comment in [@angular-fontawesome/34](https://github.com/FortAwesome/angular-fontawesome/issues/34#issuecomment-388919807).
 
 ## 5.3.1
 
