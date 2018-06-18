@@ -1,6 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 import { ShareButtons, ShareButtonsConfig, CONFIG } from '@ngx-share/core';
 import { ShareButtonModule } from '@ngx-share/button';
@@ -18,7 +17,6 @@ export function ShareButtonsFactory(config: ShareButtonsConfig) {
     ExpandButtonComponent
   ],
   imports: [
-    HttpClientModule,
     ShareButtonModule,
     CommonModule
   ],
