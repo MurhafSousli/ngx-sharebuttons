@@ -21,8 +21,8 @@ import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Ou
 })
 export class ExpandButtonComponent {
 
-  @Input() moreIcon: string | string[];
-  @Input() lessIcon: string | string[];
+  @Input() moreIcon: any;
+  @Input() lessIcon: any;
   @Input() expanded: string;
   @Input() size: number;
   @Output() toggle = new EventEmitter();
