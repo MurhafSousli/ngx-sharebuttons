@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.1
+
+- fix(ShareButtonsModule): Remove `HttpClientModule` from `ShareButtonsModule`, closes [#297](https://github.com/MurhafSousli/ngx-sharebuttons/issues/297) in [a503936](https://github.com/MurhafSousli/ngx-sharebuttons/commit/a503936c754274948bc9aa92ee5b8d94e71fc503).
+
 ## 6.0.0
 
 - Angular 6 support, closes [#274](https://github.com/MurhafSousli/ngx-sharebuttons/issues/274).
