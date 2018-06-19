@@ -74,13 +74,13 @@ section {
 }
 
 .property {
-  background-color: rgba(#9af9b0, 0.4) !important;
+  background-color: $api_output !important;
   width: 74px;
   text-align: center;
 }
 
 .property-input {
-  background-color: rgba(#b2d8ff, 0.4) !important;
+  background-color: $api_input !important;
   width: 64px;
 }
 

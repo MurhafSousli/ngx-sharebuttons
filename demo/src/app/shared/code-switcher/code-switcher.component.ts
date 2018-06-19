@@ -18,13 +18,13 @@ export class CodeSwitcherComponent {
   flip = {
     true: {
       state: 'back',
-      eyeColor: '#2E4057',
-      codeColor: '#2196F3'
+      eyeColor: '#989898',
+      codeColor: '#00bcd4'
     },
     false: {
       state: 'front',
-      animation: '#2E4057',
-      eyeColor: '#2196F3'
+      codeColor: '#989898',
+      eyeColor: '#00bcd4'
     }
   };
 
