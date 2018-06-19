@@ -1,31 +1,34 @@
-section {
-  margin: 2em 0;
+@import '../../../assets/style/variables';
+
+.note-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background-color: $note-bg;
 }
 
-.note {
-  box-shadow: 0 0 1px -1px rgba(0, 0, 0, 0.9);
-  position: relative;
-  background-color: wheat;
-  padding: 1em 2em;
+mat-icon {
+  color: white;
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+}
 
-  &:before, &:after {
-    z-index: -1;
-    position: absolute;
-    content: "";
-    bottom: 15px;
-    left: 10px;
-    width: 50%;
-    top: 80%;
-    max-width: 300px;
-    background: #777;
-    box-shadow: 0 15px 10px rgba(#777, 0.8);
-    transform: rotate(-2deg);
-  }
+.note-content {
+  padding-left: 1em;
+  flex: 1;
+}
 
-  &:after {
-    transform: rotate(3deg);
-    right: 10px;
-    left: auto;
-  }
-
+section {
+  border: 2px solid $note-bg;
+  margin: 2em 0;
+  display: flex;
+  align-items: center;
+  background-color: $api_output;
+  border-radius: 0.5em;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
