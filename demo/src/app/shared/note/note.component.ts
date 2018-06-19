@@ -3,13 +3,16 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'note',
   template: `
-    <div class="container">
-      <div class="note">
-        <section>
+    <span class="note">
+      <section>
+        <span class="note-icon">
+          <mat-icon>error_outline</mat-icon>
+        </span>
+        <div class="note-content">
           <ng-content></ng-content>
-        </section>
-      </div>
-    </div>
+        </div>
+      </section>
+    </span>
   `,
   styleUrls: ['./note.component.scss']
 })
