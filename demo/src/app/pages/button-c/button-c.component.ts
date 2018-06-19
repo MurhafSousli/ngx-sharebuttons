@@ -24,7 +24,7 @@ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @for
 @import '~@ngx-share/button/styles/themes/default/default-theme';`,
     examples: `<share-button button="facebook" text="Share" [showText]="true"></share-button>
 <share-button button="twitter" text="Tweet" [showText]="true"></share-button>
-<share-button button="pinterest" [icon]="pinIcon"></share-button>`,
+<share-button button="pinterest" text="pin"></share-button>`,
     customIcons: `<share-button button="facebook" theme="circles-dark" [icon]="['fab', 'facebook-square']"></share-button>
 <share-button button="twitter" theme="circles-dark" [icon]="['fab', 'twitter-square']"></share-button>
 <share-button button="pinterest" theme="circles-dark" [icon]="['fab', 'pinterest-p']"></share-button>`,
