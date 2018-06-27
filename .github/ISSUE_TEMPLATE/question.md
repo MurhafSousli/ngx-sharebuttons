@@ -9,6 +9,11 @@ about: Describe this issue template's purpose here.
 2. Please fill out all the required information!
  -->
 
+#### I am submitting a
+
+- [ ] Bug
+- [ ] Feature Request
+- [x] Question
 
 #### What is the expected behavior?
 

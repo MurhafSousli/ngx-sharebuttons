@@ -9,6 +9,11 @@ about: Suggest an idea for this project
 2. Please fill out all the required information!
  -->
 
+#### I am submitting a
+
+- [ ] Bug
+- [x] Feature Request
+- [ ] Question
 
 #### What is the expected behavior?
 

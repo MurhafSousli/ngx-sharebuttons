@@ -9,6 +9,11 @@ about: Create a report to help us improve
 2. Please fill out all the required information!
  -->
 
+#### I am submitting a
+
+- [x] Bug
+- [ ] Feature Request
+- [ ] Question
 
 #### What is the expected behavior?
 
