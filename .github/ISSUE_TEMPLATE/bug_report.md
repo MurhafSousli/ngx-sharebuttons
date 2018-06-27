@@ -11,9 +11,7 @@ about: Create a report to help us improve
 
 #### I am submitting a
 
-- [x] Bug
-- [ ] Feature Request
-- [ ] Question
+- [x] Bug Report
 
 #### What is the expected behavior?
 
@@ -25,7 +23,7 @@ about: Create a report to help us improve
 
 <!-- 
 Providing a StackBlitz reproduction is the *best* way to share your issue. <br/>
-StackBlitz starter: https://stackblitz.com/edit/ngx-gallery<br/>
+StackBlitz starter: https://stackblitz.com/edit/ngx-sharebuttons<br/>
 -->
 
 
@@ -39,8 +37,7 @@ Angular:
 Angular CDK:
 Angular CLI:
 Angular-fontawesome:
-Share buttons : 
-Typescript:
+Share buttons:
 
 
 #### Is there anything else we should know?

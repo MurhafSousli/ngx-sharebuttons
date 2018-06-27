@@ -11,9 +11,7 @@ about: Suggest an idea for this project
 
 #### I am submitting a
 
-- [ ] Bug
 - [x] Feature Request
-- [ ] Question
 
 #### What is the expected behavior?
 
@@ -25,7 +23,7 @@ about: Suggest an idea for this project
 
 <!-- 
 Providing a StackBlitz reproduction is the *best* way to share your issue. <br/>
-StackBlitz starter: https://stackblitz.com/edit/ngx-gallery<br/>
+StackBlitz starter: https://stackblitz.com/edit/ngx-sharebuttons<br/>
 -->
 
 
@@ -39,8 +37,7 @@ Angular:
 Angular CDK:
 Angular CLI:
 Angular-fontawesome:
-Share buttons : 
-Typescript:
+Share buttons:
 
 
 #### Is there anything else we should know?
