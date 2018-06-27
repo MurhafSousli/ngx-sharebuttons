@@ -17,15 +17,18 @@ about: Suggest an idea for this project
 
 
 #### What are the steps to reproduce?
+
+<!-- 
 Providing a StackBlitz reproduction is the *best* way to share your issue. <br/>
-StackBlitz starter: https://stackblitz.com/edit/ngx-sharebuttons<br/>
+StackBlitz starter: https://stackblitz.com/edit/ngx-gallery<br/>
+-->
 
 
 #### What is the use-case or motivation for changing an existing behavior?
 
 
 
-#### Which versions of Angular, TypeScript, browsers are affected?
+#### Which versions are you using for the following packages?
 
 Angular:
 Angular CDK:
