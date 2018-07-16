@@ -11,7 +11,7 @@ const {
 const getPackages = p =>
 readdirSync(p).filter(f => statSync(join(p, f)).isDirectory());
 
-const packages = getPackages('projects');
+const packages = getPackages('dist');
 
 console.log(
   'Updating packages version to',

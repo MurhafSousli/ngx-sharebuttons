@@ -39,7 +39,7 @@ trademarks does not indicate endorsement of the trademark holder by Font
 Awesome, nor vice versa. **Please do not use brand logos for any purpose except
 to represent the company, product, or service to which they refer.**
 
-@angular/material@6.2.1
+@angular/material@6.3.0
 MIT
 The MIT License
 
@@ -63,7 +63,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-@ngx-share/buttons@6.0.0-beta.0
+@ngx-share/button@6.0.1
+MIT
+MIT
+
+@ngx-share/buttons@6.0.1
 MIT
 MIT
 
@@ -72,34 +76,6 @@ MIT
 The MIT License
 
 Copyright (c) 2016-2018 Cyrille Tuzi
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-@ngx-share/button@6.0.0-beta.0
-MIT
-MIT
-
-zone.js@0.8.26
-MIT
-The MIT License
-
-Copyright (c) 2016-2018 Google, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -180,15 +156,11 @@ trademarks does not indicate endorsement of the trademark holder by Font
 Awesome, nor vice versa. **Please do not use brand logos for any purpose except
 to represent the company, product, or service to which they refer.**
 
-web-animations-js@2.3.1
-Apache-2.0
-Apache-2.0
-
-@angular/cdk@6.2.1
+zone.js@0.8.26
 MIT
 The MIT License
 
-Copyright (c) 2018 Google LLC.
+Copyright (c) 2016-2018 Google, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -208,7 +180,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-@angular/platform-browser@6.0.5
+@angular/platform-browser@6.0.6
 MIT
 MIT
 
@@ -270,7 +242,7 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 
 END OF TERMS AND CONDITIONS
 
-@angular/common@6.0.5
+@angular/common@6.0.6
 MIT
 MIT
 
@@ -478,11 +450,11 @@ Apache License
  See the License for the specific language governing permissions and
  limitations under the License.
 
-@angular/router@6.0.5
+@angular/router@6.0.6
 MIT
 MIT
 
-@angular/animations@6.0.5
+@angular/animations@6.0.6
 MIT
 MIT
 
@@ -510,14 +482,34 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-@angular/forms@6.0.5
+@angular/cdk@6.3.0
+MIT
+The MIT License
+
+Copyright (c) 2018 Google LLC.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+@angular/forms@6.0.6
 MIT
 MIT
 
-@ngx-share/core@6.0.0-beta.0
-MIT
-MIT
-
-@angular/core@6.0.5
+@angular/core@6.0.6
 MIT
 MIT

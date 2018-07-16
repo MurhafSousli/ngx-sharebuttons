@@ -1,0 +1,49 @@
+<ng-scrollbar [autoHide]="true" thumbClass="page-scrollbar-thumb">
+  <header>
+    <h1>Icons Guide</h1>
+  </header>
+
+  <div class="page-content container">
+
+    <section>
+      <section-title>Overview</section-title>
+      <p>By default, The aliases of FontAwesome icons are set in the share buttons properties, however the icons
+        are not loaded out of the box and they should be imported manually.</p>
+    </section>
+
+    <section>
+      <section-title>Usage</section-title>
+      <p>A good place to import the icons is in <code class="hljs">src/polyfills.ts</code> file, but since there
+        are too many icons to import, it is more elegant to have the icons imported in their own file
+      </p>
+
+      <p>Create a new file <code class="hljs">src/icons.ts</code>, the following code includes all the icons this
+        package uses, so you should exclude the icons you do not need.</p>
+
+      <hl-code [code]="code.import" [height]="400"></hl-code>
+    </section>
+
+    <section>
+      <note>
+        Make sure you use the deep link to import an icon to avoid importing the rest in your bundle.
+      </note>
+    </section>
+
+    <section>
+
+      <p>Now in <code class="hljs">src/polyfills.ts</code>, add the following line:</p>
+
+      <hl-code [code]="code.polyfills"></hl-code>
+    </section>
+
+    <section>
+      <section-title>Custom icons</section-title>
+      <p>Let's say you want to use facebook square icon instead of the default one</p>
+      <hl-code [code]="code.libraryMethod" [height]="400"></hl-code>
+      <p>You can also set the icon directly</p>
+      <hl-code [code]="code.literalMethod"></hl-code>
+    </section>
+  </div>
+
+  <footer></footer>
+</ng-scrollbar>
