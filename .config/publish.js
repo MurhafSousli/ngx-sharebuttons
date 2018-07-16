@@ -6,7 +6,7 @@ const { join } = require('path');
 const getPackages = p =>
 readdirSync(p).filter(f => statSync(join(p, f)).isDirectory());
 
-const packages = getPackages('projects');
+const packages = getPackages('dist');
 
 console.log(
   'Publishing packages',
