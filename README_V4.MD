@@ -1,15 +1,16 @@
+
 <p align="center">
   <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
-  <h1 align="center">Angular Share Buttons</h1>
+  <h1 align="center">Angular Share Buttons v4.1.4</h1>
   <p align="center"><img src="https://image.ibb.co/eY16JG/buttons.png" alt="Capture" border="0"></p>
 </p>
 
-[![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
-[![npm](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons) 
-[![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons) 
-[![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
+[![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
+[![NPM](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
+[![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons)
+[![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-
+ > **NOTE:** This version `4.1.4` supports Angular 5 only
 
 ## Table of contents
 
@@ -24,8 +25,12 @@
 - [License](/LICENSE)
 - [Support](#support)
 - [Author](#author)
-- [More plugins](#more) 
+- [More plugins](#more)
 - [Documentations for version 3.x](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+
+**Available share buttons:**
+
+`Facebook`, `Twitter`, `Pinterest`, `Whatsapp`, `Google`, `Tumbler`, `Reddit`, `StumbleUpOn`, `LinkedIn`
 
 <a name="installation"/>
 
@@ -355,7 +360,7 @@ If you identify any errors in this component, or have an idea for an improvement
 
 ## More plugins from the author
 
- - [ng-gallery](https://github.com/MurhafSousli/ng-gallery)
+ - [ngx-gallery](https://github.com/MurhafSousli/ngx-gallery)
  - [ngx-progressbar](https://github.com/MurhafSousli/ngx-progressbar)
  - [ngx-bar-rating](https://github.com/MurhafSousli/ngx-bar-rating)
  - [ngx-disqus](https://github.com/MurhafSousli/ngx-disqus)
