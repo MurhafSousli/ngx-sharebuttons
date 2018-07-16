@@ -1,13 +1,15 @@
 <p align="center">
   <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
-  <h1 align="center">Angular Share Buttons</h1>
+  <h1 align="center">Angular Share Buttons v5.3.1</h1>
   <p align="center"><img src="https://image.ibb.co/eY16JG/buttons.png" alt="Capture" border="0"></p>
 </p>
 
-[![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
-[![npm](https://img.shields.io/npm/v/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-share/core)
+[![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
+[![NPM](https://img.shields.io/npm/v/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-share/core)
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons) 
-[![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
+[![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
+
+ > **NOTE:** This version `5.3.1` supports Angular 5 only.
 
 ## Table of contents
 
@@ -51,15 +53,15 @@ Convert any element to a share button using `[shareButton]` directive.
 **NPM**
 
 ```bash
-$ npm i -S @ngx-share/core
-$ npm i -S @fortawesome/{free-solid-svg-icons,free-brands-svg-icons}
+$ npm i -S @ngx-share/core@5.3.1
+$ npm i -S @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 **YARN**
 
 ```bash
-$ yarn add @ngx-share/core
-$ yarn add @fortawesome/{free-solid-svg-icons,free-brands-svg-icons}
+$ yarn add @ngx-share/core@5.3.1
+$ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 ### Usage
@@ -145,15 +147,15 @@ Use `<share-button>` component to add share buttons individually.
 **NPM**
 
 ```bash
-$ npm i -S @ngx-share/{core,button}
-$ npm i -S @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg-icons,free-brands-svg-icons}
+$ npm i -S @ngx-share/core@5.3.1 @ngx-share/button@5.3.1
+$ npm i -S @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 **YARN**
 
 ```bash
-$ yarn add @ngx-share/{core,button}
-$ yarn add @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg-icons,free-brands-svg-icons}
+$ yarn add @ngx-share/core@5.3.1 @ngx-share/button@5.3.1
+$ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 ### Usage
@@ -223,15 +225,15 @@ Use `<share-buttons>` to add a collection of share buttons.
 **NPM**
 
 ```bash
-$ npm i -S @ngx-share/{core,button,buttons}
-$ npm i -S @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg-icons,free-brands-svg-icons}
+$ npm i -S @ngx-share/core@5.3.1 @ngx-share/button@5.3.1 @ngx-share/buttons@5.3.1
+$ npm i -S @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 **YARN**
 
 ```bash
-$ yarn add @ngx-share/{core,button,buttons}
-$ yarn add @fortawesome/{fontawesome-svg-core,angular-fontawesome,free-solid-svg-icons,free-brands-svg-icons}
+$ yarn add @ngx-share/core@5.3.1 @ngx-share/button@5.3.1 @ngx-share/buttons@5.3.1
+$ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 ```
 
 ### Usage

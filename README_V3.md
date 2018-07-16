@@ -1,17 +1,20 @@
-<p ><img src="https://camo.githubusercontent.com/27616547b01ca8d5695bb33ebe5c889e9fe681cb/68747470733a2f2f63646e2e7261776769742e636f6d2f4d7572686166536f75736c692f6e67322d7368617265627574746f6e732f6d61737465722f6173736574732f627574746f6e732e706e67" data-canonical-src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg" style="max-width:100%;"></a>
-  </p>
+<p align="center">
+  <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
+  <h1 align="center">Angular Share Buttons v3.0.0</h1>
+  <p align="center"><img src="https://image.ibb.co/eY16JG/buttons.png" alt="Capture" border="0"></p>
+</p>
 
-
+ > **NOTE:** This version `3.0.0` supports Angular 2 & 4 only.
 
 ___
 
-[![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
-[![npm](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons) 
-[![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons) 
+[![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
+[![NPM](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
+[![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons)
 [![Coverage Status](https://coveralls.io/repos/github/MurhafSousli/ngx-sharebuttons/badge.svg?branch=master)](https://coveralls.io/github/MurhafSousli/ngx-sharebuttons?branch=master)
-[![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
+[![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-**Supported services:**
+**Available share buttons:**
 
 `Facebook`, `Twitter`, `Pinterest`, `Whatsapp`, `Google`, `Tumbler`, `Reddit`, `StumbleUpOn`, `LinkedIn`
 
@@ -19,7 +22,7 @@ ___
 
 Install it with npm
 
-`npm install --save ngx-sharebuttons`
+`npm install --save ngx-sharebuttons@3.0.0`
 
 ### SystemJS
 If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
@@ -318,6 +321,28 @@ import {ShareButtonsService} from 'ngx-sharebuttons';
  > Some social networks resizes the popup window automatically like `fb` and `pinterest`
 
 
-### Author
-0
- - Murhaf Sousli
+## License
+
+ - [MIT](/LICENSE)
+
+<a name="author"/>
+
+## Author
+
+ **Murhaf Sousli**
+
+ - [github/murhafsousli](https://github.com/MurhafSousli)
+ - [twitter/murhafsousli](https://twitter.com/MurhafSousli)
+
+<a name="more"/>
+
+## More plugins from the author
+
+ - [ngx-gallery](https://github.com/MurhafSousli/ngx-gallery)
+ - [ngx-progressbar](https://github.com/MurhafSousli/ngx-progressbar)
+ - [ngx-bar-rating](https://github.com/MurhafSousli/ngx-bar-rating)
+ - [ngx-disqus](https://github.com/MurhafSousli/ngx-disqus)
+ - [ngx-wordpress](https://github.com/MurhafSousli/ngx-wordpress)
+ - [ngx-highlightjs](https://github.com/MurhafSousli/ngx-highlightjs)
+ - [ng-teximate](https://github.com/MurhafSousli/ng-teximate)
+
