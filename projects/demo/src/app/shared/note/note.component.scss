@@ -1,5 +1,10 @@
 @import '../../../assets/style/variables';
 
+:host {
+  display: block;
+  margin-top: 3em;
+}
+
 .note-icon {
   display: flex;
   align-items: center;
@@ -18,7 +23,8 @@ mat-icon {
 }
 
 .note-content {
-  padding-left: 1em;
+  text-align: justify;
+  padding: 0 1em;
   flex: 1;
 }
 
