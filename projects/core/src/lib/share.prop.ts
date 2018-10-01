@@ -248,7 +248,7 @@ export const shareButtonsProp: IShareButtons = {
     share: {
       desktop: 'sms:?',
       android: 'sms:?',
-      ios: 'sms:?',
+      ios: 'sms:&',
       metaTags: {
         description: 'body'
       },
