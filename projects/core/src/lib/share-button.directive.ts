@@ -12,7 +12,7 @@ import {
   ChangeDetectorRef,
   PLATFORM_ID
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, of, EMPTY } from 'rxjs';
@@ -26,7 +26,8 @@ import { getMetaContent, getOS, getValidUrl } from './utils';
 declare const ga: Function;
 
 @Directive({
-  selector: '[shareButton]'
+  selector: '[shareButton], [share-button]',
+  providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}],
 })
 export class ShareButtonDirective implements OnChanges {
 
@@ -66,6 +67,7 @@ export class ShareButtonDirective implements OnChanges {
               public renderer: Renderer2,
               public cd: ChangeDetectorRef,
               private el: ElementRef,
+              private location: Location,
               @Inject(PLATFORM_ID) private platform: Object) {
   }
 
@@ -117,7 +119,7 @@ export class ShareButtonDirective implements OnChanges {
       if (!this.url || (changes['url'] && changes['url'].previousValue !== this.url)) {
         of(null).pipe(
           map(() => {
-            this.url = getValidUrl(this.autoSetMeta ? this.url || getMetaContent('og:url') : this.url, window.location.href);
+            this.url = getValidUrl(this.autoSetMeta ? this.url || getMetaContent('og:url') : this.url, this.location.path());
             return this.url;
           }),
           filter(() => this.prop.count && this.getCount),
