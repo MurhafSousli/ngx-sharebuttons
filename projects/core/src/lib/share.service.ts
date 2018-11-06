@@ -5,7 +5,9 @@ import { CONFIG } from './share.tokens';
 import { shareButtonsProp } from './share.prop';
 import { mergeDeep } from './utils';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ShareButtons {
 
   config: ShareButtonsConfig = {
