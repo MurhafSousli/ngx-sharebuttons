@@ -9,11 +9,11 @@ import {
   EventEmitter,
   ElementRef,
   Renderer2,
-  ChangeDetectorRef,
-  PLATFORM_ID
+  ChangeDetectorRef
 } from '@angular/core';
-import { isPlatformBrowser, Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { DOCUMENT, Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
+import { Platform } from '@angular/cdk/platform';
 
 import { interval, of, Subject } from 'rxjs';
 import { tap, take, switchMap, takeWhile, finalize } from 'rxjs/operators';
@@ -69,7 +69,7 @@ export class ShareButtonDirective implements OnChanges {
               private el: ElementRef,
               private location: Location,
               private meta: Meta,
-              @Inject(PLATFORM_ID) private platform: Object) {
+              private platform: Platform,
   }
 
   /** Share link on element click */
@@ -97,7 +97,7 @@ export class ShareButtonDirective implements OnChanges {
         renderer: this.renderer,
         prop: this.prop,
         el: this.el.nativeElement,
-        os: getOS(),
+        platform: this.getPlatform(),
         metaTags
       };
 
@@ -111,7 +111,7 @@ export class ShareButtonDirective implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (isPlatformBrowser(this.platform)) {
+    if (this.platform.isBrowser) {
 
       if (changes['shareButton'] && (changes['shareButton'].firstChange || changes['shareButton'].previousValue !== this.shareButton)) {
         this.createShareButton(this.shareButton);
@@ -213,5 +213,11 @@ export class ShareButtonDirective implements OnChanges {
     if (metaUsingProperty) return metaUsingProperty.getAttribute('content');
     const metaUsingName: HTMLMetaElement = this.meta.getTag(`name="${key}"`);
     if (metaUsingName) return metaUsingName.getAttribute('content');
+  }
+
+  private getPlatform() {
+    if (this.platform.IOS) return 'ois';
+    if (this.platform.ANDROID) return 'android';
+    return 'desktop';
   }
 }

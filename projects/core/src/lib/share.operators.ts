@@ -10,7 +10,7 @@ export const metaTagsOperators: OperatorFunction<any, any>[] = [
   map((ref: ShareButtonRef) => {
 
     // Social network sharer URL */
-    const SharerURL = ref.prop.share[ref.os];
+    const SharerURL = ref.prop.share[ref.platform];
     if (SharerURL) {
 
       // object contains supported meta tags
@@ -52,7 +52,7 @@ export const copyOperators: OperatorFunction<any, any>[] = [
     ref.metaTags.url = decodeURIComponent(ref.metaTags.url);
     return ref;
   }),
-  switchMap((ref: ShareButtonRef) => copyToClipboard(ref.metaTags.url, ref.os).pipe(
+  switchMap((ref: ShareButtonRef) => copyToClipboard(ref.metaTags.url, ref.platform).pipe(
     map(() => {
       ref.prop.text = ref.prop.successText;
       ref.prop.icon = ref.prop.successIcon;

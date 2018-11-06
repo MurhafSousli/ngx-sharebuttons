@@ -91,7 +91,7 @@ export interface ShareButtonRef {
   renderer?: Renderer2;
   cd?: ChangeDetectorRef;
   el?: HTMLElement;
-  os?: string;
+  platform?: string;
   temp?: any;
   metaTags: {
     url?: string;
