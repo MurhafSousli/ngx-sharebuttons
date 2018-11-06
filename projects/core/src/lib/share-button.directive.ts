@@ -13,14 +13,14 @@ import {
   PLATFORM_ID
 } from '@angular/core';
 import { isPlatformBrowser, Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { Meta } from '@angular/platform-browser';
 
 import { interval, of, Subject } from 'rxjs';
 import { tap, take, switchMap, takeWhile, finalize } from 'rxjs/operators';
 
 import { ShareButtons } from './share.service';
 import { IShareButton, ShareButtonRef } from './share.models';
-import { getMetaContent, getOS, getValidUrl } from './utils';
+import { getOS, getValidUrl } from './utils';
 
 /** Google analytics ref */
 declare const ga: Function;
@@ -68,6 +68,7 @@ export class ShareButtonDirective implements OnChanges {
               public cd: ChangeDetectorRef,
               private el: ElementRef,
               private location: Location,
+              private meta: Meta,
               @Inject(PLATFORM_ID) private platform: Object) {
   }
 
@@ -77,10 +78,10 @@ export class ShareButtonDirective implements OnChanges {
     if (isPlatformBrowser(this.platform)) {
       const metaTags = this.autoSetMeta ? {
         url: this.url,
-        title: this.title || getMetaContent('og:title'),
-        description: this.description || getMetaContent('og:description'),
-        image: this.image || getMetaContent('og:image'),
-        via: this.shareService.twitterAccount || getMetaContent('twitter:site'),
+        title: this.title || this.metaTagContent('og:title'),
+        description: this.description || this.metaTagContent('og:description'),
+        image: this.image || this.metaTagContent('og:image'),
+        via: this.shareService.twitterAccount || this.metaTagContent('twitter:site'),
         tags: this.tags,
       } : {
         url: this.url,
@@ -206,4 +207,9 @@ export class ShareButtonDirective implements OnChanges {
     }
   }
 
+  /** Get meta tag content */
+  private metaTagContent(key: string): string {
+    const metaElement: HTMLMetaElement = this.meta.getTag(`property="${key}"`);
+    return metaElement ? metaElement.getAttribute('content') : undefined;
+  }
 }
