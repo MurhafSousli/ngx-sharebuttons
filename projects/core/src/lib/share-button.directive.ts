@@ -15,8 +15,8 @@ import {
 import { isPlatformBrowser, Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, of, EMPTY } from 'rxjs';
-import { tap, filter, switchMap, map, take, catchError } from 'rxjs/operators';
+import { interval, of, Subject } from 'rxjs';
+import { tap, take, switchMap, takeWhile, finalize } from 'rxjs/operators';
 
 import { ShareButtons } from './share.service';
 import { IShareButton, ShareButtonRef } from './share.models';
@@ -146,17 +146,13 @@ export class ShareButtonDirective implements OnChanges {
       // Emit when share dialog is opened
       this.opened.emit(this.prop.type);
 
-      const popUp = window.open(url, 'newwindow', this.shareService.windowSize);
-
-      // Emit when share dialog is closed
-      if (popUp) {
-        const pollTimer = window.setInterval(() => {
-          if (popUp.closed) {
-            window.clearInterval(pollTimer);
-            this.closed.emit(this.prop.type);
-          }
-        }, 200);
-      }
+      of(window.open(url, 'newwindow', this.shareService.windowSize)).pipe(
+        switchMap((popUp: any) => interval(200).pipe(
+          takeWhile(() => popUp.closed),
+          finalize(() => this.closed.emit(this.prop.type))
+          )
+        )
+      ).subscribe();
     }
   }
 
