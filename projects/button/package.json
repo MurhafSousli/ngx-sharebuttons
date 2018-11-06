@@ -35,9 +35,10 @@
     "email"
   ],
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
-    "@ngx-share/core": "VERSION",
-    "@fortawesome/angular-fontawesome": "^0.1.0-10"
+    "@angular/core": ">=6.0.0",
+    "@angular/common": ">=6.0.0",
+    "rxjs": ">=6.0.0",
+    "@fortawesome/angular-fontawesome": ">=0.3.0",
+    "@ngx-share/core": "VERSION"
   }
 }
