@@ -78,10 +78,10 @@ export class ShareButtonDirective implements OnChanges {
     if (isPlatformBrowser(this.platform)) {
       const metaTags = this.autoSetMeta ? {
         url: this.url,
-        title: this.title || this.metaTagContent('og:title'),
-        description: this.description || this.metaTagContent('og:description'),
-        image: this.image || this.metaTagContent('og:image'),
-        via: this.shareService.twitterAccount || this.metaTagContent('twitter:site'),
+        title: this.title || this.getMetaTagContent('og:title'),
+        description: this.description || this.getMetaTagContent('og:description'),
+        image: this.image || this.getMetaTagContent('og:image'),
+        via: this.shareService.twitterAccount || this.getMetaTagContent('twitter:site'),
         tags: this.tags,
       } : {
         url: this.url,
@@ -208,8 +208,10 @@ export class ShareButtonDirective implements OnChanges {
   }
 
   /** Get meta tag content */
-  private metaTagContent(key: string): string {
-    const metaElement: HTMLMetaElement = this.meta.getTag(`property="${key}"`);
-    return metaElement ? metaElement.getAttribute('content') : undefined;
+  private getMetaTagContent(key: string): string {
+    const metaUsingProperty: HTMLMetaElement = this.meta.getTag(`property="${key}"`);
+    if (metaUsingProperty) return metaUsingProperty.getAttribute('content');
+    const metaUsingName: HTMLMetaElement = this.meta.getTag(`name="${key}"`);
+    if (metaUsingName) return metaUsingName.getAttribute('content');
   }
 }
