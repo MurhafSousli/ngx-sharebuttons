@@ -7,9 +7,9 @@
         [tags]="tags"
         [autoSetMeta]="autoSetMeta"
         [getCount]="showCount"
+        (count)="onCount($event)"
         (opened)="opened.emit($event)"
         (closed)="closed.emit($event)"
-        (count)="onCount($event)"
         [class.sb-show-icon]="showIcon"
         [class.sb-show-text]="showText"
         [class.sb-show-count]="showCount && shareCount"
@@ -21,7 +21,7 @@
 
       <!-- BUTTON ICON -->
       <div *ngIf="showIcon && ref.prop" class="sb-icon">
-        <fa-icon [icon]="icon || ref.prop.icon"></fa-icon>
+        <fa-icon [icon]="icon || ref.prop.icon" [fixedWidth]="true"></fa-icon>
       </div>
 
       <!-- BUTTON TEXT -->
