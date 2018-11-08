@@ -4,7 +4,7 @@ import { ShareService, ShareDirective } from '@ngx-share/core';
 @Component({
   selector: 'share-button',
   templateUrl: './share-button.html',
-  styleUrls: ['./styles/share-button.scss'],
+  styleUrls: ['./share-button.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShareButton {

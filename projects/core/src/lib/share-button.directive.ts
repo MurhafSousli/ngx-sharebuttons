@@ -17,7 +17,7 @@ import { HttpClient } from '@angular/common/http';
 import { Meta } from '@angular/platform-browser';
 import { Platform } from '@angular/cdk/platform';
 
-import { EMPTY, interval, Observable, of, Subscription, SubscriptionLike } from 'rxjs';
+import { of, interval, Observable, Subscription, SubscriptionLike, EMPTY } from 'rxjs';
 import { tap, take, switchMap, takeWhile, finalize, catchError } from 'rxjs/operators';
 
 import { ShareService } from './share.service';
@@ -63,13 +63,13 @@ export class ShareDirective implements OnChanges, OnDestroy {
   /** Stream that emits when share dialog is closed */
   @Output() closed = new EventEmitter<string>();
 
-  constructor(private shareService: ShareService,
-              public renderer: Renderer2,
-              public cd: ChangeDetectorRef,
+  constructor(private meta: Meta,
               private el: ElementRef,
               private http: HttpClient,
-              private meta: Meta,
               private platform: Platform,
+              private renderer: Renderer2,
+              private cd: ChangeDetectorRef,
+              private shareService: ShareService,
               @Inject(DOCUMENT) private document: any) {
   }
 
