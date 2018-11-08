@@ -1,21 +1,20 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { PlatformModule } from '@angular/cdk/platform';
 
-import { ShareButtonDirective } from './share-button.directive';
+import { ShareDirective } from './share-button.directive';
 import { ShareCountPipe } from './share-count.pipe';
-import { ShareButtonsConfig } from './share.models';
-import { CONFIG } from './share.tokens';
+import { ShareButtonsConfig, CONFIG } from './share.models';
 
 @NgModule({
   imports: [
     PlatformModule
   ],
   declarations: [
-    ShareButtonDirective,
+    ShareDirective,
     ShareCountPipe
   ],
   exports: [
-    ShareButtonDirective,
+    ShareDirective,
     ShareCountPipe
   ]
 })

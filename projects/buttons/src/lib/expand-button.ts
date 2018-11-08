@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, Output, ElementRef, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'expand-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <button class="sb-wrapper sb-expand sb-show-icon"
             [style.fontSize.px]="size"
@@ -15,17 +16,15 @@ import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Ou
         </div>
       </div>
     </button>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  `
 })
-export class ExpandButtonComponent {
+export class ExpandButton {
 
   @Input() moreIcon: any;
   @Input() lessIcon: any;
   @Input() expanded: string;
   @Input() size: number;
-  @Output() toggle = new EventEmitter();
+  @Output() toggle = new EventEmitter<boolean>();
 
   constructor(el: ElementRef) {
     el.nativeElement.style.setProperty('--button-color', '#FF6651');

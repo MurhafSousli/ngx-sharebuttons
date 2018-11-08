@@ -1,5 +1,5 @@
 import { of, OperatorFunction } from 'rxjs';
-import { map, delay, switchMap, catchError } from 'rxjs/operators';
+import { map, delay, switchMap, catchError, tap } from 'rxjs/operators';
 import { ShareButtonRef } from './share.models';
 import { copyToClipboard, mergeDeep } from './utils';
 
@@ -36,7 +36,7 @@ export const metaTagsOperators: OperatorFunction<any, any>[] = [
  * Print button operator
  */
 export const printOperators: OperatorFunction<any, any>[] = [
-  map(() => window.print())
+  tap((ref: ShareButtonRef) => ref.document.defaultView.print())
 ];
 
 /**
@@ -52,7 +52,7 @@ export const copyOperators: OperatorFunction<any, any>[] = [
     ref.metaTags.url = decodeURIComponent(ref.metaTags.url);
     return ref;
   }),
-  switchMap((ref: ShareButtonRef) => copyToClipboard(ref.metaTags.url, ref.platform).pipe(
+  switchMap((ref: ShareButtonRef) => copyToClipboard(ref).pipe(
     map(() => {
       ref.prop.text = ref.prop.successText;
       ref.prop.icon = ref.prop.successIcon;

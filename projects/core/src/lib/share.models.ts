@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Renderer2 } from '@angular/core';
+import { InjectionToken, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { OperatorFunction } from 'rxjs';
 
+export const CONFIG = new InjectionToken<ShareButtonsConfig>('SHARE_BUTTONS_CONFIG');
 /**
  * Share buttons global config
  */
@@ -74,12 +75,14 @@ export interface IShareButton {
     operators?: OperatorFunction<any, any>[];
     metaTags?: any;
   };
-  count?: {
-    request?: string;
-    url?: string;
-    args?: any;
-    operators?: OperatorFunction<any, any>[];
-  };
+  count?: IShareCount;
+}
+
+export interface IShareCount {
+  request?: string;
+  url?: string;
+  args?: any;
+  operators?: OperatorFunction<any, any>[];
 }
 
 /**
@@ -91,6 +94,7 @@ export interface ShareButtonRef {
   renderer?: Renderer2;
   cd?: ChangeDetectorRef;
   el?: HTMLElement;
+  document?: any;
   platform?: string;
   temp?: any;
   metaTags: {

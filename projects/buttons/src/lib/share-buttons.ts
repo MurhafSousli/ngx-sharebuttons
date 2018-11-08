@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, OnDestroy, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { ShareButtons, ShareButtonsConfig } from '@ngx-share/core';
-import { Observable, BehaviorSubject, Subscription } from 'rxjs';
+import { ShareService, ShareButtonsConfig } from '@ngx-share/core';
+import { Observable, BehaviorSubject, Subscription, SubscriptionLike } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface ButtonsState {
@@ -16,14 +16,14 @@ export interface ButtonsState {
 
 @Component({
   selector: 'share-buttons',
-  templateUrl: './share-buttons.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  templateUrl: './share-buttons.html',
+  styleUrls: ['./share-buttons.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShareButtonsComponent implements OnInit, OnDestroy {
+export class ShareButtons implements OnInit, OnDestroy {
 
   state$: Observable<ButtonsState>;
-  private _stateWorker$ = new BehaviorSubject<ButtonsState>({
+  private _state$ = new BehaviorSubject<ButtonsState>({
     includedButtons: [],
     excludedButtons: [],
     userButtons: [],
@@ -32,7 +32,7 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
     shownCount: Object.keys(this._share.config.prop).length
   });
 
-  private _configSub$: Subscription;
+  private _configSub$: SubscriptionLike = Subscription.EMPTY;
 
   @Input() theme = this._share.theme;
 
@@ -79,11 +79,11 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   /** Share dialog closed event */
   @Output() closed = new EventEmitter<string>();
 
-  constructor(private _share: ShareButtons) {
+  constructor(private _share: ShareService) {
   }
 
   ngOnInit() {
-    this.state$ = this._stateWorker$.pipe(
+    this.state$ = this._state$.pipe(
       map((state: ButtonsState) => {
         // Use component include buttons, otherwise fallback to global include buttons
         const includedButtons = state.includedButtons.length ? state.includedButtons : state.userButtons;
@@ -115,14 +115,12 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this._configSub$) {
-      this._configSub$.unsubscribe();
-    }
-    this._stateWorker$.complete();
+    this._configSub$.unsubscribe();
+    this._state$.complete();
   }
 
   updateState(state: ButtonsState) {
-    this._stateWorker$.next({...this._stateWorker$.getValue(), ...state});
+    this._state$.next({...this._state$.value, ...state});
   }
 
 }
@@ -135,10 +133,4 @@ export class ShareButtonsComponent implements OnInit, OnDestroy {
  User buttons = Include buttons - exclude buttons
  Selected Buttons = User buttons [shown number]
 
- =====================================================================================
-
- Why do we use both include and exclude inputs?
-
- Because it is easier for users who want to disable one button to use [exclude] input instead of writing an array of all included buttons
- And it is easier for users who want to enable only one button to use [include] input instead of writing an array of all excluded buttons
  */

@@ -1,17 +1,13 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShareModule, ShareButtons, ShareButtonsConfig, CONFIG } from '@ngx-share/core';
-
-import { ShareButtonComponent } from './share-button.component';
+import { ShareModule, ShareButtonsConfig, CONFIG } from '@ngx-share/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-export function ShareButtonsFactory(config: ShareButtonsConfig) {
-  return new ShareButtons(config);
-}
+import { ShareButton } from './share-button';
 
 @NgModule({
   declarations: [
-    ShareButtonComponent
+    ShareButton
   ],
   imports: [
     ShareModule,
@@ -21,21 +17,14 @@ export function ShareButtonsFactory(config: ShareButtonsConfig) {
   exports: [
     ShareModule,
     FontAwesomeModule,
-    ShareButtonComponent
+    ShareButton
   ]
 })
 export class ShareButtonModule {
   static forRoot(config?: ShareButtonsConfig): ModuleWithProviders {
     return {
       ngModule: ShareButtonModule,
-      providers: [
-        {provide: CONFIG, useValue: config},
-        {
-          provide: ShareButtons,
-          useFactory: ShareButtonsFactory,
-          deps: [CONFIG]
-        }
-      ]
+      providers: [{provide: CONFIG, useValue: config}]
     };
   }
 }
