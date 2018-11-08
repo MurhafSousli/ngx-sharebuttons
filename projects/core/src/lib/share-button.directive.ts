@@ -81,7 +81,7 @@ export class ShareButtonDirective implements OnChanges {
         title: this.title || this.getMetaTagContent('og:title'),
         description: this.description || this.getMetaTagContent('og:description'),
         image: this.image || this.getMetaTagContent('og:image'),
-        via: this.shareService.twitterAccount || this.getMetaTagContent('twitter:site'),
+        via: this.shareService.twitterAccount,
         tags: this.tags,
       } : {
         url: this.url,
