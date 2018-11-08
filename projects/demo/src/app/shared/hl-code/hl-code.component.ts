@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Platform } from '@angular/cdk/platform';
 import { delay, finalize, map, take } from 'rxjs/operators';
 import { BehaviorSubject, of } from 'rxjs';
-import { ScrollbarComponent } from 'ngx-scrollbar';
+import { NgScrollbar } from 'ngx-scrollbar';
 
 @Component({
   selector: 'hl-code',
@@ -18,9 +20,9 @@ export class HlCodeComponent implements AfterViewInit {
   @Input() height: number;
 
   @ViewChild('codeEL', {read: ElementRef}) codeEl: ElementRef;
-  @ViewChild(ScrollbarComponent) scrollbars: ScrollbarComponent;
+  @ViewChild(NgScrollbar) scrollbars: NgScrollbar;
 
-  constructor(private cd: ChangeDetectorRef) {
+  constructor(private cd: ChangeDetectorRef, private platform: Platform, @Inject(DOCUMENT) private document: any) {
   }
 
   ngAfterViewInit() {
@@ -41,20 +43,19 @@ export class HlCodeComponent implements AfterViewInit {
   }
 
   copy() {
-    const browser = getOS();
     of(this.code).pipe(
       map((text: string) => {
 
-        // Create a hidden textarea element
-        const textArea = document.createElement('textarea');
+        // Create a hidden TextArea element
+        const textArea: HTMLTextAreaElement = <HTMLTextAreaElement>this.document.createElement('textarea');
         textArea.value = text;
-        document.body.appendChild(textArea);
+        this.document.body.appendChild(textArea);
 
-        // highlight textarea to copy the text
-        if (browser === 'ios') {
-          const range = document.createRange();
+        // highlight TextArea to copy the text
+        if (this.platform.IOS) {
+          const range = this.document.createRange();
           range.selectNodeContents(textArea);
-          const selection = window.getSelection();
+          const selection = this.document.defaultView.getSelection();
           selection.removeAllRanges();
           selection.addRange(range);
           textArea.readOnly = true;
@@ -62,8 +63,8 @@ export class HlCodeComponent implements AfterViewInit {
         } else {
           textArea.select();
         }
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
+        this.document.execCommand('copy');
+        this.document.body.removeChild(textArea);
         this.updateState({copied: true});
       }),
       take(1),
@@ -71,20 +72,4 @@ export class HlCodeComponent implements AfterViewInit {
       finalize(() => this.updateState({copied: false}))
     ).subscribe();
   }
-
 }
-
-/** Detect operating system 'ios', 'android', or 'desktop' */
-export function getOS() {
-  const userAgent = navigator.userAgent || navigator.vendor || (<any>window).opera;
-
-  if (/android/i.test(userAgent)) {
-    return 'android';
-  }
-
-  if (/iPad|iPhone|iPod/.test(userAgent) && !(<any>window).MSStream) {
-    return 'ios';
-  }
-  return 'desktop';
-}
-

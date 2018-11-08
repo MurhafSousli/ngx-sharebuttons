@@ -17,5 +17,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent {
-
 }

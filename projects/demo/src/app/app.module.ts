@@ -30,8 +30,7 @@ import { DocsService } from './docs/docs.service';
     ShareButtonsModule.forRoot({
       options: {
         twitterAccount: 'MurhafSousli',
-        theme: 'material-dark',
-        autoSetMeta: false
+        theme: 'material-dark'
       }
     }),
     NgProgressModule.forRoot(),

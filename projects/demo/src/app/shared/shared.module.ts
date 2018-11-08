@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HighlightModule } from 'ngx-highlightjs';
-import { ScrollbarModule } from 'ngx-scrollbar';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './material.module';
@@ -44,7 +44,7 @@ import { NoteComponent } from './note/note.component';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    ScrollbarModule,
+    NgScrollbarModule,
     HighlightModule,
     ShareButtonsModule,
     FontAwesomeModule
@@ -56,7 +56,7 @@ import { NoteComponent } from './note/note.component';
     ShareButtonsModule,
     MaterialModule,
     FlexLayoutModule,
-    ScrollbarModule,
+    NgScrollbarModule,
     FontAwesomeModule,
     NavMenuComponent,
     BadgesComponent,

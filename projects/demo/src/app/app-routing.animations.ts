@@ -1,9 +1,7 @@
-import { trigger, animate, transition, style, query, group } from '@angular/animations';
+import { trigger, animate, transition, style, query } from '@angular/animations';
 
 export const sideAnimation = trigger('sideAnimation', [
-
   transition('* => *', [
-
     query(':enter', [
         style({
           opacity: 0

@@ -42,7 +42,7 @@ export class ThemeSwitcherComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.localStorage.getItem('themeIndex').subscribe((index) => {
+    this.localStorage.getItem('themeIndex').subscribe((index: number) => {
       this.currIndex = index || 0;
       this.themeChange.emit(this.themes[this.currIndex]);
     });

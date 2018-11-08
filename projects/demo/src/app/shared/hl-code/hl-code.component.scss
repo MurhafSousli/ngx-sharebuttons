@@ -6,12 +6,22 @@
   position: relative;
   min-width: 100%;
   margin-bottom: 2em;
+  border-radius: .5em;
+  overflow: hidden;
+  ng-scrollbar {
+    box-shadow: $box-shadow;
+    margin-bottom: 0;
+  }
 }
 
-ng-scrollbar {
-  border-radius: .5em;
-  box-shadow: $box-shadow;
-  margin-bottom: 0;
+.mobile {
+  :host {
+    ::ng-deep {
+      .ng-scrollbar-view {
+        height: unset !important;
+      }
+    }
+  }
 }
 
 button {
@@ -36,6 +46,7 @@ button {
 span {
   margin-left: 10px;
 }
+
 pre {
   min-height: 100%;
 }

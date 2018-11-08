@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit, AfterContentChecked, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { ShareButtons } from '@ngx-share/core';
+import { ShareService } from '@ngx-share/core';
 import { Subject, Subscription, of } from 'rxjs';
 import { tap, take, switchMap, debounceTime, delay, distinctUntilChanged, filter } from 'rxjs/operators';
 import { LocalStorage } from '@ngx-pwa/local-storage';
@@ -69,7 +69,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
   /** Lab for a single share buttons or for share buttons container */
   @Input() component;
 
-  constructor(private share: ShareButtons, private dialog: MatDialog, private cd: ChangeDetectorRef, protected localStorage: LocalStorage) {
+  constructor(private share: ShareService, private dialog: MatDialog, private cd: ChangeDetectorRef, protected localStorage: LocalStorage) {
   }
 
   onCountChanged(e) {

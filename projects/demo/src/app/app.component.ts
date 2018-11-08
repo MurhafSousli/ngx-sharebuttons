@@ -1,10 +1,11 @@
-import { Component, ViewChild, AfterViewInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnDestroy, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
-import { ScrollbarComponent } from 'ngx-scrollbar';
 import { Subscription } from 'rxjs';
-import { sideAnimation } from './app-routing.animations';
 import { filter, tap } from 'rxjs/operators';
+import { NgScrollbar } from 'ngx-scrollbar';
+import { sideAnimation } from './app-routing.animations';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,16 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   watcher: Subscription;
 
   @ViewChild(MatSidenav) sideNav: MatSidenav;
-  @ViewChild(ScrollbarComponent) scrollEl: ScrollbarComponent;
+  @ViewChild(NgScrollbar) scrollEl: NgScrollbar;
+  @HostBinding('class.mobile') isMobile: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private breakpointObserver: BreakpointObserver) {
+    breakpointObserver.observe([
+      Breakpoints.HandsetLandscape,
+      Breakpoints.HandsetPortrait
+    ]).pipe(
+      tap((result: BreakpointState) => this.isMobile = result.matches)
+    ).subscribe();
   }
 
   getState(outlet) {
@@ -29,11 +37,10 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-
     this.watcher = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       tap(() => this.sideNav.close())
-      ).subscribe();
+    ).subscribe();
   }
 
   ngOnDestroy() {
