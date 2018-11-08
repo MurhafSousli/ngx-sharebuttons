@@ -26,7 +26,7 @@ import { getOS, getValidUrl } from './utils';
 declare const ga: Function;
 
 @Directive({
-  selector: '[shareButton], [share-button]',
+  selector: '[shareButton], [share-button]'
   providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}],
 })
 export class ShareButtonDirective implements OnChanges {
