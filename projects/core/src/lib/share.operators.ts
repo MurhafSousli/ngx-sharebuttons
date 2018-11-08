@@ -109,7 +109,3 @@ export const PinterestCountOperators: OperatorFunction<any, any>[] = [
 export const TumblrCountOperators: OperatorFunction<any, any>[] = [
   map((res: any) => +res.response.note_count)
 ];
-
-export const RedditCountOperators: OperatorFunction<any, any>[] = [
-  map((res: any) => +res.data.children[0].data.score)
-];

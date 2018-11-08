@@ -5,8 +5,7 @@ import {
   urlInMessageOperators,
   FacebookCountOperators,
   PinterestCountOperators,
-  TumblrCountOperators,
-  RedditCountOperators
+  TumblrCountOperators
 } from './share.operators';
 import { IShareButtons } from './share.models';
 
@@ -118,12 +117,7 @@ export const shareButtonsProp: IShareButtons = {
         url: 'url',
         title: 'title'
       },
-    },
-    count: {
-      request: 'http',
-      url: 'https://buttons.reddit.com/button_info.json?url=',
-      operators: RedditCountOperators
-    },
+    }
   },
   tumblr: {
     type: 'tumblr',
