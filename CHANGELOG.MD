@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.0-beta.1
+
+- regret(PrintOperator): use map instead of tap operator in the print operator, this fix opening share pop up when the print button is clicked, in [74c2396](https://github.com/MurhafSousli/ngx-sharebuttons/pull/348/commits/74c23960a25e1f383eb196f08f067f7c7ef67d7d).
+
 ## 7.0.0-beta.0
 
 - enhance(ShareDirective): Use rxjs interval to poll for window closed event, in [46f897c](https://github.com/MurhafSousli/ngx-sharebuttons/pull/347/commits/46f897ca9b510de56cca2b682bfeb2791da0e050).
