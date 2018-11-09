@@ -1,5 +1,6 @@
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { ShareButtonRef } from './share.models';
 
 /** Simple object check.*/
 function isObject(item): boolean {
@@ -47,20 +48,20 @@ export function shareCountFormatter(num: number, digits: number): string {
 }
 
 /** Copy text to clipboard */
-export function copyToClipboard(url: string, browser: string): Observable<any> {
-  return of(url).pipe(
-    tap((text: string) => {
+export function copyToClipboard(ref: ShareButtonRef): Observable<any> {
+  return of(ref.metaTags.url).pipe(
+    tap((url: string) => {
 
-      // Create a hidden textarea element
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      document.body.appendChild(textArea);
+      // Create a hidden TextArea element
+      const textArea: HTMLTextAreaElement = <HTMLTextAreaElement>ref.document.createElement('textarea');
+      textArea.value = url;
+      ref.document.body.appendChild(textArea);
 
-      // highlight textarea to copy the text
-      if (browser === 'ios') {
-        const range = document.createRange();
+      // highlight TextArea to copy the text
+      if (ref.platform === 'ios') {
+        const range = ref.document.createRange();
         range.selectNodeContents(textArea);
-        const selection = window.getSelection();
+        const selection = ref.document.defaultView.getSelection();
         selection.removeAllRanges();
         selection.addRange(range);
         textArea.readOnly = true;
@@ -68,41 +69,17 @@ export function copyToClipboard(url: string, browser: string): Observable<any> {
       } else {
         textArea.select();
       }
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
+      ref.document.execCommand('copy');
+      ref.document.body.removeChild(textArea);
     })
   );
 }
 
-/** Get meta tag content */
-export function getMetaContent(key: string): string {
-  const metaTag: Element = document.querySelector(`meta[property="${key}"]`);
-  return metaTag ? metaTag.getAttribute('content') : undefined;
-}
-
-/** Detect operating system 'ios', 'android', or 'desktop' */
-export function getOS(): string {
-  const userAgent = navigator.userAgent || navigator.vendor || (<any>window).opera;
-
-  if (/android/i.test(userAgent)) {
-    return 'android';
-  }
-
-  if (/iPad|iPhone|iPod/.test(userAgent) && !(<any>window).MSStream) {
-    return 'ios';
-  }
-  return 'desktop';
-}
-
-
 /** Returns a valid URL or falls back to current URL */
 export function getValidUrl(url: string, fallbackUrl: string): string {
-
   if (url) {
     const r = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-    if (r.test(url)) {
-      return url;
-    }
+    if (r.test(url)) return url;
     console.warn(`[ShareButtons]: Sharing link '${url}' is invalid!`);
   }
   return fallbackUrl;

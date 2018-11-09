@@ -7,13 +7,12 @@
 
     <section>
       <section-title>Overview</section-title>
-      <p>By default, The aliases of FontAwesome icons are set in the share buttons properties, however the icons
-        are not loaded out of the box and they should be imported manually.</p>
+      <p>This plugin relies on <b><a href="https://fontawesome.com">FontAwesome</a></b> to display share buttons icons. By default the aliases of the share icons are selected, but you can still choose different icons aliases in the config should import the icons manually.</p>
     </section>
 
     <section>
       <section-title>Usage</section-title>
-      <p>A good place to import the icons is in <code class="hljs">src/polyfills.ts</code> file, but since there
+      <p>A good place to import the icons is in <code class="hljs">src/main.ts</code> file, but since there
         are too many icons to import, it is more elegant to have the icons imported in their own file
       </p>
 
@@ -24,16 +23,16 @@
     </section>
 
     <section>
-      <note>
-        Make sure you use the deep link to import an icon to avoid importing the rest in your bundle.
+      <note icon="grade">
+        Use the deep link to import an icon to avoid importing the rest in your bundle.
       </note>
     </section>
 
     <section>
 
-      <p>Now in <code class="hljs">src/polyfills.ts</code>, add the following line:</p>
+      <p>Now in <code class="hljs">src/main.ts</code>, add the following line:</p>
 
-      <hl-code [code]="code.polyfills"></hl-code>
+      <hl-code [code]="code.icons"></hl-code>
     </section>
 
     <section>

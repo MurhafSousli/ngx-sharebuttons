@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ShareButtons } from '@ngx-share/core';
+import { ShareService } from '@ngx-share/core';
 import { DocsService } from '../../docs/docs.service';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 
@@ -13,8 +13,8 @@ import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 export class ButtonDComponent implements OnInit {
 
   code = {
-    npm: `npm i -S @ngx-share/core`,
-    yarn: `yarn add @ngx-share/core`,
+    npm: `npm i -S @ngx-share/core @angular/cdk`,
+    yarn: `yarn add @ngx-share/core @angular/cdk`,
     import: `import { ShareModule } from '@ngx-share/core';
 
 @NgModule({
@@ -75,7 +75,7 @@ export class MyComponent {
   displayedColumns = ['type', 'name', 'description'];
   dataSource: ApiDataSource | null;
 
-  constructor(private docs: DocsService, private titleService: Title, public share: ShareButtons) {
+  constructor(private docs: DocsService, private titleService: Title, public share: ShareService) {
   }
 
   ngOnInit() {

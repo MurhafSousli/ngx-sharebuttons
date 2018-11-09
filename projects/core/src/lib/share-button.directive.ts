@@ -5,33 +5,35 @@ import {
   HostListener,
   Inject,
   OnChanges,
+  OnDestroy,
   SimpleChanges,
   EventEmitter,
   ElementRef,
   Renderer2,
-  ChangeDetectorRef,
-  PLATFORM_ID
+  ChangeDetectorRef
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { Meta } from '@angular/platform-browser';
+import { Platform } from '@angular/cdk/platform';
 
-import { Observable, of, EMPTY } from 'rxjs';
-import { tap, filter, switchMap, map, take, catchError } from 'rxjs/operators';
+import { of, interval, Observable, Subscription, SubscriptionLike, EMPTY } from 'rxjs';
+import { tap, take, switchMap, takeWhile, finalize, catchError } from 'rxjs/operators';
 
-import { ShareButtons } from './share.service';
-import { IShareButton, ShareButtonRef } from './share.models';
-import { getMetaContent, getOS, getValidUrl } from './utils';
-
-/** Google analytics ref */
-declare const ga: Function;
+import { ShareService } from './share.service';
+import { IShareButton, IShareCount, ShareButtonRef } from './share.models';
+import { getValidUrl } from './utils';
 
 @Directive({
-  selector: '[shareButton]'
+  selector: '[shareButton], [share-button]'
 })
-export class ShareButtonDirective implements OnChanges {
+export class ShareDirective implements OnChanges, OnDestroy {
 
   /** A ref to button class - used to remove previous class when the button type is changed */
   private _buttonClass: string;
+
+  /** share window closed subscription (to unsubscribe if the button is destroyed before the share window closes) */
+  private _shareWindowClosed: SubscriptionLike = Subscription.EMPTY;
 
   /** Button properties */
   prop: IShareButton;
@@ -61,24 +63,26 @@ export class ShareButtonDirective implements OnChanges {
   /** Stream that emits when share dialog is closed */
   @Output() closed = new EventEmitter<string>();
 
-  constructor(private shareService: ShareButtons,
-              private http: HttpClient,
-              public renderer: Renderer2,
-              public cd: ChangeDetectorRef,
+  constructor(private meta: Meta,
               private el: ElementRef,
-              @Inject(PLATFORM_ID) private platform: Object) {
+              private http: HttpClient,
+              private platform: Platform,
+              private renderer: Renderer2,
+              private cd: ChangeDetectorRef,
+              private shareService: ShareService,
+              @Inject(DOCUMENT) private document: any) {
   }
 
   /** Share link on element click */
   @HostListener('click')
   onClick() {
-    if (isPlatformBrowser(this.platform)) {
+    if (this.platform.isBrowser) {
       const metaTags = this.autoSetMeta ? {
         url: this.url,
-        title: this.title || getMetaContent('og:title'),
-        description: this.description || getMetaContent('og:description'),
-        image: this.image || getMetaContent('og:image'),
-        via: this.shareService.twitterAccount || getMetaContent('twitter:site'),
+        title: this.title || this.getMetaTagContent('og:title'),
+        description: this.description || this.getMetaTagContent('og:description'),
+        image: this.image || this.getMetaTagContent('og:image'),
+        via: this.shareService.twitterAccount,
         tags: this.tags,
       } : {
         url: this.url,
@@ -89,17 +93,17 @@ export class ShareButtonDirective implements OnChanges {
         via: this.shareService.twitterAccount,
       };
 
-      const ref: ShareButtonRef = {
-        cd: this.cd,
+      // Share the link
+      // @ts-ignore
+      of<ShareButtonRef>({
+        el: this.el.nativeElement,
         renderer: this.renderer,
         prop: this.prop,
-        el: this.el.nativeElement,
-        os: getOS(),
+        cd: this.cd,
+        document: this.document,
+        platform: this.getPlatform(),
         metaTags
-      };
-
-      // Share the link
-      of(ref).pipe(
+      }).pipe(
         ...this.prop.share.operators,
         tap((sharerURL: any) => this.share(sharerURL)),
         take(1)
@@ -108,25 +112,28 @@ export class ShareButtonDirective implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (isPlatformBrowser(this.platform)) {
+    if (this.platform.isBrowser) {
 
       if (changes['shareButton'] && (changes['shareButton'].firstChange || changes['shareButton'].previousValue !== this.shareButton)) {
         this.createShareButton(this.shareButton);
       }
 
       if (!this.url || (changes['url'] && changes['url'].previousValue !== this.url)) {
-        of(null).pipe(
-          map(() => {
-            this.url = getValidUrl(this.autoSetMeta ? this.url || getMetaContent('og:url') : this.url, window.location.href);
-            return this.url;
-          }),
-          filter(() => this.prop.count && this.getCount),
-          switchMap((url: string) => this.shareCount(url)),
-          tap((shareCount: number) => this.count.emit(shareCount)),
-          take(1)
-        ).subscribe();
+        this.url = getValidUrl(
+          this.autoSetMeta
+            ? this.url || this.getMetaTagContent('og:url')
+            : this.url,
+          this.document.defaultView.location.href
+        );
+        if (this.getCount && this.prop.count) {
+          this.shareCount(this.url).subscribe((count: number) => this.count.emit(count));
+        }
       }
     }
+  }
+
+  ngOnDestroy() {
+    this._shareWindowClosed.unsubscribe();
   }
 
   /**
@@ -137,53 +144,39 @@ export class ShareButtonDirective implements OnChanges {
     if (url) {
 
       // GA Tracking
-      if (this.shareService.gaTracking && typeof ga !== 'undefined') {
-        ga('send', 'social', this.prop.type, 'click', this.url);
+      if (this.shareService.gaTracking && (<any>this.document.defaultView).ga) {
+        (<any>this.document.defaultView).ga('send', 'social', this.prop.type, 'click', this.url);
       }
 
-      // Emit when share dialog is opened
-      this.opened.emit(this.prop.type);
-
-      const popUp = window.open(url, 'newwindow', this.shareService.windowSize);
-
-      // Emit when share dialog is closed
-      if (popUp) {
-        const pollTimer = window.setInterval(() => {
-          if (popUp.closed) {
-            window.clearInterval(pollTimer);
-            this.closed.emit(this.prop.type);
-          }
-        }, 200);
-      }
+      // Open share pop up and activate its opened and closed events
+      this._shareWindowClosed = of(this.document.defaultView.open(url, 'newwindow', this.shareService.windowSize)).pipe(
+        tap(() => this.opened.emit(this.prop.type)),
+        switchMap((popUp: any) => interval(200).pipe(takeWhile(() => !popUp.closed))),
+        finalize(() => this.closed.emit(this.prop.type))
+      ).subscribe();
     }
   }
 
-  /**
-   * Get link share count
-   * @param url - Share URL
-   * @returns Share count
-   */
-  shareCount(url: string): Observable<any> {
-
-    if (this.prop.count.request === 'jsonp') {
-
-      return this.http.jsonp<any>(this.prop.count.url + url, 'callback').pipe(
-        ...this.prop.count.operators,
+  shareCount(shareUrl: string): Observable<number> {
+    const options: IShareCount = this.prop.count;
+    return options.request === 'jsonp'
+      ?
+      // @ts-ignore
+      this.http.jsonp<any>(options.url + shareUrl, 'callback').pipe(
+        ...options.operators,
         catchError(() => EMPTY),
-      );
-    } else {
-
-      return this.http.get<any>(this.prop.count.url + url, this.prop.count.args).pipe(
-        ...this.prop.count.operators,
+      )
+      :
+      // @ts-ignore
+      this.http.get<any>(options.url + shareUrl, options.args).pipe(
+        ...options.operators,
         catchError(() => EMPTY)
       );
-    }
   }
-
 
   private createShareButton(buttonsName: string) {
 
-    const button = {...this.shareService.prop[buttonsName]};
+    const button: IShareButton = {...this.shareService.prop[buttonsName]};
 
     if (button) {
       // Set share button properties
@@ -208,4 +201,17 @@ export class ShareButtonDirective implements OnChanges {
     }
   }
 
+  /** Get meta tag content */
+  private getMetaTagContent(key: string): string {
+    const metaUsingProperty: HTMLMetaElement = this.meta.getTag(`property="${key}"`);
+    if (metaUsingProperty) return metaUsingProperty.getAttribute('content');
+    const metaUsingName: HTMLMetaElement = this.meta.getTag(`name="${key}"`);
+    if (metaUsingName) return metaUsingName.getAttribute('content');
+  }
+
+  private getPlatform() {
+    if (this.platform.IOS) return 'ois';
+    if (this.platform.ANDROID) return 'android';
+    return 'desktop';
+  }
 }

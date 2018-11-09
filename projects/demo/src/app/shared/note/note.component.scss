@@ -1,17 +1,23 @@
+@import '~@angular/material/theming';
 @import '../../../assets/style/variables';
+
+$note-bg-star: mat-color(mat-palette($mat-amber, 100));
+$note-color-star: mat-color(mat-palette($mat-amber, 600));
 
 :host {
   display: block;
-  margin-top: 3em;
 }
 
 .note-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
   width: 80px;
-  height: 80px;
-  background-color: $note-bg;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: $note-color;
 }
 
 mat-icon {
@@ -23,18 +29,34 @@ mat-icon {
 }
 
 .note-content {
+  margin-left: 80px;
   text-align: justify;
-  padding: 0 1em;
-  flex: 1;
+  padding: 0.8em 1em;
 }
 
 section {
-  border: 2px solid $note-bg;
-  margin: 2em 0;
+  min-height: 80px;
+  position: relative;
+  border: 2px solid $note-color;
+  margin: 4em 0;
   display: flex;
   align-items: center;
-  background-color: $api_output;
+  background-color: $note-bg;
   border-radius: 0.5em;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+}
+
+.note-error_outline {
+
+  section {
+    border: 2px solid $note-color-star;
+  }
+  .note-icon {
+    background-color: $note-color-star;
+  }
+}
+
+.note-grade {
+
 }

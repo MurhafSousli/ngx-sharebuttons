@@ -41,7 +41,7 @@ const icons = [
 ];
 
 library.add(...icons);`,
-    polyfills: `import './icons';`,
+    icons: `import './icons';`,
     libraryMethod: `import { library } from '@fortawesome/fontawesome-svg-core';
 
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';

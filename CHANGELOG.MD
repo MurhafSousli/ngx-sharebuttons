@@ -1,5 +1,45 @@
 # Changelog
 
+## 7.0.0-beta.0
+
+- enhance(ShareDirective): Use rxjs interval to poll for window closed event, in [46f897c](https://github.com/MurhafSousli/ngx-sharebuttons/pull/347/commits/46f897ca9b510de56cca2b682bfeb2791da0e050).
+- enhance(ShareDirective): Use `Meta` service instead of `document` to get the meta tags content, in [9342b63](https://github.com/MurhafSousli/ngx-sharebuttons/pull/347/commits/9342b63218303988ce498359d38ebba854b97ac4).
+- enhance(ShareDirective): Use the CDK `Platform` service to get the platform type, in [55b9495](https://github.com/MurhafSousli/ngx-sharebuttons/pull/347/commits/10d4760723d70c218366302a4e0bb65fe47d6bb0).
+- enhance(ShareDirective): Query meta tags using property or name, in [55b9495](https://github.com/MurhafSousli/ngx-sharebuttons/pull/347/commits/55b9495e1823f835dba3a487a577425fd28268c0).
+- enhance(ShareDirective): Add kebab-case selector, in [55b9495](https://github.com/MurhafSousli/ngx-sharebuttons/pull/347/commits/be2c10019aae3a9d715a83689de72aa2f64c68f6).
+- enhance(ShareButton, ShareButtons): Load base styles internally.
+- refactor(ShareDirective): Do not auto-set `[via]` input from `twitter-site` meta tag, in [4bcd5e0](https://github.com/MurhafSousli/ngx-sharebuttons/pull/347/commits/4bcd5e0021f28358673e7c11a25a09d1a0e8edbb).
+- fix(ShareProps): Fix iOS SMS Share Link, closes [#283](https://github.com/MurhafSousli/ngx-sharebuttons/issues/283) in [143aaa7](https://github.com/MurhafSousli/ngx-sharebuttons/pull/335/commits/143aaa7365a07c44d6c42ed8db82dcd7b0b38b20).
+- refactor(ShareModule): Provide `ShareButtons` service using `providedIn: 'root'`, in [b2c698f](https://github.com/MurhafSousli/ngx-sharebuttons/pull/347/commits/b2c698f011f950c17aa9f17571db361075b9b663).
+- refactor(ShareProps): Remove **Reddit** share count, in [dcef59b](https://github.com/MurhafSousli/ngx-sharebuttons/pull/347/commits/dcef59be8954f9606586304ba4fff5dccaf3a37e).
+- Fix and update peerDependencies for Angular >= 6, in [8fd68e1](https://github.com/MurhafSousli/ngx-sharebuttons/pull/347/commits/8fd68e1e5b3a0eea66973be75228d578746e860e).
+
+### Breaking changes:
+
+- If you use any of the following classes, they have been renamed:
+
+  - `ShareButtons` service => `ShareService`
+  - `ShareDirective` directive => `ShareDirective`
+  - `ShareButtonComponent` component => `ShareButton`
+  - `ShareButtonsComponent` component => `ShareButtons`
+  
+- **Reddit** share count API seems to be deprecated from their side, therefore share count has been removed from Reddit share button.
+- For `<share-buttons>` and `<share-button>` components, no need to import the default styles anymore.
+- Also note that the path to themes directory has been flattened (`/styles/` directory has been removed)
+
+#### Before
+
+```css
+@import '~@ngx-share/button/styles/share-buttons'; /** this line is no longer needed */
+@import '~@ngx-share/button/styles/themes/modern/modern-dark-theme';
+```
+
+#### After
+
+```css
+@import '~@ngx-share/button/themes/modern/modern-dark-theme';
+```
+
 ## 6.0.1
 
 - fix(ShareButtonsModule): Remove `HttpClientModule` from `ShareButtonsModule`, closes [#297](https://github.com/MurhafSousli/ngx-sharebuttons/issues/297) in [a503936](https://github.com/MurhafSousli/ngx-sharebuttons/commit/a503936c754274948bc9aa92ee5b8d94e71fc503).
@@ -8,10 +48,10 @@
 
 - Angular 6 support, closes [#274](https://github.com/MurhafSousli/ngx-sharebuttons/issues/274).
 - fix(core): Use icon alias name in the share props instead of the icon object itself, closes [#280](https://github.com/MurhafSousli/ngx-sharebuttons/issues/280).
-- feat(ShareButtonDirective): Add `aria-label` attribute to share buttons, closes [#277](https://github.com/MurhafSousli/ngx-sharebuttons/issues/277).
-- feat(ShareButtonsComponent): Enable custom icons for the expand button, remove the hard-coded icons, closes [#289](https://github.com/MurhafSousli/ngx-sharebuttons/issues/289).
-- refactor(ShareButtonsComponent): Call `stateWorker$.complete()` on component destroy.
-- refactor(ShareButtonsComponent): Use `private` on variables and functions when they should be.
+- feat(ShareDirective): Add `aria-label` attribute to share buttons, closes [#277](https://github.com/MurhafSousli/ngx-sharebuttons/issues/277).
+- feat(ShareButtons): Enable custom icons for the expand button, remove the hard-coded icons, closes [#289](https://github.com/MurhafSousli/ngx-sharebuttons/issues/289).
+- refactor(ShareButtons): Call `stateWorker$.complete()` on component destroy.
+- refactor(ShareButtons): Use `private` on variables and functions when they should be.
 - Add `CONTRIBUTION.md` for plugin development.
 - refactor(core): Remove all FontAwesome peer packages dependencies from `"@ngx-share/core`.
 - refactor(button): Use only `@fortawesome/angular-fontawesome` as a peer dependency for `"@ngx-share/button`.
@@ -57,7 +97,7 @@ library.add(...icons);
 
 ## 5.3.1
 
-- fix(ShareButtonsComponent): Hide expand button, closes [#255](https://github.com/MurhafSousli/ngx-sharebuttons/issues/255) in [#256](https://github.com/MurhafSousli/ngx-sharebuttons/pull/256).
+- fix(ShareButtons): Hide expand button, closes [#255](https://github.com/MurhafSousli/ngx-sharebuttons/issues/255) in [#256](https://github.com/MurhafSousli/ngx-sharebuttons/pull/256).
 - fix(Build Error in 5.3.0): Set css variable on expand button through the component instead of the style, closes [#254](https://github.com/MurhafSousli/ngx-sharebuttons/issues/254) in [#527](https://github.com/MurhafSousli/ngx-sharebuttons/pull/257).
 - clean up styles
 - refactor css variable: change $sb-more variable name to $sb-expand
@@ -65,20 +105,20 @@ library.add(...icons);
 
 ## 5.3.0 (has a build issue)
 
-- refactor(ShareButtonsComponent): Wrap expand button in its own component.
-- fix(ShareButtonDirective): Set custom button color with css variable.
-- fix(Universal:ShareButtonDirective): Check for browser platform before creating a share button, closes [#251](https://github.com/MurhafSousli/ngx-sharebuttons/issues/251).
-- fix(Universal:ShareButtonComponent): Check if button.ref is defined in component template, closes [#251](https://github.com/MurhafSousli/ngx-sharebuttons/issues/251).
-- fix(ShareButtonComponent): Share counts are requested even when showCount is false, fixes [#253](https://github.com/MurhafSousli/ngx-sharebuttons/issues/253).
+- refactor(ShareButtons): Wrap expand button in its own component.
+- fix(ShareDirective): Set custom button color with css variable.
+- fix(Universal:ShareDirective): Check for browser platform before creating a share button, closes [#251](https://github.com/MurhafSousli/ngx-sharebuttons/issues/251).
+- fix(Universal:ShareButton): Check if button.ref is defined in component template, closes [#251](https://github.com/MurhafSousli/ngx-sharebuttons/issues/251).
+- fix(ShareButton): Share counts are requested even when showCount is false, fixes [#253](https://github.com/MurhafSousli/ngx-sharebuttons/issues/253).
 - enhancement(Themes): Improve styles.
 - enhancement(Share Icons): Icons are now rendered as SVG elements.
 
 ### Features:
 
 - feat(Prop): Add SMS button.
-- feat(ShareButtonComponent): Add `[icon]` input.
+- feat(ShareButton): Add `[icon]` input.
 - feat(Share Icons): Add only the share buttons icons from FontAwesome instead of all icons, closes [#252](https://github.com/MurhafSousli/ngx-sharebuttons/issues/252).
-- feat(ShareButtonDirective): Add `[autoSetMeta]` input to all components and global config.
+- feat(ShareDirective): Add `[autoSetMeta]` input to all components and global config.
 
 When `autoSetMeta` is **true**, the meta tags inputs `url`, `title`, `description` and `image` will be initialized from the SEO meta tags.
 
@@ -136,7 +176,7 @@ ShareButtonsModule.forRoot({
 }
 ```
 
-- refactor(ShareButtonDirective): Remove the prefix `sb` from the share directive inputs, closes [#250](https://github.com/MurhafSousli/ngx-sharebuttons/issues/250).
+- refactor(ShareDirective): Remove the prefix `sb` from the share directive inputs, closes [#250](https://github.com/MurhafSousli/ngx-sharebuttons/issues/250).
 
 ```
 [sbUrl] => [url]
@@ -235,7 +275,7 @@ Now the meta tags are initialized from document head meta tags (og:title, og:des
   - Before `ShareButtonsModule.forRoot(options, prop)`
   - After: `ShareButtonsModule.forRoot({ options, prop })`
 
-#### ShareButtonComponent `<share-button>`:
+#### ShareButton `<share-button>`:
 
 - `[showName]` input is renamed to `[showText]` in `<share-button>` and `<share-buttons>`
 - Custom template is deprecated in `<share-button>`, you can now set custom text using the input `[text]`
@@ -265,7 +305,7 @@ Now the meta tags are initialized from document head meta tags (og:title, og:des
 ## 4.1.0
 
 - feat(New themes) Include more themes with the package.
-- refactor(ShareButtonsComponent) remove text from more & less buttons.
+- refactor(ShareButtons) remove text from more & less buttons.
 
 **Breaking Change**:
 
@@ -299,7 +339,7 @@ import { ShareButtonsModule } from 'ngx-sharebuttons';
 - fix wrong rollup config for **HttpClientModule**
 - add default styles in the dist package
 - fix(Universal support) Add **UniversalSupportService** to be used internally
-- refactor(ShareButtonDirective)
+- refactor(ShareDirective)
 - add `gaTracking` option to global options
 - update online docs
 
@@ -425,7 +465,7 @@ Version 4 has been rewritten from scratch
 
 ## 1.0.5
 
-* **Improve Performance :** Now ShareButtonComponent uses `ChangeDetectionStrategy.OnPush`.
+* **Improve Performance :** Now ShareButton uses `ChangeDetectionStrategy.OnPush`.
 
 ## 1.0.1
 
@@ -452,7 +492,7 @@ Stable release
 ## 4.1.0
 
  - feat(New themes) Include more themes with the package.
- - refactor(ShareButtonsComponent) remove text from more & less buttons.
+ - refactor(ShareButtons) remove text from more & less buttons.
 
 **Breaking Change**:
 
@@ -486,7 +526,7 @@ import { ShareButtonsModule } from 'ngx-sharebuttons';
  - fix wrong rollup config for **HttpClientModule**
  - add default styles in the dist package
  - fix(Universal support) Add **UniversalSupportService** to be used internally
- - refactor(ShareButtonDirective)
+ - refactor(ShareDirective)
  - add `gaTracking` option to global options
  - update online docs
 
@@ -612,7 +652,7 @@ Version 4 has been rewritten from scratch
 
 ## 1.0.5
 
-* **Improve Performance :** Now ShareButtonComponent uses `ChangeDetectionStrategy.OnPush`.
+* **Improve Performance :** Now ShareButton uses `ChangeDetectionStrategy.OnPush`.
 
 ## 1.0.1
 

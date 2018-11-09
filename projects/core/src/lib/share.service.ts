@@ -1,12 +1,13 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IShareButton, ShareButtonsConfig } from './share.models';
-import { CONFIG } from './share.tokens';
+import { IShareButton, ShareButtonsConfig, CONFIG } from './share.models';
 import { shareButtonsProp } from './share.prop';
 import { mergeDeep } from './utils';
 
-@Injectable()
-export class ShareButtons {
+@Injectable({
+  providedIn: 'root'
+})
+export class ShareService {
 
   config: ShareButtonsConfig = {
     prop: shareButtonsProp,
@@ -15,12 +16,12 @@ export class ShareButtons {
       include: [],
       exclude: [],
       size: 0,
-      url: undefined,
-      title: undefined,
-      description: undefined,
-      image: undefined,
-      tags: undefined,
-      twitterAccount: undefined,
+      url: null,
+      title: null,
+      description: null,
+      image: null,
+      tags: null,
+      twitterAccount: null,
       autoSetMeta: true,
       gaTracking: false,
       windowWidth: 800,
@@ -31,10 +32,8 @@ export class ShareButtons {
   };
   config$ = new BehaviorSubject(this.config);
 
-  constructor(@Inject(CONFIG) config: ShareButtonsConfig) {
-    if (config) {
-      this.setConfig(config);
-    }
+  constructor(@Optional() @Inject(CONFIG) config: ShareButtonsConfig) {
+    this.setConfig(config);
   }
 
   get prop() {
@@ -86,8 +85,10 @@ export class ShareButtons {
   }
 
   setConfig(config: ShareButtonsConfig) {
-    this.config = mergeDeep(this.config, config);
-    this.config$.next(this.config);
+    if (config) {
+      this.config = mergeDeep(this.config, config);
+      this.config$.next(this.config);
+    }
   }
 
   addButton(name: string, data: IShareButton) {

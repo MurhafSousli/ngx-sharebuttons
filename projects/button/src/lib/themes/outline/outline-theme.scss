@@ -1,0 +1,43 @@
+@import "../variables";
+
+.sb-outline .sb-wrapper {
+  @each $button,
+  $color in $sb-buttons {
+    &.sb-#{$button} {
+      color: $color;
+      &:hover {
+        box-shadow: inset 0 0 0 2em $color;
+      }
+    }
+  }
+
+  color: var(--button-color) !important;
+  transition: 0.3s;
+  border: 2px solid;
+  border-radius: 0.2em;
+  background-color: $sb-accent;
+  font: inherit;
+  line-height: 1;
+  height: 2.5em;
+  &:hover {
+    color: $sb-accent !important;
+    box-shadow: inset 0 0 0 2em var(--button-color) !important;
+  }
+  &.sb-show-icon.sb-show-text {
+    .sb-text {
+      padding-right: 1em;
+      padding-left: 0;
+    }
+  }
+  &.sb-show-icon.sb-show-count {
+    .sb-count {
+      padding-right: 1em;
+      padding-left: 0;
+    }
+  }
+  &.sb-show-text.sb-show-count {
+    .sb-text {
+      padding-right: 0.5em;
+    }
+  }
+}

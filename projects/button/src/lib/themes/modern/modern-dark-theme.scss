@@ -1,0 +1,50 @@
+@import "../variables";
+
+.sb-modern-dark .sb-wrapper {
+  $sb-border-radius: 3px;
+  $separate-shadow: 1px 0 1px -1px rgba(0, 0, 0, 0.3);
+
+  @each $button,
+  $color in $sb-buttons {
+    &.sb-#{$button} {
+      background-color: $color;
+    }
+  }
+  background-color: $sb-primary;
+  background-color: var(--button-color) !important;
+  color: $sb-accent;
+  transition: box-shadow ease-in 150ms, transform ease-in 150ms;
+  border-radius: $sb-border-radius;
+
+  box-shadow: 0 0.1em 0.5em rgba($sb-gray, 0.6);
+  &:active {
+    box-shadow: 0 0.4em 1em rgba($sb-gray, 0.9);
+  }
+
+  .sb-text,
+  .sb-count {
+    background: rgba(0, 0, 0, .1);
+  }
+
+  &.sb-show-text.sb-show-count {
+    .sb-text {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+    .sb-count {
+      background: none;
+    }
+  }
+
+  &.sb-show-text,
+  &.sb-show-count {
+    padding: 0;
+    .sb-icon {
+      box-shadow: $separate-shadow;
+    }
+    .sb-text, .sb-count {
+      border-bottom-right-radius: $sb-border-radius;
+      border-top-right-radius: $sb-border-radius;
+    }
+  }
+}

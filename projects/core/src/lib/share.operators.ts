@@ -1,5 +1,5 @@
 import { of, OperatorFunction } from 'rxjs';
-import { map, delay, switchMap, catchError } from 'rxjs/operators';
+import { map, delay, switchMap, catchError, tap } from 'rxjs/operators';
 import { ShareButtonRef } from './share.models';
 import { copyToClipboard, mergeDeep } from './utils';
 
@@ -10,7 +10,7 @@ export const metaTagsOperators: OperatorFunction<any, any>[] = [
   map((ref: ShareButtonRef) => {
 
     // Social network sharer URL */
-    const SharerURL = ref.prop.share[ref.os];
+    const SharerURL = ref.prop.share[ref.platform];
     if (SharerURL) {
 
       // object contains supported meta tags
@@ -36,7 +36,7 @@ export const metaTagsOperators: OperatorFunction<any, any>[] = [
  * Print button operator
  */
 export const printOperators: OperatorFunction<any, any>[] = [
-  map(() => window.print())
+  tap((ref: ShareButtonRef) => ref.document.defaultView.print())
 ];
 
 /**
@@ -52,7 +52,7 @@ export const copyOperators: OperatorFunction<any, any>[] = [
     ref.metaTags.url = decodeURIComponent(ref.metaTags.url);
     return ref;
   }),
-  switchMap((ref: ShareButtonRef) => copyToClipboard(ref.metaTags.url, ref.os).pipe(
+  switchMap((ref: ShareButtonRef) => copyToClipboard(ref).pipe(
     map(() => {
       ref.prop.text = ref.prop.successText;
       ref.prop.icon = ref.prop.successIcon;
@@ -108,8 +108,4 @@ export const PinterestCountOperators: OperatorFunction<any, any>[] = [
 
 export const TumblrCountOperators: OperatorFunction<any, any>[] = [
   map((res: any) => +res.response.note_count)
-];
-
-export const RedditCountOperators: OperatorFunction<any, any>[] = [
-  map((res: any) => +res.data.children[0].data.score)
 ];

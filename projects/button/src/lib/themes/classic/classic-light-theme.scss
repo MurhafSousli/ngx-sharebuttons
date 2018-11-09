@@ -1,0 +1,48 @@
+@import "../variables";
+
+.sb-classic-light .sb-wrapper {
+  $sb-icon-size: 1.1em;
+  $button-bg: #ddd;
+  $button-bg-light: lighten($button-bg, 12%);
+  $hover-bg: lighten($button-bg, 10%);
+  $hover-bg-light: lighten($button-bg, 15%);
+  $border-color: darken($button-bg, 15%);
+  $icon-shadow: 1px 0 0 rgba(darken($button-bg, 35%), .5), 2px 0 0 rgba(255, 255, 255, .5);
+
+  @each $button,
+  $color in $sb-buttons {
+    &.sb-#{$button} {
+       color: $color;
+    }
+  }
+  color: var(--button-color) !important;
+  background-color: $button-bg;
+  background-image: linear-gradient(to bottom, $button-bg-light, $button-bg);
+  border: 1px solid $border-color;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+  box-shadow: 0 0 1px 1px rgba(255, 255, 255, .8) inset, 0 1px 0 rgba(0, 0, 0, .3);
+  border-radius: .2em;
+  &:hover {
+    background-color: $hover-bg;
+    background-image: linear-gradient(to bottom, $hover-bg-light, $hover-bg);
+  }
+  &:active {
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, .3) inset;
+    position: relative;
+    top: 1px;
+  }
+  .sb-icon {
+    pointer-events: none;
+    font-size: $sb-icon-size;
+    min-width: 2em;
+  }
+  .sb-text {
+    box-shadow: $icon-shadow;
+  }
+  &.sb-show-text,
+  &.sb-show-count {
+    .sb-icon {
+      box-shadow: $icon-shadow;
+    }
+  }
+}

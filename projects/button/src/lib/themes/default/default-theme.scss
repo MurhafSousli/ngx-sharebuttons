@@ -1,0 +1,32 @@
+@import "../variables";
+
+.sb-default .sb-wrapper {
+  color: white;
+  border-radius: 4px;
+  overflow: hidden;
+  @each $button,
+  $color in $sb-buttons {
+    &.sb-#{$button} {
+      background-color: $color;
+    }
+  }
+  background-color: var(--button-color) !important;
+  &.sb-show-icon.sb-show-text {
+    .sb-text {
+      filter: none;
+      padding-right: 1em;
+      padding-left: 0;
+    }
+  }
+  &.sb-show-icon.sb-show-count {
+    .sb-count {
+      padding-right: 1em;
+      padding-left: 0;
+    }
+  }
+  &.sb-show-text.sb-show-count {
+    .sb-text {
+      padding-right: 0.5em;
+    }
+  }
+}

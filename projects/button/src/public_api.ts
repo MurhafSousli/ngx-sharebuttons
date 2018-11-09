@@ -1,2 +1,2 @@
 export * from './lib/share-button.module';
-export * from './lib/share-button.component';
+export * from './lib/share-button';

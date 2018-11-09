@@ -1,0 +1,85 @@
+@import "../variables";
+
+.sb-circles-light .sb-wrapper {
+  $sb-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  $sb-text-size: 0.8em;
+
+  @each $button,
+  $color in $sb-buttons {
+    &.sb-#{$button} {
+      .sb-icon,
+      .sb-text {
+        color: $color;
+      }
+    }
+  }
+  color: $sb-primary;
+  background: transparent;
+  min-width: unset;
+  height: unset;
+
+  &:active {
+    .sb-icon {
+      box-shadow: 0 7px 8px -4px rgba(0, 0, 0, .2), 0 12px 17px 2px rgba(0, 0, 0, .14), 0 5px 22px 4px rgba(0, 0, 0, .12);
+    }
+  }
+  .sb-icon, .sb-text {
+    color: var(--button-color) !important;
+  }
+  .sb-icon {
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+    font-size: 1.4em;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    background: radial-gradient(ellipse farthest-corner at center, white 30%, darken(white, 5%) 100%);
+  }
+  .sb-text {
+    font-size: $sb-text-size;
+    margin-top: 5px;
+    width: 100%;
+    height: 1.8em;
+    line-height: 1.8em;
+    padding: 0;
+  }
+  .sb-content,
+  .sb-inner {
+    align-items: center;
+    flex-direction: column;
+  }
+  &.sb-show-count {
+    margin-bottom: 3em;
+  }
+  .sb-count {
+    font-weight: normal;
+    top: 100%;
+    height: 1.8em;
+    color: darken($sb-gray, 20%);
+    position: absolute;
+    background: $sb-accent;
+    border-radius: .4em;
+    margin-top: 1em;
+    padding-top: 0.2em;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: calc(50% - 5px);
+      height: 10px;
+      width: 10px;
+      display: block;
+      background-color: $sb-accent;
+      transform: rotate(-45deg);
+      box-shadow: 1px -1px 1px -1px rgba(0, 0, 0, 0.3);
+      margin: auto;
+    }
+    span {
+      z-index: 10;
+    }
+  }
+}

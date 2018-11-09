@@ -4,25 +4,24 @@
                 thumbClass="code-scrollbar-thumb"
                 (cdkObserveContent)="updateHeight()">
 
-    <ng-container *ngIf="!state.copied; else copiedMessage">
-
+    <ng-container *ngIf="!state.copied">
         <pre>
-          <code #codeEL highlight [code]="code"></code>
+          <code #codeElement highlight [code]="code"></code>
         </pre>
-
     </ng-container>
 
-    <ng-template #copiedMessage>
-      <div class="hljs copy-message">
-        <mat-icon>done</mat-icon>
-        <span>Copied!</span>
-      </div>
-    </ng-template>
   </ng-scrollbar>
 
+  <ng-container *ngIf="state.copied">
+    <div class="hljs copy-message">
+      <mat-icon>done</mat-icon>
+      <span>Copied!</span>
+    </div>
+  </ng-container>
 </ng-container>
 
 <button mat-icon-button color="warn" matTooltipClass="copy-tooltip"
         matTooltip="Copy code" matTooltipPosition="before" (click)="copy()">
   <mat-icon class="md-24" aria-label="Copy code">content_paste</mat-icon>
 </button>
+

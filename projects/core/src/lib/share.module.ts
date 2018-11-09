@@ -1,22 +1,20 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { PlatformModule } from '@angular/cdk/platform';
 
-import { ShareButtons } from './share.service';
-import { ShareButtonDirective } from './share-button.directive';
+import { ShareDirective } from './share-button.directive';
 import { ShareCountPipe } from './share-count.pipe';
-import { ShareButtonsConfig } from './share.models';
-import { CONFIG } from './share.tokens';
-
-export function ShareButtonsFactory(config: ShareButtonsConfig) {
-  return new ShareButtons(config);
-}
+import { ShareButtonsConfig, CONFIG } from './share.models';
 
 @NgModule({
+  imports: [
+    PlatformModule
+  ],
   declarations: [
-    ShareButtonDirective,
+    ShareDirective,
     ShareCountPipe
   ],
   exports: [
-    ShareButtonDirective,
+    ShareDirective,
     ShareCountPipe
   ]
 })
@@ -25,12 +23,7 @@ export class ShareModule {
     return {
       ngModule: ShareModule,
       providers: [
-        {provide: CONFIG, useValue: config},
-        {
-          provide: ShareButtons,
-          useFactory: ShareButtonsFactory,
-          deps: [CONFIG]
-        }
+        {provide: CONFIG, useValue: config}
       ]
     };
   }
