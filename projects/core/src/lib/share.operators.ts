@@ -36,7 +36,7 @@ export const metaTagsOperators: OperatorFunction<any, any>[] = [
  * Print button operator
  */
 export const printOperators: OperatorFunction<any, any>[] = [
-  tap((ref: ShareButtonRef) => ref.document.defaultView.print())
+  map((ref: ShareButtonRef) => ref.document.defaultView.print())
 ];
 
 /**
