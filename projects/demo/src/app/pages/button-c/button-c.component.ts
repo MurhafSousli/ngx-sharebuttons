@@ -31,7 +31,10 @@ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @for
 import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
 import { faPinterest } from '@fortawesome/free-brands-svg-icons/faPinterest';
 
-export class ButtonCComponent {
+@Component({
+  // ...
+})
+export class MyComponent {
   fbIcon = faFacebookSquare;
   pinIcon = faPinterest;
   tweetIcon = faTwitterSquare;

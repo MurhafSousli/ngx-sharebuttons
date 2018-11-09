@@ -3,10 +3,10 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'note',
   template: `
-    <span class="note">
+    <span class="note note-{{icon}}">
       <section>
-        <span class="note-icon note-{{icon}}">
-          <mat-icon>{{icon}}</mat-icon>
+        <span class="note-icon">
+          <fa-icon [icon]="['fas', icon]"></fa-icon>
         </span>
         <div class="note-content">
           <ng-content></ng-content>
@@ -17,5 +17,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent {
-  @Input() icon = 'error_outline';
+  @Input() icon = 'info';
 }
