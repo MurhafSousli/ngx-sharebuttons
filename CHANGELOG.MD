@@ -1,5 +1,7 @@
 # Changelog
 
+## 7.0.0
+
 ## 7.0.0-beta.1
 
 - regret(PrintOperator): use map instead of tap operator in the print operator, this fix opening share pop up when the print button is clicked, in [74c2396](https://github.com/MurhafSousli/ngx-sharebuttons/pull/348/commits/74c23960a25e1f383eb196f08f067f7c7ef67d7d).
