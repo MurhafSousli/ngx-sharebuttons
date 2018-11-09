@@ -1,8 +1,11 @@
 @import '~@angular/material/theming';
 @import '../../../assets/style/variables';
 
-$note-bg-star: mat-color(mat-palette($mat-amber, 100));
-$note-color-star: mat-color(mat-palette($mat-amber, 600));
+$note-bg-lightbulb: mat-color(mat-palette($mat-light-green, 100));
+$note-color-lightbulb: mat-color(mat-palette($mat-light-green, 600));
+
+$note-bg-coffee: mat-color(mat-palette($mat-brown, 100));
+$note-color-coffee: mat-color(mat-palette($mat-brown, 600));
 
 :host {
   display: block;
@@ -14,18 +17,15 @@ $note-color-star: mat-color(mat-palette($mat-amber, 600));
   bottom: 0;
   left: 0;
   width: 80px;
-  padding-top: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: $note-color;
 }
 
-mat-icon {
+fa-icon {
+  font-size: 1.7em;
   color: white;
-  font-size: 36px;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
 }
 
 .note-content {
@@ -37,7 +37,6 @@ mat-icon {
 section {
   min-height: 80px;
   position: relative;
-  border: 2px solid $note-color;
   margin: 4em 0;
   display: flex;
   align-items: center;
@@ -47,16 +46,20 @@ section {
   overflow: hidden;
 }
 
-.note-error_outline {
-
+.note-coffee {
   section {
-    border: 2px solid $note-color-star;
+    background-color: $note-bg-coffee;
   }
   .note-icon {
-    background-color: $note-color-star;
+    background-color: $note-color-coffee;
   }
 }
 
-.note-grade {
-
+.note-lightbulb {
+  section {
+    background-color: $note-bg-lightbulb;
+  }
+  .note-icon {
+    background-color: $note-color-lightbulb;
+  }
 }
