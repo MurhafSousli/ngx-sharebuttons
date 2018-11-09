@@ -12,7 +12,8 @@
 [![npm](https://img.shields.io/npm/dm/@ngx-share/core.svg)](https://www.npmjs.com/package/@ngx-share/core)
 [![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-- For `@ngx-share/buttons` v6.x (Angular 6) See this [documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+- For `@ngx-share/buttons` v7.x (Angular 6 & 7) See the [WIKI documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+- For `@ngx-share/buttons` v6.x (Angular 6 & 7) See the [WIKI documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) + see the [changelog](/CHANGELOG.MD)
 - For `@ngx-share/buttons` v5.x (Angular 5), See this [documentation](/README_V5.md)
 - For `ngx-sharebuttons` v4.x (Angular 5), See this [documentation](/README_V4.md)
 - For `ngx-sharebuttons` v3.x (Angular 2 & 4), See this [documentation](/README_V3.md)
