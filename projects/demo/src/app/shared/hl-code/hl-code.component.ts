@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewChild, ElementRef, AfterViewInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
 import { delay, finalize, map, take } from 'rxjs/operators';
@@ -19,10 +19,10 @@ export class HlCodeComponent implements AfterViewInit {
   @Input() code: string;
   @Input() height: number;
 
-  @ViewChild('codeEL', {read: ElementRef}) codeEl: ElementRef;
+  @ViewChild('codeElement', {read: ElementRef}) codeElement: ElementRef;
   @ViewChild(NgScrollbar) scrollbars: NgScrollbar;
 
-  constructor(private cd: ChangeDetectorRef, private platform: Platform, @Inject(DOCUMENT) private document: any) {
+  constructor(private platform: Platform, @Inject(DOCUMENT) private document: any) {
   }
 
   ngAfterViewInit() {
@@ -30,8 +30,8 @@ export class HlCodeComponent implements AfterViewInit {
   }
 
   updateHeight() {
-    if (!this.height && this.codeEl) {
-      this.updateState({height: this.codeEl.nativeElement.offsetHeight + 'px'});
+    if (!this.height && this.codeElement) {
+      this.updateState({height: this.codeElement.nativeElement.offsetHeight + 'px'});
     } else {
       this.updateState({height: this.height + 'px'});
     }
@@ -39,7 +39,6 @@ export class HlCodeComponent implements AfterViewInit {
 
   private updateState(state) {
     this.state$.next({...this.state$.value, ...state});
-    this.cd.detectChanges();
   }
 
   copy() {

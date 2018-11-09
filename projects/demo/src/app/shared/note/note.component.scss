@@ -1,4 +1,8 @@
+@import '~@angular/material/theming';
 @import '../../../assets/style/variables';
+
+$note-bg-star: mat-color(mat-palette($mat-amber, 100));
+$note-color-star: mat-color(mat-palette($mat-amber, 600));
 
 :host {
   display: block;
@@ -41,4 +45,18 @@ section {
   border-radius: 0.5em;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+}
+
+.note-error_outline {
+
+  section {
+    border: 2px solid $note-color-star;
+  }
+  .note-icon {
+    background-color: $note-color-star;
+  }
+}
+
+.note-grade {
+
 }

@@ -84,7 +84,7 @@
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
     "ngx-highlightjs": "^2.1.4",
-    "ngx-scrollbar": "^3.1.1",
+    "ngx-scrollbar": "^3.1.2-beta.0",
     "normalize.css": "^8.0.0",
     "rxjs": "^6.3.3",
     "zone.js": "^0.8.26"
