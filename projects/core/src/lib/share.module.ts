@@ -3,7 +3,7 @@ import { PlatformModule } from '@angular/cdk/platform';
 
 import { ShareDirective } from './share-button.directive';
 import { ShareCountPipe } from './share-count.pipe';
-import { ShareButtonsConfig, CONFIG } from './share.models';
+import { SHARE_BUTTONS_CONFIG, ShareButtonsConfig } from './share.models';
 
 @NgModule({
   imports: [
@@ -19,11 +19,11 @@ import { ShareButtonsConfig, CONFIG } from './share.models';
   ]
 })
 export class ShareModule {
-  static forRoot(config?: ShareButtonsConfig): ModuleWithProviders {
+  static withConfig(config?: ShareButtonsConfig): ModuleWithProviders {
     return {
       ngModule: ShareModule,
       providers: [
-        {provide: CONFIG, useValue: config}
+        {provide: SHARE_BUTTONS_CONFIG, useValue: config}
       ]
     };
   }

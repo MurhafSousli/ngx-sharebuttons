@@ -1,7 +1,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IShareButton, ShareButtonsConfig, CONFIG } from './share.models';
-import { shareButtonsProp } from './share.prop';
+import { ShareButtonsConfig, SHARE_BUTTONS_CONFIG } from './share.models';
+import { SHARE_BUTTONS } from './share.defaults';
 import { mergeDeep } from './utils';
 
 @Injectable({
@@ -9,92 +9,49 @@ import { mergeDeep } from './utils';
 })
 export class ShareService {
 
+  /** Global config that applies on all share buttons in the app */
   config: ShareButtonsConfig = {
-    prop: shareButtonsProp,
-    options: {
-      theme: 'default',
-      include: [],
-      exclude: [],
-      size: 0,
-      url: null,
-      title: null,
-      description: null,
-      image: null,
-      tags: null,
-      twitterAccount: null,
-      autoSetMeta: true,
-      gaTracking: false,
-      windowWidth: 800,
-      windowHeight: 500,
-      moreButtonIcon: 'ellipsis-h',
-      lessButtonIcon: 'minus'
-    }
+    prop: SHARE_BUTTONS,
+    theme: 'default',
+    include: [],
+    exclude: [],
+    size: 0,
+    title: null,
+    description: null,
+    image: null,
+    tags: null,
+    twitterAccount: null,
+    autoSetMeta: true,
+    gaTracking: false,
+    windowWidth: 800,
+    windowHeight: 500,
+    moreButtonIcon: 'ellipsis-h',
+    lessButtonIcon: 'minus'
   };
+
+  /** Stream that emits when config changes */
   config$ = new BehaviorSubject(this.config);
 
-  constructor(@Optional() @Inject(CONFIG) config: ShareButtonsConfig) {
-    this.setConfig(config);
+  constructor(@Optional() @Inject(SHARE_BUTTONS_CONFIG) config: ShareButtonsConfig) {
+    if (config) {
+      this.setConfig(config);
+    }
   }
 
+  /**
+   * Share buttons properties, used to get the text, color and icon of each button.
+   */
   get prop() {
     return this.config.prop;
   }
 
-  get twitterAccount() {
-    return this.config.options.twitterAccount;
-  }
-
-  get theme() {
-    return this.config.options.theme;
-  }
-
   get windowSize() {
-    return `width=${this.config.options.windowWidth}, height=${this.config.options.windowHeight}`;
-  }
-
-  get url() {
-    return this.config.options.url;
-  }
-
-  get title() {
-    return this.config.options.title;
-  }
-
-  get description() {
-    return this.config.options.description;
-  }
-
-  get image() {
-    return this.config.options.image;
-  }
-
-  get tags() {
-    return this.config.options.tags;
-  }
-
-  get autoSetMeta() {
-    return this.config.options.autoSetMeta;
-  }
-
-  get gaTracking() {
-    return this.config.options.gaTracking;
-  }
-
-  get size() {
-    return this.config.options.size;
+    return `width=${this.config.windowWidth}, height=${this.config.windowHeight}`;
   }
 
   setConfig(config: ShareButtonsConfig) {
-    if (config) {
-      this.config = mergeDeep(this.config, config);
-      this.config$.next(this.config);
-    }
+    this.config = mergeDeep(this.config, config);
+    this.config$.next(this.config);
   }
 
-  addButton(name: string, data: IShareButton) {
-    const config = {
-      prop: {...shareButtonsProp, ...{[name]: data}}
-    };
-    this.setConfig(config);
-  }
 }

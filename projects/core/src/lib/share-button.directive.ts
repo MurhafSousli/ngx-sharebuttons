@@ -2,11 +2,13 @@ import {
   Directive,
   Input,
   Output,
+  HostBinding,
   HostListener,
   Inject,
   OnChanges,
   OnDestroy,
   SimpleChanges,
+  SimpleChange,
   EventEmitter,
   ElementRef,
   Renderer2,
@@ -16,13 +18,12 @@ import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Meta } from '@angular/platform-browser';
 import { Platform } from '@angular/cdk/platform';
-
-import { of, interval, Observable, Subscription, SubscriptionLike, EMPTY } from 'rxjs';
-import { tap, take, switchMap, takeWhile, finalize, catchError } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 import { ShareService } from './share.service';
-import { IShareButton, IShareCount, ShareButtonRef } from './share.models';
+import { IShareButton, ShareMetaTags } from './share.models';
 import { getValidUrl } from './utils';
+import { ShareButtonBase } from './buttons';
 
 @Directive({
   selector: '[shareButton], [share-button]'
@@ -32,27 +33,35 @@ export class ShareDirective implements OnChanges, OnDestroy {
   /** A ref to button class - used to remove previous class when the button type is changed */
   private _buttonClass: string;
 
-  /** share window closed subscription (to unsubscribe if the button is destroyed before the share window closes) */
-  private _shareWindowClosed: SubscriptionLike = Subscription.EMPTY;
+  /** Share window closed event subscription */
+  private _shareWindowClosed = Subscription.EMPTY;
 
   /** Button properties */
-  prop: IShareButton;
+  shareButton: ShareButtonBase;
 
   /** Share button type */
-  @Input() shareButton: string;
+  @Input('shareButton') shareButtonName: string;
 
   /** Get share count */
   @Input() getCount = false;
 
   /** Set meta tags from document head, useful when SEO is supported */
-  @Input() autoSetMeta: boolean = this.shareService.autoSetMeta;
+  @Input() autoSetMeta: boolean = this._share.config.autoSetMeta;
 
-  /** Meta tags inputs - initialized from the global options */
-  @Input() url: string = this.shareService.url;
-  @Input() title: string = this.shareService.title;
-  @Input() description: string = this.shareService.description;
-  @Input() image: string = this.shareService.image;
-  @Input() tags: string = this.shareService.tags;
+  /** Sharing link */
+  @Input() url: string;
+
+  /** Sets the title parameter */
+  @Input() title: string = this._share.config.title;
+
+  /** Sets the description parameter */
+  @Input() description: string = this._share.config.description;
+
+  /** Sets the image parameter for sharing on Pinterest */
+  @Input() image: string = this._share.config.image;
+
+  /** Sets the tags parameter for sharing on Twitter and Tumblr */
+  @Input() tags: string = this._share.config.tags;
 
   /** Stream that emits when share count is fetched */
   @Output() count = new EventEmitter<number>();
@@ -63,70 +72,57 @@ export class ShareDirective implements OnChanges, OnDestroy {
   /** Stream that emits when share dialog is closed */
   @Output() closed = new EventEmitter<string>();
 
-  constructor(private meta: Meta,
-              private el: ElementRef,
-              private http: HttpClient,
-              private platform: Platform,
-              private renderer: Renderer2,
-              private cd: ChangeDetectorRef,
-              private shareService: ShareService,
-              @Inject(DOCUMENT) private document: any) {
+  constructor(private _meta: Meta,
+              private _el: ElementRef,
+              private _http: HttpClient,
+              private _platform: Platform,
+              private _renderer: Renderer2,
+              private _cd: ChangeDetectorRef,
+              private _share: ShareService,
+              @Inject(DOCUMENT) private _document: any) {
   }
 
-  /** Share link on element click */
-  @HostListener('click')
-  onClick() {
-    if (this.platform.isBrowser) {
-      const metaTags = this.autoSetMeta ? {
-        url: this.url,
-        title: this.title || this.getMetaTagContent('og:title'),
-        description: this.description || this.getMetaTagContent('og:description'),
-        image: this.image || this.getMetaTagContent('og:image'),
-        via: this.shareService.twitterAccount,
-        tags: this.tags,
-      } : {
-        url: this.url,
-        title: this.title,
-        description: this.description,
-        image: this.image,
-        tags: this.tags,
-        via: this.shareService.twitterAccount,
-      };
+  @HostBinding('style.pointerEvents') pointerEvents: string;
 
-      // Share the link
-      // @ts-ignore
-      of<ShareButtonRef>({
-        el: this.el.nativeElement,
-        renderer: this.renderer,
-        prop: this.prop,
-        cd: this.cd,
-        document: this.document,
-        platform: this.getPlatform(),
-        metaTags
-      }).pipe(
-        ...this.prop.share.operators,
-        tap((sharerURL: any) => this.share(sharerURL)),
-        take(1)
-      ).subscribe();
-    }
+  /** Share the link */
+  @HostListener('click')
+  share() {
+    const metaTags: ShareMetaTags = this.autoSetMeta ? {
+      title: this.title || this._getMetaTagContent('og:title'),
+      description: this.description || this._getMetaTagContent('og:description'),
+      image: this.image || this._getMetaTagContent('og:image'),
+      via: this._share.config.twitterAccount,
+      tags: this.tags,
+    } : {
+      title: this.title,
+      description: this.description,
+      image: this.image,
+      tags: this.tags,
+      via: this._share.config.twitterAccount,
+    };
+
+    // Share the link
+    this.shareButton.click(metaTags);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.platform.isBrowser) {
+    // Avoid SSR error
+    if (this._platform.isBrowser) {
 
-      if (changes['shareButton'] && (changes['shareButton'].firstChange || changes['shareButton'].previousValue !== this.shareButton)) {
-        this.createShareButton(this.shareButton);
+      if (this._shareButtonChanged(changes['shareButtonName'])) {
+        this._createShareButton();
       }
 
-      if (!this.url || (changes['url'] && changes['url'].previousValue !== this.url)) {
+      if (this._urlChanged(changes['url'])) {
         this.url = getValidUrl(
           this.autoSetMeta
-            ? this.url || this.getMetaTagContent('og:url')
+            ? this.url || this._getMetaTagContent('og:url')
             : this.url,
-          this.document.defaultView.location.href
+          this._document.defaultView.location.href
         );
-        if (this.getCount && this.prop.count) {
-          this.shareCount(this.url).subscribe((count: number) => this.count.emit(count));
+
+        if (this.getCount && this.shareButton.supportShareCount) {
+          this.shareButton.shareCount(this.url).subscribe((count: number) => this.count.emit(count));
         }
       }
     }
@@ -136,82 +132,59 @@ export class ShareDirective implements OnChanges, OnDestroy {
     this._shareWindowClosed.unsubscribe();
   }
 
-  /**
-   * Open sharing dialog
-   * @param url - Share URL
-   */
-  share(url: string) {
-    if (url) {
-
-      // GA Tracking
-      if (this.shareService.gaTracking && (<any>this.document.defaultView).ga) {
-        (<any>this.document.defaultView).ga('send', 'social', this.prop.type, 'click', this.url);
+  private _createShareButton() {
+    const shareButtonFactory: IShareButton = this._share.config.prop[this.shareButtonName];
+    const button: ShareButtonBase = shareButtonFactory.create(
+      shareButtonFactory,
+      // Pass the url property as a function, so the button class always gets the recent url value.
+      () => this.url,
+      this._http,
+      this._platform,
+      this._document,
+      this._share.windowSize,
+      // This function is meant for the copy button
+      (disabled: boolean) => {
+        this.pointerEvents = disabled ? 'none' : 'auto';
+        this._cd.markForCheck();
       }
-
-      // Open share pop up and activate its opened and closed events
-      this._shareWindowClosed = of(this.document.defaultView.open(url, 'newwindow', this.shareService.windowSize)).pipe(
-        tap(() => this.opened.emit(this.prop.type)),
-        switchMap((popUp: any) => interval(200).pipe(takeWhile(() => !popUp.closed))),
-        finalize(() => this.closed.emit(this.prop.type))
-      ).subscribe();
-    }
-  }
-
-  shareCount(shareUrl: string): Observable<number> {
-    const options: IShareCount = this.prop.count;
-    return options.request === 'jsonp'
-      ?
-      // @ts-ignore
-      this.http.jsonp<any>(options.url + shareUrl, 'callback').pipe(
-        ...options.operators,
-        catchError(() => EMPTY),
-      )
-      :
-      // @ts-ignore
-      this.http.get<any>(options.url + shareUrl, options.args).pipe(
-        ...options.operators,
-        catchError(() => EMPTY)
-      );
-  }
-
-  private createShareButton(buttonsName: string) {
-
-    const button: IShareButton = {...this.shareService.prop[buttonsName]};
-
+    );
     if (button) {
       // Set share button properties
-      this.prop = button;
+      this.shareButton = button;
 
       // Remove previous button class
-      this.renderer.removeClass(this.el.nativeElement, `sb-${this._buttonClass}`);
+      this._renderer.removeClass(this._el.nativeElement, `sb-${this._buttonClass}`);
 
       // Add new button class
-      this.renderer.addClass(this.el.nativeElement, `sb-${button.type}`);
+      this._renderer.addClass(this._el.nativeElement, `sb-${this.shareButtonName}`);
 
       // Set button css color variable
-      this.el.nativeElement.style.setProperty('--button-color', this.prop.color);
+      this._el.nativeElement.style.setProperty('--button-color', this.shareButton.color);
 
       // Keep a copy of the class for future replacement
-      this._buttonClass = button.type;
+      this._buttonClass = this.shareButtonName;
 
       // Set aria-label attribute
-      this.renderer.setAttribute(this.el.nativeElement, 'aria-label', button.ariaLabel || button.text);
+      this._renderer.setAttribute(this._el.nativeElement, 'aria-label', button.ariaLabel);
     } else {
-      throw new Error(`[ShareButtons]: The share button '${buttonsName}' does not exist!`);
+      console.error(`[ShareButtons]: The share button '${this.shareButtonName}' does not exist!`);
     }
   }
 
   /** Get meta tag content */
-  private getMetaTagContent(key: string): string {
-    const metaUsingProperty: HTMLMetaElement = this.meta.getTag(`property="${key}"`);
+  private _getMetaTagContent(key: string): string {
+    const metaUsingProperty: HTMLMetaElement = this._meta.getTag(`property="${key}"`);
     if (metaUsingProperty) return metaUsingProperty.getAttribute('content');
-    const metaUsingName: HTMLMetaElement = this.meta.getTag(`name="${key}"`);
+    const metaUsingName: HTMLMetaElement = this._meta.getTag(`name="${key}"`);
     if (metaUsingName) return metaUsingName.getAttribute('content');
   }
 
-  private getPlatform() {
-    if (this.platform.IOS) return 'ois';
-    if (this.platform.ANDROID) return 'android';
-    return 'desktop';
+  private _shareButtonChanged(change: SimpleChange): boolean {
+    return change && (change.firstChange || change.previousValue !== change.currentValue);
   }
+
+  private _urlChanged(change: SimpleChange): boolean {
+    return !this.url || (change && change.previousValue !== change.currentValue);
+  }
+
 }

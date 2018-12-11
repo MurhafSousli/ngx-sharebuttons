@@ -1,24 +1,19 @@
-import { InjectionToken, ChangeDetectorRef, Renderer2 } from '@angular/core';
-import { OperatorFunction } from 'rxjs';
+import { InjectionToken } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Platform } from '@angular/cdk/platform';
+import { ShareButtonBase } from './buttons';
 
-export const CONFIG = new InjectionToken<ShareButtonsConfig>('SHARE_BUTTONS_CONFIG');
+export const SHARE_BUTTONS_CONFIG = new InjectionToken<ShareButtonsConfig>('shareButtonsConfig');
+
 /**
- * Share buttons global config
+ * Share buttons config
  */
 export interface ShareButtonsConfig {
-  options?: ShareButtonsOptions;
-  prop?: IShareButtons | any;
-}
-
-/**
- * Share buttons global options
- */
-export interface ShareButtonsOptions {
+  prop?: IShareButtons;
   theme?: string;
   include?: string[];
   exclude?: string[];
   size?: number;
-  url?: string;
   title?: string;
   description?: string;
   image?: string;
@@ -33,6 +28,18 @@ export interface ShareButtonsOptions {
 }
 
 /**
+ * OG meta tags
+ */
+export interface ShareMetaTags {
+  url?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  tags?: string;
+  via?: string;
+}
+
+/**
  * Share buttons collection
  */
 export interface IShareButtons {
@@ -41,7 +48,7 @@ export interface IShareButtons {
   linkedin?: IShareButton;
   google?: IShareButton;
   tumblr?: IShareButton;
-  stumble?: IShareButton;
+  mix?: IShareButton;
   pinterest?: IShareButton;
   reddit?: IShareButton;
   vk?: IShareButton;
@@ -59,50 +66,24 @@ export interface IShareButtons {
  * Share button properties
  */
 export interface IShareButton {
+  /** A function that returns a new share button object  */
+  create?: (
+    prop: IShareButton,
+    url: () => string,
+    http: HttpClient,
+    platform: Platform,
+    document: Document,
+    windowSize: string,
+    disableButton: (disable: boolean) => void
+  ) => ShareButtonBase;
+  /** Share button text */
   text?: string;
+  /** Share button icon (FontAwesome) */
   icon?: any;
-  type?: string;
+  /** Share button color */
   color?: string;
+  /** Share button aria label attribute */
   ariaLabel?: string;
-  successText?: string;
-  successIcon?: any;
-  failText?: string;
-  failIcon?: any;
-  share?: {
-    desktop?: string;
-    android?: string;
-    ios?: string;
-    operators?: OperatorFunction<any, any>[];
-    metaTags?: any;
-  };
-  count?: IShareCount;
-}
-
-export interface IShareCount {
-  request?: string;
-  url?: string;
-  args?: any;
-  operators?: OperatorFunction<any, any>[];
-}
-
-/**
- * Share button directive ref interface
- * This ref to be used in the share operators
- */
-export interface ShareButtonRef {
-  prop?: IShareButton;
-  renderer?: Renderer2;
-  cd?: ChangeDetectorRef;
-  el?: HTMLElement;
-  document?: any;
-  platform?: string;
-  temp?: any;
-  metaTags: {
-    url?: string;
-    title?: string;
-    description?: string;
-    image?: string;
-    tags?: string;
-    via?: string;
-  };
+  /** Used to attach more properties for certain buttons */
+  extra?: any;
 }
