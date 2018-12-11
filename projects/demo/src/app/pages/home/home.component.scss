@@ -1,7 +1,11 @@
 @import '../../../assets/style/variables';
 
-.page-title {
-  min-height: 100vh;
+:host {
+  ::ng-deep {
+    .page-title {
+      min-height: 100vh;
+    }
+  }
 }
 
 h5 {

@@ -12,7 +12,10 @@
 [![npm](https://img.shields.io/npm/dm/@ngx-share/core.svg)](https://www.npmjs.com/package/@ngx-share/core)
 [![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/LICENSE)
 
-- For `@ngx-share/buttons` v7.x (Angular 6 & 7) See the [WIKI documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki)
+
+## Documentation
+
+For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page.
 
 ## Packages
 
