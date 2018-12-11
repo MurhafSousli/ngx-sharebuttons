@@ -1,5 +1,9 @@
 [
   {
+    "name": "prop",
+    "description": "Contains the properties of all share buttons Include, default: [ALL_BUTTONS]"
+  },
+  {
     "name": "include",
     "description": "Include certain buttons. Buttons order will be as you type it, default: [ALL_BUTTONS]"
   },
