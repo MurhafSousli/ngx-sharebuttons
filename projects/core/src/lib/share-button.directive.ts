@@ -49,7 +49,7 @@ export class ShareDirective implements OnChanges, OnDestroy {
   @Input() autoSetMeta: boolean = this._share.config.autoSetMeta;
 
   /** Sharing link */
-  @Input() url: string;
+  @Input() url: string = this._share.config.url;
 
   /** Sets the title parameter */
   @Input() title: string = this._share.config.title;
@@ -88,12 +88,14 @@ export class ShareDirective implements OnChanges, OnDestroy {
   @HostListener('click')
   share() {
     const metaTags: ShareMetaTags = this.autoSetMeta ? {
+      url: this.url,
       title: this.title || this._getMetaTagContent('og:title'),
       description: this.description || this._getMetaTagContent('og:description'),
       image: this.image || this._getMetaTagContent('og:image'),
       via: this._share.config.twitterAccount,
       tags: this.tags,
     } : {
+      url: this.url,
       title: this.title,
       description: this.description,
       image: this.image,
