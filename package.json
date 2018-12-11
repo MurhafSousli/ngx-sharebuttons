@@ -41,7 +41,7 @@
     "start": "ng serve",
     "start-demo": "ng serve demo",
     "start-demo-aot": "ng serve demo --aot",
-    "build-demo": "ng build demo --prod --base-href https://murhafsousli.github.io/ngx-sharebuttons/ && compodoc-core && compodoc-button && compodoc-buttons",
+    "build-demo": "ng build demo --prod --base-href https://murhafsousli.github.io/ngx-sharebuttons/",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
