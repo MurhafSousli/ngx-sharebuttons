@@ -9,7 +9,7 @@ import { ShareService, ShareDirective } from '@ngx-share/core';
 })
 export class ShareButton {
 
-  /** Share URL */
+  /** The sharing link */
   url: string;
 
   /** Share count value */
@@ -23,19 +23,25 @@ export class ShareButton {
     this.button = button;
   }
 
-  /** Share URL */
+  /** Set the sharing link */
   @Input('url') set setUrl(url: string) {
     this.shareCount = 0;
     this.url = url;
   }
 
-  /** Share meta tags */
+  /** The title parameter */
   @Input() title: string;
+
+  /** The description parameter */
   @Input() description: string;
+
+  /** The image parameter for sharing on Pinterest */
   @Input() image: string;
+
+  /** The tags parameter for sharing on Twitter and Tumblr */
   @Input() tags: string;
 
-  /** Set meta tags from document head, useful when SEO is supported */
+  /** Sets meta tags from document head, useful when SEO is available */
   @Input() autoSetMeta: boolean;
 
   /** Show button icon */
@@ -44,7 +50,7 @@ export class ShareButton {
   /** Show button text */
   @Input() showText = false;
 
-  /** Button share count */
+  /** Show sharing count */
   @Input() showCount = false;
 
   /** Button custom text */
@@ -54,10 +60,10 @@ export class ShareButton {
   @Input() icon: string;
 
   /** Button size */
-  @Input() size: number = this.share.size;
+  @Input() size: number = this._share.config.size;
 
   /** Button theme */
-  @Input() theme: string = this.share.theme;
+  @Input() theme: string = this._share.config.theme;
 
   /** Stream that emits when share count is fetched */
   @Output() count = new EventEmitter<number>();
@@ -73,10 +79,9 @@ export class ShareButton {
     return `sb-button sb-${this.theme}`;
   }
 
-  /** Get button prop from ShareDirective */
   @ViewChild(ShareDirective) ref: ShareDirective;
 
-  constructor(private share: ShareService) {
+  constructor(private _share: ShareService) {
   }
 
   onCount(count: number) {
