@@ -19,19 +19,16 @@
 
     <div class="sb-content">
 
-      <!-- BUTTON ICON -->
-      <div *ngIf="showIcon && ref.prop" class="sb-icon">
-        <fa-icon [icon]="icon || ref.prop.icon" [fixedWidth]="true"></fa-icon>
+      <div *ngIf="showIcon && ref.shareButton" class="sb-icon">
+        <fa-icon [icon]="icon || ref.shareButton.icon" [fixedWidth]="true"></fa-icon>
       </div>
 
-      <!-- BUTTON TEXT -->
-      <div *ngIf="showText && ref.prop" class="sb-text">
-        {{ text || ref.prop.text }}
+      <div *ngIf="showText && ref.shareButton" class="sb-text">
+        {{ text || ref.shareButton.text }}
       </div>
 
     </div>
 
-    <!-- BUTTON COUNT -->
     <div *ngIf="showCount && shareCount" class="sb-count">
       <span>{{ shareCount | shareCount }}</span>
     </div>

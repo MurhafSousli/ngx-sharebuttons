@@ -7,8 +7,15 @@ $note-color-lightbulb: mat-color(mat-palette($mat-light-green, 600));
 $note-bg-coffee: mat-color(mat-palette($mat-brown, 100));
 $note-color-coffee: mat-color(mat-palette($mat-brown, 600));
 
+$note-bg-book: mat-color(mat-palette($mat-red, 100));
+$note-color-book: mat-color(mat-palette($mat-red, 600));
+
 :host {
   display: block;
+  border-radius: 0.5em;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 4em 0;
 }
 
 .note-icon {
@@ -37,13 +44,10 @@ fa-icon {
 section {
   min-height: 80px;
   position: relative;
-  margin: 4em 0;
   display: flex;
   align-items: center;
   background-color: $note-bg;
-  border-radius: 0.5em;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  margin: 0;
 }
 
 .note-coffee {
@@ -61,5 +65,13 @@ section {
   }
   .note-icon {
     background-color: $note-color-lightbulb;
+  }
+}
+.note-book {
+  section {
+    background-color: $note-bg-book;
+  }
+  .note-icon {
+    background-color: $note-color-book;
   }
 }

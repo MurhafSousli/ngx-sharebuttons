@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit, AfterContentChecked, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { ShareService } from '@ngx-share/core';
+import { ShareService, SHARE_BUTTONS } from '@ngx-share/core';
 import { Subject, Subscription, of } from 'rxjs';
 import { tap, take, switchMap, debounceTime, delay, distinctUntilChanged, filter } from 'rxjs/operators';
 import { LocalStorage } from '@ngx-pwa/local-storage';
@@ -31,8 +31,8 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
     /** Selected single button */
     button: 'facebook',
     /** Selected buttons */
-    include: Object.keys(this.share.prop),
-    allButtons: Object.keys(this.share.prop),
+    include: Object.keys(SHARE_BUTTONS),
+    allButtons: Object.keys(SHARE_BUTTONS),
     exclude: [],
     theme: 'modern-dark',
     themes: [
@@ -114,7 +114,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
       code += `\n [button]="'${this.config.button}'"`;
     } else {
 
-      if (this.config.include.length !== this.share.config.options.include.length) {
+      if (this.config.include.length !== this.share.config.include.length) {
         code += `\n [include]="[${this.config.include.map(btn => `'${btn}'`)}]"`;
       }
 

@@ -14,7 +14,7 @@ export class GlobalOptionsComponent implements OnInit {
   code = `import { ShareButtonsModule } from '@ngx-share/buttons';
 import { ShareButtonsOptions, IShareButtons } from '@ngx-share/core';
 
-const customOptions: ShareButtonsOptions = {
+const customOptions: ShareButtons = {
   include: ['facebook', 'twitter', 'google'],
   exclude: [],
   theme: 'modern-light',

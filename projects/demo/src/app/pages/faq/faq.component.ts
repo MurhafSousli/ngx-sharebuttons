@@ -10,31 +10,13 @@ import { Title } from '@angular/platform-browser';
 export class FaqComponent implements OnInit {
 
   code = {
-    lazyImport : `// in root module
-@NgModule({
-  imports: [
-    ShareButtonsModule.forRoot()
-  ]
-})
-export class AppModule { }
-
-// in lazy module
-@NgModule({
-  imports: [
-    ShareButtonsModule
-  ]
-})
-export class MyLazyModule { }`,
-    includeOrder: `import { ShareButtonsOptions } from '@ngx-share/core';
-import { ShareButtonsModule } from '@ngx-share/buttons';
-
-options: ShareButtonsOptions = {
-  include: ['facebook', 'twitter', 'pinterest']
-}
+    includeOrder: `import { ShareButtonsModule } from '@ngx-share/buttons';
 
 @NgModule({
  imports: [
-   ShareButtonsModule.forRoot(options)
+    ShareButtonsModule.withConfig({
+      include: ['facebook', 'twitter', 'pinterest']
+    })
  ]
 })`,
     buttonsOrder: `<share-buttons [include]="['telegram', 'twitter', 'pinterest', 'whatsapp']"></share-buttons>`,

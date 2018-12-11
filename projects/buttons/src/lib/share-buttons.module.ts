@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ShareButtonsConfig, CONFIG } from '@ngx-share/core';
+import { ShareButtonsConfig, SHARE_BUTTONS_CONFIG } from '@ngx-share/core';
 import { ShareButtonModule } from '@ngx-share/button';
 
 import { ShareButtons } from './share-buttons';
@@ -22,10 +22,10 @@ import { ExpandButton } from './expand-button';
   ]
 })
 export class ShareButtonsModule {
-  static forRoot(config?: ShareButtonsConfig): ModuleWithProviders {
+  static withConfig(config?: ShareButtonsConfig): ModuleWithProviders {
     return {
       ngModule: ShareButtonsModule,
-      providers: [{provide: CONFIG, useValue: config}]
+      providers: [{provide: SHARE_BUTTONS_CONFIG, useValue: config}]
     };
   }
 }

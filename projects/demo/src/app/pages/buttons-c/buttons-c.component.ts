@@ -25,7 +25,7 @@ yarn add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @for
   imports: [
     HttpClientModule,       // (Required) For share counts
     HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
-    ShareButtonsModule.forRoot()
+    ShareButtonsModule
   ]
 })`
   };

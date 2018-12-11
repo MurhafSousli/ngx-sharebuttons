@@ -1,9 +1,9 @@
 import { Component, Input, Output, OnInit, OnDestroy, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { ShareService, ShareButtonsConfig } from '@ngx-share/core';
-import { Observable, BehaviorSubject, Subscription, SubscriptionLike } from 'rxjs';
+import { ShareService, ShareButtonsConfig, SHARE_BUTTONS } from '@ngx-share/core';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export interface ButtonsState {
+interface ButtonsState {
   includedButtons?: string[];
   excludedButtons?: string[];
   userButtons?: string[];
@@ -29,12 +29,12 @@ export class ShareButtons implements OnInit, OnDestroy {
     userButtons: [],
     selectedButtons: [],
     expanded: true,
-    shownCount: Object.keys(this._share.config.prop).length
+    shownCount: Object.keys(SHARE_BUTTONS).length
   });
 
-  private _configSub$: SubscriptionLike = Subscription.EMPTY;
+  private _configSub$ = Subscription.EMPTY;
 
-  @Input() theme = this._share.theme;
+  @Input() theme = this._share.config.theme;
 
   @Input('include') set includedButtons(includedButtons: string[]) {
     this.updateState({includedButtons});
@@ -48,23 +48,31 @@ export class ShareButtons implements OnInit, OnDestroy {
     this.updateState({shownCount});
   }
 
-  /** Share meta tags */
+  /** The sharing link */
   @Input() url: string;
+
+  /** The title parameter */
   @Input() title: string;
+
+  /** The description parameter */
   @Input() description: string;
+
+  /** The image parameter for sharing on Pinterest */
   @Input() image: string;
+
+  /** The tags parameter for sharing on Twitter and Tumblr */
   @Input() tags: string;
 
-  /** Set meta tags from document head, useful when SEO is supported */
+  /** Sets meta tags from document head, useful when SEO is available */
   @Input() autoSetMeta: boolean;
 
-  /** Show buttons icon */
+  /** Show buttons icons */
   @Input() showIcon = true;
 
-  /** Show buttons name */
+  /** Show buttons text */
   @Input() showText = false;
 
-  /** Show buttons share count */
+  /** Show sharing count */
   @Input() showCount = false;
 
   /** Buttons size */
@@ -100,16 +108,16 @@ export class ShareButtons implements OnInit, OnDestroy {
       })
     );
 
-    /** Subscribe to share buttons config changes, This updates the component whenever a new button is added */
+    // Subscribe to share buttons config changes, This updates the component whenever a new button is added
     this._configSub$ = this._share.config$.subscribe((config: ShareButtonsConfig) => {
       // Use global include buttons, otherwise fallback to all buttons
-      const includedButtons = config.options.include.length ? config.options.include : Object.keys(config.prop);
-      const userButtons = includedButtons.filter((btn) => config.options.exclude.indexOf(btn) < 0);
+      const includedButtons = config.include.length ? config.include : Object.keys(SHARE_BUTTONS);
+      const userButtons = includedButtons.filter((btn) => config.exclude.indexOf(btn) < 0);
       this.updateState({
         userButtons,
         expanded: false,
-        moreIcon: config.options.moreButtonIcon,
-        lessIcon: config.options.lessButtonIcon
+        moreIcon: config.moreButtonIcon,
+        lessIcon: config.lessButtonIcon
       });
     });
   }
@@ -132,5 +140,4 @@ export class ShareButtons implements OnInit, OnDestroy {
  Exclude buttons: excludes only the unwanted buttons
  User buttons = Include buttons - exclude buttons
  Selected Buttons = User buttons [shown number]
-
  */

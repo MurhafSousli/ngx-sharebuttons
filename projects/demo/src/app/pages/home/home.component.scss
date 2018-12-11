@@ -1,7 +1,11 @@
 @import '../../../assets/style/variables';
 
-.page-title {
-  min-height: 100vh;
+:host {
+  ::ng-deep {
+    .page-title {
+      min-height: 100vh;
+    }
+  }
 }
 
 h5 {
@@ -44,20 +48,21 @@ ul {
 .sb-option {
   flex: 1;
   width: 248px;
-  height: 176px;
-  padding: 1em;
-  border-radius: 0.4em !important;
-  box-shadow: $box-shadow;
-  transition: all ease 200ms;
-  color: $font-color;
+  a {
+    color: $font-color;
+    width: 100%;
+    margin-top: 1em;
+    fa-icon {
+      color: $font-color;
+    }
+    i {
+      font-weight: bold;
+      margin-left: 0.5em;
+    }
+  }
 
   &:last-child {
     margin-right: 0;
-  }
-
-  &:hover {
-    box-shadow: 0 15px 20px rgba($action-color, 0.4);
-    transform: translateY(-7px);
   }
 
   img, span {
