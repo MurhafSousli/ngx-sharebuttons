@@ -29,7 +29,7 @@ function processCss(cssData: Buffer) {
 
 /** Create css file and save it to dist */
 function createCssFile(target: string, cssContent: string) {
-  const cssData = new Buffer(cssContent);
+  const cssData = Buffer.from(cssContent);
   const writeFile$: any = bindNodeCallback(writeFile);
   // Write css file to dist
   return writeFile$(target, cssData);

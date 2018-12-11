@@ -22,7 +22,7 @@ function processCss(cssData) {
 }
 /** Create css file and save it to dist */
 function createCssFile(target, cssContent) {
-    var cssData = new Buffer(cssContent);
+    var cssData = Buffer.from(cssContent);
     var writeFile$ = rxjs_1.bindNodeCallback(fs_1.writeFile);
     // Write css file to dist
     return writeFile$(target, cssData);
