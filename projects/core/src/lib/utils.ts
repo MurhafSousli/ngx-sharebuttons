@@ -50,6 +50,5 @@ export function getValidUrl(url: string, fallbackUrl: string): string {
     if (r.test(url)) return url;
     console.warn(`[ShareButtons]: Sharing link '${url}' is invalid!`);
   }
-  console.log('validate url', url, fallbackUrl);
   return fallbackUrl;
 }
