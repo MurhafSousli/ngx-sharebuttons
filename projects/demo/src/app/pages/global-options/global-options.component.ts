@@ -12,31 +12,30 @@ import { DocsService } from '../../docs/docs.service';
 export class GlobalOptionsComponent implements OnInit {
 
   code = `import { ShareButtonsModule } from '@ngx-share/buttons';
-import { ShareButtonsOptions, IShareButtons } from '@ngx-share/core';
+import { ShareButtonsConfig, IShareButtons } from '@ngx-share/core';
 
-const customOptions: ShareButtons = {
+const customConfig: ShareButtonsConfig = {
   include: ['facebook', 'twitter', 'google'],
   exclude: [],
   theme: 'modern-light',
   gaTracking: true,
   autoSetMeta: true,
-  twitterAccount: 'username'
+  twitterAccount: 'username',
+  prop: {
+    facebook: {
+      icon: ['fab', 'facebook-square']
+    },
+    twitter: {
+      icon: ['fab', 'twitter-square'],
+      text: 'Tweet'
+    },
+    // and so on...
+  }
 }
-
-const customProps: IShareButtons = {
-  facebook: {
-    icon: ['fab', 'facebook-square']
-  },
-  twitter: {
-    icon: ['fab', 'twitter-square'],
-    text: 'Tweet'
-  },
-  // and so on...
-};
 
 @NgModule({
   imports: [
-    ShareButtonsModule.forRoot({ options: customOptions, prop: customProps })
+    ShareButtonsModule.forRoot(customConfig)
   ]
 })`;
 

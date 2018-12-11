@@ -1,4 +1,4 @@
-@ngx-sharebuttons/demo
+@ngx-share/demo
 MIT
 MIT License
 
