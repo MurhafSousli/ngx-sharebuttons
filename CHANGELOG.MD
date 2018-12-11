@@ -1,5 +1,18 @@
 # Changelog
 
+## 7.1.0-beta.0
+
+- Refactor share function to run sync to fix the issue on IOS 12, closes [#351](https://github.com/MurhafSousli/ngx-sharebuttons/issues/351) in [
+05abd1c](https://github.com/MurhafSousli/ngx-sharebuttons/commit/05abd1c14ae888aa6c268692898afc7e72fee7a5).
+- Remove `StumbUpOn` button and replace it with `Mix` button.
+- Remove `forRoot` usage, use `withConfig()` for custom config.
+
+### Breaking changes
+
+- The function `forRoot()` has been removed from all share modules.
+- `ShareButtonConfig` has been flattened.
+- `StumbUpOn` share button has been removed.
+
 ## 7.0.0
 
 ## 7.0.0-beta.1
