@@ -14,6 +14,7 @@ export interface ShareButtonsConfig {
   include?: string[];
   exclude?: string[];
   size?: number;
+  url?: string;
   title?: string;
   description?: string;
   image?: string;

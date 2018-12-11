@@ -39,7 +39,7 @@ The plugin is divided into 3 modules to make it possible to include only the stu
 
 ## Issues
 
-If you identify any errors in this component, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-sharebuttons/issues). I am excited to see what the community thinks of this project, and I would love your input!
+If you identify any errors in this component, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-sharebuttons/issues).
 
 ## Support
 

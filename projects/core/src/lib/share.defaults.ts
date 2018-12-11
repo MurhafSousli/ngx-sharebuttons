@@ -52,20 +52,6 @@ export const SHARE_BUTTONS: IShareButtons = {
     color: '#DB4437',
     ariaLabel: 'Share on Google plus'
   },
-  tumblr: {
-    create: (a, b, c, d, e, f, g) => new TumblrButton(a, b, c, d, e, f, g),
-    text: 'Tumblr',
-    icon: ['fab', 'tumblr'],
-    color: '#36465D',
-    ariaLabel: 'Share on Tumblr'
-  },
-  mix: {
-    create: (a, b, c, d, e, f, g) => new MixButton(a, b, c, d, e, f, g),
-    text: 'Mix',
-    icon: ['fab', 'mix'],
-    color: '#ff8226',
-    ariaLabel: 'Share on Mix'
-  },
   pinterest: {
     create: (a, b, c, d, e, f, g) => new PinterestButton(a, b, c, d, e, f, g),
     text: 'Pinterest',
@@ -79,6 +65,20 @@ export const SHARE_BUTTONS: IShareButtons = {
     icon: ['fab', 'reddit-alien'],
     color: '#FF4006',
     ariaLabel: 'Share on Reddit'
+  },
+  tumblr: {
+    create: (a, b, c, d, e, f, g) => new TumblrButton(a, b, c, d, e, f, g),
+    text: 'Tumblr',
+    icon: ['fab', 'tumblr'],
+    color: '#36465D',
+    ariaLabel: 'Share on Tumblr'
+  },
+  mix: {
+    create: (a, b, c, d, e, f, g) => new MixButton(a, b, c, d, e, f, g),
+    text: 'Mix',
+    icon: ['fab', 'mix'],
+    color: '#ff8226',
+    ariaLabel: 'Share on Mix'
   },
   vk: {
     create: (a, b, c, d, e, f, g) => new VkButton(a, b, c, d, e, f, g),
