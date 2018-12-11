@@ -753,6 +753,9 @@ MIT
 
 @angular/material/dialog
 
+@ngx-share/core
+MIT
+
 @fortawesome/fontawesome-svg-core
 MIT
 Font Awesome Free License
@@ -804,9 +807,6 @@ MIT
 MIT
 
 @ngx-progressbar/router
-MIT
-
-@ngx-share/core
 MIT
 
 hammerjs
