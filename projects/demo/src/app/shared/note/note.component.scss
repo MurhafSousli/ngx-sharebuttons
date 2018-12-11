@@ -12,6 +12,10 @@ $note-color-book: mat-color(mat-palette($mat-red, 600));
 
 :host {
   display: block;
+  border-radius: 0.5em;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 4em 0;
 }
 
 .note-icon {
@@ -40,13 +44,10 @@ fa-icon {
 section {
   min-height: 80px;
   position: relative;
-  margin: 4em 0;
   display: flex;
   align-items: center;
   background-color: $note-bg;
-  border-radius: 0.5em;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  margin: 0;
 }
 
 .note-coffee {
