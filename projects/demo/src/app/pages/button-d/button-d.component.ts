@@ -21,7 +21,7 @@ export class ButtonDComponent implements OnInit {
   imports: [
     HttpClientModule,       // (Required) For share counts
     HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
-    ShareModule.forRoot()
+    ShareModule
   ]
 })`,
   service: `import { ShareButtons } from '@ngx-share/core';

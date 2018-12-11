@@ -6,13 +6,25 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { HighlightModule } from 'ngx-highlightjs';
-import { ShareButtonsModule } from '@ngx-share/buttons';
+import { SHARE_BUTTONS_CONFIG } from '@ngx-share/core';
 
 import { SharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DocsService } from './docs/docs.service';
+
+import xml from 'highlight.js/lib/languages/xml';
+import scss from 'highlight.js/lib/languages/scss';
+import typescript from 'highlight.js/lib/languages/typescript';
+
+export function hljsLanguages() {
+  return [
+    {name: 'typescript', func: typescript},
+    {name: 'scss', func: scss},
+    {name: 'xml', func: xml}
+  ];
+}
 
 @NgModule({
   declarations: [
@@ -25,20 +37,23 @@ import { DocsService } from './docs/docs.service';
     HttpClientModule,
     HttpClientJsonpModule,
     HighlightModule.forRoot({
-      theme: 'atom-one-dark'
-    }),
-    ShareButtonsModule.forRoot({
-      options: {
-        twitterAccount: 'MurhafSousli',
-        theme: 'material-dark'
-      }
+      languages: hljsLanguages
     }),
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
     NgProgressRouterModule,
     SharedModule
   ],
-  providers: [DocsService],
+  providers: [
+    DocsService,
+    {
+      provide: SHARE_BUTTONS_CONFIG,
+      useValue: {
+        twitterAccount: 'MurhafSousli',
+        theme: 'material-dark'
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

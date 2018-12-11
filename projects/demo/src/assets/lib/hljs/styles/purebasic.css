@@ -6,15 +6,15 @@ by Tristano Ajmone <tajmone@gmail.com>
 
 Public Domain
 
-NOTE_1:	PureBASIC code syntax highlighting only applies the following classes:
+NOTE_1:	PureBASIC code syntax highlighting only applies the following buttons:
 			.hljs-comment
 			.hljs-function
 			.hljs-keywords
 			.hljs-string
 			.hljs-symbol
 
-		Other classes are added here for the benefit of styling other languages with the look and feel of PureBASIC native IDE style.
-		If you need to customize a stylesheet for PureBASIC only, remove all non-relevant classes -- PureBASIC-related classes are followed by
+		Other buttons are added here for the benefit of styling other languages with the look and feel of PureBASIC native IDE style.
+		If you need to customize a stylesheet for PureBASIC only, remove all non-relevant buttons -- PureBASIC-related buttons are followed by
 		a "--- used for PureBASIC ... ---" comment on same line.
 
 NOTE_2:	Color names provided in comments were derived using "Name that Color" online tool:

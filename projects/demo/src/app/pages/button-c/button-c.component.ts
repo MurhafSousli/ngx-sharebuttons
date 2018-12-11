@@ -46,7 +46,7 @@ export class MyComponent {
   imports: [
     HttpClientModule,       // (Required) For share counts
     HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
-    ShareButtonModule.forRoot()
+    ShareButtonModule
   ]
 })`
   };

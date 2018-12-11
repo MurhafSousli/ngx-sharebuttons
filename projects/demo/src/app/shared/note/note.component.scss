@@ -7,6 +7,9 @@ $note-color-lightbulb: mat-color(mat-palette($mat-light-green, 600));
 $note-bg-coffee: mat-color(mat-palette($mat-brown, 100));
 $note-color-coffee: mat-color(mat-palette($mat-brown, 600));
 
+$note-bg-book: mat-color(mat-palette($mat-red, 100));
+$note-color-book: mat-color(mat-palette($mat-red, 600));
+
 :host {
   display: block;
 }
@@ -61,5 +64,13 @@ section {
   }
   .note-icon {
     background-color: $note-color-lightbulb;
+  }
+}
+.note-book {
+  section {
+    background-color: $note-bg-book;
+  }
+  .note-icon {
+    background-color: $note-color-book;
   }
 }

@@ -11,7 +11,7 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons/faWhatsapp';
 import { faVk } from '@fortawesome/free-brands-svg-icons/faVk';
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons/faFacebookMessenger';
 import { faTelegramPlane } from '@fortawesome/free-brands-svg-icons/faTelegramPlane';
-import { faStumbleupon } from '@fortawesome/free-brands-svg-icons/faStumbleupon';
+import { faMix } from '@fortawesome/free-brands-svg-icons/faMix';
 import { faXing } from '@fortawesome/free-brands-svg-icons/faXing';
 
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons/faCommentAlt';
@@ -26,10 +26,11 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons/faLightbulb';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons/faCoffee';
 import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
+import { faBook } from '@fortawesome/free-solid-svg-icons/faBook';
 
 const icons = [
   faFacebookF, faTwitter, faLinkedinIn, faGooglePlusG, faPinterestP, faRedditAlien, faTumblr,
-  faWhatsapp, faVk, faFacebookMessenger, faTelegramPlane, faStumbleupon, faXing, faCommentAlt,
+  faWhatsapp, faVk, faFacebookMessenger, faTelegramPlane, faMix, faXing, faCommentAlt, faBook,
   faEnvelope, faCheck, faPrint, faExclamation, faLink, faEllipsisH, faMinus, faLightbulb, faCoffee, faInfo
 ];
 
