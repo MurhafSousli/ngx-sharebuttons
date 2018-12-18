@@ -3,6 +3,7 @@ import {
   EmailButton,
   FacebookButton,
   GooglePlusButton,
+  LineButton,
   LinkedinButton,
   MessengerButton,
   MixButton,
@@ -114,6 +115,13 @@ export const SHARE_BUTTONS: IShareButtons = {
     icon: ['fab', 'xing'],
     color: '#006567',
     ariaLabel: 'Share on Xing'
+  },
+  line: {
+    create: (a, b, c, d, e, f, g) => new LineButton(a, b, c, d, e, f, g),
+    text: 'Line',
+    icon: ['fab', 'line'],
+    color: '#00b900',
+    ariaLabel: 'Share on Line'
   },
   sms: {
     create: (a, b, c, d, e, f, g) => new SmsButton(a, b, c, d, e, f, g),
