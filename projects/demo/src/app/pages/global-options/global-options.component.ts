@@ -4,6 +4,9 @@ import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 import { DocsService } from '../../docs/docs.service';
 
 @Component({
+  host: {
+    'class': 'page'
+  },
   selector: 'global-options',
   templateUrl: './global-options.component.html',
   styleUrls: ['./global-options.component.scss'],
@@ -31,13 +34,26 @@ const customConfig: ShareButtonsConfig = {
     },
     // and so on...
   }
-}
+}`;
+
+  global = `import { SHARE_BUTTONS_CONFIG } from '@ngx-share/core';
 
 @NgModule({
-  imports: [
-    ShareButtonsModule.forRoot(customConfig)
+  providers: [
+    {
+      provide: SHARE_BUTTONS_CONFIG,
+      value: customConfig
+    }
   ]
-})`;
+})
+export class AppModule { }`;
+
+  lazyLoad = `@NgModule({
+  imports: [
+    ShareButtonsModule.withConfig(customConfig)
+  ]
+})
+export class FeatureModule { }`;
 
 
   displayedColumns = ['name', 'description'];

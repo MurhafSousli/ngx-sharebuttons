@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+  host: {
+    'class': 'page'
+  },
   selector: 'icons',
   templateUrl: './icons.component.html',
   styleUrls: ['./icons.component.scss'],
@@ -22,8 +25,9 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons/faWhatsapp';
 import { faVk } from '@fortawesome/free-brands-svg-icons/faVk';
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons/faFacebookMessenger';
 import { faTelegramPlane } from '@fortawesome/free-brands-svg-icons/faTelegramPlane';
-import { faStumbleupon } from '@fortawesome/free-brands-svg-icons/faStumbleupon';
+import { faMix } from '@fortawesome/free-brands-svg-icons/faMix';
 import { faXing } from '@fortawesome/free-brands-svg-icons/faXing';
+import { faLine } from '@fortawesome/free-brands-svg-icons/faLine';
 
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons/faCommentAlt';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
@@ -36,8 +40,8 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 
 const icons = [
   faFacebookF, faTwitter, faLinkedinIn, faGooglePlusG, faPinterestP, faRedditAlien, faTumblr,
-  faWhatsapp, faVk, faFacebookMessenger, faTelegramPlane, faStumbleupon, faXing, faCommentAlt,
-  faEnvelope, faCheck, faPrint, faExclamation, faLink, faEllipsisH, faMinus
+  faWhatsapp, faVk, faFacebookMessenger, faTelegramPlane, faMix, faXing, faCommentAlt, faBook, faLine,
+  faEnvelope, faCheck, faPrint, faExclamation, faLink, faEllipsisH, faMinus, faLightbulb, faCoffee, faInfo
 ];
 
 library.add(...icons);`,
@@ -61,7 +65,7 @@ const shareProp = {
 
 @NgModule({
   imports: [
-    ShareButtonsModule.forRoot({ prop: shareProp })
+    ShareButtonsModule.withConfig({ prop: shareProp })
   ]
 })`,
     literalMethod: `import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
@@ -72,7 +76,7 @@ const shareProp = {
 };
 @NgModule({
   imports: [
-    ShareButtonsModule.forRoot({ prop: shareProp })
+    ShareButtonsModule.withConfig({ prop: shareProp })
   ]
 })
 `

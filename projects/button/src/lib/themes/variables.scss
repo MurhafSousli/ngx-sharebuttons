@@ -21,6 +21,7 @@ $sb-print: #765AA2 !default;
 $sb-sms: #20c16c !default;
 $sb-gray: #a5a5a5 !default;
 $sb-expand: #FF6651 !default;
+$sb-line: #00b900 !default;
 
 /** share button variables */
 
@@ -46,6 +47,7 @@ $sb-buttons: (
   twitter: $sb-twitter,
   google: $sb-google,
   mix: $sb-mix,
+  line: $sb-line,
   linkedin: $sb-linkedin,
   pinterest: $sb-pinterest,
   reddit: $sb-reddit,

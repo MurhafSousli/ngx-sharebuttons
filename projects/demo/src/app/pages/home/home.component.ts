@@ -3,6 +3,9 @@ import { Title } from '@angular/platform-browser';
 import { faWrench } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
+  host: {
+    'class': 'page'
+  },
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],

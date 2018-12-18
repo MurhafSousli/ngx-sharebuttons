@@ -5,6 +5,9 @@ import { DocsService } from '../../docs/docs.service';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 
 @Component({
+  host: {
+    'class': 'page'
+  },
   selector: 'button-d',
   templateUrl: './button-d.component.html',
   styleUrls: ['./button-d.component.scss'],

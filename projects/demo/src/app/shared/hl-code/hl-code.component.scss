@@ -8,9 +8,23 @@
   margin-bottom: 2em;
   border-radius: .5em;
   overflow: hidden;
+
   ng-scrollbar {
+    --scrollbar-padding: 0;
+    --scrollbar-border-radius: 0;
+    --scrollbar-size: 8px;
     box-shadow: $box-shadow;
     margin-bottom: 0;
+
+    ::ng-deep {
+
+      .ng-scrollbar {
+
+        &:hover, &:active {
+          --scrollbar-size: 10px !important;
+        }
+      }
+    }
   }
 }
 

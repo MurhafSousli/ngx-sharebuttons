@@ -15,4 +15,5 @@ export * from './email';
 export * from './print';
 export * from './copy';
 export * from './mix';
+export * from './line';
 export * from './base';

@@ -4,6 +4,9 @@ import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 import { DocsService } from '../../docs/docs.service';
 
 @Component({
+  host: {
+    'class': 'page'
+  },
   selector: 'buttons-c',
   templateUrl: './buttons-c.component.html',
   styleUrls: ['./buttons-c.component.scss'],
