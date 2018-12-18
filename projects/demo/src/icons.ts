@@ -13,6 +13,7 @@ import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons/faFacebo
 import { faTelegramPlane } from '@fortawesome/free-brands-svg-icons/faTelegramPlane';
 import { faMix } from '@fortawesome/free-brands-svg-icons/faMix';
 import { faXing } from '@fortawesome/free-brands-svg-icons/faXing';
+import { faLine } from '@fortawesome/free-brands-svg-icons/faLine';
 
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons/faCommentAlt';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
@@ -30,7 +31,7 @@ import { faBook } from '@fortawesome/free-solid-svg-icons/faBook';
 
 const icons = [
   faFacebookF, faTwitter, faLinkedinIn, faGooglePlusG, faPinterestP, faRedditAlien, faTumblr,
-  faWhatsapp, faVk, faFacebookMessenger, faTelegramPlane, faMix, faXing, faCommentAlt, faBook,
+  faWhatsapp, faVk, faFacebookMessenger, faTelegramPlane, faMix, faXing, faCommentAlt, faBook, faLine,
   faEnvelope, faCheck, faPrint, faExclamation, faLink, faEllipsisH, faMinus, faLightbulb, faCoffee, faInfo
 ];
 
