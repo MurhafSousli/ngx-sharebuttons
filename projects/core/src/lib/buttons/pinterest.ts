@@ -30,6 +30,12 @@ export class PinterestButton extends ShareButtonBase {
     super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick, _logger);
   }
 
+  click(metaTags: ShareMetaTags): Window | null | void {
+    // Check if image parameter is defined
+    if (metaTags.image) {
+      return this._open(this._serializeMetaTags(metaTags));
+    }
+    console.warn('Pinterest button: image parameter is required!');
   }
 
   shareCount(url: string): Observable<number> {
