@@ -50,7 +50,8 @@ export function hljsLanguages() {
       provide: SHARE_BUTTONS_CONFIG,
       useValue: {
         twitterAccount: 'MurhafSousli',
-        theme: 'material-dark'
+        theme: 'material-dark',
+        debug: true
       }
     }
   ],

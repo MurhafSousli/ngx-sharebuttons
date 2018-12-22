@@ -148,7 +148,9 @@ export class ShareDirective implements OnChanges, OnDestroy {
       (disabled: boolean) => {
         this.pointerEvents = disabled ? 'none' : 'auto';
         this._cd.markForCheck();
-      }
+      },
+      // Logger used for debugging
+      (text: string) => this._share.config.debug ? console.log(text) : null
     );
     if (button) {
       // Set share button properties

@@ -20,13 +20,14 @@ export class EmailButton extends ShareButtonBase {
               protected _platform: Platform,
               protected _document: Document,
               protected _windowSize: string,
-              protected _disableButtonClick: (disable: boolean) => void) {
-    super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick);
+              protected _disableButtonClick: (disable: boolean) => void,
+              protected _logger: (text: string) => void) {
+    super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick, _logger);
   }
 
   click(metaTags: ShareMetaTags): Window | null | void {
     // Add URL to message body
-    metaTags.description += `\r\n${this._url()}`;
+    metaTags.description = metaTags.description ? `${metaTags.description}\r\n${this._url()}` : this._url();
     const serializedMetaTags = this._serializeMetaTags(metaTags);
     return this._open(serializedMetaTags);
   }

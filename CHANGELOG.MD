@@ -1,8 +1,19 @@
 # Changelog
 
+## 7.1.1
+
+- feat(core): Add `debug` option to ShareButtonsConfig to log sharer URL, in [7e47bef](https://github.com/MurhafSousli/ngx-sharebuttons/pull/363/commits/7e47befe54f79b8bb289a21b5f1fee4f366e82cb).
+- fix(core): undefined URL in `Email`, `SMS`, `WhatsApp` buttons, closes [#361](https://github.com/MurhafSousli/ngx-sharebuttons/issues/361) in [debed2b](https://github.com/MurhafSousli/ngx-sharebuttons/pull/363/commits/debed2b7c6f2ba5a0da555c63aa6859c0918b26d).
+- fix(core): Rename`_metaTags` to `_supportedMetaTags` in `WhatsApp` button, in [52dc70d](https://github.com/MurhafSousli/ngx-sharebuttons/pull/363/commits/52dc70dfde236bce1cf361319c677ffc987970fb).
+- fix(core): `Copy` button, closes [#360](https://github.com/MurhafSousli/ngx-sharebuttons/issues/360) in [4010a82](https://github.com/MurhafSousli/ngx-sharebuttons/pull/363/commits/4010a82d0261bad1c181b2460a2b4b2912c07a01).
+- enhance(core): Warn when `Pinterest` image parameter is undefined, in [8116614](https://github.com/MurhafSousli/ngx-sharebuttons/pull/363/commits/8116614d152eb96efe73a2a515e3c490120ab779).
+- enhance(core): Update `WhatsApp` sharer URL, in [6dc7414](https://github.com/MurhafSousli/ngx-sharebuttons/pull/363/commits/6dc74145c42146372a301b3701f7c9664a52aec6).
+- regression: Remove URL from `Telegram` message since its already supported, in [f10189a](https://github.com/MurhafSousli/ngx-sharebuttons/pull/363/commits/f10189a8f32be9a779bcf47f7dd8f5007f616905).
+
 ## 7.1.0
 
 - feat(core): Add Line button, closes [#357](https://github.com/MurhafSousli/ngx-sharebuttons/issues/357) in [a0385eb](https://github.com/MurhafSousli/ngx-sharebuttons/commit/a0385eb86896c71b9c5339d0dc05547e635b4d9e).
+
 
 ## 7.1.0-beta.1
 

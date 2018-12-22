@@ -21,8 +21,9 @@ export class CopyButton extends ShareButtonBase {
               protected _platform: Platform,
               protected _document: Document,
               protected _windowSize: string,
-              protected _disableButtonClick: (disable: boolean) => void) {
-    super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick);
+              protected _disableButtonClick: (disable: boolean) => void,
+              protected _logger: (text: string) => void) {
+    super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick, _logger);
   }
 
   private _disableButton() {
@@ -40,7 +41,7 @@ export class CopyButton extends ShareButtonBase {
     try {
       const textArea: HTMLTextAreaElement = this._document.createElement('textarea') as HTMLTextAreaElement;
 
-      textArea.value = decodeURIComponent(this.desktop);
+      textArea.value = decodeURIComponent(this._url());
       this._document.body.appendChild(textArea);
 
       // highlight TextArea to copy the sharing link

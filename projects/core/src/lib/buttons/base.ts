@@ -58,7 +58,9 @@ export class ShareButtonBase {
               protected _document: Document,
               protected _windowSize: string,
               // disable button click (used in copy button)
-              protected _disableButtonClick: (disable: boolean) => void) {
+              protected _disableButtonClick: (disable: boolean) => void,
+              // Logger function (debug mode)
+              protected _logger: (text: string) => void) {
   }
 
   /**
@@ -82,15 +84,18 @@ export class ShareButtonBase {
   }
 
   protected _open(serializedMetaTags: string): Window | null | void {
-    if (this.sharerUrl) {
-      // Avoid SSR error
-      if (this._platform.isBrowser) {
-        return this._document.defaultView.open(
-          this.sharerUrl + serializedMetaTags,
-          'newwindow',
-          this._windowSize
-        );
-      }
+    // Avoid SSR error
+    if (this.sharerUrl && this._platform.isBrowser) {
+      const finalUrl = this.sharerUrl + serializedMetaTags;
+
+      // Debug mode, log sharer link
+      this._logger(finalUrl);
+
+      return this._document.defaultView.open(
+        finalUrl,
+        'newwindow',
+        this._windowSize
+      );
     } else {
       console.warn(`${this.text} button is not compatible on this Platform`);
     }
