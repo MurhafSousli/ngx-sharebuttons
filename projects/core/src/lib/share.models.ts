@@ -26,6 +26,7 @@ export interface ShareButtonsConfig {
   windowHeight?: number;
   moreButtonIcon?: any;
   lessButtonIcon?: any;
+  debug?: boolean;
 }
 
 /**
@@ -76,7 +77,8 @@ export interface IShareButton {
     platform: Platform,
     document: Document,
     windowSize: string,
-    disableButton: (disable: boolean) => void
+    disableButton: (disable: boolean) => void,
+    logger: (text: string) => void
   ) => ShareButtonBase;
   /** Share button text */
   text?: string;
