@@ -33,7 +33,7 @@ export class WhatsappButton extends ShareButtonBase {
 
   click(metaTags: ShareMetaTags): Window | null | void {
     // Add the URL to message body
-    metaTags.description += `\r\n${this._url()}`;
+    metaTags.description = metaTags.description ? `${metaTags.description}\r\n${this._url()}` : this._url();
     const serializedMetaTags = this._serializeMetaTags(metaTags);
     return this._open(serializedMetaTags);
   }
