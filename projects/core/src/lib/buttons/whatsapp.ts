@@ -5,7 +5,7 @@ import { IShareButton, ShareMetaTags } from '../share.models';
 
 export class WhatsappButton extends ShareButtonBase {
 
-  protected _metaTagsKeys: ShareMetaTags = {
+  protected _supportedMetaTags: ShareMetaTags = {
     description: 'text'
   };
 
