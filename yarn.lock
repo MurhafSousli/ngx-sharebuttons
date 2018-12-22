@@ -5970,10 +5970,10 @@ ngx-highlightjs@^3.0.0:
   dependencies:
     tslib "^1.9.0"
 
-ngx-scrollbar@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/ngx-scrollbar/-/ngx-scrollbar-4.1.0.tgz#1b1c68177245a1657077e7a6602b3e3d8a6a8aca"
-  integrity sha512-AL9W2ovkvOZrJKagbk35RsF/7bZDPOypb60h5I/rM8GJxjhnGTCu7gyUp7n3H9EMsY8U8ycqzUVvZF9oVSRQ/A==
+ngx-scrollbar@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/ngx-scrollbar/-/ngx-scrollbar-4.1.1.tgz#cc96f6801c21717997fe59a989b7f63e1bb4697c"
+  integrity sha512-wWMmelvsBmpZff4FiX9YKtskqSrlGoAjnZzeK4LVWR3l5TM5i3j1g/gKICiQ0YFpNYrulhlJu25uRq3M/J3d7A==
   dependencies:
     tslib "^1.9.0"
 
