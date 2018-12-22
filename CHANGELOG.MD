@@ -10,6 +10,11 @@
 - enhance(core): Update `WhatsApp` sharer URL, in [6dc7414](https://github.com/MurhafSousli/ngx-sharebuttons/pull/363/commits/6dc74145c42146372a301b3701f7c9664a52aec6).
 - regression: Remove URL from `Telegram` message since its already supported, in [f10189a](https://github.com/MurhafSousli/ngx-sharebuttons/pull/363/commits/f10189a8f32be9a779bcf47f7dd8f5007f616905).
 
+## 7.1.0
+
+- feat(core): Add Line button, closes [#357](https://github.com/MurhafSousli/ngx-sharebuttons/issues/357) in [a0385eb](https://github.com/MurhafSousli/ngx-sharebuttons/commit/a0385eb86896c71b9c5339d0dc05547e635b4d9e).
+
+
 ## 7.1.0-beta.1
 
 - Refactor share function to run sync to fix the issue on IOS 12, closes [#351](https://github.com/MurhafSousli/ngx-sharebuttons/issues/351) in [
