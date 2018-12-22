@@ -14,11 +14,11 @@
 
       <hl-code [code]="code" [height]="400"></hl-code>
 
-      <p>If you want to set the options globally while lazy loading the library, then just provide the custom options as
-        `SHARE_BUTTONS_CONFIG` value, this will set global config before the library is even loaded</p>
+      <p>If you want to set the options globally while lazy loading the library, you can provide your custom config as
+        <code class="hljs">SHARE_BUTTONS_CONFIG</code> value, this will set the defaults before the library is loaded.</p>
       <hl-code [code]="global"></hl-code>
 
-      <p>Or you can set these config with the library import using `withConfig()` function:</p>
+      <p>Or you can set these config with the library using <code class="hljs">withConfig()</code> function, example:</p>
       <hl-code [code]="lazyLoad"></hl-code>
     </section>
 

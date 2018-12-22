@@ -14,25 +14,35 @@ export class StylingComponent implements OnInit {
 
   componentCode = `<share-buttons theme="moon"></share-buttons>`;
   stylingCode = `.sb-moon-theme {
-  &.sb-group {
-    /** ... share buttons container */
-  }
-  .sb-wrapper { /** ... share button wrapper */
+  // share button wrapper
+  .sb-wrapper {
+    // You can get default button color using the CSS variable
     background-color: var(--button-color);
-
-    .sb-inner { /** ... inner wrapper */
-      .sb-content { /** ... content wrapper */
-        .sb-icon { /** ... icon wrapper */ }
-        .sb-text { /** ... text wrapper */ }
-       }
-      .sb-count { /** ... count wrapper */ }
+    // Inner wrapper
+    .sb-inner {
+      // Content wrapper
+      .sb-content {
+        // Icon wrapper
+        .sb-icon {
+        }
+        // Text wrapper
+        .sb-text {
+        }
+      }
+      // Count wrapper
+      .sb-count {
+      }
     }
 
     // For conditional styles
+    // E.g. Apply when icon, text and count are shown
     &.sb-show-icon.sb-show-text.sb-show-count {
-      /** ... Apply when icon, text and count are shown */
-      .sb-icon { /** ... icon wrapper */ }
-      .sb-text { /** ... text wrapper */ }
+       // Icon wrapper
+      .sb-icon {
+      }
+      // Text wrapper
+      .sb-text {
+      }
     }
   }
 }`;
