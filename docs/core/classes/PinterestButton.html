@@ -584,7 +584,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -730,7 +730,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -884,7 +884,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -1041,7 +1041,7 @@ export class PinterestButton extends ShareButtonBase {
     super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick, _logger);
   }
 
-  click(metaTags: ShareMetaTags): Window | null | void {
+  click(metaTags: ShareMetaTags): Promise&lt;any&gt; {
     // Check if image parameter is defined
     if (metaTags.image) {
       return this._open(this._serializeMetaTags(metaTags));

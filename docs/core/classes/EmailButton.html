@@ -544,7 +544,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -621,7 +621,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -775,7 +775,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -927,7 +927,7 @@ export class EmailButton extends ShareButtonBase {
     super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick, _logger);
   }
 
-  click(metaTags: ShareMetaTags): Window | null | void {
+  click(metaTags: ShareMetaTags): Promise&lt;any&gt; {
     // Add URL to message body
     metaTags.description &#x3D; metaTags.description ? &#x60;${metaTags.description}\r\n${this._url()}&#x60; : this._url();
     const serializedMetaTags &#x3D; this._serializeMetaTags(metaTags);

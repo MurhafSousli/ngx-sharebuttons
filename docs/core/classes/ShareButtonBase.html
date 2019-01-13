@@ -493,7 +493,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -635,7 +635,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -1020,7 +1020,7 @@ export class ShareButtonBase {
   /**
    * Opens share window
    */
-  click(metaTags: ShareMetaTags): Window | null | void {
+  click(metaTags: ShareMetaTags): Promise&lt;any&gt; {
     return this._open(this._serializeMetaTags(metaTags));
   }
 
@@ -1037,22 +1037,35 @@ export class ShareButtonBase {
       .join(&#x27;&amp;&#x27;);
   }
 
-  protected _open(serializedMetaTags: string): Window | null | void {
-    // Avoid SSR error
-    if (this.sharerUrl &amp;&amp; this._platform.isBrowser) {
-      const finalUrl &#x3D; this.sharerUrl + serializedMetaTags;
+  protected _open(serializedMetaTags: string): Promise&lt;any&gt; {
+    return new Promise((resolve) &#x3D;&gt; {
+      // Avoid SSR error
+      if (this.sharerUrl &amp;&amp; this._platform.isBrowser) {
 
-      // Debug mode, log sharer link
-      this._logger(finalUrl);
+        const finalUrl &#x3D; this.sharerUrl + serializedMetaTags;
 
-      return this._document.defaultView.open(
-        finalUrl,
-        &#x27;newwindow&#x27;,
-        this._windowSize
-      );
-    } else {
-      console.warn(&#x60;${this.text} button is not compatible on this Platform&#x60;);
-    }
+        // Debug mode, log sharer link
+        this._logger(finalUrl);
+
+        const popUp &#x3D; this._document.defaultView.open(
+          finalUrl,
+          &#x27;newwindow&#x27;,
+          this._windowSize
+        );
+
+        // Resolve when share dialog is closed
+        if (popUp) {
+          const pollTimer &#x3D; this._document.defaultView.setInterval(() &#x3D;&gt; {
+            if (popUp.closed) {
+              this._document.defaultView.clearInterval(pollTimer);
+              resolve();
+            }
+          }, 200);
+        }
+      } else {
+        console.warn(&#x60;${this.text} button is not compatible on this Platform&#x60;);
+      }
+    });
   }
 }
 </code></pre>

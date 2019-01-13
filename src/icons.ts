@@ -22,12 +22,13 @@ import { faPrint } from '@fortawesome/free-solid-svg-icons/faPrint';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { faMix } from '@fortawesome/free-brands-svg-icons/faMix';
+import { faLine } from '@fortawesome/free-brands-svg-icons/faLine';
 
 
 const icons = [
   faFacebookF, faTwitter, faLinkedinIn, faGooglePlusG, faPinterestP, faRedditAlien, faTumblr,
   faWhatsapp, faVk, faFacebookMessenger, faTelegramPlane, faMix, faXing, faCommentAlt,
-  faEnvelope, faCheck, faPrint, faExclamation, faLink, faEllipsisH, faMinus
+  faEnvelope, faCheck, faPrint, faExclamation, faLink, faEllipsisH, faMinus, faLine
 ];
 
 library.add(...icons);

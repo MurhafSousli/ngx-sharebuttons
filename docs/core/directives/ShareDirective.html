@@ -742,7 +742,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:142</a></div>
                             </td>
                         </tr>
 
@@ -782,7 +782,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:179</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:184</a></div>
                             </td>
                         </tr>
 
@@ -855,7 +855,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:186</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:191</a></div>
                             </td>
                         </tr>
 
@@ -926,7 +926,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:190</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:195</a></div>
                             </td>
                         </tr>
 
@@ -995,7 +995,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:115</a></div>
                             </td>
                         </tr>
 
@@ -1064,7 +1064,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">projects/core/src/lib/share-button.directive.ts:138</a></div>
                             </td>
                         </tr>
 
@@ -1320,8 +1320,13 @@ export class ShareDirective implements OnChanges, OnDestroy {
       via: this._share.config.twitterAccount,
     };
 
+    // Emit when share dialog is opened
+    this.opened.emit(this.shareButtonName);
     // Share the link
-    this.shareButton.click(metaTags);
+    this.shareButton.click(metaTags).then(() &#x3D;&gt;
+    // Emit when share dialog is closed
+      this.closed.emit(this.shareButtonName)
+    );
   }
 
   ngOnChanges(changes: SimpleChanges) {

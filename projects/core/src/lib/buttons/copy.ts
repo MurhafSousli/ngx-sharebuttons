@@ -37,33 +37,36 @@ export class CopyButton extends ShareButtonBase {
     this._disableButtonClick(false);
   }
 
-  click(): void {
-    try {
-      const textArea: HTMLTextAreaElement = this._document.createElement('textarea') as HTMLTextAreaElement;
+  click(): Promise<any> {
+    return new Promise((resolve) => {
+      try {
+        const textArea: HTMLTextAreaElement = this._document.createElement('textarea') as HTMLTextAreaElement;
 
-      textArea.value = decodeURIComponent(this._url());
-      this._document.body.appendChild(textArea);
+        textArea.value = decodeURIComponent(this._url());
+        this._document.body.appendChild(textArea);
 
-      // highlight TextArea to copy the sharing link
-      if (this._platform.IOS) {
-        const range = this._document.createRange();
-        range.selectNodeContents(textArea);
-        const selection = this._document.defaultView.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        textArea.readOnly = true;
-        textArea.setSelectionRange(0, 999999);
-      } else {
-        textArea.select();
+        // highlight TextArea to copy the sharing link
+        if (this._platform.IOS) {
+          const range = this._document.createRange();
+          range.selectNodeContents(textArea);
+          const selection = this._document.defaultView.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          textArea.readOnly = true;
+          textArea.setSelectionRange(0, 999999);
+        } else {
+          textArea.select();
+        }
+        this._document.execCommand('copy');
+        this._document.body.removeChild(textArea);
+        this._disableButton();
+      } catch (e) {
+        console.warn('Copy link failed!', e.message);
+      } finally {
+        setTimeout(() => this._resetButton(), 2000);
+        resolve();
       }
-      this._document.execCommand('copy');
-      this._document.body.removeChild(textArea);
-      this._disableButton();
-    } catch (e) {
-      console.warn('Copy link failed!', e.message);
-    } finally {
-      setTimeout(() => this._resetButton(), 2000);
-    }
+    });
   }
 }
 

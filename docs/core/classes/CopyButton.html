@@ -599,7 +599,7 @@
                     <td class="col-md-4">
 
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                     </td>
@@ -673,7 +673,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -827,7 +827,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -1013,33 +1013,36 @@ export class CopyButton extends ShareButtonBase {
     this._disableButtonClick(false);
   }
 
-  click(): void {
-    try {
-      const textArea: HTMLTextAreaElement &#x3D; this._document.createElement(&#x27;textarea&#x27;) as HTMLTextAreaElement;
+  click(): Promise&lt;any&gt; {
+    return new Promise((resolve) &#x3D;&gt; {
+      try {
+        const textArea: HTMLTextAreaElement &#x3D; this._document.createElement(&#x27;textarea&#x27;) as HTMLTextAreaElement;
 
-      textArea.value &#x3D; decodeURIComponent(this._url());
-      this._document.body.appendChild(textArea);
+        textArea.value &#x3D; decodeURIComponent(this._url());
+        this._document.body.appendChild(textArea);
 
-      // highlight TextArea to copy the sharing link
-      if (this._platform.IOS) {
-        const range &#x3D; this._document.createRange();
-        range.selectNodeContents(textArea);
-        const selection &#x3D; this._document.defaultView.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        textArea.readOnly &#x3D; true;
-        textArea.setSelectionRange(0, 999999);
-      } else {
-        textArea.select();
+        // highlight TextArea to copy the sharing link
+        if (this._platform.IOS) {
+          const range &#x3D; this._document.createRange();
+          range.selectNodeContents(textArea);
+          const selection &#x3D; this._document.defaultView.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          textArea.readOnly &#x3D; true;
+          textArea.setSelectionRange(0, 999999);
+        } else {
+          textArea.select();
+        }
+        this._document.execCommand(&#x27;copy&#x27;);
+        this._document.body.removeChild(textArea);
+        this._disableButton();
+      } catch (e) {
+        console.warn(&#x27;Copy link failed!&#x27;, e.message);
+      } finally {
+        setTimeout(() &#x3D;&gt; this._resetButton(), 2000);
+        resolve();
       }
-      this._document.execCommand(&#x27;copy&#x27;);
-      this._document.body.removeChild(textArea);
-      this._disableButton();
-    } catch (e) {
-      console.warn(&#x27;Copy link failed!&#x27;, e.message);
-    } finally {
-      setTimeout(() &#x3D;&gt; this._resetButton(), 2000);
-    }
+    });
   }
 }
 

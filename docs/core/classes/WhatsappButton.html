@@ -153,9 +153,6 @@
                                 <li>
                                     <a href="#android">android</a>
                                 </li>
-                                <li>
-                                    <a href="#ios">ios</a>
-                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -174,7 +171,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">projects/core/src/lib/buttons/whatsapp.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/core/src/lib/buttons/whatsapp.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -512,7 +509,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/core/src/lib/buttons/whatsapp.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/core/src/lib/buttons/whatsapp.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -549,7 +546,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -626,7 +623,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -780,7 +777,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -922,28 +919,6 @@
 
             </tbody>
         </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ios"></a>
-                        <span class="name"><b>ios</b><a href="#ios"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>ios()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">projects/core/src/lib/buttons/whatsapp.ts:20</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
 </section>
     </div>
 
@@ -968,10 +943,6 @@ export class WhatsappButton extends ShareButtonBase {
     return &#x60;whatsapp://send?&#x60;;
   }
 
-  get ios(): string {
-    return &#x60;whatsapp://send?&#x60;;
-  }
-
   constructor(protected _props: IShareButton,
               protected _url: () &#x3D;&gt; string,
               protected _http: HttpClient,
@@ -983,7 +954,7 @@ export class WhatsappButton extends ShareButtonBase {
     super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick, _logger);
   }
 
-  click(metaTags: ShareMetaTags): Window | null | void {
+  click(metaTags: ShareMetaTags): Promise&lt;any&gt; {
     // Add the URL to message body
     metaTags.description &#x3D; metaTags.description ? &#x60;${metaTags.description}\r\n${this._url()}&#x60; : this._url();
     const serializedMetaTags &#x3D; this._serializeMetaTags(metaTags);

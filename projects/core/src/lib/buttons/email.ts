@@ -25,7 +25,7 @@ export class EmailButton extends ShareButtonBase {
     super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick, _logger);
   }
 
-  click(metaTags: ShareMetaTags): Window | null | void {
+  click(metaTags: ShareMetaTags): Promise<any> {
     // Add URL to message body
     metaTags.description = metaTags.description ? `${metaTags.description}\r\n${this._url()}` : this._url();
     const serializedMetaTags = this._serializeMetaTags(metaTags);

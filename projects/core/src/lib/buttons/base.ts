@@ -66,7 +66,7 @@ export class ShareButtonBase {
   /**
    * Opens share window
    */
-  click(metaTags: ShareMetaTags): Window | null | void {
+  click(metaTags: ShareMetaTags): Promise<any> {
     return this._open(this._serializeMetaTags(metaTags));
   }
 
@@ -83,21 +83,34 @@ export class ShareButtonBase {
       .join('&');
   }
 
-  protected _open(serializedMetaTags: string): Window | null | void {
-    // Avoid SSR error
-    if (this.sharerUrl && this._platform.isBrowser) {
-      const finalUrl = this.sharerUrl + serializedMetaTags;
+  protected _open(serializedMetaTags: string): Promise<any> {
+    return new Promise((resolve) => {
+      // Avoid SSR error
+      if (this.sharerUrl && this._platform.isBrowser) {
 
-      // Debug mode, log sharer link
-      this._logger(finalUrl);
+        const finalUrl = this.sharerUrl + serializedMetaTags;
 
-      return this._document.defaultView.open(
-        finalUrl,
-        'newwindow',
-        this._windowSize
-      );
-    } else {
-      console.warn(`${this.text} button is not compatible on this Platform`);
-    }
+        // Debug mode, log sharer link
+        this._logger(finalUrl);
+
+        const popUp = this._document.defaultView.open(
+          finalUrl,
+          'newwindow',
+          this._windowSize
+        );
+
+        // Resolve when share dialog is closed
+        if (popUp) {
+          const pollTimer = this._document.defaultView.setInterval(() => {
+            if (popUp.closed) {
+              this._document.defaultView.clearInterval(pollTimer);
+              resolve();
+            }
+          }, 200);
+        }
+      } else {
+        console.warn(`${this.text} button is not compatible on this Platform`);
+      }
+    });
   }
 }

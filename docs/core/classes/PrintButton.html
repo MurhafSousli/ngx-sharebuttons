@@ -455,7 +455,7 @@
                     <td class="col-md-4">
 
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                     </td>
@@ -529,7 +529,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -683,7 +683,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>Window | null | void</code>
+                                <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                             </div>
                                 <div class="io-description">
@@ -799,8 +799,11 @@ export class PrintButton extends ShareButtonBase {
     super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick, _logger);
   }
 
-  click(): void {
-    return this._document.defaultView.print();
+  click(): Promise&lt;any&gt; {
+    return new Promise((resolve) &#x3D;&gt; {
+      this._document.defaultView.print();
+      resolve();
+    });
   }
 }
 </code></pre>

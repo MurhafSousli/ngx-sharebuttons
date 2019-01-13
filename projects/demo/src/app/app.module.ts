@@ -39,7 +39,7 @@ export function hljsLanguages() {
     HighlightModule.forRoot({
       languages: hljsLanguages
     }),
-    NgProgressModule.forRoot(),
+    NgProgressModule,
     NgProgressHttpModule,
     NgProgressRouterModule,
     SharedModule

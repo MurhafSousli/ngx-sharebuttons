@@ -103,8 +103,13 @@ export class ShareDirective implements OnChanges, OnDestroy {
       via: this._share.config.twitterAccount,
     };
 
+    // Emit when share dialog is opened
+    this.opened.emit(this.shareButtonName);
     // Share the link
-    this.shareButton.click(metaTags);
+    this.shareButton.click(metaTags).then(() =>
+    // Emit when share dialog is closed
+      this.closed.emit(this.shareButtonName)
+    );
   }
 
   ngOnChanges(changes: SimpleChanges) {
