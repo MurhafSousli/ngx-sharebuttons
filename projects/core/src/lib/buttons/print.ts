@@ -16,7 +16,10 @@ export class PrintButton extends ShareButtonBase {
     super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick, _logger);
   }
 
-  click(): void {
-    return this._document.defaultView.print();
+  click(): Promise<any> {
+    return new Promise((resolve) => {
+      this._document.defaultView.print();
+      resolve();
+    });
   }
 }

@@ -30,7 +30,7 @@ export class PinterestButton extends ShareButtonBase {
     super(_props, _url, _http, _platform, _document, _windowSize, _disableButtonClick, _logger);
   }
 
-  click(metaTags: ShareMetaTags): Window | null | void {
+  click(metaTags: ShareMetaTags): Promise<any> {
     // Check if image parameter is defined
     if (metaTags.image) {
       return this._open(this._serializeMetaTags(metaTags));
