@@ -35,8 +35,8 @@
     "email"
   ],
   "peerDependencies": {
-    "@angular/core": ">=6.0.0",
-    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=7.0.0",
+    "@angular/common": ">=7.0.0",
     "rxjs": ">=6.0.0",
     "@fortawesome/angular-fontawesome": ">=0.3.0",
     "@ngx-share/core": "VERSION"
