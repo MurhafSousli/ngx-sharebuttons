@@ -14,7 +14,9 @@ import { AppComponent } from './app.component';
     BrowserModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    ShareButtonsModule
+    ShareButtonsModule.withConfig({
+      debug: true
+    })
   ],
   bootstrap: [AppComponent]
 })
