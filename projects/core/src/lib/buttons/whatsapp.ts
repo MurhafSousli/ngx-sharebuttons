@@ -10,6 +10,11 @@ export class WhatsappButton extends ShareButtonBase {
   };
 
   get desktop(): string {
+    if (this._platform.isBrowser) {
+      if (navigator.userAgent.indexOf('Firefox/') > 0) {
+        return `https://web.whatsapp.com/send?`;
+      }
+    }
     return `https://wa.me/?`;
   }
 
