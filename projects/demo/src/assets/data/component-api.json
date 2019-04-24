@@ -50,6 +50,11 @@
     "type": "input"
   },
   {
+    "name": "fbAccessToken",
+    "description": "Used to get the share count of facebook, default: null",
+    "type": "input"
+  },
+  {
     "name": "showIcon",
     "description": "Show buttons icon, default: true",
     "type": "input"

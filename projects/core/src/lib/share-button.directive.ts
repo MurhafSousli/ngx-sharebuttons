@@ -63,6 +63,9 @@ export class ShareDirective implements OnChanges, OnDestroy {
   /** Sets the tags parameter for sharing on Twitter and Tumblr */
   @Input() tags: string = this._share.config.tags;
 
+  /** Sets the Access Token parameter for sharing on facebook */
+  @Input() fbAccessToken: string = this._share.config.fbAccessToken;
+
   /** Stream that emits when share count is fetched */
   @Output() count = new EventEmitter<number>();
 
@@ -129,7 +132,9 @@ export class ShareDirective implements OnChanges, OnDestroy {
         );
 
         if (this.getCount && this.shareButton.supportShareCount) {
-          this.shareButton.shareCount(this.url).subscribe((count: number) => this.count.emit(count));
+          this.shareButton.shareCount(this.url, {
+            fbAccessToken: this.fbAccessToken
+          }).subscribe((count: number) => this.count.emit(count));
         }
       }
     }

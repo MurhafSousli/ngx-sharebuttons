@@ -41,6 +41,10 @@
     "description": "Add via @accountName at the end of the tweets, default: null"
   },
   {
+    "name": "fbAccessToken",
+    "description": "Used to get the share count of facebook, default: null"
+  },
+  {
     "name": "windowWidth",
     "description": "Share popup window width, default: 800"
   },

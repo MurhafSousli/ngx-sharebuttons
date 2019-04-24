@@ -20,6 +20,7 @@ export interface ShareButtonsConfig {
   image?: string;
   tags?: string;
   twitterAccount?: string;
+  fbAccessToken?: string;
   autoSetMeta?: boolean;
   gaTracking?: boolean;
   windowWidth?: number;
@@ -90,4 +91,11 @@ export interface IShareButton {
   ariaLabel?: string;
   /** Used to attach more properties for certain buttons */
   extra?: any;
+}
+
+/**
+ * Additional parameters when call for share API
+ */
+export interface ShareApiOption {
+  fbAccessToken?: string;
 }

@@ -23,6 +23,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
     title: undefined,
     description: undefined,
     tags: undefined,
+    fbAccessToken: undefined,
     image: undefined,
     showIcon: true,
     showText: false,
@@ -161,6 +162,10 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
 
     if (this.config.tags) {
       code += `\n [tags]="'${this.config.tags}'"`;
+    }
+
+    if (this.config.fbAccessToken) {
+      code += `\n [fbAccessToken]="'${this.config.fbAccessToken}'"`;
     }
 
     if (!this.config.autoSetMeta) {

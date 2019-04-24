@@ -41,6 +41,9 @@ export class ShareButton {
   /** The tags parameter for sharing on Twitter and Tumblr */
   @Input() tags: string;
 
+  /** Sets the Access Token parameter for sharing on facebook */
+  @Input() fbAccessToken: string;
+
   /** Sets meta tags from document head, useful when SEO is available */
   @Input() autoSetMeta: boolean;
 

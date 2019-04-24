@@ -65,6 +65,7 @@
                         [showText]="config.showText"
                         [showCount]="config.showCount"
                         [tags]="config.tags"
+                        [fbAccessToken]="config.fbAccessToken"
                         [autoSetMeta]="config.autoSetMeta"
                         [title]="config.title"
                         [description]="config.description"
@@ -89,6 +90,7 @@
                          [showText]="config.showText"
                          [size]="config.size"
                          [tags]="config.tags"
+                         [fbAccessToken]="config.fbAccessToken"
                          [autoSetMeta]="config.autoSetMeta"
                          [title]="config.title"
                          [description]="config.description"
@@ -174,6 +176,11 @@
         <mat-form-field color="primary"  appearance="outline">
           <mat-label>Tags</mat-label>
           <input matInput [(ngModel)]="config.tags" [disabled]="component === 'share-button' && !['twitter', 'tumblr'].includes(config.button)">
+        </mat-form-field>
+
+        <mat-form-field color="primary"  appearance="outline">
+          <mat-label>fbAccessToken</mat-label>
+          <input matInput [(ngModel)]="config.fbAccessToken" [disabled]="component === 'share-button' && !['facebook'].includes(config.button)">
         </mat-form-field>
       </div>
     </div>

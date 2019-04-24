@@ -1,7 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IShareButton, ShareMetaTags } from '../share.models';
+import { IShareButton, ShareMetaTags, ShareApiOption } from '../share.models';
 
 export class ShareButtonBase {
 
@@ -71,7 +71,7 @@ export class ShareButtonBase {
   }
 
   /** Get share count of a URL */
-  shareCount(url: string): Observable<number> | undefined {
+  shareCount(url: string, option?: ShareApiOption): Observable<number> | undefined {
     return undefined;
   }
 
