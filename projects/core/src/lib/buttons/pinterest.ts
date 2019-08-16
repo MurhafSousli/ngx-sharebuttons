@@ -16,7 +16,7 @@ export class PinterestButton extends ShareButtonBase {
   };
 
   get desktop(): string {
-    return `https://in.pinterest.com/pin/create/button/?`;
+    return `https://pinterest.com/pin/create/button/?`;
   }
 
   constructor(protected _props: IShareButton,
