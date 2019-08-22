@@ -16,6 +16,10 @@ export class WhatsappButton extends ShareButtonBase {
   get android(): string {
     return `whatsapp://send?`;
   }
+  
+  get ios(): string {
+    return `whatsapp://send?`;
+  }
 
   constructor(protected _props: IShareButton,
               protected _url: () => string,
