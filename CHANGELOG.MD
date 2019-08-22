@@ -1,5 +1,15 @@
 # Changelog
 
+## 7.1.3
+
+- fix(core): Removes the india localization for the Pinterest button, closes [#396](https://github.com/MurhafSousli/ngx-sharebuttons/issues/396) in [8097fac](https://github.com/MurhafSousli/ngx-sharebuttons/pull/403/commits/8097fac214cd9ad48882926b5ab7f0b047a932e5).
+
+## 7.1.2
+
+- fix(core): fix Closed and Opened Outputs, closes [#367](https://github.com/MurhafSousli/ngx-sharebuttons/issues/367) in [fb9bbbb](https://github.com/MurhafSousli/ngx-sharebuttons/pull/368/commits/fb9bbbbe793d2260f21b36da208e109373900854).
+- fix(core): fix WhatsApp not opening in Chrome on IOS 12, closes [#366](https://github.com/MurhafSousli/ngx-sharebuttons/issues/366)
+[7c77f0a](https://github.com/MurhafSousli/ngx-sharebuttons/pull/368/commits/7c77f0a0c17e05bd922c04638bcf6dd09afa8e3a).
+
 ## 7.1.1
 
 - feat(core): Add `debug` option to ShareButtonsConfig to log sharer URL, in [7e47bef](https://github.com/MurhafSousli/ngx-sharebuttons/pull/363/commits/7e47befe54f79b8bb289a21b5f1fee4f366e82cb).
@@ -56,7 +66,7 @@
   - `ShareDirective` directive => `ShareDirective`
   - `ShareButtonComponent` component => `ShareButton`
   - `ShareButtonsComponent` component => `ShareButtons`
-  
+
 - **Reddit** share count API seems to be deprecated from their side, therefore share count has been removed from Reddit share button.
 - For `<share-buttons>` and `<share-button>` components, no need to import the default styles anymore.
 - Also note that the path to themes directory has been flattened (`/styles/` directory has been removed)
@@ -98,7 +108,7 @@
 - The plugin now uses Angular-FontAwesome [library method](https://github.com/FortAwesome/angular-fontawesome#using-the-icon-library) instead of the "Explicit reference" method to import the icons.
 
 **Before**:
- 
+
 The plugin used to load the default icons from FontAwesome.
 
 **After**:
