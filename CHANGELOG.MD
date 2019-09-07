@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.4
+
+- fix(core): Fix Whatsapp for iOS Issue, closes [#386](https://github.com/MurhafSousli/ngx-sharebuttons/issues/386) in [4c3858f](https://github.com/MurhafSousli/ngx-sharebuttons/pull/406/commits/4c3858fe31e766bb341b89b3c8b5667f51b6ecfe).
+
 ## 7.1.3
 
 - fix(core): Removes the india localization for the Pinterest button, closes [#396](https://github.com/MurhafSousli/ngx-sharebuttons/issues/396) in [8097fac](https://github.com/MurhafSousli/ngx-sharebuttons/pull/403/commits/8097fac214cd9ad48882926b5ab7f0b047a932e5).
