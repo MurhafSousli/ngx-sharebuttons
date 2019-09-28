@@ -4,7 +4,7 @@
   <p align="center"><img src="https://image.ibb.co/eY16JG/buttons.png" alt="Capture" border="0"></p>
 </p>
 
-[![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
+[![Financial Contributors on Open Collective](https://opencollective.com/ngx-sharebuttons/all/badge.svg?label=financial+contributors)](https://opencollective.com/ngx-sharebuttons) [![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
 [![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-sharebuttons)
 [![NPM](https://img.shields.io/npm/v/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-share/core)
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons)
@@ -62,3 +62,33 @@ If you identify any errors in this component, or have an idea for an improvement
 - [ngx-highlightjs](https://github.com/MurhafSousli/ngx-highlightjs)
 - [ngx-scrollbar](https://github.com/MurhafSousli/ngx-scrollbar)
 - [ngx-teximate](https://github.com/MurhafSousli/ngx-teximate)
+
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/MurhafSousli/ngx-sharebuttons/graphs/contributors"><img src="https://opencollective.com/ngx-sharebuttons/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/ngx-sharebuttons/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/ngx-sharebuttons"><img src="https://opencollective.com/ngx-sharebuttons/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/ngx-sharebuttons/contribute)]
+
+<a href="https://opencollective.com/ngx-sharebuttons/organization/0/website"><img src="https://opencollective.com/ngx-sharebuttons/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-sharebuttons/organization/1/website"><img src="https://opencollective.com/ngx-sharebuttons/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-sharebuttons/organization/2/website"><img src="https://opencollective.com/ngx-sharebuttons/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-sharebuttons/organization/3/website"><img src="https://opencollective.com/ngx-sharebuttons/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-sharebuttons/organization/4/website"><img src="https://opencollective.com/ngx-sharebuttons/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-sharebuttons/organization/5/website"><img src="https://opencollective.com/ngx-sharebuttons/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-sharebuttons/organization/6/website"><img src="https://opencollective.com/ngx-sharebuttons/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-sharebuttons/organization/7/website"><img src="https://opencollective.com/ngx-sharebuttons/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-sharebuttons/organization/8/website"><img src="https://opencollective.com/ngx-sharebuttons/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-sharebuttons/organization/9/website"><img src="https://opencollective.com/ngx-sharebuttons/organization/9/avatar.svg"></a>
