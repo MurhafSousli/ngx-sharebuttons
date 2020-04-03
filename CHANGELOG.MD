@@ -1,5 +1,28 @@
 # Changelog
 
+## 8.0.0-beta.0
+
+- fix(core): Fix error in Angular 9, closes [#429](https://github.com/MurhafSousli/ngx-sharebuttons/issues/429).
+- feat(ivy): Add IVY Support, closes [#352](https://github.com/MurhafSousli/ngx-sharebuttons/issues/352).
+- regret(core): Remove share count, closes [#407](https://github.com/MurhafSousli/ngx-sharebuttons/issues/407).
+- fix(core): Remove G+ button, closes [#427](https://github.com/MurhafSousli/ngx-sharebuttons/issues/427).
+- Combine all packages into one package `ngx-sharebuttons`.
+- Themes are only available as SCSS styles (no CSS files anymore).
+
+### Breaking changes
+
+**Before:**
+
+- Packages were publish into 3 different sub-packages `@ngx-share/core`, `@ngx-share/button` and `@ngx-share/buttons`.
+- Themes were distributed as SCSS and CSS files.
+
+**After:**
+
+- Packages are combined into 1 package `ngx-sharebuttons`, `ngx-sharebuttons/button` and `ngx-sharebuttons/buttons`
+- Themes are distributed as SCSS files only.
+- Themes are imported from `ngx-sharebuttons/themes/{{themeName}}`
+
+
 ## 7.1.4
 
 - fix(core): Fix Whatsapp for iOS Issue, closes [#386](https://github.com/MurhafSousli/ngx-sharebuttons/issues/386) in [4c3858f](https://github.com/MurhafSousli/ngx-sharebuttons/pull/406/commits/4c3858fe31e766bb341b89b3c8b5667f51b6ecfe).
