@@ -17,13 +17,11 @@ import { ShareService } from '../../../../../ngx-sharebuttons/src/public-api';
 export class ButtonDComponent implements OnInit {
 
   code = {
-    npm: `npm i ngx-sharebuttons`,
+    npm: `npm i ngx-sharebuttons @angular/cdk`,
     import: `import { ShareModule } from 'ngx-sharebuttons';
 
 @NgModule({
   imports: [
-    HttpClientModule,       // (Required) For share counts
-    HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
     ShareModule
   ]
 })`,

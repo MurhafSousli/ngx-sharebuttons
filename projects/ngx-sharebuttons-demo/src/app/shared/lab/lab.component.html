@@ -43,7 +43,6 @@
         </mat-slide-toggle>
         <mat-slide-toggle color="primary" [(ngModel)]="config.showText" [disabled]="!config.showIcon">Text
         </mat-slide-toggle>
-        <mat-slide-toggle color="primary" [(ngModel)]="config.showCount">Count</mat-slide-toggle>
       </div>
     </div>
   </div>
@@ -63,13 +62,11 @@
                         [size]="config.size"
                         [showIcon]="config.showIcon"
                         [showText]="config.showText"
-                        [showCount]="config.showCount"
                         [tags]="config.tags"
                         [autoSetMeta]="config.autoSetMeta"
                         [title]="config.title"
                         [description]="config.description"
                         [image]="config.image"
-                        (count)="onCountChanged($event)"
                         (closed)="onClosedChanged($event)"
                         (opened)="onOpenedChanged($event)">
           </share-button>
@@ -84,7 +81,6 @@
                          [exclude]="config.exclude"
                          [show]="config.show"
                          [url]="config.url"
-                         [showCount]="config.showCount"
                          [showIcon]="config.showIcon"
                          [showText]="config.showText"
                          [size]="config.size"
@@ -93,7 +89,6 @@
                          [title]="config.title"
                          [description]="config.description"
                          [image]="config.image"
-                         (count)="onCountChanged($event)"
                          (closed)="onClosedChanged($event)"
                          (opened)="onOpenedChanged($event)">
           </share-buttons>
@@ -109,9 +104,6 @@
           </mat-chip>
           <mat-chip color="primary" [class.changed]="openedChanged | async"> Opened
             <span *ngIf="opened">: {{ opened | json }}</span>
-          </mat-chip>
-          <mat-chip color="primary" [class.changed]="countChanged | async"> Count
-            <span *ngIf="count">: {{ count | json }}</span>
           </mat-chip>
         </mat-chip-list>
       </div>

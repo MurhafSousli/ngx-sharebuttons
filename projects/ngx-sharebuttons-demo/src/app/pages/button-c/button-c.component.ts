@@ -45,8 +45,6 @@ export class MyComponent {
 
 @NgModule({
   imports: [
-    HttpClientModule,       // (Required) For share counts
-    HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
     ShareButtonModule
   ]
 })`

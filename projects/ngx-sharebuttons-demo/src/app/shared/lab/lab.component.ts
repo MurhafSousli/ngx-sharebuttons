@@ -26,7 +26,6 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
     image: undefined,
     showIcon: true,
     showText: false,
-    showCount: false,
     autoSetMeta: false,
     /** Selected single button */
     button: 'facebook',
@@ -61,25 +60,13 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
 
   opened: string;
   closed: string;
-  count: number;
   closedChanged = new Subject();
   openedChanged = new Subject();
-  countChanged = new Subject();
 
   /** Lab for a single share buttons or for share buttons container */
   @Input() component;
 
   constructor(private share: ShareService, private dialog: MatDialog, private cd: ChangeDetectorRef, protected localStorage: LocalStorage) {
-  }
-
-  onCountChanged(e) {
-    this.count = e;
-    this.countChanged.next(true);
-    of(e).pipe(
-      delay(800),
-      take(1),
-      tap(() => this.countChanged.next(false))
-    ).subscribe();
   }
 
   onOpenedChanged(e) {
@@ -135,10 +122,6 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
       code += `\n [showText]="${this.config.showText}"`;
     }
 
-    if (this.config.showCount) {
-      code += `\n [showCount]="${this.config.showCount}"`;
-    }
-
     if (this.config.size) {
       code += `\n [size]="${this.config.size}"`;
     }
@@ -172,7 +155,6 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
 
     this.dialog.open(CodeDialogComponent, {
       width: '600px',
-      height: '300px',
       autoFocus: false,
       panelClass: 'code-dialog',
       data: code

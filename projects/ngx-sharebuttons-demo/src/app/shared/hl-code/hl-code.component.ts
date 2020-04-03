@@ -14,7 +14,8 @@ import { NgScrollbar } from 'ngx-scrollbar';
 export class HlCodeComponent implements AfterViewInit {
 
   state$ = new BehaviorSubject({
-    copied: false
+    copied: false,
+    height: ''
   });
   @Input() code: string;
   @Input() height: number;

@@ -1,23 +1,24 @@
 <ng-container *ngIf="state$ | async; let state">
   <ng-scrollbar track="all"
-                thumbClass="code-scrollbar-thumb"
-                (cdkObserveContent)="updateHeight()">
+                thumbClass="code-scrollbar-thumb">
 
-    <ng-container *ngIf="!state.copied">
-        <pre>
-          <code #codeElement [highlight]="code"></code>
-        </pre>
+    <ng-container *ngIf="!state.copied; else copied">
+      <pre>
+        <code #codeElement [highlight]="code"
+              (cdkObserveContent)="updateHeight()"></code>
+      </pre>
     </ng-container>
 
   </ng-scrollbar>
 
-  <ng-container *ngIf="state.copied">
-    <div class="hljs copy-message">
+  <ng-template #copied>
+    <div class="hljs copy-message" [style.height]="state.height">
       <mat-icon>done</mat-icon>
       <span>Copied!</span>
     </div>
-  </ng-container>
+  </ng-template>
 </ng-container>
+
 
 <button mat-icon-button color="warn" matTooltipClass="copy-tooltip"
         matTooltip="Copy code" matTooltipPosition="before" (click)="copy()">

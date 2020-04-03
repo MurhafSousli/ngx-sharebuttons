@@ -9,31 +9,16 @@
   border-radius: .5em;
   overflow: hidden;
 
-  ng-scrollbar {
-    --scrollbar-padding: 0;
-    --scrollbar-border-radius: 0;
-    --scrollbar-size: 8px;
+  .ng-scrollbar {
+    --scrollbar-padding: 0px;
+    --scrollbar-size: 6px;
+    --scrollbar-border-radius: 0px;
+    --scrollbar-thumb-hover-color: #{$action-color};
+    background: #282c34;
     box-shadow: $box-shadow;
-    margin-bottom: 0;
 
-    ::ng-deep {
-
-      .ng-scrollbar {
-
-        &:hover, &:active {
-          --scrollbar-size: 10px !important;
-        }
-      }
-    }
-  }
-}
-
-.mobile {
-  :host {
-    ::ng-deep {
-      .ng-scrollbar-view {
-        height: unset !important;
-      }
+    &:hover, &:active {
+      --scrollbar-size: 10px;
     }
   }
 }
@@ -45,11 +30,13 @@ button {
 }
 
 .copy-message {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  //position: absolute;
+  //left: 0;
+  //right: 0;
+  //top: 0;
+  //bottom: 0;
+  width: 100%;
+  min-height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
