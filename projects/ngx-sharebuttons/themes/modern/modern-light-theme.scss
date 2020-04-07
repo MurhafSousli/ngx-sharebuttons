@@ -24,15 +24,9 @@
   .sb-icon {
     min-width: 2em;
   }
-  &.sb-show-text,
-  &.sb-show-count {
+  &.sb-show-text {
     padding: 0;
     .sb-icon {
-      box-shadow: $separate-shadow;
-    }
-  }
-  &.sb-show-text.sb-show-count {
-    .sb-text {
       box-shadow: $separate-shadow;
     }
   }

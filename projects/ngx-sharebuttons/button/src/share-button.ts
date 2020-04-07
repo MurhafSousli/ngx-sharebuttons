@@ -12,25 +12,11 @@ import { ShareService, ShareDirective } from '../../src/public-api';
 })
 export class ShareButton {
 
-  /** The sharing link */
-  url: string;
+  /** Share button type */
+  @Input() button: string;
 
-  /** Share count value */
-  shareCount: number;
-
-  /** Button name */
-  button: string;
-
-  @Input('button') set createButton(button: string) {
-    this.shareCount = 0;
-    this.button = button;
-  }
-
-  /** Set the sharing link */
-  @Input('url') set setUrl(url: string) {
-    this.shareCount = 0;
-    this.url = url;
-  }
+  /** The page URL */
+  @Input() url: string;
 
   /** The title parameter */
   @Input() title: string;
@@ -53,9 +39,6 @@ export class ShareButton {
   /** Show button text */
   @Input() showText = false;
 
-  /** Show sharing count */
-  @Input() showCount = false;
-
   /** Button custom text */
   @Input() text: string;
 
@@ -67,9 +50,6 @@ export class ShareButton {
 
   /** Button theme */
   @Input() theme: string = this._share.config.theme;
-
-  /** Stream that emits when share count is fetched */
-  @Output() count = new EventEmitter<number>();
 
   /** Stream that emits when share dialog is opened */
   @Output() opened = new EventEmitter<string>();
@@ -85,11 +65,6 @@ export class ShareButton {
   @ViewChild(ShareDirective, { static: true }) ref: ShareDirective;
 
   constructor(private _share: ShareService) {
-  }
-
-  onCount(count: number) {
-    this.shareCount = count;
-    this.count.emit(count);
   }
 
 }

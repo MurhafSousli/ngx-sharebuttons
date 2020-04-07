@@ -31,18 +31,14 @@
       border-bottom-right-radius: 0;
       border-top-right-radius: 0;
     }
-    .sb-count {
-      background: none;
-    }
   }
 
-  &.sb-show-text,
-  &.sb-show-count {
+  &.sb-show-text {
     padding: 0;
     .sb-icon {
       box-shadow: $separate-shadow;
     }
-    .sb-text, .sb-count {
+    .sb-text {
       border-bottom-right-radius: $sb-border-radius;
       border-top-right-radius: $sb-border-radius;
     }

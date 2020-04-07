@@ -65,11 +65,6 @@ export class ShareButtonBase {
     return this._open(this._serializeMetaTags(metaTags));
   }
 
-  /** Get share count of a URL */
-  shareCount(url: string): Observable<number> | undefined {
-    return undefined;
-  }
-
   protected _serializeMetaTags(metaTags: ShareMetaTags): string {
     return Object.entries(this._supportedMetaTags)
       .map(([key, value]) =>

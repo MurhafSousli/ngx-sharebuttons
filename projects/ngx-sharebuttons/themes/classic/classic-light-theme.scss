@@ -39,8 +39,7 @@
   .sb-text {
     box-shadow: $icon-shadow;
   }
-  &.sb-show-text,
-  &.sb-show-count {
+  &.sb-show-text {
     .sb-icon {
       box-shadow: $icon-shadow;
     }
