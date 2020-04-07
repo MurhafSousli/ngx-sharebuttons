@@ -9,7 +9,8 @@
     "postbuild": "cpx 'projects/ngx-sharebuttons/themes/**/*.scss' ./dist/ngx-sharebuttons/themes",
     "test": "ng test ngx-sharebuttons",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "publish-lib": "npm publish dist/ngx-sharebuttons"
   },
   "private": true,
   "dependencies": {

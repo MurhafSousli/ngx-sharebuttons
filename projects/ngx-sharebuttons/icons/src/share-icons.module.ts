@@ -41,7 +41,7 @@ const shareIcons = [
 export class ShareIconsModule {
 
   constructor(iconLibrary: FaIconLibrary, @Inject(SHARE_BUTTONS_ICONS) icons) {
-    iconLibrary.addIcons(icons);
+    iconLibrary.addIcons(...icons);
   }
 
   static forRoot(): ModuleWithProviders<ShareIconsModule> {
