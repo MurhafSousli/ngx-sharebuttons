@@ -9,7 +9,7 @@
     <div class="inputs-line horizontal">
 
       <ng-template [ngIf]="component !== 'share-button'">
-        <mat-form-field color="primary" appearance="outline">
+        <mat-form-field color="primary"appearance="fill">
           <mat-label>Include</mat-label>
           <mat-select placeholder="Include" [(ngModel)]="config.include" multiple>
             <mat-option *ngFor="let button of config.allButtons" [value]="button">
@@ -18,7 +18,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field color="primary" appearance="outline">
+        <mat-form-field color="primary"appearance="fill">
           <mat-label>Exclude</mat-label>
           <mat-select placeholder="Exclude" [(ngModel)]="config.exclude" multiple>
             <mat-option *ngFor="let button of config.allButtons" [value]="button">
@@ -114,7 +114,7 @@
     <div class="vertical">
 
       <div class="lab-section" *ngIf="component === 'share-button'">
-        <mat-form-field color="primary" appearance="outline">
+        <mat-form-field color="primary"appearance="fill">
           <mat-label>Button</mat-label>
           <mat-select placeholder="Button" [(ngModel)]="config.button">
             <mat-option *ngFor="let button of config.allButtons" [value]="button">
@@ -125,7 +125,7 @@
       </div>
 
       <div class="lab-section">
-        <mat-form-field color="primary" appearance="outline">
+        <mat-form-field color="primary"appearance="fill">
           <mat-label>Theme</mat-label>
           <mat-select placeholder="Theme" [(ngModel)]="config.theme">
             <mat-option *ngFor="let themeName of config.themes" [value]="themeName">
@@ -134,9 +134,9 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field color="primary"  appearance="outline">
+        <mat-form-field color="primary" appearance="fill">
           <mat-label>URL</mat-label>
-          <input matInput [(ngModel)]="config.url" [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
+          <input autocomplete="off" matInput [(ngModel)]="config.url" [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
           <mat-hint>If empty! It uses the current page URL</mat-hint>
         </mat-form-field>
       </div>
@@ -148,24 +148,24 @@
           </mat-slide-toggle>
         </div>
 
-        <mat-form-field color="primary"  appearance="outline">
+        <mat-form-field color="primary" appearance="fill">
           <mat-label>Title</mat-label>
-          <input matInput [(ngModel)]="config.title" [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
+          <input autocomplete="off" matInput [(ngModel)]="config.title" [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
         </mat-form-field>
 
-        <mat-form-field color="primary"  appearance="outline">
+        <mat-form-field color="primary" appearance="fill">
           <mat-label>Description</mat-label>
-          <input matInput [(ngModel)]="config.description" [disabled]="component === 'share-button' && !['twitter', 'linkedin','whatsapp', 'telegram', 'pinterest'].includes(config.button)">
+          <input autocomplete="off" matInput [(ngModel)]="config.description" [disabled]="component === 'share-button' && !['twitter', 'linkedin','whatsapp', 'telegram', 'pinterest'].includes(config.button)">
         </mat-form-field>
 
-        <mat-form-field color="primary"  appearance="outline">
+        <mat-form-field color="primary" appearance="fill">
           <mat-label>Image</mat-label>
-          <input matInput [(ngModel)]="config.image" [disabled]="component === 'share-button' && config.button !== 'pinterest'">
+          <input autocomplete="off" matInput [(ngModel)]="config.image" [disabled]="component === 'share-button' && config.button !== 'pinterest'">
         </mat-form-field>
 
-        <mat-form-field color="primary"  appearance="outline">
+        <mat-form-field color="primary" appearance="fill">
           <mat-label>Tags</mat-label>
-          <input matInput [(ngModel)]="config.tags" [disabled]="component === 'share-button' && !['twitter', 'tumblr'].includes(config.button)">
+          <input autocomplete="off" matInput [(ngModel)]="config.tags" [disabled]="component === 'share-button' && !['twitter', 'tumblr'].includes(config.button)">
         </mat-form-field>
       </div>
     </div>

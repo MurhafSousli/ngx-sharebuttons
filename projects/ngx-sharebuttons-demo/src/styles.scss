@@ -83,16 +83,6 @@ section {
   width: 64px;
 }
 
-nav-menu {
-  .ps__scrollbar-y {
-    background-color: rgba(#fff, 0.4) !important;
-  }
-
-  .ps:hover > .ps__scrollbar-y-rail:hover > .ps__scrollbar-y {
-    background-color: rgba(#fff, 0.8) !important;
-  }
-}
-
 .sticky {
   position: fixed;
   left: 1em;
@@ -151,23 +141,6 @@ nav-menu {
   flex: 1;
 }
 
-// Custom Scrollbar
-.page > ng-scrollbar {
-  --scrollbar-border-radius: 12px;
-  --scrollbar-size: 12px;
-  --scrollbar-thumb-color: #009aaeb0;
-  --scrollbar-color: rgba(0, 0, 0, 0.1);
-  --scrollbar-thumb-hover-color: #e73727a6;
-
-  .ng-scrollbar {
-    transition: all 120ms ease-out !important;
-
-    &:hover, &:active {
-      --scrollbar-size: 16px;
-    }
-  }
-}
-
 .page {
   display: flex;
   flex-direction: column;
@@ -182,6 +155,23 @@ nav-menu {
   transform-style: preserve-3d;
   background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
   box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
+
+  > .ng-scrollbar {
+    --scrollbar-border-radius: 12px;
+    --scrollbar-size: 12px;
+    --scrollbar-thumb-color: #009aaeb0;
+    --scrollbar-color: rgba(0, 0, 0, 0.1);
+    --scrollbar-thumb-hover-color: #e73727a6;
+    --scrollbar-track-color: rgba(0, 0, 0, 0.1);
+
+    .ng-scrollbar {
+      transition: all 120ms ease-out !important;
+
+      &:hover, &:active {
+        --scrollbar-size: 16px;
+      }
+    }
+  }
 }
 
 .wall {

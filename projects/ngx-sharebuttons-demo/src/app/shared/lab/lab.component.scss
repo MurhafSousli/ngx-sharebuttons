@@ -4,15 +4,6 @@
       padding: 0;
     }
   }
-
-  .mat-form-field-appearance-outline .mat-form-field-infix {
-    padding: 0.7em 0;
-    border-top: 0;
-  }
-  mat-form-field {
-    margin-top: 0.5em;
-  }
-
 }
 
 :host {
@@ -31,7 +22,7 @@ h4 {
   margin: 0;
 }
 
-mat-form-field {
+.mat-form-field {
   width: 100%;
   margin-right: 1em;
 }
@@ -45,7 +36,7 @@ mat-form-field {
     display: flex;
     align-items: center;
   }
-  mat-chip {
+  .mat-chip {
     margin-right: 1em !important;
     transition: background-color ease-out 1s;
   }
@@ -70,12 +61,13 @@ mat-form-field {
 .inputs-line {
   align-items: center;
   margin-bottom: 1em;
-  mat-select,
+  .mat-select,
   .toggle-group {
     flex: 1;
   }
-  mat-form-field {
+  .mat-form-field {
     width: 140px;
+    flex: 1;
   }
 }
 
