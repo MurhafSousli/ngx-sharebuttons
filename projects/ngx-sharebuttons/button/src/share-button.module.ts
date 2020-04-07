@@ -2,9 +2,9 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-// import { ShareModule, ShareButtonsConfig, SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
+import { ShareModule, ShareButtonsConfig, SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
 // Uncomment the following line in development mode
-import { ShareModule, ShareButtonsConfig, SHARE_BUTTONS_CONFIG } from '../../src/public-api';
+// import { ShareModule, ShareButtonsConfig, SHARE_BUTTONS_CONFIG } from '../../src/public-api';
 
 import { ShareButton } from './share-button';
 

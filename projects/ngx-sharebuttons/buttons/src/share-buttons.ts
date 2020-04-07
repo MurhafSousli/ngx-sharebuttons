@@ -1,7 +1,10 @@
 import { Component, Input, Output, OnInit, OnDestroy, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ShareService, ShareButtonsConfig, SHARE_BUTTONS } from '../../src/public-api';
+
+import { ShareService, ShareButtonsConfig, SHARE_BUTTONS } from 'ngx-sharebuttons';
+// Uncomment the following line in development mode
+// import { ShareService, ShareButtonsConfig, SHARE_BUTTONS } from '../../src/public-api';
 
 interface ButtonsState {
   includedButtons?: string[];

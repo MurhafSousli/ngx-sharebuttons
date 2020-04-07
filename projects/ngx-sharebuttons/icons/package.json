@@ -1,3 +1,30 @@
 {
-  "ngPackage": {}
+  "ngPackage": {
+    "lib": {
+      "umdModuleIds": {
+        "@fortawesome/angular-fontawesome": "angularFontawesome",
+        "@fortawesome/free-brands-svg-icons/faFacebookF": "faFacebookF",
+        "@fortawesome/free-brands-svg-icons/faTwitter": "faTwitter",
+        "@fortawesome/free-brands-svg-icons/faRedditAlien": "faRedditAlien",
+        "@fortawesome/free-brands-svg-icons/faLinkedinIn": "faLinkedinIn",
+        "@fortawesome/free-brands-svg-icons/faTumblr": "faTumblr",
+        "@fortawesome/free-brands-svg-icons/faPinterestP": "faPinterestP",
+        "@fortawesome/free-brands-svg-icons/faWhatsapp": "faWhatsapp",
+        "@fortawesome/free-brands-svg-icons/faVk": "faVk",
+        "@fortawesome/free-brands-svg-icons/faFacebookMessenger": "faFacebookMessenger",
+        "@fortawesome/free-brands-svg-icons/faTelegramPlane": "faTelegramPlane",
+        "@fortawesome/free-brands-svg-icons/faMix": "faMix",
+        "@fortawesome/free-brands-svg-icons/faXing": "faXing",
+        "@fortawesome/free-brands-svg-icons/faLine": "faLine",
+        "@fortawesome/free-solid-svg-icons/faCommentAlt": "faCommentAlt",
+        "@fortawesome/free-solid-svg-icons/faMinus": "faMinus",
+        "@fortawesome/free-solid-svg-icons/faEllipsisH": "faEllipsisH",
+        "@fortawesome/free-solid-svg-icons/faLink": "faLink",
+        "@fortawesome/free-solid-svg-icons/faExclamation": "faExclamation",
+        "@fortawesome/free-solid-svg-icons/faPrint": "faPrint",
+        "@fortawesome/free-solid-svg-icons/faCheck": "faCheck",
+        "@fortawesome/free-solid-svg-icons/faEnvelope": "faEnvelope"
+      }
+    }
+  }
 }

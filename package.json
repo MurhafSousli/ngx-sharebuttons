@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve ngx-sharebuttons-demo",
+    "build-demo": "ng build ngx-sharebuttons-demo --prod",
+    "build": "ng build ngx-sharebuttons --prod",
     "postbuild": "cpx 'projects/ngx-sharebuttons/themes/**/*.scss' ./dist/ngx-sharebuttons/themes",
-    "test": "ng test",
+    "test": "ng test ngx-sharebuttons",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
