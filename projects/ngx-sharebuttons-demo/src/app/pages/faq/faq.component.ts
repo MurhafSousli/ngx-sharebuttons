@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
 export class FaqComponent implements OnInit {
 
   code = {
-    includeOrder: `import { ShareButtonsModule } from '@ngx-share/buttons';
+    includeOrder: `import { ShareButtonsModule } from '@ngx-sharebuttons';
 
 @NgModule({
  imports: [

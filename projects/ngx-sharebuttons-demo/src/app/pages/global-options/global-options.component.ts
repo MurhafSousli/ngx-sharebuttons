@@ -14,8 +14,7 @@ import { DocsService } from '../../docs/docs.service';
 })
 export class GlobalOptionsComponent implements OnInit {
 
-  code = `import { ShareButtonsModule } from '@ngx-share/buttons';
-import { ShareButtonsConfig, IShareButtons } from '@ngx-share/core';
+  code = `import { ShareButtonsConfig, IShareButtons } from 'ngx-sharebuttons';
 
 const customConfig: ShareButtonsConfig = {
   include: ['facebook', 'twitter', 'google'],
@@ -36,7 +35,7 @@ const customConfig: ShareButtonsConfig = {
   }
 }`;
 
-  global = `import { SHARE_BUTTONS_CONFIG } from '@ngx-share/core';
+  global = `import { SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
 
 @NgModule({
   providers: [

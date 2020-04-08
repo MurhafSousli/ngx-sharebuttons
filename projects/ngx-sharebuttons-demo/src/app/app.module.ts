@@ -7,6 +7,7 @@ import { NgProgressRouterModule } from 'ngx-progressbar/router';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 import { SHARE_BUTTONS_CONFIG } from '../../../ngx-sharebuttons/src/public-api';
 
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons/faLightbulb';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons/faCoffee';
 import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
@@ -18,7 +19,6 @@ import { AppComponent } from './app.component';
 
 import { DocsService } from './docs/docs.service';
 import { ShareIconsModule } from '../../../ngx-sharebuttons/icons/src/share-icons.module';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 export function getHighlightLanguages() {
   return {

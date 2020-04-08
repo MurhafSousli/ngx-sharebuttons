@@ -13,11 +13,13 @@
 
       <div fxLayout fxLayoutAlign="space-between center" fxLayout.lt-sm="column">
         <figure>
-          <img src="https://res.cloudinary.com/css-tricks/image/fetch/q_auto,f_auto/https://cdn.css-tricks.com/wp-content/uploads/2016/06/facebook-card.jpg">
+          <img
+            src="https://res.cloudinary.com/css-tricks/image/fetch/q_auto,f_auto/https://cdn.css-tricks.com/wp-content/uploads/2016/06/facebook-card.jpg">
           <figcaption>Facebook card</figcaption>
         </figure>
         <figure>
-          <img src="https://res.cloudinary.com/css-tricks/image/fetch/q_auto,f_auto/https://cdn.css-tricks.com/wp-content/uploads/2016/06/twitter-card.jpg">
+          <img
+            src="https://res.cloudinary.com/css-tricks/image/fetch/q_auto,f_auto/https://cdn.css-tricks.com/wp-content/uploads/2016/06/twitter-card.jpg">
           <figcaption>Twitter card</figcaption>
         </figure>
       </div>
@@ -32,9 +34,21 @@
       <p>If there are any doubts about the legitimacy of paring down to these tags, we can use the helpful <a
         href="https://developers.facebook.com/tools/debug/sharing/">Facebook Sharing Debugger</a> and <a
         href="https://cards-dev.twitter.com/validator">Twitter Card Validator</a>. Both these tools will scrape any Web
-        page
-        hosted on a public server for relevant meta tags and display how it would look
-        when shared. It will also list any errors and provide suggestions</p>
+        page hosted on a public server for relevant meta tags and display how it would look when shared. It will also
+        list any errors and provide suggestions</p>
+    </section>
+
+    <section>
+      <section-title>How can I know if the user has shared the page?</section-title>
+      <p>There is no way to know if the user has actually shared the page, but there are two events that could be
+        useful, one is <code class="hljs">(opened)</code> which emits before the share window opens, and
+        <code class="hljs">(closed)</code> which emits after share window is closed.</p>
+    </section>
+
+    <section>
+      <section-title>How to show the share count?</section-title>
+      <p>The share count feature was deprecated from the library because over the time almost all social networks has
+        removed the share counts from their APIs.</p>
     </section>
 
     <section>
