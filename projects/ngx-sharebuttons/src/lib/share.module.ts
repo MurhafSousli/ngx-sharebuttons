@@ -2,7 +2,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { PlatformModule } from '@angular/cdk/platform';
 
 import { ShareDirective } from './share-button.directive';
-import { ShareCountPipe } from './share-count.pipe';
 import { SHARE_BUTTONS_CONFIG, ShareButtonsConfig } from './share.models';
 
 @NgModule({
@@ -10,12 +9,10 @@ import { SHARE_BUTTONS_CONFIG, ShareButtonsConfig } from './share.models';
     PlatformModule
   ],
   declarations: [
-    ShareDirective,
-    ShareCountPipe
+    ShareDirective
   ],
   exports: [
-    ShareDirective,
-    ShareCountPipe
+    ShareDirective
   ]
 })
 export class ShareModule {
