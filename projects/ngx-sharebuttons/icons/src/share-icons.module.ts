@@ -1,4 +1,4 @@
-import { Inject, ModuleWithProviders, NgModule } from '@angular/core';
+import { Inject, NgModule } from '@angular/core';
 
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons/faFacebookF';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
@@ -14,7 +14,7 @@ import { faMix } from '@fortawesome/free-brands-svg-icons/faMix';
 import { faXing } from '@fortawesome/free-brands-svg-icons/faXing';
 import { faLine } from '@fortawesome/free-brands-svg-icons/faLine';
 
-import { faCommentAlt } from '@fortawesome/free-solid-svg-icons/faCommentAlt';
+import { faSms } from '@fortawesome/free-solid-svg-icons/faSms';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons/faEllipsisH';
 import { faLink } from '@fortawesome/free-solid-svg-icons/faLink';
@@ -29,25 +29,23 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 
 const shareIcons = [
   faFacebookF, faTwitter, faLinkedinIn, faPinterestP, faRedditAlien, faTumblr,
-  faWhatsapp, faVk, faFacebookMessenger, faTelegramPlane, faMix, faXing, faCommentAlt,
+  faWhatsapp, faVk, faFacebookMessenger, faTelegramPlane, faMix, faXing, faSms,
   faEnvelope, faCheck, faPrint, faExclamation, faLink, faEllipsisH, faMinus, faLine
 ];
 
 @NgModule({
   imports: [
-    FontAwesomeModule
+    FontAwesomeModule,
+  ],
+  providers: [
+    {
+      provide: SHARE_BUTTONS_ICONS, useValue: shareIcons
+    }
   ]
 })
 export class ShareIconsModule {
 
   constructor(iconLibrary: FaIconLibrary, @Inject(SHARE_BUTTONS_ICONS) icons) {
     iconLibrary.addIcons(...icons);
-  }
-
-  static forRoot(): ModuleWithProviders<ShareIconsModule> {
-    return {
-      ngModule: ShareIconsModule,
-      providers: [{provide: SHARE_BUTTONS_ICONS, useValue: shareIcons}]
-    };
   }
 }
