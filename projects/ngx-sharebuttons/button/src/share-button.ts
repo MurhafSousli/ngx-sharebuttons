@@ -62,7 +62,7 @@ export class ShareButton {
 
   /** Set theme as button class */
   @HostBinding('class') get buttonClass() {
-    return `sb-button sb-${this.theme}`;
+    return `sb-button sb-${ this.theme }`;
   }
 
   @ViewChild(ShareDirective, { static: true }) ref: ShareDirective;

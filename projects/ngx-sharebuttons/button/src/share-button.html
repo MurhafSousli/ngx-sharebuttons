@@ -1,4 +1,5 @@
 <button class="sb-wrapper"
+        #btn="shareButton"
         [shareButton]="button"
         [url]="url"
         [image]="image"
@@ -15,12 +16,12 @@
 
   <div class="sb-content">
 
-    <div *ngIf="showIcon && ref.shareButton" class="sb-icon">
-      <fa-icon [icon]="icon || ref.shareButton.icon" [fixedWidth]="true"></fa-icon>
+    <div *ngIf="showIcon" class="sb-icon">
+      <fa-icon [icon]="icon || btn?.icon" [fixedWidth]="true"></fa-icon>
     </div>
 
-    <div *ngIf="showText && ref.shareButton" class="sb-text">
-      {{ text || ref?.shareButton.text }}
+    <div *ngIf="showText" class="sb-text">
+      {{ text || btn?.text }}
     </div>
 
   </div>
