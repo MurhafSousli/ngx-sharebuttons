@@ -23,11 +23,10 @@ import { faPrint } from '@fortawesome/free-solid-svg-icons/faPrint';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 
-
-import { SHARE_BUTTONS_ICONS } from './share-custom-icons.module';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
-const shareIcons = [
+const shareIcons: IconDefinition[] = [
   faFacebookF, faTwitter, faLinkedinIn, faPinterestP, faRedditAlien, faTumblr,
   faWhatsapp, faVk, faFacebookMessenger, faTelegramPlane, faMix, faXing, faSms,
   faEnvelope, faCheck, faPrint, faExclamation, faLink, faEllipsisH, faMinus, faLine
@@ -36,16 +35,10 @@ const shareIcons = [
 @NgModule({
   imports: [
     FontAwesomeModule,
-  ],
-  providers: [
-    {
-      provide: SHARE_BUTTONS_ICONS, useValue: shareIcons
-    }
   ]
 })
 export class ShareIconsModule {
-
-  constructor(iconLibrary: FaIconLibrary, @Inject(SHARE_BUTTONS_ICONS) icons) {
-    iconLibrary.addIcons(...icons);
+  constructor(iconLibrary: FaIconLibrary) {
+    iconLibrary.addIcons(...shareIcons);
   }
 }
