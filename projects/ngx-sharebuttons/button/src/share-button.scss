@@ -29,6 +29,7 @@
     padding: $sb-padding;
     line-height: $sb-line-height;
     background-color: $sb-background-color;
+    -webkit-print-color-adjust: exact;
     .sb-icon,
     .sb-text {
       display: flex;
