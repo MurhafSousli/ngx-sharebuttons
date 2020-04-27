@@ -51,6 +51,9 @@ export class ShareButton {
   /** Button theme */
   @Input() theme: string = this._share.config.theme;
 
+  /** A flag that indicates if the button's click is disabled */
+  @Input() disabled: boolean;
+
   /** Stream that emits when share dialog is opened */
   @Output() opened = new EventEmitter<string>();
 

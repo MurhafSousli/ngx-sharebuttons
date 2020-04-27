@@ -81,6 +81,9 @@ export class ShareButtons implements OnInit, OnDestroy {
   /** Buttons size */
   @Input() size = 0;
 
+  /** A flag that indicates if the button's click is disabled */
+  @Input() disabled: boolean;
+
   /** Share dialog opened event */
   @Output() opened = new EventEmitter<string>();
 
