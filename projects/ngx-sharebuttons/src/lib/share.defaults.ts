@@ -144,7 +144,8 @@ export const SHARE_BUTTONS: IShareButtons = {
     icon: ['fab', 'facebook-messenger'],
     color: '#0080FF',
     share: {
-      mobile: 'fb-messenger:share/?'
+      android: 'fb-messenger://share/?',
+      ios: 'fb-messenger://share/?'
     },
     params: {
       url: 'link'
@@ -158,7 +159,8 @@ export const SHARE_BUTTONS: IShareButtons = {
     color: '#25D366',
     share: {
       desktop: 'https://web.whatsapp.com/send?',
-      mobile: 'whatsapp:send?'
+      android: 'whatsapp://send?',
+      ios: 'https://api.whatsapp.com/send?'
     },
     params: {
       description: 'text'
@@ -198,7 +200,8 @@ export const SHARE_BUTTONS: IShareButtons = {
     icon: ['fas', 'sms'],
     color: '#20c16c',
     share: {
-      desktop: 'sms:?'
+      desktop: 'sms:?',
+      ios: 'sms:&'
     },
     params: {
       description: 'body'

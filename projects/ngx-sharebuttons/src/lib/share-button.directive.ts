@@ -10,20 +10,21 @@ import {
   SimpleChanges,
   SimpleChange,
   EventEmitter,
-  ElementRef
+  ElementRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
 import { Platform } from '@angular/cdk/platform';
-import { Observable, Subject, Subscriber } from 'rxjs';
+import { EMPTY, Observable, Subject, Subscriber } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
 
 import { ShareService } from './share.service';
 import { IShareButton, ShareDirectiveUpdater, ShareParams, ShareParamsFunc } from './share.models';
 import { getValidUrl } from './utils';
-import { takeUntil, tap } from 'rxjs/operators';
 
 @Directive({
-  selector: '[shareButton], [share-button]',
+  selector: '[shareButton]',
   exportAs: 'shareButton'
 })
 export class ShareDirective implements OnInit, OnChanges, OnDestroy {
@@ -83,6 +84,7 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
               private _meta: Meta,
               private _platform: Platform,
               private _share: ShareService,
+              private _cd: ChangeDetectorRef,
               @Inject(DOCUMENT) private _document: any) {
     this._el = _el.nativeElement;
   }
@@ -93,12 +95,9 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
   @HostListener('click')
   share() {
     // Avoid SSR error
-    if (this._platform.isBrowser) {
+    if (this._platform.isBrowser && this.shareButton) {
       // Prepare sharer url params
       const params: ShareParams = this.autoSetMeta ? this.getParamsFromMetaTags() : this.getParamsFromInputs();
-
-      // Emit when share window is opened
-      this.opened.emit(this.shareButtonName);
 
       // Prepare share button click
       const click = this.shareButton.share ? this.open(params) : this.shareButton.func({
@@ -108,11 +107,7 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
         updater: this._updater
       });
 
-      // Execute share button click then emit when share windows is closed
-      click.pipe(
-        tap(() => this.closed.emit(this.shareButtonName)),
-        takeUntil(this._destroyed)
-      ).subscribe();
+      click.pipe(takeUntil(this._destroyed)).subscribe();
     } else {
       console.warn(`${ this.text } button is not compatible on this Platform`);
     }
@@ -125,6 +120,7 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
         this.icon = data.icon;
         this.text = data.text;
         this._el.style.pointerEvents = data.disabled ? 'none' : 'auto';
+        this._cd.markForCheck();
       }),
       takeUntil(this._destroyed)
     ).subscribe();
@@ -234,33 +230,48 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
     };
   }
 
-  private open(params: any): Observable<void> {
-    return new Observable((sub: Subscriber<void>) => {
+  private open(params: ShareParams): Observable<void> {
+    // Set sharer link based on user's device
+    let sharerLink: string;
+    if (this._platform.IOS && this.shareButton.share.ios) {
+      sharerLink = this.shareButton.share.ios;
+    } else if (this._platform.ANDROID && this.shareButton.share.android) {
+      sharerLink = this.shareButton.share.android;
+    } else {
+      sharerLink = this.shareButton.share.desktop;
+    }
 
-      const sharerLink = (this._platform.ANDROID || this._platform.IOS) ? this.shareButton.share.mobile : this.shareButton.share.desktop;
+    if (sharerLink) {
+      // Set sharer link params
+      const finalUrl = sharerLink + this._serializeParams(params);
 
-      if (this.shareButton) {
-        const finalUrl = sharerLink + this._serializeParams(params);
+      // Log the sharer link in debug mode
+      if (this._share.config.debug) {
+        console.log('[DEBUG SHARE BUTTON]: ', finalUrl);
+      }
+      // Open share window
+      const popUp = this._document.defaultView.open(finalUrl, 'newwindow', this._share.windowSize);
 
-        // Log the sharer link in debug mode
-        if (this._share.config.debug) {
-          console.log('[DEBUG SHARE BUTTON]: ', finalUrl);
-        }
+      // Emit when share window is opened
+      this.opened.emit(this.shareButtonName);
 
-        const popUp = this._document.defaultView.open(finalUrl, 'newwindow', this._share.windowSize);
-
-        // Resolve when share dialog is closed
-        if (popUp) {
+      // Resolve when share dialog is closed
+      if (popUp) {
+        return new Observable<void>((sub: Subscriber<void>) => {
           const pollTimer = this._document.defaultView.setInterval(() => {
             if (popUp.closed) {
               this._document.defaultView.clearInterval(pollTimer);
+
+              // Emit when share windows is closed
+              this.closed.emit(this.shareButtonName);
               sub.next();
               sub.complete();
             }
           }, 200);
-        }
+        });
       }
-    });
+    }
+    return EMPTY;
   }
 
   private _serializeParams(params: ShareParams): string {

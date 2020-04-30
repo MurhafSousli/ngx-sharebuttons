@@ -66,7 +66,8 @@ export class IShareButton {
   /** Sharer base URL */
   share?: {
     desktop?: string;
-    mobile?: string;
+    android?: string;
+    ios?: string;
   };
   /** Sharer URL params */
   params?: ShareParams;
