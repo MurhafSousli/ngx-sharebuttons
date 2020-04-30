@@ -30,11 +30,6 @@
     "type": "input"
   },
   {
-    "name": "getCount",
-    "description": "Gets and emits share count, default: false",
-    "type": "input"
-  },
-  {
     "name": "opened",
     "description": "Stream that emits when share dialog has opened",
     "type": "output"
@@ -42,11 +37,6 @@
   {
     "name": "closed",
     "description": "Stream that emits when share dialog has closed",
-    "type": "output"
-  },
-  {
-    "name": "count",
-    "description": "Stream that emits share count of the share URL",
     "type": "output"
   }
 ]

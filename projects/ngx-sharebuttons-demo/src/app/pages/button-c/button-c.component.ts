@@ -45,7 +45,8 @@ export class MyComponent {
 
 @NgModule({
   imports: [
-    ShareButtonModule
+    ShareButtonModule,
+    ShareIconsModule // Optional if you want the default share icons
   ]
 })`
   };

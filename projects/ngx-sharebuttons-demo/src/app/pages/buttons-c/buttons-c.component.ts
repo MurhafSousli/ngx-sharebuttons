@@ -25,7 +25,7 @@ npm i @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortaw
 @NgModule({
   imports: [
     ShareButtonsModule,
-    ShareIconsModule.forRoot() // (Optional if you want the default share icons)
+    ShareIconsModule // Optional if you want the default share icons
   ]
 })`
   };

@@ -16,7 +16,7 @@ export class IconsComponent {
 
 @NgModule({
   imports: [
-    ShareIconsModule.forRoot()
+    ShareIconsModule
   ]
 })
 export class AppModule { }`,

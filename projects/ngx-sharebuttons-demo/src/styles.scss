@@ -18,6 +18,7 @@
 
 *:not(mat-chip) {
   box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
 }
 
 body {

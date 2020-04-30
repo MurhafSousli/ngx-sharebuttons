@@ -60,13 +60,13 @@
     "type": "input"
   },
   {
-    "name": "showCount",
-    "description": "Show share counts, default: false",
+    "name": "autoSetMeta",
+    "description": "Initializes meta tag inputs from SEO meta tags, default: true",
     "type": "input"
   },
   {
-    "name": "autoSetMeta",
-    "description": "Initializes meta tag inputs from SEO meta tags, default: true",
+    "name": "disabled",
+    "description": "A boolean flag that indicates if the share button's click should be disabled",
     "type": "input"
   },
   {
@@ -77,11 +77,6 @@
   {
     "name": "closed",
     "description": "Stream that emits when share window has closed",
-    "type": "output"
-  },
-  {
-    "name": "count",
-    "description": "Stream that emits when share count is available",
     "type": "output"
   }
 ]

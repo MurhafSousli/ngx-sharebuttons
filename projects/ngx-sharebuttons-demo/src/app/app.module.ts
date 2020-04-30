@@ -41,7 +41,7 @@ export function getHighlightLanguages() {
     NgProgressModule,
     NgProgressRouterModule,
     SharedModule,
-    ShareIconsModule.forRoot()
+    ShareIconsModule
   ],
   providers: [
     DocsService,
