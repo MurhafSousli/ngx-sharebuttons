@@ -83,7 +83,7 @@ export class ShareButtonBase {
       .join('&');
   }
 
-  protected _open(serializedMetaTags: string): Promise<any> {
+  protected _open(serializedMetaTags: string, realHtmlAnchor:boolean=false): Promise<any> {
     return new Promise((resolve) => {
       // Avoid SSR error
       if (this.sharerUrl && this._platform.isBrowser) {
@@ -93,21 +93,36 @@ export class ShareButtonBase {
         // Debug mode, log sharer link
         this._logger(finalUrl);
 
-        const popUp = this._document.defaultView.open(
-          finalUrl,
-          'newwindow',
-          this._windowSize
-        );
+        // This decision is needed because Apple on enforces a real html anchor mobile Safari.
+        if(realHtmlAnchor){
 
-        // Resolve when share dialog is closed
-        if (popUp) {
-          const pollTimer = this._document.defaultView.setInterval(() => {
-            if (popUp.closed) {
-              this._document.defaultView.clearInterval(pollTimer);
-              resolve();
-            }
-          }, 200);
+          var link = document.createElement('a');
+          link.setAttribute('target', '_blank');
+          link.href = finalUrl;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          resolve();
         }
+        else{
+          const popUp = this._document.defaultView.open(
+            finalUrl,
+            'newwindow',
+            this._windowSize
+          );
+
+          // Resolve when share dialog is closed
+          if (popUp) {
+            const pollTimer = this._document.defaultView.setInterval(() => {
+              if (popUp.closed) {
+                this._document.defaultView.clearInterval(pollTimer);
+                resolve();
+              }
+            }, 200);
+          }
+        }
+        
       } else {
         console.warn(`${this.text} button is not compatible on this Platform`);
       }

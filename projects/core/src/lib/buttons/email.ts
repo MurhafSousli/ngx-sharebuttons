@@ -29,6 +29,6 @@ export class EmailButton extends ShareButtonBase {
     // Add URL to message body
     metaTags.description = metaTags.description ? `${metaTags.description}\r\n${this._url()}` : this._url();
     const serializedMetaTags = this._serializeMetaTags(metaTags);
-    return this._open(serializedMetaTags);
+    return this._open(serializedMetaTags,true);
   }
 }
