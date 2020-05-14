@@ -10,7 +10,7 @@ export class WhatsappButton extends ShareButtonBase {
   };
 
   get desktop(): string {
-    return `https://wa.me/?`;
+    return `https://api.whatsapp.com/send?`;
   }
 
   get android(): string {
