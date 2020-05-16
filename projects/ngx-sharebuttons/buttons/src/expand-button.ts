@@ -8,11 +8,9 @@ import { Component, Input, Output, ElementRef, EventEmitter, ChangeDetectionStra
             [style.fontSize.px]="size"
             (click)="toggle.emit(!expanded)">
 
-      <div class="sb-inner">
-        <div class="sb-content">
-          <div class="sb-icon">
-            <fa-icon [icon]="expanded ? lessIcon : moreIcon"></fa-icon>
-          </div>
+      <div class="sb-content">
+        <div class="sb-icon">
+          <fa-icon [icon]="expanded ? lessIcon : moreIcon"></fa-icon>
         </div>
       </div>
     </button>
