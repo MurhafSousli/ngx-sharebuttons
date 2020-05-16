@@ -13,8 +13,8 @@
                 [size]="size"
                 (opened)="opened.emit($event)"
                 (closed)="closed.emit($event)"
-                [disabled]="disabled"></share-button>
-
+                [disabled]="disabled">
+  </share-button>
   <expand-button *ngIf="state.shownCount < state.userButtons.length"
                  class="sb-button sb-{{theme}}"
                  [expanded]="state.expanded"
