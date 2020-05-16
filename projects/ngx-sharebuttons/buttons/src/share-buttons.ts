@@ -75,9 +75,6 @@ export class ShareButtons implements OnInit, OnDestroy {
   /** Show buttons text */
   @Input() showText = false;
 
-  /** Show sharing count */
-  @Input() showCount = false;
-
   /** Buttons size */
   @Input() size = 0;
 
