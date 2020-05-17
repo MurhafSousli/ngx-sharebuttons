@@ -1,16 +1,17 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ShareButtonsConfig, SHARE_BUTTONS_CONFIG } from '../../src/public-api';
-import { ShareButtonsModule } from '../../buttons/src/public_api';
+// import { ShareButtonsConfig, SHARE_BUTTONS_CONFIG } from '../../src/public-api';
+// import { ShareButtonsModule } from '../../buttons/src/public_api';
 // Uncomment the following in development mode
-// import { ShareButtonsConfig, SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
-// import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareButtonsConfig, SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 
 import { ShareButtonsPopup } from './share-buttons-popup';
 import { SharePopupService } from './share-popup.service';
 import { SharePopupButtonsDirective } from './share-popup-buttons.directive';
 import { SharePopupComponent } from './share-popup.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,9 @@ import { SharePopupComponent } from './share-popup.component';
     SharePopupComponent
   ],
   imports: [
+    CommonModule,
     ShareButtonsModule,
-    CommonModule
+    FontAwesomeModule
   ],
   exports: [
     ShareButtonsModule,

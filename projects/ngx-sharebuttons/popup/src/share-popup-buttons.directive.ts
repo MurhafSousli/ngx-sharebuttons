@@ -1,9 +1,8 @@
 import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
 import { SharePopupService } from './share-popup.service';
-import { ShareService } from '../../src/lib/share.service';
-import { SHARE_BUTTONS } from '../../src/lib/share.defaults';
 
-// import { ShareService } from 'ngx-sharebuttons';
+// import { ShareService, SHARE_BUTTONS } from '../../src/public-api';
+import { ShareService, SHARE_BUTTONS } from 'ngx-sharebuttons';
 
 @Directive({
   selector: '[shareButtonsPopup]'
