@@ -1,4 +1,14 @@
-import { Component, Input, Output, OnInit, OnDestroy, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  OnInit,
+  OnChanges,
+  OnDestroy,
+  EventEmitter,
+  SimpleChanges,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -23,7 +33,7 @@ interface ButtonsState {
   styleUrls: ['./share-buttons.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShareButtons implements OnInit, OnDestroy {
+export class ShareButtons implements OnInit, OnChanges, OnDestroy {
 
   state$: Observable<ButtonsState>;
   private _state$ = new BehaviorSubject<ButtonsState>({
@@ -39,16 +49,16 @@ export class ShareButtons implements OnInit, OnDestroy {
 
   @Input() theme = this._share.config.theme;
 
-  @Input('include') set includedButtons(includedButtons: string[]) {
-    this.updateState({includedButtons});
+  /** Array of included buttons */
+  @Input() include: string[];
   }
 
-  @Input('exclude') set excludedButtons(excludedButtons: string[]) {
-    this.updateState({excludedButtons});
+  /** Array of excluded buttons */
+  @Input() exclude: string[];
   }
 
-  @Input('show') set shownButtons(shownCount: number) {
-    this.updateState({shownCount});
+  /** Numbers of buttons to show */
+  @Input() show: number;
   }
 
   /** The sharing link */
@@ -94,8 +104,8 @@ export class ShareButtons implements OnInit, OnDestroy {
     this.state$ = this._state$.pipe(
       map((state: ButtonsState) => {
         // Use component include buttons, otherwise fallback to global include buttons
-        const includedButtons = state.includedButtons.length ? state.includedButtons : state.userButtons;
-        const userButtons = includedButtons.filter((btn) => state.excludedButtons.indexOf(btn) < 0);
+        const includedButtons = state.includedButtons && state.includedButtons.length ? state.includedButtons : state.userButtons;
+        const userButtons = state.excludedButtons ? includedButtons.filter((btn) => state.excludedButtons.indexOf(btn) < 0) : includedButtons;
         const selectedButtons = userButtons.slice(0, state.expanded ? userButtons.length : state.shownCount);
         return {
           userButtons,
@@ -120,6 +130,21 @@ export class ShareButtons implements OnInit, OnDestroy {
         lessIcon: config.lessButtonIcon
       });
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const shouldUpdate =
+      (changes['include'] && changes['include'].currentValue !== changes['include'].previousValue) ||
+      (changes['exclude'] && changes['exclude'].currentValue !== changes['exclude'].previousValue) ||
+      (changes['show'] && changes['show'].currentValue !== changes['show'].previousValue);
+
+    if (shouldUpdate) {
+      this.updateState({
+        includedButtons: this.include,
+        excludedButtons: this.exclude,
+        shownCount: this.show
+      });
+    }
   }
 
   ngOnDestroy() {
