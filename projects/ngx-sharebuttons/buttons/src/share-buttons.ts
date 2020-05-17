@@ -51,15 +51,12 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
 
   /** Array of included buttons */
   @Input() include: string[];
-  }
 
   /** Array of excluded buttons */
   @Input() exclude: string[];
-  }
 
   /** Numbers of buttons to show */
   @Input() show: number;
-  }
 
   /** The sharing link */
   @Input() url: string;
