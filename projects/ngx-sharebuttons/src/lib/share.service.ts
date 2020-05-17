@@ -53,4 +53,12 @@ export class ShareService {
     this.config$.next(this.config);
   }
 
+  addButton(name: string, props: IShareButton) {
+    this.setConfig({
+      prop: {
+        [name]: props
+      }
+    });
+  }
+
 }
