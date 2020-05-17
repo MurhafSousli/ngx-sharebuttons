@@ -20,7 +20,7 @@ import { EMPTY, Observable, Subject, Subscriber } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
 import { ShareService } from './share.service';
-import { IShareButton, ShareDirectiveUpdater, ShareParams, ShareParamsFunc } from './share.models';
+import { IShareButton, ShareDirectiveUpdater, ShareParams, ShareParamsFunc, SharerMethod } from './share.models';
 import { getValidUrl } from './utils';
 
 @Directive({
@@ -30,7 +30,7 @@ import { getValidUrl } from './utils';
 export class ShareDirective implements OnInit, OnChanges, OnDestroy {
 
   /** Share directive element ref */
-  private _el: HTMLButtonElement;
+  private readonly _el: HTMLButtonElement;
 
   /** A ref to button class - used to remove previous class when the button type is changed */
   private _buttonClass: string;
@@ -249,27 +249,45 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
       if (this._share.config.debug) {
         console.log('[DEBUG SHARE BUTTON]: ', finalUrl);
       }
+
       // Open share window
-      const popUp = this._document.defaultView.open(finalUrl, 'newwindow', this._share.windowSize);
+      if (this._share.config.sharerMethod === SharerMethod.Anchor) {
+        const linkElement: HTMLLinkElement = this._document.createElement('a');
+        // Make it open in a new tab/window (depends on user's browser configuration)
+        linkElement.setAttribute('target', this._share.config.sharerTarget);
+
+        // Prevent security vulnerability https://medium.com/@jitbit/target-blank-the-most-underestimated-vulnerability-ever-96e328301f4c
+        linkElement.setAttribute('rel', 'noopener noreferrer');
+        linkElement.href = finalUrl;
+        linkElement.click();
+        linkElement.remove();
+      } else {
+        // Open link using Window object
+        const openWindow = this._share.config.windowObj[this._share.config.windowFuncName];
+        const popUpWindow = openWindow(finalUrl, this._share.config.sharerTarget, this._share.windowSize);
+
+        // Prevent security vulnerability https://medium.com/@jitbit/target-blank-the-most-underestimated-vulnerability-ever-96e328301f4c
+        this._share.config.windowObj.opener = null;
+
+        // Resolve when share dialog is closed
+        if (popUpWindow) {
+          return new Observable<void>((sub: Subscriber<void>) => {
+            const pollTimer = this._document.defaultView.setInterval(() => {
+              if (popUpWindow.closed) {
+                this._document.defaultView.clearInterval(pollTimer);
+
+                // Emit when share windows is closed
+                this.closed.emit(this.shareButtonName);
+                sub.next();
+                sub.complete();
+              }
+            }, 200);
+          });
+        }
+      }
 
       // Emit when share window is opened
       this.opened.emit(this.shareButtonName);
-
-      // Resolve when share dialog is closed
-      if (popUp) {
-        return new Observable<void>((sub: Subscriber<void>) => {
-          const pollTimer = this._document.defaultView.setInterval(() => {
-            if (popUp.closed) {
-              this._document.defaultView.clearInterval(pollTimer);
-
-              // Emit when share windows is closed
-              this.closed.emit(this.shareButtonName);
-              sub.next();
-              sub.complete();
-            }
-          }, 200);
-        });
-      }
     }
     return EMPTY;
   }

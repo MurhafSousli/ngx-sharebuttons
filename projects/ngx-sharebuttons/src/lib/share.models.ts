@@ -8,6 +8,10 @@ export const SHARE_BUTTONS_CONFIG = new InjectionToken<ShareButtonsConfig>('shar
  * Share buttons config
  */
 export interface ShareButtonsConfig {
+  sharerMethod?: SharerMethod;
+  sharerTarget?: string;
+  windowObj?: any;
+  windowFuncName?: string;
   prop?: IShareButtons;
   theme?: string;
   include?: string[];
@@ -132,4 +136,9 @@ export interface ShareDirectiveUpdater {
   icon: string | string[];
   text: string;
   disabled?: boolean;
+}
+
+export enum SharerMethod {
+  Anchor = 'anchor',
+  Window = 'window'
 }
