@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   host: {
-    'class': 'page'
+    class: 'page'
   },
   selector: 'themes',
   templateUrl: './themes.component.html',

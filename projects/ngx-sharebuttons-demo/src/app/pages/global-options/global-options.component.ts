@@ -5,7 +5,7 @@ import { DocsService } from '../../docs/docs.service';
 
 @Component({
   host: {
-    'class': 'page'
+    class: 'page'
   },
   selector: 'global-options',
   templateUrl: './global-options.component.html',

@@ -46,12 +46,12 @@ ul {
 }
 
 .sb-option {
-  flex: 1;
+  flex: 0 0 auto;
   width: 248px;
+  margin: 1em;
   a {
     color: $font-color;
     width: 100%;
-    margin-top: 1em;
     fa-icon {
       color: $font-color;
     }

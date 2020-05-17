@@ -6,19 +6,21 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressRouterModule } from 'ngx-progressbar/router';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 import { SHARE_BUTTONS_CONFIG } from '../../../ngx-sharebuttons/src/public-api';
+import { ShareIconsModule } from '../../../ngx-sharebuttons/icons/src/share-icons.module';
 
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons/faLightbulb';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons/faCoffee';
 import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
 import { faBook } from '@fortawesome/free-solid-svg-icons/faBook';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
+import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
 
 import { SharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DocsService } from './docs/docs.service';
-import { ShareIconsModule } from '../../../ngx-sharebuttons/icons/src/share-icons.module';
 
 export function getHighlightLanguages() {
   return {
@@ -64,6 +66,6 @@ export function getHighlightLanguages() {
 })
 export class AppModule {
   constructor(iconLibrary: FaIconLibrary) {
-    iconLibrary.addIcons(faLightbulb, faBook, faCoffee, faInfo);
+    iconLibrary.addIcons(faLightbulb, faBook, faCoffee, faInfo, faTimesCircle, faShare);
   }
 }

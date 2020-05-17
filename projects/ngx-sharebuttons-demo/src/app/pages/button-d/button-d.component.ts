@@ -7,7 +7,7 @@ import { ShareService } from '../../../../../ngx-sharebuttons/src/public-api';
 
 @Component({
   host: {
-    'class': 'page'
+    class: 'page'
   },
   selector: 'button-d',
   templateUrl: './button-d.component.html',

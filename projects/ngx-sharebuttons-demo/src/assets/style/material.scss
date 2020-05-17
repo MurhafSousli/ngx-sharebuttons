@@ -9,11 +9,15 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 // MATERIAL TABLE
 
-mat-table, mat-card {
+mat-table {
+  overflow: hidden;
+}
+
+mat-table, .mat-card {
   box-shadow: $box-shadow !important;
 }
 
-.mat-cell, mat-card, .mat-chip:not(.mat-basic-chip) {
+mat-cell, .mat-card, .mat-chip:not(.mat-basic-chip) {
   color: $font-color !important;
 }
 

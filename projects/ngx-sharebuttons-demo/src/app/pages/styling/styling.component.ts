@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   host: {
-    'class': 'page'
+    class: 'page'
   },
   selector: 'styling',
   templateUrl: './styling.component.html',
@@ -18,25 +18,19 @@ export class StylingComponent implements OnInit {
   .sb-wrapper {
     // You can get default button color using the CSS variable
     background-color: var(--button-color);
-    // Inner wrapper
-    .sb-inner {
-      // Content wrapper
-      .sb-content {
-        // Icon wrapper
-        .sb-icon {
-        }
-        // Text wrapper
-        .sb-text {
-        }
+    // Content wrapper
+    .sb-content {
+      // Icon wrapper
+      .sb-icon {
       }
-      // Count wrapper
-      .sb-count {
+      // Text wrapper
+      .sb-text {
       }
     }
 
     // For conditional styles
-    // E.g. Apply when icon, text and count are shown
-    &.sb-show-icon.sb-show-text.sb-show-count {
+    // E.g. Apply when icon, text are shown
+    &.sb-show-icon.sb-show-text {
        // Icon wrapper
       .sb-icon {
       }

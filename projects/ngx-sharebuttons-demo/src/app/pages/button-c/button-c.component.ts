@@ -8,7 +8,7 @@ import { DocsService } from '../../docs/docs.service';
 
 @Component({
   host: {
-    'class': 'page'
+    class: 'page'
   },
   selector: 'button-c',
   templateUrl: './button-c.component.html',

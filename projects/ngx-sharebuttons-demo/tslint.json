@@ -13,5 +13,6 @@
       "app",
       "kebab-case"
     ]
-  }
+  },
+  "no-host-metadata-property": false
 }

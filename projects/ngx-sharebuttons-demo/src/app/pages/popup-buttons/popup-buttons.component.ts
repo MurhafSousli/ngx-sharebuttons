@@ -1,18 +1,19 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 import { DocsService } from '../../docs/docs.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   host: {
     class: 'page'
   },
-  selector: 'buttons-c',
-  templateUrl: './buttons-c.component.html',
-  styleUrls: ['./buttons-c.component.scss'],
+  selector: 'app-popup-buttons',
+  templateUrl: './popup-buttons.component.html',
+  styleUrls: ['./popup-buttons.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonsCComponent implements OnInit {
+export class PopupButtonsComponent implements OnInit {
+
 
   code = {
     name: '<share-buttons>',
@@ -42,4 +43,5 @@ npm i @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortaw
     const apiDatabase = new ApiDatabase(this.docs.getContainerApi());
     this.dataSource = new ApiDataSource(apiDatabase);
   }
+
 }

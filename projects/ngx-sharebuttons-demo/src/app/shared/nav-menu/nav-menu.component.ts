@@ -11,9 +11,11 @@ export class NavMenuComponent {
 
   menu = [
     {name: 'Home', link: '/'},
+    {name: 'Popup Buttons', link: '/popup-buttons'},
     {name: 'Share Buttons', link: '/share-buttons-component'},
     {name: 'Single Share Button', link: '/share-button-component'},
     {name: 'Share Button Directive', link: '/share-button-directive'},
+    {name: 'Add Custom Button', link: '/custom-button'},
     {name: 'Icons Guide', link: '/icons'},
     {name: 'Global Options', link: '/global-options'},
     {name: 'Styling Guide', link: '/styling-guide'},

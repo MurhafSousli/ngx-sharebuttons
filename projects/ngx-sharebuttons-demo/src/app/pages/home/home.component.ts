@@ -4,7 +4,7 @@ import { faWrench } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   host: {
-    'class': 'page'
+    class: 'page'
   },
   selector: 'home',
   templateUrl: './home.component.html',

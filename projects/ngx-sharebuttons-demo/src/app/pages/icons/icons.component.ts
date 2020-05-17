@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   host: {
-    'class': 'page'
+    class: 'page'
   },
   selector: 'icons',
   templateUrl: './icons.component.html',

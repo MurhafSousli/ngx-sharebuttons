@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   host: {
-    'class': 'page'
+    class: 'page'
   },
   selector: 'not-found',
   templateUrl: './not-found.component.html',

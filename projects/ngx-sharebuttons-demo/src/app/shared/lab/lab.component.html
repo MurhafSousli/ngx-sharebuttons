@@ -9,7 +9,7 @@
     <div class="inputs-line horizontal">
 
       <ng-template [ngIf]="component !== 'share-button'">
-        <mat-form-field color="primary"appearance="fill">
+        <mat-form-field color="primary" appearance="fill">
           <mat-label>Include</mat-label>
           <mat-select placeholder="Include" [(ngModel)]="config.include" multiple>
             <mat-option *ngFor="let button of config.allButtons" [value]="button">
@@ -18,7 +18,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field color="primary"appearance="fill">
+        <mat-form-field color="primary" appearance="fill">
           <mat-label>Exclude</mat-label>
           <mat-select placeholder="Exclude" [(ngModel)]="config.exclude" multiple>
             <mat-option *ngFor="let button of config.allButtons" [value]="button">
@@ -27,7 +27,8 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-slider matTooltip="Number of buttons to display" [thumbLabel]="true" [max]="getMax()" [step]="1"
+        <mat-slider *ngIf="component !== 'popup-buttons'"
+                    matTooltip="Number of buttons to display" [thumbLabel]="true" [max]="getMax()" [step]="1"
                     [(ngModel)]="config.show">
         </mat-slider>
 
@@ -95,6 +96,29 @@
 
         </ng-template>
 
+        <ng-template [ngSwitchCase]="'popup-buttons'">
+
+          <share-popup-button *ngIf="ready"
+                              [theme]="config.theme"
+                              [include]="config.include"
+                              [exclude]="config.exclude"
+                              [show]="config.show"
+                              [url]="config.url"
+                              [showIcon]="config.showIcon"
+                              [showText]="config.showText"
+                              [size]="config.size"
+                              [tags]="config.tags"
+                              [autoSetMeta]="config.autoSetMeta"
+                              [title]="config.title"
+                              [description]="config.description"
+                              [image]="config.image"
+                              (closed)="onClosedChanged($event)"
+                              (opened)="onOpenedChanged($event)">
+
+          </share-popup-button>
+
+        </ng-template>
+
       </div>
 
       <div class="lab-outputs">
@@ -114,7 +138,7 @@
     <div class="vertical">
 
       <div class="lab-section" *ngIf="component === 'share-button'">
-        <mat-form-field color="primary"appearance="fill">
+        <mat-form-field color="primary" appearance="fill">
           <mat-label>Button</mat-label>
           <mat-select placeholder="Button" [(ngModel)]="config.button">
             <mat-option *ngFor="let button of config.allButtons" [value]="button">
@@ -125,7 +149,7 @@
       </div>
 
       <div class="lab-section">
-        <mat-form-field color="primary"appearance="fill">
+        <mat-form-field color="primary" appearance="fill">
           <mat-label>Theme</mat-label>
           <mat-select placeholder="Theme" [(ngModel)]="config.theme">
             <mat-option *ngFor="let themeName of config.themes" [value]="themeName">
@@ -136,7 +160,8 @@
 
         <mat-form-field color="primary" appearance="fill">
           <mat-label>URL</mat-label>
-          <input autocomplete="off" matInput [(ngModel)]="config.url" [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
+          <input autocomplete="off" matInput [(ngModel)]="config.url"
+                 [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
           <mat-hint>If empty! It uses the current page URL</mat-hint>
         </mat-form-field>
       </div>
@@ -150,22 +175,26 @@
 
         <mat-form-field color="primary" appearance="fill">
           <mat-label>Title</mat-label>
-          <input autocomplete="off" matInput [(ngModel)]="config.title" [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
+          <input autocomplete="off" matInput [(ngModel)]="config.title"
+                 [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
         </mat-form-field>
 
         <mat-form-field color="primary" appearance="fill">
           <mat-label>Description</mat-label>
-          <input autocomplete="off" matInput [(ngModel)]="config.description" [disabled]="component === 'share-button' && !['twitter', 'linkedin','whatsapp', 'telegram', 'pinterest'].includes(config.button)">
+          <input autocomplete="off" matInput [(ngModel)]="config.description"
+                 [disabled]="component === 'share-button' && !['twitter', 'linkedin','whatsapp', 'telegram', 'pinterest'].includes(config.button)">
         </mat-form-field>
 
         <mat-form-field color="primary" appearance="fill">
           <mat-label>Image</mat-label>
-          <input autocomplete="off" matInput [(ngModel)]="config.image" [disabled]="component === 'share-button' && config.button !== 'pinterest'">
+          <input autocomplete="off" matInput [(ngModel)]="config.image"
+                 [disabled]="component === 'share-button' && config.button !== 'pinterest'">
         </mat-form-field>
 
         <mat-form-field color="primary" appearance="fill">
           <mat-label>Tags</mat-label>
-          <input autocomplete="off" matInput [(ngModel)]="config.tags" [disabled]="component === 'share-button' && !['twitter', 'tumblr'].includes(config.button)">
+          <input autocomplete="off" matInput [(ngModel)]="config.tags"
+                 [disabled]="component === 'share-button' && !['twitter', 'tumblr'].includes(config.button)">
         </mat-form-field>
       </div>
     </div>

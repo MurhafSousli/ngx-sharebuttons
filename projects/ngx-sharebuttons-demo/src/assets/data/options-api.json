@@ -65,5 +65,21 @@
   {
     "name": "lessButtonIcon",
     "description": "Less button icon in ShareButtonsComponent, default: 'minus'"
+  },
+  {
+    "name": "sharerMethod",
+    "description": "Set the method used to open the share window, either 'anchor' or 'window', default: 'anchor'"
+  },
+  {
+    "name": "sharerTarget",
+    "description": "Set the open share target, default: '_blank'"
+  },
+  {
+    "name": "windowObj",
+    "description": "Set the window object, used for Ionic to replace 'Window' with Cordova's 'InAppBrowser', works only when sharerMethod is 'window', default: Window"
+  },
+  {
+    "name": "windowFuncName",
+    "description": "Set the function name used to open the share window, default: 'open'"
   }
 ]
