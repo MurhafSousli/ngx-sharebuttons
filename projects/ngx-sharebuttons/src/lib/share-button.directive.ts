@@ -295,9 +295,10 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
   private _serializeParams(params: ShareParams): string {
     return Object.entries(this.shareButton.params)
     .map(([key, value]) => {
-      if (params[key]) {
-        // Check if share button param has a map function
-        const paramFunc: ShareParamsFunc = this.shareButton.paramsFunc ? this.shareButton.paramsFunc[key] : null;
+      // Check if share button param has a map function
+      const paramFunc: ShareParamsFunc = this.shareButton.paramsFunc ? this.shareButton.paramsFunc[key] : null;
+
+      if (params[key] || paramFunc) {
         const paramValue = paramFunc ? paramFunc(params) : params[key];
         return `${ value }=${ encodeURIComponent(paramValue) }`;
       }
