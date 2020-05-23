@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
+import { Directive, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
 import { SharePopupService } from './share-popup.service';
 
 // import { ShareService, SHARE_BUTTONS } from '../../src/public-api';
@@ -64,7 +64,7 @@ export class SharePopupButtonsDirective implements OnDestroy {
 
   private _popupClosed = this.popupClosed.subscribe(() => this.close());
 
-  constructor(private _sharePopup: SharePopupService, private _share: ShareService, private _el: ElementRef) {
+  constructor(private _sharePopup: SharePopupService, private _share: ShareService) {
   }
 
   @HostListener('click', ['$event']) onClick(e) {
@@ -89,7 +89,7 @@ export class SharePopupButtonsDirective implements OnDestroy {
       closeClick: this.popupClosed,
       hasBackdrop: this.hasBackdrop,
       backdropClass: this.backdropClass
-    }, this._el.nativeElement);
+    });
   }
 
   ngOnDestroy() {

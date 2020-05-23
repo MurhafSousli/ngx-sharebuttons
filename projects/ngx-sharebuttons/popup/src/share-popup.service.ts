@@ -1,5 +1,5 @@
 import { ComponentRef, Injectable, Injector } from '@angular/core';
-import { Overlay, OverlayPositionBuilder, OverlayRef } from '@angular/cdk/overlay';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { ShareButtonsPopup } from './share-buttons-popup';
 import { SHARE_POPUP_OPTIONS, SharePopupOptions } from './share-buttons-popup.model';
@@ -9,28 +9,16 @@ export class SharePopupService {
 
   private _overlayRef: OverlayRef;
 
-  constructor(private _overlay: Overlay, private _injector: Injector, private overlayPositionBuilder: OverlayPositionBuilder) {
+  constructor(private _overlay: Overlay, private _injector: Injector) {
   }
 
-  open(config?: SharePopupOptions, el?: HTMLElement) {
+  open(config?: SharePopupOptions) {
     if (!this._overlayRef || !this._overlayRef.hasAttached()) {
-      const pStrategy = this.overlayPositionBuilder
-      // Create position attached to the elementRef
-      .flexibleConnectedTo(el)
-      .withPositions([{
-        originX: 'end',
-        originY: 'bottom',
-        overlayX: 'start',
-        overlayY: 'top',
-        offsetY: 10,
-        offsetX: 10
-      }]);
-      console.log('open', config);
       this._overlayRef = this._overlay.create({
         backdropClass: 'sb-backdrop',
         hasBackdrop: true,
         panelClass: '',
-        positionStrategy: pStrategy, // this._overlay.position().global().centerHorizontally().centerVertically(),
+        positionStrategy: this._overlay.position().global().centerHorizontally().centerVertically(),
         scrollStrategy: this._overlay.scrollStrategies.block(),
         disposeOnNavigation: true
       });
@@ -39,10 +27,7 @@ export class SharePopupService {
       sharePopupRef.instance.overlayRef = this._overlayRef;
 
       if (config.hasBackdrop) {
-        this._overlayRef.backdropClick().subscribe(() => {
-          console.log('test');
-          this.close();
-        });
+        this._overlayRef.backdropClick().subscribe(() => this.close());
       }
     }
   }
