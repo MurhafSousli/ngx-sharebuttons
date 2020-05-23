@@ -1,5 +1,33 @@
 # Changelog
 
+## 8.0.0-beta.3
+
+- fix(core): Execute the func param that adds the url to the message body even if the description is undefined.
+
+## 8.0.0-beta.2
+
+- feat(popup): Add share buttons pop up module.
+- fix(ShareButtons): Check if include and exclude inputs are null
+- fix(themes): Make main share button styles global, this is useful so external buttons / components can use the share buttons styles as well.
+- fix(button): Add type="button", so it doesn't submit forms, closes [#379](https://github.com/MurhafSousli/ngx-sharebuttons/issues/379).
+- fix(buttons): fix expand button layout and styles.
+- fix(buttons): clean up remove [showCount] input.
+- fix(button, buttons): Fix buttons colors in print preview.
+- feat(button , buttons): Add disabled input to share buttons.
+- enhance(button): Use SMS icon for the SMS button.
+- fix(theme): Add box-shadow transition on click in circle-dark theme
+- feat(core): Ability to override share buttons params from the share config
+
+
+## 8.0.0-beta.1
+
+- feat(core): Ability to add custom share button.
+- feat(core): Ability to define custom share template for each button, in []().
+- fix(button, buttons): Fix buttons colors in print preview (for print button), in []().
+- fix(core): Allow disabling the share buttons, in []().
+- enhance(core): Simplify access the text, icon and color of the share buttons, in []().
+- fix(theme): Add box-shadow transition on click in circle-dark theme, in [74a7f1e](https://github.com/MurhafSousli/ngx-sharebuttons/pull/432/commits/74a7f1e013658b6ac0788a6783aea2a019307939).
+
 ## 8.0.0-beta.0
 
 - fix(core): Fix error in Angular 9, closes [#429](https://github.com/MurhafSousli/ngx-sharebuttons/issues/429).
