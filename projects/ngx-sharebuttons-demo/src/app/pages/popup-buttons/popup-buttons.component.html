@@ -1,6 +1,6 @@
 <ng-scrollbar>
   <header>
-    <h1>Popup Share Buttons Component</h1>
+    <h1>Popup Share Buttons Component <span style="color: orangered">(BETA)</span></h1>
   </header>
 
   <div class="page-content container">
@@ -8,8 +8,8 @@
     <section>
       <section-title>Overview</section-title>
       <p>
-        <code class="hljs" [textContent]="'<share-popup-button></share-popup-button>'"></code>
-        is a button that open share buttons in a popup.
+        <code class="hljs" [textContent]="code.name"></code>
+        is a button that open the share buttons in a popup.
       </p>
       <note icon="book">
         This component comes with <code class="hljs">ngx-sharebuttons/popup</code> <a
@@ -47,7 +47,7 @@
       <hl-code [code]="code.import"></hl-code>
 
       <code-switcher [code]="code.example" class="center">
-        <share-popup-button [show]="11" description="Test me">Share</share-popup-button>
+        <share-popup-button [show]="11">Share</share-popup-button>
       </code-switcher>
     </section>
 
