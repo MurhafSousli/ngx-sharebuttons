@@ -1,24 +1,59 @@
-# NgxSharebuttons
+<p align="center">
+  <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
+  <h1 align="center">Angular Share Buttons</h1>
+  <p align="center"><img src="https://image.ibb.co/eY16JG/buttons.png" alt="Capture" border="0"></p>
+</p>
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+[![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
+[![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-sharebuttons)
+[![NPM](https://img.shields.io/npm/v/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-share/core)
+[![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons)
+[![npm](https://img.shields.io/npm/dt/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-share/core)
+[![npm](https://img.shields.io/npm/dm/@ngx-share/core.svg)](https://www.npmjs.com/package/@ngx-share/core)
+[![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/LICENSE)
 
-## Code scaffolding
 
-Run `ng generate component component-name --project ngx-sharebuttons` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-sharebuttons`.
-> Note: Don't forget to add `--project ngx-sharebuttons` or else it will be added to the default project in your `angular.json` file. 
+## Documentation
 
-## Build
+For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page.
 
-Run `ng build ngx-sharebuttons` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Available buttons
 
-## Publishing
+`Facebook`, `Twitter`, `Google+`, `LinkedIn`, `Pinterest`, `WhatsApp`, `Messenger`, `Reddit`, `Tumblr`, `Telegram`, `Email`, `SMS`, `VK`, `Mix`, `Xing`, `Copy link` and `Print`
 
-After building your library with `ng build ngx-sharebuttons`, go to the dist folder `cd dist/ngx-sharebuttons` and run `npm publish`.
 
-## Running unit tests
+## Older versions
 
-Run `ng test ngx-sharebuttons` to execute the unit tests via [Karma](https://karma-runner.github.io).
+> Very important updates are missing from the old versions, it is recommended that you always have the latest version!
 
-## Further help
+- For `@ngx-share/buttons` v7.x (Angular 7 & 8), see the [WIKI](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page.
+- For `@ngx-share/buttons` v6.x (Angular 6) See the [WIKI documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) + see the [changelog](/CHANGELOG.MD)
+- For `@ngx-share/buttons` v5.x (Angular 5), See this [documentation](/README_V5.md)
+- For `ngx-sharebuttons` v4.x (Angular 5), See this [documentation](/README_V4.md)
+- For `ngx-sharebuttons` v3.x (Angular 2 & 4), See this [documentation](/README_V3.md)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Issues
+
+If you identify any errors in this component, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-sharebuttons/issues).
+
+## Support
+
+[![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
+
+## Author
+
+ **Murhaf Sousli**
+
+- [github/murhafsousli](https://github.com/MurhafSousli)
+- [twitter/murhafsousli](https://twitter.com/MurhafSousli)
+
+## More plugins by the author
+
+- [ngx-gallery](https://github.com/MurhafSousli/ngx-gallery)
+- [ngx-progressbar](https://github.com/MurhafSousli/ngx-progressbar)
+- [ngx-bar-rating](https://github.com/MurhafSousli/ngx-bar-rating)
+- [ngx-disqus](https://github.com/MurhafSousli/ngx-disqus)
+- [ngx-wordpress](https://github.com/MurhafSousli/ngx-wordpress)
+- [ngx-highlightjs](https://github.com/MurhafSousli/ngx-highlightjs)
+- [ngx-scrollbar](https://github.com/MurhafSousli/ngx-scrollbar)
+- [ngx-teximate](https://github.com/MurhafSousli/ngx-teximate)
