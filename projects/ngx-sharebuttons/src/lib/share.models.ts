@@ -67,6 +67,10 @@ export class IShareButton {
   icon?: string | string[] | any;
   /** Share button color */
   color?: string;
+  /** Sharer target used in opening the share window */
+  target?: string;
+  /** Sharer method */
+  method?: SharerMethod;
   /** Sharer base URL */
   share?: {
     desktop?: string;
