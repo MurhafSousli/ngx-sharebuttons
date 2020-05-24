@@ -19,11 +19,11 @@
 
     <div class="sb-content">
 
-      <div *ngIf="showIcon && ref.shareButton" class="sb-icon">
+      <div *ngIf="showIcon && ref?.shareButton" class="sb-icon">
         <fa-icon [icon]="icon || ref.shareButton.icon" [fixedWidth]="true"></fa-icon>
       </div>
 
-      <div *ngIf="showText && ref.shareButton" class="sb-text">
+      <div *ngIf="showText && ref?.shareButton" class="sb-text">
         {{ text || ref.shareButton.text }}
       </div>
 

@@ -7,6 +7,7 @@ import {
   Inject,
   OnChanges,
   OnDestroy,
+  OnInit,
   SimpleChanges,
   SimpleChange,
   EventEmitter,
@@ -28,7 +29,7 @@ import { ShareButtonBase } from './buttons';
 @Directive({
   selector: '[shareButton], [share-button]'
 })
-export class ShareDirective implements OnChanges, OnDestroy {
+export class ShareDirective implements OnChanges, OnDestroy, OnInit {
 
   /** A ref to button class - used to remove previous class when the button type is changed */
   private _buttonClass: string;
@@ -112,15 +113,15 @@ export class ShareDirective implements OnChanges, OnDestroy {
     );
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  init(changes?: SimpleChanges) {
     // Avoid SSR error
     if (this._platform.isBrowser) {
 
-      if (this._shareButtonChanged(changes['shareButtonName'])) {
+      if (!changes || this._shareButtonChanged(changes['shareButtonName'])) {
         this._createShareButton();
       }
 
-      if (this._urlChanged(changes['url'])) {
+      if (!changes || this._urlChanged(changes['url'])) {
         this.url = getValidUrl(
           this.autoSetMeta
             ? this.url || this._getMetaTagContent('og:url')
@@ -135,8 +136,16 @@ export class ShareDirective implements OnChanges, OnDestroy {
     }
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.init(changes);
+  }
+
   ngOnDestroy() {
     this._shareWindowClosed.unsubscribe();
+  }
+
+  ngOnInit() {
+    this.init();
   }
 
   private _createShareButton() {

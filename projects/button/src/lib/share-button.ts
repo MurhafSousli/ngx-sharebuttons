@@ -1,4 +1,14 @@
-import { Component, Input, Output, ViewChild, HostBinding, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  ViewChild,
+  HostBinding,
+  AfterViewInit,
+  EventEmitter,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { ShareService, ShareDirective } from '@ngx-share/core';
 
 @Component({
@@ -7,7 +17,7 @@ import { ShareService, ShareDirective } from '@ngx-share/core';
   styleUrls: ['./share-button.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShareButton {
+export class ShareButton implements AfterViewInit {
 
   /** The sharing link */
   url: string;
@@ -81,7 +91,12 @@ export class ShareButton {
 
   @ViewChild(ShareDirective) ref: ShareDirective;
 
-  constructor(private _share: ShareService) {
+  constructor(private _cd: ChangeDetectorRef,
+              private _share: ShareService) {
+  }
+
+  ngAfterViewInit() {
+    this._cd.detectChanges();
   }
 
   onCount(count: number) {
