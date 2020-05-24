@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.0-beta.4
+
+- feat(core): Ability to define sharer method and target per button, closes [#449](https://github.com/MurhafSousli/ngx-sharebuttons/issues/449).
+
 ## 8.0.0-beta.3
 
 - fix(core): Execute the func param that adds the url to the message body even if the description is undefined.
