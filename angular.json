@@ -57,7 +57,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-sharebuttons-demo",
+            "outputPath": "dist/ngx-sharebuttons-demo/browser",
             "index": "projects/ngx-sharebuttons-demo/src/index.html",
             "main": "projects/ngx-sharebuttons-demo/src/main.ts",
             "polyfills": "projects/ngx-sharebuttons-demo/src/polyfills.ts",
@@ -160,6 +160,53 @@
             "production": {
               "devServerTarget": "ngx-sharebuttons-demo:serve:production"
             }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/ngx-sharebuttons-demo/server",
+            "main": "projects/ngx-sharebuttons-demo/server.ts",
+            "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngx-sharebuttons-demo/src/environments/environment.ts",
+                  "with": "projects/ngx-sharebuttons-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "ngx-sharebuttons-demo:build",
+            "serverTarget": "ngx-sharebuttons-demo:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-sharebuttons-demo:build:production",
+              "serverTarget": "ngx-sharebuttons-demo:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "ngx-sharebuttons-demo:build:production",
+            "serverTarget": "ngx-sharebuttons-demo:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
