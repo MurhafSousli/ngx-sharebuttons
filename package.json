@@ -34,7 +34,7 @@
     "highlight.js": "^9.18.1",
     "ngx-highlightjs": "^4.1.0-beta",
     "ngx-progressbar": "^6.0.2",
-    "ngx-scrollbar": "^7.2.1-beta.0",
+    "ngx-scrollbar": "^7.2.3",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
