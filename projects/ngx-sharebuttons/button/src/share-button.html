@@ -15,14 +15,14 @@
         [style.fontSize.px]="(1 + size/20) * 14"
         [disabled]="disabled">
 
-  <div class="sb-content">
+  <div *ngIf="btn" class="sb-content">
 
     <div *ngIf="showIcon" class="sb-icon">
-      <fa-icon [icon]="icon || btn?.icon" [fixedWidth]="true"></fa-icon>
+      <fa-icon [icon]="icon || btn.icon" [fixedWidth]="true"></fa-icon>
     </div>
 
     <div *ngIf="showText" class="sb-text">
-      {{ text || btn?.text }}
+      {{ text || btn.text }}
     </div>
 
   </div>
