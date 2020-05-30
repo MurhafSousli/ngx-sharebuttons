@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.0-beta.6
+
+- fix(icons): Fix SSR errors in express console, closes [#453](https://github.com/MurhafSousli/ngx-sharebuttons/issues/453) in [b2e8e4c](https://github.com/MurhafSousli/ngx-sharebuttons/pull/432/commits/b2e8e4c3f0b96954954a18de578cc95aded115a3).
+
 ## 8.0.0-beta.4
 
 - feat(core): Ability to define sharer method and target per button, closes [#449](https://github.com/MurhafSousli/ngx-sharebuttons/issues/449).
