@@ -1,7 +1,7 @@
 <p align="center">
   <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
-  <p align="center"><img src="https://image.ibb.co/eY16JG/buttons.png" alt="Capture" border="0"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/8130692/83341721-ed8f7100-a2e6-11ea-8eed-f1a6945487c0.png" alt="Capture" border="0"></p>
 </p>
 
 [![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://ngx-sharebuttons.netlify.app/)
@@ -47,7 +47,7 @@ For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebu
 
 #### Need more buttons?
 
-> The plugin allows users to define their own buttons as well, however, if you like to add a share button to this package feel free to submit a PR, or open an issue with dev docs link of the social network you want to include. 
+> The plugin allows you to add your own buttons as well. if you like to add a new share button to this package feel free to submit a PR, or open an issue with dev docs link of the social network you want to include. 
 
 
 ## Issues
