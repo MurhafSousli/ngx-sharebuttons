@@ -41,6 +41,8 @@
     display: flex;
     height: 100%;
     width: 100%;
+    // Fix clipping the shadow in circle-dark theme in Safari
+    position: relative;
   }
   .sb-text {
     flex: 1;
