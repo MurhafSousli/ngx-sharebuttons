@@ -6,10 +6,10 @@
 
 [![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://ngx-sharebuttons.netlify.app/)
 [![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-sharebuttons)
-[![NPM](https://img.shields.io/npm/v/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
+[![NPM](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons)
-[![npm](https://img.shields.io/npm/dt/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
-[![npm](https://img.shields.io/npm/dm/@ngx-share/core.svg)](https://www.npmjs.com/package/ngx-sharebuttons)
+[![npm](https://img.shields.io/npm/dt/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
+[![npm](https://img.shields.io/npm/dm/ngx-sharebuttons.svg)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/LICENSE)
 
 
@@ -23,6 +23,7 @@ For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebu
 - **ngx-sharebuttons/button** - Share button component to add buttons individually.
 - **ngx-sharebuttons/buttons** - Share buttons component to add a collection of share buttons.
 - **ngx-sharebuttons/popup** - Share buttons popup component (This is *NEW* in version 8 and currently in *BETA*).
+- **ngx-sharebuttons/icons** - Simplifies import the share icons from FontAwesome.
 
 ## Available buttons
 
