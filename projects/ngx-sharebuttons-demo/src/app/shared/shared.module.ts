@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HighlightModule } from 'ngx-highlightjs';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-// import { ShareButtonsModule } from '../../../../ngx-sharebuttons/buttons/src/public_api';
-import { ShareButtonsPopupModule } from '../../../../ngx-sharebuttons/popup/src/share-buttons-popup.module';
+// import { ShareButtonsPopupModule } from '../../../../ngx-sharebuttons/popup/src/share-buttons-popup.module';
+import { ShareButtonsPopupModule } from 'ngx-sharebuttons/popup';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './material.module';
 

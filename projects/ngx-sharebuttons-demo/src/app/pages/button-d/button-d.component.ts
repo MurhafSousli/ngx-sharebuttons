@@ -3,8 +3,6 @@ import { Title } from '@angular/platform-browser';
 import { DocsService } from '../../docs/docs.service';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 
-import { ShareService } from '../../../../../ngx-sharebuttons/src/public-api';
-
 @Component({
   host: {
     class: 'page'
@@ -28,24 +26,24 @@ export class ButtonDComponent implements OnInit {
     example1: `<button mat-fab shareButton="facebook"
                 #fbBtn="shareButton"
                 [style.backgroundColor]="fbBtn?.color">
-  <fa-icon [icon]="fbBtn?.icon" size="lg"></fa-icon>
+  <fa-icon *ngIf="fbBtn" [icon]="fbBtn.icon" size="lg"></fa-icon>
 </button>
 <button mat-fab shareButton="twitter"
                 #twtBtn="shareButton"
                 [style.backgroundColor]="twtBtn?.color">
-  <fa-icon [icon]="twtBtn?.icon" size="lg"></fa-icon>
+  <fa-icon *ngIf="twtBtn" [icon]="twtBtn.icon" size="lg"></fa-icon>
 </button>`,
     example2: `<button mat-icon-button
         shareButton="facebook"
         #fbBtn="shareButton"
         [style.color]="fbBtn?.color">
-  <fa-icon [icon]="fbBtn?.icon" size="lg"></fa-icon>
+  <fa-icon *ngIf="fbBtn" [icon]="fbBtn.icon" size="lg"></fa-icon>
 </button>
 <button mat-icon-button
         shareButton="twitter"
         #twtBtn="shareButton"
         [style.color]="twtBtn?.color">
-  <fa-icon [icon]="twtBtn?.icon" size="lg"></fa-icon>
+  <fa-icon *ngIf="twtBtn" [icon]="twtBtn.icon" size="lg"></fa-icon>
 </button>`
   };
 
@@ -53,7 +51,7 @@ export class ButtonDComponent implements OnInit {
   displayedColumns = ['type', 'name', 'description'];
   dataSource: ApiDataSource | null;
 
-  constructor(private docs: DocsService, private titleService: Title, public share: ShareService) {
+  constructor(private docs: DocsService, private titleService: Title) {
   }
 
   ngOnInit() {

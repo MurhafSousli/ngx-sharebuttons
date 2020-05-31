@@ -33,22 +33,22 @@
       <code-switcher [code]="code.example1" [fill]="true">
         <div class="example example2">
           <button mat-fab shareButton="facebook" #fbBtn="shareButton" [style.backgroundColor]="fbBtn?.color">
-            <fa-icon [icon]="fbBtn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="fbBtn" [icon]="fbBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
           <button mat-fab shareButton="twitter" #twtBtn="shareButton" [style.backgroundColor]="twtBtn?.color">
-            <fa-icon [icon]="twtBtn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="twtBtn" [icon]="twtBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
           <button mat-fab shareButton="linkedin" #inBtn="shareButton" [style.backgroundColor]="inBtn?.color">
-            <fa-icon [icon]="inBtn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="inBtn" [icon]="inBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
           <button mat-fab shareButton="whatsapp" #wBtn="shareButton" [style.backgroundColor]="wBtn?.color">
-            <fa-icon [icon]="wBtn?.icon" size="lg" [style.fontSize.px]="16" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="wBtn" [icon]="wBtn.icon" size="lg" [style.fontSize.px]="16" [fixedWidth]="true"></fa-icon>
           </button>
           <button mat-fab shareButton="telegram" #telBtn="shareButton" [style.backgroundColor]="telBtn?.color">
-            <fa-icon [icon]="telBtn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="telBtn" [icon]="telBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
           <button mat-fab shareButton="pinterest" #pinBtn="shareButton" [style.backgroundColor]="pinBtn?.color">
-            <fa-icon [icon]="pinBtn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="pinBtn" [icon]="pinBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
         </div>
       </code-switcher>
@@ -56,22 +56,22 @@
       <code-switcher [code]="code.example2" [fill]="true">
         <div class="example example3">
           <button mat-icon-button shareButton="facebook" #fb2Btn="shareButton" [style.color]="fb2Btn?.color">
-            <fa-icon [icon]="fb2Btn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="fb2Btn" [icon]="fb2Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
           <button mat-icon-button shareButton="twitter" #twt2Btn="shareButton" [style.color]="twt2Btn?.color">
-            <fa-icon [icon]="twt2Btn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="twt2Btn" [icon]="twt2Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
           <button mat-icon-button shareButton="linkedin" #inBtn="shareButton" [style.color]="inBtn?.color">
-            <fa-icon [icon]="inBtn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="inBtn" [icon]="inBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
           <button mat-icon-button shareButton="whatsapp" #w2Btn="shareButton" [style.color]="w2Btn?.color">
-            <fa-icon [icon]="w2Btn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="w2Btn" [icon]="w2Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
           <button mat-icon-button shareButton="telegram" #tel2Btn="shareButton" [style.color]="tel2Btn?.color">
-            <fa-icon [icon]="tel2Btn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="tel2Btn" [icon]="tel2Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
           <button mat-icon-button shareButton="pinterest" #pinBtn="shareButton" [style.color]="pinBtn?.color">
-            <fa-icon [icon]="pinBtn?.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <fa-icon *ngIf="pinBtn" [icon]="pinBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
         </div>
       </code-switcher>
