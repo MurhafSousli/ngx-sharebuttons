@@ -17,7 +17,7 @@
 
   <div *ngIf="btn" class="sb-content">
 
-    <div *ngIf="showIcon" class="sb-icon">
+    <div *ngIf="showIcon && btn.icon" class="sb-icon">
       <fa-icon [icon]="icon || btn.icon" [fixedWidth]="true"></fa-icon>
     </div>
 
