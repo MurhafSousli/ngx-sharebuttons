@@ -1,7 +1,7 @@
 <p align="center">
   <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
-  <p align="center"><img width="350px" src="https://user-images.githubusercontent.com/8130692/83341721-ed8f7100-a2e6-11ea-8eed-f1a6945487c0.png" alt="Capture" border="0"></p>
+  <p align="center"><img width="500px" src="https://user-images.githubusercontent.com/8130692/83341721-ed8f7100-a2e6-11ea-8eed-f1a6945487c0.png" alt="Capture" border="0"></p>
 </p>
 
 [![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://ngx-sharebuttons.netlify.app/)
