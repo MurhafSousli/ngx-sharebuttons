@@ -4,12 +4,12 @@
   <p align="center"><img src="https://image.ibb.co/eY16JG/buttons.png" alt="Capture" border="0"></p>
 </p>
 
-[![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
+[![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://ngx-sharebuttons.netlify.app/)
 [![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-sharebuttons)
-[![NPM](https://img.shields.io/npm/v/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-share/core)
+[![NPM](https://img.shields.io/npm/v/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons)
-[![npm](https://img.shields.io/npm/dt/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-share/core)
-[![npm](https://img.shields.io/npm/dm/@ngx-share/core.svg)](https://www.npmjs.com/package/@ngx-share/core)
+[![npm](https://img.shields.io/npm/dt/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
+[![npm](https://img.shields.io/npm/dm/@ngx-share/core.svg)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/LICENSE)
 
 
@@ -17,20 +17,37 @@
 
 For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page.
 
+## Packages
+
+- **ngx-sharebuttons** - Share button directive to convert any element to a share button.
+- **ngx-sharebuttons/button** - Share button component to add buttons individually.
+- **ngx-sharebuttons/buttons** - Share buttons component to add a collection of share buttons.
+- **ngx-sharebuttons/popup** - Share buttons popup component (This is *NEW* in version 8 and currently in *BETA*).
+
 ## Available buttons
 
-`Facebook`, `Twitter`, `Google+`, `LinkedIn`, `Pinterest`, `WhatsApp`, `Messenger`, `Reddit`, `Tumblr`, `Telegram`, `Email`, `SMS`, `VK`, `Mix`, `Xing`, `Copy link` and `Print`
+1. Facebook
+2. Twitter
+3. LinkedIn
+4. Pinterest
+5. WhatsApp
+6. Messenger
+7. Reddit
+8. Tumblr
+9. Telegram
+10. Email
+11. SMS
+12. VK
+13. Mix
+14. Xing
+15. Copy link
+16. Print
 
 
-## Older versions
+#### Need more buttons?
 
-> Very important updates are missing from the old versions, it is recommended that you always have the latest version!
+> The plugin allows users to define their own buttons as well, however, if you like to add a share button to this package feel free to submit a PR, or open an issue with dev docs link of the social network you want to include. 
 
-- For `@ngx-share/buttons` v7.x (Angular 7 & 8), see the [WIKI](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) page.
-- For `@ngx-share/buttons` v6.x (Angular 6) See the [WIKI documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) + see the [changelog](/CHANGELOG.MD)
-- For `@ngx-share/buttons` v5.x (Angular 5), See this [documentation](/README_V5.md)
-- For `ngx-sharebuttons` v4.x (Angular 5), See this [documentation](/README_V4.md)
-- For `ngx-sharebuttons` v3.x (Angular 2 & 4), See this [documentation](/README_V3.md)
 
 ## Issues
 

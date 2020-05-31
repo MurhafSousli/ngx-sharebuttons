@@ -1,49 +1,33 @@
 # Changelog
 
-## 8.0.0-beta.6
+## 8.0.0
+
+#### Features:
+
+- feat(icons): Add `ShareIconsModule` to simplify importing the share icons.
+- feat(popup): Add share buttons pop up module **(BETA)**.
+- feat(core): Ability to define sharer method and target per button, closes [#449](https://github.com/MurhafSousli/ngx-sharebuttons/issues/449).
+- feat(core): Ability to override share buttons params from the share config.
+- feat(core): Ability to add custom share button.
+- feat(core): Ability to define custom share template for each button.
+- feat(core): Add IVY Support, closes [#352](https://github.com/MurhafSousli/ngx-sharebuttons/issues/352).
+- feat(button, buttons): Allow disabling the share buttons.
+- feat(core): Simplify access the text, icon and color of the share buttons.
+- feat(button): Use SMS icon for the SMS button.
+
+#### Bugs:
 
 - fix(icons): Fix SSR errors in express console, closes [#453](https://github.com/MurhafSousli/ngx-sharebuttons/issues/453) in [b2e8e4c](https://github.com/MurhafSousli/ngx-sharebuttons/pull/432/commits/b2e8e4c3f0b96954954a18de578cc95aded115a3).
-
-## 8.0.0-beta.4
-
-- feat(core): Ability to define sharer method and target per button, closes [#449](https://github.com/MurhafSousli/ngx-sharebuttons/issues/449).
-
-## 8.0.0-beta.3
-
-- fix(core): Execute the func param that adds the url to the message body even if the description is undefined.
-
-## 8.0.0-beta.2
-
-- feat(popup): Add share buttons pop up module.
-- fix(ShareButtons): Check if include and exclude inputs are null
-- fix(themes): Make main share button styles global, this is useful so external buttons / components can use the share buttons styles as well.
-- fix(button): Add type="button", so it doesn't submit forms, closes [#379](https://github.com/MurhafSousli/ngx-sharebuttons/issues/379).
-- fix(buttons): fix expand button layout and styles.
-- fix(buttons): clean up remove [showCount] input.
-- fix(button, buttons): Fix buttons colors in print preview.
-- feat(button , buttons): Add disabled input to share buttons.
-- enhance(button): Use SMS icon for the SMS button.
-- fix(theme): Add box-shadow transition on click in circle-dark theme
-- feat(core): Ability to override share buttons params from the share config
-
-
-## 8.0.0-beta.1
-
-- feat(core): Ability to add custom share button.
-- feat(core): Ability to define custom share template for each button, in []().
-- fix(button, buttons): Fix buttons colors in print preview (for print button), in []().
-- fix(core): Allow disabling the share buttons, in []().
-- enhance(core): Simplify access the text, icon and color of the share buttons, in []().
-- fix(theme): Add box-shadow transition on click in circle-dark theme, in [74a7f1e](https://github.com/MurhafSousli/ngx-sharebuttons/pull/432/commits/74a7f1e013658b6ac0788a6783aea2a019307939).
-
-## 8.0.0-beta.0
-
-- fix(core): Fix error in Angular 9, closes [#429](https://github.com/MurhafSousli/ngx-sharebuttons/issues/429).
-- feat(ivy): Add IVY Support, closes [#352](https://github.com/MurhafSousli/ngx-sharebuttons/issues/352).
-- regret(core): Remove share count, closes [#407](https://github.com/MurhafSousli/ngx-sharebuttons/issues/407).
+- fix(core): Fix build error in Angular 9, closes [#429](https://github.com/MurhafSousli/ngx-sharebuttons/issues/429).
 - fix(core): Remove G+ button, closes [#427](https://github.com/MurhafSousli/ngx-sharebuttons/issues/427).
-- Combine all packages into one package `ngx-sharebuttons`.
-- Themes are only available as SCSS styles (no CSS files anymore).
+- fix(buttons): Check if `[include]` and `[exclude]` inputs are `null`.
+- fix(buttons): fix the expand button layout and styles.
+- fix(buttons): clean up remove [showCount] input.
+- fix(button, buttons): Fix buttons colors in print preview (for print button).
+- fix(button): Add `type="button"`, so it doesn't submit forms, closes [#379](https://github.com/MurhafSousli/ngx-sharebuttons/issues/379).
+- fix(themes): Make the main share button styles global, this is useful for the external buttons / components can use the share buttons styles.
+- fix(theme): Add box-shadow transition on click in circle-dark theme, in [74a7f1e](https://github.com/MurhafSousli/ngx-sharebuttons/pull/432/commits/74a7f1e013658b6ac0788a6783aea2a019307939).
+- cleanup: Remove share count, closes [#407](https://github.com/MurhafSousli/ngx-sharebuttons/issues/407).
 
 ### Breaking changes
 
