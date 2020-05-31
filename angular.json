@@ -3,31 +3,72 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-share": {
-      "root": "",
-      "sourceRoot": "src",
+    "ngx-sharebuttons": {
+      "projectType": "library",
+      "root": "projects/ngx-sharebuttons",
+      "sourceRoot": "projects/ngx-sharebuttons/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-sharebuttons/tsconfig.lib.json",
+            "project": "projects/ngx-sharebuttons/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-sharebuttons/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-sharebuttons/src/test.ts",
+            "tsConfig": "projects/ngx-sharebuttons/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-sharebuttons/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-sharebuttons/tsconfig.lib.json",
+              "projects/ngx-sharebuttons/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-sharebuttons-demo": {
       "projectType": "application",
-      "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
+      "root": "projects/ngx-sharebuttons-demo",
+      "sourceRoot": "projects/ngx-sharebuttons-demo/src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-share",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "outputPath": "dist/ngx-sharebuttons-demo/browser",
+            "index": "projects/ngx-sharebuttons-demo/src/index.html",
+            "main": "projects/ngx-sharebuttons-demo/src/main.ts",
+            "polyfills": "projects/ngx-sharebuttons-demo/src/polyfills.ts",
+            "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.app.json",
+            "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/ngx-sharebuttons-demo/src/favicon.ico",
+              "projects/ngx-sharebuttons-demo/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "projects/ngx-sharebuttons-demo/src/styles.scss"
             ],
             "scripts": []
           },
@@ -35,8 +76,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/ngx-sharebuttons-demo/src/environments/environment.ts",
+                  "with": "projects/ngx-sharebuttons-demo/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -44,326 +85,131 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-share:build"
+            "browserTarget": "ngx-sharebuttons-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-share:build:production"
+              "browserTarget": "ngx-sharebuttons-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-share:build"
+            "browserTarget": "ngx-sharebuttons-demo:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "styles.scss"
-            ],
-            "scripts": [],
+            "main": "projects/ngx-sharebuttons-demo/src/test.ts",
+            "polyfills": "projects/ngx-sharebuttons-demo/src/polyfills.ts",
+            "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-sharebuttons-demo/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "ngx-share-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-share:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "core": {
-      "root": "projects/core",
-      "sourceRoot": "projects/core/src",
-      "projectType": "library",
-      "prefix": "",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/core/tsconfig.lib.json",
-            "project": "projects/core/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/core/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/core/src/test.ts",
-            "tsConfig": "projects/core/tsconfig.spec.json",
-            "karmaConfig": "projects/core/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/core/tsconfig.lib.json",
-              "projects/core/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "button": {
-      "root": "projects/button",
-      "sourceRoot": "projects/button/src",
-      "projectType": "library",
-      "prefix": "",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/button/tsconfig.lib.json",
-            "project": "projects/button/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/button/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/button/src/test.ts",
-            "tsConfig": "projects/button/tsconfig.spec.json",
-            "karmaConfig": "projects/button/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/button/tsconfig.lib.json",
-              "projects/button/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "buttons": {
-      "root": "projects/buttons",
-      "sourceRoot": "projects/buttons/src",
-      "projectType": "library",
-      "prefix": "",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/buttons/tsconfig.lib.json",
-            "project": "projects/buttons/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/buttons/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/buttons/src/test.ts",
-            "tsConfig": "projects/buttons/tsconfig.spec.json",
-            "karmaConfig": "projects/buttons/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/buttons/tsconfig.lib.json",
-              "projects/buttons/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "demo": {
-      "root": "projects/demo/",
-      "sourceRoot": "projects/demo/src",
-      "projectType": "application",
-      "prefix": "app",
-      "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "docs",
-            "index": "projects/demo/src/index.html",
-            "main": "projects/demo/src/main.ts",
-            "polyfills": "projects/demo/src/polyfills.ts",
-            "tsConfig": "projects/demo/tsconfig.app.json",
-            "assets": [
-              "projects/demo/src/favicon.ico",
-              "projects/demo/src/assets"
+              "projects/ngx-sharebuttons-demo/src/favicon.ico",
+              "projects/ngx-sharebuttons-demo/src/assets"
             ],
             "styles": [
-              "projects/demo/src/styles.scss"
+              "projects/ngx-sharebuttons-demo/src/styles.scss"
             ],
             "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/demo/src/environments/environment.ts",
-                  "with": "projects/demo/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "demo:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "demo:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "demo:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/demo/src/test.ts",
-            "polyfills": "projects/demo/src/polyfills.ts",
-            "tsConfig": "projects/demo/tsconfig.spec.json",
-            "karmaConfig": "projects/demo/karma.conf.js",
-            "styles": [
-              "projects/demo/src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "projects/demo/src/favicon.ico",
-              "projects/demo/src/assets"
-            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/demo/tsconfig.app.json",
-              "projects/demo/tsconfig.spec.json"
+              "projects/ngx-sharebuttons-demo/tsconfig.app.json",
+              "projects/ngx-sharebuttons-demo/tsconfig.spec.json",
+              "projects/ngx-sharebuttons-demo/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        }
-      }
-    },
-    "demo-e2e": {
-      "root": "projects/demo-e2e/",
-      "projectType": "application",
-      "architect": {
+        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/demo-e2e/protractor.conf.js",
-            "devServerTarget": "demo:serve"
+            "protractorConfig": "projects/ngx-sharebuttons-demo/e2e/protractor.conf.js",
+            "devServerTarget": "ngx-sharebuttons-demo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "demo:serve:production"
+              "devServerTarget": "ngx-sharebuttons-demo:serve:production"
             }
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "tsConfig": "projects/demo-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
+            "outputPath": "dist/ngx-sharebuttons-demo/server",
+            "main": "projects/ngx-sharebuttons-demo/server.ts",
+            "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngx-sharebuttons-demo/src/environments/environment.ts",
+                  "with": "projects/ngx-sharebuttons-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "ngx-sharebuttons-demo:build",
+            "serverTarget": "ngx-sharebuttons-demo:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-sharebuttons-demo:build:production",
+              "serverTarget": "ngx-sharebuttons-demo:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "ngx-sharebuttons-demo:build:production",
+            "serverTarget": "ngx-sharebuttons-demo:server:production",
+            "routes": [
+              "/"
             ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
-    }
-  },
-  "defaultProject": "ngx-share"
+    }},
+  "defaultProject": "ngx-sharebuttons-demo"
 }

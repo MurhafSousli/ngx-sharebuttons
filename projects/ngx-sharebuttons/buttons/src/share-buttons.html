@@ -1,0 +1,26 @@
+<div *ngIf="state$ | async; let state" class="sb-group sb-{{theme}}">
+  <share-button *ngFor="let button of state.selectedButtons"
+                [button]="button"
+                [theme]="theme"
+                [url]="url"
+                [title]="title"
+                [description]="description"
+                [image]="image"
+                [tags]="tags"
+                [autoSetMeta]="autoSetMeta"
+                [showIcon]="showIcon"
+                [showText]="showText"
+                [size]="size"
+                (opened)="opened.emit($event)"
+                (closed)="closed.emit($event)"
+                [disabled]="disabled">
+  </share-button>
+  <expand-button *ngIf="state.shownCount < state.userButtons.length"
+                 class="sb-button sb-{{theme}}"
+                 [expanded]="state.expanded"
+                 [moreIcon]="state.moreIcon"
+                 [lessIcon]="state.lessIcon"
+                 [size]="(1 + size/20) * 14"
+                 (toggle)="updateState({expanded: $event})">
+  </expand-button>
+</div>

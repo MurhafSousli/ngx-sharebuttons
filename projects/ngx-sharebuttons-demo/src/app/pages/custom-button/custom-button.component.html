@@ -1,0 +1,29 @@
+<ng-scrollbar>
+  <header>
+    <h1>Add custom share button</h1>
+  </header>
+
+  <div class="page-content container">
+
+    <section>
+      <section-title>Overview</section-title>
+      <p>To use your own share button use the ShareService to add a custom button.</p>
+
+      <share-buttons [include]="['facebook', 'twitter', 'customButton']"></share-buttons>
+
+      <p></p>
+
+      <hl-code [code]="code"></hl-code>
+
+      <p>The available input for sharing parameters are <code class="hljs">url</code>, <code class="hljs">url</code>,
+        <code class="hljs">title</code>, <code class="hljs">description</code>, <code class="hljs">image</code>,
+        <code class="hljs">tags</code> and <code class="hljs">via</code>.
+
+        But that does not mean that you can use all or any of them. that depends on the social network and the parameters
+        they support, most of them only support only the <code class="hljs">url</code>
+
+        Additional data can be added to the button which can be useful.
+    </section>
+
+  </div>
+</ng-scrollbar>

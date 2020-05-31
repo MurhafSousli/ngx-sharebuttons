@@ -1,0 +1,29 @@
+<button type="button"
+        class="sb-wrapper"
+        #btn="shareButton"
+        [shareButton]="button"
+        [url]="url"
+        [image]="image"
+        [title]="title"
+        [description]="description"
+        [tags]="tags"
+        [autoSetMeta]="autoSetMeta"
+        (opened)="opened.emit($event)"
+        (closed)="closed.emit($event)"
+        [class.sb-show-icon]="showIcon"
+        [class.sb-show-text]="showText"
+        [style.fontSize.px]="(1 + size/20) * 14"
+        [disabled]="disabled">
+
+  <div *ngIf="btn" class="sb-content">
+
+    <div *ngIf="showIcon && btn.icon" class="sb-icon">
+      <fa-icon [icon]="icon || btn.icon" [fixedWidth]="true"></fa-icon>
+    </div>
+
+    <div *ngIf="showText" class="sb-text">
+      {{ text || btn.text }}
+    </div>
+
+  </div>
+</button>

@@ -2,31 +2,28 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "importHelpers": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
     "lib": [
-      "es2017",
+      "es2018",
       "dom"
     ],
     "paths": {
-      "core": [
-        "dist/core"
-      ],
-      "button": [
-        "dist/button"
-      ],
-      "buttons": [
-        "dist/buttons"
+      "ngx-sharebuttons": [
+        "dist/ngx-sharebuttons/ngx-sharebuttons",
+        "dist/ngx-sharebuttons"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

@@ -1,5 +1,48 @@
 # Changelog
 
+## 8.0.0
+
+#### Features:
+
+- feat(icons): Add `ShareIconsModule` to simplify importing the share icons.
+- feat(popup): Add share buttons pop up module **(BETA)**.
+- feat(core): Ability to define sharer method and target per button, closes [#449](https://github.com/MurhafSousli/ngx-sharebuttons/issues/449).
+- feat(core): Ability to override share buttons params from the share config.
+- feat(core): Ability to add custom share button.
+- feat(core): Ability to define custom share template for each button.
+- feat(core): Add IVY Support, closes [#352](https://github.com/MurhafSousli/ngx-sharebuttons/issues/352).
+- feat(button, buttons): Allow disabling the share buttons.
+- feat(core): Simplify access the text, icon and color of the share buttons.
+- feat(button): Use SMS icon for the SMS button.
+
+#### Bugs:
+
+- fix(icons): Fix SSR errors in express console, closes [#453](https://github.com/MurhafSousli/ngx-sharebuttons/issues/453) in [b2e8e4c](https://github.com/MurhafSousli/ngx-sharebuttons/pull/432/commits/b2e8e4c3f0b96954954a18de578cc95aded115a3).
+- fix(core): Fix build error in Angular 9, closes [#429](https://github.com/MurhafSousli/ngx-sharebuttons/issues/429).
+- fix(core): Remove G+ button, closes [#427](https://github.com/MurhafSousli/ngx-sharebuttons/issues/427).
+- fix(buttons): Check if `[include]` and `[exclude]` inputs are `null`.
+- fix(buttons): fix the expand button layout and styles.
+- fix(buttons): clean up remove [showCount] input.
+- fix(button, buttons): Fix buttons colors in print preview (for print button).
+- fix(button): Add `type="button"`, so it doesn't submit forms, closes [#379](https://github.com/MurhafSousli/ngx-sharebuttons/issues/379).
+- fix(themes): Make the main share button styles global, this is useful for the external buttons / components can use the share buttons styles.
+- fix(theme): Add box-shadow transition on click in circle-dark theme, in [74a7f1e](https://github.com/MurhafSousli/ngx-sharebuttons/pull/432/commits/74a7f1e013658b6ac0788a6783aea2a019307939).
+- cleanup: Remove share count, closes [#407](https://github.com/MurhafSousli/ngx-sharebuttons/issues/407).
+
+### Breaking changes
+
+**Before:**
+
+- Packages were publish into 3 different sub-packages `@ngx-share/core`, `@ngx-share/button` and `@ngx-share/buttons`.
+- Themes were distributed as SCSS and CSS files.
+
+**After:**
+
+- Packages are combined into 1 package `ngx-sharebuttons`, `ngx-sharebuttons/button` and `ngx-sharebuttons/buttons`
+- Themes are distributed as SCSS files only.
+- Themes are imported from `ngx-sharebuttons/themes/{{themeName}}`
+
+
 ## 7.1.4
 
 - fix(core): Fix Whatsapp for iOS Issue, closes [#386](https://github.com/MurhafSousli/ngx-sharebuttons/issues/386) in [4c3858f](https://github.com/MurhafSousli/ngx-sharebuttons/pull/406/commits/4c3858fe31e766bb341b89b3c8b5667f51b6ecfe).

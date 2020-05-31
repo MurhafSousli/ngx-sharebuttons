@@ -1,0 +1,7 @@
+@import "../../themes/variables";
+
+/** fix expand button position when size is small */
+:host {
+  display: inherit;
+  --sb-margin: #{$sb-margin};
+}
