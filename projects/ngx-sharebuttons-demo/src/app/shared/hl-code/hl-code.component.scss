@@ -1,0 +1,53 @@
+@import '../../../assets/style/variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 100%;
+  margin-bottom: 2em;
+  border-radius: .5em;
+  overflow: hidden;
+
+  .ng-scrollbar {
+    --scrollbar-padding: 0px;
+    --scrollbar-size: 6px;
+    --scrollbar-border-radius: 0px;
+    --scrollbar-thumb-hover-color: #{$action-color};
+    background: #282c34;
+    box-shadow: $box-shadow;
+
+    &:hover, &:active {
+      --scrollbar-size: 10px;
+    }
+  }
+}
+
+button {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+
+.copy-message {
+  //position: absolute;
+  //left: 0;
+  //right: 0;
+  //top: 0;
+  //bottom: 0;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 0.2em;
+}
+
+span {
+  margin-left: 10px;
+}
+
+pre {
+  min-height: 100%;
+}

@@ -1,0 +1,5 @@
+@import "../../themes/variables";
+
+:host {
+  --sb-margin: #{$sb-margin};
+}

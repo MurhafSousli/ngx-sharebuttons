@@ -1,0 +1,113 @@
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+:host, .sb-close-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h3 {
+  margin: 5px;
+  top: 5px;
+  position: absolute;
+}
+
+.sb-overlay {
+  max-width: 100%;
+  max-height: 100%;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 1em;
+}
+
+@mixin fullscreen() {
+  width: 100%;
+  ::ng-deep {
+    share-buttons-popup {
+      max-width: unset;
+      max-height: unset;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+}
+
+::ng-deep {
+  share-buttons-popup {
+    position: relative;
+    display: block;
+    background: white;
+    max-width: 94vw;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+
+    &:focus {
+      outline: none;
+    }
+
+    share-buttons {
+      margin-top: 30px;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .sb-backdrop {
+    background-color: rgba(0, 0, 0, .32);
+  }
+
+  .fullscreen {
+    @include fullscreen();
+  }
+
+  .sb-overlay {
+    margin: auto;
+
+    @media only screen and (max-width: 480px) {
+      @include fullscreen();
+    }
+
+    .sb-button {
+      flex: 1;
+    }
+
+    .sb-wrapper {
+      width: 100%;
+
+      .sb-icon {
+        flex: 1;
+      }
+
+      .sb-text {
+        flex: 2;
+      }
+    }
+  }
+
+  .sb-close-overlay {
+    color: #2E4057;
+    position: absolute;
+    margin: 5px;
+    right: 0;
+    top: 0;
+    z-index: 60;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    @media only screen and (max-width: 480px) {
+      margin: 2px;
+    }
+  }
+
+}

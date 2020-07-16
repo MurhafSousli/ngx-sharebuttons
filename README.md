@@ -1,16 +1,16 @@
 <p align="center">
   <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
-  <p align="center"><img src="https://image.ibb.co/eY16JG/buttons.png" alt="Capture" border="0"></p>
+  <p align="center"><img width="500px" src="https://user-images.githubusercontent.com/8130692/83341721-ed8f7100-a2e6-11ea-8eed-f1a6945487c0.png" alt="Capture" border="0"></p>
 </p>
 
-[![Financial Contributors on Open Collective](https://opencollective.com/ngx-sharebuttons/all/badge.svg?label=financial+contributors)](https://opencollective.com/ngx-sharebuttons) [![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-sharebuttons/)
+[![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://ngx-sharebuttons.netlify.app/)
 [![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-sharebuttons)
-[![NPM](https://img.shields.io/npm/v/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-share/core)
+[![NPM](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons)
-[![npm](https://img.shields.io/npm/dt/@ngx-share/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-share/core)
-[![npm](https://img.shields.io/npm/dm/@ngx-share/core.svg)](https://www.npmjs.com/package/@ngx-share/core)
-[![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/dt/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
+[![npm](https://img.shields.io/npm/dm/ngx-sharebuttons.svg)](https://www.npmjs.com/package/ngx-sharebuttons)
+[![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/LICENSE)[![Financial Contributors on Open Collective](https://opencollective.com/ngx-sharebuttons/all/badge.svg?label=financial+contributors)](https://opencollective.com/ngx-sharebuttons) 
 
 
 ## Documentation
@@ -19,23 +19,36 @@ For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebu
 
 ## Packages
 
-The plugin is divided into 3 modules to make it possible to include only the stuff you use.
-
-- **@ngx-share/core** - Share button directive to convert any element to a share button, check the [compodoc](https://murhafsousli.github.io/ngx-sharebuttons/core).
-- **@ngx-share/button** - Share button component to add buttons individually, check the [compodoc](https://murhafsousli.github.io/ngx-sharebuttons/button).
-- **@ngx-share/buttons** - Share buttons component to add a collection of share buttons, check the [compodoc](https://murhafsousli.github.io/ngx-sharebuttons/buttons).
+- **ngx-sharebuttons** - Share button directive to convert any element to a share button.
+- **ngx-sharebuttons/button** - Share button component to add buttons individually.
+- **ngx-sharebuttons/buttons** - Share buttons component to add a collection of share buttons.
+- **ngx-sharebuttons/popup** - Share buttons popup component (This is *NEW* in version 8 and currently in *BETA*).
+- **ngx-sharebuttons/icons** - Simplifies import the share icons from FontAwesome.
 
 ## Available buttons
 
-`Facebook`, `Twitter`, `Google+`, `LinkedIn`, `Pinterest`, `WhatsApp`, `Messenger`, `Reddit`, `Tumblr`, `Telegram`, `Email`, `SMS`, `VK`, `Mix`, `Xing`, `Copy link` and `Print`
+1. Facebook
+2. Twitter
+3. LinkedIn
+4. Pinterest
+5. WhatsApp
+6. Messenger
+7. Reddit
+8. Tumblr
+9. Telegram
+10. Email
+11. SMS
+12. VK
+13. Mix
+14. Xing
+15. Copy link
+16. Print
 
 
-## Older versions
+#### Need more buttons?
 
-- For `@ngx-share/buttons` v6.x (Angular 6) See the [WIKI documentation](https://github.com/MurhafSousli/ngx-sharebuttons/wiki) + see the [changelog](/CHANGELOG.MD)
-- For `@ngx-share/buttons` v5.x (Angular 5), See this [documentation](/README_V5.md)
-- For `ngx-sharebuttons` v4.x (Angular 5), See this [documentation](/README_V4.md)
-- For `ngx-sharebuttons` v3.x (Angular 2 & 4), See this [documentation](/README_V3.md)
+> The plugin allows you to add your own buttons as well. if you like to add a new share button to this package feel free to submit a PR, or open an issue with dev docs link of the social network you want to include. 
+
 
 ## Issues
 
