@@ -315,6 +315,7 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
       }
       return '';
     })
+    .filter(urlParam => urlParam !== '')
     .join('&');
   }
 }
