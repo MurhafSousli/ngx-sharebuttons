@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.0.1
+
+- fix(theme): button shadow cut off in Safari, closes [#399](https://github.com/MurhafSousli/ngx-sharebuttons/issues/399) in [b19c831](https://github.com/MurhafSousli/ngx-sharebuttons/pull/454/commits/b19c8313894c098b24ec327d6bff35657ffa5df4).
+- fix(share-button): Skip empty params in shareUrl serialization, closes [#478](https://github.com/MurhafSousli/ngx-sharebuttons/issues/478) in [7848d29](https://github.com/MurhafSousli/ngx-sharebuttons/pull/479/commits/7848d294ff6087542c530e361ba570972695adbf).
+- fix(Pinterest): Remove country specific default for pinterest domain, closes [#475](https://github.com/MurhafSousli/ngx-sharebuttons/issues/475) in [c3f418f](https://github.com/MurhafSousli/ngx-sharebuttons/pull/476/commits/c3f418f3effb2321d3fe252b8e5884a5df1d7545).
+
 ## 8.0.0
 
 #### Features:
