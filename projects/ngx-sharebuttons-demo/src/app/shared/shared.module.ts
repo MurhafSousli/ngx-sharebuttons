@@ -69,9 +69,6 @@ import { NoteComponent } from './note/note.component';
     SectionTitleComponent,
     HlCodeComponent,
     NoteComponent
-  ],
-  entryComponents: [
-    CodeDialogComponent
   ]
 })
 export class SharedModule {

@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-sharebuttons/master/assets/logo.svg">
+  <img height="200px" width="200px" style="text-align: center;" src="https://rawcdn.githack.com/MurhafSousli/ngx-sharebuttons/13279ed77c47fe9dd7b61e4dad3ded6d02488c2f/projects/ngx-sharebuttons-demo/src/assets/img/logo.svg">
   <h1 align="center">Angular Share Buttons</h1>
   <p align="center"><img width="500px" src="https://user-images.githubusercontent.com/8130692/83341721-ed8f7100-a2e6-11ea-8eed-f1a6945487c0.png" alt="Capture" border="0"></p>
 </p>
@@ -10,7 +10,8 @@
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons)
 [![npm](https://img.shields.io/npm/dt/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![npm](https://img.shields.io/npm/dm/ngx-sharebuttons.svg)](https://www.npmjs.com/package/ngx-sharebuttons)
-[![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/LICENSE)[![Financial Contributors on Open Collective](https://opencollective.com/ngx-sharebuttons/all/badge.svg?label=financial+contributors)](https://opencollective.com/ngx-sharebuttons) 
+[![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/LICENSE)
+[![Financial Contributors on Open Collective](https://opencollective.com/ngx-sharebuttons/all/badge.svg?label=financial+contributors)](https://opencollective.com/ngx-sharebuttons) 
 
 
 ## Documentation

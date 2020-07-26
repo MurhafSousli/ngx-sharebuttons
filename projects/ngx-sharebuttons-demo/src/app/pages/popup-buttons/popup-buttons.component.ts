@@ -18,7 +18,8 @@ export class PopupButtonsComponent implements OnInit {
   code = {
     name: '<share-popup-button>, <button shareButtonsPopup>',
     example: '<share-popup-button>Share</share-popup-button>',
-    styles: `@import '~ngx-sharebuttons/themes/default/default-theme';`,
+    styles: `@import '~@angular/cdk/overlay-prebuilt.css'; /** Add this only for non-material project */
+@import '~ngx-sharebuttons/themes/default/default-theme';`,
     npm: `npm i @ngx-sharebuttons @angular/cdk
 npm i @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons`,
     import: `import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';

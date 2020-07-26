@@ -6,6 +6,16 @@
 - fix(share-button): Skip empty params in shareUrl serialization, closes [#478](https://github.com/MurhafSousli/ngx-sharebuttons/issues/478) in [7848d29](https://github.com/MurhafSousli/ngx-sharebuttons/pull/479/commits/7848d294ff6087542c530e361ba570972695adbf).
 - fix(Pinterest): Remove country specific default for pinterest domain, closes [#475](https://github.com/MurhafSousli/ngx-sharebuttons/issues/475) in [c3f418f](https://github.com/MurhafSousli/ngx-sharebuttons/pull/476/commits/c3f418f3effb2321d3fe252b8e5884a5df1d7545).
 
+### Possible breaking changes:
+
+#### Share pop-up component:
+
+- refactor(share-popup): The CDK Overlay styles have been removed from the package, if you are using non-material project, you will need to import it manually in your global styles
+
+```scss
+@import '~@angular/cdk/overlay-prebuilt.css';
+```
+
 ## 8.0.0
 
 #### Features:
