@@ -60,7 +60,7 @@ export const SHARE_BUTTONS: IShareButtons = {
     icon: ['fab', 'pinterest-p'],
     color: '#BD091D',
     share: {
-      desktop: 'https://in.pinterest.com/pin/create/button/?'
+      desktop: 'https://pinterest.com/pin/create/button/?'
     },
     params: {
       url: 'url',
