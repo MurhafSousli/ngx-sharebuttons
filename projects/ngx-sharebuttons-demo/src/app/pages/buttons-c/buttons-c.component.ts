@@ -18,7 +18,7 @@ export class ButtonsCComponent implements OnInit {
     name: '<share-buttons>',
     example: '<share-buttons show="11"></share-buttons>',
     styles: `@import '~ngx-sharebuttons/themes/default/default-theme';`,
-    npm: `npm i @ngx-sharebuttons @angular/cdk
+    npm: `npm i ngx-sharebuttons @angular/cdk
 npm i @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons`,
     import: `import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 
