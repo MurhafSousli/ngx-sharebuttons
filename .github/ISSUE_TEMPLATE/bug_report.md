@@ -37,7 +37,7 @@ Angular:
 Angular CDK:
 Angular CLI:
 Angular-fontawesome:
-Share buttons:
+ngx-sharebuttons:
 
 
 #### Is there anything else we should know?
