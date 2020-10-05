@@ -13,18 +13,8 @@ about: Describe this issue template's purpose here.
 
 - [x] Question
 
-#### What is the expected behavior?
+#### Description
 
-
-#### What is the current behavior?
-
-
-#### What are the steps to reproduce?
-
-<!-- 
-Providing a StackBlitz reproduction is the *best* way to share your issue. <br/>
-StackBlitz starter: https://stackblitz.com/edit/ngx-sharebuttons<br/>
--->
 
 
 #### What is the use-case or motivation for changing an existing behavior?
@@ -34,10 +24,5 @@ StackBlitz starter: https://stackblitz.com/edit/ngx-sharebuttons<br/>
 #### Which versions are you using for the following packages?
 
 Angular:
-Angular CDK:
-Angular CLI:
-Angular-fontawesome:
-Share buttons:
+ngx-sharebuttons:
 
-
-#### Is there anything else we should know?
