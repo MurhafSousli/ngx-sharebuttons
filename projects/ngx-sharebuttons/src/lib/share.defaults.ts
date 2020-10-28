@@ -174,7 +174,7 @@ export const SHARE_BUTTONS: IShareButtons = {
     icon: ['fab', 'xing'],
     color: '#006567',
     share: {
-      desktop: 'https://www.xing.com/app/user?op=share&'
+      desktop: 'https://www.xing.com/spi/shares/new?'
     },
     params: {
       url: 'url'
