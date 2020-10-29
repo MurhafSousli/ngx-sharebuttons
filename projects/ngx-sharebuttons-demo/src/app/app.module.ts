@@ -54,6 +54,7 @@ export function getHighlightLanguages() {
     {
       provide: HIGHLIGHT_OPTIONS,
       useValue: {
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
         languages: getHighlightLanguages()
       }
     },
