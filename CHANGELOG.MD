@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.2
+
+- fix(core): Update Xing share URL, closes [#498](https://github.com/MurhafSousli/ngx-sharebuttons/issues/498) in [4b0c745](https://github.com/JustDoItSascha/ngx-sharebuttons/commit/4b0c7458779a87d6823b81ed21696dab5776692f).
+
 ## 8.0.1
 
 - fix(theme): button shadow cut off in Safari, closes [#399](https://github.com/MurhafSousli/ngx-sharebuttons/issues/399) in [b19c831](https://github.com/MurhafSousli/ngx-sharebuttons/pull/454/commits/b19c8313894c098b24ec327d6bff35657ffa5df4).
