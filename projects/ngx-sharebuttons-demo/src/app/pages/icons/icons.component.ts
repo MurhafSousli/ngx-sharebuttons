@@ -23,7 +23,7 @@ export class AppModule { }`,
     icons: `import './icons';`,
     libraryMethod: `import { ShareButtonsModule } from 'ngx-sharebuttons';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 
 const icons = [
   // ... other icons
@@ -45,19 +45,7 @@ export class AppModule {
   constructor(iconLibrary: FaIconLibrary) {
     iconLibrary.addIcons(...icons);
   }
-}`,
-    literalMethod: `import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
-const shareProp = {
-  facebook: {
-    icon: faFacebookSquare
-  }
-};
-@NgModule({
-  imports: [
-    ShareButtonsModule.withConfig({ prop: shareProp })
-  ]
-})
-`
+}`
   };
 
 }
