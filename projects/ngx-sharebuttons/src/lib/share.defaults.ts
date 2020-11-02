@@ -53,6 +53,19 @@ export const SHARE_BUTTONS: IShareButtons = {
       description: 'summary'
     }
   },
+  googleCurrents: {
+    type: 'googlecurrents',
+    text: 'Google Currents',
+    ariaLabel: 'Share on Google Currents',
+    icon: ['fab', 'google'],
+    color: '#4285f4',
+    share: {
+      desktop: 'https://currents.google.com/share?'
+    },
+    params: {
+      url: 'url'
+    }
+  },
   pinterest: {
     type: 'pinterest',
     text: 'Pinterest',

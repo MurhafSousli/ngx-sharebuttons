@@ -5,6 +5,7 @@ $sb-accent: #fff !default;
 $sb-facebook: #4267B2 !default;
 $sb-twitter: #00acee !default;
 $sb-google: #db4437 !default;
+$sb-googlecurrents: #174ea6 !default;
 $sb-mix: #ff8226 !default;
 $sb-linkedin: #006fa6 !default;
 $sb-pinterest: #bd081c !default;
@@ -43,6 +44,7 @@ $sb-buttons: (
   facebook: $sb-facebook,
   twitter: $sb-twitter,
   google: $sb-google,
+  googlecurrents: $sb-googlecurrents,
   mix: $sb-mix,
   line: $sb-line,
   linkedin: $sb-linkedin,

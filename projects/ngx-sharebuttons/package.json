@@ -18,6 +18,8 @@
     "share-links",
     "share-buttons",
     "sharebuttons",
+    "media",
+    "social",
     "share",
     "buttons",
     "facebook",
@@ -25,7 +27,7 @@
     "pinterest",
     "tumblr",
     "stumbleupon",
-    "googleplus",
+    "googlecurrents",
     "linkedin",
     "reddit",
     "telegram",
@@ -36,7 +38,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.3"
   },
   "peerDependencies": {
     "@angular/common": ">=8.0.0",

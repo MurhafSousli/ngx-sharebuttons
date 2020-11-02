@@ -40,6 +40,7 @@ export interface IShareButtons {
   twitter?: IShareButton;
   linkedin?: IShareButton;
   google?: IShareButton;
+  googleCurrents?: IShareButton;
   tumblr?: IShareButton;
   mix?: IShareButton;
   pinterest?: IShareButton;

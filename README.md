@@ -31,6 +31,7 @@ For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebu
 1. Facebook
 2. Twitter
 3. LinkedIn
+4. Google Currents
 4. Pinterest
 5. WhatsApp
 6. Messenger
