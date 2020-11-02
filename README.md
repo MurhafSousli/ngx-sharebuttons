@@ -29,22 +29,22 @@ For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebu
 ## Available buttons
 
 1. Facebook
-2. Twitter
-3. LinkedIn
-4. Google Currents
-4. Pinterest
-5. WhatsApp
-6. Messenger
-7. Reddit
-8. Tumblr
-9. Telegram
-10. Email
-11. SMS
-12. VK
-13. Mix
-14. Xing
-15. Copy link
-16. Print
+1. Twitter
+1. LinkedIn
+1. Google Currents
+1. Pinterest
+1. WhatsApp
+1. Messenger
+1. Reddit
+1. Tumblr
+1. Telegram
+1. Email
+1. SMS
+1. VK
+1. Mix
+1. Xing
+1. Copy link
+1. Print
 
 
 #### Need more buttons?
