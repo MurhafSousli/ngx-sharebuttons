@@ -58,7 +58,7 @@ export const SHARE_BUTTONS: IShareButtons = {
     text: 'Google Currents',
     ariaLabel: 'Share on Google Currents',
     icon: ['fab', 'google'],
-    color: '#4285f4',
+    color: '#174ea6',
     share: {
       desktop: 'https://currents.google.com/share?'
     },
