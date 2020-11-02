@@ -44,6 +44,7 @@ export interface IShareButtons {
   mix?: IShareButton;
   pinterest?: IShareButton;
   reddit?: IShareButton;
+  viber?: IShareButton;
   vk?: IShareButton;
   telegram?: IShareButton;
   messenger?: IShareButton;

@@ -110,6 +110,20 @@ export const SHARE_BUTTONS: IShareButtons = {
       url: 'url'
     }
   },
+  viber: {
+    type: 'viber',
+    text: 'Viber',
+    ariaLabel: 'Share on Viber',
+    icon: ['fab', 'viber'],
+    color: '#665ca7',
+    share: {
+      android: 'viber://forward?',
+      ios: 'viber://forward?'
+    },
+    params: {
+      description: 'text'
+    }
+  },
   vk: {
     type: 'vk',
     text: 'VKontakte',
