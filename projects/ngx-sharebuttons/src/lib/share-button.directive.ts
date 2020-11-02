@@ -74,6 +74,12 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
   /** Sets the tags parameter for sharing on Twitter and Tumblr */
   @Input() tags: string = this._share.config.tags;
 
+  /** Sets the redirectUrl parameter for sharing on Facebook Messenger */
+  @Input() redirectUrl: string = this._share.config.redirectUrl;
+
+  /** Sets the appId parameter for sharing on Facebook Messenger */
+  @Input() appId: string = this._share.config.appId;
+
   /** Stream that emits when share dialog is opened */
   @Output() opened = new EventEmitter<string>();
 
@@ -212,7 +218,9 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
       description: this.description || this._getMetaTagContent('og:description'),
       image: this.image || this._getMetaTagContent('og:image'),
       via: this._share.config.twitterAccount,
-      tags: this.tags
+      tags: this.tags,
+      redirectUrl: this.redirectUrl,
+      appId: this.appId
     };
   }
 
@@ -227,6 +235,8 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
       image: this.image,
       tags: this.tags,
       via: this._share.config.twitterAccount,
+      redirectUrl: this.redirectUrl,
+      appId: this.appId,
     };
   }
 

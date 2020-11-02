@@ -64,6 +64,8 @@
                         [showIcon]="config.showIcon"
                         [showText]="config.showText"
                         [tags]="config.tags"
+                        [redirectUrl]="config.redirectUrl"
+                        [appId]="config.appId"
                         [autoSetMeta]="config.autoSetMeta"
                         [title]="config.title"
                         [description]="config.description"
@@ -86,6 +88,8 @@
                          [showText]="config.showText"
                          [size]="config.size"
                          [tags]="config.tags"
+                         [redirectUrl]="config.redirectUrl"
+                         [appId]="config.appId"
                          [autoSetMeta]="config.autoSetMeta"
                          [title]="config.title"
                          [description]="config.description"
@@ -108,6 +112,8 @@
                               [showText]="config.showText"
                               [size]="config.size"
                               [tags]="config.tags"
+                              [redirectUrl]="config.redirectUrl"
+                              [appId]="config.appId"
                               [autoSetMeta]="config.autoSetMeta"
                               [title]="config.title"
                               [description]="config.description"
@@ -195,6 +201,20 @@
           <mat-label>Tags</mat-label>
           <input autocomplete="off" matInput [(ngModel)]="config.tags"
                  [disabled]="component === 'share-button' && !['twitter', 'tumblr'].includes(config.button)">
+        </mat-form-field>
+
+        <mat-form-field color="primary" appearance="fill">
+          <mat-label>Redirect URL</mat-label>
+          <input autocomplete="off" matInput [(ngModel)]="config.redirectUrl"
+                 [disabled]="component === 'share-button' && !['messenger'].includes(config.button)">
+          <mat-hint>Redirect URL for Facebook Messenger.</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field color="primary" appearance="fill">
+          <mat-label>App ID</mat-label>
+          <input autocomplete="off" matInput [(ngModel)]="config.appId"
+                 [disabled]="component === 'share-button' && !['messenger'].includes(config.button)">
+          <mat-hint>App ID for Facebook Messenger.</mat-hint>
         </mat-form-field>
       </div>
     </div>

@@ -32,6 +32,16 @@
     "description": "Override tags for Tumblr and Twitter, default: null"
   },
   {
+    "name": "redirectUrl",
+    "description": "Override redirectUrl for Facebook Messenger, default: null",
+    "type": "input"
+  },
+  {
+    "name": "appId",
+    "description": "Override appId for Facebook Messenger, default: null",
+    "type": "input"
+  },
+  {
     "name": "gaTracking",
     "description": "Roll sharing stats automatically into your Google Analytics, default: false",
     "type": "input"

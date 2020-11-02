@@ -10,6 +10,8 @@ export interface SharePopupOptions {
   description: string;
   image: string;
   tags: string;
+  redirectUrl: string;
+  appId: string;
   autoSetMeta: boolean;
   showIcon: boolean;
   showText: boolean;

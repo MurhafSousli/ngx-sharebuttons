@@ -50,6 +50,16 @@
     "type": "input"
   },
   {
+    "name": "redirectUrl",
+    "description": "Override redirectUrl for Facebook Messenger, default: null",
+    "type": "input"
+  },
+  {
+    "name": "appId",
+    "description": "Override appId for Facebook Messenger, default: null",
+    "type": "input"
+  },
+  {
     "name": "showIcon",
     "description": "Show buttons icon, default: true",
     "type": "input"

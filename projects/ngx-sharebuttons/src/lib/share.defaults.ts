@@ -144,11 +144,14 @@ export const SHARE_BUTTONS: IShareButtons = {
     icon: ['fab', 'facebook-messenger'],
     color: '#0080FF',
     share: {
+      desktop: 'https://www.facebook.com/dialog/send?',
       android: 'fb-messenger://share/?',
       ios: 'fb-messenger://share/?'
     },
     params: {
-      url: 'link'
+      url: 'link',
+      redirectUrl: 'redirect_uri',
+      appId: 'app_id'
     }
   },
   whatsapp: {

@@ -19,6 +19,8 @@ import { ShareService } from 'ngx-sharebuttons';
               [showText]="showText"
               [size]="size"
               [tags]="tags"
+              [redirectUrl]="redirectUrl"
+              [appId]="appId"
               [autoSetMeta]="autoSetMeta"
               [title]="title"
               [description]="description"
@@ -70,6 +72,12 @@ export class SharePopupComponent {
 
   /** The tags parameter for sharing on Twitter and Tumblr */
   @Input() tags: string;
+
+  /** The redirectUrl parameter for sharing on Facebook Messenger */
+  @Input() redirectUrl: string;
+
+  /** The appId parameter for sharing on Facebook Messenger */
+  @Input() appId: string;
 
   /** Sets meta tags from document head, useful when SEO is available */
   @Input() autoSetMeta: boolean;

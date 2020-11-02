@@ -23,6 +23,8 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
     title: undefined,
     description: undefined,
     tags: undefined,
+    redirectUrl: undefined,
+    appId: undefined,
     image: undefined,
     showIcon: true,
     showText: false,
@@ -144,6 +146,14 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
 
     if (this.config.tags) {
       code += `\n [tags]="'${this.config.tags}'"`;
+    }
+
+    if (this.config.redirectUrl) {
+      code += `\n [redirectUrl]="'${this.config.redirectUrl}'"`;
+    }
+
+    if (this.config.appId) {
+      code += `\n [appId]="'${this.config.appId}'"`;
     }
 
     if (!this.config.autoSetMeta) {

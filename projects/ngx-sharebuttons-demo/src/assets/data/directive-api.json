@@ -30,6 +30,16 @@
     "type": "input"
   },
   {
+    "name": "redirectUrl",
+    "description": "Override redirectUrl for Facebook Messenger, default: null",
+    "type": "input"
+  },
+  {
+    "name": "appId",
+    "description": "Override appId for Facebook Messenger, default: null",
+    "type": "input"
+  },
+  {
     "name": "opened",
     "description": "Stream that emits when share dialog has opened",
     "type": "output"
