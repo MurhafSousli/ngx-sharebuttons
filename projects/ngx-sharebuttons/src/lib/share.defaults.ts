@@ -122,7 +122,8 @@ export const SHARE_BUTTONS: IShareButtons = {
     },
     params: {
       description: 'text'
-    }
+    },
+    paramsFunc: linkInDescription
   },
   vk: {
     type: 'vk',
