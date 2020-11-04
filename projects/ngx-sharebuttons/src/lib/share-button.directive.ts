@@ -16,6 +16,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
 import { Platform } from '@angular/cdk/platform';
+import { Clipboard } from '@angular/cdk/clipboard';
 import { EMPTY, Observable, Subject, Subscriber } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
@@ -83,6 +84,7 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
   constructor(_el: ElementRef,
               private _meta: Meta,
               private _platform: Platform,
+              private _clipboard: Clipboard,
               private _share: ShareService,
               private _cd: ChangeDetectorRef,
               @Inject(DOCUMENT) private _document: any) {
@@ -103,7 +105,7 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
       const click = this.shareButton.share ? this.open(params) : this.shareButton.func({
         params,
         data: this.shareButton.data,
-        platform: this._platform,
+        clipboard: this._clipboard,
         updater: this._updater
       });
 
