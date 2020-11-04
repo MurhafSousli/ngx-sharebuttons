@@ -2,7 +2,7 @@
 
 ## 8.0.3
 
-- feat(core): Use Angular CDK Clipboard module for the copy link button, in []().
+- feat(core): Use Angular CDK Clipboard module for the copy link button, in [431cf9a](https://github.com/MurhafSousli/ngx-sharebuttons/pull/510/commits/431cf9af4f246cb741375d9e0784584a4e52cf54).
 
 ## 8.0.2
 
