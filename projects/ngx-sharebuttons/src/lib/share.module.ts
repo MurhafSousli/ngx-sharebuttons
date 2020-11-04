@@ -1,12 +1,14 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { PlatformModule } from '@angular/cdk/platform';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { ShareDirective } from './share-button.directive';
 import { SHARE_BUTTONS_CONFIG, ShareButtonsConfig } from './share.models';
 
 @NgModule({
   imports: [
-    PlatformModule
+    PlatformModule,
+    ClipboardModule
   ],
   declarations: [
     ShareDirective

@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { Platform } from '@angular/cdk/platform';
+import { Clipboard } from '@angular/cdk/clipboard';
 import { Observable, Subject } from 'rxjs';
 
 export const SHARE_BUTTONS_CONFIG = new InjectionToken<ShareButtonsConfig>('shareButtonsConfig');
@@ -91,7 +91,7 @@ export class IShareButton {
   /**
    * Some button do not open a share window, instead they execute a function like Print and Copy buttons.
    */
-  func?: (args: { data: any; params: ShareParams; platform: Platform; updater: Subject<ShareDirectiveUpdater> }) => Observable<any>;
+  func?: (args: ShareButtonFuncArgs<any>) => Observable<any>;
 }
 
 /**
@@ -127,7 +127,7 @@ interface ShareParamsFuncMetaData {
  * Share button function arguments (used in copyToClipboard as function arguments)
  */
 export interface ShareButtonFuncArgs<T> {
-  platform?: Platform;
+  clipboard?: Clipboard;
   params?: ShareParams;
   data?: T;
   updater?: Subject<ShareDirectiveUpdater>;

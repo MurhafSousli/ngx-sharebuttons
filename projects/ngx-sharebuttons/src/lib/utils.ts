@@ -1,5 +1,5 @@
-import { EMPTY, Observable, of, Subscriber } from 'rxjs';
-import { catchError, delay, take, tap } from 'rxjs/operators';
+import { Observable, of, Subscriber } from 'rxjs';
+import { delay, take, tap } from 'rxjs/operators';
 import { ShareButtonFuncArgs } from './share.models';
 
 /**
@@ -50,39 +50,16 @@ export function printPage(): Observable<void> {
   return new Observable((sub: Subscriber<any>) => document.defaultView.print());
 }
 
-export function copyToClipboard({params, data, platform, updater}: ShareButtonFuncArgs<CopyToClipboardDataArgs>): Observable<void> {
+export function copyToClipboard({params, data, clipboard, updater}: ShareButtonFuncArgs<CopyToClipboardDataArgs>): Observable<void> {
   return of(null).pipe(
     tap(() => {
-      const textArea: HTMLTextAreaElement = document.createElement('textarea') as HTMLTextAreaElement;
-
-      textArea.value = decodeURIComponent(params.url);
-      document.body.appendChild(textArea);
-
-      // highlight TextArea to copy the sharing link
-      if (platform.IOS) {
-        const range = document.createRange();
-        range.selectNodeContents(textArea);
-        const selection = document.defaultView.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        textArea.readOnly = true;
-        textArea.setSelectionRange(0, 999999);
-      } else {
-        textArea.select();
-      }
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-
+      clipboard.copy(params.url);
       // Disable copy button
       updater.next({icon: data.successIcon, text: data.successText, disabled: true});
     }),
     delay(data.delay),
     tap(() => updater.next({icon: data.icon, text: data.text, disabled: false})),
-    take(1),
-    catchError(err => {
-      console.warn('Copy link failed!', err.message);
-      return EMPTY;
-    })
+    take(1)
   );
 }
 

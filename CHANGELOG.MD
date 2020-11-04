@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.3
+
+- feat(core): Use Angular CDK Clipboard module for the copy link button, in [431cf9a](https://github.com/MurhafSousli/ngx-sharebuttons/pull/510/commits/431cf9af4f246cb741375d9e0784584a4e52cf54).
+
 ## 8.0.2
 
 - fix(core): Update Xing share URL, closes [#498](https://github.com/MurhafSousli/ngx-sharebuttons/issues/498) in [4b0c745](https://github.com/JustDoItSascha/ngx-sharebuttons/commit/4b0c7458779a87d6823b81ed21696dab5776692f).
