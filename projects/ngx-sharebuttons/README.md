@@ -43,8 +43,9 @@ For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebu
 13. VK
 14. Mix
 15. Xing
-16. Copy link
-17. Print
+16. Line
+17. Copy link
+18. Print
 
 
 #### Need more buttons?
