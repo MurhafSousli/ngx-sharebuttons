@@ -1,6 +1,6 @@
 {
   "name": "ngx-sharebuttons",
-  "version": "8.0.3",
+  "version": "8.0.4",
   "author": {
     "name": "Murhaf Sousli",
     "url": "https://github.com/MurhafSousli",
@@ -28,6 +28,7 @@
     "linkedin",
     "reddit",
     "telegram",
+    "viber",
     "vk",
     "copy",
     "print",

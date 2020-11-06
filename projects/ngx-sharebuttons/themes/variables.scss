@@ -15,6 +15,7 @@ $sb-messenger: #0080FF !default;
 $sb-telegram: #0088cc !default;
 $sb-xing: #006567 !default;
 $sb-email: #FF961C !default;
+$sb-viber: #665ca7 !default;
 $sb-vk: #4C75A3 !default;
 $sb-copy: #607D8B !default;
 $sb-print: #765AA2 !default;
@@ -55,6 +56,7 @@ $sb-buttons: (
   xing: $sb-xing,
   sms: $sb-sms,
   email: $sb-email,
+  viber: $sb-viber,
   vk: $sb-vk,
   copy: $sb-copy,
   print: $sb-print,

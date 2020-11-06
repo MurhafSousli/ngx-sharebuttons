@@ -34,16 +34,18 @@ For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebu
 4. Pinterest
 5. WhatsApp
 6. Messenger
-7. Reddit
-8. Tumblr
-9. Telegram
-10. Email
-11. SMS
-12. VK
-13. Mix
-14. Xing
-15. Copy link
-16. Print
+7. Viber
+8. Reddit
+9. Tumblr
+10. Telegram
+11. Email
+12. SMS	
+13. VK
+14. Mix
+15. Xing
+16. Line
+17. Copy link
+18. Print
 
 
 #### Need more buttons?
