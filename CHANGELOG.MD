@@ -2,6 +2,10 @@
 
 ## 8.0.3
 
+- feat(core): Add Viber share button, closes [#380](https://github.com/MurhafSousli/ngx-sharebuttons/issues/380) in [77a3904](https://github.com/MurhafSousli/ngx-sharebuttons/pull/507/commits/77a3904ad58dc089f5177fe00d7433829c1c8a92).
+
+## 8.0.3
+
 - feat(core): Use Angular CDK Clipboard module for the copy link button, in [431cf9a](https://github.com/MurhafSousli/ngx-sharebuttons/pull/510/commits/431cf9af4f246cb741375d9e0784584a4e52cf54).
 
 ## 8.0.2
