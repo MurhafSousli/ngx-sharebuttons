@@ -35,7 +35,7 @@
     "@nguniversal/express-engine": "^10.1.0",
     "@ngx-pwa/local-storage": "^10.1.0",
     "express": "^4.17.1",
-    "highlight.js": "^10.3.2",
+    "highlight.js": "^10.4.1",
     "ngx-highlightjs": "^4.1.2",
     "ngx-progressbar": "^6.0.3",
     "ngx-scrollbar": "^7.3.0",
