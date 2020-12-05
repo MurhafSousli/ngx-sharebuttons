@@ -7,11 +7,11 @@
 [![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://ngx-sharebuttons.netlify.app/)
 [![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-sharebuttons)
 [![NPM](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
-[![Build Status](https://travis-ci.org/MurhafSousli/ngx-sharebuttons.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-sharebuttons)
+[![tests](https://github.com/MurhafSousli/ngx-sharebuttons/workflows/tests/badge.svg)](https://github.com/MurhafSousli/ngx-sharebuttons/actions?query=workflow%3Atests)
 [![npm](https://img.shields.io/npm/dt/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![npm](https://img.shields.io/npm/dm/ngx-sharebuttons.svg)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/LICENSE)
-[![Financial Contributors on Open Collective](https://opencollective.com/ngx-sharebuttons/all/badge.svg?label=financial+contributors)](https://opencollective.com/ngx-sharebuttons) 
+[![Financial Contributors on Open Collective](https://opencollective.com/ngx-sharebuttons/all/badge.svg?label=financial+contributors)](https://opencollective.com/ngx-sharebuttons)
 
 
 ## Documentation
@@ -39,7 +39,7 @@ For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebu
 9. Tumblr
 10. Telegram
 11. Email
-12. SMS	
+12. SMS
 13. VK
 14. Mix
 15. Xing
@@ -50,7 +50,7 @@ For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebu
 
 #### Need more buttons?
 
-> The plugin allows you to add your own buttons as well. if you like to add a new share button to this package feel free to submit a PR, or open an issue with dev docs link of the social network you want to include. 
+> The plugin allows you to add your own buttons as well. if you like to add a new share button to this package feel free to submit a PR, or open an issue with dev docs link of the social network you want to include.
 
 
 ## Issues
@@ -63,7 +63,7 @@ If you identify any errors in this component, or have an idea for an improvement
 
 ## Author
 
- **Murhaf Sousli**
+**Murhaf Sousli**
 
 - [github/murhafsousli](https://github.com/MurhafSousli)
 - [twitter/murhafsousli](https://twitter.com/MurhafSousli)
