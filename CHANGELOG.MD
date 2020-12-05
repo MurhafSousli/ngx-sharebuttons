@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.0.5
+
+- Upgrade to Angular 11
+- Build the library in strict mode
+
 ## 8.0.4
 
 - feat(core): Add Viber share button, closes [#380](https://github.com/MurhafSousli/ngx-sharebuttons/issues/380) in [77a3904](https://github.com/MurhafSousli/ngx-sharebuttons/pull/507/commits/77a3904ad58dc089f5177fe00d7433829c1c8a92).
