@@ -1,5 +1,5 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ShareDirective } from './share-button.directive';
 import { IShareButton, ShareButtonsConfig, SharerMethod } from './share.models';
