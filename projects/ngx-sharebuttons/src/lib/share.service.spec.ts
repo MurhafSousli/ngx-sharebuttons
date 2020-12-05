@@ -25,7 +25,6 @@ describe('Share Service', () => {
   let service: ShareService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({providers: [ShareService]});
     service = TestBed.inject(ShareService);
   });
 
