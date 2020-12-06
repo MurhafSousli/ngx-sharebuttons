@@ -89,6 +89,25 @@ describe('Share Button Directive', () => {
     expect(directiveInstance.share).toHaveBeenCalled();
   }));
 
+  it('test non-social media buttons to run their functions', () => {
+    Object.values(shareService.prop)
+    .filter((b: IShareButton) => !b.share)
+    .forEach((shareButton: IShareButton) => {
+      directiveInstance.shareButtonName = shareButton.type;
+      directiveInstance.ngOnChanges({
+        shareButtonName: new SimpleChange(null, shareButton.type, false)
+      });
+      spyOn(directiveInstance.shareButton, 'func');
+      directiveElement.dispatchEvent(new Event('click'));
+      expect(directiveInstance.shareButton.func).toHaveBeenCalledOnceWith({
+        params: (directiveInstance as any).getParamsFromInputs(),
+        data: directiveInstance.shareButton.data,
+        clipboard: (directiveInstance as any)._clipboard,
+        updater: (directiveInstance as any)._updater
+      });
+    });
+  });
+
   it('[WEB] test sharer URL', () => {
     Object.values(shareService.prop)
     .filter((b: IShareButton) => !!b.share)
