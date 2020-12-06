@@ -1,9 +1,9 @@
 # Changelog
 
-## 8.0.5
+## 8.0.5 (in progress)
 
 - Upgrade to Angular 11
-- Build the library in strict mode
+- feat(core): Add unit tests
 
 ## 8.0.4
 
