@@ -30,6 +30,9 @@ import { getValidUrl } from './utils';
 })
 export class ShareDirective implements OnInit, OnChanges, OnDestroy {
 
+  /** Variable used to check for the final sharer url (For testing only) */
+  private _finalUrl: string;
+
   /** Share directive element ref */
   private readonly _el: HTMLButtonElement;
 
@@ -245,11 +248,11 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
 
     if (sharerLink) {
       // Set sharer link params
-      const finalUrl = sharerLink + this._serializeParams(params);
+      this._finalUrl = sharerLink + this._serializeParams(params);
 
       // Log the sharer link in debug mode
       if (this._share.config.debug) {
-        console.log('[DEBUG SHARE BUTTON]: ', finalUrl);
+        console.log('[DEBUG SHARE BUTTON]: ', this._finalUrl);
       }
 
       // Open the share window
@@ -268,7 +271,7 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
 
           // Prevent security vulnerability https://medium.com/@jitbit/target-blank-the-most-underestimated-vulnerability-ever-96e328301f4c
           linkElement.setAttribute('rel', 'noopener noreferrer');
-          linkElement.href = finalUrl;
+          linkElement.href = this._finalUrl;
           linkElement.click();
           linkElement.remove();
           break;
@@ -276,7 +279,7 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
         case SharerMethod.Window:
           // Open link using Window object
           const openWindow = this._share.config.windowObj[this._share.config.windowFuncName];
-          const popUpWindow = openWindow(finalUrl, sharerTarget, this._share.windowSize);
+          const popUpWindow = openWindow(this._finalUrl, sharerTarget, this._share.windowSize);
 
           // Prevent security vulnerability https://medium.com/@jitbit/target-blank-the-most-underestimated-vulnerability-ever-96e328301f4c
           this._share.config.windowObj.opener = null;

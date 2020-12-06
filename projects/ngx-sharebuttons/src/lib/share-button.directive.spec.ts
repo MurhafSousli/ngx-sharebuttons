@@ -2,7 +2,7 @@ import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { Component, SimpleChange } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ShareDirective } from './share-button.directive';
-import { IShareButton, ShareButtonsConfig, SharerMethod } from './share.models';
+import { IShareButton, ShareButtonsConfig, ShareParams, SharerMethod } from './share.models';
 import { ShareService } from './share.service';
 import { SHARE_BUTTONS } from './share.defaults';
 
@@ -69,7 +69,7 @@ describe('Share Button Directive', () => {
     expect(directiveInstance.tags).toBe(shareService.config.tags);
   });
 
-  it('should create a facebook share button', () => {
+  it('should create a share button (LOOP OVER ALL SHARE BUTTONS)', () => {
     Object.values(shareService.prop).forEach((shareButton: IShareButton) => {
       directiveInstance.shareButtonName = shareButton.type;
       // Run on changes
@@ -85,13 +85,63 @@ describe('Share Button Directive', () => {
 
   it('should open share window on click', fakeAsync(() => {
     spyOn(directiveInstance, 'share');
-    directiveElement.click();
-    fixture.whenStable().then(() => {
-      expect(directiveInstance.share).toHaveBeenCalled();
-
-      directiveInstance.opened.subscribe((value) => {
-        expect(value).toBe('facebook');
-      });
-    });
+    directiveElement.dispatchEvent(new Event('click'));
+    expect(directiveInstance.share).toHaveBeenCalled();
   }));
+
+  it('[WEB] test sharer URL', () => {
+    Object.values(shareService.prop)
+    .filter((b: IShareButton) => !!b.share)
+    .forEach((shareButton: IShareButton) => {
+      directiveInstance.shareButtonName = shareButton.type;
+      directiveInstance.ngOnChanges({
+        shareButtonName: new SimpleChange(null, shareButton.type, false)
+      });
+
+      const params: ShareParams = (directiveInstance as any).getParamsFromInputs();
+
+      const sharerLink = directiveInstance.shareButton.share.desktop;
+      if (sharerLink) {
+        const finalUrl = sharerLink + (directiveInstance as any)._serializeParams(params);
+        (directiveInstance as any).open(params).subscribe();
+        expect(directiveInstance.finalUrl).toEqual(finalUrl);
+      }
+    });
+  });
+
+  it('[ANDROID] test sharer URL', () => {
+    // Force platform to fake Android device
+    (directiveInstance as any)._platform.ANDROID = true;
+    Object.values(shareService.prop)
+    .filter((b: IShareButton) => !!b.share)
+    .forEach((shareButton: IShareButton) => {
+      directiveInstance.shareButtonName = shareButton.type;
+      directiveInstance.ngOnChanges({
+        shareButtonName: new SimpleChange(null, shareButton.type, false)
+      });
+      const params: ShareParams = (directiveInstance as any).getParamsFromInputs();
+      const sharerLink = shareButton.share.android || shareButton.share.desktop;
+      const finalUrl = sharerLink + (directiveInstance as any)._serializeParams(params);
+      (directiveInstance as any).open(params).subscribe();
+      expect(directiveInstance.finalUrl).toEqual(finalUrl);
+    });
+  });
+
+  it('[IOS] test sharer URL', () => {
+    // Force platform to fake Android device
+    (directiveInstance as any)._platform.IOS = true;
+    Object.values(shareService.prop)
+    .filter((b: IShareButton) => !!b.share)
+    .forEach((shareButton: IShareButton) => {
+      directiveInstance.shareButtonName = shareButton.type;
+      directiveInstance.ngOnChanges({
+        shareButtonName: new SimpleChange(null, shareButton.type, false)
+      });
+      const params: ShareParams = (directiveInstance as any).getParamsFromInputs();
+      const sharerLink = shareButton.share.ios || shareButton.share.desktop;
+      const finalUrl = sharerLink + (directiveInstance as any)._serializeParams(params);
+      (directiveInstance as any).open(params).subscribe();
+      expect(directiveInstance.finalUrl).toEqual(finalUrl);
+    });
+  });
 });
