@@ -104,7 +104,7 @@ describe('Share Button Directive', () => {
       if (sharerLink) {
         const finalUrl = sharerLink + (directiveInstance as any)._serializeParams(params);
         (directiveInstance as any).open(params).subscribe();
-        expect(directiveInstance.finalUrl).toEqual(finalUrl);
+        expect((directiveInstance as any).finalUrl).toEqual(finalUrl);
       }
     });
   });
@@ -123,7 +123,7 @@ describe('Share Button Directive', () => {
       const sharerLink = shareButton.share.android || shareButton.share.desktop;
       const finalUrl = sharerLink + (directiveInstance as any)._serializeParams(params);
       (directiveInstance as any).open(params).subscribe();
-      expect(directiveInstance.finalUrl).toEqual(finalUrl);
+      expect((directiveInstance as any).finalUrl).toEqual(finalUrl);
     });
   });
 
@@ -141,7 +141,7 @@ describe('Share Button Directive', () => {
       const sharerLink = shareButton.share.ios || shareButton.share.desktop;
       const finalUrl = sharerLink + (directiveInstance as any)._serializeParams(params);
       (directiveInstance as any).open(params).subscribe();
-      expect(directiveInstance.finalUrl).toEqual(finalUrl);
+      expect((directiveInstance as any).finalUrl).toEqual(finalUrl);
     });
   });
 });
