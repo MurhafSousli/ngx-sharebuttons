@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, SimpleChange } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ShareDirective } from './share-button.directive';
 import { IShareButton, ShareButtonsConfig, SharerMethod } from './share.models';
@@ -32,10 +32,9 @@ const shareServiceStub: Partial<ShareService> = {
 
 @Component({
   template: `
-    <button [shareButton]="buttonType">Share Button</button>`
+    <button shareButton="facebook">Share Button</button>`
 })
 class TestShareButtonComponent {
-  buttonType = 'facebook';
 }
 
 describe('Share Button Directive', () => {
@@ -71,18 +70,28 @@ describe('Share Button Directive', () => {
   });
 
   it('should create a facebook share button', () => {
-    const button: IShareButton = shareService.prop.facebook;
-    expect(directiveElement.classList.contains('sb-facebook')).toBeTruthy();
-    expect(directiveElement.style.getPropertyValue('--button-color')).toEqual(directiveInstance.color);
-    expect(directiveElement.getAttribute('aria-label')).toBe(button.ariaLabel);
+    Object.values(shareService.prop).forEach((shareButton: IShareButton) => {
+      directiveInstance.shareButtonName = shareButton.type;
+      // Run on changes
+      directiveInstance.ngOnChanges({
+        shareButtonName: new SimpleChange(null, shareButton.type, false)
+      });
+      // Check for new values after button has changed
+      expect(directiveElement.classList.contains(`sb-${ shareButton.type }`)).toBeTruthy();
+      expect(directiveElement.style.getPropertyValue('--button-color')).toEqual(directiveInstance.shareButton.color);
+      expect(directiveElement.getAttribute('aria-label')).toBe(directiveInstance.shareButton.ariaLabel);
+    });
   });
 
   it('should open share window on click', fakeAsync(() => {
-      spyOn(directiveInstance, 'share');
-      directiveElement.click();
-      fixture.whenStable().then(() => {
-        expect(directiveInstance.share).toHaveBeenCalled();
+    spyOn(directiveInstance, 'share');
+    directiveElement.click();
+    fixture.whenStable().then(() => {
+      expect(directiveInstance.share).toHaveBeenCalled();
+
+      directiveInstance.opened.subscribe((value) => {
+        expect(value).toBe('facebook');
       });
-    })
-  );
+    });
+  }));
 });
