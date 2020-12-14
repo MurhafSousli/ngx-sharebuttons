@@ -1,6 +1,6 @@
 # Changelog
 
-## 8.0.5 (in progress)
+## 8.0.5
 
 - Upgrade to Angular 11
 - feat(core): Add unit tests
