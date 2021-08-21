@@ -62,7 +62,6 @@
             "main": "projects/ngx-sharebuttons-demo/src/main.ts",
             "polyfills": "projects/ngx-sharebuttons-demo/src/polyfills.ts",
             "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/ngx-sharebuttons-demo/src/favicon.ico",
               "projects/ngx-sharebuttons-demo/src/assets"
@@ -73,7 +72,13 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "highlight.js"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -103,7 +108,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -169,7 +175,9 @@
           "options": {
             "outputPath": "dist/ngx-sharebuttons-demo/server",
             "main": "projects/ngx-sharebuttons-demo/server.ts",
-            "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.server.json"
+            "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.server.json",
+            "sourceMap": true,
+            "optimization": false
           },
           "configurations": {
             "production": {
@@ -183,7 +191,8 @@
               "sourceMap": false,
               "optimization": true
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
