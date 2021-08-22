@@ -1,7 +1,6 @@
 import { Directive, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
 import { SharePopupService } from './share-popup.service';
 
-// import { ShareService, SHARE_BUTTONS } from '../../src/public-api';
 import { ShareService, SHARE_BUTTONS } from 'ngx-sharebuttons';
 
 @Directive({

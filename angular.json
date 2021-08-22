@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/ngx-sharebuttons",
       "sourceRoot": "projects/ngx-sharebuttons/src",
-      "prefix": "lib",
+      "prefix": "",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

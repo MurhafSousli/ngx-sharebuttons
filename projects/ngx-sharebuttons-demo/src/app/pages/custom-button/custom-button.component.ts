@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { Title } from '@angular/platform-browser';
 import { faCommentDollar } from '@fortawesome/free-solid-svg-icons/faCommentDollar';
 
-// import { ShareService } from '../../../../../ngx-sharebuttons/src/public-api';
 import { ShareService } from 'ngx-sharebuttons';
 
 import { tap } from 'rxjs/operators';

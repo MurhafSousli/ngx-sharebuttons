@@ -6,9 +6,6 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressRouterModule } from 'ngx-progressbar/router';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 
-// import { SHARE_BUTTONS_CONFIG } from '../../../ngx-sharebuttons/src/public-api';
-// import { ShareIconsModule } from '../../../ngx-sharebuttons/icons/src/public_api';
-
 import { SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
