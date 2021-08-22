@@ -18,7 +18,9 @@ const DEFAULT_CONFIG: ShareButtonsConfig = {
   windowWidth: 800,
   windowHeight: 500,
   moreButtonIcon: 'ellipsis-h',
-  lessButtonIcon: 'minus'
+  lessButtonIcon: 'minus',
+  moreButtonAriaLabel: 'Show more share buttons',
+  lessButtonAriaLabel: 'Show less share buttons'
 };
 
 describe('Share Service', () => {

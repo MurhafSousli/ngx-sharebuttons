@@ -1,8 +1,6 @@
 import { Component, Input, Output, HostBinding, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
-import { ShareService, ShareDirective } from 'ngx-sharebuttons';
-// Uncomment the following line in development mode
-// import { ShareService, ShareDirective } from '../../src/public-api';
+import { ShareService } from 'ngx-sharebuttons';
 
 @Component({
   selector: 'share-button',

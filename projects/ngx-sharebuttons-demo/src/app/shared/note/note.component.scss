@@ -1,14 +1,14 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 @import '../../../assets/style/variables';
 
-$note-bg-lightbulb: mat-color(mat-palette($mat-light-green, 100));
-$note-color-lightbulb: mat-color(mat-palette($mat-light-green, 600));
+$note-bg-lightbulb: mat.get-color-from-palette(mat.define-palette(mat.$light-green-palette, 100));
+$note-color-lightbulb: mat.get-color-from-palette(mat.define-palette(mat.$light-green-palette, 600));
 
-$note-bg-coffee: mat-color(mat-palette($mat-brown, 100));
-$note-color-coffee: mat-color(mat-palette($mat-brown, 600));
+$note-bg-coffee: mat.get-color-from-palette(mat.define-palette(mat.$brown-palette, 100));
+$note-color-coffee: mat.get-color-from-palette(mat.define-palette(mat.$brown-palette, 600));
 
-$note-bg-book: mat-color(mat-palette($mat-red, 100));
-$note-color-book: mat-color(mat-palette($mat-red, 600));
+$note-bg-book: mat.get-color-from-palette(mat.define-palette(mat.$red-palette, 100));
+$note-color-book: mat.get-color-from-palette(mat.define-palette(mat.$red-palette, 600));
 
 :host {
   display: block;
