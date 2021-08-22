@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressRouterModule } from 'ngx-progressbar/router';
-import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
+import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { NG_SCROLLBAR_OPTIONS } from 'ngx-scrollbar';
 
 import { SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
@@ -23,14 +24,6 @@ import { AppComponent } from './app.component';
 
 import { DocsService } from './docs/docs.service';
 
-export function getHighlightLanguages() {
-  return {
-    typescript: () => import('highlight.js/lib/languages/typescript'),
-    css: () => import('highlight.js/lib/languages/css'),
-    xml: () => import('highlight.js/lib/languages/xml')
-  };
-}
-
 @NgModule({
   declarations: [
     AppComponent
@@ -40,7 +33,6 @@ export function getHighlightLanguages() {
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    HighlightModule,
     NgProgressModule,
     NgProgressRouterModule,
     SharedModule,
@@ -52,7 +44,17 @@ export function getHighlightLanguages() {
       provide: HIGHLIGHT_OPTIONS,
       useValue: {
         coreLibraryLoader: () => import('highlight.js/lib/core'),
-        languages: getHighlightLanguages()
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript'),
+          css: () => import('highlight.js/lib/languages/css'),
+          xml: () => import('highlight.js/lib/languages/xml')
+        }
+      }
+    },
+    {
+      provide: NG_SCROLLBAR_OPTIONS,
+      useValue: {
+        autoHeightDisabled: false
       }
     },
     {
