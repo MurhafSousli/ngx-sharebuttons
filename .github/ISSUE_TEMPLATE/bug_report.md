@@ -1,43 +1,31 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-
+name: Bug Report
+about: Report a bug found in ngx-sharebuttons
 ---
 
-<!-- 
-1. Please make sure that you have searched in the older issues before submitting a new one!
-2. Please fill out all the required information!
- -->
 
-#### I am submitting a
+#### Reproduction
 
-- [x] Bug Report
+Use StackBlitz to reproduce your issue: https://stackblitz.com/edit/ngx-sharebuttons
 
-#### What is the expected behavior?
+Steps to reproduce:
+1.
+2.
 
 
-#### What is the current behavior?
+#### Expected Behavior
+
+What behavior were you expecting to see?
 
 
-#### What are the steps to reproduce?
+#### Actual Behavior
 
-<!-- 
-Providing a StackBlitz reproduction is the *best* way to share your issue. <br/>
-StackBlitz starter: https://stackblitz.com/edit/ngx-sharebuttons<br/>
--->
+What behavior did you actually see?
 
 
-#### What is the use-case or motivation for changing an existing behavior?
+#### Environment
 
-
-
-#### Which versions are you using for the following packages?
-
-Angular:
-Angular CDK:
-Angular CLI:
-Angular-fontawesome:
-ngx-sharebuttons:
-
-
-#### Is there anything else we should know?
+- Angular:
+- ngx-sharebuttons:
+- Browser(s):
+- Operating System (e.g. Windows, macOS, Ubuntu): 
