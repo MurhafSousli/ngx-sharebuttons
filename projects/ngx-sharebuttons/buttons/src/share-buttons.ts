@@ -23,6 +23,8 @@ interface ButtonsState {
   shownCount?: number;
   moreIcon?: any;
   lessIcon?: any;
+  moreAriaLabel?: string;
+  lessAriaLabel?: string;
 }
 
 @Component({
@@ -100,7 +102,7 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
       map((state: ButtonsState) => {
         // Use component include buttons, otherwise fallback to global include buttons
         const includedButtons = state.includedButtons && state.includedButtons.length ? state.includedButtons : state.userButtons;
-        const userButtons = state.excludedButtons ? includedButtons.filter((btn) => state.excludedButtons.indexOf(btn) < 0) : includedButtons;
+        const userButtons = state.excludedButtons ? includedButtons.filter((btn: string) => state.excludedButtons.indexOf(btn) < 0) : includedButtons;
         const selectedButtons = userButtons.slice(0, state.expanded ? userButtons.length : state.shownCount);
         return {
           userButtons,
@@ -108,7 +110,9 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
           expanded: state.expanded,
           shownCount: state.shownCount,
           moreIcon: state.moreIcon,
-          lessIcon: state.lessIcon
+          lessIcon: state.lessIcon,
+          moreAriaLabel: state.moreAriaLabel,
+          lessAriaLabel: state.lessAriaLabel
         };
       })
     );
@@ -117,12 +121,14 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
     this._configSub$ = this._share.config$.subscribe((config: ShareButtonsConfig) => {
       // Use global include buttons, otherwise fallback to all buttons
       const includedButtons = config.include.length ? config.include : Object.keys(SHARE_BUTTONS);
-      const userButtons = includedButtons.filter((btn) => config.exclude.indexOf(btn) < 0);
+      const userButtons = includedButtons.filter((btn: string) => config.exclude.indexOf(btn) < 0);
       this.updateState({
         userButtons,
         expanded: false,
         moreIcon: config.moreButtonIcon,
-        lessIcon: config.lessButtonIcon
+        lessIcon: config.lessButtonIcon,
+        moreAriaLabel: config.moreButtonAriaLabel,
+        lessAriaLabel: config.lessButtonAriaLabel
       });
     });
   }
