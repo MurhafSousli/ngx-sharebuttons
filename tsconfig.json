@@ -17,8 +17,19 @@
     ],
     "paths": {
       "ngx-sharebuttons": [
-        "dist/ngx-sharebuttons/ngx-sharebuttons",
-        "dist/ngx-sharebuttons"
+        "projects/ngx-sharebuttons/src/public-api"
+      ],
+      "ngx-sharebuttons/button": [
+        "projects/ngx-sharebuttons/button/src/public_api"
+      ],
+      "ngx-sharebuttons/buttons": [
+        "projects/ngx-sharebuttons/buttons/src/public_api"
+      ],
+      "ngx-sharebuttons/popup": [
+        "projects/ngx-sharebuttons/popup/src/public_api"
+      ],
+      "ngx-sharebuttons/icons": [
+        "projects/ngx-sharebuttons/icons/src/public_api"
       ]
     }
   },

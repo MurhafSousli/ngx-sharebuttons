@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { SharePopupService } from './share-popup.service';
 
-// import { ShareService } from '../../src/public-api';
 import { ShareService } from 'ngx-sharebuttons';
 
 @Component({

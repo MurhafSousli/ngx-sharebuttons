@@ -1,11 +1,11 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
-@include mat-core();
-$primary: mat-palette($mat-cyan, 700);
-$accent: mat-palette($mat-red);
-$warn: mat-palette($mat-purple, 300);
-$theme: mat-light-theme($primary, $accent, $warn);
-@include angular-material-theme($theme);
+@include mat.core();
+$primary: mat.define-palette(mat.$cyan-palette, 700);
+$accent: mat.define-palette(mat.$red-palette);
+$warn: mat.define-palette(mat.$purple-palette, 300);
+$theme: mat.define-light-theme($primary, $accent, $warn);
+@include mat.all-component-themes($theme);
 
 // MATERIAL TABLE
 
@@ -102,7 +102,7 @@ mat-card-content {
 .code-dialog .mat-dialog-container {
   border-radius: 0.6em;
   padding: .6em;
-  background-color: mat-color(mat-palette($mat-purple, 300));
+  background-color: mat.get-color-from-palette(mat.define-palette(mat.$purple-palette, 300));
 }
 
 .mat-slide-toggle .mat-slide-toggle-content {
@@ -111,6 +111,6 @@ mat-card-content {
 }
 
 .copy-tooltip {
-  color: mat-color(mat-palette($mat-red));
+  color: mat.get-color-from-palette(mat.define-palette(mat.$red-palette));
   background-color: rgba(0,0,0,0.5);
 }

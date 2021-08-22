@@ -29,6 +29,8 @@ export interface ShareButtonsConfig {
   windowHeight?: number;
   moreButtonIcon?: any;
   lessButtonIcon?: any;
+  moreButtonAriaLabel?: string;
+  lessButtonAriaLabel?: string;
   debug?: boolean;
 }
 

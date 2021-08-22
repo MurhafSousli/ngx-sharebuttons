@@ -1,29 +1,13 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-
+name: Feature
+about: Propose a new feature for ngx-sharebuttons
+labels: feature
 ---
 
-<!-- 
-1. Please make sure that you have searched in the older issues before submitting a new one!
-2. Please fill out all the required information!
- -->
+#### Feature Description
 
-#### I am submitting a
+Provide a brief summary of the feature you would like to see.
 
-- [x] Feature Request
+#### Use Case
 
-#### Description
-
-
-
-#### What is the use-case or motivation for the new feature?
-
-
-
-#### Which versions are you using for the following packages?
-
-ngx-sharebuttons:
-
-
-#### Is there anything else we should know?
+Describe the use case(s) that the proposed feature would enable.

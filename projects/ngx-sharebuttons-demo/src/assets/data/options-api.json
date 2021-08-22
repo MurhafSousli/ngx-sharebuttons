@@ -60,11 +60,19 @@
   },
   {
     "name": "moreButtonIcon",
-    "description": "More button icon in ShareButtonsComponent, default: 'ellipsis-h'"
+    "description": "More button icon in \"<share-buttons>\" component, default: 'ellipsis-h'"
   },
   {
     "name": "lessButtonIcon",
-    "description": "Less button icon in ShareButtonsComponent, default: 'minus'"
+    "description": "Less button icon in \"<share-buttons>\" component, default: 'minus'"
+  },
+  {
+    "name": "moreButtonAriaLabel",
+    "description": "More button aria label in \"<share-buttons>\" component, default: 'Show more share buttons'"
+  },
+  {
+    "name": "lessButtonAriaLabel",
+    "description": "Less button aria label in \"<share-buttons>\" component, default: 'Show less share buttons'"
   },
   {
     "name": "sharerMethod",

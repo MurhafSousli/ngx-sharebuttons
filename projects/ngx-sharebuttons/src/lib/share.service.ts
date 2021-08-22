@@ -25,7 +25,9 @@ export class ShareService {
     windowWidth: 800,
     windowHeight: 500,
     moreButtonIcon: 'ellipsis-h',
-    lessButtonIcon: 'minus'
+    lessButtonIcon: 'minus',
+    moreButtonAriaLabel: 'Show more share buttons',
+    lessButtonAriaLabel: 'Show less share buttons'
   };
 
   /** Stream that emits when config changes */
