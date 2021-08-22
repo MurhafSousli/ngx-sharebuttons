@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.1.0
+
+- Upgrade to Angular 12
+- fix(build): Fix package to work with ivy, closes [#523](https://github.com/MurhafSousli/ngx-sharebuttons/issues/523) in [096d62a](https://github.com/MurhafSousli/ngx-sharebuttons/commit/096d62aff0aa9c8d6c9bb54561b713378bdd0081).
+
 ## 8.0.5
 
 - Upgrade to Angular 11
