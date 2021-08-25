@@ -15,7 +15,8 @@ import { Component, Input, Output, ElementRef, EventEmitter, ChangeDetectionStra
         </div>
       </div>
     </button>
-  `
+  `,
+  styleUrls: ['../../button/src/share-button.scss']
 })
 export class ExpandButton {
 

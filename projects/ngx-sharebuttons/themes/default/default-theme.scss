@@ -1,22 +1,17 @@
 @import "../variables";
-@import "../main";
+
 
 .sb-default .sb-wrapper {
-  color: white;
-  border-radius: 4px;
-  overflow: hidden;
-  @each $button,
-  $color in $sb-buttons {
-    &.sb-#{$button} {
-      background-color: $color;
-    }
-  }
-  background-color: var(--button-color) !important;
+  --sb-color: #{$sb-accent};
+  --sb-background: var(--button-color);
+  --sb-border-radius: 4px;
+  --sb-overflow: hidden;
+
   &.sb-show-icon.sb-show-text {
+    --sb-text-padding: 0 1em 0 0;
+
     .sb-text {
       filter: none;
-      padding-right: 1em;
-      padding-left: 0;
     }
   }
 }

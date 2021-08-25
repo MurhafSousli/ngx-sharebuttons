@@ -1,5 +1,83 @@
 @import "../../themes/variables";
 
+@each $button,
+$color in $sb-buttons {
+  :host-context([button="#{$button}"]) {
+    --button-color: #{$color};
+  }
+}
+
 :host {
-  --sb-margin: #{$sb-margin};
+  --sb-margin: 0.3125em;
+  --sb-min-width: 4.125em;
+  --sb-height: 2.5em;
+  --sb-color: white;
+  --sb-background: var(--button-color, --sb-color);
+  --sb-font-size: 16px;
+  --sb-icon-size: 1.2em;
+  --sb-padding: 0;
+  --sb-text-padding: 0 0.7em;
+  --sb-border: none;
+  --sb-border-radius: 1px;
+  --sb-line-height: 2.571em;
+
+  --sb-text-shadow: none;
+  --sb-font-weight: bold;
+  --sb-overflow: unset;
+}
+
+button {
+  cursor: pointer;
+  position: relative;
+  outline: 0;
+  // Fix buttons color for print button in preview
+  -webkit-print-color-adjust: exact;
+
+  color: var(--sb-color);
+  background: var(--sb-background);
+  overflow: var(--sb-overflow);
+  font-size: var(--sb-font-size);
+  min-width: var(--sb-min-width);
+  height: var(--sb-height);
+  border: var(--sb-border);
+  border-radius: var(--sb-border-radius);
+  padding: var(--sb-padding);
+  line-height: var(--sb-line-height);
+  margin: var(--sb-margin);
+  transition: var(--sb-transition);
+  box-shadow: var(--sb-box-shadow);
+  text-shadow: var(--sb-text-shadow);
+}
+
+.sb-icon,
+.sb-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.sb-content {
+  flex: 1;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  // Fix clipping the shadow in circle-dark theme in Safari
+  position: relative;
+}
+
+.sb-text {
+  flex: 1;
+  height: 100%;
+  white-space: nowrap;
+  padding: var(--sb-text-padding);
+  font-weight: var(--sb-font-weight);
+}
+
+.sb-icon {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  min-width: 2em;
+  font-size: var(--sb-icon-size);
 }

@@ -1,25 +1,14 @@
 @import "../variables";
-@import "../main";
+
+$sb-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+$sb-text-size: 0.8em;
 
 .sb-circles-dark .sb-wrapper {
-  $sb-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-  $sb-text-size: 0.8em;
-
-  @each $button,
-  $color in $sb-buttons {
-    &.sb-#{$button} {
-      .sb-icon {
-        background-color: $color;
-      }
-      .sb-text {
-        color: $color;
-      }
-    }
-  }
-  color: $sb-accent;
-  background: transparent;
-  min-width: unset;
-  height: unset;
+  --sb-color: #{$sb-accent};
+  --sb-background: transparent;
+  --sb-min-width: fit-content;
+  --sb-height: fit-content;
+  --sb-icon-size: 1.4em;
 
   &:active {
     .sb-icon {
@@ -28,17 +17,16 @@
   }
 
   .sb-icon {
-    background-color: $sb-primary;
-    background-color: var(--button-color) !important;
+    background-color: var(--button-color);
     box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
-    font-size: 1.4em;
     width: 2.5em;
     height: 2.5em;
     border-radius: 50%;
     transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
   }
+
   .sb-text {
-    color: var(--button-color) !important;
+    color: var(--button-color);
     font-size: $sb-text-size;
     margin-top: 5px;
     border-radius: 1em;
@@ -48,6 +36,7 @@
     padding: 0;
     transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
   }
+
   .sb-content {
     align-items: center;
     flex-direction: column;
