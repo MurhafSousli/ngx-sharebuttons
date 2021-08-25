@@ -66,6 +66,10 @@ section {
   margin: 6em 0;
   display: block;
   width: 100%;
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 .changed {
