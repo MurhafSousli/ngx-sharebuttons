@@ -7,25 +7,6 @@ $color in $sb-buttons {
   }
 }
 
-:host {
-  --sb-margin: 0.3125em;
-  --sb-min-width: 4.125em;
-  --sb-height: 2.5em;
-  --sb-color: white;
-  --sb-background: var(--button-color, --sb-color);
-  --sb-font-size: 16px;
-  --sb-icon-size: 1.2em;
-  --sb-padding: 0;
-  --sb-text-padding: 0 0.7em;
-  --sb-border: none;
-  --sb-border-radius: 1px;
-  --sb-line-height: 2.571em;
-
-  --sb-text-shadow: none;
-  --sb-font-weight: bold;
-  --sb-overflow: unset;
-}
-
 button {
   cursor: pointer;
   position: relative;
@@ -33,20 +14,25 @@ button {
   // Fix buttons color for print button in preview
   -webkit-print-color-adjust: exact;
 
-  color: var(--sb-color);
+  margin: var(--sb-margin, 0.3125em);
+  padding: var(--sb-padding, 0);
+  min-width: var(--sb-min-width, 4.125em);
+  height: var(--sb-height, 2.5em);
+
+  color: var(--sb-color, #fff);
   background: var(--sb-background);
-  overflow: var(--sb-overflow);
-  font-size: var(--sb-font-size);
-  min-width: var(--sb-min-width);
-  height: var(--sb-height);
+
+  font-size: var(--sb-font-size, 14px);
+  line-height: var(--sb-line-height, 2.571em);
+
   border: var(--sb-border);
   border-radius: var(--sb-border-radius);
-  padding: var(--sb-padding);
-  line-height: var(--sb-line-height);
-  margin: var(--sb-margin);
+
   transition: var(--sb-transition);
   box-shadow: var(--sb-box-shadow);
   text-shadow: var(--sb-text-shadow);
+
+  overflow: var(--sb-overflow);
 }
 
 .sb-icon,
@@ -70,8 +56,8 @@ button {
   flex: 1;
   height: 100%;
   white-space: nowrap;
-  padding: var(--sb-text-padding);
-  font-weight: var(--sb-font-weight);
+  padding: var(--sb-text-padding, 0 0.7em);
+  font-weight: var(--sb-font-weight, bold);
 }
 
 .sb-icon {
@@ -79,5 +65,5 @@ button {
   width: 100%;
   height: 100%;
   min-width: 2em;
-  font-size: var(--sb-icon-size);
+  font-size: var(--sb-icon-size, 1.2em);
 }
