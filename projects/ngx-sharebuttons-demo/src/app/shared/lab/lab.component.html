@@ -34,11 +34,6 @@
 
       </ng-template>
 
-
-      <mat-slider matTooltip="Button size" [thumbLabel]="true" [min]="-4" [max]="4" [step]="1"
-                  [(ngModel)]="config.size">
-      </mat-slider>
-
       <div class="toggle-group horizontal">
         <mat-slide-toggle color="primary" [(ngModel)]="config.showIcon" [disabled]="!config.showText">Icon
         </mat-slide-toggle>
@@ -60,7 +55,6 @@
                         [theme]="config.theme"
                         [button]="config.button"
                         [url]="config.url"
-                        [size]="config.size"
                         [showIcon]="config.showIcon"
                         [showText]="config.showText"
                         [tags]="config.tags"
@@ -84,7 +78,6 @@
                          [url]="config.url"
                          [showIcon]="config.showIcon"
                          [showText]="config.showText"
-                         [size]="config.size"
                          [tags]="config.tags"
                          [autoSetMeta]="config.autoSetMeta"
                          [title]="config.title"
@@ -97,7 +90,6 @@
         </ng-template>
 
         <ng-template [ngSwitchCase]="'popup-buttons'">
-
           <share-popup-button *ngIf="ready"
                               [theme]="config.theme"
                               [include]="config.include"
@@ -106,7 +98,6 @@
                               [url]="config.url"
                               [showIcon]="config.showIcon"
                               [showText]="config.showText"
-                              [size]="config.size"
                               [tags]="config.tags"
                               [autoSetMeta]="config.autoSetMeta"
                               [title]="config.title"
@@ -114,9 +105,7 @@
                               [image]="config.image"
                               (closed)="onClosedChanged($event)"
                               (opened)="onOpenedChanged($event)">
-
           </share-popup-button>
-
         </ng-template>
 
       </div>

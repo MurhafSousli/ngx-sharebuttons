@@ -16,8 +16,6 @@ export class StylingComponent implements OnInit {
   stylingCode = `.sb-moon-theme {
   // share button wrapper
   .sb-wrapper {
-    // You can get default button color using the CSS variable
-    background-color: var(--button-color);
     // Content wrapper
     .sb-content {
       // Icon wrapper
@@ -29,7 +27,7 @@ export class StylingComponent implements OnInit {
     }
 
     // For conditional styles
-    // E.g. Apply when icon, text are shown
+    // E.g. Apply only when icon, text are shown
     &.sb-show-icon.sb-show-text {
        // Icon wrapper
       .sb-icon {
@@ -40,6 +38,22 @@ export class StylingComponent implements OnInit {
     }
   }
 }`;
+
+  cssVariables = `--sb-margin
+--sb-min-width
+--sb-height
+--sb-color
+--sb-background
+--sb-font-size
+--sb-icon-size
+--sb-padding
+--sb-text-padding
+--sb-border
+--sb-border-radius
+--sb-line-height
+--sb-text-shadow
+--sb-font-weight
+--sb-overflow`;
 
   constructor(private titleService: Title) {
   }
