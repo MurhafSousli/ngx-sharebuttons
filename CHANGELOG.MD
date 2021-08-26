@@ -1,5 +1,33 @@
 # Changelog
 
+## 9.0.0
+
+### Breaking changes
+
+- refactor(button, buttons, popup): The input `[size]` has been removed from all share components and global options, you can change the size of a button using the CSS variable `--sb-font-size`, in [843940e](https://github.com/MurhafSousli/ngx-sharebuttons/pull/559/commits/843940ec5e115a55092f8233cd74d8f3cc96fdc0).
+- refactor(button, buttons, popup): light and dark themes files has been merged into a single file, example:
+
+#### Example:
+
+**before:**
+
+```scss
+// To import 'material-light-theme', the light theme from the following path:
+@import "~ngx-sharebuttons/themes/material/material-light-theme";
+// To import 'material-dark-theme', the dark theme from the following path:
+@import "~ngx-sharebuttons/themes/material/material-dark-theme";
+```
+
+**after:**
+
+```scss
+// Light or dark theme is imported from the same file
+@import "~ngx-sharebuttons/themes/material";
+```
+
+- feat(button, buttons, popup): Add CSS variables, closes [#549](https://github.com/MurhafSousli/ngx-sharebuttons/issues/549) in [5c575d3](https://github.com/MurhafSousli/ngx-sharebuttons/pull/559/commits/5c575d3207a3aaed384ecd5f62520dc08b266f34).
+- fix(popup): Fix text styles in pop up button component, closes [#516](https://github.com/MurhafSousli/ngx-sharebuttons/issues/516) in [c6bbf53](https://github.com/MurhafSousli/ngx-sharebuttons/pull/559/commits/c6bbf53a4831f8303ba7baac5affd1512d948352).
+
 ## 8.1.0
 
 - Upgrade to Angular 12

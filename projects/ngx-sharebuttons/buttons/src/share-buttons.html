@@ -10,7 +10,6 @@
                 [autoSetMeta]="autoSetMeta"
                 [showIcon]="showIcon"
                 [showText]="showText"
-                [size]="size"
                 (opened)="opened.emit($event)"
                 (closed)="closed.emit($event)"
                 [disabled]="disabled">
@@ -20,7 +19,6 @@
                  [expanded]="state.expanded"
                  [moreIcon]="state.moreIcon"
                  [lessIcon]="state.lessIcon"
-                 [size]="(1 + size/20) * 14"
                  [moreAriaLabel]="state.moreAriaLabel"
                  [lessAriaLabel]="state.lessAriaLabel"
                  (toggle)="updateState({expanded: $event})">

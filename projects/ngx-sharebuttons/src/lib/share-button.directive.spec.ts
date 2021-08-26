@@ -15,7 +15,6 @@ const DEFAULT_CONFIG: ShareButtonsConfig = {
   theme: 'default',
   include: [],
   exclude: [],
-  size: 0,
   autoSetMeta: true,
   windowWidth: 800,
   windowHeight: 500,

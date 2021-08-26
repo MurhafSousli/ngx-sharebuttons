@@ -4,16 +4,12 @@
 @import 'assets/style/variables';
 @import 'assets/style/material';
 @import 'assets/style/code';
-@import '../../ngx-sharebuttons/themes/modern/modern-light-theme';
-@import '../../ngx-sharebuttons/themes/modern/modern-dark-theme';
-@import '../../ngx-sharebuttons/themes/circles/circles-dark-theme';
-@import '../../ngx-sharebuttons/themes/circles/circles-light-theme';
-@import '../../ngx-sharebuttons/themes/material/material-light-theme';
-@import '../../ngx-sharebuttons/themes/material/material-dark-theme';
-@import '../../ngx-sharebuttons/themes/outline/outline-theme';
-@import '../../ngx-sharebuttons/themes/classic/classic-dark-theme';
-@import '../../ngx-sharebuttons/themes/classic/classic-light-theme';
-@import '../../ngx-sharebuttons/themes/default/default-theme';
+@import '../../ngx-sharebuttons/themes/modern';
+@import '../../ngx-sharebuttons/themes/circles';
+@import '../../ngx-sharebuttons/themes/material';
+@import '../../ngx-sharebuttons/themes/outline';
+@import '../../ngx-sharebuttons/themes/classic';
+@import '../../ngx-sharebuttons/themes/default';
 @import '~highlight.js/styles/atom-one-dark.css';
 
 *:not(mat-chip) {
@@ -66,6 +62,10 @@ section {
   margin: 6em 0;
   display: block;
   width: 100%;
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 .changed {

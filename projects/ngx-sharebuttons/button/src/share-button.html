@@ -1,6 +1,8 @@
-<button type="button"
+<button #btn="shareButton"
+        type="button"
         class="sb-wrapper"
-        #btn="shareButton"
+        [class.sb-show-icon]="showIcon"
+        [class.sb-show-text]="showText"
         [shareButton]="button"
         [url]="url"
         [image]="image"
@@ -8,12 +10,9 @@
         [description]="description"
         [tags]="tags"
         [autoSetMeta]="autoSetMeta"
+        [disabled]="disabled"
         (opened)="opened.emit($event)"
-        (closed)="closed.emit($event)"
-        [class.sb-show-icon]="showIcon"
-        [class.sb-show-text]="showText"
-        [style.fontSize.px]="(1 + size/20) * 14"
-        [disabled]="disabled">
+        (closed)="closed.emit($event)">
 
   <div *ngIf="btn" class="sb-content">
 

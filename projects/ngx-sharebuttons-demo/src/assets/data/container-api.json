@@ -45,11 +45,6 @@
     "type": "input"
   },
   {
-    "name": "size",
-    "description": "Buttons size, accepts positive and negative numbers e.g. -4, 2.5, 1...etc. default: 0",
-    "type": "input"
-  },
-  {
     "name": "url",
     "description": "Sharing link, default: current URL",
     "type": "input"

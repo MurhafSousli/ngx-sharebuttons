@@ -54,11 +54,6 @@
     "type": "input"
   },
   {
-    "name": "size",
-    "description": "Buttons default size, default: 0",
-    "type": "input"
-  },
-  {
     "name": "moreButtonIcon",
     "description": "More button icon in \"<share-buttons>\" component, default: 'ellipsis-h'"
   },

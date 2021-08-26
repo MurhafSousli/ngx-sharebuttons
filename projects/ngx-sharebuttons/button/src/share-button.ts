@@ -43,9 +43,6 @@ export class ShareButton {
   /** Button custom icon */
   @Input() icon: string;
 
-  /** Button size */
-  @Input() size: number = this._share.config.size;
-
   /** Button theme */
   @Input() theme: string = this._share.config.theme;
 
