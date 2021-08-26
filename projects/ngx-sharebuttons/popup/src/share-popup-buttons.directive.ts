@@ -42,9 +42,6 @@ export class SharePopupButtonsDirective implements OnDestroy {
   /** Show buttons text */
   @Input() showText = false;
 
-  /** Buttons size */
-  @Input() size = 0;
-
   /** A flag that indicates if the button's click is disabled */
   @Input() disabled: boolean;
 
@@ -80,7 +77,6 @@ export class SharePopupButtonsDirective implements OnDestroy {
       show: this.show,
       showIcon: this.showIcon,
       showText: this.showText,
-      size: this.size,
       disabled: this.disabled,
       opened: this.opened,
       closed: this.closed,
