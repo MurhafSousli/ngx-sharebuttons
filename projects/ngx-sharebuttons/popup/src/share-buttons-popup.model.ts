@@ -13,7 +13,6 @@ export interface SharePopupOptions {
   autoSetMeta: boolean;
   showIcon: boolean;
   showText: boolean;
-  size: number;
   disabled: boolean;
   opened: EventEmitter<string>;
   closed: EventEmitter<string>;

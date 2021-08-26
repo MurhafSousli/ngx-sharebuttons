@@ -4,10 +4,10 @@
   align-items: center;
   padding: 0 0.5em;
   flex-wrap: wrap;
-  > * {
+  a, iframe {
     margin-bottom: 5px;
     margin-right: 5px;
-    height: 20px;
+    height: 22px;
   }
 
   iframe {

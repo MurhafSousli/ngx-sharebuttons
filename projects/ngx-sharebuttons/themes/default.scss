@@ -1,0 +1,16 @@
+@import "variables";
+
+.sb-default .sb-wrapper {
+  --sb-color: #{$sb-accent};
+  --sb-background: var(--button-color);
+  --sb-border-radius: 4px;
+  --sb-overflow: hidden;
+
+  &.sb-show-icon.sb-show-text {
+    --sb-text-padding: 0 1em 0 0;
+
+    .sb-text {
+      filter: none;
+    }
+  }
+}

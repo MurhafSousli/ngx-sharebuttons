@@ -1,0 +1,19 @@
+@import "variables";
+
+.sb-outline .sb-wrapper {
+  --sb-color: var(--button-color);
+  --sb-background: #{$sb-accent};
+  --sb-border-radius: 0.2em;
+  --sb-border: 2px solid;
+  --sb-transition: 0.3s;
+  --sb-line-height: 1;
+
+  &:hover {
+    --sb-color: #{$sb-accent};
+    --sb-box-shadow: inset 0 0 0 2em var(#{--button-color});
+  }
+
+  &.sb-show-icon.sb-show-text {
+    --sb-text-padding: 0 1em 0 0;
+  }
+}

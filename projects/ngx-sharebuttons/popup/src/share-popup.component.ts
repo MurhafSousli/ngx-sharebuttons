@@ -9,6 +9,8 @@ import { ShareService } from 'ngx-sharebuttons';
     <div class="sb-button sb-{{theme}}">
       <button shareButtonsPopup
               class="sb-wrapper"
+              [class.sb-show-icon]="showIcon"
+              [class.sb-show-text]="showText"
               [theme]="theme"
               [include]="include"
               [exclude]="exclude"
@@ -16,7 +18,6 @@ import { ShareService } from 'ngx-sharebuttons';
               [url]="url"
               [showIcon]="showIcon"
               [showText]="showText"
-              [size]="size"
               [tags]="tags"
               [autoSetMeta]="autoSetMeta"
               [title]="title"
@@ -38,7 +39,7 @@ import { ShareService } from 'ngx-sharebuttons';
       </button>
     </div>
   `,
-  styleUrls: ['./share-popup.component.scss'],
+  styleUrls: ['./share-popup.component.scss', '../../button/src/share-button.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SharePopupComponent {
@@ -80,9 +81,6 @@ export class SharePopupComponent {
 
   /** Show buttons text */
   @Input() showText = false;
-
-  /** Buttons size */
-  @Input() size = 0;
 
   /** A flag that indicates if the button's click is disabled */
   @Input() disabled: boolean;

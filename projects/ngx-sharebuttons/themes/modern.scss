@@ -1,0 +1,50 @@
+@import "variables";
+
+$border-radius: 3px;
+$separate-shadow: 1px 0 1px -1px rgba(0, 0, 0, 0.3);
+
+.sb-modern-dark, .sb-modern-light {
+  .sb-wrapper {
+    --sb-border-radius: #{$border-radius};
+    --sb-transition: box-shadow ease-in 150ms, transform ease-in 150ms;
+    --sb-box-shadow: 0 0.1em 0.5em rgba(165, 165, 165, 0.6);
+
+    &:active {
+      --sb-box-shadow: 0 0.4em 1em rgba(165, 165, 165, 0.9);
+    }
+
+    .sb-icon {
+      min-width: 2em;
+    }
+
+    &.sb-show-text {
+      padding: 0;
+
+      .sb-icon {
+        box-shadow: $separate-shadow;
+      }
+    }
+  }
+}
+
+.sb-modern-dark .sb-wrapper {
+  --sb-color: #{$sb-accent};
+  --sb-background: var(--button-color);
+
+  .sb-text,
+  .sb-count {
+    background: rgba(0, 0, 0, .1);
+  }
+
+  &.sb-show-text {
+    .sb-text {
+      border-bottom-right-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+  }
+}
+
+.sb-modern-light .sb-wrapper {
+  --sb-color: var(--button-color);
+  --sb-background: #{$sb-accent};
+}

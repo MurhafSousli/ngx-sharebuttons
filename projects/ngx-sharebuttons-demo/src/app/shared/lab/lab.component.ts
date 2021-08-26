@@ -1,11 +1,19 @@
-import { Component, Input, AfterViewInit, AfterContentChecked, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  AfterViewInit,
+  AfterContentChecked,
+  OnDestroy,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, Subscription, of } from 'rxjs';
 import { tap, take, switchMap, debounceTime, delay, distinctUntilChanged, filter } from 'rxjs/operators';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
-import { ShareService, SHARE_BUTTONS } from '../../../../../ngx-sharebuttons/src/public-api';
+import { ShareService, SHARE_BUTTONS } from 'ngx-sharebuttons';
 
 import { CodeDialogComponent } from '../code-dialog/code-dialog.component';
 
@@ -46,10 +54,9 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
       'circles-light',
       'outline'
     ],
-    show: 5,
-    size: 0
+    show: 5
   };
-  prevConfig = {...this.config};
+  prevConfig = { ...this.config };
 
   /** Check if config is loaded from localstorage */
   ready = false;
@@ -64,7 +71,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
   openedChanged = new Subject();
 
   /** Lab for a single share buttons or for share buttons container */
-  @Input() component;
+  @Input() component: 'popup-buttons' | 'share-buttons' | 'share-button';
 
   constructor(private share: ShareService, private dialog: MatDialog, private cd: ChangeDetectorRef, protected localStorage: LocalStorage) {
   }
@@ -91,66 +98,62 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
 
   showCode() {
 
-    let code = `<${this.component}`;
+    let code = `<${ this.component }`;
 
     if (this.config.theme) {
-      code += ` [theme]="'${this.config.theme}'"`;
+      code += ` [theme]="'${ this.config.theme }'"`;
     }
 
     if (this.component === 'share-button') {
-      code += `\n [button]="'${this.config.button}'"`;
+      code += `\n [button]="'${ this.config.button }'"`;
     } else {
 
       if (this.config.include.length !== this.share.config.include.length) {
-        code += `\n [include]="[${this.config.include.map(btn => `'${btn}'`)}]"`;
+        code += `\n [include]="[${ this.config.include.map(btn => `'${ btn }'`) }]"`;
       }
 
       if (this.config.exclude.length) {
-        code += `\n [exclude]="[${this.config.exclude.map(btn => `'${btn}'`)}]"`;
+        code += `\n [exclude]="[${ this.config.exclude.map(btn => `'${ btn }'`) }]"`;
       }
 
       if (this.config.show) {
-        code += `\n [show]="${this.config.show}"`;
+        code += `\n [show]="${ this.config.show }"`;
       }
     }
 
     if (!this.config.showIcon) {
-      code += `\n [showIcon]="${this.config.showIcon}"`;
+      code += `\n [showIcon]="${ this.config.showIcon }"`;
     }
 
     if (this.config.showText) {
-      code += `\n [showText]="${this.config.showText}"`;
-    }
-
-    if (this.config.size) {
-      code += `\n [size]="${this.config.size}"`;
+      code += `\n [showText]="${ this.config.showText }"`;
     }
 
     if (this.config.url) {
-      code += `\n [url]="'${this.config.url}'"`;
+      code += `\n [url]="'${ this.config.url }'"`;
     }
 
     if (this.config.title) {
-      code += `\n [title]="'${this.config.title}'"`;
+      code += `\n [title]="'${ this.config.title }'"`;
     }
 
     if (this.config.description) {
-      code += `\n [description]="'${this.config.description}'"`;
+      code += `\n [description]="'${ this.config.description }'"`;
     }
 
     if (this.config.image) {
-      code += `\n [image]="'${this.config.image}'"`;
+      code += `\n [image]="'${ this.config.image }'"`;
     }
 
     if (this.config.tags) {
-      code += `\n [tags]="'${this.config.tags}'"`;
+      code += `\n [tags]="'${ this.config.tags }'"`;
     }
 
     if (!this.config.autoSetMeta) {
-      code += `\n [autoSetMeta]="${this.config.autoSetMeta}"`;
+      code += `\n [autoSetMeta]="${ this.config.autoSetMeta }"`;
     }
 
-    code += `\n></${this.component}>`;
+    code += `\n></${ this.component }>`;
 
 
     this.dialog.open(CodeDialogComponent, {
@@ -171,7 +174,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
       debounceTime(400),
       distinctUntilChanged(),
       tap((text: string) => {
-        this.config = {...this.config, url: text};
+        this.config = { ...this.config, url: text };
         this.cd.markForCheck();
       })
     ).subscribe();
@@ -179,15 +182,15 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
     this.saveSub.pipe(
       filter(() => JSON.stringify(this.config) !== JSON.stringify(this.prevConfig)),
       switchMap(() => {
-        this.prevConfig = {...this.config};
+        this.prevConfig = { ...this.config };
         return this.localStorage.setItem('labConfig', this.config);
       })
     ).subscribe();
 
     this.localStorage.getItem('labConfig').pipe(
       tap((config: any) => {
-        this.config = {...this.config, ...config};
-        this.prevConfig = {...this.config};
+        this.config = { ...this.config, ...config };
+        this.prevConfig = { ...this.config };
       })
     ).subscribe(() => {
       this.ready = true;

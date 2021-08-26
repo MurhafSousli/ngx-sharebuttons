@@ -24,22 +24,6 @@ $sb-gray: #a5a5a5 !default;
 $sb-expand: #FF6651 !default;
 $sb-line: #00b900 !default;
 
-/** share button variables */
-
-$sb-min-width: 4.125em !default;
-$sb-height: 2.5em !default;
-$sb-background-color: transparent !default;
-$sb-font-size: inherit !default;
-$sb-icon-size: 1.2em !default;
-$sb-margin: 0.3125em !default;
-$sb-padding: 0 !default;
-$sb-text-padding: 0 0.7em !default;
-$sb-border: none !default;
-$sb-border-radius: 1px !default;
-$sb-line-height: 2.571em;
-
-/** share buttons colors */
-
 $sb-buttons: (
   facebook: $sb-facebook,
   twitter: $sb-twitter,
