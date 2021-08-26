@@ -19,7 +19,7 @@ button {
   min-width: var(--sb-min-width, 4.125em);
   height: var(--sb-height, 2.5em);
 
-  color: var(--sb-color, #fff);
+  color: var(--sb-color, #{$sb-accent});
   background: var(--sb-background);
 
   font-size: var(--sb-font-size, 13px);
