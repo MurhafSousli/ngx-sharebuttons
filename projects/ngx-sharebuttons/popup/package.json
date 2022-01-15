@@ -1,9 +1,6 @@
 {
   "ngPackage": {
     "lib": {
-      "umdModuleIds": {
-        "@fortawesome/angular-fontawesome": "angularFontawesome"
-      }
     }
   }
 }

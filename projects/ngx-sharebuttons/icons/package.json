@@ -1,11 +1,6 @@
 {
   "ngPackage": {
     "lib": {
-      "umdModuleIds": {
-        "@fortawesome/angular-fontawesome": "angularFontawesome",
-        "@fortawesome/free-brands-svg-icons": "freeBrandsSvgIcons",
-        "@fortawesome/free-solid-svg-icons": "free-solid-svg-icons"
-      }
     }
   }
 }
