@@ -28,18 +28,6 @@
             "tsConfig": "projects/ngx-sharebuttons/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-sharebuttons/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-sharebuttons/tsconfig.lib.json",
-              "projects/ngx-sharebuttons/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -143,19 +131,6 @@
               "projects/ngx-sharebuttons-demo/src/styles.scss"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-sharebuttons-demo/tsconfig.app.json",
-              "projects/ngx-sharebuttons-demo/tsconfig.spec.json",
-              "projects/ngx-sharebuttons-demo/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
