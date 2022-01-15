@@ -1,6 +1,6 @@
 import { ComponentRef, Injectable, Injector } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { ShareButtonsPopup } from './share-buttons-popup';
 import { SHARE_POPUP_OPTIONS, SharePopupOptions } from './share-buttons-popup.model';
 
@@ -41,10 +41,13 @@ export class SharePopupService {
     }
   }
 
-  private createInjector(dataToPass: SharePopupOptions): PortalInjector {
-    const injectorTokens = new WeakMap();
-    injectorTokens.set(SHARE_POPUP_OPTIONS, dataToPass);
-    return new PortalInjector(this._injector, injectorTokens);
+  private createInjector(dataToPass: SharePopupOptions): Injector {
+    return Injector.create({
+      parent: this._injector,
+      providers: [
+        { provide: SHARE_POPUP_OPTIONS, useValue: dataToPass }
+      ]
+    });
   }
 
 }

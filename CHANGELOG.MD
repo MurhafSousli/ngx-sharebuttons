@@ -1,5 +1,12 @@
 # Changelog
 
+## 10.0.0
+
+- Update to Angular 13 in [ba9bea3](https://github.com/MurhafSousli/ngx-sharebuttons/pull/578/commits/ba9bea3a555b9149d75b3a4ad52a8d7e9d074465).
+- Fix Error logs on SSR, closes [#320](https://github.com/MurhafSousli/ngx-sharebuttons/issues/320) in [22a064b](https://github.com/MurhafSousli/ngx-sharebuttons/pull/578/commits/22a064bdc45e033b1fbfc122954b66b8bd430d53).
+- Should not display Ivy library warning, closes [#571](https://github.com/MurhafSousli/ngx-sharebuttons/issues/571) in [ba9bea3](https://github.com/MurhafSousli/ngx-sharebuttons/pull/578/commits/ba9bea3a555b9149d75b3a4ad52a8d7e9d074465).
+- fix(popup): Remove FontAwesome imports in share pop up, closes [#574](https://github.com/MurhafSousli/ngx-sharebuttons/issues/574) in [42d94a2](https://github.com/MurhafSousli/ngx-sharebuttons/pull/578/commits/42d94a22f1131853cdc31039ea70a8b4ec5bbabf).
+
 ## 9.0.0
 
 ### Breaking changes

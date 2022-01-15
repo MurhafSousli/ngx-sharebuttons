@@ -8,7 +8,6 @@ import { ShareButtonsPopup } from './share-buttons-popup';
 import { SharePopupService } from './share-popup.service';
 import { SharePopupButtonsDirective } from './share-popup-buttons.directive';
 import { SharePopupComponent } from './share-popup.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     CommonModule,
-    ShareButtonsModule,
-    FontAwesomeModule
+    ShareButtonsModule
   ],
   exports: [
     ShareButtonsModule,

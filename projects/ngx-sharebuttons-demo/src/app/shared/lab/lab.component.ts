@@ -63,7 +63,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
 
   urlControl = new FormControl();
   urlSub: Subscription;
-  saveSub = new Subject();
+  saveSub = new Subject<void>();
 
   opened: string;
   closed: string;
@@ -199,7 +199,6 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
   }
 
   ngAfterContentChecked() {
-
     this.saveSub.next();
   }
 
