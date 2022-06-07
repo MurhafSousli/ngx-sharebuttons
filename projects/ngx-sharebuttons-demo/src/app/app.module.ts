@@ -11,12 +11,7 @@ import { SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faLightbulb } from '@fortawesome/free-solid-svg-icons/faLightbulb';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons/faCoffee';
-import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
-import { faBook } from '@fortawesome/free-solid-svg-icons/faBook';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
-import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
+import { faShare, faLightbulb, faCoffee, faInfo, faTimesCircle, faBook } from '@fortawesome/free-solid-svg-icons';
 
 import { SharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';

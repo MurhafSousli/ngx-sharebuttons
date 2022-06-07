@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, Subscription, of } from 'rxjs';
 import { tap, take, switchMap, debounceTime, delay, distinctUntilChanged, filter } from 'rxjs/operators';
@@ -61,7 +61,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
   /** Check if config is loaded from localstorage */
   ready = false;
 
-  urlControl = new FormControl();
+  urlControl = new UntypedFormControl();
   urlSub: Subscription;
   saveSub = new Subject<void>();
 
