@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.0.0
+
+- Update to Angular 15 in []().
+
 ## 11.0.0
 
 - Update to Angular 14 in [157fc88](https://github.com/MurhafSousli/ngx-sharebuttons/pull/601/commits/157fc8807db2176b01bb6994b130928e8d868a8f).
