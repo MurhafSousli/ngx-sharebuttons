@@ -61,7 +61,7 @@ export interface IShareButtons {
 
 export class IShareButton {
   /** Share button type */
-  type?: shareButtonName;
+  type?: string;
   /** Share button text */
   text?: string;
   /** Share button aria label attribute */

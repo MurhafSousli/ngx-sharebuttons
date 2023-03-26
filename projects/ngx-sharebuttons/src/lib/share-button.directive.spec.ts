@@ -70,7 +70,7 @@ describe('Share Button Directive', () => {
 
   it('should create a share button (LOOP OVER ALL SHARE BUTTONS)', () => {
     Object.values(shareService.prop).forEach((shareButton: IShareButton) => {
-      directiveInstance.shareButtonName = shareButton.type;
+      directiveInstance.shareButtonName = shareButton.type as any;
       // Run on changes
       directiveInstance.ngOnChanges({
         shareButtonName: new SimpleChange(null, shareButton.type, false)
