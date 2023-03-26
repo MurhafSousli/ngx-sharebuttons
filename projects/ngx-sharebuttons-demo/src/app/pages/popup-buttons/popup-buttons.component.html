@@ -1,10 +1,9 @@
 <ng-scrollbar>
   <header>
-    <h1>Popup Share Buttons Component <span style="color: orangered">(BETA)</span></h1>
+    <h1>Popup Share Buttons Component <span style="color: orangered">(DEPRECATED)</span></h1>
   </header>
 
-  <div class="page-content container">
-
+  <doc-container>
     <section>
       <section-title>Overview</section-title>
       <p>
@@ -34,9 +33,10 @@
 
       <hl-code [code]="code.styles"></hl-code>
 
-      <note icon="lightbulb">If you are <b>NOT</b> using Angular Material in your project, then you will need to import
-        the CDK overlay styles to make the pop up work properly, otherwise just import the share buttons theme.
-      </note>
+      <!--        <note icon="lightbulb">If you are <b>NOT</b> using Angular Material in your project, then you will need to-->
+      <!--          import-->
+      <!--          the CDK overlay styles to make the pop up work properly, otherwise just import the share buttons theme.-->
+      <!--        </note>-->
 
       <note>The default theme is optional, you can replace it with other theme or create your own theme from scratch,
         see the <a routerLink="/styling-guide">styling guide</a></note>
@@ -56,13 +56,13 @@
     </section>
 
     <section fxShow fxHide.lt-md="true">
-      <section-title>Lab</section-title>
+      <section-title>Important Info</section-title>
+      <shared-info></shared-info>
+    </section>
 
-      <mat-card>
-        <mat-card-content>
-          <lab component="popup-buttons"></lab>
-        </mat-card-content>
-      </mat-card>
+    <section fxShow fxHide.lt-md="true">
+      <section-title>Lab</section-title>
+      <lab component="popup-buttons"></lab>
     </section>
 
     <section fxShow fxHide.lt-md="true">
@@ -72,18 +72,18 @@
 
         <!-- Type Column -->
         <ng-container matColumnDef="type">
-          <mat-header-cell *matHeaderCellDef fxFlex="100px"> Type</mat-header-cell>
-          <mat-cell *matCellDef="let row" fxFlex="100px">
-            <mat-chip-list>
+          <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-chip-listbox>
               <mat-chip class="property" [class.property-input]="row.type==='input'"> {{ row.type }}</mat-chip>
-            </mat-chip-list>
+            </mat-chip-listbox>
           </mat-cell>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef fxFlex="100px"> Name</mat-header-cell>
-          <mat-cell *matCellDef="let row" fxFlex="100px">
+          <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+          <mat-cell *matCellDef="let row">
             <b>{{row.name}}</b>
           </mat-cell>
         </ng-container>
@@ -99,8 +99,7 @@
       </mat-table>
 
     </section>
-
-  </div>
+  </doc-container>
 
   <footer></footer>
 </ng-scrollbar>

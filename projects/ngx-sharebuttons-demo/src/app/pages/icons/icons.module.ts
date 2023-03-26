@@ -8,7 +8,7 @@ import { IconsComponent } from './icons.component';
   imports: [
     SharedModule,
     RouterModule.forChild([
-      {path: '', component: IconsComponent}
+      { path: '', component: IconsComponent }
     ])
   ]
 })

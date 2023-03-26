@@ -3,11 +3,14 @@
     <h1>Icons Guide</h1>
   </header>
 
-  <div class="page-content container">
-
+  <doc-container>
     <section>
       <section-title>Overview</section-title>
-      <p>This library relies on <b><a href="https://fontawesome.com">FontAwesome</a></b> to display share buttons icons.
+      <p><code class="hljs" [innerText]="'<share-buttons>'"></code> and <code class="hljs"
+                                                                              [innerText]="'<share-button>'"></code>
+        components rely on <b><a href="https://fontawesome.com">FontAwesome</a></b> to display share buttons icons.
+      </p>
+      <p>If you want to use another icon library, consider using <code class="hljs">[shareButton]</code> directive instead.</p>
     </section>
 
     <section>
@@ -18,7 +21,7 @@
     </section>
 
     <section>
-      <section-title>Custom icons</section-title>
+      <section-title>Custom FA icons</section-title>
       <p>If you want to import different icon set for the share buttons or if you don't want to import all the share
         icons that comes with the <code class="hljs">ShareIconsModule</code>, you can skip it and import the icons
         manually.</p>
@@ -26,7 +29,7 @@
 
       <hl-code [code]="code.libraryMethod" [height]="400"></hl-code>
     </section>
-  </div>
+  </doc-container>
 
   <footer></footer>
 </ng-scrollbar>

@@ -1,7 +1,4 @@
-@import "../../../assets/style/variables";
-
 :host {
-  position: fixed;
   position: sticky;
   bottom: 0;
   margin: auto;
@@ -26,5 +23,5 @@
 .current-theme {
   flex: 1;
   text-align: center;
-  color: $action-color;
+  color: var(--accent-color);
 }

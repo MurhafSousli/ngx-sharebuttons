@@ -1,5 +1,3 @@
-@import '../../../assets/style/variables';
-
 figure {
   max-width: 400px;
   margin: 0.5em;
@@ -8,7 +6,7 @@ figure {
 img {
   max-width: 100%;
   display: block;
-  box-shadow: $box-shadow;
+  box-shadow: var(--box-shadow);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -16,6 +14,6 @@ img {
 figcaption {
   margin-top: 1em;
   text-align: center;
-  font-family: 'Play', sans-serif;
+  font-family: var(--play-font-family);
   opacity: 0.5;
 }

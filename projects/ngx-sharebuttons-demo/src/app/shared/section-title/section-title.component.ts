@@ -1,14 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, SkipSelf, ChangeDetectionStrategy } from '@angular/core';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { NgScrollbar } from 'ngx-scrollbar';
 
 @Component({
   selector: 'section-title',
   template: `
     <div fxLayout fxLayoutAlign="start center">
-      <h2>
-        <i class="fas fa-caret-right" aria-hidden="true"></i>
-        <fa-icon [icon]="iconCaretRight" size="lg"></fa-icon>
-        <ng-content></ng-content>
+      <h2 #el [id]="el.textContent | kebabCase">
+        <a routerLink="."
+           [fragment]="el.textContent | kebabCase"
+           (click)="scrollbar.scrollToElement(el, { top: -20 })">
+          <fa-icon [icon]="iconCaretRight" size="lg"></fa-icon>
+          <ng-content></ng-content>
+        </a>
       </h2>
     </div>
   `,
@@ -16,10 +20,16 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
     :host {
       width: 100%;
     }
+
     h2 {
       flex: 1;
       margin: 1em 0;
     }
+
+    a {
+      color: inherit;
+    }
+
     h2:after {
       content: '';
       display: block;
@@ -29,6 +39,7 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
       background-color: rgba(0, 0, 0, 0.8);
       margin-top: 15px;
     }
+
     fa-icon {
       color: #F44336;
       margin-right: 10px;
@@ -40,4 +51,7 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
 export class SectionTitleComponent {
 
   iconCaretRight = faCaretRight;
+
+  constructor(@SkipSelf() public scrollbar: NgScrollbar) {
+  }
 }

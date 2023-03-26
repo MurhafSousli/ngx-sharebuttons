@@ -8,14 +8,11 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { Subject, Subscription, of } from 'rxjs';
 import { tap, take, switchMap, debounceTime, delay, distinctUntilChanged, filter } from 'rxjs/operators';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
 import { ShareService, SHARE_BUTTONS } from 'ngx-sharebuttons';
-
-import { CodeDialogComponent } from '../code-dialog/code-dialog.component';
 
 @Component({
   selector: 'lab',
@@ -24,6 +21,8 @@ import { CodeDialogComponent } from '../code-dialog/code-dialog.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestroy {
+
+  showCode: boolean;
 
   config = {
     updateDate: '30032018',
@@ -73,7 +72,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
   /** Lab for a single share buttons or for share buttons container */
   @Input() component: 'popup-buttons' | 'share-buttons' | 'share-button';
 
-  constructor(private share: ShareService, private dialog: MatDialog, private cd: ChangeDetectorRef, protected localStorage: LocalStorage) {
+  constructor(private share: ShareService, private cd: ChangeDetectorRef, protected localStorage: LocalStorage) {
   }
 
   onOpenedChanged(e) {
@@ -96,7 +95,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
     ).subscribe();
   }
 
-  showCode() {
+  getCode(): string {
 
     let code = `<${ this.component }`;
 
@@ -155,14 +154,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
 
     code += `\n></${ this.component }>`;
 
-
-    this.dialog.open(CodeDialogComponent, {
-      width: '600px',
-      autoFocus: false,
-      panelClass: 'code-dialog',
-      data: code
-    });
-
+    return code;
   }
 
   getMax() {
