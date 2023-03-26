@@ -262,3 +262,5 @@ export const SHARE_BUTTONS: IShareButtons = {
     func: copyToClipboard
   }
 };
+
+export type shareButtonName = 'facebook' | 'twitter' | 'pinterest' | 'linkedin' | 'email' | 'print' | 'reddit' | 'copy' | 'xing' | 'line' | 'sms' | 'tumblr' | 'whatsapp' | 'messenger' | 'telegram' | 'vk' | 'viber' | 'mix';

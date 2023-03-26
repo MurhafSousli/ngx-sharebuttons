@@ -1,9 +1,9 @@
 <div class="switcher-header">
   <h3> {{ title }} </h3>
   <div class="toggle" fxLayout fxLayoutAlign="space-between center">
-    <fa-icon [icon]="eyeIcon" [style.color]="flip[toggle].eyeColor" size="lg"></fa-icon>
+    <fa-icon [icon]="eyeIcon" style="height: 29px" size="lg"></fa-icon>
     <mat-slide-toggle [(ngModel)]="toggle" color="primary">
-      <fa-icon [icon]="codeIcon" [style.color]="flip[toggle].codeColor" size="lg"></fa-icon>
+      <fa-icon [icon]="codeIcon" size="lg"></fa-icon>
     </mat-slide-toggle>
   </div>
 </div>

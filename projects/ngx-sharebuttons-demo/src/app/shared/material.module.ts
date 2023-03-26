@@ -17,8 +17,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 const MATERIAL_MODULES = [
+  MatSnackBarModule,
   MatTableModule,
   MatChipsModule,
   MatSidenavModule,
@@ -35,7 +38,8 @@ const MATERIAL_MODULES = [
   MatDialogModule,
   MatSliderModule,
   MatFormFieldModule,
-  ObserversModule
+  ObserversModule,
+  ClipboardModule
 ];
 
 @NgModule({

@@ -1,21 +1,21 @@
 @use '@angular/material' as mat;
-@import '../../../assets/style/variables';
-
-$note-bg-lightbulb: mat.get-color-from-palette(mat.define-palette(mat.$light-green-palette, 100));
-$note-color-lightbulb: mat.get-color-from-palette(mat.define-palette(mat.$light-green-palette, 600));
-
-$note-bg-coffee: mat.get-color-from-palette(mat.define-palette(mat.$brown-palette, 100));
-$note-color-coffee: mat.get-color-from-palette(mat.define-palette(mat.$brown-palette, 600));
-
-$note-bg-book: mat.get-color-from-palette(mat.define-palette(mat.$red-palette, 100));
-$note-color-book: mat.get-color-from-palette(mat.define-palette(mat.$red-palette, 600));
 
 :host {
+  --lightbulb-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 100))};
+  --lightbulb-color: #{mat.get-color-from-palette(mat.define-palette(mat.$light-green-palette, 600))};
+
+  --coffee-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 100))};
+  --coffee-color: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 600))};
+
+  --book-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 100))};
+  --book-color: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 600))};
+
   display: block;
-  border-radius: 0.5em;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: var(--mdc-elevated-card-container-shape, var(--mdc-shape-medium, 4px));
+  border: var(--border);
   overflow: hidden;
   margin: 4em 0;
+  font-family: 'Play', sans-serif;
 }
 
 .note-icon {
@@ -27,7 +27,7 @@ $note-color-book: mat.get-color-from-palette(mat.define-palette(mat.$red-palette
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $note-color;
+  background-color: var(--note-color);
 }
 
 fa-icon {
@@ -46,32 +46,36 @@ section {
   position: relative;
   display: flex;
   align-items: center;
-  background-color: $note-bg;
+  background-color: var(--note-bg);
   margin: 0;
 }
 
-.note-coffee {
-  section {
-    background-color: $note-bg-coffee;
-  }
-  .note-icon {
-    background-color: $note-color-coffee;
-  }
-}
-
-.note-lightbulb {
-  section {
-    background-color: $note-bg-lightbulb;
-  }
-  .note-icon {
-    background-color: $note-color-lightbulb;
-  }
-}
-.note-book {
-  section {
-    background-color: $note-bg-book;
-  }
-  .note-icon {
-    background-color: $note-color-book;
-  }
-}
+//.note-coffee {
+//  section {
+//    background-color: var(--coffee-bg);
+//  }
+//
+//  .note-icon {
+//    background-color: var(--coffee-color);
+//  }
+//}
+//
+//.note-lightbulb {
+//  section {
+//    background-color: var(--lightbulb-bg);
+//  }
+//
+//  .note-icon {
+//    background-color: var(--lightbulb-color);
+//  }
+//}
+//
+//.note-book {
+//  section {
+//    background-color: var(--book-bg);
+//  }
+//
+//  .note-icon {
+//    background-color: var(--book-color);
+//  }
+//}

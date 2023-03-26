@@ -1,11 +1,31 @@
 @use '@angular/material' as mat;
 
 @include mat.core();
-$primary: mat.define-palette(mat.$cyan-palette, 700);
+
+$primary: mat.define-palette(mat.$blue-gray-palette, 500);
 $accent: mat.define-palette(mat.$red-palette);
 $warn: mat.define-palette(mat.$purple-palette, 300);
 $theme: mat.define-light-theme($primary, $accent, $warn);
-@include mat.all-component-themes($theme);
+
+$my-theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+$play-font-typography: mat.define-typography-config(
+  // Specify "Comic Sans" as the default font family for all levels.
+  $font-family: 'Play'
+);
+
+@include mat.all-component-themes($my-theme);
+
+// Now we have sweet buttons with Comic Sans.
+@include mat.list-typography($play-font-typography);
 
 // MATERIAL TABLE
 
@@ -13,20 +33,23 @@ mat-table {
   overflow: hidden;
 }
 
-mat-table, .mat-card {
-  box-shadow: $box-shadow !important;
+.mat-mdc-table, .mat-mdc-card {
+  box-shadow: unset !important;
+  border: var(--border) !important;
+  border-radius: var(--mdc-elevated-card-container-shape, var(--mdc-shape-medium, 4px));
 }
 
-mat-cell, .mat-card, .mat-chip:not(.mat-basic-chip) {
-  color: $font-color !important;
+.mat-mdc-cell, .mat-mdc-card, .mat-mdc-chip:not(.mat-mdc-basic-chip) {
+  color: var(--primary-color) !important;
 }
 
-.mat-header-cell {
-  color: rgba($font-color, 0.54);
+.mat-mdc-header-cell {
+  color: rgba(var(--primary-color), 0.54);
 }
 
 .mat-header-row, .mat-row {
   min-height: 34px !important;
+
   mat-cell {
     padding: 0.8em 0;
   }
@@ -41,7 +64,7 @@ mat-cell, .mat-card, .mat-chip:not(.mat-basic-chip) {
   align-items: center !important;
 }
 
-.mat-chip {
+.mat-mdc-chip-option {
   font-family: 'Play', sans-serif;
   text-transform: lowercase !important;
 }
@@ -61,6 +84,7 @@ mat-card-header {
   display: flex;
   align-items: center;
   margin-bottom: 1em;
+
   .mat-card-header-text {
     margin: 0;
   }
@@ -95,14 +119,13 @@ mat-card-content {
 }
 
 .mat-sidenav-container {
-  color: $font-color
+  color: var(--primary-color);
 }
 
 // MATERIAL DIALOG
-.code-dialog .mat-dialog-container {
-  border-radius: 0.6em;
-  padding: .6em;
-  background-color: mat.get-color-from-palette(mat.define-palette(mat.$purple-palette, 300));
+.code-dialog .mat-mdc-dialog-container {
+  --mdc-dialog-container-color: transparent;
+  --mdc-dialog-container-shape: 0.6em;
 }
 
 .mat-slide-toggle .mat-slide-toggle-content {
@@ -112,5 +135,27 @@ mat-card-content {
 
 .copy-tooltip {
   color: mat.get-color-from-palette(mat.define-palette(mat.$red-palette));
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  --primary-color: #2E4057;
+  --accent-color: #ab4e45;
+  --action-color: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 500))};
+  --output-color: #778DA9;
+  --note-color: var(--action-color);
+  --note-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 50))};
+  --footer-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 300))};
+  --dialog-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$purple-palette))};
+
+  --border: 1px solid lightgray;
+  --box-shadow: #{0 3px 10px rgba(black, 0.1)};
+  --sm-box-shadow: #{0 1px 4px rgba(black, 0.1)};
+  --code-bg: #fff;
+
+  --menu-box-shadow: #{0 0 6px rgba(0, 0, 0, 0.23)};
+  --api_input: #{mat.get-color-from-palette(mat.define-palette(mat.$light-blue-palette), 50)};
+  --api_output: #{mat.get-color-from-palette(mat.define-palette(mat.$cyan-palette), 50)};
+
+  --play-font-family: 'Play', sans-serif;
 }

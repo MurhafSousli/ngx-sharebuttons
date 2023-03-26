@@ -1,6 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { Observable, Subject } from 'rxjs';
+import { shareButtonName } from './share.defaults';
 
 export const SHARE_BUTTONS_CONFIG = new InjectionToken<ShareButtonsConfig>('shareButtonsConfig');
 
@@ -60,7 +61,7 @@ export interface IShareButtons {
 
 export class IShareButton {
   /** Share button type */
-  type?: string;
+  type?: shareButtonName;
   /** Share button text */
   text?: string;
   /** Share button aria label attribute */

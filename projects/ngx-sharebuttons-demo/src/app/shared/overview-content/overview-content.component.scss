@@ -1,0 +1,28 @@
+:host {
+  border-left: solid 4px var(--action-color);
+  top: 35px;
+  position: sticky;
+  font-size: 14px;
+  width: 250px;
+  padding-left: 10px;
+  margin-top: 50px;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+a {
+  white-space: normal;
+  color: var(--primary-color);
+  opacity: 0.5;
+  line-height: 20px;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.active {
+  opacity: 1;
+  text-decoration: underline;
+}

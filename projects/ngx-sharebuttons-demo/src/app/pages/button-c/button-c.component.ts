@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
-import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
-import { faPinterest } from '@fortawesome/free-brands-svg-icons/faPinterest';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
+import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
+import { faPinterest } from '@fortawesome/free-brands-svg-icons';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 import { DocsService } from '../../docs/docs.service';
 

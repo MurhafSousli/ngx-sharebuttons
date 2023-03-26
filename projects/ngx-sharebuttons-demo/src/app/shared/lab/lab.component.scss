@@ -11,18 +11,31 @@
   display: block;
 }
 
+.lab-container {
+  position: relative;
+}
+
 .code-button {
   position: absolute;
   right: -40px;
   top: -40px;
   z-index: 90;
+
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h4 {
   margin: 0;
 }
 
-.mat-form-field {
+.mat-mdc-slider {
+  width: 150px;
+}
+
+.mat-mdc-form-field {
   width: 100%;
   margin-right: 1em;
 }
@@ -61,11 +74,11 @@ h4 {
 .inputs-line {
   align-items: center;
   margin-bottom: 1em;
-  .mat-select,
+  .mat-mdc-select,
   .toggle-group {
     flex: 1;
   }
-  .mat-form-field {
+  .mat-mdc-form-field {
     width: 140px;
     flex: 1;
   }
@@ -77,20 +90,13 @@ h4 {
 }
 
 .vertical {
-  width: 220px;
+  width: 280px;
   display: flex;
   flex-direction: column;
 }
 
-.mat-slide-toggle {
+.mat-mdc-slide-toggle {
   margin: 0 0.5em;
-}
-
-.code-button {
-  font-size: 1.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .auto-set-toggle {

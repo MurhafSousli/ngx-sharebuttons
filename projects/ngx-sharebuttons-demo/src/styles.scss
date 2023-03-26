@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Play:400,700|Roboto:400,500,500i,700');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import '~normalize.css';
-@import 'assets/style/variables';
 @import 'assets/style/material';
 @import 'assets/style/code';
 @import '../../ngx-sharebuttons/themes/modern';
@@ -10,16 +9,14 @@
 @import '../../ngx-sharebuttons/themes/outline';
 @import '../../ngx-sharebuttons/themes/classic';
 @import '../../ngx-sharebuttons/themes/default';
-@import '~highlight.js/styles/atom-one-dark.css';
 
-*:not(mat-chip) {
+* {
   box-sizing: border-box;
-  -webkit-print-color-adjust: exact;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
-  color: $font-color;
+  color: var(--primary-color);
   line-height: 2em;
   background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
 }
@@ -31,8 +28,8 @@ h4,
 h5,
 li,
 button {
-  color: $font-color;
-  font-family: 'Play', sans-serif;
+  color: var(--primary-color);
+  font-family: var(--play-font-family);
 }
 
 h1 {
@@ -53,8 +50,9 @@ img {
 }
 
 a {
+  white-space: nowrap;
   text-decoration: none;
-  color: $action-color;
+  color: var(--accent-color);;
   font-family: 'Play', sans-serif !important;
 }
 
@@ -64,7 +62,7 @@ section {
   width: 100%;
 
   &:first-child {
-    margin-top: 0;
+    margin-top: 3em;
   }
 }
 
@@ -74,13 +72,13 @@ section {
 }
 
 .property {
-  background-color: $api_output !important;
+  background-color: var(--api_output) !important;
   width: 74px;
   text-align: center;
 }
 
 .property-input {
-  background-color: $api_input !important;
+  background-color: var(--api_input) !important;
   width: 64px;
 }
 
@@ -94,10 +92,14 @@ section {
   font-family: 'Roboto', sans-serif;
 }
 
+.home-container {
+  max-width: 900px !important;
+}
+
 .container {
   padding: 1em;
   width: 100%;
-  max-width: 915px;
+  max-width: 1200px;
   margin: auto;
   box-sizing: border-box;
 }
@@ -116,9 +118,10 @@ section {
   position: relative;
   padding-top: 6.64em;
   padding-bottom: 2em;
-  background-color: $footer-bg;
+  background-color: var(--footer-bg);
   color: white;
-  box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  //box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.4);
   z-index: 10;
 
   &:before {
@@ -142,6 +145,11 @@ section {
   flex: 1;
 }
 
+.page-content-with-overview {
+  display: flex;
+  gap: 30px;
+}
+
 .page {
   display: flex;
   flex-direction: column;
@@ -157,12 +165,12 @@ section {
   background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
   box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
 
-  > .ng-scrollbar {
+  .ng-scrollbar {
     --scrollbar-border-radius: 12px;
     --scrollbar-size: 12px;
-    --scrollbar-thumb-color: #009aaeb0;
+    --scrollbar-thumb-color: var(--action-color);
     --scrollbar-color: rgba(0, 0, 0, 0.1);
-    --scrollbar-thumb-hover-color: #e73727a6;
+    --scrollbar-thumb-hover-color: var(--action-color);
     --scrollbar-track-color: rgba(0, 0, 0, 0.1);
 
     .ng-scrollbar {
@@ -176,11 +184,11 @@ section {
 }
 
 .wall {
-  box-shadow: inset 0 10px 10px -10px rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   width: 100%;
   flex: 1;
   color: white;
-  background: $footer-bg;
+  background: var(--footer-bg);
   position: relative;
   z-index: 10;
 
@@ -206,7 +214,7 @@ section {
     border-radius: 8px;
     padding: 1.2em 1.6em;
     border: 1px dashed;
-    background-color: $footer-bg;
+    background-color: var(--footer-bg);
 
     a {
       color: white;
@@ -220,3 +228,41 @@ section {
     margin: 0;
   }
 }
+
+// TABLES
+
+.mat-mdc-table {
+  background: lightgray;
+  --table-header-cell-bg: var(--action-color);
+  --table-header-cell-color: white;
+  --table-cell-bg: white;
+
+  .mat-mdc-cell {
+    background: var(--table-cell-bg);
+  }
+
+  .mat-mdc-header-cell {
+    color: var(--table-header-cell-color);
+    background: var(--table-header-cell-bg) !important;
+  }
+
+  .mat-mdc-row, .mat-mdc-header-row {
+    gap: 1px;
+  }
+}
+
+.example-rate-limit-reached {
+  max-width: 360px;
+  text-align: center;
+}
+
+/* Column Widths */
+.mat-column-name,
+.mat-column-type {
+  max-width: 120px;
+}
+
+.mat-column-type {
+  text-align: center;
+}
+

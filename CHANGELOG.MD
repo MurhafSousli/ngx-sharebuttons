@@ -1,5 +1,14 @@
 # Changelog
 
+## 12.0.0
+
+- Update to Angular 15.
+- The pop-up share buttons module is deprecated and will be removed in v13.0.0
+
+## 11.0.0
+
+- Update to Angular 14 in [157fc88](https://github.com/MurhafSousli/ngx-sharebuttons/pull/601/commits/157fc8807db2176b01bb6994b130928e8d868a8f).
+
 ## 10.0.0
 
 - Update to Angular 13 in [ba9bea3](https://github.com/MurhafSousli/ngx-sharebuttons/pull/578/commits/ba9bea3a555b9149d75b3a4ad52a8d7e9d074465).

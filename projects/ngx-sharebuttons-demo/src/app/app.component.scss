@@ -1,5 +1,3 @@
-@import '../assets/style/variables';
-
 :host {
   display: flex;
   flex-direction: column;
@@ -13,7 +11,7 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    box-shadow: $menu-shadow;
+    box-shadow: var(--menu-box-shadow);
     z-index: 9999;
   }
 }
@@ -27,6 +25,5 @@
 
 .page-wrapper {
   position: relative;
-
   height: 100vh;
 }

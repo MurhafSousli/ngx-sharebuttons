@@ -97,7 +97,7 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
     this.state$ = this._state$.pipe(
       map((state: ButtonsState) => {
-        // Use component include buttons, otherwise fallback to global include buttons
+        // Use component include buttons, otherwise fallback to the global include buttons
         const includedButtons = state.includedButtons && state.includedButtons.length ? state.includedButtons : state.userButtons;
         const userButtons = state.excludedButtons ? includedButtons.filter((btn: string) => state.excludedButtons.indexOf(btn) < 0) : includedButtons;
         const selectedButtons = userButtons.slice(0, state.expanded ? userButtons.length : state.shownCount);

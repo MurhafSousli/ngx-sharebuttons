@@ -1,9 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, ViewChild, ElementRef, AfterViewInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { Platform } from '@angular/cdk/platform';
-import { delay, finalize, map, take } from 'rxjs/operators';
-import { BehaviorSubject, of } from 'rxjs';
-import { NgScrollbar } from 'ngx-scrollbar';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'hl-code',
@@ -11,65 +7,18 @@ import { NgScrollbar } from 'ngx-scrollbar';
   styleUrls: ['./hl-code.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HlCodeComponent implements AfterViewInit {
+export class HlCodeComponent {
 
-  state$ = new BehaviorSubject({
-    copied: false,
-    height: ''
-  });
   @Input() code: string;
   @Input() height: number;
+  @Input() languages: string[];
 
-  @ViewChild('codeElement') codeElement: ElementRef;
-  @ViewChild(NgScrollbar) scrollbars: NgScrollbar;
-
-  constructor(private platform: Platform, @Inject(DOCUMENT) private document: any) {
+  constructor(private toast: MatSnackBar) {
   }
 
-  ngAfterViewInit() {
-    this.updateHeight();
-  }
-
-  updateHeight() {
-    if (!this.height && this.codeElement) {
-      this.updateState({height: this.codeElement.nativeElement.offsetHeight + 'px'});
-    } else {
-      this.updateState({height: this.height + 'px'});
+  onCopied(copied: boolean) {
+    if (copied) {
+      this.toast.open('Code copied!', null, { duration: 3000 });
     }
-  }
-
-  private updateState(state) {
-    this.state$.next({...this.state$.value, ...state});
-  }
-
-  copy() {
-    of(this.code).pipe(
-      map((text: string) => {
-
-        // Create a hidden TextArea element
-        const textArea: HTMLTextAreaElement = <HTMLTextAreaElement>this.document.createElement('textarea');
-        textArea.value = text;
-        this.document.body.appendChild(textArea);
-
-        // highlight TextArea to copy the text
-        if (this.platform.IOS) {
-          const range = this.document.createRange();
-          range.selectNodeContents(textArea);
-          const selection = this.document.defaultView.getSelection();
-          selection.removeAllRanges();
-          selection.addRange(range);
-          textArea.readOnly = true;
-          textArea.setSelectionRange(0, 999999);
-        } else {
-          textArea.select();
-        }
-        this.document.execCommand('copy');
-        this.document.body.removeChild(textArea);
-        this.updateState({copied: true});
-      }),
-      take(1),
-      delay(3500),
-      finalize(() => this.updateState({copied: false}))
-    ).subscribe();
   }
 }

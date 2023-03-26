@@ -2,21 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { NgProgressModule } from 'ngx-progressbar';
-import { NgProgressRouterModule } from 'ngx-progressbar/router';
-import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { HIGHLIGHT_OPTIONS, HighlightOptions } from 'ngx-highlightjs';
 import { NG_SCROLLBAR_OPTIONS } from 'ngx-scrollbar';
 
 import { SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faLightbulb } from '@fortawesome/free-solid-svg-icons/faLightbulb';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons/faCoffee';
-import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
-import { faBook } from '@fortawesome/free-solid-svg-icons/faBook';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
-import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
+import { faShare, faLightbulb, faCoffee, faInfo, faTimesCircle, faBook } from '@fortawesome/free-solid-svg-icons';
 
 import { SharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,8 +26,6 @@ import { DocsService } from './docs/docs.service';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgProgressModule,
-    NgProgressRouterModule,
     SharedModule,
     ShareIconsModule
   ],
@@ -47,9 +38,10 @@ import { DocsService } from './docs/docs.service';
         languages: {
           typescript: () => import('highlight.js/lib/languages/typescript'),
           css: () => import('highlight.js/lib/languages/css'),
-          xml: () => import('highlight.js/lib/languages/xml')
-        }
-      }
+          xml: () => import('highlight.js/lib/languages/xml'),
+        },
+        themePath: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css'
+      } as HighlightOptions
     },
     {
       provide: NG_SCROLLBAR_OPTIONS,
