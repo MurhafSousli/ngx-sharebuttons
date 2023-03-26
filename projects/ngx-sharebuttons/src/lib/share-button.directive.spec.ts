@@ -92,7 +92,7 @@ describe('Share Button Directive', () => {
     Object.values(shareService.prop)
     .filter((b: IShareButton) => !b.share)
     .forEach((shareButton: IShareButton) => {
-      directiveInstance.shareButtonName = shareButton.type;
+      directiveInstance.shareButtonName = shareButton.type as any;
       directiveInstance.ngOnChanges({
         shareButtonName: new SimpleChange(null, shareButton.type, false)
       });
@@ -111,7 +111,7 @@ describe('Share Button Directive', () => {
     Object.values(shareService.prop)
     .filter((b: IShareButton) => !!b.share)
     .forEach((shareButton: IShareButton) => {
-      directiveInstance.shareButtonName = shareButton.type;
+      directiveInstance.shareButtonName = shareButton.type as any;
       directiveInstance.ngOnChanges({
         shareButtonName: new SimpleChange(null, shareButton.type, false)
       });
@@ -133,7 +133,7 @@ describe('Share Button Directive', () => {
     Object.values(shareService.prop)
     .filter((b: IShareButton) => !!b.share)
     .forEach((shareButton: IShareButton) => {
-      directiveInstance.shareButtonName = shareButton.type;
+      directiveInstance.shareButtonName = shareButton.type as any;
       directiveInstance.ngOnChanges({
         shareButtonName: new SimpleChange(null, shareButton.type, false)
       });
@@ -151,7 +151,7 @@ describe('Share Button Directive', () => {
     Object.values(shareService.prop)
     .filter((b: IShareButton) => !!b.share)
     .forEach((shareButton: IShareButton) => {
-      directiveInstance.shareButtonName = shareButton.type;
+      directiveInstance.shareButtonName = shareButton.type as any;
       directiveInstance.ngOnChanges({
         shareButtonName: new SimpleChange(null, shareButton.type, false)
       });
