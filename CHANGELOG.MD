@@ -2,7 +2,8 @@
 
 ## 12.0.0
 
-- Update to Angular 15 in []().
+- Update to Angular 15.
+- The pop-up share buttons module is deprecated and will be removed in v13.0.0
 
 ## 11.0.0
 
