@@ -23,6 +23,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { ShareService } from './share.service';
 import { IShareButton, ShareDirectiveUpdater, ShareParams, ShareParamsFunc, SharerMethod } from './share.models';
 import { getValidUrl } from './utils';
+import { shareButtonName } from './share.defaults';
 
 @Directive({
   selector: '[shareButton]',
@@ -58,7 +59,7 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
   icon: string | string[];
 
   /** Share button type */
-  @Input('shareButton') shareButtonName: string;
+  @Input('shareButton') shareButtonName: shareButtonName;
 
   /** Set meta tags from document head, useful when SEO is supported */
   @Input() autoSetMeta: boolean = this._share.config.autoSetMeta;
