@@ -1,21 +1,19 @@
-@import '../../../assets/style/variables';
-
 :host {
   display: flex;
   flex-direction: column;
   position: relative;
   min-width: 100%;
   margin-bottom: 2em;
-  border-radius: .5em;
+  border-radius: var(--mdc-elevated-card-container-shape, var(--mdc-shape-medium, 4px));
   overflow: hidden;
+  border: var(--border);
 
   .ng-scrollbar {
     --scrollbar-padding: 0px;
     --scrollbar-size: 6px;
     --scrollbar-border-radius: 0px;
-    --scrollbar-thumb-hover-color: #{$action-color};
-    background: #282c34;
-    box-shadow: $box-shadow;
+    //--scrollbar-thumb-hover-color: #{var(--accent-color);};
+    //background: #282c34;
 
     &:hover, &:active {
       --scrollbar-size: 10px;
@@ -25,23 +23,8 @@
 
 button {
   position: absolute;
-  right: 1em;
-  top: 1em;
-}
-
-.copy-message {
-  //position: absolute;
-  //left: 0;
-  //right: 0;
-  //top: 0;
-  //bottom: 0;
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  border-radius: 0.2em;
+  right: 7px;
+  top: 7px;
 }
 
 span {

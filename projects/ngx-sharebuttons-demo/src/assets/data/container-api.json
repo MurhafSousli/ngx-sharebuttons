@@ -10,21 +10,6 @@
     "type": "input"
   },
   {
-    "name": "closeButton",
-    "description": "Popup custom close icon, default: null",
-    "type": "input"
-  },
-  {
-    "name": "hasBackdrop",
-    "description": "A boolean flag that indicates if the popup should have a back drop layer, default: true",
-    "type": "input"
-  },
-  {
-    "name": "backdropClass",
-    "description": "Popup's back drop class, default: null",
-    "type": "input"
-  },
-  {
     "name": "theme",
     "description": "Set button theme, default: null",
     "type": "input"
@@ -97,11 +82,6 @@
   {
     "name": "closed",
     "description": "Stream that emits when share window has closed",
-    "type": "output"
-  },
-  {
-    "name": "popupClosed",
-    "description": "Stream that emits when share popup has closed",
     "type": "output"
   }
 ]

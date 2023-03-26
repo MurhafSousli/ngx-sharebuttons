@@ -6,12 +6,14 @@ pre {
   word-wrap: normal;
   code {
     height: 100%;
-    padding: 1.7em 2em !important;
+    padding: 17.75px 20px !important;
     border-radius: 0;
+    border: none;
     flex: 1;
     margin: 0;
     box-shadow: none;
     overflow: hidden;
+    //min-height: 60px;
   }
 }
 
@@ -20,48 +22,40 @@ code.hljs {
 }
 
 code {
+  border: 1px solid rgba(lightgray, 0.1);
   color: #E6E1DC;
   box-sizing: border-box;
-  font-size: 0.875em;
+  font-size: 14px;
   font-weight: normal;
-  border-radius: .2em;
+  border-radius: var(--mdc-elevated-card-container-shape, var(--mdc-shape-medium, 4px));
   flex: 1;
   line-height: 1.75em;
-  box-shadow: $sm-box-shadow;
   margin: 0 0.3em;
   padding: 0 0.5em !important;
   overflow-x: unset !important;
+  border: var(--border);
 }
 
-ng-scrollbar {
-  .code-scrollbar-thumb {
-    background-color: rgba($footer-bg, 0.6);
-    &:hover {
-      background-color: rgba($footer-bg, 0.7);
-    }
-    &:active {
-      background-color: rgba($footer-bg, 0.9);
-    }
-  }
-  .page-scrollbar-thumb {
-    background-color: rgba($action-color, 0.6);
-    &:hover {
-      background-color: rgba($action-color, 0.7);
-    }
-    &:active {
-      background-color: rgba($action-color, 0.9);
-    }
-  }
-}
-
-.center {
-  ng-scrollbar {
-    .ng-scrollbar-view {
-      display: flex;
-      align-items: center;
-    }
-  }
-}
+//ng-scrollbar {
+//  .code-scrollbar-thumb {
+//    background-color: rgba(var(--footer-bg), 0.6);
+//    &:hover {
+//      background-color: rgba(var(--footer-bg), 0.7);
+//    }
+//    &:active {
+//      background-color: rgba(var(--footer-bg), 0.9);
+//    }
+//  }
+//  .page-scrollbar-thumb {
+//    background-color: rgba(var(--accent-color);, 0.6);
+//    &:hover {
+//      background-color: rgba(var(--accent-color);, 0.7);
+//    }
+//    &:active {
+//      background-color: rgba(var(--accent-color);, 0.9);
+//    }
+//  }
+//}
 
 .hljs {
   transition: background ease-in-out 0.2s;

@@ -1,5 +1,3 @@
-@import '../../../assets/style/variables';
-
 .github-corner {
   transform: rotate(-45deg);
 }
@@ -23,7 +21,7 @@
   }
 }
 
-@media (max-width:500px) {
+@media (max-width: 500px) {
   .github-corner:hover .octo-arm {
     animation: none
   }
@@ -32,7 +30,7 @@
   }
 }
 
-svg{
+svg {
   fill: transparent;
-  color: rgba(darken($footer-bg, 15%), 0.5);
+  color: var(--action-color);
 }

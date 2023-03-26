@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { PrerequisiteComponent } from './prerequisite.component';
 import { SharedModule } from '../../shared';
-import { IconsComponent } from './icons.component';
+
 
 @NgModule({
-  declarations: [IconsComponent],
+  declarations: [
+    PrerequisiteComponent
+  ],
   imports: [
     SharedModule,
     RouterModule.forChild([
-      { path: '', component: IconsComponent }
+      { path: '', component: PrerequisiteComponent }
     ])
   ]
 })
-export class IconsPageModule {
+export class PrerequisiteModule {
 }

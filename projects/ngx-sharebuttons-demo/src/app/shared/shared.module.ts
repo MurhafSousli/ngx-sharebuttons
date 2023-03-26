@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HighlightModule } from 'ngx-highlightjs';
@@ -22,6 +22,10 @@ import { HeaderComponent } from './header/header.component';
 import { SectionTitleComponent } from './section-title/section-title.component';
 import { HlCodeComponent } from './hl-code/hl-code.component';
 import { NoteComponent } from './note/note.component';
+import { SharedInfoComponent } from './shared-info/shared-info.component';
+import { OverviewContentComponent } from './overview-content/overview-content.component';
+import { KebabCasePipe } from './kebab-case.pipe';
+import { DocContainerComponent } from './doc-container/doc-container.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { NoteComponent } from './note/note.component';
     HeaderComponent,
     SectionTitleComponent,
     HlCodeComponent,
-    NoteComponent
+    NoteComponent,
+    SharedInfoComponent,
+    OverviewContentComponent,
+    KebabCasePipe,
+    DocContainerComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +52,6 @@ import { NoteComponent } from './note/note.component';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule,
     NgScrollbarModule,
     HighlightModule,
     ShareButtonsPopupModule,
@@ -68,7 +75,11 @@ import { NoteComponent } from './note/note.component';
     HeaderComponent,
     SectionTitleComponent,
     HlCodeComponent,
-    NoteComponent
+    NoteComponent,
+    SharedInfoComponent,
+    OverviewContentComponent,
+    KebabCasePipe,
+    DocContainerComponent
   ]
 })
 export class SharedModule {

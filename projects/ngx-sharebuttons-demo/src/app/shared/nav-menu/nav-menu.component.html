@@ -10,8 +10,11 @@
 <ng-scrollbar>
   <div class="menu">
     <mat-nav-list>
-      <a mat-list-item *ngFor="let item of menu" [routerLink]="item.link"
-         routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a mat-list-item
+         *ngFor="let item of menu"
+         [routerLink]="item.link"
+         routerLinkActive="active-link"
+         [routerLinkActiveOptions]="{ exact: true }">
         <i class="fas fa-caret-right" aria-hidden="true"></i>
         <span>{{ item.name }}</span>
       </a>

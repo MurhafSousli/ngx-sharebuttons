@@ -1,5 +1,3 @@
-@import '../../../assets/style/variables';
-
 :host {
   display: flex;
   flex-direction: column;
@@ -8,8 +6,8 @@
   box-sizing: border-box;
   padding-top: 25px;
   height: 100%;
-  background-color: $action-color;
-  background: linear-gradient(to right, #f6e6b4 0%, #ed6c44 0%, #ed4f28 25%, #e73727 71%, #e84040 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background-color: var(--action-color);
+
 }
 
 .ng-scrollbar {
@@ -31,6 +29,7 @@
   justify-content: center;
   align-items: center;
   background-color: white;
+
   img {
     width: 140px;
     filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.3));
@@ -38,17 +37,19 @@
     transition: filter linear 100ms, transform linear 100ms;
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
+
     &:active {
-      zoom : 150%;
+      zoom: 150%;
       filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.4));
       transform: scale(0.96) translateZ(0);
     }
   }
 }
 
-.mat-list-item {
+.mdc-list-item {
   color: rgba(white, 0.8);
-  display: block;
+  --mdc-theme-text-primary-on-background: rgba(white, 0.7);
+  padding-left: 52px;
   font-weight: bold;
   width: 100%;
 }
@@ -70,8 +71,16 @@ a i {
 }
 
 .active-link {
+  --mdc-typography-subtitle1-font-weight: 700;
+  --mdc-theme-text-primary-on-background: white;
   position: relative;
-  color: white;
+
+  ::ng-deep {
+    .mat-mdc-list-item-unscoped-content.mdc-list-item__primary-text {
+      font-weight: bold;
+    }
+  }
+
   i {
     display: flex;
     align-items: center;
@@ -104,7 +113,7 @@ a i {
 ribbon {
   position: fixed;
   top: 0;
-  right: 1.5em;
+  left: 1.5em;
   border: 0;
 
   @media only screen and (max-width: 960px) {
