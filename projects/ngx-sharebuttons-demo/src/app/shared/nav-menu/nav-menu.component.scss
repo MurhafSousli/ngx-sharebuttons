@@ -47,7 +47,9 @@
 }
 
 .mdc-list-item {
-  color: rgba(white, 0.8);
+  --mdc-list-list-item-label-text-color: white;
+  --mdc-list-list-item-hover-label-text-color: white;
+  --mdc-list-list-item-focus-label-text-color: white;
   --mdc-theme-text-primary-on-background: rgba(white, 0.7);
   padding-left: 52px;
   font-weight: bold;
@@ -71,8 +73,8 @@ a i {
 }
 
 .active-link {
-  --mdc-typography-subtitle1-font-weight: 700;
   --mdc-theme-text-primary-on-background: white;
+  --mdc-typography-subtitle1-font-weight: 700;
   position: relative;
 
   ::ng-deep {
