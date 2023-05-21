@@ -2,8 +2,8 @@
 
 ## 13.0.0
 
-- Update to Angular 16.
-- Improves types
+- Update to Angular 16 in [c677561](https://github.com/MurhafSousli/ngx-sharebuttons/pull/643/commits/c677561bf8bdc4e64fd1c46110dc85752168c347).
+- Fix types error, closes [#641](https://github.com/MurhafSousli/ngx-sharebuttons/issues/641) in [fa9d8ef](https://github.com/MurhafSousli/ngx-sharebuttons/pull/643/commits/fa9d8ef8782d4c29624e28b03263154e10120e8e).
 - Update whatsapp sharer link on desktop, closes [#635](https://github.com/MurhafSousli/ngx-sharebuttons/issues/635) in [7e3a235](https://github.com/MurhafSousli/ngx-sharebuttons/pull/643/commits/7e3a2356b8131d3a4c933823e74145691387eacf).
 - Make messenger sharable on web (added `appId` and `redirectUrl` which is required for Messenger on desktop), closes [#607](https://github.com/MurhafSousli/ngx-sharebuttons/issues/607) in [79f70a8](https://github.com/MurhafSousli/ngx-sharebuttons/pull/643/commits/79f70a8b2f9f55255894b7829bf607e9c10cbde1).
 
