@@ -6,7 +6,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HighlightModule } from 'ngx-highlightjs';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
-import { ShareButtonsPopupModule } from 'ngx-sharebuttons/popup';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './material.module';
 
@@ -26,6 +25,7 @@ import { SharedInfoComponent } from './shared-info/shared-info.component';
 import { OverviewContentComponent } from './overview-content/overview-content.component';
 import { KebabCasePipe } from './kebab-case.pipe';
 import { DocContainerComponent } from './doc-container/doc-container.component';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 
 @NgModule({
   declarations: [
@@ -54,14 +54,14 @@ import { DocContainerComponent } from './doc-container/doc-container.component';
     FormsModule,
     NgScrollbarModule,
     HighlightModule,
-    ShareButtonsPopupModule,
+    ShareButtonsModule,
     FontAwesomeModule
   ],
   exports: [
     CommonModule,
     RouterModule,
     HighlightModule,
-    ShareButtonsPopupModule,
+    ShareButtonsModule,
     MaterialModule,
     FlexLayoutModule,
     NgScrollbarModule,

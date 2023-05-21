@@ -70,7 +70,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
   openedChanged = new Subject();
 
   /** Lab for a single share buttons or for share buttons container */
-  @Input() component: 'popup-buttons' | 'share-buttons' | 'share-button';
+  @Input() component: 'share-buttons' | 'share-button';
 
   constructor(private share: ShareService, private cd: ChangeDetectorRef, protected localStorage: LocalStorage) {
   }
