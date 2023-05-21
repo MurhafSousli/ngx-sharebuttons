@@ -7,6 +7,10 @@
 - Update whatsapp sharer link on desktop, closes [#635](https://github.com/MurhafSousli/ngx-sharebuttons/issues/635) in [7e3a235](https://github.com/MurhafSousli/ngx-sharebuttons/pull/643/commits/7e3a2356b8131d3a4c933823e74145691387eacf).
 - Make messenger sharable on web (added `appId` and `redirectUrl` which is required for Messenger on desktop), closes [#607](https://github.com/MurhafSousli/ngx-sharebuttons/issues/607) in [79f70a8](https://github.com/MurhafSousli/ngx-sharebuttons/pull/643/commits/79f70a8b2f9f55255894b7829bf607e9c10cbde1).
 
+### Breaking Changes
+
+- Remove the deprecated package `ngx-sharebuttons/popup` from the library in [2cf187e](https://github.com/MurhafSousli/ngx-sharebuttons/pull/643/commits/2cf187eab316cc5df884a683803ff08d19b3e3ac).
+
 ## 12.0.0
 
 - Update to Angular 15.
