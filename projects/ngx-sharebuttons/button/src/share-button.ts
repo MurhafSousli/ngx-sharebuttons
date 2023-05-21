@@ -1,6 +1,6 @@
 import { Component, Input, Output, HostBinding, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-
-import { ShareService } from 'ngx-sharebuttons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { shareButtonName, ShareService } from 'ngx-sharebuttons';
 
 @Component({
   selector: 'share-button',
@@ -11,7 +11,7 @@ import { ShareService } from 'ngx-sharebuttons';
 export class ShareButton {
 
   /** Share button type */
-  @Input() button: string;
+  @Input() button: shareButtonName;
 
   /** The page URL */
   @Input() url: string;
@@ -41,7 +41,7 @@ export class ShareButton {
   @Input() text: string;
 
   /** Button custom icon */
-  @Input() icon: string;
+  @Input() icon: IconProp;
 
   /** Button theme */
   @Input() theme: string = this._share.config.theme;

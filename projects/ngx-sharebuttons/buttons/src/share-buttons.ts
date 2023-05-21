@@ -12,7 +12,7 @@ import {
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ShareService, ShareButtonsConfig, SHARE_BUTTONS } from 'ngx-sharebuttons';
+import { ShareService, ShareButtonsConfig, SHARE_BUTTONS, shareButtonName } from 'ngx-sharebuttons';
 
 interface ButtonsState {
   includedButtons?: string[];
@@ -50,10 +50,10 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
   @Input() theme = this._share.config.theme;
 
   /** Array of included buttons */
-  @Input() include: string[];
+  @Input() include: shareButtonName[];
 
   /** Array of excluded buttons */
-  @Input() exclude: string[];
+  @Input() exclude: shareButtonName[];
 
   /** Numbers of buttons to show */
   @Input() show: number;
