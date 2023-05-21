@@ -15,8 +15,8 @@ export interface ShareButtonsConfig {
   windowFuncName?: string;
   prop?: IShareButtons;
   theme?: string;
-  include?: string[];
-  exclude?: string[];
+  include?: shareButtonName[];
+  exclude?: shareButtonName[];
   url?: string;
   title?: string;
   description?: string;
