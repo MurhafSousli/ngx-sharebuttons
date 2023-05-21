@@ -73,6 +73,9 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
   /** The tags parameter for sharing on Twitter and Tumblr */
   @Input() tags: string;
 
+  /** Sets the fb messenger redirect url to enable sharing on Messenger desktop */
+  @Input() redirectUrl: string = this._share.config.redirectUrl;
+
   /** Sets meta tags from document head, useful when SEO is available */
   @Input() autoSetMeta: boolean;
 

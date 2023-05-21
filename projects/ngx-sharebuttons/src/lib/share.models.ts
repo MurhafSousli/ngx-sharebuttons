@@ -22,6 +22,8 @@ export interface ShareButtonsConfig {
   description?: string;
   image?: string;
   tags?: string;
+  appId?: string;
+  redirectUrl?: string;
   twitterAccount?: string;
   autoSetMeta?: boolean;
   gaTracking?: boolean;
@@ -107,6 +109,8 @@ export interface ShareParams {
   image?: string;
   tags?: string;
   via?: string;
+  appId?: string;
+  redirectUrl?: string;
 }
 
 /**
@@ -124,6 +128,7 @@ interface ShareParamsFuncMetaData {
   image?: ShareParamsFunc;
   tags?: ShareParamsFunc;
   via?: ShareParamsFunc;
+  redirectUrl?: ShareParamsFunc;
 }
 
 /**
