@@ -25,9 +25,6 @@
       "ngx-sharebuttons/buttons": [
         "projects/ngx-sharebuttons/buttons/src/public_api"
       ],
-      "ngx-sharebuttons/popup": [
-        "projects/ngx-sharebuttons/popup/src/public_api"
-      ],
       "ngx-sharebuttons/icons": [
         "projects/ngx-sharebuttons/icons/src/public_api"
       ]

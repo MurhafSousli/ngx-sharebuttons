@@ -159,11 +159,14 @@ export const SHARE_BUTTONS: IShareButtons = {
     icon: ['fab', 'facebook-messenger'],
     color: '#0080FF',
     share: {
+      desktop: 'https://www.facebook.com/dialog/send?',
       android: 'fb-messenger://share/?',
       ios: 'fb-messenger://share/?'
     },
     params: {
-      url: 'link'
+      url: 'link',
+      appId: 'app_id',
+      redirectUrl: 'redirect_uri'
     }
   },
   whatsapp: {
@@ -173,11 +176,12 @@ export const SHARE_BUTTONS: IShareButtons = {
     icon: ['fab', 'whatsapp'],
     color: '#25D366',
     share: {
-      desktop: 'https://web.whatsapp.com/send?',
+      desktop: 'https://api.whatsapp.com/send?',
       android: 'whatsapp://send?',
       ios: 'https://api.whatsapp.com/send?'
     },
     params: {
+      url: 'link',
       description: 'text'
     },
     paramsFunc: linkInDescription
@@ -263,4 +267,4 @@ export const SHARE_BUTTONS: IShareButtons = {
   }
 };
 
-export type shareButtonName = 'facebook' | 'twitter' | 'pinterest' | 'linkedin' | 'email' | 'print' | 'reddit' | 'copy' | 'xing' | 'line' | 'sms' | 'tumblr' | 'whatsapp' | 'messenger' | 'telegram' | 'vk' | 'viber' | 'mix';
+export type shareButtonName = string | 'facebook' | 'twitter' | 'pinterest' | 'linkedin' | 'email' | 'print' | 'reddit' | 'copy' | 'xing' | 'line' | 'sms' | 'tumblr' | 'whatsapp' | 'messenger' | 'telegram' | 'vk' | 'viber' | 'mix';

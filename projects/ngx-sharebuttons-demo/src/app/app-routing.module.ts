@@ -24,10 +24,6 @@ const appRoutes: Routes = [
     loadChildren: () => import('./pages/custom-button/custom-button.module').then(m => m.CustomButtonPageModule)
   },
   {
-    path: 'popup-buttons',
-    loadChildren: () => import('./pages/popup-buttons/popup-buttons.module').then(m => m.PopupButtonsPageModule)
-  },
-  {
     path: 'icons',
     loadChildren: () => import('./pages/icons/icons.module').then(m => m.IconsPageModule)
   },

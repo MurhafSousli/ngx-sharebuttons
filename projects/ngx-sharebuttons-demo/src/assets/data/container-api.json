@@ -55,6 +55,11 @@
     "type": "input"
   },
   {
+    "name": "redirectUrl",
+    "description": "Override redirectUrl for Messenger (desktop), default: null",
+    "type": "input"
+  },
+  {
     "name": "showIcon",
     "description": "Show buttons icons, default: true",
     "type": "input"

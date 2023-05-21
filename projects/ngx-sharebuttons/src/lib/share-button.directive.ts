@@ -79,6 +79,9 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
   /** Sets the tags parameter for sharing on Twitter and Tumblr */
   @Input() tags: string = this._share.config.tags;
 
+  /** Sets the fb messenger redirect url to enable sharing on Messenger desktop */
+  @Input() redirectUrl: string = this._share.config.redirectUrl;
+
   /** Stream that emits when share dialog is opened */
   @Output() opened = new EventEmitter<string>();
 
@@ -218,7 +221,9 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
       description: this.description || this._getMetaTagContent('og:description'),
       image: this.image || this._getMetaTagContent('og:image'),
       via: this._share.config.twitterAccount,
-      tags: this.tags
+      tags: this.tags,
+      appId: this._share.config.appId || this._getMetaTagContent('fb:app_id'),
+      redirectUrl: this.redirectUrl || this.url
     };
   }
 
@@ -233,6 +238,8 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
       image: this.image,
       tags: this.tags,
       via: this._share.config.twitterAccount,
+      appId: this._share.config.appId,
+      redirectUrl: this.redirectUrl || this.url
     };
   }
 
@@ -311,17 +318,17 @@ export class ShareDirective implements OnInit, OnChanges, OnDestroy {
 
   private _serializeParams(params: ShareParams): string {
     return Object.entries(this.shareButton.params)
-    .map(([key, value]) => {
-      // Check if share button param has a map function
-      const paramFunc: ShareParamsFunc = this.shareButton.paramsFunc ? this.shareButton.paramsFunc[key] : null;
+      .map(([key, value]) => {
+        // Check if share button param has a map function
+        const paramFunc: ShareParamsFunc = this.shareButton.paramsFunc ? this.shareButton.paramsFunc[key] : null;
 
-      if (params[key] || paramFunc) {
-        const paramValue = paramFunc ? paramFunc(params) : params[key];
-        return `${ value }=${ encodeURIComponent(paramValue) }`;
-      }
-      return '';
-    })
-    .filter(urlParam => urlParam !== '')
-    .join('&');
+        if (params[key] || paramFunc) {
+          const paramValue = paramFunc ? paramFunc(params) : params[key];
+          return `${ value }=${ encodeURIComponent(paramValue) }`;
+        }
+        return '';
+      })
+      .filter(urlParam => urlParam !== '')
+      .join('&');
   }
 }

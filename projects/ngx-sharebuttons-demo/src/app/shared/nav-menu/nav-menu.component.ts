@@ -14,7 +14,6 @@ export class NavMenuComponent {
     {name: 'Share Button Directive', link: '/share-button-directive'},
     {name: 'Single Share Button', link: '/share-button-component'},
     {name: 'Share Buttons', link: '/share-buttons-component'},
-    {name: 'Popup Buttons', link: '/popup-buttons'},
     {name: 'Add Custom Button', link: '/custom-button'},
     {name: 'Icons Guide', link: '/icons'},
     {name: 'Global Options', link: '/global-options'},

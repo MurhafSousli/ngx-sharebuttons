@@ -23,7 +23,6 @@ For the documentation see the [WIKI](https://github.com/MurhafSousli/ngx-sharebu
 - **ngx-sharebuttons** - Share button directive to convert any element to a share button.
 - **ngx-sharebuttons/button** - Share button component to add buttons individually.
 - **ngx-sharebuttons/buttons** - Share buttons component to add a collection of share buttons.
-- **ngx-sharebuttons/popup** - Share buttons popup component (This is *NEW* in version 8 and currently in *BETA*).
 - **ngx-sharebuttons/icons** - Simplifies import the share icons from FontAwesome.
 
 ## Available buttons
