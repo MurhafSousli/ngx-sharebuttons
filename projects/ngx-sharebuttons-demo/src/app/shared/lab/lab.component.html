@@ -31,8 +31,7 @@
             </mat-form-field>
 
             <div>
-              <mat-slider *ngIf="component !== 'popup-buttons'"
-                          matTooltip="Number of buttons to display"
+              <mat-slider matTooltip="Number of buttons to display"
                           discrete
                           showTickMarks
                           step="1"
@@ -97,26 +96,6 @@
               </share-buttons>
 
             </ng-template>
-
-            <ng-template [ngSwitchCase]="'popup-buttons'">
-              <share-popup-button *ngIf="ready"
-                                  [theme]="config.theme"
-                                  [include]="config.include"
-                                  [exclude]="config.exclude"
-                                  [show]="config.show"
-                                  [url]="config.url"
-                                  [showIcon]="config.showIcon"
-                                  [showText]="config.showText"
-                                  [tags]="config.tags"
-                                  [autoSetMeta]="config.autoSetMeta"
-                                  [title]="config.title"
-                                  [description]="config.description"
-                                  [image]="config.image"
-                                  (closed)="onClosedChanged($event)"
-                                  (opened)="onOpenedChanged($event)">
-              </share-popup-button>
-            </ng-template>
-
           </div>
 
           <div class="lab-outputs">

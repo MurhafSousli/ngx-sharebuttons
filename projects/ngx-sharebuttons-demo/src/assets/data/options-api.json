@@ -84,5 +84,15 @@
   {
     "name": "windowFuncName",
     "description": "Set the function name used to open the share window, default: 'open'"
+  },
+  {
+    "name": "redirectUrl",
+    "description": "Set the redirectUrl for Messenger which is required on desktop, default: null",
+    "type": "input"
+  },
+  {
+    "name": "appId",
+    "description": "Set the appId for Messenger which is required on desktop, default: null",
+    "type": "input"
   }
 ]

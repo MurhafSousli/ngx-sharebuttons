@@ -30,6 +30,11 @@
     "type": "input"
   },
   {
+    "name": "redirectUrl",
+    "description": "Override redirectUrl for Messenger (desktop), default: null",
+    "type": "input"
+  },
+  {
     "name": "opened",
     "description": "Stream that emits when share dialog has opened",
     "type": "output"

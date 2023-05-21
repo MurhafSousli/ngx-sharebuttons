@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 @import url('https://fonts.googleapis.com/css?family=Play:400,700|Roboto:400,500,500i,700');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import '~normalize.css';
@@ -228,41 +230,3 @@ section {
     margin: 0;
   }
 }
-
-// TABLES
-
-.mat-mdc-table {
-  background: lightgray;
-  --table-header-cell-bg: var(--action-color);
-  --table-header-cell-color: white;
-  --table-cell-bg: white;
-
-  .mat-mdc-cell {
-    background: var(--table-cell-bg);
-  }
-
-  .mat-mdc-header-cell {
-    color: var(--table-header-cell-color);
-    background: var(--table-header-cell-bg) !important;
-  }
-
-  .mat-mdc-row, .mat-mdc-header-row {
-    gap: 1px;
-  }
-}
-
-.example-rate-limit-reached {
-  max-width: 360px;
-  text-align: center;
-}
-
-/* Column Widths */
-.mat-column-name,
-.mat-column-type {
-  max-width: 120px;
-}
-
-.mat-column-type {
-  text-align: center;
-}
-

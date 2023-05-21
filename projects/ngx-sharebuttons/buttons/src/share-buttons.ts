@@ -12,13 +12,13 @@ import {
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ShareService, ShareButtonsConfig, SHARE_BUTTONS } from 'ngx-sharebuttons';
+import { ShareService, ShareButtonsConfig, SHARE_BUTTONS, shareButtonName } from 'ngx-sharebuttons';
 
 interface ButtonsState {
-  includedButtons?: string[];
-  excludedButtons?: string[];
-  userButtons?: string[];
-  selectedButtons?: string[];
+  includedButtons?: shareButtonName[];
+  excludedButtons?: shareButtonName[];
+  userButtons?: shareButtonName[];
+  selectedButtons?: shareButtonName[];
   expanded?: boolean;
   shownCount?: number;
   moreIcon?: any;
@@ -50,10 +50,10 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
   @Input() theme = this._share.config.theme;
 
   /** Array of included buttons */
-  @Input() include: string[];
+  @Input() include: shareButtonName[];
 
   /** Array of excluded buttons */
-  @Input() exclude: string[];
+  @Input() exclude: shareButtonName[];
 
   /** Numbers of buttons to show */
   @Input() show: number;
@@ -72,6 +72,9 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
 
   /** The tags parameter for sharing on Twitter and Tumblr */
   @Input() tags: string;
+
+  /** Sets the fb messenger redirect url to enable sharing on Messenger desktop */
+  @Input() redirectUrl: string = this._share.config.redirectUrl;
 
   /** Sets meta tags from document head, useful when SEO is available */
   @Input() autoSetMeta: boolean;
@@ -99,7 +102,7 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
       map((state: ButtonsState) => {
         // Use component include buttons, otherwise fallback to the global include buttons
         const includedButtons = state.includedButtons && state.includedButtons.length ? state.includedButtons : state.userButtons;
-        const userButtons = state.excludedButtons ? includedButtons.filter((btn: string) => state.excludedButtons.indexOf(btn) < 0) : includedButtons;
+        const userButtons = state.excludedButtons ? includedButtons.filter((btn: shareButtonName) => state.excludedButtons.indexOf(btn) < 0) : includedButtons;
         const selectedButtons = userButtons.slice(0, state.expanded ? userButtons.length : state.shownCount);
         return {
           userButtons,
@@ -117,8 +120,8 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
     // Subscribe to share buttons config changes, This updates the component whenever a new button is added
     this._configSub$ = this._share.config$.subscribe((config: ShareButtonsConfig) => {
       // Use global include buttons, otherwise fallback to all buttons
-      const includedButtons = config.include.length ? config.include : Object.keys(SHARE_BUTTONS);
-      const userButtons = includedButtons.filter((btn: string) => config.exclude.indexOf(btn) < 0);
+      const includedButtons: shareButtonName[] = config.include.length ? config.include : Object.keys(SHARE_BUTTONS) as shareButtonName[];
+      const userButtons: shareButtonName[] = includedButtons.filter((btn: shareButtonName) => config.exclude.indexOf(btn) < 0);
       this.updateState({
         userButtons,
         expanded: false,
