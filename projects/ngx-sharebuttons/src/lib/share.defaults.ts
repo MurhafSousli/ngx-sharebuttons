@@ -110,6 +110,22 @@ export const SHARE_BUTTONS: IShareButtons = {
       url: 'url'
     }
   },
+  Xtwitter: {
+    type: 'X-twitter',
+    text: 'X-twitter',
+    ariaLabel: 'Share on X-twitter',
+    icon: ['fab', 'x-twitter'],
+    color: '#1E3050',
+    share: {
+      desktop: 'https://twitter.com/intent/tweet?'
+    },
+    params: {
+      url: 'url',
+      description: 'text',
+      tags: 'hashtags',
+      via: 'via'
+    }
+  },
   viber: {
     type: 'viber',
     text: 'Viber',
@@ -267,4 +283,4 @@ export const SHARE_BUTTONS: IShareButtons = {
   }
 };
 
-export type shareButtonName = string | 'facebook' | 'twitter' | 'pinterest' | 'linkedin' | 'email' | 'print' | 'reddit' | 'copy' | 'xing' | 'line' | 'sms' | 'tumblr' | 'whatsapp' | 'messenger' | 'telegram' | 'vk' | 'viber' | 'mix';
+export type shareButtonName = string | 'facebook' | 'twitter' | 'pinterest' | 'linkedin' | 'email' | 'print' | 'reddit' | 'copy' | 'xing' | 'line' | 'sms' | 'tumblr' | 'whatsapp' | 'messenger' | 'telegram' | 'vk' | 'viber' | 'mix' | 'Xtwitter';
