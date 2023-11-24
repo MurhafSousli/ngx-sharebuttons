@@ -1,9 +1,11 @@
-import { InjectionToken } from '@angular/core';
-import { Clipboard } from '@angular/cdk/clipboard';
-import { Observable, Subject } from 'rxjs';
-import { shareButtonName } from './share.defaults';
+import { InjectionToken } from "@angular/core";
+import { Clipboard } from "@angular/cdk/clipboard";
+import { Observable, Subject } from "rxjs";
+import { shareButtonName } from "./share.defaults";
 
-export const SHARE_BUTTONS_CONFIG = new InjectionToken<ShareButtonsConfig>('shareButtonsConfig');
+export const SHARE_BUTTONS_CONFIG = new InjectionToken<ShareButtonsConfig>(
+  "shareButtonsConfig"
+);
 
 /**
  * Share buttons config
@@ -59,6 +61,7 @@ export interface IShareButtons {
   email?: IShareButton;
   print?: IShareButton;
   copy?: IShareButton;
+  Xtwitter?: IShareButton;
 }
 
 export class IShareButton {
@@ -151,6 +154,6 @@ export interface ShareDirectiveUpdater {
 }
 
 export enum SharerMethod {
-  Anchor = 'anchor',
-  Window = 'window'
+  Anchor = "anchor",
+  Window = "window",
 }
