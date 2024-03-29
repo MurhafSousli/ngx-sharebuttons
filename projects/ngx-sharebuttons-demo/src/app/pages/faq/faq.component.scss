@@ -17,3 +17,8 @@ figcaption {
   font-family: var(--play-font-family);
   opacity: 0.5;
 }
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}

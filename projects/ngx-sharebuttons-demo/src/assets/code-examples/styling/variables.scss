@@ -1,0 +1,25 @@
+/** Single share button component */
+:root {
+  --sb-icon-size: 1.2em;
+  --sb-font-weight: bold;
+  --sb-text-padding: 0 0.7em;
+}
+
+/** Share buttons component */
+:root {
+  --sb-icon-size: 1.2em;
+  --sb-font-weight: bold;
+  --sb-text-padding: 0 0.7em;
+  --sb-margin: 0.3125em;
+  --sb-padding: 0;
+  --sb-min-width: 4.125em;
+  --sb-height: 2.5em;
+  --sb-color: initial;
+  --sb-background: initial;
+  --sb-font-size: 13px;
+  --sb-border: initial;
+  --sb-border-radius: initial;
+  --sb-line-height: 2.571em;
+  --sb-text-shadow: initial;
+  --sb-overflow: initial;
+}

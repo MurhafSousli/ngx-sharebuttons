@@ -24,11 +24,13 @@ b {
 
 ul {
   padding: 0;
+
   li {
     list-style-type: none;
     margin-bottom: 1em;
     display: flex;
     align-items: center;
+
     span {
       margin-left: 5px;
     }
@@ -40,6 +42,7 @@ ul {
 }
 
 .sb-options {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -74,9 +77,11 @@ ul {
   a {
     color: var(--primary-color);
     width: 100%;
+
     fa-icon {
       color: var(--primary-color);
     }
+
     i {
       font-weight: bold;
       margin-left: 0.5em;
@@ -92,6 +97,7 @@ ul {
     font-size: 3em;
     height: 82.5px;
   }
+
   span {
     display: flex;
     align-items: center;

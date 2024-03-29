@@ -16,6 +16,13 @@
   overflow: hidden;
   margin: 4em 0;
   font-family: 'Play', sans-serif;
+
+  ::ng-deep {
+    code {
+      color: black;
+      background: white;
+    }
+  }
 }
 
 .note-icon {
@@ -37,7 +44,6 @@ fa-icon {
 
 .note-content {
   margin-left: 80px;
-  text-align: justify;
   padding: 0.8em 1em;
 }
 

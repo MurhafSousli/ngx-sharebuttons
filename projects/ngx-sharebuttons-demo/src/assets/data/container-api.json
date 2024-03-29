@@ -83,10 +83,5 @@
     "name": "opened",
     "description": "Stream that emits when share window has opened",
     "type": "output"
-  },
-  {
-    "name": "closed",
-    "description": "Stream that emits when share window has closed",
-    "type": "output"
   }
 ]

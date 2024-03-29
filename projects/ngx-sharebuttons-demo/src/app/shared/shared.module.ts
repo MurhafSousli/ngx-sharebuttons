@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HighlightModule } from 'ngx-highlightjs';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { HighlightPlusModule } from 'ngx-highlightjs/plus';
+import { ShareButtonDirective } from 'ngx-sharebuttons';
+import { ShareButton } from 'ngx-sharebuttons/button';
+import { ShareButtons } from 'ngx-sharebuttons/buttons';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './material.module';
 
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -25,10 +28,20 @@ import { SharedInfoComponent } from './shared-info/shared-info.component';
 import { OverviewContentComponent } from './overview-content/overview-content.component';
 import { KebabCasePipe } from './kebab-case.pipe';
 import { DocContainerComponent } from './doc-container/doc-container.component';
-import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    RouterModule,
+    MaterialModule,
+    FormsModule,
+    NgScrollbarModule,
+    HighlightModule,
+    FontAwesomeModule,
+    HighlightPlusModule,
+    ShareButtonDirective,
+    ShareButton,
+    ShareButtons,
     NavMenuComponent,
     BadgesComponent,
     RibbonComponent,
@@ -46,24 +59,11 @@ import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
     KebabCasePipe,
     DocContainerComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MaterialModule,
-    FlexLayoutModule,
-    FormsModule,
-    NgScrollbarModule,
-    HighlightModule,
-    ShareButtonsModule,
-    FontAwesomeModule
-  ],
   exports: [
     CommonModule,
     RouterModule,
     HighlightModule,
-    ShareButtonsModule,
     MaterialModule,
-    FlexLayoutModule,
     NgScrollbarModule,
     FontAwesomeModule,
     NavMenuComponent,
@@ -79,7 +79,11 @@ import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
     SharedInfoComponent,
     OverviewContentComponent,
     KebabCasePipe,
-    DocContainerComponent
+    DocContainerComponent,
+    HighlightPlusModule,
+    ShareButtonDirective,
+    ShareButton,
+    ShareButtons
   ]
 })
 export class SharedModule {

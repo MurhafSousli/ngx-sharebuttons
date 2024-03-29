@@ -1,17 +1,17 @@
-import { ChangeDetectionStrategy, Component, Inject, } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { HlCodeComponent } from '../hl-code/hl-code.component';
 
 @Component({
+  standalone: true,
   selector: 'code-dialog',
   template: `
-    <hl-code [code]="code"></hl-code>
+    <hl-code [code]="code"/>
   `,
-  styleUrls: ['./code-dialog.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './code-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [HlCodeComponent]
 })
 export class CodeDialogComponent {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public code: string) {
-  }
-
+  readonly code: string = inject(MAT_DIALOG_DATA);
 }

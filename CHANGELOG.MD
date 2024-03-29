@@ -1,5 +1,25 @@
 # Changelog
 
+## 14.0.0
+
+- feat: Update to angular 17.
+- feat: Add a service for sharing links, closes [#661](https://github.com/MurhafSousli/ngx-sharebuttons/issues/661).
+- feat: Add new provider functions to easily override share buttons options.
+- enhance: Update share logos colors.
+- enhance: Replace Twitter with X, closes [#650](https://github.com/MurhafSousli/ngx-sharebuttons/issues/650) and [#657](https://github.com/MurhafSousli/ngx-sharebuttons/issues/657).
+- feat: Ability to create a sharer links through the share service.
+- feat: Add `args` input to add additional custom parameters to the sharer link.
+- fix: Cannot override `windowObj` due to `mergeDeep`, closes [#572](https://github.com/MurhafSousli/ngx-sharebuttons/issues/572).
+- fix: config is ignored if the module is lazy loaded, closes [#579](https://github.com/MurhafSousli/ngx-sharebuttons/issues/579).
+- fix: `opened` output not firing, closes [#633](https://github.com/MurhafSousli/ngx-sharebuttons/issues/633).
+
+### Breaking changes:
+
+- Rename `ShareButtonConfig` to `ShareButtonsOptions`.
+- Remove `closed` output from share directive and components.
+- Remove `autoSetMeta` input from share directive and components.
+- remove  `url` ,`title`, `description` ,`image` ,`tags` and `redirectUrl` from global options
+
 ## 13.0.0
 
 - Update to Angular 16 in [c677561](https://github.com/MurhafSousli/ngx-sharebuttons/pull/643/commits/c677561bf8bdc4e64fd1c46110dc85752168c347).

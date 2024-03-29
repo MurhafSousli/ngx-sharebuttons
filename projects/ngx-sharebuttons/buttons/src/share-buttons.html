@@ -1,27 +1,23 @@
-<div *ngIf="state$ | async; let state" class="sb-group sb-{{theme}}">
-  <share-button *ngFor="let button of state.selectedButtons"
-                [button]="button"
-                [theme]="theme"
-                [url]="url"
-                [title]="title"
-                [description]="description"
-                [image]="image"
-                [tags]="tags"
-                [redirectUrl]="redirectUrl"
-                [autoSetMeta]="autoSetMeta"
-                [showIcon]="showIcon"
-                [showText]="showText"
-                (opened)="opened.emit($event)"
-                (closed)="closed.emit($event)"
-                [disabled]="disabled">
-  </share-button>
-  <expand-button *ngIf="state.shownCount < state.userButtons.length"
-                 class="sb-button sb-{{theme}}"
-                 [expanded]="state.expanded"
-                 [moreIcon]="state.moreIcon"
-                 [lessIcon]="state.lessIcon"
-                 [moreAriaLabel]="state.moreAriaLabel"
-                 [lessAriaLabel]="state.lessAriaLabel"
-                 (toggle)="updateState({expanded: $event})">
-  </expand-button>
+<div class="sb-group sb-{{ theme }}">
+  @for (button of displayButtons(); track button) {
+    <share-button [button]="button"
+                  [theme]="theme"
+                  [url]="url"
+                  [title]="title"
+                  [description]="description"
+                  [image]="image"
+                  [tags]="tags"
+                  [redirectUrl]="redirectUrl"
+                  [showIcon]="showIcon"
+                  [showText]="showText"
+                  (opened)="opened.emit($event)"
+                  [disabled]="disabled">
+    </share-button>
+  }
+  @if (this.show() < selectedButtons().length) {
+    <expand-button class="sb-button sb-{{theme}}"
+                   [options]="options"
+                   [(expand)]="expanded"/>
+  }
 </div>
+

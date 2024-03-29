@@ -1,24 +1,24 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { SharedModule } from '../../shared';
 
 @Component({
-  host: {
-    class: 'page'
-  },
+  standalone: true,
+  host: { class: 'page' },
   selector: 'themes',
   templateUrl: './themes.component.html',
   styleUrls: ['./themes.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SharedModule]
 })
 export class ThemesComponent implements OnInit {
 
+  private titleService: Title = inject(Title);
+
   theme: string;
-  url = 'http://twitter.com/';
+  url: string = 'https://x.com/';
 
-  constructor(private titleService: Title) {
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.titleService.setTitle('Themes');
   }
 

@@ -1,21 +1,25 @@
 import { Component, Input } from '@angular/core';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
+  standalone: true,
   selector: 'note',
   template: `
-    <span class="note note-{{icon}}">
+    <span class="note">
       <section>
         <span class="note-icon">
-          <fa-icon [icon]="['fas', icon]"></fa-icon>
+          <fa-icon [icon]="icon"/>
         </span>
         <div class="note-content">
-          <ng-content></ng-content>
+          <ng-content/>
         </div>
       </section>
     </span>
   `,
-  styleUrls: ['./note.component.scss']
+  styleUrl: './note.component.scss',
+  imports: [FaIconComponent]
 })
 export class NoteComponent {
-  @Input() icon = 'info';
+  @Input() icon: IconProp = 'info';
 }

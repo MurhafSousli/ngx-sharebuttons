@@ -1,56 +1,37 @@
 import { Component, SkipSelf, ChangeDetectionStrategy } from '@angular/core';
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { RouterLink } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faCaretRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { KebabCasePipe } from '../kebab-case.pipe';
 
 @Component({
+  standalone: true,
   selector: 'section-title',
   template: `
-    <div fxLayout fxLayoutAlign="start center">
+    <div class="section-title">
       <h2 #el [id]="el.textContent | kebabCase">
         <a routerLink="."
            [fragment]="el.textContent | kebabCase"
            (click)="scrollbar.scrollToElement(el, { top: -20 })">
-          <fa-icon [icon]="iconCaretRight" size="lg"></fa-icon>
-          <ng-content></ng-content>
+          <fa-icon [icon]="iconCaretRight" size="lg"/>
+          <ng-content/>
         </a>
       </h2>
     </div>
   `,
-  styles: [`
-    :host {
-      width: 100%;
-    }
-
-    h2 {
-      flex: 1;
-      margin: 1em 0;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    h2:after {
-      content: '';
-      display: block;
-      height: 1px;
-      width: 100%;
-      opacity: 0.2;
-      background-color: rgba(0, 0, 0, 0.8);
-      margin-top: 15px;
-    }
-
-    fa-icon {
-      color: #F44336;
-      margin-right: 10px;
-    }
-  `],
+  styleUrl: './section-title.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  preserveWhitespaces: false,
+  imports: [
+    KebabCasePipe,
+    RouterLink,
+    FaIconComponent
+  ]
 })
 export class SectionTitleComponent {
 
-  iconCaretRight = faCaretRight;
+  iconCaretRight: IconDefinition = faCaretRight;
 
   constructor(@SkipSelf() public scrollbar: NgScrollbar) {
   }

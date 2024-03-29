@@ -1,17 +1,23 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, inject, OnInit, Output } from '@angular/core';
 import { LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { StorageMap } from '@ngx-pwa/local-storage';
+import { MaterialModule } from '../material.module';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'theme-switcher',
   templateUrl: './theme-switcher.component.html',
   styleUrls: ['./theme-switcher.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  preserveWhitespaces: false,
+  imports: [MaterialModule, UpperCasePipe]
 })
 export class ThemeSwitcherComponent implements OnInit {
 
-  themes = [
+  private localStorage: StorageMap = inject(StorageMap);
+
+  themes: string[] = [
     'default',
     'material-light',
     'material-dark',
@@ -23,15 +29,11 @@ export class ThemeSwitcherComponent implements OnInit {
     'circles-light',
     'outline'
   ];
-  currIndex = 0;
-  @Output() themeChange = new EventEmitter<string>();
-
-  constructor(protected localStorage: LocalStorage) {
-  }
+  currIndex: number = 0;
+  @Output() themeChange: EventEmitter<string> = new EventEmitter<string>();
 
   @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent) {
-
+  keyEvent(event: KeyboardEvent): void {
     if (event.keyCode === RIGHT_ARROW) {
       this.next();
     }
@@ -41,26 +43,26 @@ export class ThemeSwitcherComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.localStorage.getItem('themeIndex').subscribe((index: number) => {
+  ngOnInit(): void {
+    this.localStorage.get('themeIndex').subscribe((index: number) => {
       this.currIndex = index || 0;
       this.themeChange.emit(this.themes[this.currIndex]);
     });
   }
 
-  next() {
+  next(): void {
     if (this.currIndex + 1 < this.themes.length) {
       this.currIndex++;
       this.themeChange.emit(this.themes[this.currIndex]);
-      this.localStorage.setItem('themeIndex', this.currIndex).subscribe();
+      this.localStorage.set('themeIndex', this.currIndex).subscribe();
     }
   }
 
-  prev() {
+  prev(): void {
     if (this.currIndex - 1 >= 0) {
       this.currIndex--;
       this.themeChange.emit(this.themes[this.currIndex]);
-      this.localStorage.setItem('themeIndex', this.currIndex).subscribe();
+      this.localStorage.set('themeIndex', this.currIndex).subscribe();
     }
   }
 

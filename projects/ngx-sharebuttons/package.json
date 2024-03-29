@@ -1,47 +1,14 @@
 {
   "name": "ngx-sharebuttons",
-  "version": "13.0.0",
-  "author": {
-    "name": "Murhaf Sousli",
-    "url": "https://github.com/MurhafSousli",
-    "email": "murhafsousli@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/murhafsousli/ngx-sharebuttons.git"
-  },
-  "bugs": {
-    "url": "http://github.com/murhafsousli/ngx-sharebuttons/issues"
-  },
-  "keywords": [
-    "angular",
-    "share-links",
-    "share-buttons",
-    "sharebuttons",
-    "share",
-    "buttons",
-    "facebook",
-    "twitter",
-    "pinterest",
-    "tumblr",
-    "stumbleupon",
-    "linkedin",
-    "reddit",
-    "telegram",
-    "viber",
-    "vk",
-    "copy",
-    "print",
-    "email"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "tslib": "^2.0.0"
-  },
+  "version": "v14.0.0-beta.1",
   "peerDependencies": {
-    "@angular/common": ">=14.0.0",
-    "@angular/core": ">=14.0.0",
-    "@angular/cdk": ">=14.0.0",
-    "rxjs": ">=6.0.0"
-  }
+    "@angular/common": ">=17.0.0",
+    "@angular/core": ">=17.0.0",
+    "@angular/cdk": ">=17.0.0",
+    "rxjs": ">=7.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
 }

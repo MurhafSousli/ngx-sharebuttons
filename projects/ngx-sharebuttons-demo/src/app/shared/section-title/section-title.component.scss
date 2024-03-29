@@ -1,0 +1,32 @@
+:host {
+  width: 100%;
+}
+
+.section-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  flex: 1;
+  margin: 1em 0;
+  &:after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 100%;
+    opacity: 0.2;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-top: 15px;
+  }
+}
+
+a {
+  color: inherit;
+}
+
+fa-icon {
+  color: #F44336;
+  margin-right: 10px;
+}

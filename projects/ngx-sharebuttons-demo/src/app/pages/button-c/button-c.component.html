@@ -3,14 +3,12 @@
     <h1>Share Button Component</h1>
   </header>
 
-
   <doc-container>
     <section>
       <section-title>Overview</section-title>
       <p><code class="hljs" [textContent]="'<share-button>'"></code> is a component to add a single share button.</p>
       <note icon="book">
-        <!--        This component comes with <code class="hljs">ngx-sharebuttons/button</code> package.-->
-        Understand how to make your app visible on social network. <a href=""></a>
+        This component is available through the <code class="hljs">ngx-sharebuttons/button</code> package.
       </note>
     </section>
 
@@ -19,97 +17,93 @@
       <p>Install the following packages</p>
 
       <h4>NPM</h4>
-      <hl-code [code]="code.npm"></hl-code>
+      <hl-code [code]="'assets/code-examples/install.bash' | codeFromUrl | async"/>
     </section>
 
     <section>
       <section-title>Import the styles</section-title>
 
-      <p>Import share buttons theme in the global style
-        <b>"app/src/style.scss"</b>
-      </p>
+      <p>Import share buttons theme in the global style<b>"app/src/style.scss"</b></p>
 
-      <hl-code [code]="code.styles"></hl-code>
+      <hl-code [code]="'assets/code-examples/theme.scss' | codeFromUrl | async"/>
 
       <note>The default theme is optional, you can replace it with other theme or create your own theme from scratch,
-        see the <a routerLink="/styling-guide">styling guide</a></note>
+        see the <a routerLink="/styling-guide">Styling Guide</a></note>
 
-      <note icon="coffee">Don't forget to import the <b>FontAwesome</b> icons, see the <a routerLink="/icons">icons
-        guide</a></note>
+      <note icon="coffee">Don't forget to import the <b>FontAwesome</b> icons, see the <a routerLink="/icons">Icons
+        Guide</a></note>
     </section>
 
     <section>
-      <section-title>Import the module</section-title>
+      <section-title>Basic Usage</section-title>
 
-      <hl-code [code]="code.import"></hl-code>
+      <hl-code [code]="'assets/code-examples/single-share-button/recommended-example.html' | codeFromUrl | async"
+               [languages]="['html']"/>
 
-      <p>Now you can add share buttons individually.</p>
-
-      <code-switcher [code]="code.examples" class="center">
-        <share-button button="facebook" theme="classic-dark" text="Share" showText="true"></share-button>
-        <share-button button="twitter" theme="classic-dark" text="Tweet" showText="true"></share-button>
-        <share-button button="pinterest" theme="classic-dark" text="Pin" showText="true"></share-button>
+      <code-switcher [code]="'assets/code-examples/single-share-button/basic-example.ts' | codeFromUrl | async"
+                     class="center">
+        <share-button button="facebook" theme="classic-dark" text="Share" showText/>
+        <share-button button="x" theme="classic-dark" text="Post on X" showText/>
+        <share-button button="pinterest" theme="classic-dark" text="Pin" showText/>
       </code-switcher>
 
-      <code-switcher [code]="code.customIcons" class="center">
-        <share-button button="facebook" theme="circles-dark" size="3" [icon]="fbIcon"></share-button>
-        <share-button button="twitter" theme="circles-dark" size="3" [icon]="tweetIcon"></share-button>
-        <share-button button="pinterest" theme="circles-dark" size="3" [icon]="pinIcon"></share-button>
+      <code-switcher [code]="'assets/code-examples/single-share-button/override-icons-example.ts' | codeFromUrl | async"
+                     class="center">
+        <share-button button="facebook" theme="circles-dark" [icon]="fbIcon"/>
+        <share-button button="x" theme="circles-dark" [icon]="tweetIcon"/>
+        <share-button button="pinterest" theme="circles-dark" [icon]="pinIcon"/>
       </code-switcher>
-
-      <hl-code [code]="code.imoprtIcons"></hl-code>
-
     </section>
 
     <section>
       <note>
-        Alternatively, you can set the default icons using <b>ShareButtonOptions</b>, see <a routerLink="/icons">Icons
-        Guide</a>.
+        Alternatively, you can override the default icons globally using <code>provideShareButtonsOptions</code> function, see
+        the <a routerLink="/icons" fragment="custom-fa-icons">Custom Icons Guide</a>.
       </note>
     </section>
 
-    <section fxShow fxHide.lt-md="true">
+    <section>
       <section-title>Important Info</section-title>
-      <shared-info></shared-info>
+      <shared-info/>
     </section>
 
-    <section fxShow fxHide.lt-md="true">
+    <section>
       <section-title>Lab</section-title>
-      <lab component="share-button"></lab>
+      <lab component="share-button"/>
     </section>
 
-    <section fxShow fxHide.lt-md="true">
+    <section>
       <section-title>API</section-title>
 
-      <mat-table [dataSource]="dataSource">
+      <table mat-table [dataSource]="dataSource">
 
         <!-- Type Column -->
         <ng-container matColumnDef="type">
-          <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
-          <mat-cell *matCellDef="let row">
+          <th mat-header-cell *matHeaderCellDef> Type</th>
+          <td mat-cell *matCellDef="let row">
             <mat-chip-listbox>
               <mat-chip class="property" [class.property-input]="row.type==='input'"> {{ row.type }}</mat-chip>
             </mat-chip-listbox>
-          </mat-cell>
+          </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-          <mat-cell *matCellDef="let row">
-            <b>{{row.name}}</b>
-          </mat-cell>
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let row">
+            <b>{{ row.name }}</b>
+          </td>
         </ng-container>
 
         <!-- Description Column -->
         <ng-container matColumnDef="description">
-          <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
+          <th mat-header-cell *matHeaderCellDef> Description</th>
+          <td mat-cell *matCellDef="let row"> {{ row.description }}</td>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
 
     </section>
   </doc-container>

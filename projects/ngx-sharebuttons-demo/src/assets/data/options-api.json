@@ -1,9 +1,5 @@
 [
   {
-    "name": "prop",
-    "description": "Contains the properties of all share buttons Include, default: [ALL_BUTTONS]"
-  },
-  {
     "name": "include",
     "description": "Include certain buttons. Buttons order will be as you type it, default: [ALL_BUTTONS]"
   },
@@ -16,42 +12,16 @@
     "description": "Set buttons theme name, default: null"
   },
   {
-    "name": "title",
-    "description": "Override title meta tag, default: null"
-  },
-  {
-    "name": "description",
-    "description": "Override description meta tag, default: null"
-  },
-  {
-    "name": "image",
-    "description": "Override image meta tag, default: null"
-  },
-  {
-    "name": "tags",
-    "description": "Override tags for Tumblr and Twitter, default: null"
-  },
-  {
-    "name": "gaTracking",
-    "description": "Roll sharing stats automatically into your Google Analytics, default: false",
-    "type": "input"
-  },
-  {
-    "name": "twitterAccount",
-    "description": "Add via @accountName at the end of the tweets, default: null"
+    "name": "xAccount",
+    "description": "Add via @accountName at the end of the posts on X (Twitter), default: null"
   },
   {
     "name": "windowWidth",
-    "description": "Share popup window width, default: 800"
+    "description": "Share popup window width when \"SharerMethod\" is Window, default: 800"
   },
   {
     "name": "windowHeight",
-    "description": "Share popup window height, default: 500"
-  },
-  {
-    "name": "autoSetMeta",
-    "description": "Initializes meta tags inputs from the SEO meta tags, default: true",
-    "type": "input"
+    "description": "Share popup window height when \"SharerMethod\" is Window, default: 500"
   },
   {
     "name": "moreButtonIcon",
@@ -86,13 +56,13 @@
     "description": "Set the function name used to open the share window, default: 'open'"
   },
   {
-    "name": "redirectUrl",
-    "description": "Set the redirectUrl for Messenger which is required on desktop, default: null",
+    "name": "messengerAppId",
+    "description": "Set the appId for Messenger which is required on desktop, default: null",
     "type": "input"
   },
   {
-    "name": "appId",
-    "description": "Set the appId for Messenger which is required on desktop, default: null",
+    "name": "debug",
+    "description": "A boolean flag that enables debugging mode, default: false",
     "type": "input"
   }
 ]

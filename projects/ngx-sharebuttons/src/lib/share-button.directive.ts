@@ -3,332 +3,142 @@ import {
   Input,
   Output,
   HostListener,
-  Inject,
-  OnInit,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges,
-  SimpleChange,
+  inject,
+  signal,
+  effect,
+  computed,
+  input,
   EventEmitter,
   ElementRef,
-  ChangeDetectorRef
+  Signal,
+  InputSignal,
+  WritableSignal
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { Meta } from '@angular/platform-browser';
-import { Platform } from '@angular/cdk/platform';
-import { Clipboard } from '@angular/cdk/clipboard';
-import { EMPTY, Observable, Subject, Subscriber } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { ShareService } from './share.service';
-import { IShareButton, ShareDirectiveUpdater, ShareParams, ShareParamsFunc, SharerMethod } from './share.models';
-import { getValidUrl } from './utils';
-import { shareButtonName } from './share.defaults';
+import {
+  IShareButton,
+  IShareButtons,
+  ShareButtonsConfig,
+  ShareDirectiveUpdater,
+  SHARE_BUTTONS_CONFIG,
+} from './share.models';
+import { DEFAULT_OPTIONS, SHARE_BUTTONS, ShareButtonProp } from './share.defaults';
+import { SHARE_BUTTONS_PROP } from './custom-share-button-provider';
 
 @Directive({
+  standalone: true,
   selector: '[shareButton]',
-  exportAs: 'shareButton'
+  exportAs: 'shareButton',
+  host: {
+    '[style.--button-color]': 'color()',
+    '[attr.aria-label]': 'shareButtonInstance().ariaLabel',
+  }
 })
-export class ShareDirective implements OnInit, OnChanges, OnDestroy {
+export class ShareButtonDirective {
 
-  /** Variable used to check for the final sharer url (For testing only) */
-  private _finalUrl: string;
+  private readonly injectedProps: IShareButtons = inject(SHARE_BUTTONS_PROP, { optional: true });
+
+  /** Injected options */
+  private readonly injectedOptions: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG, { optional: true });
+
+  /** Combine injected option with default options */
+  private readonly options: ShareButtonsConfig = this.injectedOptions ? { ...DEFAULT_OPTIONS, ...this.injectedOptions } : DEFAULT_OPTIONS;
 
   /** Share directive element ref */
-  private readonly _el: HTMLButtonElement;
+  private readonly shareService: ShareService = inject(ShareService);
 
-  /** A ref to button class - used to remove previous class when the button type is changed */
-  private _buttonClass: string;
+  private nativeElement: HTMLElement = inject(ElementRef).nativeElement;
 
-  /** Stream that emits when button is destroyed */
-  private readonly _destroyed = new Subject<void>();
-
-  /** Stream that emit when share button need to be updated */
-  private readonly _updater = new Subject<ShareDirectiveUpdater>();
-
-  /** Share button properties */
-  shareButton: IShareButton;
+  /** Share button UI state */
+  uiState: WritableSignal<ShareDirectiveUpdater> = signal({});
 
   /** Share button color */
-  color: string;
+  color: Signal<string> = computed(() => this.shareButtonInstance().color);
 
   /** Share button text */
-  text: string;
+  text: Signal<string> = computed(() => this.uiState().text);
 
   /** Share button icon */
-  icon: string | string[];
+  icon: Signal<IconProp> = computed(() => this.uiState().icon);
+
+  /** Share button disabled */
+  disabled: Signal<boolean> = computed(() => this.uiState().disabled);
 
   /** Share button type */
-  @Input('shareButton') shareButtonName: shareButtonName;
+  shareButton: InputSignal<ShareButtonProp> = input.required<ShareButtonProp>();
 
-  /** Set meta tags from document head, useful when SEO is supported */
-  @Input() autoSetMeta: boolean = this._share.config.autoSetMeta;
+  shareButtonInstance: Signal<IShareButton> = computed<IShareButton>(() => {
+    /** Combine injected option with default options */
+    const key: string = this.shareButton();
+    const button: IShareButton = this.injectedProps ? { ...SHARE_BUTTONS[key], ...this.injectedProps[key] } : SHARE_BUTTONS[key];
 
-  /** Sharing link */
-  @Input() url: string = this._share.config.url;
+    if (button) {
+      return button;
+    }
+    throw new Error(`[ShareButtons]: The share button '${ button }' does not exist!`);
+  });
 
   /** Sets the title parameter */
-  @Input() title: string = this._share.config.title;
+  @Input() title: string;
 
   /** Sets the description parameter */
-  @Input() description: string = this._share.config.description;
+  @Input() description: string;
 
   /** Sets the image parameter for sharing on Pinterest */
-  @Input() image: string = this._share.config.image;
+  @Input() image: string;
 
-  /** Sets the tags parameter for sharing on Twitter and Tumblr */
-  @Input() tags: string = this._share.config.tags;
+  /** Sets the tags parameter for sharing on X and Tumblr */
+  @Input() tags: string;
 
   /** Sets the fb messenger redirect url to enable sharing on Messenger desktop */
-  @Input() redirectUrl: string = this._share.config.redirectUrl;
+  @Input() redirectUrl: string;
+
+  /** Sharing link */
+  @Input() url: string;
 
   /** Stream that emits when share dialog is opened */
-  @Output() opened = new EventEmitter<string>();
+  @Output() opened: EventEmitter<string> = new EventEmitter<string>();
 
-  /** Stream that emits when share dialog is closed */
-  @Output() closed = new EventEmitter<string>();
+  constructor() {
+    effect(() => {
+      const button: IShareButton = this.shareButtonInstance();
+      // Set share button properties
+      this.uiState.set({
+        icon: button.icon,
+        text: button.text,
+        disabled: false
+      });
+    }, { allowSignalWrites: true });
 
-  constructor(_el: ElementRef,
-              private _meta: Meta,
-              private _platform: Platform,
-              private _clipboard: Clipboard,
-              private _share: ShareService,
-              private _cd: ChangeDetectorRef,
-              @Inject(DOCUMENT) private _document: any) {
-    this._el = _el.nativeElement;
+    effect(() => {
+      // Set disabled attribute only when disabled state is true, because disabled="false" will also disable the button
+      this.nativeElement.toggleAttribute('disabled', this.uiState().disabled);
+    });
   }
 
   /**
    * Share the link
    */
   @HostListener('click')
-  share() {
-    // Avoid SSR error
-    if (this._platform.isBrowser && this.shareButton) {
-      // Prepare sharer url params
-      const params: ShareParams = this.autoSetMeta ? this.getParamsFromMetaTags() : this.getParamsFromInputs();
+  share(): void {
+    this.shareService.openInstance({
+      params: {
+        url: this.url,
+        title: this.title,
+        description: this.description,
+        image: this.image,
+        tags: this.tags,
+        redirectUrl: this.redirectUrl
+      },
+      target: this.options.sharerTarget,
+      debug: this.options.debug,
+      method: this.options.sharerMethod,
+      uiState: this.uiState,
+    }, this.shareButtonInstance());
 
-      // Prepare share button click
-      const click = this.shareButton.share ? this.open(params) : this.shareButton.func({
-        params,
-        data: this.shareButton.data,
-        clipboard: this._clipboard,
-        updater: this._updater
-      });
-
-      click.pipe(takeUntil(this._destroyed)).subscribe();
-    } else {
-      console.warn(`${ this.text } button is not compatible on this Platform`);
-    }
-  }
-
-  ngOnInit() {
-    // This stream is mainly used to update the copy button text and icon when it is being clicked
-    this._updater.pipe(
-      tap((data: any) => {
-        this.icon = data.icon;
-        this.text = data.text;
-        this._el.style.pointerEvents = data.disabled ? 'none' : 'auto';
-        this._cd.markForCheck();
-      }),
-      takeUntil(this._destroyed)
-    ).subscribe();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    // Avoid SSR error
-    if (this._platform.isBrowser) {
-
-      // Create share button
-      if (this._shareButtonChanged(changes.shareButtonName)) {
-        this._createShareButton();
-      }
-      // Prepare share url
-      if (this._urlChanged(changes.url)) {
-        this.url = getValidUrl(
-          this.autoSetMeta
-            ? this.url || this._getMetaTagContent('og:url')
-            : this.url,
-          this._document.defaultView.location.href
-        );
-      }
-    }
-  }
-
-  ngOnDestroy() {
-    this._destroyed.next();
-    this._destroyed.complete();
-  }
-
-  private _createShareButton() {
-    const button: IShareButton = this._share.config.prop[this.shareButtonName];
-    if (button) {
-      // Set share button properties
-      this.shareButton = button;
-
-      // Remove previous button class
-      this._el.classList.remove(`sb-${ this._buttonClass }`);
-
-      // Add new button class
-      this._el.classList.add(`sb-${ this.shareButtonName }`);
-
-      // Set button css color variable
-      this._el.style.setProperty('--button-color', this.shareButton.color);
-
-      // Keep a copy of the class for future replacement
-      this._buttonClass = this.shareButtonName;
-
-      this.color = this.shareButton.color;
-      this.text = this.shareButton.text;
-      this.icon = this.shareButton.icon;
-
-      // Set aria-label attribute
-      this._el.setAttribute('aria-label', button.ariaLabel);
-    } else {
-      console.error(`[ShareButtons]: The share button '${ this.shareButtonName }' does not exist!`);
-    }
-  }
-
-  /**
-   * Get meta tag content
-   */
-  private _getMetaTagContent(key: string): string {
-    const metaUsingProperty: HTMLMetaElement = this._meta.getTag(`property="${ key }"`);
-    if (metaUsingProperty) {
-      return metaUsingProperty.getAttribute('content');
-    }
-    const metaUsingName: HTMLMetaElement = this._meta.getTag(`name="${ key }"`);
-    if (metaUsingName) {
-      return metaUsingName.getAttribute('content');
-    }
-  }
-
-  private _shareButtonChanged(change: SimpleChange): boolean {
-    return change && (change.firstChange || change.previousValue !== change.currentValue);
-  }
-
-  private _urlChanged(change: SimpleChange): boolean {
-    return !this.url || (change && change.previousValue !== change.currentValue);
-  }
-
-  /**
-   * Get share params from meta tags first and fallback to user inputs
-   */
-  private getParamsFromMetaTags(): ShareParams {
-    return {
-      url: this.url,
-      title: this.title || this._getMetaTagContent('og:title'),
-      description: this.description || this._getMetaTagContent('og:description'),
-      image: this.image || this._getMetaTagContent('og:image'),
-      via: this._share.config.twitterAccount,
-      tags: this.tags,
-      appId: this._share.config.appId || this._getMetaTagContent('fb:app_id'),
-      redirectUrl: this.redirectUrl || this.url
-    };
-  }
-
-  /**
-   * Get share params from user inputs
-   */
-  private getParamsFromInputs(): ShareParams {
-    return {
-      url: this.url,
-      title: this.title,
-      description: this.description,
-      image: this.image,
-      tags: this.tags,
-      via: this._share.config.twitterAccount,
-      appId: this._share.config.appId,
-      redirectUrl: this.redirectUrl || this.url
-    };
-  }
-
-  private open(params: ShareParams): Observable<void> {
-    // Set sharer link based on user's device
-    let sharerLink: string;
-    if (this._platform.IOS && this.shareButton.share.ios) {
-      sharerLink = this.shareButton.share.ios;
-    } else if (this._platform.ANDROID && this.shareButton.share.android) {
-      sharerLink = this.shareButton.share.android;
-    } else {
-      sharerLink = this.shareButton.share.desktop;
-    }
-
-    if (sharerLink) {
-      // Set sharer link params
-      this._finalUrl = sharerLink + this._serializeParams(params);
-
-      // Log the sharer link in debug mode
-      if (this._share.config.debug) {
-        console.log('[DEBUG SHARE BUTTON]: ', this._finalUrl);
-      }
-
-      // Open the share window
-      // There are two methods available for opening the share window:
-      // 1. Using a real anchor
-      // 2. Using window.open
-      const sharerMethod = this.shareButton.method || this._share.config.sharerMethod;
-      const sharerTarget = this.shareButton.target || this._share.config.sharerTarget;
-
-      switch (sharerMethod) {
-
-        case SharerMethod.Anchor:
-          const linkElement: HTMLLinkElement = this._document.createElement('a');
-          // Make it open in a new tab/window (depends on user's browser configuration)
-          linkElement.setAttribute('target', sharerTarget);
-
-          // Prevent security vulnerability https://medium.com/@jitbit/target-blank-the-most-underestimated-vulnerability-ever-96e328301f4c
-          linkElement.setAttribute('rel', 'noopener noreferrer');
-          linkElement.href = this._finalUrl;
-          linkElement.click();
-          linkElement.remove();
-          break;
-
-        case SharerMethod.Window:
-          // Open link using Window object
-          const openWindow = this._share.config.windowObj[this._share.config.windowFuncName];
-          const popUpWindow = openWindow(this._finalUrl, sharerTarget, this._share.windowSize);
-
-          // Prevent security vulnerability https://medium.com/@jitbit/target-blank-the-most-underestimated-vulnerability-ever-96e328301f4c
-          this._share.config.windowObj.opener = null;
-
-          // Resolve when share dialog is closed
-          if (popUpWindow) {
-            return new Observable<void>((sub: Subscriber<void>) => {
-              const pollTimer = this._document.defaultView.setInterval(() => {
-                if (popUpWindow.closed) {
-                  this._document.defaultView.clearInterval(pollTimer);
-
-                  // Emit when share windows is closed
-                  this.closed.emit(this.shareButtonName);
-                  sub.next();
-                  sub.complete();
-                }
-              }, 200);
-            });
-          }
-          break;
-      }
-
-      // Emit when share window is opened
-      this.opened.emit(this.shareButtonName);
-    }
-    return EMPTY;
-  }
-
-  private _serializeParams(params: ShareParams): string {
-    return Object.entries(this.shareButton.params)
-      .map(([key, value]) => {
-        // Check if share button param has a map function
-        const paramFunc: ShareParamsFunc = this.shareButton.paramsFunc ? this.shareButton.paramsFunc[key] : null;
-
-        if (params[key] || paramFunc) {
-          const paramValue = paramFunc ? paramFunc(params) : params[key];
-          return `${ value }=${ encodeURIComponent(paramValue) }`;
-        }
-        return '';
-      })
-      .filter(urlParam => urlParam !== '')
-      .join('&');
+    // Emit after share action is done
+    this.opened.emit(this.shareButton());
   }
 }
