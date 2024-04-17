@@ -50,7 +50,7 @@ export const SHARE_BUTTONS: IShareButtons = {
     params: {
       url: 'url',
       title: 'title',
-      description: 'summary'
+      description: 'text'
     }
   },
   pinterest: {
