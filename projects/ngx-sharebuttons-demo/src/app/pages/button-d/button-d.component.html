@@ -6,10 +6,9 @@
   <doc-container>
     <section>
       <section-title>Overview</section-title>
-      <p><code class="hljs">[shareButton]</code> is a directive that converts its host element to a share button.</p>
+      <p><code class="hljs">[shareButton]</code> is a directive that transforms an element into a share button.</p>
       <note icon="book">
-        This directive comes with <code class="hljs">ngx-sharebuttons</code> <a
-        href="https://murhafsousli.github.io/ngx-sharebuttons/core" target="_blank">package</a>.
+        This directive is available through the <code class="hljs">ngx-sharebuttons</code> package.
       </note>
     </section>
 
@@ -18,80 +17,92 @@
       <p>Install the following packages</p>
 
       <h4>NPM</h4>
-      <hl-code [code]="code.npm" [languages]="['bash']">></hl-code>
+      <hl-code [code]="'assets/code-examples/install.bash' | codeFromUrl | async"/>
     </section>
 
     <section>
-      <section-title>Import the module</section-title>
+      <section-title>Basic Usage</section-title>
 
-      <hl-code [code]="code.import"></hl-code>
-
-      <p>The most basic share button needs only the name of the social network. e.g: <code class="hljs">shareButton="twitter"</code>
+      <p>The most basic share button needs only the name of the social network. e.g: <code
+        class="hljs">shareButton="x"</code>
       </p>
 
-      <code-switcher [code]="code.example1" [fill]="true">
+      <hl-code [code]="'assets/code-examples/share-directive/basic-example.ts' | codeFromUrl | async"/>
+
+      <b>Example with icon</b>
+
+      <hl-code [code]="'assets/code-examples/share-directive/standard-example.ts' | codeFromUrl | async"/>
+
+      <code-switcher [code]="'assets/code-examples/share-directive/recommended-example.html' | codeFromUrl | async"
+                     [languages]="['html']"
+                     fill>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 40px;">
           <div class="example example2">
-            <button mat-fab shareButton="facebook" #fbBtn="shareButton" [style.background-color]="fbBtn?.color">
-              <fa-icon *ngIf="fbBtn" [icon]="fbBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+
+            <button mat-fab shareButton="facebook" #fbBtn="shareButton" [style.background-color]="fbBtn.color()">
+              @if (fbBtn.icon()) {
+                <fa-icon [icon]="fbBtn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
-            <button mat-fab shareButton="twitter" #twtBtn="shareButton" [style.background-color]="twtBtn?.color">
-              <fa-icon *ngIf="twtBtn" [icon]="twtBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <button mat-fab shareButton="x" #twtBtn="shareButton" [style.background-color]="twtBtn.color()">
+              @if (twtBtn.icon()) {
+                <fa-icon [icon]="twtBtn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
-            <button mat-fab shareButton="linkedin" #in2Btn="shareButton" [style.background-color]="in2Btn?.color">
-              <fa-icon *ngIf="in2Btn" [icon]="in2Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <button mat-fab shareButton="linkedin" #in2Btn="shareButton" [style.background-color]="in2Btn.color()">
+              @if (in2Btn.icon()) {
+                <fa-icon [icon]="in2Btn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
-            <button mat-fab shareButton="whatsapp" #w2Btn="shareButton" [style.background-color]="w2Btn?.color">
-              <fa-icon *ngIf="w2Btn" [icon]="w2Btn.icon" size="lg" [style.font-size.px]="16"
-                       [fixedWidth]="true"></fa-icon>
+            <button mat-fab shareButton="whatsapp" #w2Btn="shareButton" [style.background-color]="w2Btn.color()">
+              @if (w2Btn.icon()) {
+                <fa-icon [icon]="w2Btn.icon()" size="lg" [style.font-size.px]="16" [fixedWidth]="true"/>
+              }
             </button>
-            <button mat-fab shareButton="telegram" #telBtn="shareButton" [style.background-color]="telBtn?.color">
-              <fa-icon *ngIf="telBtn" [icon]="telBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <button mat-fab shareButton="telegram" #telBtn="shareButton" [style.background-color]="telBtn.color()">
+              @if (telBtn.icon()) {
+                <fa-icon [icon]="telBtn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
-            <button mat-fab shareButton="pinterest" #pinBtn="shareButton" [style.background-color]="pinBtn?.color">
-              <fa-icon *ngIf="pinBtn" [icon]="pinBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <button mat-fab shareButton="pinterest" #pinBtn="shareButton" [style.background-color]="pinBtn.color()">
+              @if (pinBtn.icon()) {
+                <fa-icon [icon]="pinBtn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
           </div>
-<!--          <div class="example example3">-->
-<!--            <button mat-icon-button shareButton="xing" #fb2Btn="shareButton" [style.color]="fb2Btn?.color">-->
-<!--              <fa-icon *ngIf="fb2Btn" [icon]="fb2Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>-->
-<!--            </button>-->
-<!--            <button mat-icon-button shareButton="viber" #twt2Btn="shareButton" [style.color]="twt2Btn?.color">-->
-<!--              <fa-icon *ngIf="twt2Btn" [icon]="twt2Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>-->
-<!--            </button>-->
-<!--            <button mat-icon-button shareButton="line" #inBtn="shareButton" [style.color]="inBtn?.color">-->
-<!--              <fa-icon *ngIf="inBtn" [icon]="inBtn.icon" size="lg" [fixedWidth]="true"></fa-icon>-->
-<!--            </button>-->
-<!--            <button mat-icon-button shareButton="mix" #w2Btn="shareButton" [style.color]="w2Btn?.color">-->
-<!--              <fa-icon *ngIf="w2Btn" [icon]="w2Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>-->
-<!--            </button>-->
-<!--            <button mat-icon-button shareButton="copy" #tel2Btn="shareButton" [style.color]="tel2Btn?.color">-->
-<!--              <fa-icon *ngIf="tel2Btn" [icon]="tel2Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>-->
-<!--            </button>-->
-<!--            <button mat-icon-button shareButton="pinterest" #pin2Btn="shareButton" [style.color]="pin2Btn?.color">-->
-<!--              <fa-icon *ngIf="pin2Btn" [icon]="pin2Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>-->
-<!--            </button>-->
-<!--          </div>-->
 
           <div class="example example4">
-            <button mat-mini-fab shareButton="facebook" #fb3Btn="shareButton" [style.background-color]="fb3Btn?.color">
-              <fa-icon *ngIf="fb3Btn" [icon]="fb3Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <button mat-mini-fab shareButton="facebook" #fb3Btn="shareButton" [style.background-color]="fb3Btn.color()">
+              @if (fb3Btn.icon()) {
+                <fa-icon [icon]="fb3Btn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
-            <button mat-mini-fab shareButton="twitter" #twt3Btn="shareButton" [style.background-color]="twt3Btn?.color">
-              <fa-icon *ngIf="twt3Btn" [icon]="twt3Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <button mat-mini-fab shareButton="x" #twt3Btn="shareButton" [style.background-color]="twt3Btn.color()">
+              @if (twt3Btn.icon()) {
+                <fa-icon [icon]="twt3Btn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
-            <button mat-mini-fab shareButton="linkedin" #in3Btn="shareButton" [style.background-color]="in3Btn?.color">
-              <fa-icon *ngIf="in3Btn" [icon]="in3Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <button mat-mini-fab shareButton="linkedin" #in3Btn="shareButton" [style.background-color]="in3Btn.color()">
+              @if (in3Btn.icon()) {
+                <fa-icon [icon]="in3Btn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
-            <button mat-mini-fab shareButton="whatsapp" #w3Btn="shareButton" [style.background-color]="w3Btn?.color">
-              <fa-icon *ngIf="w3Btn" [icon]="w3Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <button mat-mini-fab shareButton="whatsapp" #w3Btn="shareButton" [style.background-color]="w3Btn.color()">
+              @if (w3Btn.icon()) {
+                <fa-icon [icon]="w3Btn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
             <button mat-mini-fab shareButton="telegram" #tel3Btn="shareButton"
-                    [style.background-color]="tel3Btn?.color">
-              <fa-icon *ngIf="tel3Btn" [icon]="tel3Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+                    [style.background-color]="tel3Btn.color()">
+              @if (tel3Btn.icon()) {
+                <fa-icon [icon]="tel3Btn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
-            <button mat-mini-fab shareButton="pinterest" #pin3Btn="shareButton" [style.background-color]="pin3Btn?.color">
-              <fa-icon *ngIf="pin3Btn" [icon]="pin3Btn.icon" size="lg" [fixedWidth]="true"></fa-icon>
+            <button mat-mini-fab shareButton="pinterest" #pin3Btn="shareButton"
+                    [style.background-color]="pin3Btn.color()">
+              @if (pin3Btn.icon()) {
+                <fa-icon [icon]="pin3Btn.icon()" size="lg" [fixedWidth]="true"/>
+              }
             </button>
           </div>
 
@@ -100,49 +111,43 @@
 
     </section>
 
-    <note>
-      By default, the package does not import any icon from FontAwesome, if you wish to use them, See the <a
-      routerLink="/icons">Icons Guide</a>.
-    </note>
-
-    <section fxShow fxHide.lt-md="true">
+    <section>
       <section-title>Important Info</section-title>
-      <shared-info></shared-info>
+      <shared-info/>
     </section>
 
-    <section fxShow fxHide.lt-md="true">
+    <section>
       <section-title>API</section-title>
 
-      <mat-table [dataSource]="dataSource">
+      <table mat-table [dataSource]="dataSource">
 
         <!-- Type Column -->
         <ng-container matColumnDef="type">
-          <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
-          <mat-cell *matCellDef="let row">
+          <th mat-header-cell *matHeaderCellDef> Type</th>
+          <td mat-cell *matCellDef="let row">
             <mat-chip-listbox>
               <mat-chip class="property" [class.property-input]="row.type==='input'"> {{ row.type }}</mat-chip>
             </mat-chip-listbox>
-          </mat-cell>
+          </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-          <mat-cell *matCellDef="let row">
-            <b>{{row.name}}</b>
-          </mat-cell>
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let row">
+            <b>{{ row.name }}</b>
+          </td>
         </ng-container>
 
         <!-- Description Column -->
         <ng-container matColumnDef="description">
-          <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
+          <th mat-header-cell *matHeaderCellDef> Description</th>
+          <td mat-cell *matCellDef="let row"> {{ row.description }}</td>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
 
     </section>
   </doc-container>

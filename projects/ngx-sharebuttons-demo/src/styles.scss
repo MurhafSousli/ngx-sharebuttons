@@ -1,9 +1,26 @@
 @use '@angular/material' as mat;
 
-@import url('https://fonts.googleapis.com/css?family=Play:400,700|Roboto:400,500,500i,700');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import '~normalize.css';
-@import 'assets/style/material';
+@include mat.core();
+
+$primary: mat.define-palette(mat.$blue-gray-palette, 500);
+$accent: mat.define-palette(mat.$red-palette);
+$warn: mat.define-palette(mat.$purple-palette, 300);
+
+$my-theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn
+  ),
+  typography: mat.define-typography-config(
+    $font-family: 'Play'
+  ),
+  density: 0,
+));
+
+@include mat.all-component-themes($my-theme);
+
+@import 'normalize.css';
 @import 'assets/style/code';
 @import '../../ngx-sharebuttons/themes/modern';
 @import '../../ngx-sharebuttons/themes/circles';
@@ -12,12 +29,41 @@
 @import '../../ngx-sharebuttons/themes/classic';
 @import '../../ngx-sharebuttons/themes/default';
 
+:root {
+  --primary-color: #2E4057;
+  --accent-color: #ab4e45;
+  --action-color: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 500))};
+  --output-color: #778DA9;
+  --note-color: var(--action-color);
+  --note-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 50))};
+  --footer-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 300))};
+  --dialog-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$purple-palette))};
+
+  --border: 1px solid lightgray;
+  --box-shadow: #{0 3px 10px rgba(black, 0.1)};
+  --sm-box-shadow: #{0 1px 4px rgba(black, 0.1)};
+  --code-bg: #fff;
+
+  --menu-box-shadow: #{0 0 6px rgba(0, 0, 0, 0.23)};
+  --api_input: #{mat.get-color-from-palette(mat.define-palette(mat.$light-blue-palette), 50)};
+  --api_output: #{mat.get-color-from-palette(mat.define-palette(mat.$cyan-palette), 50)};
+
+  --play-font-family: 'Play', sans-serif;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   color: var(--primary-color);
   line-height: 2em;
   background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
@@ -123,7 +169,6 @@ section {
   background-color: var(--footer-bg);
   color: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  //box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.4);
   z-index: 10;
 
   &:before {
@@ -168,20 +213,13 @@ section {
   box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
 
   .ng-scrollbar {
-    --scrollbar-border-radius: 12px;
-    --scrollbar-size: 12px;
+    //--scrollbar-border-radius: 12px;
+    --scrollbar-thickness: 12;
+    --scrollbar-hover-thickness: 16;
     --scrollbar-thumb-color: var(--action-color);
     --scrollbar-color: rgba(0, 0, 0, 0.1);
     --scrollbar-thumb-hover-color: var(--action-color);
     --scrollbar-track-color: rgba(0, 0, 0, 0.1);
-
-    .ng-scrollbar {
-      transition: all 120ms ease-out !important;
-
-      &:hover, &:active {
-        --scrollbar-size: 16px;
-      }
-    }
   }
 }
 
@@ -229,4 +267,151 @@ section {
   p {
     margin: 0;
   }
+}
+
+
+// MATERIAL CHIPS
+
+.mat-chip-list-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center !important;
+}
+
+.mat-mdc-chip-option {
+  font-family: 'Play', sans-serif;
+  text-transform: lowercase !important;
+}
+
+.mat-primary .mat-chip-selected {
+  background-color: lightgreen !important;
+}
+
+// MATERIAL CARD
+
+.mat-mdc-card {
+  overflow: initial;
+  margin-top: 3em;
+}
+
+.mat-mdc-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+
+  .mat-card-header-text {
+    margin: 0;
+  }
+}
+
+.mat-mdc-card-content {
+  flex: 1;
+  position: relative;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: initial;
+}
+
+// MATERIAL LIST
+
+.mat-list, .mat-nav-list {
+  padding-top: 1em !important;
+}
+
+.mat-list-item {
+  height: 52px !important;
+}
+
+.mat-list-item-content {
+  padding: 0 0 0 48px !important;
+  height: 52px !important;
+}
+
+.mat-sidenav, .mat-sidenav-container {
+  background: unset;
+}
+
+.mat-sidenav-container {
+  color: var(--primary-color);
+}
+
+// MATERIAL DIALOG
+.code-dialog .mat-mdc-dialog-container {
+  --mdc-dialog-container-color: transparent;
+  --mdc-dialog-container-shape: 0.6em;
+}
+
+.mat-slide-toggle .mat-slide-toggle-content {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.copy-tooltip {
+  color: mat.get-color-from-palette(mat.define-palette(mat.$red-palette));
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+// TABLES
+
+.mat-mdc-table {
+  overflow: hidden;
+  background: lightgray;
+  --table-header-cell-bg: var(--action-color);
+  --table-header-cell-color: white;
+  --table-cell-bg: white;
+
+  .mat-mdc-cell {
+    background: var(--table-cell-bg);
+  }
+
+  .mat-mdc-header-cell {
+    color: var(--table-header-cell-color);
+    background: var(--table-header-cell-bg) !important;
+  }
+
+  .mat-mdc-row, .mat-mdc-header-row {
+    gap: 1px;
+  }
+}
+
+// MATERIAL TABLE
+
+.mat-mdc-table, .mat-mdc-card {
+  box-shadow: unset !important;
+  border: var(--border) !important;
+  border-radius: var(--mdc-elevated-card-container-shape, var(--mdc-shape-medium, 4px));
+}
+
+.mat-mdc-cell, .mat-mdc-card, .mat-mdc-chip:not(.mat-mdc-basic-chip) {
+  color: var(--primary-color) !important;
+}
+
+.mat-mdc-header-cell {
+  color: rgba(var(--primary-color), 0.54);
+}
+
+.mat-header-row, .mat-row {
+  min-height: 34px !important;
+
+  .mat-mdc-cell {
+    padding: 0.8em 0;
+  }
+}
+
+
+.example-rate-limit-reached {
+  max-width: 360px;
+  text-align: center;
+}
+
+/* Column Widths */
+.mat-column-name,
+.mat-column-type {
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.mat-column-type {
+  text-align: center;
 }

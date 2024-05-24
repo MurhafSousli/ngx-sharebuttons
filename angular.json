@@ -12,20 +12,26 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/ngx-sharebuttons/tsconfig.lib.json",
             "project": "projects/ngx-sharebuttons/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "projects/ngx-sharebuttons/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-sharebuttons/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-sharebuttons/src/test.ts",
             "tsConfig": "projects/ngx-sharebuttons/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "karmaConfig": "projects/ngx-sharebuttons/karma.conf.js"
           }
         }
@@ -43,13 +49,16 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ngx-sharebuttons-demo/browser",
+            "outputPath": "dist/ngx-sharebuttons-demo",
             "index": "projects/ngx-sharebuttons-demo/src/index.html",
-            "main": "projects/ngx-sharebuttons-demo/src/main.ts",
-            "polyfills": "projects/ngx-sharebuttons-demo/src/polyfills.ts",
+            "browser": "projects/ngx-sharebuttons-demo/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/ngx-sharebuttons-demo/src/favicon.ico",
               "projects/ngx-sharebuttons-demo/src/assets"
@@ -58,71 +67,63 @@
               "projects/ngx-sharebuttons-demo/src/styles.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": [
-              "highlight.js"
-            ],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "server": "projects/ngx-sharebuttons-demo/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/ngx-sharebuttons-demo/server.ts"
+            }
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/ngx-sharebuttons-demo/src/environments/environment.ts",
-                  "with": "projects/ngx-sharebuttons-demo/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
-              ]
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "ngx-sharebuttons-demo:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-sharebuttons-demo:build:production"
+              "buildTarget": "ngx-sharebuttons-demo:build:production"
+            },
+            "development": {
+              "buildTarget": "ngx-sharebuttons-demo:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-sharebuttons-demo:build"
+            "buildTarget": "ngx-sharebuttons-demo:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-sharebuttons-demo/src/test.ts",
-            "polyfills": "projects/ngx-sharebuttons-demo/src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-sharebuttons-demo/karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/ngx-sharebuttons-demo/src/favicon.ico",
               "projects/ngx-sharebuttons-demo/src/assets"
@@ -132,71 +133,8 @@
             ],
             "scripts": []
           }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/ngx-sharebuttons-demo/e2e/protractor.conf.js",
-            "devServerTarget": "ngx-sharebuttons-demo:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ngx-sharebuttons-demo:serve:production"
-            }
-          }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/ngx-sharebuttons-demo/server",
-            "main": "projects/ngx-sharebuttons-demo/server.ts",
-            "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.server.json",
-            "sourceMap": true,
-            "optimization": false,
-            "buildOptimizer": false
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "projects/ngx-sharebuttons-demo/src/environments/environment.ts",
-                  "with": "projects/ngx-sharebuttons-demo/src/environments/environment.prod.ts"
-                }
-              ],
-              "sourceMap": false,
-              "optimization": true,
-              "buildOptimizer": true
-            }
-          },
-          "defaultConfiguration": ""
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "options": {
-            "browserTarget": "ngx-sharebuttons-demo:build",
-            "serverTarget": "ngx-sharebuttons-demo:server"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "ngx-sharebuttons-demo:build:production",
-              "serverTarget": "ngx-sharebuttons-demo:server:production"
-            }
-          }
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "browserTarget": "ngx-sharebuttons-demo:build:production",
-            "serverTarget": "ngx-sharebuttons-demo:server:production",
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {}
-          }
         }
       }
-    }}
+    }
+  }
 }

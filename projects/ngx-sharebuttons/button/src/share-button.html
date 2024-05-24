@@ -10,20 +10,18 @@
         [description]="description"
         [tags]="tags"
         [redirectUrl]="redirectUrl"
-        [autoSetMeta]="autoSetMeta"
         [disabled]="disabled"
-        (opened)="opened.emit($event)"
-        (closed)="closed.emit($event)">
-
-  <div *ngIf="btn" class="sb-content">
-
-    <div *ngIf="showIcon && btn.icon" class="sb-icon">
-      <fa-icon [icon]="icon || btn.icon" [fixedWidth]="true"></fa-icon>
-    </div>
-
-    <div *ngIf="showText" class="sb-text">
-      {{ text || btn.text }}
-    </div>
-
+        (opened)="opened.emit($event)">
+  <div class="sb-content">
+    @if (showIcon && btn.icon()) {
+      <div class="sb-icon">
+        <fa-icon [icon]="icon || btn.icon()" [fixedWidth]="true"/>
+      </div>
+    }
+    @if (showText) {
+      <div class="sb-text">
+        {{ text || btn.text() }}
+      </div>
+    }
   </div>
 </button>

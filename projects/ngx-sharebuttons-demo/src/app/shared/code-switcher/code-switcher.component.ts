@@ -1,21 +1,27 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faEye, faCode, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { flipperAnimation } from './code-switcher.animation';
-import { faEye, faCode } from '@fortawesome/free-solid-svg-icons';
+import { MaterialModule } from '../material.module';
+import { HlCodeComponent } from '../hl-code/hl-code.component';
 
 @Component({
+  standalone: true,
   selector: 'code-switcher',
   templateUrl: './code-switcher.component.html',
-  styleUrls: ['./code-switcher.component.scss'],
+  styleUrl: './code-switcher.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   preserveWhitespaces: false,
-  animations: [flipperAnimation]
+  animations: [flipperAnimation],
+  imports: [MaterialModule, FaIconComponent, HlCodeComponent, FormsModule]
 })
 export class CodeSwitcherComponent {
 
-  codeIcon = faCode;
-  eyeIcon = faEye;
+  codeIcon: IconDefinition = faCode;
+  eyeIcon: IconDefinition = faEye;
   toggle: any = false;
-  flip = {
+  flip: any = {
     true: {
       state: 'back',
       eyeColor: '#989898',
@@ -28,7 +34,8 @@ export class CodeSwitcherComponent {
     }
   };
 
-  @Input() title = 'Example';
+  @Input() title: string = 'Example';
   @Input() code: string;
-  @Input() fill: boolean;
+  @Input() languages: string[];
+  @Input({ transform: booleanAttribute }) fill: boolean;
 }

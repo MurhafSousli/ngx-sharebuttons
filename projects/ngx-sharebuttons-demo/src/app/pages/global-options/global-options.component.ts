@@ -1,69 +1,30 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 import { DocsService } from '../../docs/docs.service';
+import { SharedModule } from '../../shared';
 
 @Component({
-  host: {
-    class: 'page'
-  },
+  standalone: true,
+  host: { class: 'page' },
   selector: 'global-options',
   templateUrl: './global-options.component.html',
   styleUrls: ['./global-options.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SharedModule]
 })
 export class GlobalOptionsComponent implements OnInit {
 
-  code = `import { ShareButtonsConfig, IShareButtons } from 'ngx-sharebuttons';
+  private titleService: Title = inject(Title);
 
-const customConfig: ShareButtonsConfig = {
-  include: ['facebook', 'twitter', 'google'],
-  exclude: [],
-  theme: 'modern-light',
-  gaTracking: true,
-  autoSetMeta: true,
-  twitterAccount: 'username',
-  prop: {
-    facebook: {
-      icon: ['fab', 'facebook-square']
-    },
-    twitter: {
-      icon: ['fab', 'twitter-square'],
-      text: 'Tweet'
-    },
-    // and so on...
-  }
-}`;
+  private docs: DocsService = inject(DocsService);
 
-  global = `import { SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
+  readonly displayedColumns: string[] = ['name', 'description'];
+  dataSource: ApiDataSource;
 
-@NgModule({
-  providers: [
-    {
-      provide: SHARE_BUTTONS_CONFIG,
-      value: customConfig
-    }
-  ]
-})
-export class AppModule { }`;
-
-  lazyLoad = `@NgModule({
-  imports: [
-    ShareButtonsModule.withConfig(customConfig)
-  ]
-})
-export class FeatureModule { }`;
-
-
-  displayedColumns = ['name', 'description'];
-  dataSource: ApiDataSource | null;
-
-  constructor(private docs: DocsService, private titleService: Title) {
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.titleService.setTitle('Global options');
-    const apiDatabase = new ApiDatabase(this.docs.getOptionsApi());
+    const apiDatabase: ApiDatabase = new ApiDatabase(this.docs.getOptionsApi());
     this.dataSource = new ApiDataSource(apiDatabase);
   }
 

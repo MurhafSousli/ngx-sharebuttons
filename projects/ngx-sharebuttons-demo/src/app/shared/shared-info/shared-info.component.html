@@ -1,9 +1,14 @@
-<p>For the shared link preview such as title, description and image ...etc, all social network apps fetches the meta tags using
-  the static meta tags defined in the page header. this means that SSR is needed to make the meta tags accessible to the
-  link scrapper, read more on <a routerLink="../faq">"No article preview when a link is shared"</a> section.</p>
-<p>The meta tags inputs in this library can be useful only to set the sharer URL parameters, such as the url for all
-  buttons or description for whatsapp button,
-  so it's up to the options available from the social network.</p>
+<h4>Link Previews and Meta Tags</h4>
+<p>When you share a link on social networks, the preview (including the title, description, and image) is generated from
+  the meta tags in the page header. Social network apps fetch these meta tags using static meta information defined in
+  the HTML of the page. This means that server-side rendering (SSR) is necessary to ensure the meta tags are accessible
+  to the link scrapers. For more details, refer to the <a routerLink="../faq">"No article preview when a link is shared"</a> section.
+</p>
+
+<h4>Using Meta Tags inputs</h4>
+<p>The meta tag inputs in this library are mainly used to set the sharer URL parameters, such as the URL for all buttons
+  or the description for the WhatsApp button. The effectiveness of these inputs depends on the options provided by the
+  specific social network.</p>
 
 <note>
   Some of the meta tag inputs may seem not working, see compatibility <a target="_blank"

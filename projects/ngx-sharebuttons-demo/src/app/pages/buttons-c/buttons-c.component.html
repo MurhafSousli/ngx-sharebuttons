@@ -10,8 +10,7 @@
         <p><code class="hljs" [textContent]="'<share-buttons>'"></code> is a component to add a collection of share
           buttons.</p>
         <note icon="book">
-          This component comes with <code class="hljs">ngx-sharebuttons/buttons</code> <a
-          href="https://murhafsousli.github.io/ngx-sharebuttons/buttons" target="_blank">package</a>.
+          This component is available through the <code class="hljs">ngx-sharebuttons/buttons</code>package.
         </note>
       </section>
 
@@ -20,7 +19,7 @@
         <p>Install the following packages</p>
 
         <h4>NPM</h4>
-        <hl-code [code]="code.npm" [languages]="['bash']"></hl-code>
+        <hl-code [code]="'assets/code-examples/install.bash' | codeFromUrl | async"/>
       </section>
 
       <section>
@@ -30,76 +29,79 @@
           <b>"app/src/style.scss"</b>
         </p>
 
-        <hl-code [code]="code.styles" [languages]="['css']"></hl-code>
+        <hl-code [code]="'assets/code-examples/theme.scss' | codeFromUrl | async"/>
 
         <note>The default theme is optional, you can replace it with other theme or create your own theme from scratch,
-          see the <a routerLink="/styling-guide">styling guide</a></note>
+          see the <a routerLink="/styling-guide">Styling Guide</a></note>
 
         <note icon="coffee">Don't forget to import the <b>FontAwesome</b> icons, see the <a routerLink="/icons">icons
           guide</a></note>
       </section>
 
       <section>
-        <section-title>Import the module</section-title>
+        <section-title>Basic Usage</section-title>
 
-        <hl-code [code]="code.import"></hl-code>
+        <hl-code [code]="'assets/code-examples/share-buttons/recommended-example.html' | codeFromUrl | async"
+                 [languages]="['html']"/>
 
-        <code-switcher [code]="code.example" class="center">
-          <share-buttons show="11" description="Test me"></share-buttons>
+        <code-switcher [code]="'assets/code-examples/share-buttons/example-1.html' | codeFromUrl | async"
+                       [languages]="['html']"
+                       class="center">
+          <share-buttons show="11" description="Test me"/>
         </code-switcher>
       </section>
 
-      <section fxShow fxHide.lt-md="true">
+      <section>
         <section-title>Important Info</section-title>
-        <shared-info></shared-info>
+        <shared-info/>
       </section>
 
-      <section fxShow fxHide.lt-md="true">
+      <section>
         <section-title>Lab</section-title>
         <lab component="share-buttons"></lab>
       </section>
 
-      <section fxShow fxHide.lt-md="true">
+      <section>
         <section-title>API</section-title>
 
-        <mat-table [dataSource]="dataSource">
+        <table mat-table [dataSource]="dataSource">
 
           <!-- Type Column -->
           <ng-container matColumnDef="type">
-            <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
-            <mat-cell *matCellDef="let row">
+            <th mat-header-cell *matHeaderCellDef> Type</th>
+            <td mat-cell *matCellDef="let row">
               <mat-chip-listbox>
                 <mat-chip class="property" [class.property-input]="row.type==='input'"> {{ row.type }}</mat-chip>
               </mat-chip-listbox>
-            </mat-cell>
+            </td>
           </ng-container>
 
           <!-- Name Column -->
           <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let row">
+            <th mat-header-cell *matHeaderCellDef> Name</th>
+            <td mat-cell *matCellDef="let row">
               <b>{{row.name}}</b>
-            </mat-cell>
+            </td>
           </ng-container>
 
           <!-- Description Column -->
           <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
+            <th mat-header-cell *matHeaderCellDef> Description</th>
+            <td mat-cell *matCellDef="let row"> {{row.description}}</td>
           </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
 
       </section>
       <ng-template #overview>
-        <overview-content></overview-content>
+        <overview-content/>
       </ng-template>
     </div>
 
     <div>
-      <ng-template [ngTemplateOutlet]="overview"></ng-template>
+      <ng-template [ngTemplateOutlet]="overview"/>
     </div>
 
   </div>

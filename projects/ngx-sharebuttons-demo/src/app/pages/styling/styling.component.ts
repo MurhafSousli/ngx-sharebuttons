@@ -1,64 +1,23 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { SharedModule } from '../../shared';
 
 @Component({
-  host: {
-    class: 'page'
-  },
+  standalone: true,
+  host: { class: 'page' },
   selector: 'styling',
   templateUrl: './styling.component.html',
   styleUrls: ['./styling.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SharedModule]
 })
 export class StylingComponent implements OnInit {
 
-  componentCode = `<share-buttons theme="moon"></share-buttons>`;
-  stylingCode = `.sb-moon-theme {
-  // share button wrapper
-  .sb-wrapper {
-    // Content wrapper
-    .sb-content {
-      // Icon wrapper
-      .sb-icon {
-      }
-      // Text wrapper
-      .sb-text {
-      }
-    }
+  private titleService: Title = inject(Title);
 
-    // For conditional styles
-    // E.g. Apply only when icon, text are shown
-    &.sb-show-icon.sb-show-text {
-       // Icon wrapper
-      .sb-icon {
-      }
-      // Text wrapper
-      .sb-text {
-      }
-    }
-  }
-}`;
+  componentCode: string = `<share-buttons theme="moon"/>`;
 
-  cssVariables = `--sb-margin
---sb-min-width
---sb-height
---sb-color
---sb-background
---sb-font-size
---sb-icon-size
---sb-padding
---sb-text-padding
---sb-border
---sb-border-radius
---sb-line-height
---sb-text-shadow
---sb-font-weight
---sb-overflow`;
-
-  constructor(private titleService: Title) {
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.titleService.setTitle('Styling Guide');
   }
 

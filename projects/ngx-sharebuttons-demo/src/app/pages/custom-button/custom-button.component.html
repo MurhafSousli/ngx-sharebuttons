@@ -8,20 +8,17 @@
       <section-title>Overview</section-title>
       <p>To use your own share button use the ShareService to add a custom button.</p>
 
-      <share-buttons [include]="['facebook', 'twitter', 'customButton']"></share-buttons>
-
       <p></p>
 
-      <hl-code [code]="code"></hl-code>
+      <hl-code [code]="'assets/code-examples/custom-button/custom-button.ts' | codeFromUrl | async"/>
 
       <p>The available input for sharing parameters are <code class="hljs">url</code>, <code class="hljs">url</code>,
         <code class="hljs">title</code>, <code class="hljs">description</code>, <code class="hljs">image</code>,
         <code class="hljs">tags</code> and <code class="hljs">via</code>.
 
-        But that does not mean that you can use all or any of them. that depends on the social network and the
-        parameters they support, most of them only support only the <code class="hljs">url</code>
-
-        Additional data can be added to the button which can be useful.
+      <p>The effectiveness of these inputs depends on the options provided by the specific social network. most of them
+        only support only the <code class="hljs">url</code>.
+      </p>
     </section>
   </doc-container>
 </ng-scrollbar>

@@ -4,6 +4,7 @@ pre {
   margin: 0;
   display: inline-flex;
   word-wrap: normal;
+
   code {
     height: 100%;
     padding: 17.75px 20px !important;
@@ -13,7 +14,6 @@ pre {
     margin: 0;
     box-shadow: none;
     overflow: hidden;
-    //min-height: 60px;
   }
 }
 
@@ -35,27 +35,6 @@ code {
   overflow-x: unset !important;
   border: var(--border);
 }
-
-//ng-scrollbar {
-//  .code-scrollbar-thumb {
-//    background-color: rgba(var(--footer-bg), 0.6);
-//    &:hover {
-//      background-color: rgba(var(--footer-bg), 0.7);
-//    }
-//    &:active {
-//      background-color: rgba(var(--footer-bg), 0.9);
-//    }
-//  }
-//  .page-scrollbar-thumb {
-//    background-color: rgba(var(--accent-color);, 0.6);
-//    &:hover {
-//      background-color: rgba(var(--accent-color);, 0.7);
-//    }
-//    &:active {
-//      background-color: rgba(var(--accent-color);, 0.9);
-//    }
-//  }
-//}
 
 .hljs {
   transition: background ease-in-out 0.2s;

@@ -1,0 +1,25 @@
+.sb-moon-theme {
+  /** share button wrapper **/
+  .sb-wrapper {
+    /** Content wrapper **/
+    .sb-content {
+      /** Icon wrapper **/
+      .sb-icon {
+      }
+      /** Text wrapper **/
+      .sb-text {
+      }
+    }
+
+    /** For conditional styles **/
+    /** E.g. Apply only when icon, text are shown **/
+    &.sb-show-icon.sb-show-text {
+      /** Icon wrapper **/
+      .sb-icon {
+      }
+      /** Text wrapper **/
+      .sb-text {
+      }
+    }
+  }
+}

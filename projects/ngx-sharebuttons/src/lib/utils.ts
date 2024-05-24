@@ -1,72 +1,38 @@
-import { Observable, of, Subscriber } from 'rxjs';
-import { delay, take, tap } from 'rxjs/operators';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { ShareButtonFuncArgs } from './share.models';
 
-/**
- * Simple object check.
- */
-function isObject(item): boolean {
-  return (item && typeof item === 'object' && !Array.isArray(item));
-}
-
-/**
- * Deep merge two objects.
- */
-export function mergeDeep(target, ...sources) {
-  if (!sources.length) {
-    return target;
-  }
-  const source = sources.shift();
-
-  if (isObject(target) && isObject(source)) {
-    for (const key in source) {
-      if (isObject(source[key])) {
-        if (!target[key]) {
-          Object.assign(target, {[key]: {}});
-        }
-        mergeDeep(target[key], source[key]);
-      } else {
-        Object.assign(target, {[key]: source[key]});
-      }
-    }
-  }
-
-  return mergeDeep(target, ...sources);
-}
-
 /** Returns a valid URL or falls back to current URL */
-export function getValidUrl(url: string, fallbackUrl: string): string {
-  if (url) {
-    const r = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-    if (r.test(url)) {
-      return url;
-    }
-    console.warn(`[ShareButtons]: Sharing link '${ url }' is invalid!`);
+export function getValidUrl(url: string): string {
+  const isValidUrl: boolean = /^(http|https):\/\//.test(url);
+  if (isValidUrl) {
+    return url;
   }
-  return fallbackUrl;
+  console.warn(`[ShareButtons]: Sharing link '${ url }' is invalid!`);
+  return null;
 }
 
-export function printPage(): Observable<void> {
-  return new Observable((sub: Subscriber<any>) => document.defaultView.print());
+export function printPage(): void {
+  return document.defaultView.print();
 }
 
-export function copyToClipboard({params, data, clipboard, updater}: ShareButtonFuncArgs<CopyToClipboardDataArgs>): Observable<void> {
-  return of(null).pipe(
-    tap(() => {
-      clipboard.copy(params.url);
-      // Disable copy button
-      updater.next({icon: data.successIcon, text: data.successText, disabled: true});
-    }),
-    delay(data.delay),
-    tap(() => updater.next({icon: data.icon, text: data.text, disabled: false})),
-    take(1)
-  );
+export function copyToClipboard({
+                                  params,
+                                  data,
+                                  clipboard,
+                                  uiState
+                                }: ShareButtonFuncArgs<CopyToClipboardDataArgs>): void {
+  clipboard.copy(params.url);
+  // Disable copy button
+  uiState.set({ icon: data.successIcon, text: data.successText, disabled: true });
+  setTimeout(() => {
+    uiState.set({ icon: data.icon, text: data.text, disabled: false })
+  }, data.delay);
 }
 
 interface CopyToClipboardDataArgs {
   delay: number;
   text: string;
-  icon: string[];
+  icon: IconProp;
   successText: string;
-  successIcon: string[];
+  successIcon: IconProp;
 }

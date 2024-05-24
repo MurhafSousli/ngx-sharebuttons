@@ -1,38 +1,47 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "strict": false,
+    "noImplicitOverride": true,
+    // TODO: Make false again
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "paths": {
+      "ngx-sharebuttons": [
+        "./projects/ngx-sharebuttons/src/public-api"
+      ],
+      "ngx-sharebuttons/button": [
+        "./projects/ngx-sharebuttons/button/src/public_api"
+      ],
+      "ngx-sharebuttons/buttons": [
+        "./projects/ngx-sharebuttons/buttons/src/public_api"
+      ],
+      "ngx-sharebuttons/icons": [
+        "./projects/ngx-sharebuttons/icons/src/public_api"
+      ]
+    },
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
     "experimentalDecorators": true,
-    "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
     "lib": [
-      "es2018",
+      "ES2022",
       "dom"
-    ],
-    "paths": {
-      "ngx-sharebuttons": [
-        "projects/ngx-sharebuttons/src/public-api"
-      ],
-      "ngx-sharebuttons/button": [
-        "projects/ngx-sharebuttons/button/src/public_api"
-      ],
-      "ngx-sharebuttons/buttons": [
-        "projects/ngx-sharebuttons/buttons/src/public_api"
-      ],
-      "ngx-sharebuttons/icons": [
-        "projects/ngx-sharebuttons/icons/src/public_api"
-      ]
-    },
-    "useDefineForClassFields": false
+    ]
   },
   "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
   }
 }

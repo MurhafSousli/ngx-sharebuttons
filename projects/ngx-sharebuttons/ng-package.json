@@ -1,10 +1,10 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngx-sharebuttons",
+  "assets": [
+    { "input": "themes", "glob": "*.scss", "output": "themes" }
+  ],
   "lib": {
     "entryFile": "src/public-api.ts"
-  },
-  "assets": [
-    "./themes/*.scss"
-  ]
+  }
 }

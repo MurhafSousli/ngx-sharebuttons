@@ -1,20 +1,24 @@
 <mat-sidenav-container>
 
   <mat-sidenav opened="false">
-    <nav-menu></nav-menu>
+    <nav-menu/>
   </mat-sidenav>
 
-  <div fxLayout>
-    <div class="menu-wrapper" fxShow fxHide.lt-md="true">
-      <nav-menu></nav-menu>
-    </div>
+  <div class="main-wrapper">
+    @if (!isHeadset()) {
+      <div class="menu-wrapper">
+        <nav-menu/>
+      </div>
+    }
     <main class="page-wrapper" [@sideAnimation]="getState(o)">
-      <router-outlet #o="outlet"></router-outlet>
+      <router-outlet #o="outlet"/>
     </main>
   </div>
 
-  <button fxHide fxShow.lt-md="true" mat-fab class="menu-fab" [disabled]="sideNav.opened" (click)="sideNav.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
+  @if (isHeadset()) {
+    <button mat-fab class="menu-fab" [disabled]="sideNav.opened" (click)="sideNav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  }
 
 </mat-sidenav-container>

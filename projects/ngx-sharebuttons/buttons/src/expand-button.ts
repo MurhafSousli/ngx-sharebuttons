@@ -1,30 +1,32 @@
-import { Component, Input, Output, ElementRef, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, ChangeDetectionStrategy, inject } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { ShareButtonsConfig } from 'ngx-sharebuttons';
 
 @Component({
+  standalone: true,
   selector: 'expand-button',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <button class="sb-wrapper sb-expand sb-show-icon"
-            [attr.aria-label]="expanded ? lessAriaLabel : moreAriaLabel"
-            (click)="toggle.emit(!expanded)">
+            [attr.aria-label]="expand ? options.lessButtonAriaLabel : options.moreButtonAriaLabel"
+            (click)="expandChange.emit(!expand)">
 
       <div class="sb-content">
         <div class="sb-icon">
-          <fa-icon [icon]="expanded ? lessIcon : moreIcon"></fa-icon>
+          <fa-icon [icon]="expand ? options.lessButtonIcon : options.moreButtonIcon"/>
         </div>
       </div>
     </button>
   `,
-  styleUrls: ['../../button/src/share-button.scss']
+  styleUrls: ['../../button/src/share-button.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [FaIconComponent]
 })
 export class ExpandButton {
 
-  @Input() moreIcon: any;
-  @Input() lessIcon: any;
-  @Input() expanded: boolean;
-  @Input() moreAriaLabel: string;
-  @Input() lessAriaLabel: string;
-  @Output() toggle = new EventEmitter<boolean>();
+  @Input() options: ShareButtonsConfig;
+
+  @Input() expand: boolean;
+  @Output() expandChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(el: ElementRef) {
     el.nativeElement.style.setProperty('--button-color', '#FF6651');

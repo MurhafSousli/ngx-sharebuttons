@@ -1,39 +1,48 @@
 import {
   Component,
   Input,
-  AfterViewInit,
-  AfterContentChecked,
+  inject,
+  signal,
   OnDestroy,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef
+  AfterViewInit,
+  WritableSignal,
+  AfterContentChecked,
+  ChangeDetectionStrategy
 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
-import { Subject, Subscription, of } from 'rxjs';
-import { tap, take, switchMap, debounceTime, delay, distinctUntilChanged, filter } from 'rxjs/operators';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { Subject, Subscription, tap, switchMap, filter } from 'rxjs';
+import { StorageMap } from '@ngx-pwa/local-storage';
 
-import { ShareService, SHARE_BUTTONS } from 'ngx-sharebuttons';
+import { DEFAULT_OPTIONS, SHARE_BUTTONS } from 'ngx-sharebuttons';
+import { MaterialModule } from '../material.module';
+import { FormsModule } from '@angular/forms';
+import { ShareButtons } from 'ngx-sharebuttons/buttons';
+import { ShareButton } from 'ngx-sharebuttons/button';
+import { HlCodeComponent } from '../hl-code/hl-code.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'lab',
   templateUrl: './lab.component.html',
   styleUrls: ['./lab.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [MaterialModule, CommonModule, FormsModule, ShareButtons, ShareButton, HlCodeComponent]
 })
 export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestroy {
 
+  protected readonly localStorage: StorageMap = inject(StorageMap);
+
   showCode: boolean;
 
-  config = {
-    updateDate: '30032018',
-    url: 'https://twitter.com/',
+  config: any = {
+    updateDate: '23052024',
+    url: 'https://x.com/',
     title: undefined,
     description: undefined,
     tags: undefined,
     image: undefined,
     showIcon: true,
     showText: false,
-    autoSetMeta: false,
     /** Selected single button */
     button: 'facebook',
     /** Selected buttons */
@@ -58,46 +67,30 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
   prevConfig = { ...this.config };
 
   /** Check if config is loaded from localstorage */
-  ready = false;
+  ready: WritableSignal<boolean> = signal(false);
 
-  urlControl = new UntypedFormControl();
-  urlSub: Subscription;
-  saveSub = new Subject<void>();
+  openedChanged: WritableSignal<boolean> = signal(false);
 
   opened: string;
-  closed: string;
-  closedChanged = new Subject();
-  openedChanged = new Subject();
+
+  urlSub: Subscription;
+
+  saveSub: Subject<void> = new Subject<void>();
 
   /** Lab for a single share buttons or for share buttons container */
   @Input() component: 'share-buttons' | 'share-button';
 
-  constructor(private share: ShareService, private cd: ChangeDetectorRef, protected localStorage: LocalStorage) {
-  }
-
-  onOpenedChanged(e) {
+  onOpenedChanged(e: string): void {
     this.opened = e;
-    this.openedChanged.next(true);
-    of(e).pipe(
-      delay(800),
-      take(1),
-      tap(() => this.openedChanged.next(false))
-    ).subscribe();
-  }
-
-  onClosedChanged(e) {
-    this.closed = e;
-    this.closedChanged.next(true);
-    of(e).pipe(
-      delay(800),
-      take(1),
-      tap(() => this.closedChanged.next(false))
-    ).subscribe();
+    this.openedChanged.set(true);
+    setTimeout(() => {
+      this.openedChanged.set(false)
+    }, 800);
   }
 
   getCode(): string {
 
-    let code = `<${ this.component }`;
+    let code: string = `<${ this.component }`;
 
     if (this.config.theme) {
       code += ` [theme]="'${ this.config.theme }'"`;
@@ -107,7 +100,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
       code += `\n [button]="'${ this.config.button }'"`;
     } else {
 
-      if (this.config.include.length !== this.share.config.include.length) {
+      if (this.config.include.length !== DEFAULT_OPTIONS.include?.length) {
         code += `\n [include]="[${ this.config.include.map(btn => `'${ btn }'`) }]"`;
       }
 
@@ -148,58 +141,39 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
       code += `\n [tags]="'${ this.config.tags }'"`;
     }
 
-    if (!this.config.autoSetMeta) {
-      code += `\n [autoSetMeta]="${ this.config.autoSetMeta }"`;
-    }
-
     code += `\n></${ this.component }>`;
 
     return code;
   }
 
-  getMax() {
+  getMax(): number {
     return this.config.include.filter((btn) => this.config.exclude.indexOf(btn) < 0).length;
   }
 
-  ngAfterViewInit() {
-    this.urlSub = this.urlControl.valueChanges.pipe(
-      debounceTime(400),
-      distinctUntilChanged(),
-      tap((text: string) => {
-        this.config = { ...this.config, url: text };
-        this.cd.markForCheck();
-      })
-    ).subscribe();
-
+  ngAfterViewInit(): void {
     this.saveSub.pipe(
       filter(() => JSON.stringify(this.config) !== JSON.stringify(this.prevConfig)),
       switchMap(() => {
         this.prevConfig = { ...this.config };
-        return this.localStorage.setItem('labConfig', this.config);
+        return this.localStorage.set('labConfig', this.config);
       })
     ).subscribe();
 
-    this.localStorage.getItem('labConfig').pipe(
+    this.localStorage.get('labConfig').pipe(
       tap((config: any) => {
         this.config = { ...this.config, ...config };
         this.prevConfig = { ...this.config };
+        this.ready.set(true);
       })
-    ).subscribe(() => {
-      this.ready = true;
-      this.cd.markForCheck();
-    });
+    ).subscribe();
   }
 
-  ngAfterContentChecked() {
+  ngAfterContentChecked(): void {
     this.saveSub.next();
   }
 
-  ngOnDestroy() {
-    if (this.urlSub) {
-      this.urlSub.unsubscribe();
-    }
-    if (this.saveSub) {
-      this.saveSub.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.urlSub?.unsubscribe();
+    this.saveSub?.unsubscribe();
   }
 }
