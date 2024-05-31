@@ -1,8 +1,7 @@
 import { InjectionToken, Provider, WritableSignal } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Observable } from 'rxjs';
-import { ShareButtonProp } from './share.defaults';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { ShareButtonProp } from './share.defaults';
 
 export const SHARE_BUTTONS_CONFIG: InjectionToken<ShareButtonsConfig> = new InjectionToken<ShareButtonsConfig>('shareButtonsConfig');
 

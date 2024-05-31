@@ -6,13 +6,15 @@
   <doc-container>
     <section>
       <section-title>Overview</section-title>
-      <p>To use your own share button use the ShareService to add a custom button.</p>
+      <p>To create a new share button or to modify an existing share button, you can provide the options using
+        <code class="hljs">customShareButton</code> function inside <code class="hljs">provideShareButtonsOptions</code>
+        in your app.config file.</p>
 
       <p></p>
 
       <hl-code [code]="'assets/code-examples/custom-button/custom-button.ts' | codeFromUrl | async"/>
 
-      <p>The available input for sharing parameters are <code class="hljs">url</code>, <code class="hljs">url</code>,
+      <p>The available inputs for sharing parameters are <code class="hljs">url</code>,
         <code class="hljs">title</code>, <code class="hljs">description</code>, <code class="hljs">image</code>,
         <code class="hljs">tags</code> and <code class="hljs">via</code>.
 

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ElementRef, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ShareButtonsConfig } from 'ngx-sharebuttons';
 
@@ -26,6 +26,7 @@ export class ExpandButton {
   @Input() options: ShareButtonsConfig;
 
   @Input() expand: boolean;
+
   @Output() expandChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(el: ElementRef) {

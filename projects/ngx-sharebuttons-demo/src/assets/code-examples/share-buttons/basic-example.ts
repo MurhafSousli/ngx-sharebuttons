@@ -9,5 +9,5 @@ import { ShareButtons } from 'ngx-sharebuttons/buttons';
     <share-buttons>
   `
 })
-export class ShareButtonExample {
+export class ShareButtonsExample {
 }

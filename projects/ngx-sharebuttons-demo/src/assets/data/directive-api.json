@@ -11,12 +11,12 @@
   },
   {
     "name": "title",
-    "description": "Override title meta tag for LinkedIn and Reddit, default: null",
+    "description": "Override title meta tag for Reddit and Email, default: null",
     "type": "input"
   },
   {
     "name": "description",
-    "description": "Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest, default: null",
+    "description": "Override description meta tag for WhatsApp, Telegram, Viber, SMS, Email and Pinterest, default: null",
     "type": "input"
   },
   {
