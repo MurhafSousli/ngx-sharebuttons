@@ -1,11 +1,10 @@
 {
   "name": "ngx-sharebuttons",
-  "version": "v14.0.0-beta.1",
+  "version": "14.0.0",
   "peerDependencies": {
     "@angular/common": ">=17.0.0",
     "@angular/core": ">=17.0.0",
-    "@angular/cdk": ">=17.0.0",
-    "rxjs": ">=7.0.0"
+    "@angular/cdk": ">=17.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

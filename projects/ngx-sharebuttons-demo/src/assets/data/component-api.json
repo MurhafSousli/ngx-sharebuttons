@@ -6,7 +6,7 @@
   },
   {
     "name": "button",
-    "description": "Button type, e.g. 'facebook', 'twitter' ...etc. default: null",
+    "description": "Button type, e.g. 'facebook', 'x' ...etc. default: null",
     "type": "input"
   },
   {
@@ -26,12 +26,12 @@
   },
   {
     "name": "title",
-    "description": "Override title meta tag for LinkedIn and Reddit, default: null",
+    "description": "Override title meta tag for Reddit and Email, default: null",
     "type": "input"
   },
   {
     "name": "description",
-    "description": "Override description meta tag for LinkedIn, WhatsApp, Telegram and Pinterest, default: null",
+    "description": "Override description meta tag for WhatsApp, Telegram, Viber, SMS, Email and Pinterest, default: null",
     "type": "input"
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "name": "tags",
-    "description": "Override tags for Tumblr and Twitter, default: null",
+    "description": "Override tags for Tumblr and X, default: null",
     "type": "input"
   },
   {
@@ -60,8 +60,8 @@
     "type": "input"
   },
   {
-    "name": "autoSetMeta",
-    "description": "Initializes meta tag inputs from SEO meta tags, default: true",
+    "name": "redirectUrl",
+    "description": "Override redirectUrl for Messenger (desktop), default: null",
     "type": "input"
   },
   {

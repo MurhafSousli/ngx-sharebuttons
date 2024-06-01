@@ -144,7 +144,7 @@
               <input autocomplete="off"
                      matInput
                      [(ngModel)]="config.url"
-                     [disabled]="component === 'share-button' && !['linkedin', 'reddit'].includes(config.button)">
+                     [disabled]="component === 'share-button' && ['print'].includes(config.button)">
               <mat-hint>If empty! It uses the current page URL</mat-hint>
             </mat-form-field>
           </div>
@@ -155,7 +155,7 @@
               <input autocomplete="off"
                      matInput
                      [(ngModel)]="config.title"
-                     [disabled]="component === 'share-button' && !['reddit'].includes(config.button)">
+                     [disabled]="component === 'share-button' && !['reddit', 'email'].includes(config.button)">
             </mat-form-field>
 
             <mat-form-field color="primary" appearance="fill">
@@ -163,7 +163,7 @@
               <input autocomplete="off"
                      matInput
                      [(ngModel)]="config.description"
-                     [disabled]="component === 'share-button' && !['x', 'whatsapp', 'telegram', 'pinterest'].includes(config.button)">
+                     [disabled]="component === 'share-button' && !['x', 'whatsapp', 'telegram', 'pinterest', 'sms', 'email', 'viber'].includes(config.button)">
             </mat-form-field>
 
             <mat-form-field color="primary" appearance="fill">

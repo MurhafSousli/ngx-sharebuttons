@@ -22,30 +22,29 @@ const scrollConfig: InMemoryScrollingOptions = {
 const inMemoryScrollingFeature: InMemoryScrollingFeature = withInMemoryScrolling(scrollConfig);
 
 export const appConfig: ApplicationConfig = {
-    providers: [
-      provideHttpClient(withFetch()),
-      provideRouter(routes, withHashLocation(), inMemoryScrollingFeature),
-      provideShareButtonsOptions(
-        withIcons(),
-        withConfig({
-          debug: true,
-          sharerMethod: SharerMethods.Anchor
-          // xAccount: 'MurhafSousli'
-        }),
-        // customShareButton('x', {
-        //   color: 'purple'
-        // }),
-        // customShareButton('facebook', {
-        //   color: 'orange',
-        //   icon: faFacebookSquare
-        // })
-      ),
-      provideClientHydration(),
-      provideAnimationsAsync(),
-      provideHighlightOptions({
-        fullLibraryLoader: () => import('highlight.js'),
-        themePath: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css'
-      })
-    ]
-  }
-;
+  providers: [
+    provideHttpClient(withFetch()),
+    provideRouter(routes, withHashLocation(), inMemoryScrollingFeature),
+    provideShareButtonsOptions(
+      withIcons(),
+      withConfig({
+        debug: true,
+        sharerMethod: SharerMethods.Anchor
+        // xAccount: 'MurhafSousli'
+      }),
+      // customShareButton('x', {
+      //   color: 'purple'
+      // }),
+      // customShareButton('facebook', {
+      //   color: 'orange',
+      //   icon: faFacebookSquare
+      // })
+    ),
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    provideHighlightOptions({
+      fullLibraryLoader: () => import('highlight.js'),
+      themePath: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css'
+    })
+  ]
+}

@@ -9,6 +9,7 @@
 - enhance: Replace Twitter with X, closes [#650](https://github.com/MurhafSousli/ngx-sharebuttons/issues/650) and [#657](https://github.com/MurhafSousli/ngx-sharebuttons/issues/657).
 - feat: Ability to create a sharer links through the share service.
 - feat: Add `args` input to add additional custom parameters to the sharer link.
+- feat: Remove `rxjs` dependency.
 - fix: Cannot override `windowObj` due to `mergeDeep`, closes [#572](https://github.com/MurhafSousli/ngx-sharebuttons/issues/572).
 - fix: config is ignored if the module is lazy loaded, closes [#579](https://github.com/MurhafSousli/ngx-sharebuttons/issues/579).
 - fix: `opened` output not firing, closes [#633](https://github.com/MurhafSousli/ngx-sharebuttons/issues/633).

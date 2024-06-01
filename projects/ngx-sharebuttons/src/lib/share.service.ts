@@ -107,7 +107,7 @@ export class ShareService {
       if (computedParams[key]) {
         // Check if param has a resolver function
         const resolver: ShareParamsFunc = shareButton.paramsFunc?.[key];
-        params[realKey] = resolver ? resolver(shareButton.params) : computedParams[key];
+        params[realKey] = resolver ? resolver(computedParams) : computedParams[key];
       }
       return params;
     }, {});
