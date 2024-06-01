@@ -1,58 +1,26 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { DocsService } from '../../docs/docs.service';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
+import { SharedModule } from '../../shared';
 
 @Component({
-  host: {
-    class: 'page'
-  },
+  standalone: true,
+  host: { class: 'page' },
   selector: 'button-d',
   templateUrl: './button-d.component.html',
   styleUrls: ['./button-d.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SharedModule]
 })
 export class ButtonDComponent implements OnInit {
 
-  code = {
-    npm: `npm i ngx-sharebuttons @angular/cdk`,
-    import: `import { ShareModule } from 'ngx-sharebuttons';
+  private docs: DocsService = inject(DocsService);
 
-@NgModule({
-  imports: [
-    ShareModule
-  ]
-})`,
-    example1: `<button mat-fab shareButton="facebook"
-                #fbBtn="shareButton"
-                [style.backgroundColor]="fbBtn?.color">
-  <fa-icon *ngIf="fbBtn" [icon]="fbBtn.icon" size="lg"></fa-icon>
-</button>
-<button mat-fab shareButton="twitter"
-                #twtBtn="shareButton"
-                [style.backgroundColor]="twtBtn?.color">
-  <fa-icon *ngIf="twtBtn" [icon]="twtBtn.icon" size="lg"></fa-icon>
-</button>`,
-    example2: `<button mat-icon-button
-        shareButton="facebook"
-        #fbBtn="shareButton"
-        [style.color]="fbBtn?.color">
-  <fa-icon *ngIf="fbBtn" [icon]="fbBtn.icon" size="lg"></fa-icon>
-</button>
-<button mat-icon-button
-        shareButton="twitter"
-        #twtBtn="shareButton"
-        [style.color]="twtBtn?.color">
-  <fa-icon *ngIf="twtBtn" [icon]="twtBtn.icon" size="lg"></fa-icon>
-</button>`
-  };
+  private titleService: Title = inject(Title);
 
-
-  displayedColumns = ['type', 'name', 'description'];
+  displayedColumns: string[] = ['type', 'name', 'description'];
   dataSource: ApiDataSource | null;
-
-  constructor(private docs: DocsService, private titleService: Title) {
-  }
 
   ngOnInit() {
     this.titleService.setTitle('Share Button Directive');

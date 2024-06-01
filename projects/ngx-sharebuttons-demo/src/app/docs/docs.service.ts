@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { shareReplay } from 'rxjs/operators';
+import { shareReplay } from 'rxjs';
 import { ApiData } from './docs.class';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DocsService {
 
-  baseUrl = 'assets/data/';
+  private readonly baseUrl: string = 'assets/data/';
 
-  constructor(private http: HttpClient) {
-  }
+  private http: HttpClient = inject(HttpClient);
 
   getDirectiveApi() {
     return this.fetch('directive-api.json');

@@ -1,17 +1,17 @@
 <div class="switcher-header">
   <h3> {{ title }} </h3>
-  <div class="toggle" fxLayout fxLayoutAlign="space-between center">
-    <fa-icon [icon]="eyeIcon" style="height: 29px" size="lg"></fa-icon>
+  <div class="toggle">
+    <fa-icon [icon]="eyeIcon" style="height: 29px" size="lg"/>
     <mat-slide-toggle [(ngModel)]="toggle" color="primary">
-      <fa-icon [icon]="codeIcon" size="lg"></fa-icon>
+      <fa-icon [icon]="codeIcon" size="lg"/>
     </mat-slide-toggle>
   </div>
 </div>
 <div [@flip]="flip[toggle].state" class="flipper">
   <div class="demo front" [class.active]="!toggle">
-    <ng-content></ng-content>
+    <ng-content/>
   </div>
   <div class="code back" [class.active]="toggle">
-    <hl-code [code]="code" [style.position]="fill ? 'absolute' : 'relative'"></hl-code>
+    <hl-code [code]="code" [style.position]="fill ? 'absolute' : 'relative'" [languages]="languages"/>
   </div>
 </div>

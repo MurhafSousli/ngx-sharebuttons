@@ -10,14 +10,9 @@
 
   .ng-scrollbar {
     --scrollbar-padding: 0px;
-    --scrollbar-size: 6px;
+    --scrollbar-thickness: 6;
+    --scrollbar-hover-thickness: 10;
     --scrollbar-border-radius: 0px;
-    //--scrollbar-thumb-hover-color: #{var(--accent-color);};
-    //background: #282c34;
-
-    &:hover, &:active {
-      --scrollbar-size: 10px;
-    }
   }
 }
 

@@ -1,38 +1,22 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { SharedModule } from '../../shared';
+
 
 @Component({
-  host: {
-    class: 'page'
-  },
+  standalone: true,
+  host: { class: 'page' },
   selector: 'faq',
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SharedModule]
 })
 export class FaqComponent implements OnInit {
 
-  code = {
-    includeOrder: `import { ShareButtonsModule } from '@ngx-sharebuttons';
+  private titleService: Title = inject(Title);
 
-@NgModule({
- imports: [
-    ShareButtonsModule.withConfig({
-      include: ['facebook', 'twitter', 'pinterest']
-    })
- ]
-})`,
-    buttonsOrder: `<share-buttons [include]="['telegram', 'twitter', 'pinterest', 'whatsapp']"></share-buttons>`,
-    metaTags: `<meta property="og:title" content="European Travel Destinations">
-<meta property="og:description" content="Offering tour packages for individuals or groups.">
-<meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
-<meta property="og:url" content="http://euro-travel-example.com/index.html">`
-  };
-
-  constructor(private titleService: Title) {
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.titleService.setTitle('Frequently Asked Questions');
   }
 

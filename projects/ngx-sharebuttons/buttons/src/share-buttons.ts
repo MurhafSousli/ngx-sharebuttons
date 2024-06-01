@@ -2,61 +2,66 @@ import {
   Component,
   Input,
   Output,
-  OnInit,
-  OnChanges,
-  OnDestroy,
+  inject,
+  computed,
+  numberAttribute,
+  booleanAttribute,
+  input,
+  model,
   EventEmitter,
-  SimpleChanges,
+  Signal,
+  InputSignal,
+  ModelSignal,
+  InputSignalWithTransform,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { Observable, BehaviorSubject, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { ShareService, ShareButtonsConfig, SHARE_BUTTONS, shareButtonName } from 'ngx-sharebuttons';
-
-interface ButtonsState {
-  includedButtons?: shareButtonName[];
-  excludedButtons?: shareButtonName[];
-  userButtons?: shareButtonName[];
-  selectedButtons?: shareButtonName[];
-  expanded?: boolean;
-  shownCount?: number;
-  moreIcon?: any;
-  lessIcon?: any;
-  moreAriaLabel?: string;
-  lessAriaLabel?: string;
-}
+import {
+  ShareButtonsConfig,
+  ShareButtonProp,
+  SHARE_BUTTONS,
+  SHARE_BUTTONS_CONFIG,
+  DEFAULT_OPTIONS
+} from 'ngx-sharebuttons';
+import { ShareButton } from 'ngx-sharebuttons/button';
+import { ExpandButton } from './expand-button';
 
 @Component({
+  standalone: true,
   selector: 'share-buttons',
   templateUrl: './share-buttons.html',
   styleUrls: ['./share-buttons.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ShareButton, ExpandButton]
 })
-export class ShareButtons implements OnInit, OnChanges, OnDestroy {
+export class ShareButtons {
 
-  state$: Observable<ButtonsState>;
-  private _state$ = new BehaviorSubject<ButtonsState>({
-    includedButtons: [],
-    excludedButtons: [],
-    userButtons: [],
-    selectedButtons: [],
-    expanded: true,
-    shownCount: Object.keys(SHARE_BUTTONS).length
-  });
+  private readonly injectedOptions: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG, { optional: true });
 
-  private _configSub$ = Subscription.EMPTY;
-
-  @Input() theme = this._share.config.theme;
-
-  /** Array of included buttons */
-  @Input() include: shareButtonName[];
-
-  /** Array of excluded buttons */
-  @Input() exclude: shareButtonName[];
+  /** Combine injected option with default options */
+  readonly options: ShareButtonsConfig = this.injectedOptions ? { ...DEFAULT_OPTIONS, ...this.injectedOptions } : DEFAULT_OPTIONS;
 
   /** Numbers of buttons to show */
-  @Input() show: number;
+  show: InputSignalWithTransform<number, number | string> = input<number, number | string>(Object.values(SHARE_BUTTONS).length, { transform: numberAttribute });
+
+  /** Array of included buttons */
+  include: InputSignal<ShareButtonProp[]> = input<ShareButtonProp[]>(this.options.include || []);
+
+  /** Array of excluded buttons */
+  exclude: InputSignal<ShareButtonProp[]> = input<ShareButtonProp[]>(this.options.exclude || []);
+
+  expanded: ModelSignal<boolean> = model<boolean>(false);
+
+  selectedButtons: Signal<ShareButtonProp[]> = computed(() => {
+    const includedButtons: ShareButtonProp[] = this.include().length ? this.include() : Object.keys(SHARE_BUTTONS);
+    return includedButtons.filter((btn: ShareButtonProp) => this.exclude().indexOf(btn) < 0);
+  });
+
+  displayButtons: Signal<ShareButtonProp[]> = computed(() => {
+    const selectedButtons: ShareButtonProp[] = this.selectedButtons()
+    return selectedButtons.slice(0, this.expanded() ? selectedButtons.length : this.show());
+  });
+
+  @Input() theme: string = this.options.theme;
 
   /** The sharing link */
   @Input() url: string;
@@ -70,92 +75,23 @@ export class ShareButtons implements OnInit, OnChanges, OnDestroy {
   /** The image parameter for sharing on Pinterest */
   @Input() image: string;
 
-  /** The tags parameter for sharing on Twitter and Tumblr */
+  /** The tags parameter for sharing on X and Tumblr */
   @Input() tags: string;
 
   /** Sets the fb messenger redirect url to enable sharing on Messenger desktop */
-  @Input() redirectUrl: string = this._share.config.redirectUrl;
-
-  /** Sets meta tags from document head, useful when SEO is available */
-  @Input() autoSetMeta: boolean;
+  @Input() redirectUrl: string;
 
   /** Show buttons icons */
-  @Input() showIcon = true;
+  @Input({ transform: booleanAttribute }) showIcon: boolean = true;
 
   /** Show buttons text */
-  @Input() showText = false;
+  @Input({ transform: booleanAttribute }) showText: boolean = false;
 
   /** A flag that indicates if the button's click is disabled */
-  @Input() disabled: boolean;
+  @Input({ transform: booleanAttribute }) disabled: boolean;
 
   /** Share dialog opened event */
-  @Output() opened = new EventEmitter<string>();
-
-  /** Share dialog closed event */
-  @Output() closed = new EventEmitter<string>();
-
-  constructor(private _share: ShareService) {
-  }
-
-  ngOnInit() {
-    this.state$ = this._state$.pipe(
-      map((state: ButtonsState) => {
-        // Use component include buttons, otherwise fallback to the global include buttons
-        const includedButtons = state.includedButtons && state.includedButtons.length ? state.includedButtons : state.userButtons;
-        const userButtons = state.excludedButtons ? includedButtons.filter((btn: shareButtonName) => state.excludedButtons.indexOf(btn) < 0) : includedButtons;
-        const selectedButtons = userButtons.slice(0, state.expanded ? userButtons.length : state.shownCount);
-        return {
-          userButtons,
-          selectedButtons,
-          expanded: state.expanded,
-          shownCount: state.shownCount,
-          moreIcon: state.moreIcon,
-          lessIcon: state.lessIcon,
-          moreAriaLabel: state.moreAriaLabel,
-          lessAriaLabel: state.lessAriaLabel
-        };
-      })
-    );
-
-    // Subscribe to share buttons config changes, This updates the component whenever a new button is added
-    this._configSub$ = this._share.config$.subscribe((config: ShareButtonsConfig) => {
-      // Use global include buttons, otherwise fallback to all buttons
-      const includedButtons: shareButtonName[] = config.include.length ? config.include : Object.keys(SHARE_BUTTONS) as shareButtonName[];
-      const userButtons: shareButtonName[] = includedButtons.filter((btn: shareButtonName) => config.exclude.indexOf(btn) < 0);
-      this.updateState({
-        userButtons,
-        expanded: false,
-        moreIcon: config.moreButtonIcon,
-        lessIcon: config.lessButtonIcon,
-        moreAriaLabel: config.moreButtonAriaLabel,
-        lessAriaLabel: config.lessButtonAriaLabel
-      });
-    });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    const shouldUpdate =
-      (changes['include'] && changes['include'].currentValue !== changes['include'].previousValue) ||
-      (changes['exclude'] && changes['exclude'].currentValue !== changes['exclude'].previousValue) ||
-      (changes['show'] && changes['show'].currentValue !== changes['show'].previousValue);
-
-    if (shouldUpdate) {
-      this.updateState({
-        includedButtons: this.include,
-        excludedButtons: this.exclude,
-        shownCount: this.show
-      });
-    }
-  }
-
-  ngOnDestroy() {
-    this._configSub$.unsubscribe();
-    this._state$.complete();
-  }
-
-  updateState(state: ButtonsState) {
-    this._state$.next({...this._state$.value, ...state});
-  }
+  @Output() opened: EventEmitter<string> = new EventEmitter<string>();
 
 }
 

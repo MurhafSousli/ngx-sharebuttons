@@ -1,78 +1,151 @@
-import { ShareService } from './share.service';
 import { TestBed } from '@angular/core/testing';
-import { mergeDeep } from './utils';
-import { IShareButton, ShareButtonsConfig, SharerMethod } from './share.models';
-import { SHARE_BUTTONS } from './share.defaults';
+import { ShareService } from './share.service';
+import { Meta } from '@angular/platform-browser';
+import { DOCUMENT, Location } from '@angular/common';
 
-const DEFAULT_CONFIG: ShareButtonsConfig = {
-  sharerMethod: SharerMethod.Anchor,
-  sharerTarget: '_blank',
-  windowObj: window,
-  windowFuncName: 'open',
-  prop: SHARE_BUTTONS,
-  theme: 'default',
-  include: [],
-  exclude: [],
-  autoSetMeta: true,
-  windowWidth: 800,
-  windowHeight: 500,
-  moreButtonIcon: 'ellipsis-h',
-  lessButtonIcon: 'minus',
-  moreButtonAriaLabel: 'Show more share buttons',
-  lessButtonAriaLabel: 'Show less share buttons'
-};
-
-describe('Share Service', () => {
+fdescribe('Share Service', () => {
   let service: ShareService;
 
   beforeEach(() => {
+    // service = TestBed.inject(ShareService);
+  });
+
+
+  it('should return provided URL when URL is provided', () => {
     service = TestBed.inject(ShareService);
+    const providedUrl: string = 'https://example.com';
+    expect((service as any).getComputedUrl(providedUrl)).toEqual(providedUrl);
   });
 
-  it('should have default config', () => {
-    expect(service.config).toEqual(DEFAULT_CONFIG);
-  });
+  it('should return og:url meta tag content when tag exists', () => {
+    const ogUrl: string = 'https://example.com/og';
+    const metaServiceSpy = jasmine.createSpyObj('Meta', ['getTag']);
+    const mockMetaTag: HTMLMetaElement = document.createElement('meta');
+    mockMetaTag.setAttribute('property', 'og:url');
+    mockMetaTag.setAttribute('content', ogUrl);
+    metaServiceSpy.getTag.and.returnValue(mockMetaTag);
 
-  it('should return a config from config$ stream', (done: DoneFn) => {
-    service.config$.subscribe((config: ShareButtonsConfig) => {
-      expect(config).toEqual(DEFAULT_CONFIG);
-      done();
+    TestBed.configureTestingModule({
+      providers: [{ provide: Meta, useValue: metaServiceSpy }]
     });
+    service = TestBed.inject(ShareService);
+
+    expect((service as any).getComputedUrl('')).toEqual(ogUrl);
   });
 
-  it('should return a window size from config', () => {
-    expect(service.windowSize).toBe(`width=${ service.config.windowWidth }, height=${ service.config.windowHeight }`);
-  });
+  // fit('should return current URL when no URL provided and og:url meta tag does not exist', () => {
+  //   const currentUrl: string = 'https://example.com/current';
+  //
+  //   const documentSpy = jasmine.createSpyObj('document', ['location']);
+  //   documentSpy.location.and.returnValue({ href: currentUrl });
+  //
+  //   TestBed.configureTestingModule({
+  //     providers: [
+  //       ShareService,
+  //       { provide: DOCUMENT, useValue: documentSpy } // Providing the locationSpy for Location
+  //     ]
+  //   });
+  //
+  //   service = TestBed.inject(ShareService);
+  //
+  //   expect((service as any).getComputedUrl('')).toEqual(currentUrl);
+  // });
 
-  it('should return a prop from config', () => {
-    expect(service.prop).toEqual(service.config.prop);
-  });
+  it('should return meta tag content when tag exists with property attribute', () => {
+    // Mocking Meta service
+    const metaServiceSpy = jasmine.createSpyObj('Meta', ['getTag']);
+    const mockMetaTag = document.createElement('meta');
+    mockMetaTag.setAttribute('property', 'testProperty');
+    mockMetaTag.setAttribute('content', 'testContent');
+    metaServiceSpy.getTag.and.returnValue(mockMetaTag);
 
-  it('should set the config', () => {
-    const newConfig = mergeDeep(service.config, {
-      size: 0,
-      autoSetMeta: true,
-      windowWidth: 800,
-      windowHeight: 500,
+    // Injecting mock Meta service into ShareService
+    TestBed.configureTestingModule({
+      providers: [{ provide: Meta, useValue: metaServiceSpy }]
     });
-    expect(service.config).toEqual(newConfig);
+    service = TestBed.inject(ShareService);
+
+    // Testing the method
+    expect((service as any).getMetaTagContent('testProperty')).toEqual('testContent');
   });
 
-  it('should add a new button', () => {
-    const testButton: IShareButton = {
-      type: 'facebook',
-      text: 'Facebook',
-      ariaLabel: 'Share on Facebook',
-      icon: ['fab', 'facebook-f'],
-      color: '#4267B2',
-      share: {
-        desktop: 'https://www.facebook.com/sharer/sharer.php?'
-      },
+  it('should return meta tag content when tag exists with name attribute', () => {
+    // Mocking Meta service
+    const metaServiceSpy = jasmine.createSpyObj('Meta', ['getTag']);
+    const mockMetaTag = document.createElement('meta');
+    mockMetaTag.setAttribute('name', 'testName');
+    mockMetaTag.setAttribute('content', 'testContent');
+    metaServiceSpy.getTag.and.returnValue(mockMetaTag);
+
+    // Injecting mock Meta service into ShareService
+    TestBed.configureTestingModule({
+      providers: [{ provide: Meta, useValue: metaServiceSpy }]
+    });
+    service = TestBed.inject(ShareService);
+
+    // Testing the method
+    expect((service as any).getMetaTagContent('testName')).toEqual('testContent');
+  });
+
+  it('should return null when meta tag does not exist', () => {
+    // Mocking Meta service
+    const metaServiceSpy = jasmine.createSpyObj('Meta', ['getTag']);
+    metaServiceSpy.getTag.and.returnValue(null);
+
+    // Injecting mock Meta service into ShareService
+    TestBed.configureTestingModule({
+      providers: [{ provide: Meta, useValue: metaServiceSpy }]
+    });
+    service = TestBed.inject(ShareService);
+
+    // Testing the method
+    expect((service as any).getMetaTagContent('nonExistentProperty')).toBeNull();
+  });
+
+  it('Should open share window in a new tab using Anchor method', () => {
+    service = TestBed.inject(ShareService);
+
+    const createElementSpy: jasmine.Spy = spyOn(document, 'createElement').and.callThrough();
+    const anchorElement: HTMLAnchorElement = document.createElement('a');
+    createElementSpy.and.returnValue(anchorElement);
+    const clickSpy: jasmine.Spy = spyOn(anchorElement, 'click');
+    const removeSpy: jasmine.Spy = spyOn(anchorElement, 'remove');
+
+    const url: string = 'https://example.com';
+    const expectedUrl: string = 'https://example.com/?param1=xyz&param2=abc';
+
+    service.openViaAnchor({
+      url,
       params: {
-        url: 'u'
+        param1: 'xyz',
+        param2: 'abc'
       }
-    };
-    service.addButton('testButton', testButton);
-    expect(service.prop['testButton']).toEqual(testButton);
+    });
+
+    expect(anchorElement.href).toBe(expectedUrl);
+    expect(anchorElement.getAttribute('target')).toBe('_blank');
+    expect(anchorElement.getAttribute('rel')).toBe('noopener noreferrer');
+    expect(clickSpy).toHaveBeenCalled();
+    expect(removeSpy).toHaveBeenCalled();
+  });
+
+  it('Should open share window in a new window using Window method', () => {
+    service = TestBed.inject(ShareService);
+
+    const windowOpenSpy: jasmine.Spy = spyOn(window, 'open');
+
+    const url: string = 'https://example.com';
+    const expectedUrl: string = 'https://example.com?param1=xyz&param2=abc';
+
+    service.openViaWindow({
+      url,
+      params: {
+        param1: 'xyz',
+        param2: 'abc'
+      }
+    });
+
+    expect(window.opener).toBeFalsy();
+    expect(windowOpenSpy).toHaveBeenCalledWith(expectedUrl, '_blank', `width=800, height=500`);
   });
 });

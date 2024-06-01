@@ -1,7 +1,6 @@
-<ng-scrollbar track="all"
-              thumbClass="code-scrollbar-thumb">
+<ng-scrollbar>
   <pre>
-    <code [highlight]="code" [languages]="languages"></code>
+    <code [highlightAuto]="code" [languages]="languages"></code>
   </pre>
 </ng-scrollbar>
 
@@ -12,6 +11,6 @@
         matTooltipClass="copy-tooltip"
         [cdkCopyToClipboard]="code"
         (cdkCopyToClipboardCopied)="onCopied($event)">
-  <mat-icon class="md-24" aria-label="Copy code">content_paste</mat-icon>
+  <mat-icon fontIcon="content_paste" class="md-24" aria-label="Copy code"/>
 </button>
 

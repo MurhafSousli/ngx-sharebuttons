@@ -1,51 +1,21 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { SharedModule } from '../../shared';
 
 @Component({
-  host: {
-    class: 'page'
-  },
+  standalone: true,
+  host: { class: 'page' },
   selector: 'icons',
   templateUrl: './icons.component.html',
-  styleUrls: ['./icons.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './icons.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SharedModule]
 })
-export class IconsComponent {
+export class IconsComponent implements OnInit {
 
-  code = {
-    import: `import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+  private titleService: Title = inject(Title);
 
-@NgModule({
-  imports: [
-    ShareIconsModule
-  ]
-})
-export class AppModule { }`,
-    icons: `import './icons';`,
-    libraryMethod: `import { ShareButtonsModule } from 'ngx-sharebuttons';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
-
-const icons = [
-  // ... other icons
-  faFacebookSquare
-];
-
-const shareProp = {
-  facebook: {
-    icon: ['fab', 'facebook-square']
+  ngOnInit(): void {
+    this.titleService.setTitle('Icons Guide')
   }
-};
-
-@NgModule({
-  imports: [
-    ShareButtonsModule.withConfig({ prop: shareProp })
-  ]
-})
-export class AppModule {
-  constructor(iconLibrary: FaIconLibrary) {
-    iconLibrary.addIcons(...icons);
-  }
-}`
-  };
-
 }

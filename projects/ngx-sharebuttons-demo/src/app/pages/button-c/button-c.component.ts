@@ -1,69 +1,36 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
-import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
-import { faPinterest } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookSquare, faSquareXTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 import { DocsService } from '../../docs/docs.service';
+import { SharedModule } from '../../shared';
 
 @Component({
-  host: {
-    class: 'page'
-  },
+  standalone: true,
+  host: { class: 'page' },
   selector: 'button-c',
   templateUrl: './button-c.component.html',
   styleUrls: ['./button-c.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SharedModule]
 })
 export class ButtonCComponent implements OnInit {
 
-  code = {
-    name: '<share-button>',
-    npm: `npm i ngx-sharebuttons
-npm i @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons`,
-    styles: `@import '~ngx-sharebuttons/button/themes/default';`,
-    examples: `<share-button button="facebook" text="Share" [showText]="true"></share-button>
-<share-button button="twitter" text="Tweet" [showText]="true"></share-button>
-<share-button button="pinterest" text="pin"></share-button>`,
-    customIcons: `<share-button button="facebook" theme="circles-dark" [icon]="['fab', 'facebook-square']"></share-button>
-<share-button button="twitter" theme="circles-dark" [icon]="['fab', 'twitter-square']"></share-button>
-<share-button button="pinterest" theme="circles-dark" [icon]="['fab', 'pinterest-p']"></share-button>`,
-    imoprtIcons: `import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
-import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
-import { faPinterest } from '@fortawesome/free-brands-svg-icons/faPinterest';
+  private docs: DocsService = inject(DocsService);
+  private titleService: Title = inject(Title);
 
-@Component({
-  // ...
-})
-export class MyComponent {
-  fbIcon = faFacebookSquare;
-  pinIcon = faPinterest;
-  tweetIcon = faTwitterSquare;
-}
-`,
-    import: `import { ShareButtonModule } from 'ngx-sharebuttons/button';
+  readonly fbIcon: IconDefinition = faFacebookSquare;
+  readonly pinIcon: IconDefinition = faPinterest;
+  readonly tweetIcon: IconDefinition = faSquareXTwitter;
 
-@NgModule({
-  imports: [
-    ShareButtonModule,
-    ShareIconsModule // Optional if you want the default share icons
-  ]
-})`
-  };
+  readonly displayedColumns: string[] = ['type', 'name', 'description'];
 
-  displayedColumns = ['type', 'name', 'description'];
   dataSource: ApiDataSource | null;
 
-  fbIcon = faFacebookSquare;
-  pinIcon = faPinterest;
-  tweetIcon = faTwitterSquare;
-
-  constructor(private docs: DocsService, private titleService: Title) {
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.titleService.setTitle('Share Button Component');
-    const apiDatabase = new ApiDatabase(this.docs.getComponentApi());
+    const apiDatabase: ApiDatabase = new ApiDatabase(this.docs.getComponentApi());
     this.dataSource = new ApiDataSource(apiDatabase);
   }
 

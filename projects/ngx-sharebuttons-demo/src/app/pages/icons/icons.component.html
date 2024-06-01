@@ -15,19 +15,19 @@
 
     <section>
       <section-title>Usage</section-title>
-      <p>You can use the module <code class="hljs">ShareIconsModule</code> to import all share buttons icons.</p>
+      <p>You can use the function <code class="hljs">withIcons</code> inside <code class="hljs">provideShareButtonsOptions</code> to import all share buttons icons.</p>
 
-      <hl-code [code]="code.import" [height]="400"></hl-code>
+      <hl-code [code]="'assets/code-examples/icons-guide/icons-guide.ts' | codeFromUrl | async"/>
     </section>
 
     <section>
       <section-title>Custom FA icons</section-title>
       <p>If you want to import different icon set for the share buttons or if you don't want to import all the share
-        icons that comes with the <code class="hljs">ShareIconsModule</code>, you can skip it and import the icons
+        icons that comes with <code class="hljs">withIcons</code> function, you can skip it and import the icons
         manually.</p>
       <p>Let's say you want to use facebook square icon instead of the default one</p>
 
-      <hl-code [code]="code.libraryMethod" [height]="400"></hl-code>
+      <hl-code [code]="'assets/code-examples/icons-guide/custom-icons.ts' | codeFromUrl | async"/>
     </section>
   </doc-container>
 

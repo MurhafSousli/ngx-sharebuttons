@@ -1,51 +1,51 @@
-import { Component, ViewChild, AfterViewInit, OnDestroy, ChangeDetectionStrategy, HostBinding } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component, ViewChild, inject, effect, Signal, ChangeDetectionStrategy } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Subscription } from 'rxjs';
-import { filter, tap } from 'rxjs/operators';
-import { NgScrollbar } from 'ngx-scrollbar';
+import { map, filter } from 'rxjs';
 import { sideAnimation } from './app-routing.animations';
+import { SharedModule } from './shared';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faBook, faCoffee, faInfo } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
+  host: {
+    '[class.mobile]': 'isHeadset()'
+  },
+  standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [sideAnimation],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SharedModule]
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
+export class AppComponent {
 
-  page;
-  watcher: Subscription;
+  isHeadset: Signal<boolean> = toSignal<boolean>(inject(BreakpointObserver).observe(Breakpoints.HandsetPortrait).pipe(
+    map((result: BreakpointState) => (result.matches))
+  ));
 
-  @ViewChild(MatSidenav, {static: true}) sideNav: MatSidenav;
-  @ViewChild(NgScrollbar, {static: true}) scrollEl: NgScrollbar;
-  @HostBinding('class.mobile') isMobile: boolean;
+  routeChanged: Signal<any> = toSignal(inject(Router).events.pipe(
+    filter(event => event instanceof NavigationEnd)
+  ));
 
-  constructor(private router: Router, private breakpointObserver: BreakpointObserver) {
-    breakpointObserver.observe([
-      Breakpoints.HandsetLandscape,
-      Breakpoints.HandsetPortrait
-    ]).pipe(
-      tap((result: BreakpointState) => this.isMobile = result.matches)
-    ).subscribe();
+  @ViewChild(MatSidenav, { static: true }) sideNav: MatSidenav;
+
+  getState(outlet: RouterOutlet): ActivatedRoute {
+    return outlet.isActivated ? outlet.activatedRoute : null;
   }
 
-  getState(outlet) {
-    return outlet.isActivated ? outlet.activatedRoute : '';
-  }
+  constructor(iconLibrary: FaIconLibrary) {
+    // Add icons
+    iconLibrary.addIcons(faInfo, faBook, faCoffee);
 
-  ngAfterViewInit() {
-    this.watcher = this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-      tap(() => this.sideNav.close())
-    ).subscribe();
+    effect(() => {
+      if (this.routeChanged()) {
+        this.sideNav.close();
+      }
+    });
   }
-
-  ngOnDestroy() {
-    this.watcher.unsubscribe();
-  }
-
 }
 

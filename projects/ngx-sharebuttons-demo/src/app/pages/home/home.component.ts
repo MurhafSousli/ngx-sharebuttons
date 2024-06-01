@@ -1,19 +1,22 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faWrench, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { SharedModule } from '../../shared';
 
 @Component({
-  host: {
-    class: 'page'
-  },
+  standalone: true,
+  host: { class: 'page' },
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SharedModule]
 })
 export class HomeComponent implements OnInit {
 
-  features = [
+  private titleService: Title = inject(Title);
+
+  features: string[] = [
     '17 share buttons to boost traffic',
     'High quality buttons',
     'Lightweight',
@@ -24,12 +27,9 @@ export class HomeComponent implements OnInit {
     'Universal Support'
   ];
 
-  directiveIcon = faWrench;
+  directiveIcon: IconDefinition = faWrench;
 
-  constructor(private titleService: Title) {
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.titleService.setTitle('Home | ngx-sharebuttons');
   }
 }

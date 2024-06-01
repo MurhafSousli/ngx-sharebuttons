@@ -1,9 +1,20 @@
-import { InjectionToken } from '@angular/core';
+import { InjectionToken, Provider, WritableSignal } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Observable, Subject } from 'rxjs';
-import { shareButtonName } from './share.defaults';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { ShareButtonProp } from './share.defaults';
 
-export const SHARE_BUTTONS_CONFIG = new InjectionToken<ShareButtonsConfig>('shareButtonsConfig');
+export const SHARE_BUTTONS_CONFIG: InjectionToken<ShareButtonsConfig> = new InjectionToken<ShareButtonsConfig>('shareButtonsConfig');
+
+export function provideShareButtonsOptions(...providers: Provider[]): Provider[] {
+  return [providers];
+}
+
+export function withConfig(options: ShareButtonsConfig): Provider {
+  return {
+    provide: SHARE_BUTTONS_CONFIG,
+    useValue: options
+  }
+}
 
 /**
  * Share buttons config
@@ -13,20 +24,11 @@ export interface ShareButtonsConfig {
   sharerTarget?: string;
   windowObj?: any;
   windowFuncName?: string;
-  prop?: IShareButtons;
   theme?: string;
-  include?: shareButtonName[];
-  exclude?: shareButtonName[];
-  url?: string;
-  title?: string;
-  description?: string;
-  image?: string;
-  tags?: string;
-  appId?: string;
-  redirectUrl?: string;
-  twitterAccount?: string;
-  autoSetMeta?: boolean;
-  gaTracking?: boolean;
+  include?: ShareButtonProp[];
+  exclude?: ShareButtonProp[];
+  messengerAppId?: string;
+  xAccount?: string;
   windowWidth?: number;
   windowHeight?: number;
   moreButtonIcon?: any;
@@ -41,7 +43,7 @@ export interface ShareButtonsConfig {
  */
 export interface IShareButtons {
   facebook?: IShareButton;
-  twitter?: IShareButton;
+  x?: IShareButton;
   linkedin?: IShareButton;
   google?: IShareButton;
   tumblr?: IShareButton;
@@ -72,10 +74,6 @@ export class IShareButton {
   icon?: string | string[] | any;
   /** Share button color */
   color?: string;
-  /** Sharer target used in opening the share window */
-  target?: string;
-  /** Sharer method */
-  method?: SharerMethod;
   /** Sharer base URL */
   share?: {
     desktop?: string;
@@ -96,7 +94,7 @@ export class IShareButton {
   /**
    * Some button do not open a share window, instead they execute a function like Print and Copy buttons.
    */
-  func?: (args: ShareButtonFuncArgs<any>) => Observable<any>;
+  func?: (args: ShareButtonFuncArgs<any>) => void;
 }
 
 /**
@@ -121,7 +119,7 @@ export type ShareParamsFunc = (p: ShareParams) => string;
 /**
  * Share params available functions
  */
-interface ShareParamsFuncMetaData {
+export interface ShareParamsFuncMetaData {
   url?: ShareParamsFunc;
   title?: ShareParamsFunc;
   description?: ShareParamsFunc;
@@ -138,19 +136,22 @@ export interface ShareButtonFuncArgs<T> {
   clipboard?: Clipboard;
   params?: ShareParams;
   data?: T;
-  updater?: Subject<ShareDirectiveUpdater>;
+  uiState?: WritableSignal<ShareDirectiveUpdater>;
 }
 
 /**
  * Share directive updater arguments (used in copyToClipboard to update button text and icon)
  */
 export interface ShareDirectiveUpdater {
-  icon: string | string[];
-  text: string;
+  icon?: IconProp;
+  text?: string;
   disabled?: boolean;
 }
 
-export enum SharerMethod {
+export enum SharerMethods {
   Anchor = 'anchor',
   Window = 'window'
 }
+
+export type SharerMethod = SharerMethods | string;
+

@@ -1,45 +1,31 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 import { DocsService } from '../../docs/docs.service';
+import { SharedModule } from '../../shared';
 
 @Component({
-  host: {
-    class: 'page'
-  },
+  standalone: true,
+  host: { class: 'page' },
   selector: 'buttons-c',
   templateUrl: './buttons-c.component.html',
   styleUrls: ['./buttons-c.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SharedModule]
 })
 export class ButtonsCComponent implements OnInit {
 
-  code = {
-    name: '<share-buttons>',
-    example: '<share-buttons show="11"></share-buttons>',
-    styles: `@import '~ngx-sharebuttons/themes/default';`,
-    npm: `npm i ngx-sharebuttons @angular/cdk
-npm i @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons`,
-    import: `import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+  private docs: DocsService = inject(DocsService);
 
-@NgModule({
-  imports: [
-    ShareButtonsModule,
-    ShareIconsModule // Optional if you want the default share icons
-  ]
-})`
-  };
+  private titleService: Title = inject(Title);
 
+  readonly displayedColumns: string[] = ['type', 'name', 'description'];
 
-  displayedColumns = ['type', 'name', 'description'];
   dataSource: ApiDataSource | null;
 
-  constructor(private docs: DocsService, private titleService: Title) {
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.titleService.setTitle('Share Buttons Component');
-    const apiDatabase = new ApiDatabase(this.docs.getContainerApi());
+    const apiDatabase: ApiDatabase = new ApiDatabase(this.docs.getContainerApi());
     this.dataSource = new ApiDataSource(apiDatabase);
   }
 }
