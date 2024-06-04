@@ -12,7 +12,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHighlightOptions } from 'ngx-highlightjs';
 
 import { routes } from './app.routes';
-import { withIcons } from 'ngx-sharebuttons/icons';
+import { shareIcons } from 'ngx-sharebuttons/icons';
 import { provideShareButtonsOptions, SharerMethods, withConfig } from 'ngx-sharebuttons';
 
 const scrollConfig: InMemoryScrollingOptions = {
@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideRouter(routes, withHashLocation(), inMemoryScrollingFeature),
     provideShareButtonsOptions(
-      withIcons(),
+      shareIcons(),
       withConfig({
         debug: true,
         sharerMethod: SharerMethods.Anchor

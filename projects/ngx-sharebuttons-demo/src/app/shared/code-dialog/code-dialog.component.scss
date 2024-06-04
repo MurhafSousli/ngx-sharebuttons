@@ -7,7 +7,7 @@
   position: relative;
 
   padding: .6em;
-  background-color: mat.get-color-from-palette(mat.define-palette(mat.$purple-palette, 300));
+  background-color: mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-purple-palette, 300));
 
   ::ng-deep {
 
