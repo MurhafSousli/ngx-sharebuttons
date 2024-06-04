@@ -10,7 +10,7 @@ import { OverviewContentComponent } from '../overview-content/overview-content.c
   selector: 'doc-container',
   template: `
     <div class="page-content container page-content-with-overview">
-      <div style="flex: 1; max-width: 100%">
+      <div style="flex: 1; max-width: 860px">
         <ng-content/>
 
         <ng-template #overview>

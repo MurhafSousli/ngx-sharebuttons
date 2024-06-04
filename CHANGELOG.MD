@@ -1,8 +1,13 @@
 # Changelog
 
+## 15.0.0
+
+- feat: Upgrade to Angular 18.
+- refactor: Mark the function `withIcons()` as deprecated and rename it to `shareIcons()`, *no breaking changes*.
+
 ## 14.0.0
 
-- feat: Update to angular 17.
+- feat: Upgrade to angular 17.
 - feat: Add a service for sharing links, closes [#661](https://github.com/MurhafSousli/ngx-sharebuttons/issues/661).
 - feat: Add new provider functions to easily override share buttons options.
 - enhance: Update share logos colors.

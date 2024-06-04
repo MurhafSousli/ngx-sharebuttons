@@ -1,6 +1,6 @@
 import { ApplicationConfig } from '@angular/core';
 import { customShareButton, provideShareButtonsOptions, withConfig } from 'ngx-sharebuttons';
-import { withIcons } from 'ngx-sharebuttons/icons';
+import { shareIcons } from 'ngx-sharebuttons/icons';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -10,7 +10,7 @@ export const appConfig: ApplicationConfig = {
         debug: true
       }),
       // Load the default share icons set (optional)
-      withIcons(),
+      shareIcons(),
       // Override a specific share button config
       customShareButton('facebook', {
         color: 'orange'
