@@ -1,14 +1,14 @@
 @use '@angular/material' as mat;
 
 :host {
-  --lightbulb-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 100))};
-  --lightbulb-color: #{mat.get-color-from-palette(mat.define-palette(mat.$light-green-palette, 600))};
+  --lightbulb-bg: #{mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-blue-gray-palette, 100))};
+  --lightbulb-color: #{mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-light-green-palette, 600))};
 
-  --coffee-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 100))};
-  --coffee-color: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 600))};
+  --coffee-bg: #{mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-blue-gray-palette, 100))};
+  --coffee-color: #{mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-blue-gray-palette, 600))};
 
-  --book-bg: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 100))};
-  --book-color: #{mat.get-color-from-palette(mat.define-palette(mat.$blue-gray-palette, 600))};
+  --book-bg: #{mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-blue-gray-palette, 100))};
+  --book-color: #{mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-blue-gray-palette, 600))};
 
   display: block;
   border-radius: var(--mdc-elevated-card-container-shape, var(--mdc-shape-medium, 4px));

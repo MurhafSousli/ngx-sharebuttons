@@ -10,7 +10,7 @@ import {
   faExclamation, faLink, faMinus, faPrint, faSms
 } from '@fortawesome/free-solid-svg-icons';
 
-const shareIcons: IconDefinition[] = [
+const icons: IconDefinition[] = [
   faFacebookF, faXTwitter, faLinkedinIn, faPinterestP, faRedditAlien, faTumblr,
   faWhatsapp, faViber, faVk, faFacebookMessenger, faTelegramPlane, faMix, faXing, faSms,
   faEnvelope, faCheck, faPrint, faExclamation, faLink, faEllipsisH, faMinus, faLine
@@ -19,14 +19,20 @@ const shareIcons: IconDefinition[] = [
 export const SHARE_ICONS: InjectionToken<unknown> = new InjectionToken('SHARE_ICONS');
 
 export function iconsLoaderFactory(iconLibrary: FaIconLibrary) {
-  iconLibrary.addIcons(...shareIcons);
+  iconLibrary.addIcons(...icons);
   return null;
 }
 
-export function withIcons(): Provider {
+export function shareIcons(): Provider {
   return {
     provide: SHARE_ICONS,
     useFactory: iconsLoaderFactory,
     deps: [FaIconLibrary]
   };
 }
+
+/**
+ * @deprecated
+ * Function was renamed, use 'shareIcons' function instead
+ */
+export const withIcons: () => Provider = shareIcons;
