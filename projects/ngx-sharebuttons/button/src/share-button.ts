@@ -8,9 +8,8 @@ import {
   EventEmitter,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   DEFAULT_OPTIONS,
   SHARE_BUTTONS_CONFIG,
@@ -25,19 +24,12 @@ import {
   templateUrl: './share-button.html',
   styleUrls: ['./share-button.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    ShareButtonDirective
-  ]
+  imports: [ShareButtonDirective, FaIconComponent]
 })
 export class ShareButton {
 
   /** Injected options */
-  private readonly injectedOptions: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG, { optional: true });
-
-  /** Combine injected option with default options */
-  readonly options: ShareButtonsConfig = this.injectedOptions ? { ...DEFAULT_OPTIONS, ...this.injectedOptions } : DEFAULT_OPTIONS;
+  private readonly injectedOptions: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG, { optional: true }) || {};
 
   /** Share button type */
   @Input() button: ShareButtonProp;
@@ -73,7 +65,7 @@ export class ShareButton {
   @Input() icon: IconProp;
 
   /** Button theme */
-  @Input() theme: string = this.options.theme;
+  @Input() theme: string = this.injectedOptions.theme || DEFAULT_OPTIONS.theme;
 
   /** A flag that indicates if the button's click is disabled */
   @Input({ transform: booleanAttribute }) disabled: boolean;

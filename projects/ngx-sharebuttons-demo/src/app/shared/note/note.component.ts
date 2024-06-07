@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({

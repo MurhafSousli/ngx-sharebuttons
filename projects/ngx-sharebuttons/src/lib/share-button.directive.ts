@@ -14,7 +14,7 @@ import {
   InputSignal,
   WritableSignal
 } from '@angular/core';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { ShareService } from './share.service';
 import {
@@ -41,10 +41,7 @@ export class ShareButtonDirective {
   private readonly injectedProps: IShareButtons = inject(SHARE_BUTTONS_PROP, { optional: true });
 
   /** Injected options */
-  private readonly injectedOptions: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG, { optional: true });
-
-  /** Combine injected option with default options */
-  private readonly options: ShareButtonsConfig = this.injectedOptions ? { ...DEFAULT_OPTIONS, ...this.injectedOptions } : DEFAULT_OPTIONS;
+  private readonly injectedOptions: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG, { optional: true }) || {};
 
   /** Share directive element ref */
   private readonly shareService: ShareService = inject(ShareService);
@@ -132,9 +129,9 @@ export class ShareButtonDirective {
         tags: this.tags,
         redirectUrl: this.redirectUrl
       },
-      target: this.options.sharerTarget,
-      debug: this.options.debug,
-      method: this.options.sharerMethod,
+      target: this.injectedOptions.sharerTarget || DEFAULT_OPTIONS.sharerTarget,
+      debug: this.injectedOptions.debug || DEFAULT_OPTIONS.debug,
+      method: this.injectedOptions.sharerMethod || DEFAULT_OPTIONS.sharerMethod,
       uiState: this.uiState,
     }, this.shareButtonInstance());
 

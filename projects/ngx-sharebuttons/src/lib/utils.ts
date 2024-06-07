@@ -1,4 +1,4 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { ShareButtonFuncArgs } from './share.models';
 
 /** Returns a valid URL or falls back to current URL */
