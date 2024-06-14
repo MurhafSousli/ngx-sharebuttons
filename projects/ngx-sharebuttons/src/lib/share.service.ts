@@ -4,10 +4,9 @@ import { HttpParams } from '@angular/common/http';
 import { Meta } from '@angular/platform-browser';
 import { Platform } from '@angular/cdk/platform';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { SHARE_ICONS } from 'ngx-sharebuttons/icons';
 import { getValidUrl } from './utils';
 import { SHARE_BUTTONS } from './share.defaults';
-import { IShareButton, ShareParams, ShareParamsFunc, SharerMethod, SharerMethods } from './share.models';
+import { SHARE_ICONS, IShareButton, ShareParams, ShareParamsFunc, SharerMethod, SharerMethods } from './share.models';
 
 interface ShareLinkParams {
   url: string;
