@@ -1,5 +1,12 @@
 # Changelog
 
+## 15.0.1
+
+- fix: Share directive requires icons dependencies, closes [#673](https://github.com/MurhafSousli/ngx-sharebuttons/issues/673).
+- refactor: Import `FaIconComponent` instead of `FontAwesomeModule`.
+- refactor: Remove `CommonModule` imports.
+- refactor: Avoid merging default options with injected options for each share directive / component instance.
+
 ## 15.0.0
 
 - feat: Upgrade to Angular 18.

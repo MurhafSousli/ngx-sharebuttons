@@ -1,6 +1,7 @@
-import { InjectionToken, Provider } from '@angular/core';
+import { Provider } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { SHARE_ICONS } from 'ngx-sharebuttons';
 import {
   faFacebookF, faFacebookMessenger, faLine, faLinkedinIn, faMix, faPinterestP,
   faRedditAlien, faTelegramPlane, faTumblr, faXTwitter, faViber, faVk, faWhatsapp, faXing
@@ -15,8 +16,6 @@ const icons: IconDefinition[] = [
   faWhatsapp, faViber, faVk, faFacebookMessenger, faTelegramPlane, faMix, faXing, faSms,
   faEnvelope, faCheck, faPrint, faExclamation, faLink, faEllipsisH, faMinus, faLine
 ];
-
-export const SHARE_ICONS: InjectionToken<unknown> = new InjectionToken('SHARE_ICONS');
 
 export function iconsLoaderFactory(iconLibrary: FaIconLibrary) {
   iconLibrary.addIcons(...icons);
