@@ -1,10 +1,28 @@
 {
   "name": "ngx-sharebuttons",
-  "version": "15.0.1",
+  "version": "15.0.2",
+  "license": "MIT",
+  "homepage": "https://ngx-sharebuttons.netlify.app/",
+  "author": {
+    "name": "Murhaf Sousli",
+    "url": "http://github.com/murhafsousli"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MurhafSousli/ngx-sharebuttons"
+  },
+  "bugs": {
+    "url": "http://github.com/murhafsousli/ngx-sharebuttons/issues"
+  },
+  "keywords": [
+    "scrollbar",
+    "smooth-scroll",
+    "scroll-reached"
+  ],
   "peerDependencies": {
-    "@angular/common": ">=17.0.0",
-    "@angular/core": ">=17.0.0",
-    "@angular/cdk": ">=17.0.0"
+    "@angular/common": ">=17.1.0",
+    "@angular/core": ">=17.1.0",
+    "@angular/cdk": ">=17.1.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
