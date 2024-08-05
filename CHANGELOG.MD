@@ -1,5 +1,9 @@
 # Changelog
 
+## 15.0.2
+
+- No Changes, just fixing the minimum Angular version to `v17.1.0` and add missing fields to package.json in NPM.
+
 ## 15.0.1
 
 - fix: Share directive requires icons dependencies, closes [#673](https://github.com/MurhafSousli/ngx-sharebuttons/issues/673).
@@ -14,7 +18,7 @@
 
 ## 14.0.0
 
-- feat: Upgrade to angular 17.
+- feat: Upgrade to angular v17.1.0.
 - feat: Add a service for sharing links, closes [#661](https://github.com/MurhafSousli/ngx-sharebuttons/issues/661).
 - feat: Add new provider functions to easily override share buttons options.
 - enhance: Update share logos colors.
