@@ -24,7 +24,7 @@ import {
   ShareDirectiveUpdater,
   SHARE_BUTTONS_CONFIG,
 } from './share.models';
-import { DEFAULT_OPTIONS, SHARE_BUTTONS, ShareButtonProp } from './share.defaults';
+import { ShareButtonProp } from './share.defaults';
 import { SHARE_BUTTONS_PROP } from './custom-share-button-provider';
 
 @Directive({
@@ -38,15 +38,15 @@ import { SHARE_BUTTONS_PROP } from './custom-share-button-provider';
 })
 export class ShareButtonDirective {
 
-  private readonly injectedProps: IShareButtons = inject(SHARE_BUTTONS_PROP, { optional: true });
+  private readonly shareButtonsProps: IShareButtons = inject(SHARE_BUTTONS_PROP);
 
   /** Injected options */
-  private readonly injectedOptions: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG, { optional: true }) || {};
+  private readonly options: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG);
 
   /** Share directive element ref */
   private readonly shareService: ShareService = inject(ShareService);
 
-  private nativeElement: HTMLElement = inject(ElementRef).nativeElement;
+  private nativeElement: HTMLElement = inject(ElementRef<HTMLElement>).nativeElement;
 
   /** Share button UI state */
   uiState: WritableSignal<ShareDirectiveUpdater> = signal({});
@@ -69,7 +69,7 @@ export class ShareButtonDirective {
   shareButtonInstance: Signal<IShareButton> = computed<IShareButton>(() => {
     /** Combine injected option with default options */
     const key: string = this.shareButton();
-    const button: IShareButton = this.injectedProps ? { ...SHARE_BUTTONS[key], ...this.injectedProps[key] } : SHARE_BUTTONS[key];
+    const button: IShareButton = this.shareButtonsProps[key];
 
     if (button) {
       return button;
@@ -129,9 +129,9 @@ export class ShareButtonDirective {
         tags: this.tags,
         redirectUrl: this.redirectUrl
       },
-      target: this.injectedOptions.sharerTarget || DEFAULT_OPTIONS.sharerTarget,
-      debug: this.injectedOptions.debug || DEFAULT_OPTIONS.debug,
-      method: this.injectedOptions.sharerMethod || DEFAULT_OPTIONS.sharerMethod,
+      target: this.options.sharerTarget,
+      debug: this.options.debug,
+      method: this.options.sharerMethod,
       uiState: this.uiState,
     }, this.shareButtonInstance());
 

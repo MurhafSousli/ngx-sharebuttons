@@ -1,5 +1,9 @@
 # Changelog
 
+## 15.0.3
+
+- enhance: enhance: Use injection factory for `SHARE_BUTTONS_CONFIG` and `SHARE_BUTTONS_PROP` to avoid merging custom options with the default options for every share button.
+
 ## 15.0.2
 
 - No Changes, just fixing the minimum Angular version to `v17.1.0` and add missing fields to package.json in NPM.

@@ -11,11 +11,10 @@ import {
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
-  DEFAULT_OPTIONS,
   SHARE_BUTTONS_CONFIG,
   ShareButtonProp,
   ShareButtonsConfig,
-  ShareButtonDirective,
+  ShareButtonDirective
 } from 'ngx-sharebuttons';
 
 @Component({
@@ -29,7 +28,7 @@ import {
 export class ShareButton {
 
   /** Injected options */
-  private readonly injectedOptions: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG, { optional: true }) || {};
+  private readonly options: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG);
 
   /** Share button type */
   @Input() button: ShareButtonProp;
@@ -65,7 +64,7 @@ export class ShareButton {
   @Input() icon: IconProp;
 
   /** Button theme */
-  @Input() theme: string = this.injectedOptions.theme || DEFAULT_OPTIONS.theme;
+  @Input() theme: string = this.options.theme;
 
   /** A flag that indicates if the button's click is disabled */
   @Input({ transform: booleanAttribute }) disabled: boolean;
