@@ -19,8 +19,7 @@ import {
   ShareButtonsConfig,
   ShareButtonProp,
   SHARE_BUTTONS,
-  SHARE_BUTTONS_CONFIG,
-  DEFAULT_OPTIONS
+  SHARE_BUTTONS_CONFIG
 } from 'ngx-sharebuttons';
 import { ShareButton } from 'ngx-sharebuttons/button';
 import { ExpandButton } from './expand-button';
@@ -35,10 +34,8 @@ import { ExpandButton } from './expand-button';
 })
 export class ShareButtons {
 
-  private readonly injectedOptions: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG, { optional: true });
-
-  /** Combine injected option with default options */
-  readonly options: ShareButtonsConfig = this.injectedOptions ? { ...DEFAULT_OPTIONS, ...this.injectedOptions } : DEFAULT_OPTIONS;
+  /** Global default options */
+  readonly options: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG);
 
   /** Numbers of buttons to show */
   show: InputSignalWithTransform<number, number | string> = input<number, number | string>(Object.values(SHARE_BUTTONS).length, { transform: numberAttribute });

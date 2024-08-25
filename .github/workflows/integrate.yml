@@ -10,9 +10,9 @@ jobs:
     # We specify the Node.js version manually below, and use versioned Chrome from Puppeteer.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
       - name: Use Node.js 20
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@master
         with:
           node-version: 20
       - name: Install dependencies

@@ -31,7 +31,7 @@ $my-theme: mat.m2-define-light-theme((
 
 :root {
   --primary-color: #2E4057;
-  --accent-color: #ab4e45;
+  --accent-color: #e24d41;
   --action-color: #{mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-blue-gray-palette, 500))};
   --output-color: #778DA9;
   --note-color: var(--action-color);
@@ -49,6 +49,9 @@ $my-theme: mat.m2-define-light-theme((
   --api_output: #{mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-cyan-palette), 50)};
 
   --play-font-family: 'Play', sans-serif;
+
+  --ng-progress-color: var(--accent-color);
+  --ng-progress-thickness: 3;
 }
 
 /* You can add global styles to this file, and also import other style files */

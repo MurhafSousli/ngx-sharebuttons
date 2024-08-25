@@ -1,9 +1,12 @@
 import { InjectionToken, Provider, WritableSignal } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { ShareButtonProp } from './share.defaults';
+import { DEFAULT_OPTIONS, ShareButtonProp } from './share.defaults';
 
-export const SHARE_BUTTONS_CONFIG: InjectionToken<ShareButtonsConfig> = new InjectionToken<ShareButtonsConfig>('shareButtonsConfig');
+export const SHARE_BUTTONS_CONFIG: InjectionToken<ShareButtonsConfig> = new InjectionToken<ShareButtonsConfig>('SHARE_BUTTONS_CONFIG', {
+  providedIn: 'root',
+  factory: () => DEFAULT_OPTIONS
+});
 
 export const SHARE_ICONS: InjectionToken<unknown> = new InjectionToken('SHARE_ICONS');
 
@@ -14,7 +17,7 @@ export function provideShareButtonsOptions(...providers: Provider[]): Provider {
 export function withConfig(options: ShareButtonsConfig): Provider {
   return {
     provide: SHARE_BUTTONS_CONFIG,
-    useValue: options
+    useValue: { ...DEFAULT_OPTIONS, ...options }
   }
 }
 
