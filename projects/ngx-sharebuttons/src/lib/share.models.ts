@@ -1,6 +1,5 @@
 import { InjectionToken, Provider, WritableSignal } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
-import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { DEFAULT_OPTIONS, ShareButtonProp } from './share.defaults';
 
 export const SHARE_BUTTONS_CONFIG: InjectionToken<ShareButtonsConfig> = new InjectionToken<ShareButtonsConfig>('SHARE_BUTTONS_CONFIG', {
@@ -87,11 +86,12 @@ export class IShareButton {
   };
   /** Sharer URL params */
   params?: ShareParams;
+  requiredParams?: ShareParams<boolean>;
   /**
    * Params function: A function that resolves the param value (Advanced use)
    *  Use case: To define a custom template for share buttons like Email, whatsapp, telegram, sms ...etc
    */
-  paramsFunc?: ShareParamsFuncMetaData;
+  paramsFunc?: ShareParams<ShareParamsFunc>;
   /**
    * Object used to attach additional data in a custom template for 'paramsFunc'
    */
@@ -105,34 +105,21 @@ export class IShareButton {
 /**
  * Share params
  */
-export interface ShareParams {
-  url?: string;
-  title?: string;
-  description?: string;
-  image?: string;
-  tags?: string;
-  via?: string;
-  appId?: string;
-  redirectUrl?: string;
+export interface ShareParams<T = string> {
+  url?: T;
+  title?: T;
+  description?: T;
+  image?: T;
+  tags?: T;
+  via?: T;
+  appId?: T;
+  redirectUrl?: T;
 }
 
 /**
  * Share param function (Used to define message body template)
  */
 export type ShareParamsFunc = (p: ShareParams) => string;
-
-/**
- * Share params available functions
- */
-export interface ShareParamsFuncMetaData {
-  url?: ShareParamsFunc;
-  title?: ShareParamsFunc;
-  description?: ShareParamsFunc;
-  image?: ShareParamsFunc;
-  tags?: ShareParamsFunc;
-  via?: ShareParamsFunc;
-  redirectUrl?: ShareParamsFunc;
-}
 
 /**
  * Share button function arguments (used in copyToClipboard as function arguments)
@@ -148,7 +135,7 @@ export interface ShareButtonFuncArgs<T> {
  * Share directive updater arguments (used in copyToClipboard to update button text and icon)
  */
 export interface ShareDirectiveUpdater {
-  icon?: IconProp;
+  icon?: any;
   text?: string;
   disabled?: boolean;
 }

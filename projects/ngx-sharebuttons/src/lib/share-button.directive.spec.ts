@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ShareButtonDirective } from './share-button.directive';
-import { IShareButton, ShareParams, SharerMethod, SharerMethods } from './share.models';
-import { DEFAULT_OPTIONS, SHARE_BUTTONS } from './share.defaults';
+import { IShareButton, SharerMethods } from './share.models';
+import { SHARE_BUTTONS } from './share.defaults';
 import { ShareService } from 'ngx-sharebuttons';
 
 @Component({

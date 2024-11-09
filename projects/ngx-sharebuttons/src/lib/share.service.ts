@@ -50,7 +50,7 @@ export class ShareService {
   private readonly document: Document = inject(DOCUMENT);
 
   // This declaration just to allow SHARE_ICONS to load the icons
-  private readonly icons = inject(SHARE_ICONS, { optional: true });
+  private readonly icons: unknown = inject(SHARE_ICONS, { optional: true });
 
   private readonly meta: Meta = inject(Meta);
 
@@ -103,7 +103,7 @@ export class ShareService {
 
     return Object.entries(shareButton.params).reduce((params: Record<string, string>, [key, realKey]: [string, string]) => {
       // Check if param has a value
-      if (computedParams[key]) {
+      if (shareButton.requiredParams[key] || computedParams[key]) {
         // Check if param has a resolver function
         const resolver: ShareParamsFunc = shareButton.paramsFunc?.[key];
         params[realKey] = resolver ? resolver(computedParams) : computedParams[key];

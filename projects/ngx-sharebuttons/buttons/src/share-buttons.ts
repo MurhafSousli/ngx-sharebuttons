@@ -1,17 +1,16 @@
 import {
   Component,
-  Input,
-  Output,
   inject,
+  output,
   computed,
   numberAttribute,
   booleanAttribute,
   input,
   model,
-  EventEmitter,
   Signal,
   InputSignal,
   ModelSignal,
+  OutputEmitterRef,
   InputSignalWithTransform,
   ChangeDetectionStrategy
 } from '@angular/core';
@@ -28,7 +27,7 @@ import { ExpandButton } from './expand-button';
   standalone: true,
   selector: 'share-buttons',
   templateUrl: './share-buttons.html',
-  styleUrls: ['./share-buttons.scss'],
+  styleUrl: './share-buttons.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ShareButton, ExpandButton]
 })
@@ -58,37 +57,43 @@ export class ShareButtons {
     return selectedButtons.slice(0, this.expanded() ? selectedButtons.length : this.show());
   });
 
-  @Input() theme: string = this.options.theme;
+  theme: InputSignal<string> = input<string>(this.options.theme);
 
   /** The sharing link */
-  @Input() url: string;
+  url: InputSignal<string> = input<string>();
 
   /** The title parameter */
-  @Input() title: string;
+  title: InputSignal<string> = input<string>();
 
   /** The description parameter */
-  @Input() description: string;
+  description: InputSignal<string> = input<string>();
 
   /** The image parameter for sharing on Pinterest */
-  @Input() image: string;
+  image: InputSignal<string> = input<string>();
 
   /** The tags parameter for sharing on X and Tumblr */
-  @Input() tags: string;
+  tags: InputSignal<string> = input<string>();
 
   /** Sets the fb messenger redirect url to enable sharing on Messenger desktop */
-  @Input() redirectUrl: string;
+  redirectUrl: InputSignal<string> = input<string>();
 
   /** Show buttons icons */
-  @Input({ transform: booleanAttribute }) showIcon: boolean = true;
+  showIcon: InputSignalWithTransform<boolean, boolean | string> = input<boolean, boolean | string>(true, {
+    transform: booleanAttribute
+  });
 
   /** Show buttons text */
-  @Input({ transform: booleanAttribute }) showText: boolean = false;
+  showText: InputSignalWithTransform<boolean, boolean | string> = input<boolean, boolean | string>(false, {
+    transform: booleanAttribute
+  });
 
   /** A flag that indicates if the button's click is disabled */
-  @Input({ transform: booleanAttribute }) disabled: boolean;
+  disabled: InputSignalWithTransform<boolean, boolean | string> = input<boolean, boolean | string>(false, {
+    transform: booleanAttribute
+  });
 
   /** Share dialog opened event */
-  @Output() opened: EventEmitter<string> = new EventEmitter<string>();
+  opened: OutputEmitterRef<string> = output<string>();
 
 }
 
