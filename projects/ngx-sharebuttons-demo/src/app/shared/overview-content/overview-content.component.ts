@@ -52,7 +52,7 @@ export class OverviewContentComponent implements OnInit, AfterViewInit, OnDestro
   private fragmentSub$: Subscription;
 
   ngOnInit(): void {
-    this.links = Array.from(this.scrollbar.viewport.nativeElement.querySelectorAll('h2'));
+    this.links = Array.from(this.scrollbar.nativeElement.querySelectorAll('h2'));
     setTimeout(() => {
       this.activeLinkId.set(this.links[0].id);
     });
