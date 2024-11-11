@@ -103,7 +103,7 @@ export class ShareService {
 
     return Object.entries(shareButton.params).reduce((params: Record<string, string>, [key, realKey]: [string, string]) => {
       // Check if param has a value
-      if (shareButton.requiredParams[key] || computedParams[key]) {
+      if ((shareButton.requiredParams && shareButton.requiredParams[key]) || computedParams[key]) {
         // Check if param has a resolver function
         const resolver: ShareParamsFunc = shareButton.paramsFunc?.[key];
         params[realKey] = resolver ? resolver(computedParams) : computedParams[key];

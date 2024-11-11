@@ -1,4 +1,4 @@
-import { Component, SkipSelf, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -31,8 +31,8 @@ import { KebabCasePipe } from '../kebab-case.pipe';
 })
 export class SectionTitleComponent {
 
-  iconCaretRight: IconDefinition = faCaretRight;
+  readonly iconCaretRight: IconDefinition = faCaretRight;
 
-  constructor(@SkipSelf() public scrollbar: NgScrollbar) {
-  }
+  readonly scrollbar: NgScrollbar = inject(NgScrollbar);
+
 }

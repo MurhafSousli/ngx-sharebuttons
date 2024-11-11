@@ -1,10 +1,12 @@
 # Changelog
 
-## 15.0.4
+## 15.0.6
 
 - Add link in message body even if description was not provided, closes [#697](https://github.com/MurhafSousli/ngx-sharebuttons/issues/697) and [#610](https://github.com/MurhafSousli/ngx-sharebuttons/issues/610).
 - Remove FontAwesome type imports from the share directive, closes [#673](https://github.com/MurhafSousli/ngx-sharebuttons/issues/673).
 - Refactor all inputs to signal inputs.
+
+## 15.0.4 and 15.0.5 are faulty releases
 
 ## 15.0.3
 
