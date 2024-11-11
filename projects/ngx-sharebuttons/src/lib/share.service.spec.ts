@@ -1,15 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { ShareService } from './share.service';
 import { Meta } from '@angular/platform-browser';
-import { DOCUMENT, Location } from '@angular/common';
 
 fdescribe('Share Service', () => {
   let service: ShareService;
-
-  beforeEach(() => {
-    // service = TestBed.inject(ShareService);
-  });
-
 
   it('should return provided URL when URL is provided', () => {
     service = TestBed.inject(ShareService);

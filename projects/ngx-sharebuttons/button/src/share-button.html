@@ -1,26 +1,26 @@
 <button #btn="shareButton"
         type="button"
         class="sb-wrapper"
-        [class.sb-show-icon]="showIcon"
-        [class.sb-show-text]="showText"
-        [shareButton]="button"
-        [url]="url"
-        [image]="image"
-        [title]="title"
-        [description]="description"
-        [tags]="tags"
-        [redirectUrl]="redirectUrl"
-        [disabled]="disabled"
+        [class.sb-show-icon]="showIcon()"
+        [class.sb-show-text]="showText()"
+        [shareButton]="button()"
+        [url]="url()"
+        [image]="image()"
+        [title]="title()"
+        [description]="description()"
+        [tags]="tags()"
+        [redirectUrl]="redirectUrl()"
+        [disabled]="disabled()"
         (opened)="opened.emit($event)">
   <div class="sb-content">
-    @if (showIcon && btn.icon()) {
+    @if (showIcon() && btn.icon()) {
       <div class="sb-icon">
-        <fa-icon [icon]="icon || btn.icon()" [fixedWidth]="true"/>
+        <fa-icon [icon]="icon() || btn.icon()" [fixedWidth]="true"/>
       </div>
     }
-    @if (showText) {
+    @if (showText()) {
       <div class="sb-text">
-        {{ text || btn.text() }}
+        {{ text() || btn.text() }}
       </div>
     }
   </div>

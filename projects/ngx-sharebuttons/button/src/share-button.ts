@@ -1,12 +1,15 @@
 import {
   Component,
-  Input,
-  Output,
-  HostBinding,
   inject,
+  output,
+  computed,
   booleanAttribute,
-  EventEmitter,
-  ChangeDetectionStrategy
+  input,
+  Signal,
+  InputSignal,
+  OutputEmitterRef,
+  ChangeDetectionStrategy,
+  InputSignalWithTransform
 } from '@angular/core';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -19,9 +22,10 @@ import {
 
 @Component({
   standalone: true,
+  host: { '[class]': 'classes()' },
   selector: 'share-button',
   templateUrl: './share-button.html',
-  styleUrls: ['./share-button.scss'],
+  styleUrl: './share-button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ShareButtonDirective, FaIconComponent]
 })
@@ -31,49 +35,54 @@ export class ShareButton {
   private readonly options: ShareButtonsConfig = inject(SHARE_BUTTONS_CONFIG);
 
   /** Share button type */
-  @Input() button: ShareButtonProp;
+  button: InputSignal<ShareButtonProp> = input<ShareButtonProp>();
 
   /** The page URL */
-  @Input() url: string;
+  url: InputSignal<string> = input<string>();
 
   /** The title parameter */
-  @Input() title: string;
+  title: InputSignal<string> = input<string>();
 
   /** The description parameter */
-  @Input() description: string;
+  description: InputSignal<string> = input<string>();
 
   /** The image parameter for sharing on Pinterest */
-  @Input() image: string;
+  image: InputSignal<string> = input<string>();
 
   /** The tags parameter for sharing on X and Tumblr */
-  @Input() tags: string;
+  tags: InputSignal<string> = input<string>();
 
   /** Sets the fb messenger redirect url to enable sharing on Messenger desktop */
-  @Input() redirectUrl: string;
+  redirectUrl: InputSignal<string> = input<string>();
 
   /** Show button icon */
-  @Input({ transform: booleanAttribute }) showIcon: boolean = true;
+  showIcon: InputSignalWithTransform<boolean, boolean | string> = input<boolean, boolean | string>(true, {
+    transform: booleanAttribute
+  });
 
   /** Show button text */
-  @Input({ transform: booleanAttribute }) showText: boolean = false;
+  showText: InputSignalWithTransform<boolean, boolean | string> = input<boolean, boolean | string>(false, {
+    transform: booleanAttribute
+  });
 
   /** Button custom text */
-  @Input() text: string;
+  text: InputSignal<string> = input<string>();
 
   /** Button custom icon */
-  @Input() icon: IconProp;
+  icon: InputSignal<IconProp> = input<IconProp>();
 
   /** Button theme */
-  @Input() theme: string = this.options.theme;
+  theme: InputSignal<string> = input<string>(this.options.theme);
 
   /** A flag that indicates if the button's click is disabled */
-  @Input({ transform: booleanAttribute }) disabled: boolean;
-
-  /** Stream that emits when share dialog is opened */
-  @Output() opened: EventEmitter<string> = new EventEmitter<string>();
+  disabled: InputSignalWithTransform<boolean, boolean | string> = input<boolean, boolean | string>(false, {
+    transform: booleanAttribute
+  });
 
   /** Set theme as button class */
-  @HostBinding('class') get buttonClass(): string {
-    return `sb-button sb-${ this.theme }`;
-  }
+  classes: Signal<string> = computed(() => `sb-button sb-${ this.theme() }`);
+
+  /** Stream that emits when share dialog is opened */
+  opened: OutputEmitterRef<string> = output<string>();
+
 }

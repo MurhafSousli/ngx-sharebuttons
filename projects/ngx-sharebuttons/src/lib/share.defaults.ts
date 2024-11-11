@@ -2,8 +2,7 @@ import {
   IShareButton,
   IShareButtons,
   ShareButtonsConfig,
-  ShareParams,
-  ShareParamsFuncMetaData,
+  ShareParams, ShareParamsFunc,
   SharerMethods
 } from './share.models';
 import { copyToClipboard, printPage } from './utils';
@@ -21,7 +20,7 @@ export const DEFAULT_OPTIONS: ShareButtonsConfig = {
 };
 
 // Create message body that includes the sharing link used for Email, SMS and WhatsApp buttons
-const linkInDescription: ShareParamsFuncMetaData = {
+const linkInDescription: ShareParams<ShareParamsFunc> = {
   description: (p: ShareParams) => {
     return p.description ? `${ p.description }\r\n${ p.url }` : p.url;
   }
@@ -146,7 +145,10 @@ export const viberParams: IShareButton = {
   params: {
     description: 'text'
   },
-  paramsFunc: linkInDescription
+  paramsFunc: linkInDescription,
+  requiredParams: {
+    description: true
+  }
 };
 
 export const vkParams: IShareButton = {
@@ -211,6 +213,9 @@ export const whatsappParams: IShareButton = {
     url: 'link',
     description: 'text'
   },
+  requiredParams: {
+    description: true
+  },
   paramsFunc: linkInDescription
 };
 
@@ -255,7 +260,10 @@ export const smsParams: IShareButton = {
   params: {
     description: 'body'
   },
-  paramsFunc: linkInDescription
+  paramsFunc: linkInDescription,
+  requiredParams: {
+    description: true
+  }
 };
 
 export const emailParams: IShareButton = {
@@ -271,7 +279,10 @@ export const emailParams: IShareButton = {
     title: 'subject',
     description: 'body'
   },
-  paramsFunc: linkInDescription
+  paramsFunc: linkInDescription,
+  requiredParams: {
+    description: true
+  }
 };
 
 export const printerParams: IShareButton = {

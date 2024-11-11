@@ -1,4 +1,3 @@
-import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { ShareButtonFuncArgs } from './share.models';
 
 /** Returns a valid URL or falls back to current URL */
@@ -32,7 +31,7 @@ export function copyToClipboard({
 interface CopyToClipboardDataArgs {
   delay: number;
   text: string;
-  icon: IconProp;
+  icon: any;
   successText: string;
-  successIcon: IconProp;
+  successIcon: any;
 }
