@@ -1,13 +1,15 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/ngx-sharebuttons",
+  "dest": "../../dist/ngx-scrollbar",
   "assets": [
-    { "input": "themes", "glob": "*.scss", "output": "themes" }
+    {
+      "input": "themes",
+      "glob": "*.scss",
+      "output": "themes"
+    },
+    "docs/*.md"
   ],
   "lib": {
     "entryFile": "src/public-api.ts"
-  },
-  "allowedNonPeerDependencies": [
-    "."
-  ]
+  }
 }

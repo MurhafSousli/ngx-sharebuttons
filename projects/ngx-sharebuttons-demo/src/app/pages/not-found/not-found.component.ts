@@ -3,11 +3,10 @@ import { Title } from '@angular/platform-browser';
 import { SharedModule } from '../../shared';
 
 @Component({
-  standalone: true,
   host: { class: 'page' },
   selector: 'not-found',
   templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.scss'],
+  styleUrl: './not-found.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SharedModule]
 })

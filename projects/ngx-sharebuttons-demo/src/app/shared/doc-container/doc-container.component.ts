@@ -3,7 +3,6 @@ import { NgTemplateOutlet } from '@angular/common';
 import { OverviewContentComponent } from '../overview-content/overview-content.component';
 
 @Component({
-  standalone: true,
   host: {
     class: 'page-content container page-content-with-overview'
   },
@@ -23,7 +22,7 @@ import { OverviewContentComponent } from '../overview-content/overview-content.c
       </div>
     </div>
   `,
-  styleUrls: ['./doc-container.component.scss'],
+  styleUrl: './doc-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [OverviewContentComponent, NgTemplateOutlet]
 })

@@ -7,11 +7,10 @@ import { DocsService } from '../../docs/docs.service';
 import { SharedModule } from '../../shared';
 
 @Component({
-  standalone: true,
   host: { class: 'page' },
   selector: 'button-c',
   templateUrl: './button-c.component.html',
-  styleUrls: ['./button-c.component.scss'],
+  styleUrl: './button-c.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SharedModule]
 })

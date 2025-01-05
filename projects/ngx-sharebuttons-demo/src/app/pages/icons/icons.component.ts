@@ -3,7 +3,6 @@ import { Title } from '@angular/platform-browser';
 import { SharedModule } from '../../shared';
 
 @Component({
-  standalone: true,
   host: { class: 'page' },
   selector: 'icons',
   templateUrl: './icons.component.html',

@@ -1,15 +1,15 @@
-@import "variables";
+@use "variables" as vars;
 
 .sb-outline .sb-wrapper {
   --sb-color: var(--button-color);
-  --sb-background: #{$sb-accent};
+  --sb-background: #{vars.$sb-accent};
   --sb-border-radius: 0.2em;
   --sb-border: 2px solid;
   --sb-transition: 0.3s;
   --sb-line-height: 1;
 
   &:hover {
-    --sb-color: #{$sb-accent};
+    --sb-color: #{vars.$sb-accent};
     --sb-box-shadow: inset 0 0 0 2em var(#{--button-color});
   }
 

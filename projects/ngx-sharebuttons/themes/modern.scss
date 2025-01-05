@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables" as vars;
 
 $border-radius: 3px;
 $separate-shadow: 1px 0 1px -1px rgba(0, 0, 0, 0.3);
@@ -28,7 +28,7 @@ $separate-shadow: 1px 0 1px -1px rgba(0, 0, 0, 0.3);
 }
 
 .sb-modern-dark .sb-wrapper {
-  --sb-color: #{$sb-accent};
+  --sb-color: #{vars.$sb-accent};
   --sb-background: var(--button-color);
 
   .sb-text,
@@ -46,5 +46,5 @@ $separate-shadow: 1px 0 1px -1px rgba(0, 0, 0, 0.3);
 
 .sb-modern-light .sb-wrapper {
   --sb-color: var(--button-color);
-  --sb-background: #{$sb-accent};
+  --sb-background: #{vars.$sb-accent};
 }

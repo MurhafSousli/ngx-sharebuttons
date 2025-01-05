@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Report a bug found in ngx-sharebuttons
+about: Report a bug found
 ---
 
 
@@ -9,10 +9,10 @@ about: Report a bug found in ngx-sharebuttons
 Use StackBlitz to reproduce your issue: https://stackblitz.com/edit/ngx-sharebuttons
 
 Steps to reproduce:
-1.
-2.
-
-
+1. 
+2. 
+ 
+ 
 #### Expected Behavior
 
 What behavior were you expecting to see?

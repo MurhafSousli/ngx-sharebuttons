@@ -8,6 +8,7 @@
 [![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-sharebuttons)
 [![NPM](https://img.shields.io/npm/v/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![tests](https://github.com/MurhafSousli/ngx-sharebuttons/workflows/tests/badge.svg)](https://github.com/MurhafSousli/ngx-sharebuttons/actions?query=workflow%3Atests)
+[![codecov](https://codecov.io/gh/MurhafSousli/ngx-sharebuttons/graph/badge.svg?token=MXLhZ5krk9)](https://codecov.io/gh/MurhafSousli/ngx-sharebuttons)
 [![npm](https://img.shields.io/npm/dt/ngx-sharebuttons.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![npm](https://img.shields.io/npm/dm/ngx-sharebuttons.svg)](https://www.npmjs.com/package/ngx-sharebuttons)
 [![LICENSE](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/LICENSE)

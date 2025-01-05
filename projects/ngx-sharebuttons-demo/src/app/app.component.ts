@@ -13,10 +13,9 @@ import { faBook, faCoffee, faInfo } from '@fortawesome/free-solid-svg-icons';
   host: {
     '[class.mobile]': 'isHeadset()'
   },
-  standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   animations: [sideAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SharedModule]

@@ -1,5 +1,13 @@
 @use '@angular/material' as mat;
 
+@use 'assets/style/code';
+@use '../../ngx-sharebuttons/themes/modern';
+@use '../../ngx-sharebuttons/themes/circles';
+@use '../../ngx-sharebuttons/themes/material';
+@use '../../ngx-sharebuttons/themes/outline';
+@use '../../ngx-sharebuttons/themes/classic';
+@use '../../ngx-sharebuttons/themes/default';
+
 @include mat.core();
 
 $primary: mat.m2-define-palette(mat.$m2-blue-gray-palette, 500);
@@ -19,15 +27,6 @@ $my-theme: mat.m2-define-light-theme((
 ));
 
 @include mat.all-component-themes($my-theme);
-
-@import 'normalize.css';
-@import 'assets/style/code';
-@import '../../ngx-sharebuttons/themes/modern';
-@import '../../ngx-sharebuttons/themes/circles';
-@import '../../ngx-sharebuttons/themes/material';
-@import '../../ngx-sharebuttons/themes/outline';
-@import '../../ngx-sharebuttons/themes/classic';
-@import '../../ngx-sharebuttons/themes/default';
 
 :root {
   --primary-color: #2E4057;

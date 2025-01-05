@@ -4,7 +4,6 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
-  standalone: true,
   selector: 'basic-example',
   imports: [ShareButtonDirective, FaIconComponent],
   template: `

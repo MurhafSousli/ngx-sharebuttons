@@ -24,7 +24,6 @@ import { ShareButton } from 'ngx-sharebuttons/button';
 import { ExpandButton } from './expand-button';
 
 @Component({
-  standalone: true,
   selector: 'share-buttons',
   templateUrl: './share-buttons.html',
   styleUrl: './share-buttons.scss',

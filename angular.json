@@ -3,40 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-sharebuttons": {
-      "projectType": "library",
-      "root": "projects/ngx-sharebuttons",
-      "sourceRoot": "projects/ngx-sharebuttons/src",
-      "prefix": "",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/ngx-sharebuttons/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ngx-sharebuttons/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/ngx-sharebuttons/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/ngx-sharebuttons/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "karmaConfig": "projects/ngx-sharebuttons/karma.conf.js"
-          }
-        }
-      }
-    },
     "ngx-sharebuttons-demo": {
       "projectType": "application",
       "schematics": {
@@ -51,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": [
+              "chance"
+            ],
             "outputPath": "dist/ngx-sharebuttons-demo",
             "index": "projects/ngx-sharebuttons-demo/src/index.html",
             "browser": "projects/ngx-sharebuttons-demo/src/main.ts",
@@ -70,7 +39,7 @@
             "server": "projects/ngx-sharebuttons-demo/src/main.server.ts",
             "prerender": true,
             "ssr": {
-              "entry": "projects/ngx-sharebuttons-demo/server.ts"
+              "entry": "projects/ngx-sharebuttons-demo/src/server.ts"
             }
           },
           "configurations": {
@@ -79,12 +48,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "2mb"
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "15kb",
+                  "maximumError": "15kb"
                 }
               ],
               "outputHashing": "all"
@@ -135,6 +104,54 @@
           }
         }
       }
+    },
+    "ngx-sharebuttons": {
+      "projectType": "library",
+      "root": "projects/ngx-sharebuttons",
+      "sourceRoot": "projects/ngx-sharebuttons/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-sharebuttons/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-sharebuttons/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-sharebuttons/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngx-sharebuttons/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "karmaConfig": "projects/ngx-sharebuttons/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ngx-sharebuttons/**/*.ts",
+              "projects/ngx-sharebuttons/**/*.html"
+            ]
+          }
+        }
+      }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

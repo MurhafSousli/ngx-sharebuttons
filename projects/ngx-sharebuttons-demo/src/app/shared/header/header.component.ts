@@ -4,7 +4,6 @@ import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
-  standalone: true,
   selector: 'header',
   template: `
     <div class="page-title" [class.title-mobile]="isHeadset()">

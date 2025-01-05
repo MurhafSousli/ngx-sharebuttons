@@ -3,7 +3,6 @@ import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
-  standalone: true,
   selector: 'note',
   template: `
     <span class="note">
