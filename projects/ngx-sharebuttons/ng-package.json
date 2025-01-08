@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/ngx-scrollbar",
+  "dest": "../../dist/ngx-sharebuttons",
   "assets": [
     {
       "input": "themes",
