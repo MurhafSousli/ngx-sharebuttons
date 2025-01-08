@@ -5,7 +5,6 @@ import { MaterialModule } from '../material.module';
 import { RibbonComponent } from '../ribbon/ribbon.component';
 
 @Component({
-  standalone: true,
   selector: 'nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrl: './nav-menu.component.scss',

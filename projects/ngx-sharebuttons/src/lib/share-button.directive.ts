@@ -26,7 +26,6 @@ import { ShareButtonProp } from './share.defaults';
 import { SHARE_BUTTONS_PROP } from './custom-share-button-provider';
 
 @Directive({
-  standalone: true,
   selector: '[shareButton]',
   exportAs: 'shareButton',
   host: {
@@ -66,14 +65,7 @@ export class ShareButtonDirective {
   shareButton: InputSignal<ShareButtonProp> = input.required<ShareButtonProp>();
 
   shareButtonInstance: Signal<IShareButton> = computed<IShareButton>(() => {
-    /** Combine injected option with default options */
-    const key: string = this.shareButton();
-    const button: IShareButton = this.shareButtonsProps[key];
-
-    if (button) {
-      return button;
-    }
-    throw new Error(`[ShareButtons]: The share button '${ button }' does not exist!`);
+    return this.shareButtonsProps[this.shareButton()];
   });
 
   /** Sets the title parameter */
@@ -100,6 +92,10 @@ export class ShareButtonDirective {
   constructor() {
     effect(() => {
       const button: IShareButton = this.shareButtonInstance();
+
+      if (!button) {
+        throw new Error(`[ShareButtons]: The share button '${ this.shareButton() }' does not exist!`);
+      }
       untracked(() => {
         // Set share button properties
         this.uiState.set({

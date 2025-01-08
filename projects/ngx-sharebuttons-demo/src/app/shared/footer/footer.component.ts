@@ -4,7 +4,6 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
-  standalone: true,
   selector: 'footer',
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',

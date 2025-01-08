@@ -1,5 +1,16 @@
 # Changelog
 
+## 16.0.0
+
+- Upgrade to Angular 19.
+- refactor(themes): Replace `@import` functions with `@use`.
+- refactor(themes): Replace deprecated sass function with the new ones.
+- feat: add `--sb-expand-button-color` CSS variable to easily change the color of the expand button in share buttons component.
+
+### Breaking changes
+
+- Remove the deprecated `withIcons()` function, use `shareIcons()` instead.
+
 ## 15.0.6
 
 - Add link in message body even if description was not provided, closes [#697](https://github.com/MurhafSousli/ngx-sharebuttons/issues/697) and [#610](https://github.com/MurhafSousli/ngx-sharebuttons/issues/610).

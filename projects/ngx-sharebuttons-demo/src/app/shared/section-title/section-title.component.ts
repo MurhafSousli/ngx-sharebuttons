@@ -6,7 +6,6 @@ import { faCaretRight, IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { KebabCasePipe } from '../kebab-case.pipe';
 
 @Component({
-  standalone: true,
   selector: 'section-title',
   template: `
     <div class="section-title">

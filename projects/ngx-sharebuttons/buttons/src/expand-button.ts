@@ -2,7 +2,6 @@ import {
   Component,
   output,
   input,
-  ElementRef,
   InputSignal,
   OutputEmitterRef,
   ChangeDetectionStrategy
@@ -11,7 +10,6 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ShareButtonsConfig } from 'ngx-sharebuttons';
 
 @Component({
-  standalone: true,
   selector: 'expand-button',
   template: `
     <button class="sb-wrapper sb-expand sb-show-icon"
@@ -26,6 +24,11 @@ import { ShareButtonsConfig } from 'ngx-sharebuttons';
     </button>
   `,
   styleUrl: '../../button/src/share-button.scss',
+  styles: `
+    :host {
+      --button-color: var(--sb-expand-button-color, #FF6651);
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FaIconComponent]
 })
@@ -37,7 +40,4 @@ export class ExpandButton {
 
   expandChange: OutputEmitterRef<boolean> = output<boolean>();
 
-  constructor(el: ElementRef) {
-    el.nativeElement.style.setProperty('--button-color', '#FF6651');
-  }
 }

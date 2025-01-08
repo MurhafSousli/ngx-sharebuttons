@@ -17,7 +17,6 @@ import { Subscription, tap } from 'rxjs';
 import { KebabCasePipe } from '../kebab-case.pipe';
 
 @Component({
-  standalone: true,
   selector: 'overview-content',
   template: `
     @for (link of links; track link.id) {

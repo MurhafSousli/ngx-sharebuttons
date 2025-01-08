@@ -1,11 +1,12 @@
-@import "variables";
+@use "sass:color";
+@use "variables" as vars;
 
 $button-bg: #ddd;
-$button-bg-light: lighten($button-bg, 12%);
-$hover-bg: lighten($button-bg, 10%);
-$hover-bg-light: lighten($button-bg, 15%);
-$border-color: darken($button-bg, 15%);
-$icon-shadow: 1px 0 0 rgba(darken($button-bg, 35%), .5), 2px 0 0 rgba(255, 255, 255, .5);
+$button-bg-light: color.adjust($button-bg, $lightness: 12%);
+$hover-bg: color.adjust($button-bg, $lightness: 10%);
+$hover-bg-light: color.adjust($button-bg, $lightness: 15%);
+$border-color: color.adjust($button-bg, $lightness: -15%);
+$icon-shadow: 1px 0 0 rgba(color.adjust($button-bg, $lightness: -35%), .5), 2px 0 0 rgba(255, 255, 255, .5);
 
 .sb-classic-light, .sb-classic-dark {
   .sb-wrapper {
@@ -26,7 +27,7 @@ $icon-shadow: 1px 0 0 rgba(darken($button-bg, 35%), .5), 2px 0 0 rgba(255, 255, 
 }
 
 .sb-classic-dark .sb-wrapper {
-  --sb-color: #{$sb-accent};
+  --sb-color: #{vars.$sb-accent};
   --sb-background: var(--button-color);
   --sb-border: 1px solid rgba(0, 0, 0, .2);
   --sb-text-shadow: 0 1px 0 rgba(0, 0, 0, .2);

@@ -5,11 +5,10 @@ import { ApiDatabase, ApiDataSource } from '../../docs/docs.class';
 import { SharedModule } from '../../shared';
 
 @Component({
-  standalone: true,
   host: { class: 'page' },
   selector: 'button-d',
   templateUrl: './button-d.component.html',
-  styleUrls: ['./button-d.component.scss'],
+  styleUrl: './button-d.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SharedModule]
 })

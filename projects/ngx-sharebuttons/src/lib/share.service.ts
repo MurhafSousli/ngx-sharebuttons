@@ -61,18 +61,18 @@ export class ShareService {
   /**
    * Get meta tag content
    */
-  private getMetaTagContent(key: string): string {
+  _getMetaTagContent(key: string): string {
     const metaUsingProperty: HTMLMetaElement = this.meta.getTag(`property="${ key }"`);
     const metaUsingName: HTMLMetaElement = this.meta.getTag(`name="${ key }"`);
 
     return (metaUsingProperty || metaUsingName)?.getAttribute('content') ?? null;
   }
 
-  private getComputedUrl(url: string): string {
-    return getValidUrl(url || this.getMetaTagContent('og:url') || this.document.location.href);
+  _getComputedUrl(url: string): string {
+    return getValidUrl(url || this._getMetaTagContent('og:url') || this.document.location.href);
   }
 
-  private getComputedParams(params: ShareParams): ShareParams {
+  _getComputedParams(params: ShareParams): ShareParams {
     // If user provided a URL, then we cannot use the meta tag of the current page for the sharing parameters
     if (params.url) {
       return {
@@ -81,25 +81,25 @@ export class ShareService {
         image: params.image,
         tags: params.tags,
         via: params.via,
-        url: this.getComputedUrl(params.url),
-        appId: params.appId || this.getMetaTagContent('fb:app_id'),
+        url: this._getComputedUrl(params.url),
+        appId: params.appId || this._getMetaTagContent('fb:app_id'),
         redirectUrl: params.redirectUrl || this.document.location.href
       }
     }
     return {
-      title: params.title || this.getMetaTagContent('og:title'),
-      description: params.description || this.getMetaTagContent('og:description'),
-      image: params.image || this.getMetaTagContent('og:image'),
+      title: params.title || this._getMetaTagContent('og:title'),
+      description: params.description || this._getMetaTagContent('og:description'),
+      image: params.image || this._getMetaTagContent('og:image'),
       tags: params.tags,
       via: params.via,
-      url: this.getComputedUrl(params.url),
-      appId: params.appId || this.getMetaTagContent('fb:app_id'),
+      url: this._getComputedUrl(params.url),
+      appId: params.appId || this._getMetaTagContent('fb:app_id'),
       redirectUrl: params.redirectUrl || this.document.location.href
     }
   }
 
-  private getComputedUrlParams(shareButton: IShareButton, params: ShareParams): Record<string, string> {
-    const computedParams: ShareParams = this.getComputedParams(params);
+  _getComputedUrlParams(shareButton: IShareButton, params: ShareParams): Record<string, string> {
+    const computedParams: ShareParams = this._getComputedParams(params);
 
     return Object.entries(shareButton.params).reduce((params: Record<string, string>, [key, realKey]: [string, string]) => {
       // Check if param has a value
@@ -112,7 +112,7 @@ export class ShareService {
     }, {});
   }
 
-  private getShareButtonInstance(name: string, props: IShareButton): IShareButton {
+  _getShareButtonInstance(name: string, props: IShareButton): IShareButton {
     /** Combine injected option with default options */
     const button: IShareButton = props ? { ...SHARE_BUTTONS[name], ...props } : SHARE_BUTTONS[name];
 
@@ -132,11 +132,10 @@ export class ShareService {
       sharerLink = shareButton.share.desktop;
     }
 
-    const params: Record<string, string> = this.getComputedUrlParams(shareButton, options.params);
+    const params: Record<string, string> = this._getComputedUrlParams(shareButton, options.params);
 
     if (sharerLink) {
       switch (options.method) {
-
         case SharerMethods.Anchor:
           this.openViaAnchor({
             params,
@@ -157,7 +156,7 @@ export class ShareService {
   }
 
   open(options: CreateShareButtonOptions): void {
-    const button: IShareButton = this.getShareButtonInstance(options.name, options.props);
+    const button: IShareButton = this._getShareButtonInstance(options.name, options.props);
     this.openInstance(options, button);
   }
 
@@ -166,7 +165,7 @@ export class ShareService {
       this.share(button, options);
     } else {
       button.func({
-        params: this.getComputedParams(options.params),
+        params: this._getComputedParams(options.params),
         data: button.data,
         clipboard: this.clipboard,
         uiState: options.uiState
@@ -174,7 +173,7 @@ export class ShareService {
     }
   }
 
-  openViaWindow(args: ShareLinkParams, windowOptions?: WindowOptions, debug?: boolean): void {
+  private openViaWindow(args: ShareLinkParams, windowOptions?: WindowOptions, debug?: boolean): void {
     const finalUrl: string = `${ args.url }?${ new HttpParams({ fromObject: args.params }).toString() }`;
 
     if (debug) {
@@ -191,7 +190,7 @@ export class ShareService {
     windowRef.opener ??= null;
   }
 
-  openViaAnchor(args: ShareLinkParams, debug?: boolean): void {
+  private openViaAnchor(args: ShareLinkParams, debug?: boolean): void {
     const finalUrl: string = `${ args.url }?${ new HttpParams({ fromObject: args.params }).toString() }`;
 
     if (debug) {

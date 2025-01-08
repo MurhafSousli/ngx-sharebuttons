@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables" as vars;
 
 .sb-material-light, .sb-material-dark {
   .sb-wrapper {
@@ -20,11 +20,11 @@
 }
 
 .sb-material-dark .sb-wrapper {
-  --sb-color: #{$sb-accent};
+  --sb-color: #{vars.$sb-accent};
   --sb-background: var(--button-color);
 }
 
 .sb-material-light .sb-wrapper {
   --sb-color: var(--button-color);
-  --sb-background: #{$sb-accent};
+  --sb-background: #{vars.$sb-accent};
 }

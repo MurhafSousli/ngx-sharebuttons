@@ -5,11 +5,10 @@ import { DocsService } from '../../docs/docs.service';
 import { SharedModule } from '../../shared';
 
 @Component({
-  standalone: true,
   host: { class: 'page' },
   selector: 'global-options',
   templateUrl: './global-options.component.html',
-  styleUrls: ['./global-options.component.scss'],
+  styleUrl: './global-options.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SharedModule]
 })

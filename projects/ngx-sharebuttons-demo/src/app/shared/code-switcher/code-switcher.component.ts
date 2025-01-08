@@ -7,7 +7,6 @@ import { MaterialModule } from '../material.module';
 import { HlCodeComponent } from '../hl-code/hl-code.component';
 
 @Component({
-  standalone: true,
   selector: 'code-switcher',
   templateUrl: './code-switcher.component.html',
   styleUrl: './code-switcher.component.scss',

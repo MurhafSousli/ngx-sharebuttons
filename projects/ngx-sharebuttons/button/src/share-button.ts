@@ -21,7 +21,6 @@ import {
 } from 'ngx-sharebuttons';
 
 @Component({
-  standalone: true,
   host: { '[class]': 'classes()' },
   selector: 'share-button',
   templateUrl: './share-button.html',

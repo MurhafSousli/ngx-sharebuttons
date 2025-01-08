@@ -1,7 +1,7 @@
-@import "../../themes/variables";
+@use "../../themes/variables" as vars;
 
 @each $button,
-$color in $sb-buttons {
+$color in vars.$sb-buttons {
   :host-context([button="#{$button}"]) {
     --button-color: #{$color};
   }
@@ -19,7 +19,7 @@ button {
   min-width: var(--sb-min-width, 4.125em);
   height: var(--sb-height, 2.5em);
 
-  color: var(--sb-color, #{$sb-accent});
+  color: var(--sb-color, #{vars.$sb-accent});
   background: var(--sb-background);
 
   font-size: var(--sb-font-size, 13px);

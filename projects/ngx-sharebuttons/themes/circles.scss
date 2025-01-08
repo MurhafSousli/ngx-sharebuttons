@@ -1,11 +1,12 @@
-@import "variables";
+@use "sass:color";
+@use "variables" as vars;
 
 $sb-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 $sb-text-size: 0.8em;
 
 .sb-circles-dark, .sb-circles-light {
   .sb-wrapper {
-    --sb-color: #{$sb-accent};
+    --sb-color: #{vars.$sb-accent};
     --sb-background: transparent;
     --sb-min-width: fit-content;
     --sb-height: fit-content;
@@ -63,6 +64,6 @@ $sb-text-size: 0.8em;
   }
 
   .sb-icon {
-    background: radial-gradient(ellipse farthest-corner at center, white 30%, darken(white, 5%) 100%);
+    background: radial-gradient(ellipse farthest-corner at center, white 30%, color.adjust(white, $lightness: -5%) 100%);
   }
 }

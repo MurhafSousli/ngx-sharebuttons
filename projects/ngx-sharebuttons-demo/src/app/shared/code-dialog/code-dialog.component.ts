@@ -3,7 +3,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HlCodeComponent } from '../hl-code/hl-code.component';
 
 @Component({
-  standalone: true,
   selector: 'code-dialog',
   template: `
     <hl-code [code]="code"/>

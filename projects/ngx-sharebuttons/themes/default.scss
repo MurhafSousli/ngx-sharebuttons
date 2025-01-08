@@ -1,7 +1,7 @@
-@import "variables";
+@use "variables" as vars;
 
 .sb-default .sb-wrapper {
-  --sb-color: #{$sb-accent};
+  --sb-color: #{vars.$sb-accent};
   --sb-background: var(--button-color);
   --sb-border-radius: 4px;
   --sb-overflow: hidden;

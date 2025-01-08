@@ -1,9 +1,9 @@
 ---
 name: Feature
-about: Propose a new feature for ngx-sharebuttons
+about: Propose a new feature
 labels: feature
 ---
-
+ 
 #### Feature Description
 
 Provide a brief summary of the feature you would like to see.

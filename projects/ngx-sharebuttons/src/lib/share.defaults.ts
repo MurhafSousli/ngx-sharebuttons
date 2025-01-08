@@ -2,13 +2,14 @@ import {
   IShareButton,
   IShareButtons,
   ShareButtonsConfig,
-  ShareParams, ShareParamsFunc,
+  ShareParams,
+  ShareParamsFunc,
   SharerMethods
 } from './share.models';
 import { copyToClipboard, printPage } from './utils';
 
 
-export const DEFAULT_OPTIONS: ShareButtonsConfig = {
+export const defaultOptions: ShareButtonsConfig = {
   sharerMethod: SharerMethods.Anchor,
   theme: 'default',
   windowWidth: 800,

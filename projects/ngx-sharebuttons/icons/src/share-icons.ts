@@ -29,9 +29,3 @@ export function shareIcons(): Provider {
     deps: [FaIconLibrary]
   };
 }
-
-/**
- * @deprecated
- * Function was renamed, use 'shareIcons' function instead
- */
-export const withIcons: () => Provider = shareIcons;

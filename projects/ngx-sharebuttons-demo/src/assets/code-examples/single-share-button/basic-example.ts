@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ShareButton } from 'ngx-sharebuttons/button';
 
 @Component({
-  standalone: true,
   selector: 'basic-example',
   imports: [ShareButton],
   template: `

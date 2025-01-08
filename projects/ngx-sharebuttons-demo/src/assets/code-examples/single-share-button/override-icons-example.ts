@@ -3,7 +3,6 @@ import { ShareButton } from 'ngx-sharebuttons/button';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
-  standalone: true,
   selector: 'basic-example',
   imports: [ShareButton],
   template: `

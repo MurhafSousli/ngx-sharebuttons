@@ -12,7 +12,7 @@ import {
 import { Subject, Subscription, tap, switchMap, filter } from 'rxjs';
 import { StorageMap } from '@ngx-pwa/local-storage';
 
-import { DEFAULT_OPTIONS, SHARE_BUTTONS } from 'ngx-sharebuttons';
+import { defaultOptions, SHARE_BUTTONS } from 'ngx-sharebuttons';
 import { MaterialModule } from '../material.module';
 import { FormsModule } from '@angular/forms';
 import { ShareButtons } from 'ngx-sharebuttons/buttons';
@@ -21,10 +21,9 @@ import { HlCodeComponent } from '../hl-code/hl-code.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
   selector: 'lab',
   templateUrl: './lab.component.html',
-  styleUrls: ['./lab.component.scss'],
+  styleUrl: './lab.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MaterialModule, CommonModule, FormsModule, ShareButtons, ShareButton, HlCodeComponent]
 })
@@ -100,7 +99,7 @@ export class LabComponent implements AfterViewInit, AfterContentChecked, OnDestr
       code += `\n [button]="'${ this.config.button }'"`;
     } else {
 
-      if (this.config.include.length !== DEFAULT_OPTIONS.include?.length) {
+      if (this.config.include.length !== defaultOptions.include?.length) {
         code += `\n [include]="[${ this.config.include.map(btn => `'${ btn }'`) }]"`;
       }
 

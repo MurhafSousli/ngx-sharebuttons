@@ -4,11 +4,10 @@ import { SharedModule } from '../../shared';
 
 
 @Component({
-  standalone: true,
   host: { class: 'page' },
   selector: 'faq',
   templateUrl: './faq.component.html',
-  styleUrls: ['./faq.component.scss'],
+  styleUrl: './faq.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SharedModule]
 })

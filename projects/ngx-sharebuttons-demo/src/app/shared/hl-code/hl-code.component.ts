@@ -5,7 +5,6 @@ import { NgScrollbar } from 'ngx-scrollbar';
 import { MaterialModule } from '../material.module';
 
 @Component({
-  standalone: true,
   selector: 'hl-code',
   templateUrl: './hl-code.component.html',
   styleUrl: './hl-code.component.scss',

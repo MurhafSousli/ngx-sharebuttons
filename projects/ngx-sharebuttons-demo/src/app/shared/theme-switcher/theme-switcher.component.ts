@@ -5,10 +5,9 @@ import { MaterialModule } from '../material.module';
 import { UpperCasePipe } from '@angular/common';
 
 @Component({
-  standalone: true,
   selector: 'theme-switcher',
   templateUrl: './theme-switcher.component.html',
-  styleUrls: ['./theme-switcher.component.scss'],
+  styleUrl: './theme-switcher.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   preserveWhitespaces: false,
   imports: [MaterialModule, UpperCasePipe]
