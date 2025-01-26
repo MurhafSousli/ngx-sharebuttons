@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 ::ng-deep {
   .code-button.mat-mini-fab {
     .mat-button-wrapper {
@@ -9,6 +11,11 @@
 :host {
   position: relative;
   display: block;
+
+  @include mat.fab-overrides((
+    small-container-color: var(--action-color),
+    small-foreground-color: white,
+  ));
 }
 
 .lab-container {

@@ -1,32 +1,13 @@
 @use '@angular/material' as mat;
+@use './_theme-colors' as theme;
 
-@use 'assets/style/code';
+@use '../public/style/code';
 @use '../../ngx-sharebuttons/themes/modern';
 @use '../../ngx-sharebuttons/themes/circles';
 @use '../../ngx-sharebuttons/themes/material';
 @use '../../ngx-sharebuttons/themes/outline';
 @use '../../ngx-sharebuttons/themes/classic';
 @use '../../ngx-sharebuttons/themes/default';
-
-@include mat.core();
-
-$primary: mat.m2-define-palette(mat.$m2-blue-gray-palette, 500);
-$accent: mat.m2-define-palette(mat.$m2-red-palette);
-$warn: mat.m2-define-palette(mat.$m2-purple-palette, 300);
-
-$my-theme: mat.m2-define-light-theme((
-  color: (
-    primary: $primary,
-    accent: $accent,
-    warn: $warn
-  ),
-  typography: mat.m2-define-typography-config(
-    $font-family: 'Play'
-  ),
-  density: 0,
-));
-
-@include mat.all-component-themes($my-theme);
 
 :root {
   --primary-color: #2E4057;
@@ -51,6 +32,72 @@ $my-theme: mat.m2-define-light-theme((
 
   --ng-progress-color: var(--accent-color);
   --ng-progress-thickness: 3;
+
+  --scrollbar-track-color: #a8b9c1;
+  --scrollbar-thickness: 12;
+  --scrollbar-hover-thickness: 16;
+  --scrollbar-thumb-color: var(--action-color);
+  --scrollbar-thumb-hover-color: var(--action-color);
+
+  @include mat.chips-overrides((
+    label-text-color: var(--primary-color),
+    outline-color: var(--primary-color),
+  ));
+
+  @include mat.table-overrides((
+  ));
+
+  @include mat.sidenav-overrides((
+    content-text-color: var(--primary-color),
+  ));
+
+  @include mat.theme-overrides((
+    //primary: var(--primary-color),
+  ));
+
+  @include mat.slide-toggle-overrides((
+    label-text-color: var(--primary-color),
+  ));
+
+  @include mat.table-overrides((
+    row-item-outline-color: lightgray
+  ));
+
+  @include mat.card-overrides((
+    //elevated-container-color: white,
+  ));
+
+  @include mat.fab-overrides((
+    foreground-color: white,
+    small-foreground-color: white
+  ));
+
+  @include mat.list-overrides((
+    active-indicator-shape: 0px,
+    active-indicator-color: white,
+    list-item-label-text-color: white,
+    list-item-focus-label-text-color: white,
+    list-item-hover-label-text-color: white
+  ));
+
+  @include mat.divider-overrides((
+    color: rgba(0, 0, 0, .12)
+  ));
+
+  @include mat.button-overrides((
+    container-shape: 4px
+  ));
+}
+
+html {
+  @include mat.theme((
+    color: (
+      primary: theme.$primary-palette,
+      theme-type: light
+    ),
+    typography: Play,
+    density: 0
+  ));
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -129,7 +176,7 @@ section {
 
 .property-input {
   background-color: var(--api_input) !important;
-  width: 64px;
+  //width: 64px;
 }
 
 .sticky {
@@ -182,7 +229,7 @@ section {
     bottom: 0;
     opacity: 0.1;
     z-index: -1;
-    background-image: url('assets/img/pattern.svg');
+    background-image: url('../public/img/pattern.svg');
   }
 
   h1 {
@@ -213,16 +260,6 @@ section {
   transform-style: preserve-3d;
   background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
   box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
-
-  .ng-scrollbar {
-    //--scrollbar-border-radius: 12px;
-    --scrollbar-thickness: 12;
-    --scrollbar-hover-thickness: 16;
-    --scrollbar-thumb-color: var(--action-color);
-    --scrollbar-color: rgba(0, 0, 0, 0.1);
-    --scrollbar-thumb-hover-color: var(--action-color);
-    --scrollbar-track-color: rgba(0, 0, 0, 0.1);
-  }
 }
 
 .wall {
@@ -243,7 +280,7 @@ section {
     bottom: 0;
     opacity: 0.1;
     z-index: -1;
-    background-image: url('assets/img/pattern.svg');
+    background-image: url('../public/img/pattern.svg');
   }
 
   fa-icon {
@@ -282,7 +319,7 @@ section {
 }
 
 .mat-mdc-chip-option {
-  font-family: 'Play', sans-serif;
+  //font-family: 'Play', sans-serif;
   text-transform: lowercase !important;
 }
 
@@ -351,8 +388,8 @@ section {
 }
 
 .copy-tooltip {
-  color: mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-red-palette));
-  background-color: rgba(0, 0, 0, 0.5);
+  //color: mat.m2-get-color-from-palette(mat.m2-define-palette(mat.$m2-red-palette));
+  //background-color: rgba(0, 0, 0, 0.5);
 }
 
 // TABLES

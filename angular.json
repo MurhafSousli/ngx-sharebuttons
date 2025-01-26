@@ -29,8 +29,10 @@
             "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/ngx-sharebuttons-demo/src/favicon.ico",
-              "projects/ngx-sharebuttons-demo/src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/ngx-sharebuttons-demo/public"
+              }
             ],
             "styles": [
               "projects/ngx-sharebuttons-demo/src/styles.scss"
@@ -94,8 +96,10 @@
             "tsConfig": "projects/ngx-sharebuttons-demo/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/ngx-sharebuttons-demo/src/favicon.ico",
-              "projects/ngx-sharebuttons-demo/src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/ngx-sharebuttons-demo/public"
+              }
             ],
             "styles": [
               "projects/ngx-sharebuttons-demo/src/styles.scss"

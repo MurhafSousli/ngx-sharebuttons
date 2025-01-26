@@ -17,7 +17,7 @@
       <p>Install the following packages</p>
 
       <h4>NPM</h4>
-      <hl-code [code]="'assets/code-examples/install-with-icons.bash' | codeFromUrl | async"/>
+      <hl-code [code]="'/public/code-examples/install-with-icons.bash' | codeFromUrl | async"/>
     </section>
 
     <section>
@@ -25,7 +25,7 @@
 
       <p>Import share buttons theme in the global style<b>"app/src/style.scss"</b></p>
 
-      <hl-code [code]="'assets/code-examples/theme.scss' | codeFromUrl | async"/>
+      <hl-code [code]="'/public/code-examples/theme.scss' | codeFromUrl | async"/>
 
       <note>The default theme is optional, you can replace it with other theme or create your own theme from scratch,
         see the <a routerLink="/styling-guide">Styling Guide</a></note>
@@ -37,17 +37,17 @@
     <section>
       <section-title>Basic Usage</section-title>
 
-      <hl-code [code]="'assets/code-examples/single-share-button/recommended-example.html' | codeFromUrl | async"
+      <hl-code [code]="'/public/code-examples/single-share-button/recommended-example.html' | codeFromUrl | async"
                [languages]="['html']"/>
 
-      <code-switcher [code]="'assets/code-examples/single-share-button/basic-example.ts' | codeFromUrl | async"
+      <code-switcher [code]="'/public/code-examples/single-share-button/basic-example.ts' | codeFromUrl | async"
                      class="center">
         <share-button button="facebook" theme="classic-dark" text="Share" showText/>
         <share-button button="x" theme="classic-dark" text="Post on X" showText/>
         <share-button button="pinterest" theme="classic-dark" text="Pin" showText/>
       </code-switcher>
 
-      <code-switcher [code]="'assets/code-examples/single-share-button/override-icons-example.ts' | codeFromUrl | async"
+      <code-switcher [code]="'/public/code-examples/single-share-button/override-icons-example.ts' | codeFromUrl | async"
                      class="center">
         <share-button button="facebook" theme="circles-dark" [icon]="fbIcon"/>
         <share-button button="x" theme="circles-dark" [icon]="tweetIcon"/>
