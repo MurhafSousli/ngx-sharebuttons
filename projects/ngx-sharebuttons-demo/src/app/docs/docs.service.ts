@@ -8,7 +8,7 @@ import { ApiData } from './docs.class';
 })
 export class DocsService {
 
-  private readonly baseUrl: string = 'assets/data/';
+  private readonly baseUrl: string = '/data/';
 
   private http: HttpClient = inject(HttpClient);
 

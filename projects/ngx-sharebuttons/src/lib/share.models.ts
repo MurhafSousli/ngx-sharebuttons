@@ -1,4 +1,4 @@
-import { InjectionToken, Provider, WritableSignal } from '@angular/core';
+import { InjectionToken, WritableSignal, EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { defaultOptions, ShareButtonProp } from './share.defaults';
 
@@ -9,15 +9,17 @@ export const SHARE_BUTTONS_CONFIG: InjectionToken<ShareButtonsConfig> = new Inje
 
 export const SHARE_ICONS: InjectionToken<unknown> = new InjectionToken('SHARE_ICONS');
 
-export function provideShareButtonsOptions(...providers: Provider[]): Provider {
-  return providers;
+export function provideShareButtonsOptions(...providers: EnvironmentProviders[]): EnvironmentProviders {
+  return makeEnvironmentProviders(providers);
 }
 
-export function withConfig(options: ShareButtonsConfig): Provider {
-  return {
-    provide: SHARE_BUTTONS_CONFIG,
-    useValue: { ...defaultOptions, ...options }
-  }
+export function withConfig(options: ShareButtonsConfig): EnvironmentProviders {
+  return makeEnvironmentProviders([
+    {
+      provide: SHARE_BUTTONS_CONFIG,
+      useValue: { ...defaultOptions, ...options }
+    }
+  ])
 }
 
 /**

@@ -1,4 +1,4 @@
-import { Provider } from '@angular/core';
+import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { SHARE_ICONS } from 'ngx-sharebuttons';
@@ -22,10 +22,10 @@ export function iconsLoaderFactory(iconLibrary: FaIconLibrary) {
   return null;
 }
 
-export function shareIcons(): Provider {
-  return {
+export function shareIcons(): EnvironmentProviders {
+  return makeEnvironmentProviders([{
     provide: SHARE_ICONS,
     useFactory: iconsLoaderFactory,
     deps: [FaIconLibrary]
-  };
+  }]);
 }

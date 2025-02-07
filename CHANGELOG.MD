@@ -1,5 +1,11 @@
 # Changelog
 
+# 17.0.0
+
+### Possible breaking changes
+
+* refactor: Prevent `provideShareButtonsOptions` from being accidentally referenced in `@Component` in a component injector.
+
 ## 16.0.0
 
 - Upgrade to Angular 19.

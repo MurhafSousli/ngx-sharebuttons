@@ -1,4 +1,4 @@
-import { InjectionToken, Provider } from '@angular/core';
+import { EnvironmentProviders, InjectionToken, makeEnvironmentProviders } from '@angular/core';
 import { IShareButton, IShareButtons } from './share.models';
 import { SHARE_BUTTONS } from './share.defaults';
 
@@ -7,13 +7,15 @@ export const SHARE_BUTTONS_PROP: InjectionToken<IShareButtons> = new InjectionTo
   factory: () => SHARE_BUTTONS
 });
 
-export function customShareButton(key: string, button: IShareButton): Provider {
+export function customShareButton(key: string, button: IShareButton): EnvironmentProviders {
   SHARE_BUTTONS[key] = {
     ...SHARE_BUTTONS[key],
     ...button
   };
-  return {
-    provide: SHARE_BUTTONS_PROP,
-    useValue: SHARE_BUTTONS
-  }
+  return makeEnvironmentProviders([
+    {
+      provide: SHARE_BUTTONS_PROP,
+      useValue: SHARE_BUTTONS
+    }
+  ]);
 }

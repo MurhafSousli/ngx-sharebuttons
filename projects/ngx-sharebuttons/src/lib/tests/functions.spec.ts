@@ -1,4 +1,4 @@
-import { Provider } from '@angular/core';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import {
   defaultOptions,
   facebookParams,
@@ -15,9 +15,9 @@ import {
   provideShareButtonsOptions
 } from 'ngx-sharebuttons';
 import { copyToClipboard, getValidUrl, printPage } from '../utils';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 describe('Utilities functions', () => {
+
   it('Override global share buttons options', () => {
     const config: ShareButtonsConfig = {
       sharerMethod: SharerMethods.Window,
@@ -28,21 +28,23 @@ describe('Utilities functions', () => {
       color: 'purple'
     };
 
-    const provider: Provider = provideShareButtonsOptions(
-      withConfig(config),
-      customShareButton('facebook', fbConfig)
-    );
-
-    expect(provider[0]).toEqual({
-      provide: SHARE_BUTTONS_CONFIG,
-      useValue: { ...defaultOptions, ...config },
+    TestBed.configureTestingModule({
+      providers: [
+        provideShareButtonsOptions(
+          withConfig(config),
+          customShareButton('facebook', fbConfig)
+        )
+      ]
     });
 
-    expect(provider[1]).toEqual({
-      provide: SHARE_BUTTONS_PROP,
-      useValue: {
-        ...SHARE_BUTTONS, ...{ facebook: { ...facebookParams, ...fbConfig } }
-      },
+    // Inject the provider
+    const injectedConfig = TestBed.inject(SHARE_BUTTONS_CONFIG);
+    const injectedButtonsProps = TestBed.inject(SHARE_BUTTONS_PROP);
+
+    expect(injectedConfig).toEqual({ ...defaultOptions, ...config });
+
+    expect(injectedButtonsProps).toEqual({
+      ...SHARE_BUTTONS, ...{ facebook: { ...facebookParams, ...fbConfig } }
     });
   });
 
